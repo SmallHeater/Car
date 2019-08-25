@@ -2,5 +2,7 @@ target "Car" do
 platform:ios,'11.0'
 pod 'Masonry'
 pod 'ReactiveObjC'
-pod 'AFNetworking'
+pod 'RealReachability'
+pod 'AMapLocation'
+pod 'SDWebImage'
 end

@@ -14,6 +14,8 @@
 #import "MineViewController.h"
 #import "LoginViewController.h"
 
+
+
 @interface AppDelegate ()
 
 @end
@@ -23,7 +25,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     
     
     HomeViewController * homeVC = [[HomeViewController alloc] init];
@@ -57,11 +58,11 @@
     mineNav.tabBarItem.selectedImage = [UIImage imageNamed:@"Mine"];
     
     UITabBarController * tarBarController = [[UITabBarController alloc] init];
-//    self.window.rootViewController = tarBarController;
+    self.window.rootViewController = tarBarController;
     tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
     tarBarController.selectedIndex = 2;
     
-    self.window.rootViewController = [[LoginViewController alloc] init];
+//    self.window.rootViewController = [[LoginViewController alloc] init];
     
     return YES;
 }

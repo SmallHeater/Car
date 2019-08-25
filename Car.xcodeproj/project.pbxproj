@@ -19,7 +19,6 @@
 		04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04048563230C205F00EF17C8 /* BaseTableViewController.m */; };
 		04048575230C205F00EF17C8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04048564230C205F00EF17C8 /* BaseViewController.m */; };
 		04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04048569230C205F00EF17C8 /* UIScreenControl.m */; };
-		04048577230C205F00EF17C8 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404856C230C205F00EF17C8 /* HttpRequestManager.m */; };
 		0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04048578230C217100EF17C8 /* SHNavigationBar.m */; };
 		0404857D230C217100EF17C8 /* FilletBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404857A230C217100EF17C8 /* FilletBtn.m */; };
 		04048599230C257700EF17C8 /* ForumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04048598230C257700EF17C8 /* ForumViewController.m */; };
@@ -34,6 +33,23 @@
 		040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485CE2311096700EF17C8 /* SHMiddlewareComponent.m */; };
 		040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485D12311096700EF17C8 /* MiddlewareReflectionControl.m */; };
 		040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485D32311096700EF17C8 /* SHRoutingComponent.m */; };
+		040485E823111DB600EF17C8 /* HighOrderPositioningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485E723111DB600EF17C8 /* HighOrderPositioningController.m */; };
+		040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */; };
+		040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485EE2311723D00EF17C8 /* CarouselCell.m */; };
+		040485F62311774500EF17C8 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485F52311774500EF17C8 /* CarouselView.m */; };
+		040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */; };
+		040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FB231187AD00EF17C8 /* SearchBarCell.m */; };
+		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
+		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
+		0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */; };
+		046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB8F231272A900C520D8 /* TXScrollLabelView.m */; };
+		046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB90231272A900C520D8 /* UIView+TXFrame.m */; };
+		046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */; };
+		046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9A2312A42200C520D8 /* SHSearchBar.m */; };
+		046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9D2312A60300C520D8 /* SearchBarTwoCell.m */; };
+		046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA02312C56000C520D8 /* VehicleFileCell.m */; };
+		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
+		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 /* End PBXBuildFile section */
 
@@ -60,9 +76,7 @@
 		04048566230C205F00EF17C8 /* BaseUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUIViewController.h; sourceTree = "<group>"; };
 		04048567230C205F00EF17C8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		04048569230C205F00EF17C8 /* UIScreenControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScreenControl.m; sourceTree = "<group>"; };
-		0404856A230C205F00EF17C8 /* HttpRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestManager.h; sourceTree = "<group>"; };
 		0404856B230C205F00EF17C8 /* UIScreenControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScreenControl.h; sourceTree = "<group>"; };
-		0404856C230C205F00EF17C8 /* HttpRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestManager.m; sourceTree = "<group>"; };
 		04048578230C217100EF17C8 /* SHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNavigationBar.m; sourceTree = "<group>"; };
 		04048579230C217100EF17C8 /* SHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNavigationBar.h; sourceTree = "<group>"; };
 		0404857A230C217100EF17C8 /* FilletBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilletBtn.m; sourceTree = "<group>"; };
@@ -93,6 +107,40 @@
 		040485D42311096700EF17C8 /* CommandList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandList.h; sourceTree = "<group>"; };
 		040485D52311096700EF17C8 /* SHRoutingComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHRoutingComponent.h; sourceTree = "<group>"; };
 		040485D62311096700EF17C8 /* CommandDemoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandDemoList.h; sourceTree = "<group>"; };
+		040485E623111DB600EF17C8 /* HighOrderPositioningController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighOrderPositioningController.h; sourceTree = "<group>"; };
+		040485E723111DB600EF17C8 /* HighOrderPositioningController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighOrderPositioningController.m; sourceTree = "<group>"; };
+		040485EA231135DE00EF17C8 /* AutoRepairShopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoRepairShopCell.h; sourceTree = "<group>"; };
+		040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoRepairShopCell.m; sourceTree = "<group>"; };
+		040485ED2311723D00EF17C8 /* CarouselCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselCell.h; sourceTree = "<group>"; };
+		040485EE2311723D00EF17C8 /* CarouselCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselCell.m; sourceTree = "<group>"; };
+		040485F42311774500EF17C8 /* CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselView.h; sourceTree = "<group>"; };
+		040485F52311774500EF17C8 /* CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselView.m; sourceTree = "<group>"; };
+		040485F72311777A00EF17C8 /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselCollectionViewCell.h; sourceTree = "<group>"; };
+		040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselCollectionViewCell.m; sourceTree = "<group>"; };
+		040485FA231187AD00EF17C8 /* SearchBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarCell.h; sourceTree = "<group>"; };
+		040485FB231187AD00EF17C8 /* SearchBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarCell.m; sourceTree = "<group>"; };
+		040485FD2311880200EF17C8 /* AnnouncementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementCell.h; sourceTree = "<group>"; };
+		040485FE2311880200EF17C8 /* AnnouncementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCell.m; sourceTree = "<group>"; };
+		040486002311883B00EF17C8 /* CustomerManagementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerManagementCell.h; sourceTree = "<group>"; };
+		040486012311883B00EF17C8 /* CustomerManagementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerManagementCell.m; sourceTree = "<group>"; };
+		0404860923122D1A00EF17C8 /* ImageAndLabelControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelControl.h; sourceTree = "<group>"; };
+		0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelControl.m; sourceTree = "<group>"; };
+		046DCB8D231272A900C520D8 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		046DCB8E231272A900C520D8 /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
+		046DCB8F231272A900C520D8 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		046DCB90231272A900C520D8 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
+		046DCB9323129BEA00C520D8 /* VehicleFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileViewController.h; sourceTree = "<group>"; };
+		046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileViewController.m; sourceTree = "<group>"; };
+		046DCB992312A42200C520D8 /* SHSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSearchBar.h; sourceTree = "<group>"; };
+		046DCB9A2312A42200C520D8 /* SHSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSearchBar.m; sourceTree = "<group>"; };
+		046DCB9C2312A60300C520D8 /* SearchBarTwoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTwoCell.h; sourceTree = "<group>"; };
+		046DCB9D2312A60300C520D8 /* SearchBarTwoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTwoCell.m; sourceTree = "<group>"; };
+		046DCB9F2312C56000C520D8 /* VehicleFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileCell.h; sourceTree = "<group>"; };
+		046DCBA02312C56000C520D8 /* VehicleFileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileCell.m; sourceTree = "<group>"; };
+		046DCBA22312CEB600C520D8 /* FastPickUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpViewController.h; sourceTree = "<group>"; };
+		046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastPickUpViewController.m; sourceTree = "<group>"; };
+		046DCBA52312D27F00C520D8 /* IdentificationDrivingLicenseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentificationDrivingLicenseCell.h; sourceTree = "<group>"; };
+		046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentificationDrivingLicenseCell.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +257,7 @@
 		0404855A230C205F00EF17C8 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				040485F32311774500EF17C8 /* CarouselView */,
 				0404857B230C217100EF17C8 /* FilletBtn.h */,
 				0404857A230C217100EF17C8 /* FilletBtn.m */,
 				04048579230C217100EF17C8 /* SHNavigationBar.h */,
@@ -219,6 +268,10 @@
 				040485B2230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m */,
 				040485B42310E34800EF17C8 /* GetVerificationCodeBtn.h */,
 				040485B52310E34800EF17C8 /* GetVerificationCodeBtn.m */,
+				0404860923122D1A00EF17C8 /* ImageAndLabelControl.h */,
+				0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */,
+				046DCB992312A42200C520D8 /* SHSearchBar.h */,
+				046DCB9A2312A42200C520D8 /* SHSearchBar.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -226,12 +279,12 @@
 		04048561230C205F00EF17C8 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				04048562230C205F00EF17C8 /* BaseUIViewController.m */,
-				04048563230C205F00EF17C8 /* BaseTableViewController.m */,
-				04048564230C205F00EF17C8 /* BaseViewController.m */,
-				04048565230C205F00EF17C8 /* BaseTableViewController.h */,
-				04048566230C205F00EF17C8 /* BaseUIViewController.h */,
 				04048567230C205F00EF17C8 /* BaseViewController.h */,
+				04048564230C205F00EF17C8 /* BaseViewController.m */,
+				04048566230C205F00EF17C8 /* BaseUIViewController.h */,
+				04048562230C205F00EF17C8 /* BaseUIViewController.m */,
+				04048565230C205F00EF17C8 /* BaseTableViewController.h */,
+				04048563230C205F00EF17C8 /* BaseTableViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -241,8 +294,8 @@
 			children = (
 				0404856B230C205F00EF17C8 /* UIScreenControl.h */,
 				04048569230C205F00EF17C8 /* UIScreenControl.m */,
-				0404856A230C205F00EF17C8 /* HttpRequestManager.h */,
-				0404856C230C205F00EF17C8 /* HttpRequestManager.m */,
+				040485E623111DB600EF17C8 /* HighOrderPositioningController.h */,
+				040485E723111DB600EF17C8 /* HighOrderPositioningController.m */,
 			);
 			path = BaseControl;
 			sourceTree = "<group>";
@@ -250,6 +303,7 @@
 		0404856D230C205F00EF17C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				046DCB8C231272A900C520D8 /* TXScrollLabelView */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -257,6 +311,7 @@
 		0404857E230C24D200EF17C8 /* Workbench */ = {
 			isa = PBXGroup;
 			children = (
+				040485E9231135A800EF17C8 /* Cell */,
 				04048596230C254000EF17C8 /* Controller */,
 				04048593230C254000EF17C8 /* Model */,
 				04048594230C254000EF17C8 /* UIViewController */,
@@ -441,6 +496,10 @@
 			children = (
 				040485A3230C25F800EF17C8 /* WorkbenchViewController.h */,
 				040485A4230C25F800EF17C8 /* WorkbenchViewController.m */,
+				046DCB9323129BEA00C520D8 /* VehicleFileViewController.h */,
+				046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */,
+				046DCBA22312CEB600C520D8 /* FastPickUpViewController.h */,
+				046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -557,6 +616,51 @@
 			path = SHRoutingComponent;
 			sourceTree = "<group>";
 		};
+		040485E9231135A800EF17C8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				040485EA231135DE00EF17C8 /* AutoRepairShopCell.h */,
+				040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */,
+				040485ED2311723D00EF17C8 /* CarouselCell.h */,
+				040485EE2311723D00EF17C8 /* CarouselCell.m */,
+				040485FA231187AD00EF17C8 /* SearchBarCell.h */,
+				040485FB231187AD00EF17C8 /* SearchBarCell.m */,
+				040485FD2311880200EF17C8 /* AnnouncementCell.h */,
+				040485FE2311880200EF17C8 /* AnnouncementCell.m */,
+				040486002311883B00EF17C8 /* CustomerManagementCell.h */,
+				040486012311883B00EF17C8 /* CustomerManagementCell.m */,
+				046DCB9C2312A60300C520D8 /* SearchBarTwoCell.h */,
+				046DCB9D2312A60300C520D8 /* SearchBarTwoCell.m */,
+				046DCB9F2312C56000C520D8 /* VehicleFileCell.h */,
+				046DCBA02312C56000C520D8 /* VehicleFileCell.m */,
+				046DCBA52312D27F00C520D8 /* IdentificationDrivingLicenseCell.h */,
+				046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		040485F32311774500EF17C8 /* CarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				040485F42311774500EF17C8 /* CarouselView.h */,
+				040485F52311774500EF17C8 /* CarouselView.m */,
+				040485F72311777A00EF17C8 /* CarouselCollectionViewCell.h */,
+				040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */,
+			);
+			path = CarouselView;
+			sourceTree = "<group>";
+		};
+		046DCB8C231272A900C520D8 /* TXScrollLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				046DCB8D231272A900C520D8 /* TXScrollLabelView.h */,
+				046DCB8F231272A900C520D8 /* TXScrollLabelView.m */,
+				046DCB8E231272A900C520D8 /* UIView+TXFrame.h */,
+				046DCB90231272A900C520D8 /* UIView+TXFrame.m */,
+			);
+			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
 		46BB7468356326282D4EECCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +774,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
@@ -677,23 +782,38 @@
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
+				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
+				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
+				040485F62311774500EF17C8 /* CarouselView.m in Sources */,
+				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
+				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
-				04048577230C205F00EF17C8 /* HttpRequestManager.m in Sources */,
+				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
+				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
+				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
+				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
+				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
+				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
+				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
+				040485E823111DB600EF17C8 /* HighOrderPositioningController.m in Sources */,
+				040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
+				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
+				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,7 +965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.Car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
@@ -866,7 +986,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.Car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";

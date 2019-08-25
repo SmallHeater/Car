@@ -10,6 +10,9 @@
 
 @interface BaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+//是否展示导航条
+@property (nonatomic,assign) BOOL showNavigationBar;
+
 @property (nonatomic,assign) UITableViewStyle tableViewStyle;
 @property (nonatomic,strong) UITableView * tableView;
 
@@ -23,7 +26,13 @@
     
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, [UIScreenControl navigationBarHeight], MAINWIDTH, MAINHEIGHT - [UIScreenControl navigationBarHeight] - [UIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
+        NSUInteger navigationBarHeight = 0;
+        if (self.showNavigationBar) {
+            
+            navigationBarHeight = [UIScreenControl navigationBarHeight];
+        }
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [UIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -34,6 +43,7 @@
         _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
+//        _tableView.backgroundColor = [UIColor redColor];
     }
     return _tableView;
 }
@@ -49,12 +59,17 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style{
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;{
 
     self = [super initWithTitle:title andIsShowBackBtn:isShowBackBtn];
     if (self) {
         
+        self.showNavigationBar = isShowNavgationBar;
         self.tableViewStyle = style;
+        if (!isShowNavgationBar) {
+            
+            [self.navigationbar removeFromSuperview];
+        }
     }
     return self;
 }
@@ -82,96 +97,45 @@
     
 }
 
--(void)refreshViewWithViewType:(TBVCViewType)viewType{
+-(void)refreshViewType:(BTVCType)viewType{
     
-    if (viewType != TBVCReloadData) {
+    [self.navigationbar bringSubviewToFront:self.view];
+    
+    if (viewType != BTVCType_RefreshTableView) {
         
         [self.tableView removeFromSuperview];
     }
     
     switch (viewType) {
-            
-        case TBVCDefault:
-            
-            break;
-        case TBVCTableView:
+        case BTVCType_AddTableView:
         {
             
             [self.view addSubview:self.tableView];
-            [self.tableView reloadData];
-        }
             break;
-        case TBVCReloadData:
+        }
+        case BTVCType_RefreshTableView:
         {
             
             [self.tableView reloadData];
-        }
             break;
-        case TBVCNoInternet:
+        }
+        case BTVCType_NoData:
         {
             
+            //无数据
+            break;
+        }
+            
+        case BTVCType_NoInterNet:
+        {
             //无网络
-            
-        }
             break;
-        case TBVCNoData:
-        {
-            
-            
         }
-            break;
         default:
             break;
     }
 }
 
 
-
-#pragma mark  ----  SET
--(void)setViewType:(TBVCViewType)viewType{
-    
-    _viewType = viewType;
-    
-    if (viewType != TBVCReloadData && viewType != TBVCDefault) {
-        
-        [self.tableView removeFromSuperview];
-
-    }
-    
-    switch (viewType) {
-            
-        case TBVCDefault:
-            
-            break;
-        case TBVCTableView:
-        {
-            
-            [self.view addSubview:self.tableView];
-            [self.tableView reloadData];
-        }
-            break;
-        case TBVCReloadData:
-        {
-            
-            [self.tableView reloadData];
-        }
-            break;
-        case TBVCNoInternet:
-        {
-            
-            //无网络
-            
-        }
-            break;
-        case TBVCNoData:
-        {
-            
-            
-        }
-            break;
-        default:
-            break;
-    }
-}
 
 @end

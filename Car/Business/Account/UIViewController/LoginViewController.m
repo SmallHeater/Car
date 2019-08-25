@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "ImageViewAndTextFieldAndBottomLineView.h"
 #import "GetVerificationCodeBtn.h"
+#import "HighOrderPositioningController.h"
 
 @interface LoginViewController ()
 
@@ -132,6 +133,12 @@
     [super viewDidLoad];
     [self addReceivingKeyboard];
     [self drawUI];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [[HighOrderPositioningController sharedManager] startPositioning];
 }
 
 #pragma mark  ----  自定义函数

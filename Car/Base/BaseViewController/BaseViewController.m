@@ -15,6 +15,7 @@
 @implementation BaseViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -24,5 +25,6 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
+
 
 @end

@@ -10,35 +10,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger,TBVCViewType){
-    
-    TBVCDefault = 0,//默认状态，只有导航
-    TBVCTableView,//显示tableView
-    TBVCReloadData,//刷新数据
-    TBVCNoInternet,//无网
-    TBVCNoData//无数据
-};
 
-typedef NS_ENUM(NSUInteger,TBVCDataType){
+typedef NS_ENUM(NSUInteger,BTVCType){
     
-    TBVCGetNewData = 0,
-    TBVCLoadMoreData
+    BTVCType_AddTableView = 0,//添加tableView
+    BTVCType_RefreshTableView,//刷新tableView
+    BTVCType_NoData,//无数据
+    BTVCType_NoInterNet//无网络
 };
-
 
 @interface BaseTableViewController : BaseUIViewController
 
-@property (nonatomic,assign) TBVCViewType viewType;
-@property (nonatomic,assign) TBVCDataType dataType;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 
--(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;
 
 
 //请求列表数据
 -(void)requestListData;
-//刷新页面展示
--(void)refreshViewWithViewType:(TBVCViewType)viewType;
+
+//刷新展示
+-(void)refreshViewType:(BTVCType)viewType;
 
 @end
 

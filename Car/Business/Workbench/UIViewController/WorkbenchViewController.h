@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  工作台页面
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WorkbenchViewController : BaseViewController
+@interface WorkbenchViewController : BaseTableViewController
 
 @end
 

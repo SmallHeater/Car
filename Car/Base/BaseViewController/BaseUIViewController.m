@@ -53,6 +53,11 @@
     [self addNav];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+}
+
 #pragma mark  ----  自定义函数
 -(void)addNav{
     
