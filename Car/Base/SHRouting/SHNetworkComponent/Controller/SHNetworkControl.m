@@ -12,6 +12,11 @@
 
 static SHNetworkControl * manager = nil;
 
+@interface SHNetworkControl ()<NSURLSessionDelegate>
+
+@end
+
+
 @implementation SHNetworkControl
 
 #pragma mark  ----  生命周期函数
@@ -80,9 +85,7 @@ static SHNetworkControl * manager = nil;
         completionHandler(disposition, credential);
     }
 }
-————————————————
-版权声明：本文为CSDN博主「Crazy_MiKey」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/crazy_sunshine/article/details/80061516
+
 
 #pragma mark  ----  自定义函数
 
@@ -223,18 +226,8 @@ static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryPar
     
     NSDictionary * bodyPara = parameters;
     if (bodyPara && [bodyPara isKindOfClass:[NSDictionary class]] && bodyPara.allKeys.count > 0) {
-        
-        NSMutableDictionary * tempBodyPara = [[NSMutableDictionary alloc] initWithDictionary:bodyPara];
-        if (![method isEqualToString:@"GET"]) {
-            
-            NSDictionary * clientInfo = @{
-                                          @"version":@"v1.4.0",
-                                          @"versionNum":@140,
-                                          @"device":@"ios"
-                                          };
-            [tempBodyPara setObject:clientInfo forKey:@"clientInfo"];
-        }
-        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:tempBodyPara options:kNilOptions error:NULL];
+
+        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:bodyPara options:kNilOptions error:NULL];
     }
     
     __block NSURLSessionDataTask *dataTask = nil;
@@ -262,8 +255,7 @@ static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryPar
                              downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgressBlock
                             completionHandler:(nullable void (^)(NSURLResponse *response,NSData *data,NSError * _Nullable error))completionHandler {
     // Connection
-    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession * urlSession = [NSURLSession  sessionWithConfiguration:configuration];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc]init]];
     NSURLSessionDataTask * task = [urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         completionHandler(response,data,error);

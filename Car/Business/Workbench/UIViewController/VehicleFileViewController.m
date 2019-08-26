@@ -118,7 +118,7 @@
 
 -(void)addBtnClicked{
     
-    FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStyleGrouped];
+    FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

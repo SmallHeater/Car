@@ -8,21 +8,63 @@
 
 #import "FastPickUpViewController.h"
 #import "IdentificationDrivingLicenseCell.h"
-
+#import "VehicleInformationCell.h"
+#import "DriverInformationCell.h"
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView * tableView;
+
+//保存按钮
+@property (nonatomic,strong) UIButton * saveBtn;
 
 @end
 
 @implementation FastPickUpViewController
 
+#pragma mark  ----  懒加载
+
+-(UITableView *)tableView{
+    
+    if (!_tableView) {
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
+        //取消contentSize和contentOffset的改的，解决闪屏问题
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        //        _tableView.backgroundColor = [UIColor redColor];
+    }
+    return _tableView;
+}
+
+-(UIButton *)saveBtn{
+    
+    if (!_saveBtn) {
+        
+        _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+        [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _saveBtn.titleLabel.font = FONT16;
+        [_saveBtn setBackgroundColor:Color_0072FF];
+        [_saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _saveBtn;
+}
+
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
     
-    //继承BaseTableViewController使用时，要将本方法提前，保证先添加tableView,再添加导航
-    [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
+    self.view.backgroundColor = Color_F3F3F3;
+    [self drawUI];
 }
 
 #pragma mark  ----  代理
@@ -36,9 +78,13 @@
         
         cellHeight = 103;
     }
+    else if (indexPath.row == 1){
+        
+        cellHeight = 249;
+    }
     else{
         
-        cellHeight = 104;
+        cellHeight = 195;
     }
     
     return cellHeight;
@@ -51,7 +97,7 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -67,12 +113,66 @@
         
         return cell;
     }
+    else if (indexPath.row == 1){
+        
+        static NSString * secondCellId = @"VehicleInformationCell";
+        VehicleInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:secondCellId];
+        if (!cell) {
+            
+            cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        [cell test];
+        
+        return cell;
+    }
+    else if (indexPath.row == 2){
+        
+        static NSString * thirdCellId = @"DriverInformationCell";
+        DriverInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:thirdCellId];
+        if (!cell) {
+            
+            cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        [cell test];
+        
+        return cell;
+    }
     
     return nil;
 }
 
 #pragma mark  ----  自定义函数
 
+-(void)drawUI{
+    
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.offset(0);
+        make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
+        make.height.offset(547);
+    }];
+    
+    //需要重新设置导航的层级，不然阴影效果没了
+    [self.view bringSubviewToFront:self.navigationbar];
+    
+    [self.view addSubview:self.saveBtn];
+    [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(15);
+        make.right.offset(-15);
+        make.bottom.offset(-30 - [UIScreenControl bottomSafeHeight]);
+        make.height.offset(44);
+    }];
+}
 
+//保存按钮的响应
+-(void)saveBtnClicked:(UIButton *)btn{
+    
+}
 
 @end

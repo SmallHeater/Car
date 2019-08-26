@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  快速接车页面
 
-#import "BaseTableViewController.h"
+#import "BaseUIViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FastPickUpViewController : BaseTableViewController
+@interface FastPickUpViewController : BaseUIViewController
 
 @end
 

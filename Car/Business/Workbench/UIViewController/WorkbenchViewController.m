@@ -172,15 +172,15 @@
         if (indexPath.row == 4) {
             
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
-            dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaidujieche",@"imageWidth":[NSNumber numberWithInteger:28],@"imageHeight":[NSNumber numberWithInteger:25],@"btnTitle":@"快速接车"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:23],@"imageHeight":[NSNumber numberWithInteger:24],@"btnTitle":@"客户档案"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:26],@"imageHeight":[NSNumber numberWithInteger:25],@"btnTitle":@"维修记录"}]};
+            dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaidujieche",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"快速接车"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"客户档案"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"维修记录"}]};
         }
         else if (indexPath.row == 5){
             
-            dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:25],@"imageHeight":[NSNumber numberWithInteger:25],@"btnTitle":@"营收列表"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:21],@"imageHeight":[NSNumber numberWithInteger:26],@"btnTitle":@"回款管理"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:22],@"imageHeight":[NSNumber numberWithInteger:24],@"btnTitle":@"利润统计"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:22],@"imageHeight":[NSNumber numberWithInteger:22],@"btnTitle":@"营业汇总"}]};
+            dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营收列表"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"回款管理"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"利润统计"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营业汇总"}]};
         }
         else if (indexPath.row == 6){
             
-            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:23],@"imageHeight":[NSNumber numberWithInteger:20],@"btnTitle":@"待售查询"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:21],@"imageHeight":[NSNumber numberWithInteger:21],@"btnTitle":@"销售状态"}]};
+            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"待售查询"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"销售状态"}]};
         }
         
         [cell showData:dataDic];

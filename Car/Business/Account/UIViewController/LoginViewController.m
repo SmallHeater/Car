@@ -235,7 +235,6 @@
 //获取验证码
 -(void)requestVerificationCode{
     
-    NSLog(@"获取验证码");
     NSString * phoneNumber = [self.phoneView getInputText];
     if ([phoneNumber repleaseNilOrNull].length == 11) {
         
@@ -252,11 +251,10 @@
                 //发起请求
                 int num = (arc4random() % 10000);
                 NSString * randomNumber = [NSString stringWithFormat:@"%.4d", num];
-                NSDictionary * bodyParameters = @{@"mobile":[NSNumber numberWithInteger:randomNumber.integerValue],@"code":randomNumber,@"event":@"register"};
+                NSDictionary * bodyParameters = @{@"mobile":phoneNumber,@"code":randomNumber,@"event":@"register"};
                 NSDictionary * configurationDic = @{@"requestUrlStr":GetVerificationCode,@"bodyParameters":bodyParameters};
                 [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
                     
-                    NSLog(@"%@",resultDic);
                     if (![resultDic.allKeys containsObject:@"error"]) {
                         
                         //成功的

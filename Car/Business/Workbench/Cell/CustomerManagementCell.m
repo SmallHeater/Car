@@ -97,9 +97,9 @@
         [control mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.offset(controlX);
-            make.top.offset(26);
+            make.top.offset(23);
             make.width.offset(btnWidth);
-            make.height.offset(55);
+            make.height.offset(57);
         }];
         controlX += btnWidth + 44;
         if (i == btnDicArray.count - 1) {

@@ -50,6 +50,8 @@
 		046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA02312C56000C520D8 /* VehicleFileCell.m */; };
 		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
 		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
+		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
+		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
@@ -144,6 +146,10 @@
 		046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastPickUpViewController.m; sourceTree = "<group>"; };
 		046DCBA52312D27F00C520D8 /* IdentificationDrivingLicenseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentificationDrivingLicenseCell.h; sourceTree = "<group>"; };
 		046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentificationDrivingLicenseCell.m; sourceTree = "<group>"; };
+		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
+		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
+		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
+		0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverInformationCell.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -647,6 +653,10 @@
 				046DCBA02312C56000C520D8 /* VehicleFileCell.m */,
 				046DCBA52312D27F00C520D8 /* IdentificationDrivingLicenseCell.h */,
 				046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */,
+				0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */,
+				0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */,
+				0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */,
+				0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -836,6 +846,7 @@
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
+				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
@@ -847,6 +858,7 @@
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
+				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
