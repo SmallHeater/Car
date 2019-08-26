@@ -15,8 +15,6 @@
 #pragma mark  ----  大图浏览组件命令集合
 
 #pragma mark  ----  加密组件命令集合
-//水印加密图片命令
-#define WATERMARKENCRYPTIONIMAGE @"Technology://EncryptionComponent:(watermarkEncryptionImage:callBack:)"
 #pragma mark  ----  加密组件命令集合
 
 #pragma mark  ----  数据采集组件命令集合
@@ -43,8 +41,6 @@
 #pragma mark  ----  相册浏览组件命令集合
 
 #pragma mark  ----  账户体系组件命令集合
-//得到用户ID命令
-#define GETUSERIDCALLBACK @"BusinessFoundation://AccountSystemComponent:(getUserIdCallBack:)"
 #pragma mark  ----  账户体系组件命令集合
 
 #pragma mark  ----  上传组件命令集合
@@ -67,19 +63,10 @@
 
 #pragma mark  ----  直播命令集合
 
-//开始直播命令
-#define STARTLIVING @"Business://Live:(startLiving:callBack:)"
-
-//停止直播命令
-#define STOPLIVING @"Business://Live:(stopLiving:)"
-
 #pragma mark  ----  直播命令集合
 
 
 #pragma mark  ----  播放命令集合
-
-//开始播放命令
-#define STARTPLAYING @"Business://Play:(startPlaying:callBack:)"
 
 #pragma mark  ----  播放命令集合
 
@@ -89,12 +76,6 @@
 #define GETNETWORKTYPE @"Technology://Network:(getConnectTypeCallBack:)"
 //发起网络请求的命令
 #define REQUESTDATA @"Technology://Network:(requestDataWithDic:callBack:)"
-//暂停网络请求的命令
-#define SUSPENDREQUEST @"Technology://Network:(suspendRequestDataWithDic:callBack:)"
-//恢复网络请求的命令
-#define RESUMEREQUEST @"Technology://Network:(resumeRequestDataWithDic:callBack:)"
-//停止网络请求的命令
-#define STOPREQUEST @"Technology://Network:(stopRequestDataWithDic:callBack:)"
 
 #pragma mark  ----  网络请求组件命令集合
 

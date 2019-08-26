@@ -51,6 +51,9 @@
 		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
 		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
+		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
+		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
+		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +147,12 @@
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
+		624A49A023136234005B1391 /* SHNetworkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkComponent.h; sourceTree = "<group>"; };
+		624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkStatusManagementComponent.h; sourceTree = "<group>"; };
+		624A49A223136234005B1391 /* SHNetworkComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkComponent.m; sourceTree = "<group>"; };
+		624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkStatusManagementComponent.m; sourceTree = "<group>"; };
+		624A49A623136234005B1391 /* SHNetworkControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkControl.m; sourceTree = "<group>"; };
+		624A49A823136234005B1391 /* SHNetworkControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkControl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -562,6 +571,7 @@
 		040485B72311096600EF17C8 /* SHRouting */ = {
 			isa = PBXGroup;
 			children = (
+				624A499E23136234005B1391 /* SHNetworkComponent */,
 				040485B82311096700EF17C8 /* SHMiddlewareComponent */,
 				040485D22311096700EF17C8 /* SHRoutingComponent */,
 			);
@@ -667,6 +677,35 @@
 				169DA7AB73986B7D0622997D /* libPods-Car.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		624A499E23136234005B1391 /* SHNetworkComponent */ = {
+			isa = PBXGroup;
+			children = (
+				624A499F23136234005B1391 /* Interface */,
+				624A49A423136234005B1391 /* Controller */,
+			);
+			path = SHNetworkComponent;
+			sourceTree = "<group>";
+		};
+		624A499F23136234005B1391 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				624A49A023136234005B1391 /* SHNetworkComponent.h */,
+				624A49A223136234005B1391 /* SHNetworkComponent.m */,
+				624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */,
+				624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		624A49A423136234005B1391 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				624A49A823136234005B1391 /* SHNetworkControl.h */,
+				624A49A623136234005B1391 /* SHNetworkControl.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		69342650D3B774B22ECBF8D7 /* Pods */ = {
@@ -799,11 +838,13 @@
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
+				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
+				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
@@ -813,6 +854,7 @@
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
+				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
