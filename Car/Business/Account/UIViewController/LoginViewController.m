@@ -67,6 +67,7 @@
     if (!_phoneView) {
         
         _phoneView = [[ImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"phone",@"placeholder":@"请输入手机号"}];
+        [_phoneView setKeyboardType:UIKeyboardTypePhonePad];
     }
     return _phoneView;
 }
@@ -76,6 +77,7 @@
     if (!_verificationCodeView) {
         
         _verificationCodeView = [[ImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"verificationCode",@"placeholder":@"请输入验证码"}];
+        [_verificationCodeView setKeyboardType:UIKeyboardTypePhonePad];
     }
     return _verificationCodeView;
 }
@@ -234,6 +236,55 @@
 -(void)requestVerificationCode{
     
     NSLog(@"获取验证码");
+    NSString * phoneNumber = [self.phoneView getInputText];
+    if ([phoneNumber repleaseNilOrNull].length == 11) {
+        
+        [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
+           
+            NSLog(@"%@",resultDic);
+            NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
+            if (SHNetworkStatusNumber.intValue == 0) {
+                
+                //无网
+            }
+            else{
+                
+                //发起请求
+                int num = (arc4random() % 10000);
+                NSString * randomNumber = [NSString stringWithFormat:@"%.4d", num];
+                NSDictionary * bodyParameters = @{@"mobile":[NSNumber numberWithInteger:randomNumber.integerValue],@"code":randomNumber,@"event":@"register"};
+                NSDictionary * configurationDic = @{@"requestUrlStr":GetVerificationCode,@"bodyParameters":bodyParameters};
+                [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+                    
+                    NSLog(@"%@",resultDic);
+                    if (![resultDic.allKeys containsObject:@"error"]) {
+                        
+                        //成功的
+                        NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                        if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                            
+                            NSDictionary * dataDic = resultDic[@"dataId"];
+                            if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                                
+                                NSLog(@"%@",dataDic);
+                            }
+                        }
+                        else{
+                            
+                        }
+                    }
+                    else{
+                        
+                        //失败的
+                    }
+                }];
+            }
+        }];
+    }
+    else{
+        
+        NSString * str = @"请输入正确的手机号";
+    }
 }
 
 //登录按钮的响应

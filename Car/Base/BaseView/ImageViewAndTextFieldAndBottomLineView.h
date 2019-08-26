@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 //实例化方法;imageName:图片名;placeholder:默认显示文字;
 -(instancetype)initWithConfigurationDic:(NSDictionary *)configurationDic;
 
+//设置键盘样式
+-(void)setKeyboardType:(UIKeyboardType)keyboardType;
+//获取输入内容
+-(NSString *)getInputText;
+
 @end
 
 NS_ASSUME_NONNULL_END

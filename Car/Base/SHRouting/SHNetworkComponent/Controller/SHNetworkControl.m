@@ -59,6 +59,31 @@ static SHNetworkControl * manager = nil;
     return [self.class sharedManager];
 }
 
+#pragma mark  ----  代理
+-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+    
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        if (credential) {
+            disposition = NSURLSessionAuthChallengeUseCredential;
+        } else {
+            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        }
+    } else {
+        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    }
+    
+    if (completionHandler) {
+        completionHandler(disposition, credential);
+    }
+}
+————————————————
+版权声明：本文为CSDN博主「Crazy_MiKey」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/crazy_sunshine/article/details/80061516
+
 #pragma mark  ----  自定义函数
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
@@ -195,17 +220,6 @@ static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryPar
     request.timeoutInterval = self.timeoutInterval;
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     request.HTTPMethod = method;
-    
-    if (NSClassFromString(@"LoginAndRegister")) {
-        
-        //添加报文头，能够提升请求速度
-        id login = ((id(*)(id,SEL))objc_msgSend)(NSClassFromString(@"LoginAndRegister"),NSSelectorFromString(@"sharedLoginAndRegister"));
-        NSString * context = ((NSString *(*)(id,SEL))objc_msgSend)(login,NSSelectorFromString(@"getBase64CodedHttpAuthenticationHeaderWithOrg"));
-        if (context && context.length > 0) {
-         
-            [request addValue:context forHTTPHeaderField:@"ApplicationContext"];
-        }
-    }
     
     NSDictionary * bodyPara = parameters;
     if (bodyPara && [bodyPara isKindOfClass:[NSDictionary class]] && bodyPara.allKeys.count > 0) {

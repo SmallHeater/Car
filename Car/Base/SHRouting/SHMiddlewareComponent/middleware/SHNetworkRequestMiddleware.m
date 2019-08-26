@@ -8,7 +8,7 @@
 
 #import "SHNetworkRequestMiddleware.h"
 #import <objc/message.h>
-#import "SHNetworkStatusManagementComponent.h"
+#import "SHNetworkControl.h"
 
 
 @implementation SHNetworkRequestMiddleware
@@ -30,8 +30,19 @@
 
 //发起网络请求
 +(void)requestDataWithDic:(NSDictionary *)dic callBack:(void(^)(NSDictionary *retultDic))callBack{
+
+    NSDictionary * paramDic = dic;
+    NSString * urlStr = paramDic[@"requestUrlStr"];
+    NSString * bodyParameters = paramDic[@"bodyParameters"];
     
-//    [SHNetworkRequestCompont requestDataWithDic:dic callBack:callBack];
+    [[SHNetworkControl sharedManager] POST:urlStr parameters:bodyParameters headers:nil progress:nil success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
+        
+        id dataId = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil]; callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":dataId});
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        callBack(@{@"task":task,@"error":error});
+    }];
+
 }
 
 

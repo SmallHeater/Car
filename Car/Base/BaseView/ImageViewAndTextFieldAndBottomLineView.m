@@ -54,6 +54,13 @@
     return _bottomLine;
 }
 
+#pragma mark  ----  SET
+//设置键盘样式
+-(void)setKeyboardType:(UIKeyboardType)keyboardType{
+    
+    self.textField.keyboardType = keyboardType;
+}
+
 #pragma mark  ----  生命周期函数
 
 //对默认的实例化方法加处理，避免实例化方法选择错误
@@ -104,6 +111,12 @@
         make.left.right.bottom.offset(0);
         make.height.offset(1);
     }];
+}
+
+//获取输入内容
+-(NSString *)getInputText{
+    
+    return self.textField.text;
 }
 
 @end

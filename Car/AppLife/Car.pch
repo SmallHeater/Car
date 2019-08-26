@@ -18,7 +18,8 @@
 #import "UIColor+SHTool.h"
 #import <ReactiveObjC.h>
 #import "SDWebImage.h"
-//#import "JHRoutingComponent.h"
+#import "HttpUrlFile.h"
+#import "SHRoutingComponent.h"
 //#import "APPUrlHeader.h"
 //#import "HttpRequestManager.h"
 //#import "MBProgressHUD.h"

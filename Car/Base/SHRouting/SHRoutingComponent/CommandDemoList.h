@@ -149,7 +149,7 @@
 //发起网络请求的命令
 /*
  传参:
- NSDictionary * parameter =@{@"requestUrlStr":@"请求地址,必填",@"requestType":@"请求类型，传NSNumber,0,POST,1,GET,可不传，默认POST",@"headerParameters":@"添加到请求头中的参数,可不传",@"bodyParameters":@“添加到请求体中的参数，可不传”,@"businessType":@"请求业务，Number类型，0是普通请求，1是下载请求，2是上传请求，可不传，默认是普通请求",@“priority”:@“优先级，Number类型，0是默认优先级，1是高优先级，2是低优先级，可不传，默认是默认优先级",@“isShowLoading”:@“是否展示Loading,NSNumber类型，YES是展示，NO是不展示，默认是YES”,@"isCallBackInMainQueue":@"是否在主工程回调，NSNumber类型，默认是YES",@"timeoutInterval":@"超时时间，NSNumber类型，默认是5秒",@"taskIdentifier":@"唯一标识，NSNumber类型，可不填，无默认值，若要使用暂停，重新开始等功能，则必填",@"uploadData":[NSData data],上传的Data数据;@"uploadDataFile":@"上传资源路径",上传时uploadData，uploadDataFile必须有一个有数据;}
+ NSDictionary * parameter =@{@"requestUrlStr":@"请求地址,必填",@"requestType":@"请求类型，传NSNumber,0,POST,1,GET,可不传，默认POST",@"headerParameters":@"添加到请求头中的参数,可不传",@"bodyParameters":@“添加到请求体中的参数，可不传”,,@“isShowLoading”:@“是否展示Loading,NSNumber类型，YES是展示，NO是不展示，默认是YES”,@"isCallBackInMainQueue":@"是否在主工程回调，NSNumber类型，默认是YES",@"timeoutInterval":@"超时时间，NSNumber类型，默认是5秒"}
  回调：
  普通请求回调：
  正常回调，NSDictionary * resultDic = @{@"internet":@"网络状态，未知,无网络,2G,3G,4G",@"data":@"NSData,数据",@"response":@"NSURLResponse"};

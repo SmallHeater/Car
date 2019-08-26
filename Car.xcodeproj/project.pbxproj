@@ -153,6 +153,7 @@
 		624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkStatusManagementComponent.m; sourceTree = "<group>"; };
 		624A49A623136234005B1391 /* SHNetworkControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkControl.m; sourceTree = "<group>"; };
 		624A49A823136234005B1391 /* SHNetworkControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkControl.h; sourceTree = "<group>"; };
+		628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpUrlFile.h; path = Car/Base/SHRouting/SHNetworkComponent/HttpUrlFile.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +224,7 @@
 		04048551230C1F9C00EF17C8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";

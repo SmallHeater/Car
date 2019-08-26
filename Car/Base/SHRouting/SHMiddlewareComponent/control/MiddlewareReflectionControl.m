@@ -43,24 +43,8 @@
     if (!_reflectionDic) {
         
         _reflectionDic = [[NSMutableDictionary alloc] init];
-        //相册浏览组件
-        [_reflectionDic setObject:@"JHPictureSelectionMiddleware" forKey:@"PictureSelection"];
-        //大图查看组件
-        [_reflectionDic setObject:@"JHBigPictureBrowsingMiddleware" forKey:@"BigPictureBrowsing"];
-        //加密组件
-        [_reflectionDic setObject:@"JHEncryptionMiddleware" forKey:@"EncryptionComponent"];
-        //数据采集组件
-        [_reflectionDic setObject:@"JHDataStatisticsMiddleware" forKey:@"DataStatisticsComponent"];
-        //账户体系组件
-        [_reflectionDic setObject:@"JHAccountSystemMiddleware" forKey:@"AccountSystemComponent"];
-        //上传组件
-        [_reflectionDic setObject:@"JHUploadMiddleware" forKey:@"UploadComponent"];
-        //直播业务
-        [_reflectionDic setObject:@"JHLiveMiddleware" forKey:@"Live"];
-        //播放业务
-        [_reflectionDic setObject:@"JHPlayMiddleware" forKey:@"Play"];
         //网络相关业务
-        [_reflectionDic setObject:@"JHNetworkRequestMiddleware" forKey:@"Network"];
+        [_reflectionDic setObject:@"SHNetworkRequestMiddleware" forKey:@"Network"];
         
     }
     return _reflectionDic;
