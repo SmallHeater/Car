@@ -56,6 +56,7 @@
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
 		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
+		628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,8 @@
 		624A49A623136234005B1391 /* SHNetworkControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkControl.m; sourceTree = "<group>"; };
 		624A49A823136234005B1391 /* SHNetworkControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkControl.h; sourceTree = "<group>"; };
 		628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpUrlFile.h; path = Car/Base/SHRouting/SHNetworkComponent/HttpUrlFile.h; sourceTree = SOURCE_ROOT; };
+		628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileDetailViewController.h; sourceTree = "<group>"; };
+		628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +520,8 @@
 				046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */,
 				046DCBA22312CEB600C520D8 /* FastPickUpViewController.h */,
 				046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */,
+				628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */,
+				628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
+				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,

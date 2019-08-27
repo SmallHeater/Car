@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHMiddlewareComponent/middleware/SHNetworkRequestMiddleware.m"
-            timestampString = "588512360.6187"
+            timestampString = "588561133.464666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -33,6 +33,38 @@
             endingLineNumber = "269"
             landmarkName = "-requestVerificationCode"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[LoginViewController requestVerificationCode]_block_invoke_2"
+                  moduleName = "Car"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Account/UIViewController/LoginViewController.m"
+                  timestampString = "588599124.749321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[LoginViewController requestVerificationCode]_block_invoke_2"
+                  moduleName = "Car"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Account/UIViewController/LoginViewController.m"
+                  timestampString = "588599124.7522269"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "472">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHNetworkComponent/Controller/SHNetworkControl.m"
-            timestampString = "588512360.619612"
+            timestampString = "588558450.154332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"

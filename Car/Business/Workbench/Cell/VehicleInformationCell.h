@@ -4,7 +4,7 @@
 //
 //  Created by mac on 2019/8/26.
 //  Copyright © 2019 SmallHeat. All rights reserved.
-//  车辆信息cell
+//  车辆信息cell,高245
 
 #import <UIKit/UIKit.h>
 

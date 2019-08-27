@@ -10,6 +10,7 @@
 #import "SearchBarTwoCell.h"
 #import "VehicleFileCell.h"
 #import "FastPickUpViewController.h"
+#import "VehicleFileDetailViewController.h"
 
 @interface VehicleFileViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -66,6 +67,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row != 0) {
+        
+        VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark  ----  UITableViewDataSource

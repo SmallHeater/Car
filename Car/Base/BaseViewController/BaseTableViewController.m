@@ -14,7 +14,6 @@
 @property (nonatomic,assign) BOOL showNavigationBar;
 
 @property (nonatomic,assign) UITableViewStyle tableViewStyle;
-@property (nonatomic,strong) UITableView * tableView;
 
 @end
 

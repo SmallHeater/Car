@@ -14,15 +14,19 @@
 @property (nonatomic,strong) UILabel * titleLabel;
 //车牌号
 @property (nonatomic,strong) UILabel * numberPlateLabel;
+@property (nonatomic,strong) UITextField * numberPlateTF;
 @property (nonatomic,strong) UILabel * firstLineLabel;
 //车架号
 @property (nonatomic,strong) UILabel * frameNumberLabel;
+@property (nonatomic,strong) UITextField * frameNumberTF;
 @property (nonatomic,strong) UILabel * secondLineLabel;
 //车型号
 @property (nonatomic,strong) UILabel * carModelLabel;
+@property (nonatomic,strong) UITextField * carModelTF;
 @property (nonatomic,strong) UILabel * thirdLineLabel;
 //发动机号
 @property (nonatomic,strong) UILabel * engineNumberLabel;
+@property (nonatomic,strong) UITextField * engineNumberTF;
 
 @end
 
@@ -49,8 +53,23 @@
         
         _numberPlateLabel = [[UILabel alloc] init];
         _numberPlateLabel.font = FONT16;
+        _numberPlateLabel.textColor = Color_666666;
+        _numberPlateLabel.text = @"车牌号";
+//        _numberPlateLabel.backgroundColor = [UIColor yellowColor];
     }
     return _numberPlateLabel;
+}
+
+-(UITextField *)numberPlateTF{
+    
+    if (!_numberPlateTF) {
+        
+        _numberPlateTF = [[UITextField alloc] init];
+        _numberPlateTF.font = FONT16;
+        _numberPlateTF.textColor = Color_333333;
+        _numberPlateTF.placeholder = @"请输入车牌号";
+    }
+    return _numberPlateTF;
 }
 
 -(UILabel *)firstLineLabel{
@@ -69,6 +88,9 @@
         
         _frameNumberLabel = [[UILabel alloc] init];
         _frameNumberLabel.font = FONT16;
+        _frameNumberLabel.textColor = Color_666666;
+        _frameNumberLabel.text = @"车架号";
+//        _frameNumberLabel.backgroundColor = [UIColor yellowColor];
     }
     return _frameNumberLabel;
 }
@@ -89,6 +111,9 @@
         
         _carModelLabel = [[UILabel alloc] init];
         _carModelLabel.font = FONT16;
+        _carModelLabel.textColor = Color_666666;
+        _carModelLabel.text = @"车型号";
+//        _carModelLabel.backgroundColor = [UIColor yellowColor];
     }
     return _carModelLabel;
 }
@@ -109,6 +134,9 @@
         
         _engineNumberLabel = [[UILabel alloc] init];
         _engineNumberLabel.font = FONT16;
+        _engineNumberLabel.textColor = Color_666666;
+        _engineNumberLabel.text = @"发动机号";
+//        _engineNumberLabel.backgroundColor = [UIColor yellowColor];
     }
     return _engineNumberLabel;
 }
@@ -141,9 +169,15 @@
     [self.numberPlateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(33);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(19);
-        make.right.offset(0);
-        make.height.offset(16);
+        make.top.equalTo(self.titleLabel.mas_bottom);
+        make.width.offset(50);
+        make.height.offset(50);
+    }];
+    
+    [self addSubview:self.numberPlateTF];
+    [self.numberPlateTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        
     }];
     
     [self addSubview:self.firstLineLabel];
@@ -151,7 +185,7 @@
        
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.equalTo(self.numberPlateLabel.mas_bottom).offset(18);
+        make.top.equalTo(self.numberPlateLabel.mas_bottom).offset(0);
         make.height.offset(1);
     }];
     
@@ -159,9 +193,9 @@
     [self.frameNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(33);
-        make.top.equalTo(self.firstLineLabel.mas_bottom).offset(19);
-        make.right.offset(0);
-        make.height.offset(16);
+        make.top.equalTo(self.firstLineLabel.mas_bottom).offset(0);
+        make.width.offset(50);
+        make.height.offset(50);
     }];
     
     [self addSubview:self.secondLineLabel];
@@ -169,7 +203,7 @@
         
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.equalTo(self.frameNumberLabel.mas_bottom).offset(18);
+        make.top.equalTo(self.frameNumberLabel.mas_bottom).offset(0);
         make.height.offset(1);
     }];
     
@@ -177,9 +211,9 @@
     [self.carModelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(33);
-        make.top.equalTo(self.secondLineLabel.mas_bottom).offset(19);
-        make.right.offset(0);
-        make.height.offset(16);
+        make.top.equalTo(self.secondLineLabel.mas_bottom).offset(0);
+        make.width.offset(50);
+        make.height.offset(50);
     }];
     
     [self addSubview:self.thirdLineLabel];
@@ -187,22 +221,23 @@
         
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.equalTo(self.carModelLabel.mas_bottom).offset(18);
+        make.top.equalTo(self.carModelLabel.mas_bottom).offset(0);
         make.height.offset(1);
     }];
     
     [self addSubview:self.engineNumberLabel];
     [self.engineNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.offset(18);
-        make.top.equalTo(self.thirdLineLabel.mas_bottom).offset(19);
-        make.right.offset(0);
-        make.height.offset(16);
+        make.left.offset(17);
+        make.top.equalTo(self.thirdLineLabel.mas_bottom).offset(0);
+        make.width.offset(68);
+        make.height.offset(50);
     }];
 }
 
 -(void)showData:(NSDictionary *)dic{
     
+    /*
     NSString * numberPlate = dic[@"numberPlate"];
     NSString * showNumberPlate = [[NSString alloc] initWithFormat:@"车牌号   %@",numberPlate];
     NSMutableAttributedString * showNumberPlateAttStr = [[NSMutableAttributedString alloc] initWithString:showNumberPlate];
@@ -230,11 +265,12 @@
     [showEngineNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 4)];
     [showEngineNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(4, engineNumber.length)];
     self.engineNumberLabel.attributedText = showEngineNumberAttStr;
+     */
 }
 
 -(void)test{
     
-    [self showData:@{@"numberPlate":@"粤A7985D",@"frameNumber":@"WP1AB2959GL065973",@"carModel":@"奥德赛牌HG6481BBAN",@"engineNumber":@"AF9K54605"}];
+//    [self showData:@{@"numberPlate":@"粤A7985D",@"frameNumber":@"WP1AB2959GL065973",@"carModel":@"奥德赛牌HG6481BBAN",@"engineNumber":@"AF9K54605"}];
 }
 
 @end

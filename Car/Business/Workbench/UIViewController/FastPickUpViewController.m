@@ -51,6 +51,7 @@
         _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
         [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _saveBtn.layer.cornerRadius = 5;
         _saveBtn.titleLabel.font = FONT16;
         [_saveBtn setBackgroundColor:Color_0072FF];
         [_saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,11 +81,11 @@
     }
     else if (indexPath.row == 1){
         
-        cellHeight = 249;
+        cellHeight = 245;
     }
     else{
         
-        cellHeight = 195;
+        cellHeight = 194;
     }
     
     return cellHeight;
@@ -150,12 +151,27 @@
 -(void)drawUI{
     
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    if (MAINHEIGHT >= 542 + 64 + 123) {
         
-        make.left.right.offset(0);
-        make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-        make.height.offset(547);
-    }];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.offset(0);
+            make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
+            make.height.offset(542);
+        }];
+        self.tableView.scrollEnabled = NO;
+    }
+    else{
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.offset(0);
+            make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
+            make.bottom.offset(-123);
+        }];
+    }
+
     
     //需要重新设置导航的层级，不然阴影效果没了
     [self.view bringSubviewToFront:self.navigationbar];

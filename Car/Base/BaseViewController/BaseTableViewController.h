@@ -21,6 +21,8 @@ typedef NS_ENUM(NSUInteger,BTVCType){
 
 @interface BaseTableViewController : BaseUIViewController
 
+//考虑到有的场景，虽然不是只有tableView一个控件，但是也适合本基类，所以让tableView指针开放出来
+@property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;

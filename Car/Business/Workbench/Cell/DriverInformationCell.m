@@ -118,9 +118,9 @@
     [self.contactLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(33);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(19);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(0);
         make.right.offset(0);
-        make.height.offset(16);
+        make.height.offset(50);
     }];
     
     [self addSubview:self.firstLineLabel];
@@ -128,7 +128,7 @@
         
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.equalTo(self.contactLabel.mas_bottom).offset(18);
+        make.top.equalTo(self.contactLabel.mas_bottom).offset(0);
         make.height.offset(1);
     }];
     
@@ -136,9 +136,9 @@
     [self.phoneNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(33);
-        make.top.equalTo(self.firstLineLabel.mas_bottom).offset(19);
+        make.top.equalTo(self.firstLineLabel.mas_bottom).offset(0);
         make.right.offset(0);
-        make.height.offset(16);
+        make.height.offset(50);
     }];
     
     [self addSubview:self.secondLineLabel];
@@ -146,7 +146,7 @@
         
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.equalTo(self.phoneNumberLabel.mas_bottom).offset(18);
+        make.top.equalTo(self.phoneNumberLabel.mas_bottom).offset(0);
         make.height.offset(1);
     }];
     
@@ -154,9 +154,9 @@
     [self.InsurancePeriodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(33);
-        make.top.equalTo(self.secondLineLabel.mas_bottom).offset(19);
+        make.top.equalTo(self.secondLineLabel.mas_bottom).offset(0);
         make.right.offset(0);
-        make.height.offset(16);
+        make.height.offset(50);
     }];
 }
 
