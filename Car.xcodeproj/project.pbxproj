@@ -52,6 +52,8 @@
 		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
+		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
+		0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
@@ -151,6 +153,10 @@
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
 		0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverInformationCell.m; sourceTree = "<group>"; };
+		0498B5BD23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneCarMaintenanceRecordsViewController.h; sourceTree = "<group>"; };
+		0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneCarMaintenanceRecordsViewController.m; sourceTree = "<group>"; };
+		0498B5C1231573A800A5EDC1 /* MaintenanceRecordsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsCell.h; sourceTree = "<group>"; };
+		0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsCell.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -522,6 +528,8 @@
 				046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */,
 				628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */,
 				628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */,
+				0498B5BD23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.h */,
+				0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -662,6 +670,8 @@
 				0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */,
 				0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */,
 				0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */,
+				0498B5C1231573A800A5EDC1 /* MaintenanceRecordsCell.h */,
+				0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -854,6 +864,7 @@
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
+				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
 				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
@@ -870,6 +881,7 @@
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				040485E823111DB600EF17C8 /* HighOrderPositioningController.m in Sources */,
 				040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */,
+				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,

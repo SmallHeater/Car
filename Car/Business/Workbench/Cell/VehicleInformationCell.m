@@ -68,6 +68,7 @@
         _numberPlateTF.font = FONT16;
         _numberPlateTF.textColor = Color_333333;
         _numberPlateTF.placeholder = @"请输入车牌号";
+        _numberPlateTF.userInteractionEnabled = NO;
     }
     return _numberPlateTF;
 }
@@ -95,6 +96,18 @@
     return _frameNumberLabel;
 }
 
+-(UITextField *)frameNumberTF{
+    
+    if (!_frameNumberTF) {
+        
+        _frameNumberTF = [[UITextField alloc] init];
+        _frameNumberTF.font = FONT16;
+        _frameNumberTF.textColor = Color_333333;
+        _frameNumberTF.placeholder = @"请输入车架号";
+    }
+    return _frameNumberTF;
+}
+
 -(UILabel *)secondLineLabel{
     
     if (!_secondLineLabel) {
@@ -118,6 +131,18 @@
     return _carModelLabel;
 }
 
+-(UITextField *)carModelTF{
+    
+    if (!_carModelTF) {
+        
+        _carModelTF = [[UITextField alloc] init];
+        _carModelTF.font = FONT16;
+        _carModelTF.textColor = Color_333333;
+        _carModelTF.placeholder = @"请输入车型号";
+    }
+    return _carModelTF;
+}
+
 -(UILabel *)thirdLineLabel{
     
     if (!_thirdLineLabel) {
@@ -139,6 +164,18 @@
 //        _engineNumberLabel.backgroundColor = [UIColor yellowColor];
     }
     return _engineNumberLabel;
+}
+
+-(UITextField *)engineNumberTF{
+    
+    if (!_engineNumberTF) {
+        
+        _engineNumberTF = [[UITextField alloc] init];
+        _engineNumberTF.font = FONT16;
+        _engineNumberTF.textColor = Color_333333;
+        _engineNumberTF.placeholder = @"请输入发动机号";
+    }
+    return _engineNumberTF;
 }
 
 #pragma mark  ----  生命周期函数
@@ -177,7 +214,10 @@
     [self addSubview:self.numberPlateTF];
     [self.numberPlateTF mas_updateConstraints:^(MASConstraintMaker *make) {
         
-        
+        make.left.equalTo(self.numberPlateLabel.mas_right).offset(25);
+        make.right.offset(0);
+        make.top.equalTo(self.numberPlateLabel.mas_top);
+        make.height.offset(50);
     }];
     
     [self addSubview:self.firstLineLabel];
@@ -195,6 +235,15 @@
         make.left.offset(33);
         make.top.equalTo(self.firstLineLabel.mas_bottom).offset(0);
         make.width.offset(50);
+        make.height.offset(50);
+    }];
+    
+    [self addSubview:self.frameNumberTF];
+    [self.frameNumberTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.frameNumberLabel.mas_right).offset(25);
+        make.right.offset(0);
+        make.top.equalTo(self.frameNumberLabel.mas_top);
         make.height.offset(50);
     }];
     
@@ -216,6 +265,15 @@
         make.height.offset(50);
     }];
     
+    [self addSubview:self.carModelTF];
+    [self.carModelTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.carModelLabel.mas_right).offset(25);
+        make.right.offset(0);
+        make.top.equalTo(self.carModelLabel.mas_top);
+        make.height.offset(50);
+    }];
+    
     [self addSubview:self.thirdLineLabel];
     [self.thirdLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -233,44 +291,35 @@
         make.width.offset(68);
         make.height.offset(50);
     }];
+    
+    [self addSubview:self.engineNumberTF];
+    [self.engineNumberTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.engineNumberLabel.mas_right).offset(25);
+        make.right.offset(0);
+        make.top.equalTo(self.engineNumberLabel.mas_top);
+        make.height.offset(50);
+    }];
 }
 
 -(void)showData:(NSDictionary *)dic{
     
-    /*
     NSString * numberPlate = dic[@"numberPlate"];
-    NSString * showNumberPlate = [[NSString alloc] initWithFormat:@"车牌号   %@",numberPlate];
-    NSMutableAttributedString * showNumberPlateAttStr = [[NSMutableAttributedString alloc] initWithString:showNumberPlate];
-    [showNumberPlateAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showNumberPlateAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, numberPlate.length)];
-    self.numberPlateLabel.attributedText = showNumberPlateAttStr;
+    self.numberPlateTF.text = numberPlate;
     
     NSString * frameNumber = dic[@"frameNumber"];
-    NSString * showFrameNumber = [[NSString alloc] initWithFormat:@"车架号   %@",frameNumber];
-    NSMutableAttributedString * showFrameNumberAttStr = [[NSMutableAttributedString alloc] initWithString:showFrameNumber];
-    [showFrameNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showFrameNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, frameNumber.length)];
-    self.frameNumberLabel.attributedText = showFrameNumberAttStr;
+    self.frameNumberTF.text = frameNumber;
     
     NSString * carModel = dic[@"carModel"];
-    NSString * showCarModel = [[NSString alloc] initWithFormat:@"车型号   %@",carModel];
-    NSMutableAttributedString * showCarModelAttStr = [[NSMutableAttributedString alloc] initWithString:showCarModel];
-    [showCarModelAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showCarModelAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, carModel.length)];
-    self.carModelLabel.attributedText = showCarModelAttStr;
+    self.carModelTF.text = carModel;
     
     NSString * engineNumber = dic[@"engineNumber"];
-    NSString * showEngineNumber = [[NSString alloc] initWithFormat:@"发动机号   %@",engineNumber];
-    NSMutableAttributedString * showEngineNumberAttStr = [[NSMutableAttributedString alloc] initWithString:showEngineNumber];
-    [showEngineNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 4)];
-    [showEngineNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(4, engineNumber.length)];
-    self.engineNumberLabel.attributedText = showEngineNumberAttStr;
-     */
+    self.engineNumberTF.text = engineNumber;
 }
 
 -(void)test{
     
-//    [self showData:@{@"numberPlate":@"粤A7985D",@"frameNumber":@"WP1AB2959GL065973",@"carModel":@"奥德赛牌HG6481BBAN",@"engineNumber":@"AF9K54605"}];
+    [self showData:@{@"numberPlate":@"粤A7985D",@"frameNumber":@"WP1AB2959GL065973",@"carModel":@"奥德赛牌HG6481BBAN",@"engineNumber":@"AF9K54605"}];
 }
 
 @end

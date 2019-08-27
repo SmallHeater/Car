@@ -14,12 +14,15 @@
 @property (nonatomic,strong) UILabel * titleLabel;
 //联系人
 @property (nonatomic,strong) UILabel * contactLabel;
+@property (nonatomic,strong) UITextField * contactTF;
 @property (nonatomic,strong) UILabel * firstLineLabel;
 //手机号
 @property (nonatomic,strong) UILabel * phoneNumberLabel;
+@property (nonatomic,strong) UITextField * phoneNumberTF;
 @property (nonatomic,strong) UILabel * secondLineLabel;
 //保险期
 @property (nonatomic,strong) UILabel * InsurancePeriodLabel;
+@property (nonatomic,strong) UILabel * InsurancePeriodContentLabel;
 
 @end
 
@@ -46,8 +49,22 @@
         
         _contactLabel = [[UILabel alloc] init];
         _contactLabel.font = FONT16;
+        _contactLabel.textColor = Color_666666;
+        _contactLabel.text = @"联系人";
     }
     return _contactLabel;
+}
+
+-(UITextField *)contactTF{
+    
+    if (!_contactTF) {
+        
+        _contactTF = [[UITextField alloc] init];
+        _contactTF.font = FONT16;
+        _contactTF.textColor = Color_333333;
+        _contactTF.placeholder = @"请输入联系人";
+    }
+    return _contactTF;
 }
 
 -(UILabel *)firstLineLabel{
@@ -66,8 +83,22 @@
         
         _phoneNumberLabel = [[UILabel alloc] init];
         _phoneNumberLabel.font = FONT16;
+        _phoneNumberLabel.textColor = Color_666666;
+        _phoneNumberLabel.text = @"手机号";
     }
     return _phoneNumberLabel;
+}
+
+-(UITextField *)phoneNumberTF{
+    
+    if (!_phoneNumberTF) {
+        
+        _phoneNumberTF = [[UITextField alloc] init];
+        _phoneNumberTF.font = FONT16;
+        _phoneNumberTF.textColor = Color_333333;
+        _phoneNumberTF.placeholder = @"请输入手机号";
+    }
+    return _phoneNumberTF;
 }
 
 -(UILabel *)secondLineLabel{
@@ -86,8 +117,22 @@
         
         _InsurancePeriodLabel = [[UILabel alloc] init];
         _InsurancePeriodLabel.font = FONT16;
+        _InsurancePeriodLabel.textColor = Color_666666;
+        _InsurancePeriodLabel.text = @"保险期";
     }
     return _InsurancePeriodLabel;
+}
+
+-(UILabel *)InsurancePeriodContentLabel{
+    
+    if (!_InsurancePeriodContentLabel) {
+        
+        _InsurancePeriodContentLabel = [[UILabel alloc] init];
+        _InsurancePeriodContentLabel.font = FONT16;
+        _InsurancePeriodContentLabel.textColor = Color_333333;
+        _InsurancePeriodContentLabel.text = @"请选择保险到期时间";
+    }
+    return _InsurancePeriodContentLabel;
 }
 
 #pragma mark  ----  生命周期函数
@@ -119,8 +164,17 @@
         
         make.left.offset(33);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(0);
-        make.right.offset(0);
+        make.width.offset(50);
         make.height.offset(50);
+    }];
+    
+    [self addSubview:self.contactTF];
+    [self.contactTF mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.contactLabel.mas_right).offset(26);
+        make.top.equalTo(self.contactLabel.mas_top);
+        make.right.offset(0);
+        make.height.equalTo(self.contactLabel.mas_height);
     }];
     
     [self addSubview:self.firstLineLabel];
@@ -137,8 +191,17 @@
         
         make.left.offset(33);
         make.top.equalTo(self.firstLineLabel.mas_bottom).offset(0);
-        make.right.offset(0);
+        make.width.offset(50);
         make.height.offset(50);
+    }];
+    
+    [self addSubview:self.phoneNumberTF];
+    [self.phoneNumberTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.phoneNumberLabel.mas_right).offset(26);
+        make.top.equalTo(self.phoneNumberLabel.mas_top);
+        make.right.offset(0);
+        make.height.equalTo(self.phoneNumberLabel.mas_height);
     }];
     
     [self addSubview:self.secondLineLabel];
@@ -155,33 +218,30 @@
         
         make.left.offset(33);
         make.top.equalTo(self.secondLineLabel.mas_bottom).offset(0);
-        make.right.offset(0);
+        make.width.offset(50);
         make.height.offset(50);
+    }];
+    
+    [self addSubview:self.InsurancePeriodContentLabel];
+    [self.InsurancePeriodContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.InsurancePeriodLabel.mas_right).offset(26);
+        make.top.equalTo(self.InsurancePeriodLabel.mas_top);
+        make.right.offset(0);
+        make.height.equalTo(self.InsurancePeriodLabel.mas_height);
     }];
 }
 
 -(void)showData:(NSDictionary *)dic{
     
     NSString * contact = dic[@"contact"];
-    NSString * showContact = [[NSString alloc] initWithFormat:@"联系人   %@",contact];
-    NSMutableAttributedString * showContactAttStr = [[NSMutableAttributedString alloc] initWithString:showContact];
-    [showContactAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showContactAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, contact.length)];
-    self.contactLabel.attributedText = showContactAttStr;
+    self.contactTF.text = contact;
     
     NSString * phoneNumber = dic[@"phoneNumber"];
-    NSString * showPhoneNumber = [[NSString alloc] initWithFormat:@"手机号   %@",phoneNumber];
-    NSMutableAttributedString * showPhoneNumberAttStr = [[NSMutableAttributedString alloc] initWithString:showPhoneNumber];
-    [showPhoneNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showPhoneNumberAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, phoneNumber.length)];
-    self.phoneNumberLabel.attributedText = showPhoneNumberAttStr;
+    self.phoneNumberTF.text = phoneNumber;
     
     NSString * InsurancePeriod = dic[@"InsurancePeriod"];
-    NSString * showInsurancePeriod = [[NSString alloc] initWithFormat:@"保险期   %@",InsurancePeriod];
-    NSMutableAttributedString * showInsurancePeriodAttStr = [[NSMutableAttributedString alloc] initWithString:showInsurancePeriod];
-    [showInsurancePeriodAttStr setAttributes:@{NSForegroundColorAttributeName:Color_666666} range:NSMakeRange(0, 3)];
-    [showInsurancePeriodAttStr setAttributes:@{NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(3, InsurancePeriod.length)];
-    self.InsurancePeriodLabel.attributedText = showInsurancePeriodAttStr;
+    self.InsurancePeriodContentLabel.text = InsurancePeriod;
 }
 
 -(void)test{

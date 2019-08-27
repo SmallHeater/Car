@@ -12,7 +12,7 @@
 #import "FastPickUpViewController.h"
 #import "VehicleFileDetailViewController.h"
 
-@interface VehicleFileViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface VehicleFileViewController ()
 
 //添加按钮
 @property (nonatomic,strong) UIButton * addBtn;
@@ -88,6 +88,7 @@
         if (!cell) {
             
             cell = [[SearchBarTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         return cell;
@@ -99,6 +100,7 @@
         if (!cell) {
             
             cell = [[VehicleFileCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         [cell test];

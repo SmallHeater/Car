@@ -9,10 +9,18 @@
 #import "VehicleFileDetailViewController.h"
 #import "VehicleInformationCell.h"
 #import "DriverInformationCell.h"
+#import "OneCarMaintenanceRecordsViewController.h"
 
+
+typedef NS_ENUM(NSUInteger,ViewState){
+    
+    ViewState_show = 0,//显示状态
+    ViewState_edit //编辑状态
+};
 
 @interface VehicleFileDetailViewController ()
 
+@property (nonatomic,assign) ViewState viewState;
 //编辑按钮
 @property (nonatomic,strong) UIButton * editBtn;
 //白条
@@ -21,6 +29,9 @@
 @property (nonatomic,strong) UIView * maintenanceRecordsView;
 //维修记录label
 @property (nonatomic,strong) UILabel * maintenanceRecordsLabel;
+//底部删除，保存按钮view
+@property (nonatomic,strong) UIView * bottomView;
+
 
 @end
 
@@ -88,6 +99,61 @@
         [_maintenanceRecordsView addGestureRecognizer:tap];
     }
     return _maintenanceRecordsView;
+}
+
+-(UIView *)bottomView{
+    
+    if (!_bottomView) {
+        
+        _bottomView = [[UIView alloc] init];
+        _bottomView.hidden = YES;
+        
+        //删除按钮
+        UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deleteBtn setBackgroundColor:Color_F23E3E];
+        deleteBtn.titleLabel.font = FONT16;
+        [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView addSubview:deleteBtn];
+        //保存按钮
+        UIButton * saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [saveBtn setBackgroundColor:Color_0072FF];
+        saveBtn.titleLabel.font = FONT16;
+        [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+        [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView addSubview:saveBtn];
+        
+        float buttonWidth = MAINWIDTH / 2;
+        [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.top.bottom.offset(0);
+            make.width.offset(buttonWidth);
+        }];
+        
+        [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.right.top.bottom.offset(0);
+            make.width.offset(buttonWidth);
+        }];
+    }
+    return _bottomView;
+}
+
+#pragma mark  ----  SET
+
+-(void)setViewState:(ViewState)viewState{
+    
+    _viewState = viewState;
+    if (_viewState == ViewState_show) {
+        
+        self.tableView.userInteractionEnabled = NO;
+    }
+    else if (_viewState == ViewState_edit){
+        
+        self.tableView.userInteractionEnabled = YES;
+    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -160,6 +226,7 @@
 -(void)drawUI{
 
     self.view.backgroundColor = Color_F3F3F3;
+    self.viewState = ViewState_show;
     [self.navigationbar addSubview:self.editBtn];
     [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -195,6 +262,13 @@
     }];
     
     self.maintenanceRecordsLabel.text = @"维修记录(10)";
+    
+    [self.view addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.bottom.offset(0);
+        make.height.offset(44);
+    }];
 }
 
 //编辑按钮的响应
@@ -202,6 +276,18 @@
     
     btn.userInteractionEnabled = NO;
     
+    if (self.viewState == ViewState_show) {
+        
+        self.viewState = ViewState_edit;
+        self.maintenanceRecordsView.hidden = YES;
+        self.bottomView.hidden = NO;
+    }
+    else if (self.viewState == ViewState_edit){
+        
+        self.viewState = ViewState_show;
+        self.maintenanceRecordsView.hidden = NO;
+        self.bottomView.hidden = YES;
+    }
     
     btn.userInteractionEnabled = YES;
 }
@@ -210,7 +296,25 @@
 //去维修记录页面
 -(void)maintenanceRecordsViewTaped:(UIGestureRecognizer *)gesture{
     
-    NSLog(@"去维修记录页面");
+    OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
+//删除按钮的响应
+-(void)deleteBtnClicked:(UIButton *)btn{
+    
+    btn.userInteractionEnabled = NO;
+    
+    btn.userInteractionEnabled = NO;
+}
+
+//保存按钮的响应
+-(void)saveBtnClicked:(UIButton *)btn{
+    
+    btn.userInteractionEnabled = NO;
+    
+    btn.userInteractionEnabled = NO;
+}
+
 
 @end

@@ -15,7 +15,7 @@
 #import "VehicleFileViewController.h"
 
 
-@interface WorkbenchViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface WorkbenchViewController ()
 
 @end
 
