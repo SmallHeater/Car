@@ -1,36 +1,36 @@
 //
-//  OneCarMaintenanceRecordsViewController.m
+//  MaintenanceRecordsViewController.m
 //  Car
 //
-//  Created by mac on 2019/8/27.
+//  Created by mac on 2019/8/28.
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "OneCarMaintenanceRecordsViewController.h"
+#import "MaintenanceRecordsViewController.h"
 #import "MaintenanceRecordsCell.h"
 
 static NSString * cellId = @"MaintenanceRecordsCell";
 
-@interface OneCarMaintenanceRecordsViewController ()
+@interface MaintenanceRecordsViewController ()
 
-//添加按钮
-@property (nonatomic,strong) UIButton * addBtn;
+//搜索按钮
+@property (nonatomic,strong) UIButton * searchBtn;
 
 @end
 
-@implementation OneCarMaintenanceRecordsViewController
+@implementation MaintenanceRecordsViewController
 
 #pragma mark  ----  懒加载
 
--(UIButton *)addBtn{
+-(UIButton *)searchBtn{
     
-    if (!_addBtn) {
+    if (!_searchBtn) {
         
-        _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-        [_addBtn addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_searchBtn setImage:[UIImage imageNamed:@"sousuohei"] forState:UIControlStateNormal];
+        [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _addBtn;
+    return _searchBtn;
 }
 
 #pragma mark  ----  生命周期函数
@@ -101,8 +101,8 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 -(void)drawUI{
     
-    [self.navigationbar addSubview:self.addBtn];
-    [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.navigationbar addSubview:self.searchBtn];
+    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.offset(-12);
         make.bottom.offset(-12);
@@ -110,12 +110,13 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     }];
 }
 
--(void)addBtnClicked:(UIButton *)btn{
+-(void)searchBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
     
     btn.userInteractionEnabled = YES;
 }
+
 
 
 @end

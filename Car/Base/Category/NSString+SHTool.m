@@ -56,8 +56,19 @@
     NSDictionary *attributes = @{NSFontAttributeName:font};
     //设置字符串的宽高  MAXFLOAT为最大宽度极限值  JPSlideBarHeight为固定高度
     CGSize maxSize = CGSizeMake(MAXFLOAT,height);
-    CGSize size = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size; return ceil(size.width);
-    return size.width;
+    CGSize size = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    return ceil(size.width);
+}
+
+//获取字符串高度
+-(float)heightWithFont:(UIFont *)font andWidth:(float)width{
+    
+    //字体属性，设置字体的font
+    NSDictionary *attributes = @{NSFontAttributeName:font};
+    //设置字符串的宽高  MAXFLOAT为最大宽度极限值  JPSlideBarHeight为固定高度
+    CGSize maxSize = CGSizeMake(width,MAXFLOAT);
+    CGSize size = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    return ceil(size.height);
 }
 
 @end

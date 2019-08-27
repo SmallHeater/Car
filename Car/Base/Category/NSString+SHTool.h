@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取字符串宽度
 -(float)widthWithFont:(UIFont *)font andHeight:(float)height;
+//获取字符串高度
+-(float)heightWithFont:(UIFont *)font andWidth:(float)width;
 
 @end
 

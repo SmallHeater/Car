@@ -20,6 +20,9 @@
 //联系电话
 @property (nonatomic,strong) UILabel * phoneNumberLabel;
 
+//维修内容
+@property (nonatomic,strong) UILabel * contentLabel;
+
 @end
 
 @implementation MaintenanceRecordsCell
@@ -74,7 +77,14 @@
             make.height.offset(14);
         }];
         
-        [self drawDottedLine];
+        [_bgView addSubview:self.contentLabel];
+        [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(16);
+            make.right.offset(-16);
+            make.bottom.offset(-11);
+            make.height.offset(35);
+        }];
     }
     return _bgView;
 }
@@ -125,6 +135,18 @@
     return _phoneNumberLabel;
 }
 
+-(UILabel *)contentLabel{
+    
+    if (!_contentLabel) {
+        
+        _contentLabel = [[UILabel alloc] init];
+        _contentLabel.font = FONT14;
+        _contentLabel.textColor = Color_333333;
+        _contentLabel.numberOfLines = 0;
+    }
+    return _contentLabel;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -148,6 +170,9 @@
         make.right.offset(-15);
         make.top.bottom.offset(0);
     }];
+    
+    [self layoutIfNeeded];
+    [self drawDottedLine];
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -160,11 +185,11 @@
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     
-    [shapeLayer setBounds:self.bounds];
+    [shapeLayer setBounds:self.bgView.bounds];
     
 //    if (isHorizonal) {
     
-        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame))];
+        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(self.bgView.frame) / 2, CGRectGetHeight(self.bgView.frame))];
         
 //    } else{
 //        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(lineView.frame) / 2, CGRectGetHeight(lineView.frame)/2)];
@@ -172,23 +197,23 @@
     
     [shapeLayer setFillColor:[UIColor clearColor].CGColor];
     //  设置虚线颜色为blackColor
-    [shapeLayer setStrokeColor:[UIColor blackColor].CGColor];
+    [shapeLayer setStrokeColor:Color_DEDEDE.CGColor];
     //  设置虚线宽度
 //    if (isHorizonal) {
-        [shapeLayer setLineWidth:CGRectGetHeight(self.frame)];
+        [shapeLayer setLineWidth:CGRectGetHeight(self.bgView.frame)];
 //    } else {
 //
 //        [shapeLayer setLineWidth:CGRectGetWidth(lineView.frame)];
 //    }
     [shapeLayer setLineJoin:kCALineJoinRound];
     //  设置线宽，线间距
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:1], nil]];
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:1], nil]];
     //  设置路径
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
     
 //    if (isHorizonal) {
-        CGPathAddLineToPoint(path, NULL,CGRectGetWidth(self.frame), 0);
+        CGPathAddLineToPoint(path, NULL,CGRectGetWidth(self.bgView.frame), 0);
 //    } else {
 //        CGPathAddLineToPoint(path, NULL, 0, CGRectGetHeight(lineView.frame));
 //    }
@@ -196,7 +221,7 @@
     [shapeLayer setPath:path];
     CGPathRelease(path);
     //  把绘制好的虚线添加上来
-    [self.layer addSublayer:shapeLayer];
+    [self.bgView.layer addSublayer:shapeLayer];
 }
 
 -(void)showDataWithDic:(NSDictionary *)dic{
@@ -207,6 +232,14 @@
         self.nameLabel.text = dic[@"name"];
         self.carModelLabel.text = dic[@"carModel"];
         self.phoneNumberLabel.text = dic[@"phoneNumber"];
+        
+        NSString * MaintenanceContentStr = dic[@"MaintenanceContent"];
+        float labelHeight = [MaintenanceContentStr heightWithFont:FONT14 andWidth:(MAINWIDTH - 15 * 2 - 16 * 2)];
+        [self.contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+           
+            make.height.offset(labelHeight);
+        }];
+        self.contentLabel.text = MaintenanceContentStr;
     }
     else{
         
@@ -214,12 +247,13 @@
         self.nameLabel.text = @"";
         self.carModelLabel.text = @"";
         self.phoneNumberLabel.text = @"";
+        self.contentLabel.text = @"";
     }
 }
 
 -(void)test{
     
-    [self showDataWithDic:@{@"numberPlate":@"京A12345 ",@"name":@"张三丰 ",@"carModel":@"奥德赛牌HG6481BBAN）",@"phoneNumber":@"18605569805"}];
+    [self showDataWithDic:@{@"numberPlate":@"京A12345 ",@"name":@"张三丰 ",@"carModel":@"奥德赛牌HG6481BBAN）",@"phoneNumber":@"18605569805",@"MaintenanceContent":@"更换右下摆臂、雨刮电机、右叶子板、下悬梁和左球头"}];
 }
 
 @end

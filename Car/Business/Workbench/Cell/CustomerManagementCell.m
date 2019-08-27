@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UILabel * titleLabel;
 @property (nonatomic,strong) UIScrollView * btnBGScrollView;
 
+@property (nonatomic,strong) NSArray * btnDicArray;
+
 @end
 
 @implementation CustomerManagementCell
@@ -81,6 +83,7 @@
     self.titleLabel.text = title;
     
     NSArray * btnDicArray = dic[@"btnDicArray"];
+    self.btnDicArray = [[NSArray alloc] initWithArray:btnDicArray];
     NSUInteger controlX = 28;
     NSUInteger scrollViewWidth = 0;
     NSUInteger btnWidth = 50;
@@ -93,6 +96,7 @@
         NSString * title = dic[@"btnTitle"];
         ImageAndLabelControl * control = [[ImageAndLabelControl alloc] initWithImageName:[imageName repleaseNilOrNull] andImageSize:CGSizeMake(imageWidthNumber.floatValue, imageHeightNumber.floatValue) andTitle:[title repleaseNilOrNull]];
 //        control.backgroundColor = [UIColor redColor];
+        [control addTarget:self action:@selector(controlClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.btnBGScrollView addSubview:control];
         [control mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -109,6 +113,25 @@
     }
     
     self.btnBGScrollView.contentSize = CGSizeMake(scrollViewWidth, 118);
+}
+
+-(void)controlClicked:(ImageAndLabelControl *)control{
+    
+    NSString * title = control.title;
+    for (NSUInteger i = 0; i < self.btnDicArray.count; i++) {
+        
+        NSDictionary * dic =  self.btnDicArray[i];
+        NSString * btnTitle = dic[@"btnTitle"];
+        if ([title isEqualToString:btnTitle]) {
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(itemClickedWithItemID:)]) {
+                
+                NSString * itemId = dic[@"itemId"];
+                [self.delegate itemClickedWithItemID:itemId];
+            }
+            break;
+        }
+    }
 }
 
 @end

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageAndLabelControl : UIControl
 
+@property (readonly,nonatomic,strong) NSString * title;
+
 //本地图片实例化方式
 -(instancetype)initWithImageName:(NSString *)imageName andImageSize:(CGSize)imageSize andTitle:(NSString *)title;
 //网络图片实例化方式

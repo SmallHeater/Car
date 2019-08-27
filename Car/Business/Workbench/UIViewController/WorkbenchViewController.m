@@ -13,9 +13,11 @@
 #import "AnnouncementCell.h"
 #import "CustomerManagementCell.h"
 #import "VehicleFileViewController.h"
+#import "FastPickUpViewController.h"
+#import "MaintenanceRecordsViewController.h"
+#import "RevenueListViewController.h"
 
-
-@interface WorkbenchViewController ()
+@interface WorkbenchViewController ()<CustomerManagementCellDelegate>
 
 @end
 
@@ -35,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     
     [self refreshViewType:BTVCType_AddTableView];
 }
@@ -166,21 +167,23 @@
         if (!cell) {
             
             cell = [[CustomerManagementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:fifthCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.delegate = self;
         }
    
         NSDictionary * dataDic;
         if (indexPath.row == 4) {
             
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
-            dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaidujieche",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"快速接车"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"客户档案"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"维修记录"}]};
+            dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaisujieche",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"快速接车",@"itemId":@"kuaisujieche"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"客户档案",@"itemId":@"kehudangan"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"维修记录",@"itemId":@"weixiujilu"}]};
         }
         else if (indexPath.row == 5){
             
-            dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营收列表"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"回款管理"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"利润统计"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营业汇总"}]};
+            dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营收列表",@"itemId":@"yingshouliebiao"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"回款管理",@"itemId":@"huikuanguanli"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"利润统计",@"itemId":@"liruntongji"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营业汇总",@"itemId":@"yingyehuizong"}]};
         }
         else if (indexPath.row == 6){
             
-            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"待售查询"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"销售状态"}]};
+            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"待售查询",@"itemId":@"daishouchaxun"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"销售状态",@"itemId":@"xiaoshouzhuangtai"}]};
         }
         
         [cell showData:dataDic];
@@ -191,6 +194,55 @@
     return nil;
 }
 
+#pragma mark  ----  CustomerManagementCellDelegate
 
+-(void)itemClickedWithItemID:(NSString *)itemId{
+    
+    BaseViewController * vc;
+    if ([itemId isEqualToString:@"kuaisujieche"]) {
+        
+        //快速接车
+        vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
+    }
+    else if ([itemId isEqualToString:@"kehudangan"]) {
+        
+        //客户档案
+    }
+    else if ([itemId isEqualToString:@"weixiujilu"]) {
+        
+        //维修记录
+        vc = [[MaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    }
+    else if ([itemId isEqualToString:@"yingshouliebiao"]) {
+        
+        //营收列表
+        vc = [[RevenueListViewController alloc] initWithTitle:@"营收列表" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    }
+    else if ([itemId isEqualToString:@"huikuanguanli"]) {
+        
+        //回款管理
+    }
+    else if ([itemId isEqualToString:@"liruntongji"]) {
+        
+        //利润统计
+    }
+    else if ([itemId isEqualToString:@"yingyehuizong"]) {
+        
+        //营业汇总
+    }
+    else if ([itemId isEqualToString:@"daishouchaxun"]) {
+        
+        //待售查询
+    }
+    else if ([itemId isEqualToString:@"xiaoshouzhuangtai"]) {
+        
+        //销售状态
+    }
+    if (vc) {
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 @end
