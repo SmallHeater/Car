@@ -8,6 +8,7 @@
 
 #import "MaintenanceRecordsViewController.h"
 #import "MaintenanceRecordsCell.h"
+#import "MaintenanceRecordsDetailViewController.h"
 
 static NSString * cellId = @"MaintenanceRecordsCell";
 
@@ -71,6 +72,13 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     [headerView addSubview:headerLabel];
     return headerView;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

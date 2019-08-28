@@ -61,6 +61,10 @@
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
 		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
 		628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */; };
+		628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF567231607FA007BC0F8 /* RevenueCell.m */; };
+		628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */; };
+		628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF5702316979F007BC0F8 /* VehicleFileForDetailVCCell.m */; };
+		628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +179,14 @@
 		628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpUrlFile.h; path = Car/Base/SHRouting/SHNetworkComponent/HttpUrlFile.h; sourceTree = SOURCE_ROOT; };
 		628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileDetailViewController.h; sourceTree = "<group>"; };
 		628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileDetailViewController.m; sourceTree = "<group>"; };
+		628AF566231607FA007BC0F8 /* RevenueCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueCell.h; sourceTree = "<group>"; };
+		628AF567231607FA007BC0F8 /* RevenueCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueCell.m; sourceTree = "<group>"; };
+		628AF56C2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsDetailViewController.h; sourceTree = "<group>"; };
+		628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsDetailViewController.m; sourceTree = "<group>"; };
+		628AF56F2316979F007BC0F8 /* VehicleFileForDetailVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileForDetailVCCell.h; sourceTree = "<group>"; };
+		628AF5702316979F007BC0F8 /* VehicleFileForDetailVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileForDetailVCCell.m; sourceTree = "<group>"; };
+		628AF57223169B99007BC0F8 /* MaintenanceLogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceLogCell.h; sourceTree = "<group>"; };
+		628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceLogCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -540,6 +552,8 @@
 				0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */,
 				0498B5C72315B9C700A5EDC1 /* RevenueListViewController.h */,
 				0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */,
+				628AF56C2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.h */,
+				628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -682,6 +696,12 @@
 				0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */,
 				0498B5C1231573A800A5EDC1 /* MaintenanceRecordsCell.h */,
 				0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */,
+				628AF566231607FA007BC0F8 /* RevenueCell.h */,
+				628AF567231607FA007BC0F8 /* RevenueCell.m */,
+				628AF56F2316979F007BC0F8 /* VehicleFileForDetailVCCell.h */,
+				628AF5702316979F007BC0F8 /* VehicleFileForDetailVCCell.m */,
+				628AF57223169B99007BC0F8 /* MaintenanceLogCell.h */,
+				628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -860,10 +880,13 @@
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
+				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
+				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				040485F62311774500EF17C8 /* CarouselView.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
+				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
@@ -895,6 +918,7 @@
 				040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
+				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,

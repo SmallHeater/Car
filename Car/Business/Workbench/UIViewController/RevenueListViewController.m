@@ -7,6 +7,9 @@
 //
 
 #import "RevenueListViewController.h"
+#import "RevenueCell.h"
+
+static NSString * cellId = @"RevenueCell";
 
 @interface RevenueListViewController ()
 
@@ -33,9 +36,8 @@
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
-    
     //继承BaseTableViewController使用时，要将本方法提前，保证先添加tableView,再添加导航
-//    [self refreshViewType:BTVCType_AddTableView];
+    [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -45,47 +47,26 @@
 #pragma mark  ----  代理
 
 #pragma mark  ----  UITableViewDelegate
-/*
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 138;
+    float cellHeight = 232;
     return cellHeight;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 48;
-}
-
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 48)];
-    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, MAINWIDTH,32)];
-    headerLabel.backgroundColor = [UIColor whiteColor];
-    headerLabel.font = BOLDFONT16;
-    headerLabel.textColor = Color_333333;
-    headerLabel.text = @"  2019-05-12";
-    [headerView addSubview:headerLabel];
-    return headerView;
-}
 
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MaintenanceRecordsCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    RevenueCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         
-        cell = [[MaintenanceRecordsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[RevenueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -93,7 +74,7 @@
     
     return cell;
 }
-*/
+
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{

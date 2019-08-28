@@ -34,6 +34,7 @@
 #define Color_CCCCCC [UIColor colorFromHexRGB:@"CCCCCC"]
 #define Color_D8D8D8 [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1]
 #define Color_DEDEDE [UIColor colorFromHexRGB:@"DEDEDE"]
+#define Color_E1534A [UIColor colorFromHexRGB:@"E1534A"]
 #define Color_E2E2E2 [UIColor colorWithRed:226.0/255.0 green:226.0/255.0 blue:226.0/255.0 alpha:1]
 #define Color_EEEEEE [UIColor colorFromHexRGB:@"EEEEEE"]
 #define Color_F23E3E [UIColor colorFromHexRGB:@"F23E3E"]
