@@ -85,14 +85,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)setViewState:(ViewState)viewState{
     
     _viewState = viewState;
-    if (_viewState == ViewState_show) {
-        
-        self.tableView.userInteractionEnabled = NO;
-    }
-    else if (_viewState == ViewState_edit){
-        
-        self.tableView.userInteractionEnabled = YES;
-    }
+//    if (_viewState == ViewState_show) {
+//
+//        self.tableView.userInteractionEnabled = NO;
+//    }
+//    else if (_viewState == ViewState_edit){
+//
+//        self.tableView.userInteractionEnabled = YES;
+//    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -101,6 +101,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
+    
     [self drawUI];
 }
 
@@ -172,9 +173,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
         make.bottom.offset(-12);
     }];
     
-   
+    self.tableView.scrollEnabled = YES;
+    self.tableView.userInteractionEnabled = YES;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+
         make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
         make.left.right.offset(0);
         make.bottom.offset(-44);
@@ -182,7 +184,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+
         make.left.right.bottom.offset(0);
         make.height.offset(44);
     }];

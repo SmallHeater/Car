@@ -28,12 +28,25 @@
 //应收
 @property (nonatomic,strong) UILabel * acceptableLabel;
 @property (nonatomic,strong) UITextField * acceptableTF;
+@property (nonatomic,strong) UILabel * forthLine;
 //实收
 @property (nonatomic,strong) UILabel * receivedLabel;
 @property (nonatomic,strong) UITextField * receivedTF;
+@property (nonatomic,strong) UILabel * fifthLine;
 //成本
 @property (nonatomic,strong) UILabel * costLabel;
 @property (nonatomic,strong) UITextField * costTF;
+@property (nonatomic,strong) UILabel * sixthLineLabel;
+//维修内容
+@property (nonatomic,strong) UILabel * repairContentLabel;
+@property (nonatomic,strong) UITextView * repairContentTF;
+@property (nonatomic,strong) UILabel * seventhLabel;
+//图片上传
+@property (nonatomic,strong) UILabel * imageUploadLabel;
+//图片数
+@property (nonatomic,strong) UILabel * imageCountLabel;
+//添加图片按钮
+@property (nonatomic,strong) UIButton * addImageBtn;
 
 @end
 
@@ -196,6 +209,16 @@
     return _acceptableTF;
 }
 
+-(UILabel *)forthLine{
+    
+    if (!_forthLine) {
+        
+        _forthLine = [[UILabel alloc] init];
+        _forthLine.backgroundColor = Color_DEDEDE;
+    }
+    return _forthLine;
+}
+
 -(UILabel *)receivedLabel{
     
     if (!_receivedLabel) {
@@ -222,6 +245,16 @@
     return _receivedTF;
 }
 
+-(UILabel *)fifthLine{
+    
+    if (!_fifthLine) {
+        
+        _fifthLine = [[UILabel alloc] init];
+        _fifthLine.backgroundColor = Color_DEDEDE;
+    }
+    return _fifthLine;
+}
+
 -(UILabel *)costLabel{
     
     if (!_costLabel) {
@@ -232,20 +265,99 @@
         _costLabel.textColor = Color_999999;
         _costLabel.text = @"成本";
     }
-    return _acceptableLabel;
+    return _costLabel;
 }
 
--(UITextField *)acceptableTF{
+-(UITextField *)costTF{
     
-    if (!_acceptableTF) {
+    if (!_costTF) {
         
-        _acceptableTF = [[UITextField alloc] init];
-        _acceptableTF.placeholder = @"请输入应收金额";
-        _acceptableTF.textColor = Color_333333;
-        _acceptableTF.font = FONT16;
-        _acceptableTF.textAlignment = NSTextAlignmentCenter;
+        _costTF = [[UITextField alloc] init];
+        _costTF.placeholder = @"请输入成本";
+        _costTF.textColor = Color_333333;
+        _costTF.font = FONT16;
+        _costTF.textAlignment = NSTextAlignmentCenter;
     }
-    return _acceptableTF;
+    return _costTF;
+}
+
+-(UILabel *)sixthLineLabel{
+    
+    if (!_sixthLineLabel) {
+        
+        _sixthLineLabel = [[UILabel alloc] init];
+        _sixthLineLabel.backgroundColor = Color_DEDEDE;
+    }
+    return _sixthLineLabel;
+}
+
+-(UILabel *)repairContentLabel{
+    
+    if (!_repairContentLabel) {
+        
+        _repairContentLabel = [[UILabel alloc] init];
+        _repairContentLabel.font = FONT16;
+        _repairContentLabel.textColor = Color_666666;
+        _repairContentLabel.text = @"维修内容";
+    }
+    return _repairContentLabel;
+}
+
+-(UITextView *)repairContentTF{
+    
+    if (!_repairContentTF) {
+        
+        _repairContentTF = [[UITextView alloc] init];
+        _repairContentTF.font = FONT16;
+        _repairContentTF.textColor = Color_333333;
+    }
+    return _repairContentTF;
+}
+
+-(UILabel *)seventhLabel{
+    
+    if (!_seventhLabel) {
+        
+        _seventhLabel = [[UILabel alloc] init];
+        _seventhLabel.backgroundColor = Color_DEDEDE;
+    }
+    return _seventhLabel;
+}
+
+-(UILabel *)imageUploadLabel{
+    
+    if (!_imageUploadLabel) {
+        
+        _imageUploadLabel = [[UILabel alloc] init];
+        _imageUploadLabel.font = FONT16;
+        _imageUploadLabel.textColor = Color_666666;
+        _imageUploadLabel.text = @"图片上传";
+    }
+    return _imageUploadLabel;
+}
+
+-(UILabel *)imageCountLabel{
+    
+    if (!_imageCountLabel) {
+        
+        _imageCountLabel = [[UILabel alloc] init];
+        _imageCountLabel.font = FONT16;
+        _imageCountLabel.textColor = Color_999999;
+        _imageCountLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _imageCountLabel;
+}
+
+-(UIButton *)addImageBtn{
+    
+    if (!_addImageBtn) {
+        
+        _addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _addImageBtn.backgroundColor = Color_E9E9E9;
+        [_addImageBtn setImage:[UIImage imageNamed:@"tianjiatupian"] forState:UIControlStateNormal];
+        [_addImageBtn addTarget:self action:@selector(addImageBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _addImageBtn;
 }
 
 #pragma mark  ----  生命周期函数
@@ -264,7 +376,7 @@
 
 +(float)cellHeight{
     
-    return 26 + 16 + 36 + (16 + 18 + 1) * 3 + 18 * 2;
+    return 26 + 16 + 36 + (16 + 18 + 1) * 3 + 18 * 2 + 131 + 76 + 56 + 111;
 }
 
 -(void)drawUI{
@@ -387,6 +499,120 @@
         make.width.equalTo(self.acceptableLabel.mas_width);
         make.height.offset(16);
     }];
+    
+    [self addSubview:self.forthLine];
+    [self.forthLine mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(self.acceptableLabel.mas_top).offset(10);
+        make.left.equalTo(self.acceptableLabel.mas_right);
+        make.width.offset(1);
+        make.height.offset(17);
+    }];
+    
+    [self addSubview:self.receivedLabel];
+    [self.receivedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.acceptableLabel.mas_right).offset(0);
+        make.top.equalTo(self.acceptableLabel.mas_top);
+        make.width.offset(triangulationWidth);
+        make.height.offset(14);
+    }];
+    
+    [self addSubview:self.receivedTF];
+    [self.receivedTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.receivedLabel.mas_left);
+        make.top.equalTo(self.receivedLabel.mas_bottom).offset(17);
+        make.width.equalTo(self.receivedLabel.mas_width);
+        make.height.offset(16);
+    }];
+    
+    [self addSubview:self.fifthLine];
+    [self.fifthLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(self.receivedLabel.mas_top).offset(10);
+        make.left.equalTo(self.receivedLabel.mas_right);
+        make.width.offset(1);
+        make.height.offset(17);
+    }];
+    
+    [self addSubview:self.costLabel];
+    [self.costLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.receivedLabel.mas_right).offset(0);
+        make.top.equalTo(self.receivedLabel.mas_top).offset(0);
+        make.width.offset(triangulationWidth);
+        make.height.offset(14);
+    }];
+    
+    [self addSubview:self.costTF];
+    [self.costTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.costLabel.mas_left);
+        make.top.equalTo(self.costLabel.mas_bottom).offset(17);
+        make.width.equalTo(self.costLabel.mas_width);
+        make.height.offset(16);
+    }];
+    
+    [self addSubview:self.sixthLineLabel];
+    [self.sixthLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(self.costTF.mas_bottom).offset(27);
+        make.left.right.offset(0);
+        make.height.offset(1);
+    }];
+    
+    [self addSubview:self.repairContentLabel];
+    [self.repairContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(15);
+        make.top.equalTo(self.sixthLineLabel.mas_bottom).offset(17);
+        make.width.offset(68);
+        make.height.offset(16);
+    }];
+    
+    [self addSubview:self.repairContentTF];
+    [self.repairContentTF mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.repairContentLabel.mas_right).offset(26);
+        make.top.equalTo(self.repairContentLabel.mas_top);
+        make.right.offset(-17);
+        make.height.offset(40);
+    }];
+    
+    [self addSubview:self.seventhLabel];
+    [self.seventhLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.offset(0);
+        make.top.equalTo(self.repairContentTF.mas_bottom).offset(19);
+        make.height.offset(1);
+    }];
+    
+    [self addSubview:self.imageUploadLabel];
+    [self.imageUploadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(16);
+        make.top.equalTo(self.seventhLabel.mas_bottom).offset(20);
+        make.width.offset(100);
+        make.height.offset(16);
+    }];
+    
+    [self addSubview:self.imageCountLabel];
+    [self.imageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.right.offset(-18);
+        make.top.equalTo(self.imageUploadLabel.mas_top);
+        make.width.offset(50);
+        make.height.offset(16);
+    }];
+    
+    [self addSubview:self.addImageBtn];
+    [self.addImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.offset(15);
+        make.top.equalTo(self.imageUploadLabel.mas_bottom).offset(21);
+        make.width.height.offset(111);
+    }];
 }
 
 -(void)showData:(NSDictionary *)dic{
@@ -394,11 +620,18 @@
     self.repairDateTF.text = dic[@"repairDate"];
     self.kilometersTF.text = dic[@"kilometers"];
     self.associatedProjectTF.text = dic[@"associatedProject"];
+    self.acceptableTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"acceptable"]];
+    self.receivedTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"received"]];
+    self.costTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"cost"]];
 }
 
 -(void)test{
     
-    [self showData:@{@"repairDate":@"2019-08-14",@"kilometers":@"52365公里",@"associatedProject":@"保养"}];
+    [self showData:@{@"repairDate":@"2019-08-14",@"kilometers":@"52365公里",@"associatedProject":@"保养",@"acceptable":@"120",@"received":@"120",@"cost":@"120"}];
+}
+
+-(void)addImageBtnClicked:(UIButton *)btn{
+    
 }
 
 @end

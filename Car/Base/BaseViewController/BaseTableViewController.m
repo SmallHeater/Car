@@ -42,6 +42,7 @@
         _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.scrollEnabled = YES;
 //        _tableView.backgroundColor = [UIColor redColor];
     }
     return _tableView;
