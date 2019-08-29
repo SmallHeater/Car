@@ -8,7 +8,7 @@
 
 #import "MaintenanceRecordsDetailViewController.h"
 #import "VehicleFileForDetailVCCell.h"
-
+#import "MaintenanceLogCell.h"
 
 typedef NS_ENUM(NSUInteger,ViewState){
     
@@ -117,7 +117,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     }
     else{
         
-        cellHeight = 194;
+        cellHeight = [MaintenanceLogCell cellHeight];
     }
     
     return cellHeight;
@@ -126,7 +126,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -141,12 +141,20 @@ typedef NS_ENUM(NSUInteger,ViewState){
         }
         
         [cell test];
-        
         return cell;
     }
     else if (indexPath.row == 1){
         
-       
+        static NSString * secondCellId = @"MaintenanceLogCell";
+        MaintenanceLogCell * cell = [tableView dequeueReusableCellWithIdentifier:secondCellId];
+        if (!cell) {
+            
+            cell = [[MaintenanceLogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        [cell test];
+        return cell;
     }
     return nil;
 }

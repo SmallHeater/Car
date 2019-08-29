@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(float)cellHeight;
 
+-(void)test;
+
 @end
 
 NS_ASSUME_NONNULL_END
