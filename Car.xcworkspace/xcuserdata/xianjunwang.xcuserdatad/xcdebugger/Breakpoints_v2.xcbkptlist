@@ -25,70 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Business/Account/UIViewController/LoginViewController.m"
-            timestampString = "588512360.61878"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "-requestVerificationCode"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[LoginViewController requestVerificationCode]_block_invoke_2"
-                  moduleName = "Car"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Account/UIViewController/LoginViewController.m"
-                  timestampString = "588772325.079232"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "460">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[LoginViewController requestVerificationCode]_block_invoke_2"
-                  moduleName = "Car"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Account/UIViewController/LoginViewController.m"
-                  timestampString = "588772325.082507"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "472">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Business/Account/UIViewController/LoginViewController.m"
-            timestampString = "588512360.619305"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "-requestVerificationCode"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHNetworkComponent/Controller/SHNetworkControl.m"
             timestampString = "588558450.154332"
             startingColumnNumber = "9223372036854775807"
@@ -96,6 +32,22 @@
             startingLineNumber = "218"
             endingLineNumber = "218"
             landmarkName = "-dataTaskWithHTTPMethod:URLString:parameters:headers:uploadProgress:downloadProgress:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Car/Base/BaseControl/HighOrderPositioningController.m"
+            timestampString = "588818725.266127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-startPositioning"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,11 +7,17 @@
 //  高德定位控制器(因为一一旦销毁就无法定位，所以需要使用单例模式)
 
 #import <Foundation/Foundation.h>
-
+#import "PositioningResultModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^PositioningCallBack)(PositioningResultModel * result);
+
 @interface HighOrderPositioningController : NSObject
+
+//结果回调
+@property (nonatomic,copy) PositioningCallBack callBack;
+
 
 +(HighOrderPositioningController *)sharedManager;
 

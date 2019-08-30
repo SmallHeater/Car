@@ -10,6 +10,7 @@
 #import "ImageViewAndTextFieldAndBottomLineView.h"
 #import "GetVerificationCodeBtn.h"
 #import "HighOrderPositioningController.h"
+#import "LogInRegisterModel.h"
 
 @interface LoginViewController ()
 
@@ -29,7 +30,10 @@
 @property (nonatomic,strong) ImageViewAndTextFieldAndBottomLineView * repairShopNameView;
 //登录按钮
 @property (nonatomic,strong) UIButton * loginBtn;
-
+//登录注册模型
+@property (nonatomic,strong) LogInRegisterModel * logInRegisterModel;
+//发送的验证码
+@property (nonatomic,strong) NSString * verificationCode;
 
 @end
 
@@ -128,6 +132,15 @@
     return _loginBtn;
 }
 
+-(LogInRegisterModel *)logInRegisterModel{
+    
+    if (!_logInRegisterModel) {
+        
+        _logInRegisterModel = [[LogInRegisterModel alloc] init];
+    }
+    return _logInRegisterModel;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(void)viewDidLoad{
@@ -140,7 +153,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    [[HighOrderPositioningController sharedManager] startPositioning];
+    [self startPositioning];
 }
 
 #pragma mark  ----  自定义函数
@@ -219,6 +232,31 @@
     }];
 }
 
+//定位
+-(void)startPositioning{
+    
+    HighOrderPositioningController * control = [HighOrderPositioningController sharedManager];
+    
+    __weak LoginViewController * weakSelf = self;
+    control.callBack = ^(PositioningResultModel * _Nonnull result) {
+      
+        if (result.errorCode == 0) {
+            
+            //定位h成功
+            weakSelf.logInRegisterModel.lat = [[NSString alloc] initWithFormat:@"%.6f",result.latitude];
+            weakSelf.logInRegisterModel.lng = [[NSString alloc] initWithFormat:@"%.6f",result.longitude];
+            weakSelf.logInRegisterModel.province = result.province;
+            weakSelf.logInRegisterModel.city = result.city;
+            weakSelf.logInRegisterModel.district = result.district;
+        }
+        else{
+            
+            //定位失败
+        }
+    };
+    [control startPositioning];
+}
+
 //给view设置收键盘
 -(void)addReceivingKeyboard{
     
@@ -238,9 +276,9 @@
     NSString * phoneNumber = [self.phoneView getInputText];
     if ([phoneNumber repleaseNilOrNull].length == 11) {
         
+        __weak LoginViewController * weakSelf = self;
         [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
            
-            NSLog(@"%@",resultDic);
             NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
             if (SHNetworkStatusNumber.intValue == 0) {
                 
@@ -261,11 +299,7 @@
                         NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
                         if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                             
-                            NSDictionary * dataDic = resultDic[@"dataId"];
-                            if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                                
-                                NSLog(@"%@",dataDic);
-                            }
+                            weakSelf.verificationCode = randomNumber;
                         }
                         else{
                             
@@ -289,6 +323,51 @@
 -(void)loginBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
+    if ([self.verificationCode isEqualToString:[self.verificationCodeView getInputText]]) {
+        
+        self.logInRegisterModel.phone = [self.phoneView getInputText];
+        self.logInRegisterModel.shop_name = [self.repairShopNameView getInputText];
+        
+        __weak LoginViewController * weakSelf = self;
+        [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
+            
+            NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
+            if (SHNetworkStatusNumber.intValue == 0) {
+                
+                //无网
+            }
+            else{
+                
+                //发起请求
+                NSDictionary * bodyParameters = self.logInRegisterModel;
+                NSDictionary * configurationDic = @{@"requestUrlStr":Register,@"bodyParameters":bodyParameters};
+                [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+                    
+                    if (![resultDic.allKeys containsObject:@"error"]) {
+                        
+                        //成功的
+                        NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                        if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                            
+                            
+                        }
+                        else{
+                            
+                        }
+                    }
+                    else{
+                        
+                        //失败的
+                    }
+                }];
+            }
+        }];
+
+    }
+    else{
+        
+        //验证码错误
+    }
 }
 
 @end

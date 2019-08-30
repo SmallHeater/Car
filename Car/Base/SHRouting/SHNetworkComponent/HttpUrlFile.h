@@ -13,6 +13,7 @@
 #define CARDOMAIN @"https://garage.jnmsywl.com"
 //获取验证码地址
 #define GetVerificationCode [[NSString alloc] initWithFormat:@"%@/api/sms/send",CARDOMAIN]
-
+//注册地址
+#define Register [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/register",CARDOMAIN]
 
 #endif /* HttpUrlFile_h */

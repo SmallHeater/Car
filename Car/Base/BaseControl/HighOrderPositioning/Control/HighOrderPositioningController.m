@@ -63,6 +63,18 @@ static HighOrderPositioningController * manager = nil;
     // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         
+        PositioningResultModel * resultModel = [[PositioningResultModel alloc] init];
+        
+        if (error != nil && self.callBack) {
+            
+            resultModel.errorCode = error.code;
+            self.callBack(resultModel);
+        }
+        else{
+            
+            resultModel.errorCode = 0;
+        }
+        
         if (error != nil && error.code == AMapLocationErrorLocateFailed)
         {
             //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
@@ -100,9 +112,23 @@ static HighOrderPositioningController * manager = nil;
         //有无逆地理信息，annotationView的标题显示的字段不一样
         if (regeocode)
         {
-            NSString * one = [NSString stringWithFormat:@"%@", regeocode.formattedAddress];
-            NSString * two = [NSString stringWithFormat:@"%@-%@-%.2fm", regeocode.citycode, regeocode.adcode, location.horizontalAccuracy];
-            NSLog(@"%@,%@",one,two);
+            resultModel.latitude = location.coordinate.latitude;
+            resultModel.longitude = location.coordinate.longitude;
+            resultModel.formattedAddress = regeocode.formattedAddress;
+            resultModel.country = regeocode.country;
+            resultModel.province = regeocode.province;
+            resultModel.city = regeocode.city;
+            resultModel.district = regeocode.district;
+            resultModel.citycode = regeocode.citycode;
+            resultModel.adcode = regeocode.adcode;
+            resultModel.street = regeocode.street;
+            resultModel.number = regeocode.number;
+            resultModel.POIName = regeocode.POIName;
+            resultModel.AOIName = regeocode.AOIName;
+            if (self.callBack) {
+                
+                self.callBack(resultModel);
+            }
         }
         else
         {
