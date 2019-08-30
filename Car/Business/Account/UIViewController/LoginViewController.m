@@ -11,6 +11,8 @@
 #import "GetVerificationCodeBtn.h"
 #import "HighOrderPositioningController.h"
 #import "LogInRegisterModel.h"
+#import "UserInforModel.h"
+
 
 @interface LoginViewController ()
 

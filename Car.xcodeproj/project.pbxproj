@@ -64,9 +64,13 @@
 		628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */; };
 		628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF5702316979F007BC0F8 /* VehicleFileForDetailVCCell.m */; };
 		628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */; };
-		628AF5992318A647007BC0F8 /* LogInRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF5982318A647007BC0F8 /* LogInRegisterModel.m */; };
 		628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF59E2318A97F007BC0F8 /* HighOrderPositioningController.m */; };
 		628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF5A12318A9A8007BC0F8 /* PositioningResultModel.m */; };
+		62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B93231936E50018DE07 /* LogInRegisterModel.m */; };
+		62929B97231937200018DE07 /* UserInforModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B96231937200018DE07 /* UserInforModel.m */; };
+		62929B9D231938B10018DE07 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */; };
+		62929BA0231938DB0018DE07 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B9F231938DB0018DE07 /* SHCacheControl.m */; };
+		62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,12 +193,21 @@
 		628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceLogCell.m; sourceTree = "<group>"; };
 		628AF5942318A544007BC0F8 /* SHTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHTextView.m; sourceTree = "<group>"; };
 		628AF5952318A544007BC0F8 /* SHTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHTextView.h; sourceTree = "<group>"; };
-		628AF5972318A647007BC0F8 /* LogInRegisterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LogInRegisterModel.h; path = Car/Base/BaseView/LogInRegisterModel.h; sourceTree = SOURCE_ROOT; };
-		628AF5982318A647007BC0F8 /* LogInRegisterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LogInRegisterModel.m; path = Car/Base/BaseView/LogInRegisterModel.m; sourceTree = SOURCE_ROOT; };
 		628AF59D2318A97F007BC0F8 /* HighOrderPositioningController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighOrderPositioningController.h; sourceTree = "<group>"; };
 		628AF59E2318A97F007BC0F8 /* HighOrderPositioningController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighOrderPositioningController.m; sourceTree = "<group>"; };
 		628AF5A02318A9A8007BC0F8 /* PositioningResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositioningResultModel.h; sourceTree = "<group>"; };
 		628AF5A12318A9A8007BC0F8 /* PositioningResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositioningResultModel.m; sourceTree = "<group>"; };
+		62929B92231936E50018DE07 /* LogInRegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInRegisterModel.h; sourceTree = "<group>"; };
+		62929B93231936E50018DE07 /* LogInRegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInRegisterModel.m; sourceTree = "<group>"; };
+		62929B95231937200018DE07 /* UserInforModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInforModel.h; sourceTree = "<group>"; };
+		62929B96231937200018DE07 /* UserInforModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInforModel.m; sourceTree = "<group>"; };
+		62929B9B231938B10018DE07 /* SHCacheManagementcomponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementcomponent.h; sourceTree = "<group>"; };
+		62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
+		62929B9E231938DB0018DE07 /* SHCacheControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheControl.h; sourceTree = "<group>"; };
+		62929B9F231938DB0018DE07 /* SHCacheControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheControl.m; sourceTree = "<group>"; };
+		62929BA1231939130018DE07 /* SHCacheManagementHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementHeader.h; sourceTree = "<group>"; };
+		62929BA223193A130018DE07 /* SHCacheManagementMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementMiddleware.h; sourceTree = "<group>"; };
+		62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementMiddleware.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -584,19 +597,10 @@
 		040485A6230ECC9400EF17C8 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				040485A7230ECC9400EF17C8 /* Controller */,
+				62929B91231936E50018DE07 /* Model */,
 				040485A8230ECC9400EF17C8 /* UIViewController */,
-				040485AB230ECC9400EF17C8 /* Model */,
-				040485AC230ECC9400EF17C8 /* View */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		040485A7230ECC9400EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		040485A8230ECC9400EF17C8 /* UIViewController */ = {
@@ -608,25 +612,10 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
-		040485AB230ECC9400EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				628AF5972318A647007BC0F8 /* LogInRegisterModel.h */,
-				628AF5982318A647007BC0F8 /* LogInRegisterModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		040485AC230ECC9400EF17C8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		040485B72311096600EF17C8 /* SHRouting */ = {
 			isa = PBXGroup;
 			children = (
+				62929B98231938970018DE07 /* SHCacheManagementcomponent */,
 				624A499E23136234005B1391 /* SHNetworkComponent */,
 				040485B82311096700EF17C8 /* SHMiddlewareComponent */,
 				040485D22311096700EF17C8 /* SHRoutingComponent */,
@@ -649,6 +638,8 @@
 			children = (
 				040485CA2311096700EF17C8 /* SHNetworkRequestMiddleware.h */,
 				040485C12311096700EF17C8 /* SHNetworkRequestMiddleware.m */,
+				62929BA223193A130018DE07 /* SHCacheManagementMiddleware.h */,
+				62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */,
 			);
 			path = middleware;
 			sourceTree = "<group>";
@@ -803,6 +794,45 @@
 			path = Control;
 			sourceTree = "<group>";
 		};
+		62929B91231936E50018DE07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62929B92231936E50018DE07 /* LogInRegisterModel.h */,
+				62929B93231936E50018DE07 /* LogInRegisterModel.m */,
+				62929B95231937200018DE07 /* UserInforModel.h */,
+				62929B96231937200018DE07 /* UserInforModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62929B98231938970018DE07 /* SHCacheManagementcomponent */ = {
+			isa = PBXGroup;
+			children = (
+				62929B99231938970018DE07 /* Interface */,
+				62929B9A231938970018DE07 /* Controller */,
+			);
+			path = SHCacheManagementcomponent;
+			sourceTree = "<group>";
+		};
+		62929B99231938970018DE07 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				62929B9B231938B10018DE07 /* SHCacheManagementcomponent.h */,
+				62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */,
+				62929BA1231939130018DE07 /* SHCacheManagementHeader.h */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		62929B9A231938970018DE07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				62929B9E231938DB0018DE07 /* SHCacheControl.h */,
+				62929B9F231938DB0018DE07 /* SHCacheControl.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		69342650D3B774B22ECBF8D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +944,7 @@
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
+				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
@@ -928,8 +959,8 @@
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
-				628AF5992318A647007BC0F8 /* LogInRegisterModel.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
+				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
 				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
@@ -945,14 +976,17 @@
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
 				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
+				62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
+				62929BA0231938DB0018DE07 /* SHCacheControl.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
+				62929B9D231938B10018DE07 /* SHCacheManagementcomponent.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */,

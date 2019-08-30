@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Base/SHRouting/SHMiddlewareComponent/middleware/SHNetworkRequestMiddleware.m"
-            timestampString = "588561133.464666"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "+requestDataWithDic:callBack:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHNetworkComponent/Controller/SHNetworkControl.m"
             timestampString = "588558450.154332"
             startingColumnNumber = "9223372036854775807"
