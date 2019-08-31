@@ -8,6 +8,7 @@
 
 #import "CarouselCell.h"
 #import "CarouselView.h"
+#import "CarouselModel.h"
 
 @interface CarouselCell ()
 
@@ -53,6 +54,18 @@
         make.right.offset(-16);
         make.top.bottom.offset(0);
     }];
+}
+
+-(void)showData:(NSArray<CarouselModel *> *)array{
+    
+    NSMutableArray * carouselDicArray = [[NSMutableArray alloc] init];
+    for (CarouselModel * model in array) {
+        
+        NSString * CarouselImageUrlStr = [[NSString alloc] initWithFormat:@"%@%@",CARDOMAIN,model.image];
+        NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:model.CarouselId,@"CarouselId",CarouselImageUrlStr,@"CarouselImageUrlStr", nil];
+        [carouselDicArray addObject:dic];
+    }
+    [self.carouselView refreshData:carouselDicArray];
 }
 
 @end

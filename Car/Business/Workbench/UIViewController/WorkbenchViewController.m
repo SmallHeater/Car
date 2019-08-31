@@ -16,8 +16,13 @@
 #import "FastPickUpViewController.h"
 #import "MaintenanceRecordsViewController.h"
 #import "RevenueListViewController.h"
+#import "UserInforController.h"
+#import "WorkbenchModel.h"
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
+
+//数据模型
+@property (nonatomic,strong) WorkbenchModel * workbenchModel;
 
 @end
 
@@ -35,10 +40,10 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    [super viewDidLoad];
     [self refreshViewType:BTVCType_AddTableView];
+    [self requestListData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -120,7 +125,7 @@
             cell = [[AutoRepairShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
         }
         
-        [cell showAutoRepairShopName:@"北京修车厂"];
+        [cell showAutoRepairShopName:[UserInforController sharedManager].userInforModel.shop_name];
         return cell;
     }
     else if (indexPath.row == 1){
@@ -132,7 +137,10 @@
             cell = [[CarouselCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
         }
         
-        
+        if (self.workbenchModel.banner && self.workbenchModel.banner.count > 0) {
+            
+            [cell showData:self.workbenchModel.banner];
+        }
         return cell;
     }
     else if (indexPath.row == 2){
@@ -156,8 +164,10 @@
             cell = [[AnnouncementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:forthCellId];
         }
         
-//        cell.backgroundColor = [UIColor orangeColor];
-        
+        if (self.workbenchModel.notice && self.workbenchModel.notice.count > 0) {
+            
+            [cell showData:self.workbenchModel.notice];
+        }
         return cell;
     }
     else if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6){
@@ -243,6 +253,38 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark  ----  自定义函数
+
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Bench,@"bodyParameters":bodyParameters};
+    __weak WorkbenchViewController * weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                self.workbenchModel = [WorkbenchModel mj_objectWithKeyValues:dataDic];
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+            }
+            else{
+                
+            }
+        }
+        else{
+        
+            //失败的
+        }
+    }];
 }
 
 @end

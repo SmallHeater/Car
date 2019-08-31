@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CarouselView : UIView
 
+//CarouselId:唯一标识;type:0,图片;imageUrlStr:显示的图片地址;urlStr:点击之后打开的链接
+-(void)refreshData:(NSArray<NSDictionary *> *)array;
+
 @end
 
 NS_ASSUME_NONNULL_END

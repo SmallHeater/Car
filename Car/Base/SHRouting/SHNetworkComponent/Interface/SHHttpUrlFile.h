@@ -15,5 +15,8 @@
 #define GetVerificationCode [[NSString alloc] initWithFormat:@"%@/api/sms/send",CARDOMAIN]
 //注册地址
 #define Register [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/register",CARDOMAIN]
+//工作台地址
+#define Bench [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/bench",CARDOMAIN]
+
 
 #endif /* HttpUrlFile_h */

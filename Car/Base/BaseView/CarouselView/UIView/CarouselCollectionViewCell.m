@@ -7,6 +7,8 @@
 //
 
 #import "CarouselCollectionViewCell.h"
+#import "CarouselDataModel.h"
+
 
 @interface CarouselCollectionViewCell ()
 
@@ -23,7 +25,7 @@
     if (!_imageView) {
         
         _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor greenColor];
+        _imageView.backgroundColor = [UIColor darkGrayColor];
     }
     return _imageView;
 }
@@ -31,9 +33,9 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)init{
+-(instancetype)initWithFrame:(CGRect)frame{
     
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         
         [self drawUI];
@@ -50,6 +52,11 @@
        
         make.left.right.top.bottom.offset(0);
     }];
+}
+
+-(void)showWithModel:(CarouselDataModel *)model{
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.CarouselImageUrlStr]];
 }
 
 @end

@@ -35,8 +35,6 @@
 		040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485D32311096700EF17C8 /* SHRoutingComponent.m */; };
 		040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */; };
 		040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485EE2311723D00EF17C8 /* CarouselCell.m */; };
-		040485F62311774500EF17C8 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485F52311774500EF17C8 /* CarouselView.m */; };
-		040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */; };
 		040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FB231187AD00EF17C8 /* SearchBarCell.m */; };
 		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
@@ -56,6 +54,10 @@
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
+		62072C0E231A55C20089AD43 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0C231A55C20089AD43 /* CarouselView.m */; };
+		62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0D231A55C20089AD43 /* CarouselCollectionViewCell.m */; };
+		62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C11231A568D0089AD43 /* CarouselDataModel.m */; };
+		62072C21231A7A050089AD43 /* SHPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C1F231A7A040089AD43 /* SHPageControl.m */; };
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
 		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
@@ -72,6 +74,9 @@
 		62929BA0231938DB0018DE07 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B9F231938DB0018DE07 /* SHCacheControl.m */; };
 		62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */; };
 		62929BAF231A1E430018DE07 /* UserInforController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BAE231A1E430018DE07 /* UserInforController.m */; };
+		62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB3231A441F0018DE07 /* WorkbenchModel.m */; };
+		62929BB7231A44640018DE07 /* CarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB6231A44640018DE07 /* CarouselModel.m */; };
+		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,10 +137,6 @@
 		040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoRepairShopCell.m; sourceTree = "<group>"; };
 		040485ED2311723D00EF17C8 /* CarouselCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselCell.h; sourceTree = "<group>"; };
 		040485EE2311723D00EF17C8 /* CarouselCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselCell.m; sourceTree = "<group>"; };
-		040485F42311774500EF17C8 /* CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselView.h; sourceTree = "<group>"; };
-		040485F52311774500EF17C8 /* CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselView.m; sourceTree = "<group>"; };
-		040485F72311777A00EF17C8 /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselCollectionViewCell.h; sourceTree = "<group>"; };
-		040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselCollectionViewCell.m; sourceTree = "<group>"; };
 		040485FA231187AD00EF17C8 /* SearchBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarCell.h; sourceTree = "<group>"; };
 		040485FB231187AD00EF17C8 /* SearchBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarCell.m; sourceTree = "<group>"; };
 		040485FD2311880200EF17C8 /* AnnouncementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementCell.h; sourceTree = "<group>"; };
@@ -175,13 +176,20 @@
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
+		62072C0A231A55C20089AD43 /* CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselView.h; sourceTree = "<group>"; };
+		62072C0B231A55C20089AD43 /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselCollectionViewCell.h; sourceTree = "<group>"; };
+		62072C0C231A55C20089AD43 /* CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselView.m; sourceTree = "<group>"; };
+		62072C0D231A55C20089AD43 /* CarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselCollectionViewCell.m; sourceTree = "<group>"; };
+		62072C10231A568D0089AD43 /* CarouselDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselDataModel.h; sourceTree = "<group>"; };
+		62072C11231A568D0089AD43 /* CarouselDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselDataModel.m; sourceTree = "<group>"; };
+		62072C1F231A7A040089AD43 /* SHPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPageControl.m; sourceTree = "<group>"; };
+		62072C20231A7A040089AD43 /* SHPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPageControl.h; sourceTree = "<group>"; };
 		624A49A023136234005B1391 /* SHNetworkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkComponent.h; sourceTree = "<group>"; };
 		624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkStatusManagementComponent.h; sourceTree = "<group>"; };
 		624A49A223136234005B1391 /* SHNetworkComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkComponent.m; sourceTree = "<group>"; };
 		624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkStatusManagementComponent.m; sourceTree = "<group>"; };
 		624A49A623136234005B1391 /* SHNetworkControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkControl.m; sourceTree = "<group>"; };
 		624A49A823136234005B1391 /* SHNetworkControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkControl.h; sourceTree = "<group>"; };
-		628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpUrlFile.h; path = Car/Base/SHRouting/SHNetworkComponent/HttpUrlFile.h; sourceTree = SOURCE_ROOT; };
 		628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileDetailViewController.h; sourceTree = "<group>"; };
 		628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileDetailViewController.m; sourceTree = "<group>"; };
 		628AF566231607FA007BC0F8 /* RevenueCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueCell.h; sourceTree = "<group>"; };
@@ -211,6 +219,13 @@
 		62929BA5231A11300018DE07 /* SHCacheManagementHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementHeader.h; sourceTree = "<group>"; };
 		62929BAD231A1E430018DE07 /* UserInforController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInforController.h; sourceTree = "<group>"; };
 		62929BAE231A1E430018DE07 /* UserInforController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInforController.m; sourceTree = "<group>"; };
+		62929BB0231A41890018DE07 /* SHHttpUrlFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHHttpUrlFile.h; sourceTree = "<group>"; };
+		62929BB2231A441F0018DE07 /* WorkbenchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkbenchModel.h; sourceTree = "<group>"; };
+		62929BB3231A441F0018DE07 /* WorkbenchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkbenchModel.m; sourceTree = "<group>"; };
+		62929BB5231A44640018DE07 /* CarouselModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselModel.h; sourceTree = "<group>"; };
+		62929BB6231A44640018DE07 /* CarouselModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselModel.m; sourceTree = "<group>"; };
+		62929BB8231A44920018DE07 /* AnnouncementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
+		62929BB9231A44920018DE07 /* AnnouncementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +296,6 @@
 		04048551230C1F9C00EF17C8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				628AF1DC2313F425007BC0F8 /* HttpUrlFile.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -325,6 +339,8 @@
 		0404855A230C205F00EF17C8 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				62072C20231A7A040089AD43 /* SHPageControl.h */,
+				62072C1F231A7A040089AD43 /* SHPageControl.m */,
 				628AF5952318A544007BC0F8 /* SHTextView.h */,
 				628AF5942318A544007BC0F8 /* SHTextView.m */,
 				040485F32311774500EF17C8 /* CarouselView */,
@@ -380,9 +396,8 @@
 		0404857E230C24D200EF17C8 /* Workbench */ = {
 			isa = PBXGroup;
 			children = (
+				62929BB1231A440D0018DE07 /* Model */,
 				040485E9231135A800EF17C8 /* Cell */,
-				04048596230C254000EF17C8 /* Controller */,
-				04048593230C254000EF17C8 /* Model */,
 				04048594230C254000EF17C8 /* UIViewController */,
 				04048595230C254000EF17C8 /* View */,
 			);
@@ -553,13 +568,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		04048593230C254000EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		04048594230C254000EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,13 +596,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		04048596230C254000EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		040485A6230ECC9400EF17C8 /* Account */ = {
@@ -715,10 +716,8 @@
 		040485F32311774500EF17C8 /* CarouselView */ = {
 			isa = PBXGroup;
 			children = (
-				040485F42311774500EF17C8 /* CarouselView.h */,
-				040485F52311774500EF17C8 /* CarouselView.m */,
-				040485F72311777A00EF17C8 /* CarouselCollectionViewCell.h */,
-				040485F82311777A00EF17C8 /* CarouselCollectionViewCell.m */,
+				62072C08231A55C20089AD43 /* Model */,
+				62072C09231A55C20089AD43 /* UIView */,
 			);
 			path = CarouselView;
 			sourceTree = "<group>";
@@ -742,6 +741,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		62072C08231A55C20089AD43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62072C10231A568D0089AD43 /* CarouselDataModel.h */,
+				62072C11231A568D0089AD43 /* CarouselDataModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62072C09231A55C20089AD43 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				62072C0A231A55C20089AD43 /* CarouselView.h */,
+				62072C0C231A55C20089AD43 /* CarouselView.m */,
+				62072C0B231A55C20089AD43 /* CarouselCollectionViewCell.h */,
+				62072C0D231A55C20089AD43 /* CarouselCollectionViewCell.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		624A499E23136234005B1391 /* SHNetworkComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,6 +773,7 @@
 		624A499F23136234005B1391 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				62929BB0231A41890018DE07 /* SHHttpUrlFile.h */,
 				624A49A023136234005B1391 /* SHNetworkComponent.h */,
 				624A49A223136234005B1391 /* SHNetworkComponent.m */,
 				624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */,
@@ -844,6 +864,19 @@
 				62929BAE231A1E430018DE07 /* UserInforController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		62929BB1231A440D0018DE07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62929BB2231A441F0018DE07 /* WorkbenchModel.h */,
+				62929BB3231A441F0018DE07 /* WorkbenchModel.m */,
+				62929BB5231A44640018DE07 /* CarouselModel.h */,
+				62929BB6231A44640018DE07 /* CarouselModel.m */,
+				62929BB8231A44920018DE07 /* AnnouncementModel.h */,
+				62929BB9231A44920018DE07 /* AnnouncementModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		69342650D3B774B22ECBF8D7 /* Pods */ = {
@@ -984,13 +1017,14 @@
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
+				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
-				040485F62311774500EF17C8 /* CarouselView.m in Sources */,
+				62072C21231A7A050089AD43 /* SHPageControl.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
@@ -1002,7 +1036,9 @@
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
+				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
+				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
@@ -1026,15 +1062,17 @@
 				62929B9D231938B10018DE07 /* SHCacheManagementcomponent.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
-				040485F92311777A00EF17C8 /* CarouselCollectionViewCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
+				62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
+				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
+				62072C0E231A55C20089AD43 /* CarouselView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

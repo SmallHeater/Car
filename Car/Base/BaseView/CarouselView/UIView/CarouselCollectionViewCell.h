@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
+@class CarouselDataModel;
+
 @interface CarouselCollectionViewCell : UICollectionViewCell
+
+-(void)showWithModel:(CarouselDataModel *)model;
 
 @end
 

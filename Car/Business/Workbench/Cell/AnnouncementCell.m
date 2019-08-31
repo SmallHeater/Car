@@ -8,6 +8,7 @@
 
 #import "AnnouncementCell.h"
 #import "TXScrollLabelView.h"
+#import "AnnouncementModel.h"
 
 @interface AnnouncementCell ()
 
@@ -15,6 +16,8 @@
 //公告走马灯view
 @property (nonatomic,strong) TXScrollLabelView * labelView;
 @property (nonatomic,strong) UIButton * moreBtn;
+@property (nonatomic,strong) NSMutableArray<AnnouncementModel *> * dataArray;
+@property (nonatomic,strong) NSMutableArray<NSString *> * titlesArray;
 
 @end
 
@@ -47,7 +50,8 @@
     
     if (!_labelView) {
         
-        _labelView = [[TXScrollLabelView alloc] initWithTextArray:@[@"111111",@"222222"] type:TXScrollLabelViewTypeUpDown velocity:5 options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
+        
+        _labelView = [[TXScrollLabelView alloc] initWithTextArray:self.titlesArray type:TXScrollLabelViewTypeUpDown velocity:5 options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
         _labelView.scrollTitleColor = Color_666666;
         _labelView.font = FONT14;
         _labelView.backgroundColor = [UIColor whiteColor];
@@ -55,6 +59,24 @@
 //        _labelView.backgroundColor = [UIColor grayColor];
     }
     return _labelView;
+}
+
+-(NSMutableArray<AnnouncementModel *> *)dataArray{
+    
+    if (!_dataArray) {
+        
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+
+-(NSMutableArray<NSString *> *)titlesArray{
+    
+    if (!_titlesArray) {
+        
+        _titlesArray = [[NSMutableArray alloc] init];
+    }
+    return _titlesArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -82,9 +104,27 @@
         make.height.offset(19);
     }];
     
+    [self addSubview:self.moreBtn];
+    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.offset(23);
+        make.right.offset(-19);
+        make.width.offset(30);
+        make.height.offset(14);
+    }];
+}
+
+-(void)showData:(NSArray<AnnouncementModel *> *)array{
+    
+    [self.dataArray addObjectsFromArray:array];
+    for (AnnouncementModel * model in self.dataArray) {
+        
+        [self.titlesArray addObject:model.content];
+    }
+    
     [self addSubview:self.labelView];
     [self.labelView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.equalTo(self.iconImageView.mas_right).offset(13);
         make.right.offset(-62);
         make.top.offset(22);
@@ -95,16 +135,6 @@
         
         [self.labelView beginScrolling];
     });
-    
-    
-    [self addSubview:self.moreBtn];
-    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.offset(23);
-        make.right.offset(-19);
-        make.width.offset(30);
-        make.height.offset(14);
-    }];
 }
 
 @end

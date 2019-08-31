@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class AnnouncementModel;
+
 @interface AnnouncementCell : UITableViewCell
+
+-(void)showData:(NSArray<AnnouncementModel *> *)array;
 
 @end
 

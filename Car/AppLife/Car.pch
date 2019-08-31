@@ -18,7 +18,7 @@
 #import "UIColor+SHTool.h"
 #import <ReactiveObjC.h>
 #import "SDWebImage.h"
-#import "HttpUrlFile.h"
+#import "SHHttpUrlFile.h"
 #import "SHRoutingComponent.h"
 #import "MJExtension.h"
 #import "SHCacheManagementHeader.h"

@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CarouselModel;
+
 @interface CarouselCell : UITableViewCell
+
+-(void)showData:(NSArray<CarouselModel *> *)array;
 
 @end
 
