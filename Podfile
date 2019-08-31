@@ -5,4 +5,7 @@ pod 'ReactiveObjC'
 pod 'RealReachability'
 pod 'AMapLocation'
 pod 'SDWebImage'
+pod 'MJExtension'
+pod 'MJRefresh'
+
 end
