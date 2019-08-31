@@ -79,4 +79,14 @@
 
 #pragma mark  ----  网络请求组件命令集合
 
+#pragma mark  ----  缓存管理组件命令集合
+
+//缓存数据命令
+#define CACHEDATA @"Technology://Cache:(cacheDataWithDic:)"
+//获取缓存数据命令
+#define OBTAINCACHEDATA @"Technology://Cache:(obtainDataWithDic:callBack:)"
+
+
+
+#pragma mark  ----  缓存管理组件命令集合
 #endif /* CommandList_h */

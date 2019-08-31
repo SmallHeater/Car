@@ -31,7 +31,7 @@
      
         //异常
         NSString * error = [[NSString alloc] initWithFormat:@"操作名:%@无对应的中间件",businessName];
-        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
         NSLog(@"%@",error);
         return @"";
     }
@@ -45,7 +45,8 @@
         _reflectionDic = [[NSMutableDictionary alloc] init];
         //网络相关业务
         [_reflectionDic setObject:@"SHNetworkRequestMiddleware" forKey:@"Network"];
-        
+        //缓存相关业务
+        [_reflectionDic setObject:@"SHCacheManagementMiddleware" forKey:@"Cache"];
     }
     return _reflectionDic;
 }

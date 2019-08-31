@@ -10,4 +10,10 @@
 
 @implementation UserInforModel
 
+//改变映射关系(原先返回id，是关键字)
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    
+    return @{@"userID":@"id"};
+}
+
 @end

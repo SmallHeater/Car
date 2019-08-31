@@ -7,19 +7,35 @@
 //
 
 #import "SHCacheManagementMiddleware.h"
+#import "SHCacheManagementcomponent.h"
+
 
 @implementation SHCacheManagementMiddleware
 
 //缓存
-+(void)cacheData:(id)data withKey:(NSString *)key{
++(void)cacheDataWithDic:(NSDictionary *)dic{
     
-    
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+     
+        [SHCacheManagementcomponent cacheData:dic[@"CacheData"] withKey:dic[@"CacheKey"]];
+    }
 }
 
-//读取
-+(id)getDataWithKey:(NSString *)key{
+//获取数据
++(void)obtainDataWithDic:(NSDictionary *)dic callBack:(void(^)(NSDictionary *retultDic))callBack{
     
-    return nil;
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+        
+        id dataId = [SHCacheManagementcomponent obtainDataWithKey:dic[@"CacheKey"]];
+        if (callBack && dataId) {
+            
+            callBack(@{@"CacheData":dataId});
+        }
+        else{
+            
+            callBack(@{@"error":@"无缓存"});
+        }
+    }
 }
 
 @end

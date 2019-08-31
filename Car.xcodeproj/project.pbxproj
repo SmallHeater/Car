@@ -71,6 +71,7 @@
 		62929B9D231938B10018DE07 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */; };
 		62929BA0231938DB0018DE07 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929B9F231938DB0018DE07 /* SHCacheControl.m */; };
 		62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */; };
+		62929BAF231A1E430018DE07 /* UserInforController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BAE231A1E430018DE07 /* UserInforController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -205,9 +206,11 @@
 		62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
 		62929B9E231938DB0018DE07 /* SHCacheControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheControl.h; sourceTree = "<group>"; };
 		62929B9F231938DB0018DE07 /* SHCacheControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheControl.m; sourceTree = "<group>"; };
-		62929BA1231939130018DE07 /* SHCacheManagementHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementHeader.h; sourceTree = "<group>"; };
 		62929BA223193A130018DE07 /* SHCacheManagementMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementMiddleware.h; sourceTree = "<group>"; };
 		62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementMiddleware.m; sourceTree = "<group>"; };
+		62929BA5231A11300018DE07 /* SHCacheManagementHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCacheManagementHeader.h; sourceTree = "<group>"; };
+		62929BAD231A1E430018DE07 /* UserInforController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInforController.h; sourceTree = "<group>"; };
+		62929BAE231A1E430018DE07 /* UserInforController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInforController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -597,6 +600,7 @@
 		040485A6230ECC9400EF17C8 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				62929BA9231A1DF10018DE07 /* Controller */,
 				62929B91231936E50018DE07 /* Model */,
 				040485A8230ECC9400EF17C8 /* UIViewController */,
 			);
@@ -817,9 +821,9 @@
 		62929B99231938970018DE07 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				62929BA5231A11300018DE07 /* SHCacheManagementHeader.h */,
 				62929B9B231938B10018DE07 /* SHCacheManagementcomponent.h */,
 				62929B9C231938B10018DE07 /* SHCacheManagementcomponent.m */,
-				62929BA1231939130018DE07 /* SHCacheManagementHeader.h */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -829,6 +833,15 @@
 			children = (
 				62929B9E231938DB0018DE07 /* SHCacheControl.h */,
 				62929B9F231938DB0018DE07 /* SHCacheControl.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		62929BA9231A1DF10018DE07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				62929BAD231A1E430018DE07 /* UserInforController.h */,
+				62929BAE231A1E430018DE07 /* UserInforController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1004,6 +1017,7 @@
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
 				62929BA0231938DB0018DE07 /* SHCacheControl.m in Sources */,
+				62929BAF231A1E430018DE07 /* UserInforController.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,

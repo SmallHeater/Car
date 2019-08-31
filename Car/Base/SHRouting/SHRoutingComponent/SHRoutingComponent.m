@@ -83,7 +83,7 @@
                             
                             //异常
                             NSString * error = [[NSString alloc] initWithFormat:@"当前命令异常，分割的字典中businessName或commandStr对应的值为空，命令为：%@",url];
-                            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//                            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
                             NSLog(@"%@",error);
                             return NO;
                         }
@@ -93,7 +93,7 @@
                         
                         //异常
                         NSString * error = [[NSString alloc] initWithFormat:@"当前命令异常，分割的字典中businessName或commandStr对应的值不是NSString类型，命令为：%@",url];
-                        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//                        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
                         NSLog(@"%@",error);
                         return NO;
                     }
@@ -102,7 +102,7 @@
                     
                     //异常
                     NSString * error = [[NSString alloc] initWithFormat:@"当前命令异常，分割的字典缺少businessName或commandStr字段，命令为：%@",url];
-                    [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//                    [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
                     NSLog(@"%@",error);
                     return NO;
                 }
@@ -111,7 +111,7 @@
                 
                 //异常
                 NSString * error = [[NSString alloc] initWithFormat:@"当前命令异常，无法分割为字典，命令为：%@",url];
-                [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//                [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
                 NSLog(@"%@",error);
                 return NO;
             }
@@ -120,7 +120,7 @@
             
             //异常
             NSString * error = [[NSString alloc] initWithFormat:@"当前命令异常，格式不正确，命令为：%@",url];
-            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
             NSLog(@"%@",error);
             return NO;
         }
@@ -129,7 +129,7 @@
         
         //异常
         NSString * error = @"当前命令异常，为空命令串";
-        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
         NSLog(@"%@",error);
         return NO;
     }
@@ -161,7 +161,7 @@
         
         //异常
         NSString * error = [[NSString alloc] initWithFormat:@"命令传参异常，不是字典类型或无数据,传参：%@",parameterDic];
-        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
         NSLog(@"%@",error);
         return NO;
     }
@@ -178,7 +178,7 @@
         
         //异常
         NSString * error = @"命令回调异常，block回调为nil";
-        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
         NSLog(@"%@",error);
         return NO;
     }

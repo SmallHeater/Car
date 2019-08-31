@@ -237,13 +237,19 @@ static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryPar
             
             if (failure) {
                 
-                failure(dataTask, error);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    failure(dataTask, error);
+                });
             }
         } else {
             
             if (success) {
                 
-                success(response,dataTask,data);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    success(response,dataTask,data);
+                });
             }
         }
     }];

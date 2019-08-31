@@ -7,18 +7,21 @@
 //
 
 #import "SHCacheManagementcomponent.h"
+#import "SHCacheControl.h"
 
 @implementation SHCacheManagementcomponent
 
 //缓存
 +(void)cacheData:(id)data withKey:(NSString *)key{
     
+    [SHCacheControl cacheData:data withKey:key];
 }
 
 //读取
-+(id)getDataWithKey:(NSString *)key{
++(id)obtainDataWithKey:(NSString *)key{
     
-    return nil;
+    id dataId = [SHCacheControl obtainDataWithKey:key];
+    return dataId;
 }
 
 @end

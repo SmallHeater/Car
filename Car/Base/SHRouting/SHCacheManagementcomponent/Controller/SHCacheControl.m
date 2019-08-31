@@ -13,12 +13,15 @@
 //缓存
 +(void)cacheData:(id)data withKey:(NSString *)key{
     
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //读取
-+(id)getDataWithKey:(NSString *)key{
++(id)obtainDataWithKey:(NSString *)key;{
     
-    return nil;
+    id dataId = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return dataId;
 }
 
 @end

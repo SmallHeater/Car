@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserInforModel : NSObject
 
-@property (nonatomic,strong) NSString * id;
+@property (nonatomic,strong) NSString * userID;
 //店铺名称
 @property (nonatomic,strong) NSString * shop_name;
 //手机号

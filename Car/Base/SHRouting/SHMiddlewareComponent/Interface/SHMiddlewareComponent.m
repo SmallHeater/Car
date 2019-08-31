@@ -77,7 +77,7 @@
         
             //异常
             NSString * error = [[NSString alloc] initWithFormat:@"中间件类%@无该方法%@",className,command];
-            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
+//            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":error}];
             NSLog(@"%@",error);
             return NO;
         }

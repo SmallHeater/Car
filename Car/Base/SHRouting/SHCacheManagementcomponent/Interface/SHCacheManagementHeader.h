@@ -9,5 +9,7 @@
 #ifndef SHCacheManagementHeader_h
 #define SHCacheManagementHeader_h
 
+#define USERINFORMODELKEY @"UserInforModelKey"
+
 
 #endif /* SHCacheManagementHeader_h */

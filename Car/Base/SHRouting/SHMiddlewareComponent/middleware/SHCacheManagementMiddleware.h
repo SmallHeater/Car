@@ -13,10 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SHCacheManagementMiddleware : NSObject
 
 //缓存
-+(void)cacheData:(id)data withKey:(NSString *)key;
++(void)cacheDataWithDic:(NSDictionary *)dic;
 
-//读取
-+(id)getDataWithKey:(NSString *)key;
+//获取数据
++(void)obtainDataWithDic:(NSDictionary *)dic callBack:(void(^)(NSDictionary *retultDic))callBack;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SHCacheManagementcomponent : NSObject
 
 //缓存方式，NSUserDefaults,key;数据库,表.
-
+//数据只能存储基本数据类型，需要做处理
 //缓存
 +(void)cacheData:(id)data withKey:(NSString *)key;
 
 //读取
-+(id)getDataWithKey:(NSString *)key;
++(id)obtainDataWithKey:(NSString *)key;
 
 
 @end

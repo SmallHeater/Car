@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)cacheData:(id)data withKey:(NSString *)key;
 
 //读取
-+(id)getDataWithKey:(NSString *)key;
++(id)obtainDataWithKey:(NSString *)key;
 
 @end
 

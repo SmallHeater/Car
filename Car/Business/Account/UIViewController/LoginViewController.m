@@ -12,7 +12,11 @@
 #import "HighOrderPositioningController.h"
 #import "LogInRegisterModel.h"
 #import "UserInforModel.h"
-
+#import "HomeViewController.h"
+#import "ForumViewController.h"
+#import "WorkbenchViewController.h"
+#import "MarketingViewController.h"
+#import "MineViewController.h"
 
 @interface LoginViewController ()
 
@@ -94,7 +98,6 @@
         
         _verificationCodeBtn = [[GetVerificationCodeBtn alloc] initWithConfigurationDic:@{@"normalTitle":@"获取验证码",@"time":[NSNumber numberWithInteger:60]}];
         [_verificationCodeBtn addTarget:self action:@selector(requestVerificationCode) forControlEvents:UIControlEventTouchUpInside];
-//        _verificationCodeBtn.backgroundColor = [UIColor greenColor];
     }
     return _verificationCodeBtn;
 }
@@ -156,6 +159,11 @@
     
     [super viewDidAppear:animated];
     [self startPositioning];
+}
+
+-(void)dealloc{
+    
+    NSLog(@"LoginViewController:销毁");
 }
 
 #pragma mark  ----  自定义函数
@@ -244,7 +252,7 @@
       
         if (result.errorCode == 0) {
             
-            //定位h成功
+            //定位成功
             weakSelf.logInRegisterModel.lat = [[NSString alloc] initWithFormat:@"%.6f",result.latitude];
             weakSelf.logInRegisterModel.lng = [[NSString alloc] initWithFormat:@"%.6f",result.longitude];
             weakSelf.logInRegisterModel.province = result.province;
@@ -325,10 +333,40 @@
 -(void)loginBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    if ([self.verificationCode isEqualToString:[self.verificationCodeView getInputText]]) {
+    
+    self.logInRegisterModel.phone = [self.phoneView getInputText];
+    self.logInRegisterModel.shop_name = [self.repairShopNameView getInputText];
+    NSString * inputVerificationCode = [self.verificationCodeView getInputText];
+    if (self.logInRegisterModel.phone && self.logInRegisterModel.phone.length == 11) {
         
-        self.logInRegisterModel.phone = [self.phoneView getInputText];
-        self.logInRegisterModel.shop_name = [self.repairShopNameView getInputText];
+        
+        if (inputVerificationCode && inputVerificationCode.length > 0) {
+            
+            if (self.logInRegisterModel.shop_name && self.logInRegisterModel.shop_name.length > 0) {
+            
+                [self logIn];
+            }
+            else{
+                
+                //请输入修理厂名称
+            }
+        }
+        else{
+            
+            //请输入验证码
+        }
+    }
+    else{
+        
+        //请输入正确的手机号
+    }
+    btn.userInteractionEnabled = YES;
+}
+
+//登录
+-(void)logIn{
+    
+    if ([self.verificationCode isEqualToString:[self.verificationCodeView getInputText]]) {
         
         __weak LoginViewController * weakSelf = self;
         [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
@@ -341,7 +379,7 @@
             else{
                 
                 //发起请求
-                NSDictionary * bodyParameters = self.logInRegisterModel;
+                NSDictionary * bodyParameters = [self.logInRegisterModel mj_keyValues];;
                 NSDictionary * configurationDic = @{@"requestUrlStr":Register,@"bodyParameters":bodyParameters};
                 [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
                     
@@ -351,7 +389,15 @@
                         NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
                         if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                             
-                            
+                            id dataId = resultDic[@"dataId"];
+                            NSDictionary * dic = (NSDictionary *)dataId;
+                            NSDictionary * dataDic = dic[@"data"];
+                            NSDictionary * staffDic = dataDic[@"staff"];
+                            UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
+                            NSDictionary * userInforDic = [userInforModel mj_keyValues];
+                            //缓存用户信息模型字典
+                            [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+                            [weakSelf refreshRootVC];
                         }
                         else{
                             
@@ -364,12 +410,52 @@
                 }];
             }
         }];
-
     }
     else{
         
         //验证码错误
     }
+
+}
+
+//重新设置根指针
+-(void)refreshRootVC{
+    
+    HomeViewController * homeVC = [[HomeViewController alloc] init];
+    UINavigationController * homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    homeNav.tabBarItem.title = @"首页";
+    homeNav.tabBarItem.image = [UIImage imageNamed:@"shouye"];
+    homeNav.tabBarItem.selectedImage = [UIImage imageNamed:@"shouye"];
+    
+    ForumViewController * forumVC = [[ForumViewController alloc] init];
+    UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
+    forumNav.tabBarItem.title = @"论坛";
+    forumNav.tabBarItem.image = [UIImage imageNamed:@"luntan"];
+    forumNav.tabBarItem.selectedImage = [UIImage imageNamed:@"luntan"];
+    
+    WorkbenchViewController * workbenchVC = [[WorkbenchViewController alloc] init];
+    UINavigationController * workbenchNav = [[UINavigationController alloc] initWithRootViewController:workbenchVC];
+    workbenchNav.tabBarItem.title = @"工作台";
+    workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
+    workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
+    
+    MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
+    UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
+    marketingNav.tabBarItem.title = @"营销";
+    marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
+    marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
+    
+    MineViewController * mineVC = [[MineViewController alloc] init];
+    UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
+    mineNav.tabBarItem.title = @"我的";
+    mineNav.tabBarItem.image = [UIImage imageNamed:@"wode"];
+    mineNav.tabBarItem.selectedImage = [UIImage imageNamed:@"wode"];
+    
+    UITabBarController * tarBarController = [[UITabBarController alloc] init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = nil;
+    [UIApplication sharedApplication].keyWindow.rootViewController = tarBarController;
+    tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
+    tarBarController.selectedIndex = 2;
 }
 
 @end
