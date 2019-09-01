@@ -18,9 +18,9 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 
 @property (nonatomic,strong) NSMutableArray<CarouselDataModel *> * dataArray;
 @property (nonatomic,strong) UICollectionView * collectionView;
-
-//@property (nonatomic,strong) XHPageControl * pageControl;
 @property (nonatomic,strong) SHPageControl * pageControl;
+//自动轮播定时器
+@property (nonatomic,strong) dispatch_source_t timer;
 
 @end
 
@@ -134,10 +134,8 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSLog(@"结束");
-    NSLog(@"位置：%lf;宽度:",scrollView.contentOffset.x);
-    
-    
+    NSUInteger index = scrollView.contentOffset.x / CGRectGetWidth(self.frame);
+    self.pageControl.currentPage = index;
 }
 
 #pragma mark  ----  自定义函数
@@ -179,6 +177,43 @@ static NSString * cellID = @"CarouselCollectionViewCell";
         make.height.offset(3);
     }];
     [self bringSubviewToFront:self.pageControl];
+    [self addTimer];
 }
 
+//添加定时器
+-(void)addTimer{
+    
+    if (self.timer) {
+        
+        dispatch_cancel(self.timer);
+        self.timer = nil;
+    }
+    
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    //设置定时器的各种属性
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5*NSEC_PER_SEC));
+    uint64_t interval = (uint64_t)(5.0*NSEC_PER_SEC);
+    dispatch_source_set_timer(self.timer, start, interval, 0);
+    //设置回调
+    __weak typeof(self) weakSelf = self;
+    dispatch_source_set_event_handler(self.timer, ^{
+        
+        //定时器需要执行的操作
+    
+        if (weakSelf.collectionView.contentOffset.x == CGRectGetWidth(self.frame) * (weakSelf.dataArray.count - 1)) {
+            
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [weakSelf.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+        }
+        else{
+            
+            NSUInteger index = weakSelf.collectionView.contentOffset.x / CGRectGetWidth(self.frame);
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+            [weakSelf.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+        }
+    });
+    //启动定时器（默认是暂停）
+    dispatch_resume(self.timer);
+}
+    
 @end

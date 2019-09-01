@@ -22,6 +22,7 @@
 #import "SHRoutingComponent.h"
 #import "MJExtension.h"
 #import "SHCacheManagementHeader.h"
+#import "MBProgressHUD+WJExtension.h"
 
 
 
@@ -67,5 +68,7 @@
 
 #define MAINWIDTH [UIScreen mainScreen].bounds.size.width
 #define MAINHEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define INTERNETERROR @"网络异常，请稍后再试"
 
 #endif /* Car_pch */

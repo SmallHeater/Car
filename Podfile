@@ -7,5 +7,7 @@ pod 'AMapLocation'
 pod 'SDWebImage'
 pod 'MJExtension'
 pod 'MJRefresh'
+pod 'MBProgressHUD+WJExtension'
+
 
 end
