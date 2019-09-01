@@ -21,7 +21,7 @@
 #import "ProfitStatisticsViewController.h"
 #import "VehicleFileViewController.h"
 #import "PaymentManagementViewController.h"
-
+#import "BusinessSummaryViewController.h"
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
 
@@ -241,6 +241,7 @@
     else if ([itemId isEqualToString:@"yingyehuizong"]) {
         
         //营业汇总
+        vc = [[BusinessSummaryViewController alloc] initWithTitle:@"营业汇总" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
     }
     else if ([itemId isEqualToString:@"daishouchaxun"]) {
         
