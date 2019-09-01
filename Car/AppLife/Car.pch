@@ -58,13 +58,15 @@
 #define FONT16 [UIFont systemFontOfSize:16]
 #define FONT18 [UIFont systemFontOfSize:18]
 #define FONT20 [UIFont systemFontOfSize:20]
-
+#define FONT28 [UIFont systemFontOfSize:28]
 
 #define BOLDFONT16 [UIFont boldSystemFontOfSize:16]
 #define BOLDFONT17 [UIFont boldSystemFontOfSize:17]
 #define BOLDFONT18 [UIFont boldSystemFontOfSize:18]
 #define BOLDFONT20 [UIFont boldSystemFontOfSize:20]
+#define BOLDFONT30 [UIFont boldSystemFontOfSize:30]
 #define BOLDFONT32 [UIFont boldSystemFontOfSize:32]
+#define BOLDFONT40 [UIFont boldSystemFontOfSize:40]
 
 #define MAINWIDTH [UIScreen mainScreen].bounds.size.width
 #define MAINHEIGHT [UIScreen mainScreen].bounds.size.height

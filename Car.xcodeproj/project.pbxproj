@@ -63,6 +63,15 @@
 		62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C26231B6C8D0089AD43 /* ProfitStatisticsCell.m */; };
 		62072C33231B77870089AD43 /* SHMultipleSwitchingItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C31231B77870089AD43 /* SHMultipleSwitchingItemsView.m */; };
 		62072C36231B77D10089AD43 /* SHMultipleSwitchingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C35231B77D10089AD43 /* SHMultipleSwitchingItemModel.m */; };
+		62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C38231BC28F0089AD43 /* AipOcrSdk.framework */; };
+		62072C42231BC7E50089AD43 /* AipBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C39231BC28F0089AD43 /* AipBase.framework */; };
+		62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C38231BC28F0089AD43 /* AipOcrSdk.framework */; };
+		62072C44231BC7F10089AD43 /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C38231BC28F0089AD43 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C39231BC28F0089AD43 /* AipBase.framework */; };
+		62072C46231BC7F10089AD43 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C39231BC28F0089AD43 /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
+		62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
+		62072C4A231BC8450089AD43 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
 		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
@@ -83,6 +92,22 @@
 		62929BB7231A44640018DE07 /* CarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB6231A44640018DE07 /* CarouselModel.m */; };
 		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		62072C40231BC2AD0089AD43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				62072C46231BC7F10089AD43 /* AipBase.framework in Embed Frameworks */,
+				62072C44231BC7F10089AD43 /* AipOcrSdk.framework in Embed Frameworks */,
+				62072C4A231BC8450089AD43 /* IdcardQuality.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04048531230C1E6400EF17C8 /* Car.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Car.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +224,9 @@
 		62072C32231B77870089AD43 /* SHMultipleSwitchingItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHMultipleSwitchingItemsView.h; sourceTree = "<group>"; };
 		62072C34231B77D10089AD43 /* SHMultipleSwitchingItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHMultipleSwitchingItemModel.h; sourceTree = "<group>"; };
 		62072C35231B77D10089AD43 /* SHMultipleSwitchingItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHMultipleSwitchingItemModel.m; sourceTree = "<group>"; };
+		62072C38231BC28F0089AD43 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipOcrSdk.framework; sourceTree = "<group>"; };
+		62072C39231BC28F0089AD43 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
+		62072C47231BC83A0089AD43 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
 		624A49A023136234005B1391 /* SHNetworkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkComponent.h; sourceTree = "<group>"; };
 		624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkStatusManagementComponent.h; sourceTree = "<group>"; };
 		624A49A223136234005B1391 /* SHNetworkComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkComponent.m; sourceTree = "<group>"; };
@@ -248,7 +276,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62072C42231BC7E50089AD43 /* AipBase.framework in Frameworks */,
+				62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */,
 				30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */,
+				62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */,
+				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
+				62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */,
+				62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +438,7 @@
 		0404856D230C205F00EF17C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				62072C37231BC28F0089AD43 /* BaiDuAI */,
 				046DCB8C231272A900C520D8 /* TXScrollLabelView */,
 			);
 			path = Lib;
@@ -810,6 +845,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		62072C37231BC28F0089AD43 /* BaiDuAI */ = {
+			isa = PBXGroup;
+			children = (
+				62072C47231BC83A0089AD43 /* IdcardQuality.framework */,
+				62072C38231BC28F0089AD43 /* AipOcrSdk.framework */,
+				62072C39231BC28F0089AD43 /* AipBase.framework */,
+			);
+			path = BaiDuAI;
+			sourceTree = "<group>";
+		};
 		624A499E23136234005B1391 /* SHNetworkComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -949,6 +994,7 @@
 				0404852E230C1E6400EF17C8 /* Frameworks */,
 				0404852F230C1E6400EF17C8 /* Resources */,
 				7FAF6D56F04C832F89E65F39 /* [CP] Copy Pods Resources */,
+				62072C40231BC2AD0089AD43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1189,6 +1235,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Car/Lib/BaiDuAI";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1248,6 +1295,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Car/Lib/BaiDuAI";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1271,6 +1319,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9Y6LPBJXV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1292,6 +1344,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9Y6LPBJXV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -9,6 +9,8 @@
 #import "MaintenanceRecordsViewController.h"
 #import "MaintenanceRecordsCell.h"
 #import "MaintenanceRecordsDetailViewController.h"
+#import "UserInforController.h"
+
 
 static NSString * cellId = @"MaintenanceRecordsCell";
 
@@ -44,6 +46,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -125,6 +128,34 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     btn.userInteractionEnabled = YES;
 }
 
-
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"car_id":@""};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    __weak MaintenanceRecordsViewController * weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+//                self.workbenchModel = [WorkbenchModel mj_objectWithKeyValues:dataDic];
+//                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
 
 @end

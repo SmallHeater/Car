@@ -14,6 +14,12 @@
 
 //数据数组
 @property (nonatomic,strong) NSMutableArray<SHMultipleSwitchingItemModel *> * itemsArray;
+@property (nonatomic,assign) float btnWidth;
+//底部分割线
+@property (nonatomic,strong) UILabel * bottomLineLabel;
+//选中的线
+@property (nonatomic,strong) UILabel * selectedLabel;
+@property (nonatomic,strong) NSMutableArray<UIButton *> * buttonArray;
 
 @end
 
@@ -28,6 +34,34 @@
         _itemsArray = [[NSMutableArray alloc] init];
     }
     return _itemsArray;
+}
+
+-(UILabel *)bottomLineLabel{
+    
+    if (!_bottomLineLabel) {
+        
+        _bottomLineLabel = [[UILabel alloc] init];
+        _bottomLineLabel.backgroundColor = Color_EEEEEE;
+    }
+    return _bottomLineLabel;
+}
+
+-(UILabel *)selectedLabel{
+    
+    if (!_selectedLabel) {
+        
+        _selectedLabel = [[UILabel alloc] init];
+    }
+    return _selectedLabel;
+}
+
+-(NSMutableArray<UIButton *> *)buttonArray{
+    
+    if (!_buttonArray) {
+        
+        _buttonArray = [[NSMutableArray alloc] init];
+    }
+    return _buttonArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -57,21 +91,21 @@
 -(void)drawUI{
     
     //每个按钮的宽度
-    float btnWidth = CGRectGetWidth(self.frame) / self.itemsArray.count;
+    self.btnWidth = CGRectGetWidth(self.frame) / self.itemsArray.count;
     
     float btnX = 0;
-    for (SHMultipleSwitchingItemModel * itemModel in self.itemsArray) {
+    for (NSUInteger i = 0; i < self.itemsArray.count; i++) {
         
+        SHMultipleSwitchingItemModel * itemModel = self.itemsArray[i];
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-//        if (itemModel.normalTitleColor) {
-//
-//            [btn setTitleColor:itemModel.normalTitleColor forState:UIControlStateNormal];
-//        }
-//        if (itemModel.selectedTitleColor) {
-//
-//            [btn setTitleColor:itemModel.selectedTitleColor forState:UIControlStateSelected];
-//        }
+        if (itemModel.normalTitleColor) {
+            
+            [btn setTitleColor:itemModel.normalTitleColor forState:UIControlStateNormal];
+        }
+        if (itemModel.selectedTitleColor) {
+            
+            [btn setTitleColor:itemModel.selectedTitleColor forState:UIControlStateSelected];
+        }
         
         if (itemModel.normalTitle) {
             
@@ -84,20 +118,87 @@
         }
         
         if (itemModel.normalFont) {
-
+            
             btn.titleLabel.font = itemModel.normalFont;
         }
         
+        if (itemModel.btnTag) {
+            
+            btn.tag = itemModel.btnTag.integerValue;
+        }
+        
+        [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.offset(btnX);
             make.top.bottom.offset(0);
-            make.width.offset(btnWidth);
+            make.width.offset(self.btnWidth);
         }];
         
-        btnX += btnWidth;
+        btnX += self.btnWidth;
+
+        if (i == 0) {
+            
+            btn.selected = YES;
+            
+            float labelWidth = [itemModel.normalTitle widthWithFont:itemModel.normalFont andHeight:CGRectGetHeight(self.frame)] + 2;
+            
+            [self addSubview:self.selectedLabel];
+            self.selectedLabel.backgroundColor = itemModel.selectedTitleColor;
+            [self.selectedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.width.offset(labelWidth);
+                make.height.offset(2);
+                make.bottom.offset(-1);
+                make.left.offset((self.btnWidth - labelWidth) / 2.0);
+            }];
+        }
+        
+        [self.buttonArray addObject:btn];
     }
+   
+    [self addSubview:self.bottomLineLabel];
+    [self.bottomLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.offset(0);
+        make.height.offset(1);
+    }];
+}
+
+-(void)btnClicked:(UIButton *)btn{
+    
+    btn.userInteractionEnabled = NO;
+    for (UIButton * btn in self.buttonArray) {
+        
+        btn.selected = NO;
+    }
+    
+    btn.selected = YES;
+    
+    float labelWidth = [btn.currentTitle widthWithFont:btn.titleLabel.font andHeight:CGRectGetHeight(self.frame)] + 2;
+    [self.selectedLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.offset(labelWidth);
+        make.height.offset(2);
+        make.bottom.offset(-1);
+        make.left.offset(CGRectGetMinX(btn.frame) + (self.btnWidth - labelWidth) / 2.0);
+    }];
+    
+    for (SHMultipleSwitchingItemModel * itemModel in self.itemsArray) {
+        
+        if (itemModel.btnTag.integerValue == btn.tag) {
+            
+            if ([itemModel.target respondsToSelector:NSSelectorFromString(itemModel.actionStr)]) {
+                
+                [itemModel.target performSelector:NSSelectorFromString(itemModel.actionStr) withObject:btn];
+            }
+            
+            break;
+        }
+    }
+    
+    btn.userInteractionEnabled = YES;
 }
 
 @end

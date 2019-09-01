@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHMultipleSwitchingItemModel : NSObject
 
-////正常标题颜色
-//@property (nonatomic,strong) UIColor * normalTitleColor;
-////选中标题颜色
-//@property (nonatomic,strong) UIColor * selectedTitleColor;
+//正常标题颜色
+@property (nonatomic,strong) UIColor * normalTitleColor;
+//选中标题颜色
+@property (nonatomic,strong) UIColor * selectedTitleColor;
 //正常标题
 @property (nonatomic,strong) NSString * normalTitle;
 //选中标题
@@ -24,6 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIFont * normalFont;
 //选中字体
 @property (nonatomic,strong) UIFont * selectedfont;
+//tag(必须)
+@property (nonatomic,strong) NSNumber * btnTag;
+//target
+@property (nonatomic,strong) id target;
+//action
+@property (nonatomic,strong) NSString * actionStr;
 
 @end
 

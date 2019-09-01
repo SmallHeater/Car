@@ -9,6 +9,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>车店大师需要定位权限才可以正常使用</string>
+	<key>NSCameraUsageDescription</key>
+	<string>是否允许此App使用你的相机？</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>是否允许此App访问你的媒体资料库？</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

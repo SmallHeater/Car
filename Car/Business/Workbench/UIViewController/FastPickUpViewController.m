@@ -10,6 +10,9 @@
 #import "IdentificationDrivingLicenseCell.h"
 #import "VehicleInformationCell.h"
 #import "DriverInformationCell.h"
+#import <AipOcrSdk/AipOcrService.h>
+#import <AipOcrSdk/AipCaptureCardVC.h>
+
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -65,6 +68,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = Color_F3F3F3;
+    [[AipOcrService shardService] authWithAK:@"ZR6naTjkPu1UjA7PcZ3D6pSP" andSK:@"jBPyrc7BvQ15QKy2Acr559BszvTsZd4Q"];
     [self drawUI];
 }
 
@@ -93,6 +97,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row == 0) {
+        
+        UIViewController * vc = [AipCaptureCardVC ViewControllerWithCardType:CardTypeIdCardFont andImageHandler:^(UIImage *image) {
+            
+            [AipCaptureCardVC ViewControllerWithCardType:CardTypeLocalIdCardFont andImageHandler:^(UIImage *image) {
+                
+                [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
+                    
+                    // 在成功回调中，保存图片到系统相册
+                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, (__bridge void *)self);
+                    // 打印出识别结果
+                    NSLog(@"结果:%@", result);
+                } failHandler:^(NSError *err) {
+                    
+                }];
+            }];
+        }];
+        // 展示ViewController
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark  ----  UITableViewDataSource

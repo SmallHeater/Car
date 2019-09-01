@@ -80,6 +80,7 @@
         }
         
         [cell test];
+//        cell.backgroundColor = [UIColor redColor];
         return cell;
     }
     else if (indexPath.row == 1){
