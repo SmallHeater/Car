@@ -262,6 +262,7 @@
         else{
             
             //定位失败
+            [MBProgressHUD wj_showError:@"定位失败"];
         }
     };
     [control startPositioning];
@@ -293,6 +294,7 @@
             if (SHNetworkStatusNumber.intValue == 0) {
                 
                 //无网
+                [MBProgressHUD wj_showError:INTERNETERROR];
             }
             else{
                 
@@ -326,6 +328,7 @@
     else{
         
         NSString * str = @"请输入正确的手机号";
+        [MBProgressHUD wj_showError:str];
     }
 }
 
@@ -349,16 +352,19 @@
             else{
                 
                 //请输入修理厂名称
+                [MBProgressHUD wj_showError:@"请输入修理厂名称"];
             }
         }
         else{
             
             //请输入验证码
+            [MBProgressHUD wj_showError:@"请输入验证码"];
         }
     }
     else{
         
         //请输入正确的手机号
+        [MBProgressHUD wj_showError:@"请输入正确的手机号"];
     }
     btn.userInteractionEnabled = YES;
 }
@@ -375,6 +381,7 @@
             if (SHNetworkStatusNumber.intValue == 0) {
                 
                 //无网
+                [MBProgressHUD wj_showError:INTERNETERROR];
             }
             else{
                 
@@ -414,6 +421,7 @@
     else{
         
         //验证码错误
+        [MBProgressHUD wj_showError:@"请输入正确的验证码"];
     }
 
 }

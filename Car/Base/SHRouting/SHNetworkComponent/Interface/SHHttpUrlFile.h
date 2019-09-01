@@ -17,6 +17,19 @@
 #define Register [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/register",CARDOMAIN]
 //工作台地址
 #define Bench [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/bench",CARDOMAIN]
+//快速接车
+#define Receptioncar [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/receptioncar",CARDOMAIN]
+//车牌查询
+#define Checkcar [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/checkcar",CARDOMAIN]
+//车辆档案
+#define Carlist [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/carlist",CARDOMAIN]
+//添加车辆维修记录
+#define Maintainadd [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintainadd",CARDOMAIN]
+//车辆维修记录
+#define Maintainlist [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintainlist",CARDOMAIN]
+//上传文件
+#define Upload [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/upload",CARDOMAIN]
+
 
 
 #endif /* HttpUrlFile_h */

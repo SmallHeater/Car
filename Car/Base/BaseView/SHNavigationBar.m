@@ -28,6 +28,7 @@
         
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 16, 16, 16)];
     }
     return _backBtn;
 }
@@ -74,9 +75,9 @@
         [self addSubview:self.backBtn];
         [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.left.offset(16);
-            make.bottom.offset(-16);
-            make.width.height.offset(16);
+            make.left.offset(0);
+            make.bottom.offset(0);
+            make.width.height.offset(44);
         }];
     }
     

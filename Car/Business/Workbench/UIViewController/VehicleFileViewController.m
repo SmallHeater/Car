@@ -11,6 +11,8 @@
 #import "VehicleFileCell.h"
 #import "FastPickUpViewController.h"
 #import "VehicleFileDetailViewController.h"
+#import "UserInforController.h"
+
 
 @interface VehicleFileViewController ()
 
@@ -42,8 +44,8 @@
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self drawUI];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -130,4 +132,35 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Carlist,@"bodyParameters":bodyParameters};
+    __weak VehicleFileViewController * weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+
+}
+    
 @end

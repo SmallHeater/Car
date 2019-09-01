@@ -53,6 +53,7 @@
 		0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */; };
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
+		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		62072C0E231A55C20089AD43 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0C231A55C20089AD43 /* CarouselView.m */; };
 		62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0D231A55C20089AD43 /* CarouselCollectionViewCell.m */; };
@@ -177,6 +178,8 @@
 		0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsViewController.m; sourceTree = "<group>"; };
 		0498B5C72315B9C700A5EDC1 /* RevenueListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueListViewController.h; sourceTree = "<group>"; };
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
+		04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManagementViewController.h; sourceTree = "<group>"; };
+		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */,
 				62072C22231B69EC0089AD43 /* ProfitStatisticsViewController.h */,
 				62072C23231B69EC0089AD43 /* ProfitStatisticsViewController.m */,
+				04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */,
+				04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1054,6 +1059,7 @@
 				0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
+				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
