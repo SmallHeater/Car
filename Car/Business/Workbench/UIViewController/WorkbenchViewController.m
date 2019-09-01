@@ -18,6 +18,8 @@
 #import "RevenueListViewController.h"
 #import "UserInforController.h"
 #import "WorkbenchModel.h"
+#import "ProfitStatisticsViewController.h"
+
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
 
@@ -235,6 +237,7 @@
     else if ([itemId isEqualToString:@"liruntongji"]) {
         
         //利润统计
+        vc = [[ProfitStatisticsViewController alloc] initWithTitle:@"利润统计" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
     }
     else if ([itemId isEqualToString:@"yingyehuizong"]) {
         
