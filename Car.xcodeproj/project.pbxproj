@@ -39,6 +39,7 @@
 		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
 		0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */; };
+		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -177,6 +178,8 @@
 		040486012311883B00EF17C8 /* CustomerManagementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerManagementCell.m; sourceTree = "<group>"; };
 		0404860923122D1A00EF17C8 /* ImageAndLabelControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelControl.h; sourceTree = "<group>"; };
 		0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelControl.m; sourceTree = "<group>"; };
+		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
+		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -777,6 +780,8 @@
 				628AF57323169B99007BC0F8 /* MaintenanceLogCell.m */,
 				62072C25231B6C8D0089AD43 /* ProfitStatisticsCell.h */,
 				62072C26231B6C8D0089AD43 /* ProfitStatisticsCell.m */,
+				043D5ABB231D456C00CC8B35 /* UnpaidCell.h */,
+				043D5ABC231D456C00CC8B35 /* UnpaidCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1196,6 +1201,7 @@
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
+				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
 				62072C36231B77D10089AD43 /* SHMultipleSwitchingItemModel.m in Sources */,
 				62072C21231A7A050089AD43 /* SHPageControl.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,

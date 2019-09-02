@@ -231,7 +231,7 @@
     else if ([itemId isEqualToString:@"huikuanguanli"]) {
         
         //回款管理
-        vc = [[PaymentManagementViewController alloc] initWithTitle:@"回款管理" andIsShowBackBtn:YES];
+        vc = [[PaymentManagementViewController alloc] initWithTitle:@"回款管理" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
     }
     else if ([itemId isEqualToString:@"liruntongji"]) {
         

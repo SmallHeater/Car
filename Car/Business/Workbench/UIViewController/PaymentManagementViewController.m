@@ -7,19 +7,17 @@
 //
 
 #import "PaymentManagementViewController.h"
+#import "SHMultipleSwitchingItemsView.h"
+#import "UnpaidCell.h"
+
+static NSString * cellId = @"UnpaidCell";
 
 @interface PaymentManagementViewController ()
 
 //搜索按钮
 @property (nonatomic,strong) UIButton * searchBtn;
-//切换view
-@property (nonatomic,strong) UIView * switchView;
-//未回款按钮
-@property (nonatomic,strong) UIButton * unpaidBtn;
-//已回款按钮
-@property (nonatomic,strong) UIButton * repaidBtn;
-//选中的蓝线
-@property (nonatomic,strong) UILabel * selectedBlueLabel;
+//头部切换view
+@property (nonatomic,strong) SHMultipleSwitchingItemsView * itemsView;
 
 @end
 
@@ -38,94 +36,14 @@
     return _searchBtn;
 }
 
--(UILabel *)selectedBlueLabel{
+-(SHMultipleSwitchingItemsView *)itemsView{
     
-    if (!_selectedBlueLabel) {
+    if (!_itemsView) {
         
-        _selectedBlueLabel = [[UILabel alloc] init];
-        _selectedBlueLabel.backgroundColor = Color_0272FF;
+        _itemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"未回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1400],@"target":self,@"actionStr":@"switchBtnClicked:"},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"已回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1401],@"target":self,@"actionStr":@"switchBtnClicked:"}]];
+        _itemsView.backgroundColor = [UIColor whiteColor];
     }
-    return _selectedBlueLabel;
-}
-    
--(UIView *)switchView{
-
-    if (!_switchView) {
-        
-        _switchView = [[UIView alloc] init];
-        _switchView.backgroundColor = [UIColor whiteColor];
-    
-        UILabel * topLineLabel = [[UILabel alloc] init];
-        topLineLabel.backgroundColor = Color_EEEEEE;
-        [_switchView addSubview:topLineLabel];
-        [topLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.right.top.offset(0);
-            make.height.offset(1);
-        }];
-        
-        float btnWidth = MAINWIDTH / 2.0;
-        [_switchView addSubview:self.unpaidBtn];
-        [self.unpaidBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-
-            make.left.top.bottom.offset(0);
-            make.width.offset(btnWidth);
-        }];
-        [_switchView addSubview:self.selectedBlueLabel];
-        [self.selectedBlueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.width.offset(64);
-            make.height.offset(2);
-            make.left.offset(MAINWIDTH / 4.0 - 32);
-            make.bottom.offset(-1);
-        }];
-        
-        [_switchView addSubview:self.repaidBtn];
-        [self.repaidBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.right.top.bottom.offset(0);
-            make.width.offset(btnWidth);
-        }];
-        
-        UILabel * bottomLineLabel = [[UILabel alloc] init];
-        bottomLineLabel.backgroundColor = Color_EEEEEE;
-        [_switchView addSubview:bottomLineLabel];
-        [bottomLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.right.bottom.offset(0);
-            make.height.offset(1);
-        }];
-    }
-    return _switchView;
-}
-    
--(UIButton *)unpaidBtn{
-    
-    if (!_unpaidBtn) {
-        
-        _unpaidBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _unpaidBtn.selected = YES;
-        [_unpaidBtn setTitle:@"未回款" forState:UIControlStateNormal];
-        _unpaidBtn.titleLabel.font = FONT16;
-        [_unpaidBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
-        [_unpaidBtn setTitleColor:Color_0272FF forState:UIControlStateSelected];
-        [_unpaidBtn addTarget:self action:@selector(unpaidBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _unpaidBtn;
-}
-    
--(UIButton *)repaidBtn{
-    
-    if (!_repaidBtn) {
-        
-        _repaidBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_repaidBtn setTitle:@"已回款" forState:UIControlStateNormal];
-        _repaidBtn.titleLabel.font = FONT16;
-        [_repaidBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
-        [_repaidBtn setTitleColor:Color_0272FF forState:UIControlStateSelected];
-        [_repaidBtn addTarget:self action:@selector(repaidBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _repaidBtn;
+    return _itemsView;
 }
 
 #pragma mark  ----  生命周期函数
@@ -134,10 +52,37 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
 }
 
 #pragma mark  ----  代理
+
+#pragma mark  ----  UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [UnpaidCell cellHeight];
+}
+
+#pragma mark  ----  UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 5;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UnpaidCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        
+        cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    [cell test];
+    
+    return cell;
+}
 
 #pragma mark  ----  自定义函数
 
@@ -151,12 +96,18 @@
         make.width.height.offset(22);
     }];
     
-    [self.view addSubview:self.switchView];
-    [self.switchView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.itemsView];
+    [self.itemsView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.offset(0);
-        make.top.equalTo(self.navigationbar.mas_bottom);
+        make.top.equalTo(self.navigationbar.mas_bottom).offset(0.5);
         make.height.offset(44);
+    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.offset(0);
+        make.top.equalTo(self.itemsView.mas_bottom).offset(0);
     }];
 }
 
@@ -167,38 +118,17 @@
     btn.userInteractionEnabled = YES;
 }
 
-//未回款按钮的响应
--(void)unpaidBtnClicked:(UIButton *)btn{
-
-    btn.userInteractionEnabled = NO;
-    self.repaidBtn.selected = NO;
-    btn.selected = YES;
-    [self.selectedBlueLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        
-        make.width.offset(64);
-        make.height.offset(2);
-        make.left.offset(MAINWIDTH / 4.0 - 32);
-        make.bottom.offset(-1);
-    }];
+//切换按钮的响应
+-(void)switchBtnClicked:(UIButton *)btn{
     
-    btn.userInteractionEnabled = YES;
-}
-
-//已回款按钮的响应
--(void)repaidBtnClicked:(UIButton *)btn{
-
-    btn.userInteractionEnabled = NO;
-    self.unpaidBtn.selected = NO;
-    btn.selected = YES;
-    [self.selectedBlueLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+    if (btn.tag == 1400) {
         
-        make.width.offset(64);
-        make.height.offset(2);
-        make.right.offset(MAINWIDTH / 4.0 - 32);
-        make.bottom.offset(-1);
-    }];
-    
-    btn.userInteractionEnabled = YES;
+        //未回款按钮的响应
+    }
+    else if (btn.tag == 1401){
+        
+        //已回款按钮的响应
+    }
 }
 
 @end
