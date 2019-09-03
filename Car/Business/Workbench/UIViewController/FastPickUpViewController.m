@@ -12,7 +12,7 @@
 #import "DriverInformationCell.h"
 #import <AipOcrSdk/AipOcrService.h>
 #import <AipOcrSdk/AipCaptureCardVC.h>
-
+#import "FastPickUpRequestModel.h"
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 

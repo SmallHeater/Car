@@ -8,9 +8,9 @@
 
 #import "PaymentManagementViewController.h"
 #import "SHMultipleSwitchingItemsView.h"
-#import "UnpaidCell.h"
+#import "UnpaidViewController.h"
+#import "RepaidViewController.h"
 
-static NSString * cellId = @"UnpaidCell";
 
 @interface PaymentManagementViewController ()
 
@@ -18,6 +18,7 @@ static NSString * cellId = @"UnpaidCell";
 @property (nonatomic,strong) UIButton * searchBtn;
 //头部切换view
 @property (nonatomic,strong) SHMultipleSwitchingItemsView * itemsView;
+@property (nonatomic,strong) UIScrollView * bgScrollView;
 
 @end
 
@@ -46,6 +47,32 @@ static NSString * cellId = @"UnpaidCell";
     return _itemsView;
 }
 
+-(UIScrollView *)bgScrollView{
+    
+    if (!_bgScrollView) {
+        
+        _bgScrollView = [[UIScrollView alloc] init];
+        _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 2, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        _bgScrollView.pagingEnabled = YES;
+        _bgScrollView.showsHorizontalScrollIndicator = NO;
+        _bgScrollView.showsVerticalScrollIndicator = NO;
+        
+        //未回款
+        UnpaidViewController * unpaidVC = [[UnpaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        UIView * unpaidView = unpaidVC.view;
+        unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        [_bgScrollView addSubview:unpaidView];
+        //已回款
+        RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        UIView * repaidView = repaidVC.view;
+        repaidView.frame = CGRectMake(0, MAINWIDTH, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        [_bgScrollView addSubview:repaidView];
+        
+        _bgScrollView.backgroundColor = [UIColor greenColor];
+    }
+    return _bgScrollView;
+}
+
 #pragma mark  ----  生命周期函数
     
 - (void)viewDidLoad {
@@ -54,34 +81,6 @@ static NSString * cellId = @"UnpaidCell";
     
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
-}
-
-#pragma mark  ----  代理
-
-#pragma mark  ----  UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return [UnpaidCell cellHeight];
-}
-
-#pragma mark  ----  UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return 5;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UnpaidCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        
-        cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    [cell test];
-    
-    return cell;
 }
 
 #pragma mark  ----  自定义函数
@@ -104,10 +103,13 @@ static NSString * cellId = @"UnpaidCell";
         make.height.offset(44);
     }];
     
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view layoutIfNeeded];
+    
+    [self.view addSubview:self.bgScrollView];
+    [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.offset(0);
-        make.top.equalTo(self.itemsView.mas_bottom).offset(0);
+        make.top.equalTo(self.itemsView.mas_bottom);
     }];
 }
 

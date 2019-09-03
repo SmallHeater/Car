@@ -40,6 +40,9 @@
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
 		0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
+		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
+		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
+		043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -180,6 +183,12 @@
 		0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelControl.m; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
+		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
+		043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastPickUpRequestModel.m; sourceTree = "<group>"; };
+		043D5AC1231EAF1F00CC8B35 /* UnpaidViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidViewController.h; sourceTree = "<group>"; };
+		043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidViewController.m; sourceTree = "<group>"; };
+		043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidViewController.h; sourceTree = "<group>"; };
+		043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidViewController.m; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -632,6 +641,8 @@
 		04048594230C254000EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */,
+				043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */,
 				040485A3230C25F800EF17C8 /* WorkbenchViewController.h */,
 				040485A4230C25F800EF17C8 /* WorkbenchViewController.m */,
 				046DCB9323129BEA00C520D8 /* VehicleFileViewController.h */,
@@ -654,6 +665,8 @@
 				04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */,
 				04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */,
 				04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */,
+				043D5AC1231EAF1F00CC8B35 /* UnpaidViewController.h */,
+				043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1048,6 +1061,8 @@
 				62929BB6231A44640018DE07 /* CarouselModel.m */,
 				62929BB8231A44920018DE07 /* AnnouncementModel.h */,
 				62929BB9231A44920018DE07 /* AnnouncementModel.m */,
+				043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */,
+				043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1222,6 +1237,7 @@
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
+				043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
@@ -1247,8 +1263,10 @@
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
+				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */,
+				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
