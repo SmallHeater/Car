@@ -43,7 +43,6 @@
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
 		043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */; };
-		043D5ACA231FE6B000CC8B35 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D5AC9231FE6B000CC8B35 /* opencv2.framework */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -63,6 +62,7 @@
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
+		04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		62061FEE231E802100A78462 /* SHCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FED231E802100A78462 /* SHCameraManager.m */; };
 		62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF4231E852400A78462 /* UIViewController+SHTool.m */; };
@@ -196,7 +196,6 @@
 		043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidViewController.m; sourceTree = "<group>"; };
 		043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidViewController.h; sourceTree = "<group>"; };
 		043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidViewController.m; sourceTree = "<group>"; };
-		043D5AC9231FE6B000CC8B35 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -236,6 +235,8 @@
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
 		04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManagementViewController.h; sourceTree = "<group>"; };
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
+		04E5D85A231FF24400E1B6BD /* DrivingLicenseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrivingLicenseModel.h; sourceTree = "<group>"; };
+		04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrivingLicenseModel.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -316,7 +317,6 @@
 			files = (
 				62072C42231BC7E50089AD43 /* AipBase.framework in Frameworks */,
 				62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */,
-				043D5ACA231FE6B000CC8B35 /* opencv2.framework in Frameworks */,
 				30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */,
 				62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */,
 				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
@@ -833,22 +833,6 @@
 			path = CarouselView;
 			sourceTree = "<group>";
 		};
-		043D5AC7231FE6B000CC8B35 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				043D5AC8231FE6B000CC8B35 /* opencv */,
-			);
-			path = Lib;
-			sourceTree = "<group>";
-		};
-		043D5AC8231FE6B000CC8B35 /* opencv */ = {
-			isa = PBXGroup;
-			children = (
-				043D5AC9231FE6B000CC8B35 /* opencv2.framework */,
-			);
-			path = opencv;
-			sourceTree = "<group>";
-		};
 		04620C41231BFA3300AA6317 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,7 +888,7 @@
 		04620C4C231BFAA000AA6317 /* SHCameraComponent */ = {
 			isa = PBXGroup;
 			children = (
-				043D5AC7231FE6B000CC8B35 /* Lib */,
+				04E5D856231FED1C00E1B6BD /* Lib */,
 				62062000231E8B4700A78462 /* UIView */,
 				62061FF9231E8AD600A78462 /* UIViewController */,
 				62061FEB231E801500A78462 /* Control */,
@@ -945,6 +929,21 @@
 				046DCB90231272A900C520D8 /* UIView+TXFrame.m */,
 			);
 			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
+		04E5D856231FED1C00E1B6BD /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D857231FED1C00E1B6BD /* opencv */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		04E5D857231FED1C00E1B6BD /* opencv */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = opencv;
 			sourceTree = "<group>";
 		};
 		46BB7468356326282D4EECCF /* Frameworks */ = {
@@ -1129,6 +1128,8 @@
 				62929BB9231A44920018DE07 /* AnnouncementModel.m */,
 				043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */,
 				043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */,
+				04E5D85A231FF24400E1B6BD /* DrivingLicenseModel.h */,
+				04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1329,6 +1330,7 @@
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
+				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,

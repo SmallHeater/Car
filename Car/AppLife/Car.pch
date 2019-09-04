@@ -38,6 +38,7 @@
 #define Color_999999 [UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1]
 #define Color_B4B4B4 [UIColor colorFromHexRGB:@"B4B4B4"]
 #define Color_B7B7B7 [UIColor colorFromHexRGB:@"B7B7B7"]
+#define Color_C7C7CD [UIColor colorFromHexRGB:@"C7C7CD"]
 #define Color_CCCCCC [UIColor colorFromHexRGB:@"CCCCCC"]
 #define Color_D8D8D8 [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1]
 #define Color_DEDEDE [UIColor colorFromHexRGB:@"DEDEDE"]

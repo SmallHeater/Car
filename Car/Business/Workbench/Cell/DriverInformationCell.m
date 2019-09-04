@@ -7,8 +7,10 @@
 //
 
 #import "DriverInformationCell.h"
+#import "DrivingLicenseModel.h"
 
-@interface DriverInformationCell ()
+
+@interface DriverInformationCell ()<UITextFieldDelegate>
 
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
@@ -60,6 +62,7 @@
     if (!_contactTF) {
         
         _contactTF = [[UITextField alloc] init];
+        _contactTF.delegate = self;
         _contactTF.font = FONT16;
         _contactTF.textColor = Color_333333;
         _contactTF.placeholder = @"请输入联系人";
@@ -94,9 +97,11 @@
     if (!_phoneNumberTF) {
         
         _phoneNumberTF = [[UITextField alloc] init];
+        _phoneNumberTF.delegate = self;
         _phoneNumberTF.font = FONT16;
         _phoneNumberTF.textColor = Color_333333;
         _phoneNumberTF.placeholder = @"请输入手机号";
+        _phoneNumberTF.keyboardType = UIKeyboardTypePhonePad;
     }
     return _phoneNumberTF;
 }
@@ -129,8 +134,12 @@
         
         _InsurancePeriodContentLabel = [[UILabel alloc] init];
         _InsurancePeriodContentLabel.font = FONT16;
-        _InsurancePeriodContentLabel.textColor = Color_333333;
+        _InsurancePeriodContentLabel.textColor = Color_C7C7CD;
         _InsurancePeriodContentLabel.text = @"请选择保险到期时间";
+        _InsurancePeriodContentLabel.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(InsurancePeriodContentLabelClicked:)];
+        [_InsurancePeriodContentLabel addGestureRecognizer:tap];
     }
     return _InsurancePeriodContentLabel;
 }
@@ -146,6 +155,14 @@
         [self drawUI];
     }
     return self;
+}
+
+#pragma mark  ----  UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark  ----  自定义函数
@@ -244,9 +261,20 @@
     self.InsurancePeriodContentLabel.text = InsurancePeriod;
 }
 
+//数据展示
+-(void)showDataWithModel:(DrivingLicenseModel *)model{
+    
+    self.contactTF.text = [model.owner repleaseNilOrNull];
+}
+
+//选择保险到期时间
+-(void)InsurancePeriodContentLabelClicked:(UIGestureRecognizer *)ges{
+    
+    NSLog(@"1");
+}
+
 -(void)test{
     
-    [self showData:@{@"contact":@"黄豆豆",@"phoneNumber":@"13214568756",@"InsurancePeriod":@"8月份"}];
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "VehicleInformationCell.h"
+#import "DrivingLicenseModel.h"
 
-@interface VehicleInformationCell ()
+@interface VehicleInformationCell ()<UITextFieldDelegate>
 
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
@@ -101,6 +102,7 @@
     if (!_frameNumberTF) {
         
         _frameNumberTF = [[UITextField alloc] init];
+        _frameNumberTF.delegate = self;
         _frameNumberTF.font = FONT16;
         _frameNumberTF.textColor = Color_333333;
         _frameNumberTF.placeholder = @"请输入车架号";
@@ -136,6 +138,7 @@
     if (!_carModelTF) {
         
         _carModelTF = [[UITextField alloc] init];
+        _carModelTF.delegate = self;
         _carModelTF.font = FONT16;
         _carModelTF.textColor = Color_333333;
         _carModelTF.placeholder = @"请输入车型号";
@@ -171,6 +174,7 @@
     if (!_engineNumberTF) {
         
         _engineNumberTF = [[UITextField alloc] init];
+        _engineNumberTF.delegate = self;
         _engineNumberTF.font = FONT16;
         _engineNumberTF.textColor = Color_333333;
         _engineNumberTF.placeholder = @"请输入发动机号";
@@ -189,6 +193,14 @@
         [self drawUI];
     }
     return self;
+}
+
+#pragma mark  ----  UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark  ----  自定义函数
@@ -302,24 +314,19 @@
     }];
 }
 
--(void)showData:(NSDictionary *)dic{
+
+//数据展示
+-(void)showDataWithModel:(DrivingLicenseModel *)model{
     
-    NSString * numberPlate = dic[@"numberPlate"];
-    self.numberPlateTF.text = numberPlate;
-    
-    NSString * frameNumber = dic[@"frameNumber"];
-    self.frameNumberTF.text = frameNumber;
-    
-    NSString * carModel = dic[@"carModel"];
-    self.carModelTF.text = carModel;
-    
-    NSString * engineNumber = dic[@"engineNumber"];
-    self.engineNumberTF.text = engineNumber;
+    self.numberPlateTF.text = [model.numberPlateNumber repleaseNilOrNull];;
+    self.frameNumberTF.text = [model.vehicleIdentificationNumber repleaseNilOrNull];;
+    self.carModelTF.text = [model.brandModelNumber repleaseNilOrNull];
+    self.engineNumberTF.text = [model.engineNumber repleaseNilOrNull];
 }
 
 -(void)test{
     
-    [self showData:@{@"numberPlate":@"粤A7985D",@"frameNumber":@"WP1AB2959GL065973",@"carModel":@"奥德赛牌HG6481BBAN",@"engineNumber":@"AF9K54605"}];
+   
 }
 
 @end

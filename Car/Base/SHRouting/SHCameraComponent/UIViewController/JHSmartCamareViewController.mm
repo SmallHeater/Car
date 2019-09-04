@@ -177,6 +177,7 @@
     [self.videoCamera stop];
     self.videoCamera.delegate = nil;
     self.videoCamera = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)finishTakePhoto{

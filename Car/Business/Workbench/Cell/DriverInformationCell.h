@@ -10,8 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class DrivingLicenseModel;
 @interface DriverInformationCell : UITableViewCell
 
+//数据展示
+-(void)showDataWithModel:(DrivingLicenseModel *)model;
 -(void)test;
 
 @end
