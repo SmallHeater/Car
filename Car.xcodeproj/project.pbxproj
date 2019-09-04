@@ -43,6 +43,7 @@
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
 		043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */; };
+		043D5ACA231FE6B000CC8B35 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D5AC9231FE6B000CC8B35 /* opencv2.framework */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -195,6 +196,7 @@
 		043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidViewController.m; sourceTree = "<group>"; };
 		043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidViewController.h; sourceTree = "<group>"; };
 		043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidViewController.m; sourceTree = "<group>"; };
+		043D5AC9231FE6B000CC8B35 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			files = (
 				62072C42231BC7E50089AD43 /* AipBase.framework in Frameworks */,
 				62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */,
+				043D5ACA231FE6B000CC8B35 /* opencv2.framework in Frameworks */,
 				30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */,
 				62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */,
 				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
@@ -830,6 +833,22 @@
 			path = CarouselView;
 			sourceTree = "<group>";
 		};
+		043D5AC7231FE6B000CC8B35 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				043D5AC8231FE6B000CC8B35 /* opencv */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		043D5AC8231FE6B000CC8B35 /* opencv */ = {
+			isa = PBXGroup;
+			children = (
+				043D5AC9231FE6B000CC8B35 /* opencv2.framework */,
+			);
+			path = opencv;
+			sourceTree = "<group>";
+		};
 		04620C41231BFA3300AA6317 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -885,7 +904,7 @@
 		04620C4C231BFAA000AA6317 /* SHCameraComponent */ = {
 			isa = PBXGroup;
 			children = (
-				62062004231E98D900A78462 /* Lib */,
+				043D5AC7231FE6B000CC8B35 /* Lib */,
 				62062000231E8B4700A78462 /* UIView */,
 				62061FF9231E8AD600A78462 /* UIViewController */,
 				62061FEB231E801500A78462 /* Control */,
@@ -963,21 +982,6 @@
 				62062002231E8B4700A78462 /* JHCameraResultView.h */,
 			);
 			path = UIView;
-			sourceTree = "<group>";
-		};
-		62062004231E98D900A78462 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				62062005231E98D900A78462 /* opencv */,
-			);
-			path = Lib;
-			sourceTree = "<group>";
-		};
-		62062005231E98D900A78462 /* opencv */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = opencv;
 			sourceTree = "<group>";
 		};
 		62072C08231A55C20089AD43 /* Model */ = {
