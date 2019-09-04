@@ -1,18 +1,18 @@
 //
-//  SHCameraComponent.h
+//  SHCameraMiddleware.h
 //  Car
 //
-//  Created by mac on 2019/9/1.
+//  Created by xianjun wang on 2019/9/3.
 //  Copyright © 2019 SmallHeat. All rights reserved.
-//  相机组件接口类
+//  相机组件中间件类
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SHCameraComponent : NSObject
+@interface SHCameraMiddleware : NSObject
 
-//去拍照
+//拍照
 +(void)takePhotoWithDic:(NSDictionary *)dic callBack:(void(^)(NSDictionary *retultDic))callBack;
 
 @end

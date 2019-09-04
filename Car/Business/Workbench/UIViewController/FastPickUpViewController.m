@@ -99,23 +99,26 @@
     
     if (indexPath.row == 0) {
         
-        UIViewController * vc = [AipCaptureCardVC ViewControllerWithCardType:CardTypeIdCardFont andImageHandler:^(UIImage *image) {
+        [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:3]} callBack:^(NSDictionary *resultDic) {
             
-            [AipCaptureCardVC ViewControllerWithCardType:CardTypeLocalIdCardFont andImageHandler:^(UIImage *image) {
+            if ([resultDic.allKeys containsObject:@"error"]) {
                 
+                //异常
+            }
+            else if ([resultDic.allKeys containsObject:@"image"]){
+                
+                UIImage * image = resultDic[@"image"];
                 [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
                     
-                    // 在成功回调中，保存图片到系统相册
-                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, (__bridge void *)self);
                     // 打印出识别结果
                     NSLog(@"结果:%@", result);
                 } failHandler:^(NSError *err) {
                     
+                    NSLog(@"失败:%@", err);
                 }];
-            }];
+
+            }
         }];
-        // 展示ViewController
-        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 

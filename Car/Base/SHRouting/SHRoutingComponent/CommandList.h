@@ -86,7 +86,15 @@
 //获取缓存数据命令
 #define OBTAINCACHEDATA @"Technology://Cache:(obtainDataWithDic:callBack:)"
 
-
-
 #pragma mark  ----  缓存管理组件命令集合
+
+#pragma mark  ----  相机组件命令集合
+
+//拍照
+#define TAKEPHOTO @"Technology://Camera:(takePhotoWithDic:callBack:)"
+
+
+#pragma mark  ----  相机件命令集合
+
+
 #endif /* CommandList_h */

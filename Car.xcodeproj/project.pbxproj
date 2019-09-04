@@ -63,6 +63,12 @@
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
+		62061FEE231E802100A78462 /* SHCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FED231E802100A78462 /* SHCameraManager.m */; };
+		62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF4231E852400A78462 /* UIViewController+SHTool.m */; };
+		62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF7231E867C00A78462 /* SHCameraMiddleware.m */; };
+		62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FFA231E8B3F00A78462 /* JHCameraForLicenceViewController.m */; };
+		62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62061FFD231E8B4000A78462 /* JHSmartCamareViewController.mm */; };
+		62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62062001231E8B4700A78462 /* JHCameraResultView.m */; };
 		62072C0E231A55C20089AD43 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0C231A55C20089AD43 /* CarouselView.m */; };
 		62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C0D231A55C20089AD43 /* CarouselCollectionViewCell.m */; };
 		62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62072C11231A568D0089AD43 /* CarouselDataModel.m */; };
@@ -231,6 +237,18 @@
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
+		62061FEC231E802100A78462 /* SHCameraManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCameraManager.h; sourceTree = "<group>"; };
+		62061FED231E802100A78462 /* SHCameraManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCameraManager.m; sourceTree = "<group>"; };
+		62061FF3231E852400A78462 /* UIViewController+SHTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SHTool.h"; sourceTree = "<group>"; };
+		62061FF4231E852400A78462 /* UIViewController+SHTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SHTool.m"; sourceTree = "<group>"; };
+		62061FF6231E867C00A78462 /* SHCameraMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCameraMiddleware.h; sourceTree = "<group>"; };
+		62061FF7231E867C00A78462 /* SHCameraMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCameraMiddleware.m; sourceTree = "<group>"; };
+		62061FFA231E8B3F00A78462 /* JHCameraForLicenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCameraForLicenceViewController.m; sourceTree = "<group>"; };
+		62061FFB231E8B3F00A78462 /* JHSmartCamareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSmartCamareViewController.h; sourceTree = "<group>"; };
+		62061FFC231E8B4000A78462 /* JHCameraForLicenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCameraForLicenceViewController.h; sourceTree = "<group>"; };
+		62061FFD231E8B4000A78462 /* JHSmartCamareViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JHSmartCamareViewController.mm; sourceTree = "<group>"; };
+		62062001231E8B4700A78462 /* JHCameraResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCameraResultView.m; sourceTree = "<group>"; };
+		62062002231E8B4700A78462 /* JHCameraResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCameraResultView.h; sourceTree = "<group>"; };
 		62072C0A231A55C20089AD43 /* CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselView.h; sourceTree = "<group>"; };
 		62072C0B231A55C20089AD43 /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselCollectionViewCell.h; sourceTree = "<group>"; };
 		62072C0C231A55C20089AD43 /* CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselView.m; sourceTree = "<group>"; };
@@ -400,6 +418,8 @@
 				04048556230C205F00EF17C8 /* NSString+SHTool.m */,
 				04048557230C205F00EF17C8 /* UIColor+SHTool.h */,
 				04048559230C205F00EF17C8 /* UIColor+SHTool.m */,
+				62061FF3231E852400A78462 /* UIViewController+SHTool.h */,
+				62061FF4231E852400A78462 /* UIViewController+SHTool.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -727,6 +747,8 @@
 				040485C12311096700EF17C8 /* SHNetworkRequestMiddleware.m */,
 				62929BA223193A130018DE07 /* SHCacheManagementMiddleware.h */,
 				62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */,
+				62061FF6231E867C00A78462 /* SHCameraMiddleware.h */,
+				62061FF7231E867C00A78462 /* SHCameraMiddleware.m */,
 			);
 			path = middleware;
 			sourceTree = "<group>";
@@ -863,7 +885,10 @@
 		04620C4C231BFAA000AA6317 /* SHCameraComponent */ = {
 			isa = PBXGroup;
 			children = (
-				04620C51231BFAE600AA6317 /* Controller */,
+				62062004231E98D900A78462 /* Lib */,
+				62062000231E8B4700A78462 /* UIView */,
+				62061FF9231E8AD600A78462 /* UIViewController */,
+				62061FEB231E801500A78462 /* Control */,
 				04620C52231BFAE600AA6317 /* Interface */,
 			);
 			path = SHCameraComponent;
@@ -877,13 +902,6 @@
 			sourceTree = "<group>";
 		};
 		04620C50231BFADC00AA6317 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		04620C51231BFAE600AA6317 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -916,6 +934,50 @@
 				169DA7AB73986B7D0622997D /* libPods-Car.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		62061FEB231E801500A78462 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				62061FEC231E802100A78462 /* SHCameraManager.h */,
+				62061FED231E802100A78462 /* SHCameraManager.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		62061FF9231E8AD600A78462 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62061FFC231E8B4000A78462 /* JHCameraForLicenceViewController.h */,
+				62061FFA231E8B3F00A78462 /* JHCameraForLicenceViewController.m */,
+				62061FFB231E8B3F00A78462 /* JHSmartCamareViewController.h */,
+				62061FFD231E8B4000A78462 /* JHSmartCamareViewController.mm */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		62062000231E8B4700A78462 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				62062001231E8B4700A78462 /* JHCameraResultView.m */,
+				62062002231E8B4700A78462 /* JHCameraResultView.h */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		62062004231E98D900A78462 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				62062005231E98D900A78462 /* opencv */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		62062005231E98D900A78462 /* opencv */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = opencv;
 			sourceTree = "<group>";
 		};
 		62072C08231A55C20089AD43 /* Model */ = {
@@ -1199,6 +1261,7 @@
 				0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
+				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
@@ -1208,15 +1271,19 @@
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
+				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
+				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
+				62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */,
 				62072C36231B77D10089AD43 /* SHMultipleSwitchingItemModel.m in Sources */,
 				62072C21231A7A050089AD43 /* SHPageControl.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
@@ -1227,6 +1294,7 @@
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
+				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
 				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
@@ -1422,6 +1490,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
+					"$(PROJECT_DIR)/Car/Base/SHRouting/SHCameraComponent/Lib/opencv",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
@@ -1447,6 +1516,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
+					"$(PROJECT_DIR)/Car/Base/SHRouting/SHCameraComponent/Lib/opencv",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;

@@ -166,7 +166,14 @@
 #pragma mark  ----  网络请求组件命令集合
 
 
+#pragma mark  ----  相机组件命令集合
 
+/*
+//拍照
+ cameraType,相机类型，0:系统相机;1:自动抓拍;2:带身份证大小的边框;3:横屏带框.
+ @{@"cameraType":NSNumber};
+*/
+#pragma mark  ----  相机件命令集合
 
 
 
