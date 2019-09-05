@@ -12,7 +12,7 @@
 #import "FastPickUpViewController.h"
 #import "VehicleFileDetailViewController.h"
 #import "UserInforController.h"
-
+#import "VehicleFileModel.h"
 
 @interface VehicleFileViewController ()
 
@@ -79,7 +79,7 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.dataArray.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -148,6 +148,15 @@
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
+                    
+                    NSArray * list = dataDic[@"list"];
+                    for (NSDictionary * dic in list) {
+                        
+                        VehicleFileModel * model = [VehicleFileModel mj_objectWithKeyValues:dic];
+                        [weakSelf.dataArray addObject:model];
+                    }
+                }
                 
                 [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }

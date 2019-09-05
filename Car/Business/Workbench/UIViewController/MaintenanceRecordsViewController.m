@@ -10,7 +10,7 @@
 #import "MaintenanceRecordsCell.h"
 #import "MaintenanceRecordsDetailViewController.h"
 #import "UserInforController.h"
-
+#import "MaintenanceRecordsOneDayModel.h"
 
 static NSString * cellId = @"MaintenanceRecordsCell";
 
@@ -66,12 +66,13 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
+    MaintenanceRecordsOneDayModel * model = self.dataArray[section];
     UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 48)];
     UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, MAINWIDTH,32)];
     headerLabel.backgroundColor = [UIColor whiteColor];
     headerLabel.font = BOLDFONT16;
     headerLabel.textColor = Color_333333;
-    headerLabel.text = @"  2019-05-12";
+    headerLabel.text = [[NSString alloc] initWithFormat:@"      %@",model.day];
     [headerView addSubview:headerLabel];
     return headerView;
 }
@@ -86,12 +87,13 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    MaintenanceRecordsOneDayModel * model = self.dataArray[section];
+    return model.list.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -132,7 +134,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
-    __weak MaintenanceRecordsViewController * weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
         if (![resultDic.allKeys containsObject:@"error"]) {
@@ -144,8 +146,17 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
-//                self.workbenchModel = [WorkbenchModel mj_objectWithKeyValues:dataDic];
-//                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
+                    
+                    NSArray * list = dataDic[@"list"];
+                    for (NSDictionary * dic in list) {
+                        
+                        MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
+                        [weakSelf.dataArray addObject:model];
+                    }
+                }
+                
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }
             else{
                 

@@ -22,6 +22,7 @@ static NSString * cellId = @"UnpaidCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor redColor];
+    [self refreshViewType:BTVCType_AddTableView];
 }
 
 #pragma mark  ----  代理

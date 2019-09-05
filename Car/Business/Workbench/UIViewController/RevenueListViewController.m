@@ -8,6 +8,8 @@
 
 #import "RevenueListViewController.h"
 #import "RevenueCell.h"
+#import "MaintenanceRecordsOneDayModel.h"
+#import "UserInforController.h"
 
 static NSString * cellId = @"RevenueCell";
 
@@ -58,7 +60,13 @@ static NSString * cellId = @"RevenueCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 6;
+    NSUInteger rows = 0;
+    for (MaintenanceRecordsOneDayModel * model in self.dataArray) {
+        
+        rows += model.list.count;
+    }
+    
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -93,6 +101,45 @@ static NSString * cellId = @"RevenueCell";
     btn.userInteractionEnabled = NO;
     
     btn.userInteractionEnabled = YES;
+}
+
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
+                    
+                    NSArray * list = dataDic[@"list"];
+                    for (NSDictionary * dic in list) {
+                        
+                        MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
+                        [weakSelf.dataArray addObject:model];
+                    }
+                }
+                
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

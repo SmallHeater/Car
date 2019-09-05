@@ -39,6 +39,9 @@
 		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
 		0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */; };
+		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
+		0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */; };
+		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -188,6 +191,12 @@
 		040486012311883B00EF17C8 /* CustomerManagementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerManagementCell.m; sourceTree = "<group>"; };
 		0404860923122D1A00EF17C8 /* ImageAndLabelControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndLabelControl.h; sourceTree = "<group>"; };
 		0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelControl.m; sourceTree = "<group>"; };
+		0419F1F02321453900E76099 /* VehicleFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileModel.h; sourceTree = "<group>"; };
+		0419F1F12321453900E76099 /* VehicleFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileModel.m; sourceTree = "<group>"; };
+		0419F1F323214BFE00E76099 /* MaintenanceRecordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsModel.h; sourceTree = "<group>"; };
+		0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
+		0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsOneDayModel.h; sourceTree = "<group>"; };
+		0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsOneDayModel.m; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -1130,6 +1139,12 @@
 				043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */,
 				04E5D85A231FF24400E1B6BD /* DrivingLicenseModel.h */,
 				04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */,
+				0419F1F02321453900E76099 /* VehicleFileModel.h */,
+				0419F1F12321453900E76099 /* VehicleFileModel.m */,
+				0419F1F323214BFE00E76099 /* MaintenanceRecordsModel.h */,
+				0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */,
+				0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */,
+				0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1277,6 +1292,7 @@
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
+				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
@@ -1297,6 +1313,8 @@
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
+				0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */,
+				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,

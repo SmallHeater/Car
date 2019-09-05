@@ -248,8 +248,7 @@
     if (!_dottedLineImageView) {
         
         _dottedLineImageView = [[UIImageView alloc] init];
-        _dottedLineImageView.backgroundColor = [UIColor blueColor];
-//        _dottedLineImageView.image = [UIImage imageNamed:@""];
+        _dottedLineImageView.image = [UIImage imageNamed:@"fengexian"];
     }
     return _dottedLineImageView;
 }

@@ -19,7 +19,8 @@
 @property (nonatomic,strong) UILabel * carModelLabel;
 //联系电话
 @property (nonatomic,strong) UILabel * phoneNumberLabel;
-
+//分隔条
+@property (nonatomic,strong) UIImageView * intervalImageView;
 //应收
 @property (nonatomic,strong) UILabel * receivableLabel;
 //应收金额
@@ -88,6 +89,15 @@
             make.top.equalTo(self.nameLabel.mas_bottom).offset(9);
             make.right.offset(-17);
             make.height.offset(14);
+        }];
+        
+        [_bgView addSubview:self.intervalImageView];
+        [self.intervalImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(17);
+            make.right.offset(-20);
+            make.top.equalTo(self.phoneNumberLabel.mas_bottom).offset(18);
+            make.height.offset(2);
         }];
         
         [_bgView addSubview:self.receivableLabel];
@@ -194,6 +204,16 @@
         _phoneNumberLabel.textAlignment = NSTextAlignmentRight;
     }
     return _phoneNumberLabel;
+}
+
+-(UIImageView *)intervalImageView{
+    
+    if (!_intervalImageView) {
+        
+        _intervalImageView = [[UIImageView alloc] init];
+        _intervalImageView.image = [UIImage imageNamed:@"fengexian"];
+    }
+    return _intervalImageView;
 }
 
 -(UILabel *)receivableLabel{

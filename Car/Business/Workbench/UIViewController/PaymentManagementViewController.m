@@ -65,10 +65,8 @@
         //已回款
         RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * repaidView = repaidVC.view;
-        repaidView.frame = CGRectMake(0, MAINWIDTH, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
         [_bgScrollView addSubview:repaidView];
-        
-        _bgScrollView.backgroundColor = [UIColor greenColor];
     }
     return _bgScrollView;
 }
@@ -126,10 +124,12 @@
     if (btn.tag == 1400) {
         
         //未回款按钮的响应
+        self.bgScrollView.contentOffset = CGPointMake(0, 0);
     }
     else if (btn.tag == 1401){
         
         //已回款按钮的响应
+        self.bgScrollView.contentOffset = CGPointMake(MAINWIDTH, 0);
     }
 }
 

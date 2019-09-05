@@ -19,7 +19,8 @@
 @property (nonatomic,strong) UILabel * carModelLabel;
 //联系电话
 @property (nonatomic,strong) UILabel * phoneNumberLabel;
-
+//分隔条
+@property (nonatomic,strong) UIImageView * intervalImageView;
 //维修内容
 @property (nonatomic,strong) UILabel * contentLabel;
 
@@ -75,6 +76,15 @@
             make.top.equalTo(self.nameLabel.mas_bottom).offset(15);
             make.right.offset(-21);
             make.height.offset(14);
+        }];
+        
+        [_bgView addSubview:self.intervalImageView];
+        [self.intervalImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(17);
+            make.right.offset(-20);
+            make.top.equalTo(self.phoneNumberLabel.mas_bottom).offset(18);
+            make.height.offset(2);
         }];
         
         [_bgView addSubview:self.contentLabel];
@@ -135,6 +145,17 @@
     return _phoneNumberLabel;
 }
 
+-(UIImageView *)intervalImageView{
+    
+    if (!_intervalImageView) {
+        
+        _intervalImageView = [[UIImageView alloc] init];
+        _intervalImageView.image = [UIImage imageNamed:@"fengexian"];
+    }
+    return _intervalImageView;
+}
+
+
 -(UILabel *)contentLabel{
     
     if (!_contentLabel) {
@@ -170,59 +191,8 @@
         make.right.offset(-15);
         make.top.bottom.offset(0);
     }];
-    
-    [self layoutIfNeeded];
-    [self drawDottedLine];
 }
 
--(void)drawRect:(CGRect)rect{
-    
-    
-}
-
-//绘制虚线
--(void)drawDottedLine{
-    
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    
-    [shapeLayer setBounds:self.bgView.bounds];
-    
-//    if (isHorizonal) {
-    
-        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(self.bgView.frame) / 2, CGRectGetHeight(self.bgView.frame))];
-        
-//    } else{
-//        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(lineView.frame) / 2, CGRectGetHeight(lineView.frame)/2)];
-//    }
-    
-    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
-    //  设置虚线颜色为blackColor
-    [shapeLayer setStrokeColor:Color_DEDEDE.CGColor];
-    //  设置虚线宽度
-//    if (isHorizonal) {
-        [shapeLayer setLineWidth:CGRectGetHeight(self.bgView.frame)];
-//    } else {
-//
-//        [shapeLayer setLineWidth:CGRectGetWidth(lineView.frame)];
-//    }
-    [shapeLayer setLineJoin:kCALineJoinRound];
-    //  设置线宽，线间距
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:1], nil]];
-    //  设置路径
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    
-//    if (isHorizonal) {
-        CGPathAddLineToPoint(path, NULL,CGRectGetWidth(self.bgView.frame), 0);
-//    } else {
-//        CGPathAddLineToPoint(path, NULL, 0, CGRectGetHeight(lineView.frame));
-//    }
-    
-    [shapeLayer setPath:path];
-    CGPathRelease(path);
-    //  把绘制好的虚线添加上来
-    [self.bgView.layer addSublayer:shapeLayer];
-}
 
 -(void)showDataWithDic:(NSDictionary *)dic{
     
