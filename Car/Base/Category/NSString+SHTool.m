@@ -16,22 +16,31 @@
  *
  *  @return 空 为 YES , 非空 NO
  */
-- (BOOL)isEmpty {
+//之所以不用对象方法，是因为当str为nil时不会执行对象方法
++(BOOL)strIsEmpty:(NSString *)str{
     
-    
-    if (self == nil || self == NULL) {
+    if (str == nil || str == NULL) {
+        
         return YES;
     }
-    if ([self isKindOfClass:[NSNull class]]) {
+    if ([str isKindOfClass:[NSNull class]]) {
+        
         return YES;
     }
-    if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+    if ([str isEqualToString:@""]) {
+        
         return YES;
     }
-    if ([self isEqualToString:@"(null)"]) {
+    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+        
         return YES;
     }
-    if ([self isEqualToString:@"<null>"]) {
+    if ([str isEqualToString:@"(null)"]) {
+        
+        return YES;
+    }
+    if ([str isEqualToString:@"<null>"]) {
+        
         return YES;
     }
     return NO;

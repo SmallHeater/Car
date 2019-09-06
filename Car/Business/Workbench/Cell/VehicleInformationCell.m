@@ -7,7 +7,7 @@
 //
 
 #import "VehicleInformationCell.h"
-#import "DrivingLicenseModel.h"
+
 
 @interface VehicleInformationCell ()<UITextFieldDelegate>
 
@@ -69,7 +69,7 @@
         _numberPlateTF.font = FONT16;
         _numberPlateTF.textColor = Color_333333;
         _numberPlateTF.placeholder = @"请输入车牌号";
-        _numberPlateTF.userInteractionEnabled = NO;
+        _numberPlateTF.delegate = self;
     }
     return _numberPlateTF;
 }
@@ -197,6 +197,15 @@
 
 #pragma mark  ----  UITextFieldDelegate
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.numberPlateTF]) {
+        
+        //车牌号
+        
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
@@ -314,14 +323,13 @@
     }];
 }
 
-
-//数据展示
--(void)showDataWithModel:(DrivingLicenseModel *)model{
+//数据展示:numberPlateNumber,号牌号码;vehicleIdentificationNumber,车辆识别代号;brandModelNumber,品牌型号;engineNumber,发动机号码;
+-(void)showDataWithDic:(NSDictionary *)dic{
     
-    self.numberPlateTF.text = [model.numberPlateNumber repleaseNilOrNull];;
-    self.frameNumberTF.text = [model.vehicleIdentificationNumber repleaseNilOrNull];;
-    self.carModelTF.text = [model.brandModelNumber repleaseNilOrNull];
-    self.engineNumberTF.text = [model.engineNumber repleaseNilOrNull];
+    self.numberPlateTF.text = dic[@"numberPlateNumber"];
+    self.frameNumberTF.text = dic[@"vehicleIdentificationNumber"];
+    self.carModelTF.text = dic[@"brandModelNumber"];
+    self.engineNumberTF.text = dic[@"engineNumber"];
 }
 
 -(void)test{

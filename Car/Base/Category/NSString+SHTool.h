@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return 空 为 YES , 非空 NO
  */
-- (BOOL)isEmpty;
++(BOOL)strIsEmpty:(NSString *)str;
 
 -(NSString *)repleaseNilOrNull;
 

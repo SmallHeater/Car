@@ -192,11 +192,24 @@
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.enCallBack = ^(NSString * _Nonnull result) {
+                
+            };
+            cell.bmnCallBack = ^(NSString * _Nonnull result) {
+                
+            };
+            cell.vinCallBack = ^(NSString * _Nonnull result) {
+                
+            };
+            cell.bmnCallBack = ^(NSString * _Nonnull result) {
+                
+            };
         }
 
         if (self.drivingLicenseModel) {
-            
-            [cell showDataWithModel:self.drivingLicenseModel];
+    
+            [cell showDataWithDic:@{@"numberPlateNumber":self.drivingLicenseModel.numberPlateNumber,@"vehicleIdentificationNumber":self.drivingLicenseModel.vehicleIdentificationNumber,@"brandModelNumber":self.drivingLicenseModel.brandModelNumber,@"engineNumber":self.drivingLicenseModel.engineNumber}];
         }
         
         return cell;
@@ -269,22 +282,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-//保存按钮的响应
--(void)saveBtnClicked:(UIButton *)btn{
-    
-    self.requestModel.user_id = [UserInforController  sharedManager].userInforModel.userID;
-    self.requestModel.license_number = self.drivingLicenseModel.numberPlateNumber;
-    self.requestModel.vin = self.drivingLicenseModel.vehicleIdentificationNumber;
-    self.requestModel.type = self.drivingLicenseModel.brandModelNumber;
-    self.requestModel.engine_no = self.drivingLicenseModel.engineNumber;
-    self.requestModel.contacts = self.drivingLicenseModel.owner;
-    self.requestModel.phone = @"";
-    self.requestModel.insurance_period = @"";
-    self.requestModel.vehicle_license_image = @"";
-}
-
 -(void)keyboardWillShow:(NSNotification *)notification{
-
+    
     self.tableView.scrollEnabled = YES;
     NSDictionary *userInfo = [notification userInfo];
     CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
@@ -293,7 +292,7 @@
     [UIView animateWithDuration:duration animations:^{
         
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-           
+            
             make.bottom.offset(-rect.size.height);
         }];
     }];
@@ -309,9 +308,72 @@
         
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             
-           make.bottom.offset(-123);
+            make.bottom.offset(-123);
         }];
     }];
+}
+
+//保存按钮的响应
+-(void)saveBtnClicked:(UIButton *)btn{
+    
+    self.requestModel.user_id = [UserInforController  sharedManager].userInforModel.userID;
+    self.requestModel.license_number = self.drivingLicenseModel.numberPlateNumber;
+    self.requestModel.vin = self.drivingLicenseModel.vehicleIdentificationNumber;
+    self.requestModel.type = self.drivingLicenseModel.brandModelNumber;
+    self.requestModel.engine_no = self.drivingLicenseModel.engineNumber;
+    self.requestModel.contacts = self.drivingLicenseModel.owner;
+    self.requestModel.phone = @"";
+    self.requestModel.insurance_period = @"";
+    self.requestModel.vehicle_license_image = @"";
+    
+    //车牌，联系人，手机号为必填项
+    if ([NSString strIsEmpty:self.requestModel.license_number]) {
+        
+        [MBProgressHUD wj_showError:@"请输入车牌号"];
+    }
+    else if ([NSString strIsEmpty:self.requestModel.contacts]){
+        
+        [MBProgressHUD wj_showError:@"请输入联系人"];
+    }
+    else if ([NSString strIsEmpty:self.requestModel.phone] || self.requestModel.phone.length != 11){
+        
+        [MBProgressHUD wj_showError:@"请输入正确的手机号"];
+    }
+    else{
+        
+        [self submit];
+    }
+}
+
+//提交
+-(void)submit{
+    
+    NSDictionary * bodyParameters = [self.requestModel mj_keyValues];
+    NSDictionary * configurationDic = @{@"requestUrlStr":Receptioncar,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSLog(@"%@",dataDic);
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+
 }
 
 @end

@@ -10,12 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DrivingLicenseModel;
+typedef void(^CallBack)(NSString * result);
 
 @interface VehicleInformationCell : UITableViewCell
 
-//数据展示
--(void)showDataWithModel:(DrivingLicenseModel *)model;
+//车牌号回调
+@property (nonatomic,copy) CallBack npnCallBack;
+//车架号回调
+@property (nonatomic,copy) CallBack vinCallBack;
+//车型号回调
+@property (nonatomic,copy) CallBack bmnCallBack;
+//发动机号回调
+@property (nonatomic,copy) CallBack enCallBack;
+
+//数据展示:numberPlateNumber,号牌号码;vehicleIdentificationNumber,车辆识别代号;brandModelNumber,品牌型号;engineNumber,发动机号码;
+-(void)showDataWithDic:(NSDictionary *)dic;
 -(void)test;
 
 @end
