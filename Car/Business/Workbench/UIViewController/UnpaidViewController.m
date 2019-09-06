@@ -21,7 +21,9 @@ static NSString * cellId = @"UnpaidCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self refreshViewType:BTVCType_AddTableView];
+    [self drawUI];
 }
 
 #pragma mark  ----  代理
@@ -50,6 +52,11 @@ static NSString * cellId = @"UnpaidCell";
     [cell test];
     
     return cell;
+}
+
+-(void)drawUI{
+
+    self.tableView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight]);
 }
 
 @end

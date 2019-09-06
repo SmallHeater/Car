@@ -7,9 +7,9 @@
 //
 
 #import "RepaidViewController.h"
-#import "UnpaidCell.h"
+#import "RepaidCell.h"
 
-static NSString * cellId = @"UnpaidCell";
+static NSString * cellId = @"RepaidCell";
 @interface RepaidViewController ()
 
 @end
@@ -21,8 +21,8 @@ static NSString * cellId = @"UnpaidCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
     [self refreshViewType:BTVCType_AddTableView];
+    [self drawUI];
 }
 
 #pragma mark  ----  代理
@@ -31,7 +31,7 @@ static NSString * cellId = @"UnpaidCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [UnpaidCell cellHeight];
+    return [RepaidCell cellHeight];
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -41,10 +41,10 @@ static NSString * cellId = @"UnpaidCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UnpaidCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    RepaidCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         
-        cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[RepaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -53,4 +53,9 @@ static NSString * cellId = @"UnpaidCell";
     return cell;
 }
 
+#pragma mark  ----  自定义函数
+-(void)drawUI{
+    
+    self.tableView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight]);
+}
 @end

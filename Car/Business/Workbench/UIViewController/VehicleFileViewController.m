@@ -105,8 +105,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        [cell test];
-        
+        VehicleFileModel * model = self.dataArray[indexPath.row - 1];
+        [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone}];
         return cell;
     }
     

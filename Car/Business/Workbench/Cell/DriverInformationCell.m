@@ -159,6 +159,26 @@
 
 #pragma mark  ----  UITextFieldDelegate
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.contactTF]) {
+        
+        //联系人
+        if (self.contactsCallBack) {
+            
+            self.contactsCallBack(textField.text);
+        }
+    }
+    else if ([textField isEqual:self.phoneNumberTF]){
+        
+        //手机号
+        if (self.phoneNumberCallBack) {
+            
+            self.phoneNumberCallBack(textField.text);
+        }
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
@@ -264,7 +284,7 @@
 //数据展示
 -(void)showDataWithModel:(DrivingLicenseModel *)model{
     
-    self.contactTF.text = [model.owner repleaseNilOrNull];
+    self.contactTF.text = [NSString repleaseNilOrNull:model.owner];
 }
 
 //选择保险到期时间

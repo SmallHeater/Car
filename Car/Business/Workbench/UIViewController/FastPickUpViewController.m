@@ -33,6 +33,15 @@
 
 #pragma mark  ----  懒加载
 
+-(DrivingLicenseModel *)drivingLicenseModel{
+    
+    if (!_drivingLicenseModel) {
+        
+        _drivingLicenseModel = [[DrivingLicenseModel alloc] init];
+    }
+    return _drivingLicenseModel;
+}
+
 -(FastPickUpRequestModel *)requestModel{
     
     if (!_requestModel) {
@@ -86,6 +95,7 @@
     [[AipOcrService shardService] authWithAK:@"yqvmGyaz0wtcXGCO0rwg5OhD" andSK:@"mC8IKB7HzwRtuwQrloawUPHSFTjGqwHk"];
     [self drawUI];
     [self registrationNotice];
+    [self addGesture];
 }
 
 #pragma mark  ----  代理
@@ -129,7 +139,6 @@
                     
                     if (result && [result isKindOfClass:[NSDictionary class]]) {
                         
-                        weakSelf.drivingLicenseModel = [[DrivingLicenseModel alloc] init];
                         NSDictionary * resultDic = result[@"words_result"];
                         NSDictionary * firstDic = resultDic[@"发动机号码"];
                         weakSelf.drivingLicenseModel.engineNumber = firstDic[@"words"];
@@ -193,21 +202,26 @@
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
+            __weak typeof(self) weakSelf = self;
             cell.enCallBack = ^(NSString * _Nonnull result) {
                 
+                weakSelf.drivingLicenseModel.engineNumber = [NSString repleaseNilOrNull:result];
             };
             cell.bmnCallBack = ^(NSString * _Nonnull result) {
                 
+                weakSelf.drivingLicenseModel.brandModelNumber = [NSString repleaseNilOrNull:result];
             };
             cell.vinCallBack = ^(NSString * _Nonnull result) {
                 
+                weakSelf.drivingLicenseModel.vehicleIdentificationNumber = [NSString repleaseNilOrNull:result];
             };
-            cell.bmnCallBack = ^(NSString * _Nonnull result) {
+            cell.npnCallBack = ^(NSString * _Nonnull result) {
                 
+                weakSelf.drivingLicenseModel.numberPlateNumber = [NSString repleaseNilOrNull:result];
             };
         }
 
-        if (self.drivingLicenseModel) {
+        if (self.drivingLicenseModel && ![NSString strIsEmpty:self.drivingLicenseModel.numberPlateNumber]) {
     
             [cell showDataWithDic:@{@"numberPlateNumber":self.drivingLicenseModel.numberPlateNumber,@"vehicleIdentificationNumber":self.drivingLicenseModel.vehicleIdentificationNumber,@"brandModelNumber":self.drivingLicenseModel.brandModelNumber,@"engineNumber":self.drivingLicenseModel.engineNumber}];
         }
@@ -222,9 +236,25 @@
             
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            __weak typeof(self) weakSelf = self;
+            cell.contactsCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.drivingLicenseModel.owner = [NSString repleaseNilOrNull:result];
+            };
+            
+            cell.phoneNumberCallBack = ^(NSString * _Nonnull result) {
+              
+                weakSelf.requestModel.phone = [NSString repleaseNilOrNull:result];
+            };
+            
+            cell.dataCallBack = ^(NSString * _Nonnull result) {
+              
+                weakSelf.requestModel.insurance_period = [NSString repleaseNilOrNull:result];
+            };
         }
         
-        if (self.drivingLicenseModel) {
+        if (self.drivingLicenseModel && ![NSString strIsEmpty:self.drivingLicenseModel.owner]) {
             
             [cell showDataWithModel:self.drivingLicenseModel];
         }
@@ -282,6 +312,13 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+//添加手势
+-(void)addGesture{
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
+    [self.view addGestureRecognizer:tap];
+}
+
 -(void)keyboardWillShow:(NSNotification *)notification{
     
     self.tableView.scrollEnabled = YES;
@@ -322,8 +359,6 @@
     self.requestModel.type = self.drivingLicenseModel.brandModelNumber;
     self.requestModel.engine_no = self.drivingLicenseModel.engineNumber;
     self.requestModel.contacts = self.drivingLicenseModel.owner;
-    self.requestModel.phone = @"";
-    self.requestModel.insurance_period = @"";
     self.requestModel.vehicle_license_image = @"";
     
     //车牌，联系人，手机号为必填项
@@ -361,8 +396,22 @@
                 
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSLog(@"%@",dataDic);
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                       
+                        [weakSelf backBtnClicked:nil];
+                    });
+                }
+                else{
+                    
+                    //异常
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
             }
             else{
                 
@@ -374,6 +423,11 @@
         }
     }];
 
+}
+
+-(void)viewTaped:(UIGestureRecognizer *)ges{
+    
+    [self.view endEditing:YES];
 }
 
 @end

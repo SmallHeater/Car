@@ -42,6 +42,7 @@
 		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
 		0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
+		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -197,6 +198,8 @@
 		0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
 		0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsOneDayModel.h; sourceTree = "<group>"; };
 		0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsOneDayModel.m; sourceTree = "<group>"; };
+		0419F201232277A100E76099 /* RepaidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidCell.m; sourceTree = "<group>"; };
+		0419F202232277A100E76099 /* RepaidCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidCell.h; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -797,6 +800,8 @@
 		040485E9231135A800EF17C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0419F202232277A100E76099 /* RepaidCell.h */,
+				0419F201232277A100E76099 /* RepaidCell.m */,
 				040485EA231135DE00EF17C8 /* AutoRepairShopCell.h */,
 				040485EB231135DE00EF17C8 /* AutoRepairShopCell.m */,
 				040485ED2311723D00EF17C8 /* CarouselCell.h */,
@@ -1290,6 +1295,7 @@
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
+				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,

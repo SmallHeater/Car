@@ -46,15 +46,15 @@
     return NO;
 }
 
--(NSString *)repleaseNilOrNull{
++(NSString *)repleaseNilOrNull:(NSString *)str{
     
-    if (!self) {
+    if (!str) {
         
         return @"";
     }
     else{
         
-        return self;
+        return str;
     }
 }
 

@@ -66,10 +66,7 @@
         
         self.showNavigationBar = isShowNavgationBar;
         self.tableViewStyle = style;
-        if (!isShowNavgationBar) {
-            
-            [self.navigationbar removeFromSuperview];
-        }
+        self.navigationbar.hidden = !isShowNavgationBar;
     }
     return self;
 }

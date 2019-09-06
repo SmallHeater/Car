@@ -12,7 +12,7 @@
 #import "RepaidViewController.h"
 
 
-@interface PaymentManagementViewController ()
+@interface PaymentManagementViewController ()<UIScrollViewDelegate>
 
 //搜索按钮
 @property (nonatomic,strong) UIButton * searchBtn;
@@ -52,21 +52,23 @@
     if (!_bgScrollView) {
         
         _bgScrollView = [[UIScrollView alloc] init];
+        _bgScrollView.delegate = self;
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 2, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
         _bgScrollView.pagingEnabled = YES;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
-        
         //未回款
         UnpaidViewController * unpaidVC = [[UnpaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * unpaidView = unpaidVC.view;
         unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
         [_bgScrollView addSubview:unpaidView];
+        [self addChildViewController:unpaidVC];
         //已回款
         RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * repaidView = repaidVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
         [_bgScrollView addSubview:repaidView];
+        [self addChildViewController:repaidVC];
     }
     return _bgScrollView;
 }
@@ -74,11 +76,31 @@
 #pragma mark  ----  生命周期函数
     
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self refreshViewType:BTVCType_AddTableView];
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
     [self drawUI];
+}
+
+#pragma mark  ----  UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.x == 0) {
+        
+        UIButton * btn = [self.itemsView viewWithTag:1400];
+        btn.selected = YES;
+        UIButton * otherBtn = [self.itemsView viewWithTag:1401];
+        btn.selected = NO;
+    }
+    else{
+        
+        UIButton * btn = [self.itemsView viewWithTag:1400];
+        btn.selected = NO;
+        UIButton * otherBtn = [self.itemsView viewWithTag:1401];
+        btn.selected = YES;
+    }
 }
 
 #pragma mark  ----  自定义函数
@@ -105,7 +127,7 @@
     
     [self.view addSubview:self.bgScrollView];
     [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+
         make.left.right.bottom.offset(0);
         make.top.equalTo(self.itemsView.mas_bottom);
     }];

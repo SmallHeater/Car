@@ -18,8 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return 空 为 YES , 非空 NO
  */
 +(BOOL)strIsEmpty:(NSString *)str;
-
--(NSString *)repleaseNilOrNull;
++(NSString *)repleaseNilOrNull:(NSString *)str;
 
 //获取字符串宽度
 -(float)widthWithFont:(UIFont *)font andHeight:(float)height;

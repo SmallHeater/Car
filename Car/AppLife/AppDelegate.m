@@ -26,10 +26,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //模拟器
-    UserInforModel * model = [[UserInforModel alloc] init];
-    model.userID = @"2";
-    [UserInforController sharedManager].userInforModel = model;
+//    //模拟器
+//    UserInforModel * model = [[UserInforModel alloc] init];
+//    model.userID = @"21";
+//    [UserInforController sharedManager].userInforModel = model;
     
     if ([UserInforController sharedManager].userInforModel) {
         

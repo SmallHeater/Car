@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * vehicle_license_image;
 //维修次数
 @property (nonatomic,strong) NSNumber * maintain_count;
+//联系电话
+@property (nonatomic,strong) NSString * phone;
 
 @end
 

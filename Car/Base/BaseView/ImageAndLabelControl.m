@@ -123,7 +123,7 @@ typedef NS_ENUM(NSUInteger,ImageType){
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrlStr]];
     }
     
-    self.titleLabel.text = [self.title repleaseNilOrNull];
+    self.titleLabel.text = [NSString repleaseNilOrNull:self.title];
 }
 
 @end

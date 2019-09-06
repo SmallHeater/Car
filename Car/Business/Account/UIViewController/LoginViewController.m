@@ -285,7 +285,7 @@
 -(void)requestVerificationCode{
     
     NSString * phoneNumber = [self.phoneView getInputText];
-    if ([phoneNumber repleaseNilOrNull].length == 11) {
+    if ([NSString repleaseNilOrNull:phoneNumber].length == 11) {
         
         __weak LoginViewController * weakSelf = self;
         [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {

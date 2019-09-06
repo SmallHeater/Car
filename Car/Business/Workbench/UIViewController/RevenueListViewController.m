@@ -44,6 +44,7 @@ static NSString * cellId = @"RevenueCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -118,18 +119,26 @@ static NSString * cellId = @"RevenueCell";
                 
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
                     
-                    NSArray * list = dataDic[@"list"];
-                    for (NSDictionary * dic in list) {
+                    NSDictionary * dataDic = dic[@"data"];
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
-                        MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                        [weakSelf.dataArray addObject:model];
+                        NSArray * list = dataDic[@"list"];
+                        for (NSDictionary * dic in list) {
+                            
+                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
+                        }
                     }
+                    
+                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
-                
-                [weakSelf refreshViewType:BTVCType_RefreshTableView];
+                else{
+                    
+                    [MBProgressHUD wj_showError:@"暂时没有营收记录哦"];
+                }
             }
             else{
                 

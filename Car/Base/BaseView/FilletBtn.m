@@ -22,7 +22,7 @@
 
 +(float)getBtnWidthWithTitle:(NSString *)btnTitle andBtnFont:(UIFont *)font andBtnHeight:(float)height{
     
-    float titleWidth = [[btnTitle repleaseNilOrNull] widthWithFont:font andHeight:height];
+    float titleWidth = [[NSString repleaseNilOrNull:btnTitle] widthWithFont:font andHeight:height];
     return titleWidth + 27 * 2;
 }
 

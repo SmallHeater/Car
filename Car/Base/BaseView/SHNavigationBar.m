@@ -93,7 +93,7 @@
 
 -(void)showData{
     
-    self.titleLabel.text = [self.navTitle repleaseNilOrNull];
+    self.titleLabel.text = [NSString repleaseNilOrNull:self.navTitle];
 }
 
 -(void)addbackbtnTarget:(id)target andAction:(SEL)action{

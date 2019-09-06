@@ -59,7 +59,7 @@
 
 -(void)showAutoRepairShopName:(NSString *)name{
     
-    self.autoRepairShopNameLabel.text = [name repleaseNilOrNull];;
+    self.autoRepairShopNameLabel.text = [NSString repleaseNilOrNull:name];;
 }
 
 @end

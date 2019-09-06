@@ -352,6 +352,7 @@
         _arrearsContentLabel = [[UILabel alloc] init];
         _arrearsContentLabel.textColor = Color_60A37D;
         _arrearsContentLabel.font = FONT16;
+        _arrearsContentLabel.textAlignment = NSTextAlignmentRight;
     }
     return _arrearsContentLabel;
 }

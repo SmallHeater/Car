@@ -202,7 +202,34 @@
     if ([textField isEqual:self.numberPlateTF]) {
         
         //车牌号
+        if (self.npnCallBack) {
+            
+            self.npnCallBack(textField.text);
+        }
+    }
+    else if ([textField isEqual:self.frameNumberTF]){
         
+        //车架号
+        if (self.vinCallBack) {
+            
+            self.vinCallBack(textField.text);
+        }
+    }
+    else if ([textField isEqual:self.carModelTF]){
+        
+        //车型号
+        if (self.bmnCallBack) {
+            
+            self.bmnCallBack(textField.text);
+        }
+    }
+    else if ([textField isEqual:self.engineNumberTF]){
+        
+        //发动机号
+        if (self.enCallBack) {
+            
+            self.enCallBack(textField.text);
+        }
     }
 }
 

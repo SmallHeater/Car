@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VehicleFileCell : UITableViewCell
+
+//numberPlate,车牌;name,联系人姓名;carModel,车型号;phoneNumber,联系人电话;
+-(void)showDataWithDic:(NSDictionary *)dic;
 
 -(void)test;
 

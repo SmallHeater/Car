@@ -61,7 +61,7 @@
     NSMutableArray * carouselDicArray = [[NSMutableArray alloc] init];
     for (CarouselModel * model in array) {
         
-        NSString * CarouselImageUrlStr = [[NSString alloc] initWithFormat:@"%@%@",CARDOMAIN,model.image];
+        NSString * CarouselImageUrlStr = [[NSString alloc] initWithFormat:@"%@",model.image];
         NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:model.CarouselId,@"CarouselId",CarouselImageUrlStr,@"CarouselImageUrlStr", nil];
         [carouselDicArray addObject:dic];
     }
