@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VehicleFileDetailViewController : BaseTableViewController
 
-//刷新展示数据
--(void)showData:(VehicleFileModel *)model;
+@property (nonatomic,strong) VehicleFileModel * vehicleFileModel;
 
 @end
 

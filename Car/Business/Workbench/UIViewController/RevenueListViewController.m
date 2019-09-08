@@ -61,13 +61,7 @@ static NSString * cellId = @"RevenueCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSUInteger rows = 0;
-    for (MaintenanceRecordsOneDayModel * model in self.dataArray) {
-        
-        rows += model.list.count;
-    }
-    
-    return rows;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -79,7 +73,12 @@ static NSString * cellId = @"RevenueCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell test];
+    MaintenanceRecordsModel * model = self.dataArray[indexPath.row];
+    
+    NSString * receivable = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue];
+    NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",model.cost.floatValue];
+    NSString * profit = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue - model.cost.floatValue];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"receivable":receivable,@"cost":cost,@"profit":profit}];
     
     return cell;
 }
@@ -129,7 +128,10 @@ static NSString * cellId = @"RevenueCell";
                         for (NSDictionary * dic in list) {
                             
                             MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                            [weakSelf.dataArray addObject:model];
+                            for (MaintenanceRecordsModel * recordModel in model.list) {
+                             
+                                [weakSelf.dataArray addObject:recordModel];
+                            }
                         }
                     }
                     

@@ -39,8 +39,8 @@
 		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
 		0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */; };
+		040D63E3232531C500AAFE7F /* SHTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF5942318A544007BC0F8 /* SHTextView.m */; };
 		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
-		0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
 		0422D966232291A900AF687D /* UnpaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D965232291A900AF687D /* UnpaidModel.m */; };
@@ -75,6 +75,8 @@
 		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
 		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
 		04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */; };
+		04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */; };
+		04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
@@ -210,8 +212,6 @@
 		0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndLabelControl.m; sourceTree = "<group>"; };
 		0419F1F02321453900E76099 /* VehicleFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileModel.h; sourceTree = "<group>"; };
 		0419F1F12321453900E76099 /* VehicleFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileModel.m; sourceTree = "<group>"; };
-		0419F1F323214BFE00E76099 /* MaintenanceRecordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsModel.h; sourceTree = "<group>"; };
-		0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
 		0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsOneDayModel.h; sourceTree = "<group>"; };
 		0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsOneDayModel.m; sourceTree = "<group>"; };
 		0419F201232277A100E76099 /* RepaidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidCell.m; sourceTree = "<group>"; };
@@ -277,6 +277,10 @@
 		046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentificationDrivingLicenseCell.m; sourceTree = "<group>"; };
 		04715B0923249F8B0008A3C2 /* ModifyVehicleFileRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyVehicleFileRequestModel.h; sourceTree = "<group>"; };
 		04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyVehicleFileRequestModel.m; sourceTree = "<group>"; };
+		04715B0E2324B3B80008A3C2 /* MaintenanceRecordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsModel.h; sourceTree = "<group>"; };
+		04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
+		04715B112324B4B70008A3C2 /* MaintenanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailModel.h; sourceTree = "<group>"; };
+		04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailModel.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
@@ -1282,14 +1286,16 @@
 				04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */,
 				0419F1F02321453900E76099 /* VehicleFileModel.h */,
 				0419F1F12321453900E76099 /* VehicleFileModel.m */,
-				0419F1F323214BFE00E76099 /* MaintenanceRecordsModel.h */,
-				0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */,
 				0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */,
 				0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */,
 				0422D964232291A900AF687D /* UnpaidModel.h */,
 				0422D965232291A900AF687D /* UnpaidModel.m */,
 				04715B0923249F8B0008A3C2 /* ModifyVehicleFileRequestModel.h */,
 				04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */,
+				04715B0E2324B3B80008A3C2 /* MaintenanceRecordsModel.h */,
+				04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */,
+				04715B112324B4B70008A3C2 /* MaintenanceDetailModel.h */,
+				04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1463,9 +1469,9 @@
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
-				0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				0422D98E23233C5800AF687D /* NewImageCompressionController.m in Sources */,
+				04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */,
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
@@ -1473,6 +1479,7 @@
 				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
+				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
@@ -1517,6 +1524,7 @@
 				0422D98D23233C5800AF687D /* NewUploadController.m in Sources */,
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
+				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,

@@ -24,14 +24,104 @@
 
 @implementation SHTextView
 
-#pragma mark  ----  生命周期函数
-- (instancetype)initWithFrame:(CGRect)frame{
+#pragma mark  ----  懒加载
+
+-(UITextView *)evaTextView{
     
-    self = [super initWithFrame:frame];
+    if (!_evaTextView) {
+        
+        _evaTextView = [[UITextView alloc] init];
+        _evaTextView.scrollEnabled = NO;
+        _evaTextView.delegate = self;
+        _evaTextView.font = [UIFont systemFontOfSize:14.0];
+        _evaTextView.backgroundColor = [UIColor whiteColor];
+        _evaTextView.returnKeyType = UIReturnKeyDone;
+        _evaTextView.textColor = Color_333333;
+        _evaTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        _evaTextView.backgroundColor = [UIColor greenColor];
+    }
+    return _evaTextView;
+}
+
+-(NSString *)text{
+    
+    return self.evaTextView.text;
+}
+
+-(UITextRange *)selectedTextRange{
+    
+    return self.evaTextView.selectedTextRange;
+}
+
+-(NSRange)selectedRange{
+    
+    return self.evaTextView.selectedRange;
+}
+
+#pragma mark  ----  SET
+
+-(void)setText:(NSString *)text{
+    
+    self.evaTextView.text = text;
+}
+
+-(void)setPlaceholder:(NSString *)placeholder{
+    
+    _placeholder = placeholder;
+    self.evaTextView.text = _placeholder;
+}
+
+-(void)setBackgroundColor:(UIColor *)backgroundColor{
+    
+    super.backgroundColor = backgroundColor;
+    self.evaTextView.backgroundColor = backgroundColor;
+}
+
+-(void)setInputAccessoryView:(UIView *)inputAccessoryView{
+    
+    self.evaTextView.inputAccessoryView = inputAccessoryView;
+}
+
+-(void)setSelectedRange:(NSRange)selectedRange{
+    
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    
+    _evaTextView.selectedRange = selectedRange;
+    //    });
+}
+
+-(void)setSelectedTextRange:(UITextRange *)selectedTextRange{
+    
+    self.evaTextView.selectedTextRange = selectedTextRange;
+}
+
+-(void)setTextFont:(UIFont *)textFont{
+    
+    self.evaTextView.font = textFont;
+}
+
+-(void)setReturnKeyType:(UIReturnKeyType)returnKeyType{
+    
+    self.evaTextView.returnKeyType = returnKeyType;
+}
+
+-(void)setTextColor:(UIColor *)textColor{
+    
+    self.evaTextView.textColor = textColor;
+}
+
+#pragma mark  ----  生命周期函数
+- (instancetype)init{
+    
+    self = [super init];
     if (self) {
         
-        self.backgroundColor = [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1];
+        self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.evaTextView];
+        [self.evaTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.top.bottom.offset(0);
+        }];
     }
     return self;
 }
@@ -47,13 +137,13 @@
     //禁止输入表情
     if (![[UIApplication sharedApplication] textInputMode].primaryLanguage) {
         
-        [MBProgressHUD displayHudError:@"不能输入特殊表情。"];
+        [MBProgressHUD wj_showError:@"不能输入特殊表情。"];
         return NO;
     }
     
     if ([text isEqualToString:@"☻"]) {
         
-        [MBProgressHUD displayHudError:@"不能输入特殊表情。"];
+        [MBProgressHUD wj_showError:@"不能输入特殊表情。"];
         return NO;
     }
     
@@ -82,7 +172,7 @@
             
             if (newStr.length > self.maxCount) {
                 
-                [MBProgressHUD displayHudError:@"您输入超过最大长度"];
+                [MBProgressHUD wj_showError:@"您输入超过最大长度"];
                 NSString * newText = [newStr substringWithRange:NSMakeRange(0, self.maxCount)];
                 self.evaTextView.text = newText;
                 return NO;
@@ -104,7 +194,7 @@
             
             if (newStr.length > self.maxCount) {
                 
-                [MBProgressHUD displayHudError:@"您输入超过最大长度"];
+                [MBProgressHUD wj_showError:@"您输入超过最大长度"];
                 NSString * newText = [newStr substringWithRange:NSMakeRange(0, self.maxCount)];
                 self.evaTextView.text = newText;
                 return NO;
@@ -112,14 +202,14 @@
             else{
                 
                 self.evaTextView.text = newStr;
-                [MBProgressHUD displayHudError:@"不能输入特殊表情。"];
+                [MBProgressHUD wj_showError:@"不能输入特殊表情。"];
                 return NO;
             }
         }
         else{
             
             self.evaTextView.text = newStr;
-            [MBProgressHUD displayHudError:@"不能输入特殊表情。"];
+            [MBProgressHUD wj_showError:@"不能输入特殊表情。"];
             return NO;
         }
     }
@@ -202,7 +292,7 @@
             
             if (tempTwoStr.length > self.maxCount) {
                 
-                [MBProgressHUD displayHudError:@"您输入超过最大长度"];
+                [MBProgressHUD wj_showError:@"您输入超过最大长度"];
                 NSString * newText = [tempTwoStr substringWithRange:NSMakeRange(0, self.maxCount)];
                 self.evaTextView.text = newText;
             }
@@ -217,7 +307,7 @@
             self.evaTextView.text = tempTwoStr;
         }
         
-        [MBProgressHUD displayHudError:@"不能输入特殊表情。"];
+        [MBProgressHUD wj_showError:@"不能输入特殊表情。"];
     }
     else{
         
@@ -225,7 +315,7 @@
             
             if (tempTwoStr.length > self.maxCount) {
                 
-                [MBProgressHUD displayHudError:@"您输入超过最大长度"];
+                [MBProgressHUD wj_showError:@"您输入超过最大长度"];
                 NSString * newText = [tempTwoStr substringWithRange:NSMakeRange(0, self.maxCount)];
                 self.evaTextView.text = newText;
             }
@@ -299,89 +389,6 @@
 - (BOOL)becomeFirstResponder{
     
     return [self.evaTextView becomeFirstResponder];
-}
-
-#pragma mark  ----  SET
--(void)setFrame:(CGRect)frame{
-    
-    super.frame = frame;
-    self.evaTextView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
--(void)setText:(NSString *)text{
-    
-    self.evaTextView.text = text;
-    self.evaTextView.textColor = [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1];
-}
-
--(void)setPlaceholder:(NSString *)placeholder{
-    
-    _placeholder = placeholder;
-    self.evaTextView.text = _placeholder;
-}
-
--(void)setBackgroundColor:(UIColor *)backgroundColor{
-    
-    super.backgroundColor = backgroundColor;
-    self.evaTextView.backgroundColor = backgroundColor;
-}
-
--(void)setInputAccessoryView:(UIView *)inputAccessoryView{
-    
-    self.evaTextView.inputAccessoryView = inputAccessoryView;
-}
-
--(void)setSelectedRange:(NSRange)selectedRange{
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-    
-        _evaTextView.selectedRange = selectedRange;
-//    });
-}
-
--(void)setSelectedTextRange:(UITextRange *)selectedTextRange{
-    
-    self.evaTextView.selectedTextRange = selectedTextRange;
-}
-
--(void)setTextFont:(UIFont *)textFont{
-    
-    self.evaTextView.font = textFont;
-}
-
--(void)setReturnKeyType:(UIReturnKeyType)returnKeyType{
-    
-    self.evaTextView.returnKeyType = returnKeyType;
-}
-
-#pragma mark  ----  懒加载
-
--(UITextView *)evaTextView{
-    
-    if (!_evaTextView) {
-        
-        _evaTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
-        _evaTextView.delegate = self;
-        _evaTextView.font = [UIFont systemFontOfSize:14.0];
-        _evaTextView.backgroundColor = [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1];
-        _evaTextView.returnKeyType = UIReturnKeyDone;
-        _evaTextView.textColor = [UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1];;
-    }
-    return _evaTextView;
-}
-
--(NSString *)text{
-    
-    return self.evaTextView.text;
-}
-
--(UITextRange *)selectedTextRange{
-    
-    return self.evaTextView.selectedTextRange;
-}
-
--(NSRange)selectedRange{
-    
-    return self.evaTextView.selectedRange;
 }
 
 @end

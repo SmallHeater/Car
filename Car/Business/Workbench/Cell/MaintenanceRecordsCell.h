@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MaintenanceRecordsCell : UITableViewCell
 
+//返回cell高度
++(float)cellHeightWithContent:(NSString *)content;
+
+//展示数据:numberPlate:车牌;name:姓名;carModel:车型号;phoneNumber:电话;content:维修内容;
+-(void)showDataWithDic:(NSDictionary *)dic;
+
 -(void)test;
 
 @end

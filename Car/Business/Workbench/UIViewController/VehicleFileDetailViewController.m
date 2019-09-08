@@ -33,8 +33,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
 @property (nonatomic,strong) UILabel * maintenanceRecordsLabel;
 //底部删除，保存按钮view
 @property (nonatomic,strong) UIView * bottomView;
-//数据模型
-@property (nonatomic,strong) VehicleFileModel * model;
 //修改请求模型
 @property (nonatomic,strong) ModifyVehicleFileRequestModel * requestModel;
 
@@ -166,7 +164,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)viewDidLoad{
     
     [super viewDidLoad];
+    [self addGesture];
     [self drawUI];
+    NSDictionary * dic = [self.vehicleFileModel mj_keyValues];
+    self.requestModel = [ModifyVehicleFileRequestModel mj_objectWithKeyValues:dic];
 }
 
 #pragma mark  ----  代理
@@ -223,9 +224,9 @@ typedef NS_ENUM(NSUInteger,ViewState){
             };
         }
         
-        if (self.model) {
+        if (self.vehicleFileModel) {
             
-            [cell showDataWithDic:@{@"numberPlateNumber":self.model.license_number,@"vehicleIdentificationNumber":[NSString repleaseNilOrNull:self.model.vin],@"brandModelNumber":[NSString repleaseNilOrNull:self.model.type],@"engineNumber":[NSString repleaseNilOrNull:self.model.engine_no]}];
+            [cell showDataWithDic:@{@"numberPlateNumber":self.vehicleFileModel.license_number,@"vehicleIdentificationNumber":[NSString repleaseNilOrNull:self.vehicleFileModel.vin],@"brandModelNumber":[NSString repleaseNilOrNull:self.vehicleFileModel.type],@"engineNumber":[NSString repleaseNilOrNull:self.vehicleFileModel.engine_no]}];
         }
         
         
@@ -257,10 +258,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
             };
         }
         
-        if (self.model) {
+        if (self.vehicleFileModel) {
             
             //contact,联系人;phoneNumber,手机号;InsurancePeriod,保险期;
-            [cell showData:@{@"contact":self.model.contacts,@"phoneNumber":self.model.phone,@"InsurancePeriod":[NSString repleaseNilOrNull:self.model.insurance_period]}];
+            [cell showData:@{@"contact":self.vehicleFileModel.contacts,@"phoneNumber":self.vehicleFileModel.phone,@"InsurancePeriod":[NSString repleaseNilOrNull:self.vehicleFileModel.insurance_period]}];
         }
         
         return cell;
@@ -308,7 +309,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         make.height.offset(47);
     }];
     
-    self.maintenanceRecordsLabel.text = @"维修记录(0)";
+    self.maintenanceRecordsLabel.text = [[NSString alloc] initWithFormat:@"维修记录(%ld)",self.vehicleFileModel.maintain_count.integerValue];
     
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -316,6 +317,18 @@ typedef NS_ENUM(NSUInteger,ViewState){
         make.left.right.bottom.offset(0);
         make.height.offset(44);
     }];
+}
+
+//添加手势
+-(void)addGesture{
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)viewTaped{
+    
+    [self.view endEditing:YES];
 }
 
 //编辑按钮的响应
@@ -339,22 +352,12 @@ typedef NS_ENUM(NSUInteger,ViewState){
     btn.userInteractionEnabled = YES;
 }
 
-//刷新展示数据
--(void)showData:(VehicleFileModel *)model{
-    
-    self.model = model;
-    [self.tableView reloadData];
-    self.maintenanceRecordsLabel.text = [[NSString alloc] initWithFormat:@"维修记录(%ld)",model.maintain_count.integerValue];
-    
-    NSDictionary * dic = [model mj_keyValues];
-    self.requestModel = [ModifyVehicleFileRequestModel mj_objectWithKeyValues:dic];
-}
 
 //去维修记录页面
 -(void)maintenanceRecordsViewTaped:(UIGestureRecognizer *)gesture{
     
     OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-    vc.car_id = self.model.car_id;
+    vc.vehicleFileModel = self.vehicleFileModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -379,7 +382,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
     [self presentViewController:alert animated:YES completion:^{
         
     }];
-    
     
     btn.userInteractionEnabled = NO;
 }

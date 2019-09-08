@@ -7,8 +7,9 @@
 //
 
 #import "MaintenanceLogCell.h"
+#import "SHTextView.h"
 
-@interface MaintenanceLogCell ()
+@interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate>
 
 @property (nonatomic,strong) UILabel * titleLabel;
 //维修日期
@@ -39,7 +40,7 @@
 @property (nonatomic,strong) UILabel * sixthLineLabel;
 //维修内容
 @property (nonatomic,strong) UILabel * repairContentLabel;
-@property (nonatomic,strong) UITextView * repairContentTF;
+@property (nonatomic,strong) SHTextView * repairContentTF;
 @property (nonatomic,strong) UILabel * seventhLabel;
 //图片上传
 @property (nonatomic,strong) UILabel * imageUploadLabel;
@@ -119,6 +120,7 @@
     if (!_kilometersTF) {
         
         _kilometersTF = [[UITextField alloc] init];
+        _kilometersTF.delegate = self;
         _kilometersTF.font = FONT16;
         _kilometersTF.textColor = Color_333333;
         _kilometersTF.placeholder = @"请输入公里数";
@@ -154,6 +156,7 @@
     if (!_associatedProjectTF) {
         
         _associatedProjectTF = [[UITextField alloc] init];
+        _associatedProjectTF.delegate = self;
         _associatedProjectTF.font = FONT16;
         _associatedProjectTF.textColor = Color_333333;
         _associatedProjectTF.placeholder = @"请选择关联项目";
@@ -201,6 +204,7 @@
     if (!_acceptableTF) {
         
         _acceptableTF = [[UITextField alloc] init];
+        _acceptableTF.delegate = self;
         _acceptableTF.placeholder = @"请输入应收金额";
         _acceptableTF.textColor = Color_333333;
         _acceptableTF.font = FONT16;
@@ -237,6 +241,7 @@
     if (!_receivedTF) {
         
         _receivedTF = [[UITextField alloc] init];
+        _receivedTF.delegate = self;
         _receivedTF.placeholder = @"请输入实收金额";
         _receivedTF.textColor = Color_333333;
         _receivedTF.font = FONT16;
@@ -273,6 +278,7 @@
     if (!_costTF) {
         
         _costTF = [[UITextField alloc] init];
+        _costTF.delegate = self;
         _costTF.placeholder = @"请输入成本";
         _costTF.textColor = Color_333333;
         _costTF.font = FONT16;
@@ -303,13 +309,16 @@
     return _repairContentLabel;
 }
 
--(UITextView *)repairContentTF{
+-(SHTextView *)repairContentTF{
     
     if (!_repairContentTF) {
         
-        _repairContentTF = [[UITextView alloc] init];
-        _repairContentTF.font = FONT16;
+        _repairContentTF = [[SHTextView alloc] init];
+        _repairContentTF.delegate = self;
+        _repairContentTF.textFont = FONT16;
         _repairContentTF.textColor = Color_333333;
+        _repairContentTF.placeholder = @"请输入维修内容";
+//        _repairContentTF.backgroundColor = [UIColor greenColor];
     }
     return _repairContentTF;
 }
@@ -372,11 +381,63 @@
     return self;
 }
 
+#pragma mark  ----  UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.kilometersTF]) {
+        
+        if (self.kmCallBack) {
+            
+            self.kmCallBack(textField.text.floatValue);
+        }
+    }
+    else if ([textField isEqual:self.acceptableTF]){
+        
+        if (self.acceptableCallBack) {
+            
+            self.acceptableCallBack(textField.text.floatValue);
+        }
+    }
+    else if ([textField isEqual:self.receivedTF]){
+        
+        if (self.receivedCallBack) {
+            
+            self.receivedCallBack(textField.text.floatValue);
+        }
+    }
+    else if ([textField isEqual:self.costTF]){
+        
+        if (self.costCallBack) {
+            
+            self.costCallBack(textField.text.floatValue);
+        }
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark  ----  SHTextViewDelegate
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    
+    if (self.contentCallBack) {
+        
+        self.contentCallBack(textView.text);
+    }
+}
+
 #pragma mark  ----  自定义函数
 
-+(float)cellHeight{
++(float)cellHeightWithContent:(NSString *)content andImageCount:(NSUInteger)imageCount{
     
-    return 26 + 16 + 36 + (16 + 18 + 1) * 3 + 18 * 2 + 131 + 76 + 56 + 111;
+    float contentHeight = [[NSString repleaseNilOrNull:content] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
+    
+    return 344 + 17 + contentHeight + 19 + 56 + (imageCount > 2?(111 * 2 + 10):111) + 94;
 }
 
 -(void)drawUI{
@@ -577,7 +638,7 @@
         make.left.equalTo(self.repairContentLabel.mas_right).offset(26);
         make.top.equalTo(self.repairContentLabel.mas_top);
         make.right.offset(-17);
-        make.height.offset(40);
+        make.height.offset(0);
     }];
     
     [self addSubview:self.seventhLabel];
@@ -620,6 +681,14 @@
     self.repairDateTF.text = dic[@"repairDate"];
     self.kilometersTF.text = dic[@"kilometers"];
     self.associatedProjectTF.text = dic[@"associatedProject"];
+    self.repairContentTF.text = dic[@"repairContent"];
+    
+    float repairContentHeight = [dic[@"repairContent"] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
+    [self.repairContentTF mas_updateConstraints:^(MASConstraintMaker *make) {
+       
+        make.height.offset(repairContentHeight);
+    }];
+    
     self.acceptableTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"acceptable"]];
     self.receivedTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"received"]];
     self.costTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"cost"]];

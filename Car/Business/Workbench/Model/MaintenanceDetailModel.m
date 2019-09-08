@@ -1,15 +1,14 @@
 //
-//  MaintenanceRecordsModel.m
+//  MaintenanceDetailModel.m
 //  Car
 //
-//  Created by mac on 2019/9/5.
+//  Created by mac on 2019/9/8.
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "MaintenanceRecordsModel.h"
+#import "MaintenanceDetailModel.h"
 
-@implementation MaintenanceRecordsModel
-
+@implementation MaintenanceDetailModel
 
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     

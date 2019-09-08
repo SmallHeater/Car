@@ -10,6 +10,8 @@
 #import "VehicleFileForDetailVCCell.h"
 #import "MaintenanceLogCell.h"
 #import "VehicleFileModel.h"
+#import "MaintenanceDetailModel.h"
+#import "MaintenanceRecordsModel.h"
 
 
 typedef NS_ENUM(NSUInteger,ViewState){
@@ -25,7 +27,8 @@ typedef NS_ENUM(NSUInteger,ViewState){
 @property (nonatomic,strong) UIButton * editBtn;
 //底部删除，保存按钮view
 @property (nonatomic,strong) UIView * bottomView;
-
+//提交的维修详情模型
+@property (nonatomic,strong) MaintenanceDetailModel * detailModel;
 @end
 
 @implementation MaintenanceRecordsDetailViewController
@@ -48,7 +51,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (!_bottomView) {
         
         _bottomView = [[UIView alloc] init];
-        
+        _bottomView.userInteractionEnabled = YES;
         //删除按钮
         UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteBtn setBackgroundColor:Color_F23E3E];
@@ -87,7 +90,21 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (vehicleFileModel) {
         
         _vehicleFileModel = vehicleFileModel;
-        
+        self.detailModel = [[MaintenanceDetailModel alloc] init];
+        self.detailModel.user_id = vehicleFileModel.user_id;
+        self.detailModel.car_id = vehicleFileModel.car_id;
+//        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+-(void)setMaintenanceRecordsModel:(MaintenanceRecordsModel *)maintenanceRecordsModel{
+    
+    if (maintenanceRecordsModel) {
+     
+        _maintenanceRecordsModel = maintenanceRecordsModel;
+        NSDictionary * dic = [maintenanceRecordsModel mj_keyValues];
+        self.detailModel = [MaintenanceDetailModel mj_objectWithKeyValues:dic];
     }
 }
 
@@ -112,7 +129,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
-    
+    [self addReceivingKeyboard];
     [self drawUI];
 }
 
@@ -129,7 +146,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
     }
     else{
         
-        cellHeight = [MaintenanceLogCell cellHeight];
+        if (self.maintenanceRecordsModel) {
+            
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:self.maintenanceRecordsModel.content andImageCount:0];
+        }
+        else{
+            
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:@"维修内容" andImageCount:0];
+        }
     }
     
     return cellHeight;
@@ -151,8 +175,16 @@ typedef NS_ENUM(NSUInteger,ViewState){
             cell = [[VehicleFileForDetailVCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+    
+        if (self.vehicleFileModel) {
+         
+            [cell showDataWithDic:@{@"numberPlate":self.vehicleFileModel.license_number,@"name":self.vehicleFileModel.contacts,@"carModel":[NSString repleaseNilOrNull:self.vehicleFileModel.type],@"phoneNumber":self.vehicleFileModel.phone}];
+        }
+        else if (self.maintenanceRecordsModel){
+            
+            [cell showDataWithDic:@{@"numberPlate":self.maintenanceRecordsModel.license_number,@"name":self.maintenanceRecordsModel.contacts,@"carModel":[NSString repleaseNilOrNull:self.maintenanceRecordsModel.type],@"phoneNumber":self.maintenanceRecordsModel.phone}];
+        }
         
-        [cell test];
         return cell;
     }
     else if (indexPath.row == 1){
@@ -163,9 +195,65 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
             cell = [[MaintenanceLogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            __weak typeof(self) weakSelf = self;
+            cell.kmCallBack = ^(float value) {
+              
+                weakSelf.detailModel.mileage = [NSNumber numberWithFloat:value];
+            };
+            
+            cell.projectCallBack = ^(float value) {
+              
+                weakSelf.detailModel.related_service = [NSNumber numberWithFloat:value];
+            };
+            
+            cell.acceptableCallBack = ^(float value) {
+                
+                weakSelf.detailModel.receivable = [NSNumber numberWithFloat:value];
+            };
+            
+            cell.receivedCallBack = ^(float value) {
+              
+                weakSelf.detailModel.received = [NSNumber numberWithFloat:value];
+            };
+            
+            cell.costCallBack = ^(float value) {
+              
+                weakSelf.detailModel.cost = [NSNumber numberWithFloat:value];
+            };
+            
+            cell.contentCallBack = ^(NSString * _Nonnull content) {
+              
+                weakSelf.detailModel.content = content;
+            };
         }
         
-        [cell test];
+        if (self.maintenanceRecordsModel) {
+         
+            //关联项目
+            
+            NSString * associatedProject;
+            if (self.maintenanceRecordsModel.related_service.integerValue == 0) {
+                
+                associatedProject = @"保养";
+            }
+            else if (self.maintenanceRecordsModel.related_service.integerValue == 1){
+                
+                associatedProject = @"维修";
+            }
+            else if (self.maintenanceRecordsModel.related_service.integerValue == 2){
+                
+                associatedProject = @"美容洗车";
+            }
+            
+            
+            NSString * acceptable = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.receivable.floatValue];
+            NSString * received = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.received.floatValue];
+            NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.cost.floatValue];
+            [cell showData:@{@"repairDate":self.maintenanceRecordsModel.maintain_day,@"kilometers":[[NSString alloc] initWithFormat:@"%ld",self.maintenanceRecordsModel.mileage.integerValue],@"associatedProject":associatedProject,@"repairContent":self.maintenanceRecordsModel.content,@"acceptable":acceptable,@"received":received,@"cost":cost}];
+
+        }
         return cell;
     }
     return nil;
@@ -201,6 +289,18 @@ typedef NS_ENUM(NSUInteger,ViewState){
     }];
 }
 
+//给view设置收键盘
+-(void)addReceivingKeyboard{
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClicked)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)tapClicked{
+    
+    [self.view endEditing:YES];
+}
+
 //编辑按钮的响应
 -(void)editBtnClicked:(UIButton *)btn{
     
@@ -222,7 +322,25 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)deleteBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    
+    if (self.detailModel) {
+        
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除车辆维修记录警告" message:@"是否要删除车辆维修记录？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        __weak typeof(self) weakSelf = self;
+        UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [weakSelf deleteMaintenanceRecords];
+        }];
+        
+        [alert addAction:cancleAction];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
     btn.userInteractionEnabled = NO;
 }
 
@@ -230,9 +348,90 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)saveBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    
+    [self addMaintenanceRecords];
     btn.userInteractionEnabled = NO;
 }
 
+//添加维修记录
+-(void)addMaintenanceRecords{
+    
+    NSDictionary * bodyParameters = [self.detailModel  mj_keyValues];
+    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainadd,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
+                    
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [weakSelf backBtnClicked:nil];
+                    });
+                }
+                else{
+                    
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+//删除维修记录
+-(void)deleteMaintenanceRecords{
+    
+    NSDictionary * bodyParameters = @{@"user_id":self.detailModel.user_id,@"maintain_id":self.detailModel.maintain_id};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Maintaindelete,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
+                    
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [weakSelf backBtnClicked:nil];
+                    });
+                }
+                else{
+                    
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
 
 @end

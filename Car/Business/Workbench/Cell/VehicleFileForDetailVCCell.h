@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(float)cellHeight;
 
+//numberPlate,车牌;name,联系人姓名;carModel,车型号;phoneNumber,联系人电话;
+-(void)showDataWithDic:(NSDictionary *)dic;
+
 -(void)test;
 
 @end

@@ -55,19 +55,22 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 138;
+    MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
+    MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
+    float cellHeight = [MaintenanceRecordsCell cellHeightWithContent:recordModel.content];
     return cellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 48;
+    return 44;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     MaintenanceRecordsOneDayModel * model = self.dataArray[section];
-    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 48)];
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 44)];
+    headerView.backgroundColor = [UIColor whiteColor];
     UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, MAINWIDTH,32)];
     headerLabel.backgroundColor = [UIColor whiteColor];
     headerLabel.font = BOLDFONT16;
@@ -79,7 +82,10 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
+    MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
     MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    vc.maintenanceRecordsModel = recordModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -105,7 +111,10 @@ static NSString * cellId = @"MaintenanceRecordsCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell test];
+    MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
+    MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
+    
+    [cell showDataWithDic:@{@"numberPlate":recordModel.license_number,@"name":recordModel.contacts,@"carModel":recordModel.type,@"phoneNumber":recordModel.phone,@"MaintenanceContent":recordModel.content}];
     
     return cell;
 }

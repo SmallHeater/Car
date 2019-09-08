@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RevenueCell : UITableViewCell
 
+//numberPlate,车牌号;name,联系人;carModel,车型号;phoneNumber,联系电话;receivable,应收;cost,成本;profit,利润；
+-(void)showDataWithDic:(NSDictionary *)dic;
+
 -(void)test;
 
 @end

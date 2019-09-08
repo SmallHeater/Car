@@ -182,6 +182,19 @@
 
 #pragma mark  ----  自定义函数
 
+//返回cell高度
++(float)cellHeightWithContent:(NSString *)content{
+    
+    float cellHeight = 0;
+    
+    //虚线及以上的高度
+    cellHeight += 81;
+    float contentHeight = [[NSString repleaseNilOrNull:content] heightWithFont:FONT14 andWidth:MAINWIDTH - 31 * 2];
+    cellHeight += contentHeight + 17 + 21;
+    
+    return cellHeight;
+}
+
 -(void)drawUI{
     
     [self addSubview:self.bgView];
@@ -189,7 +202,8 @@
        
         make.left.offset(15);
         make.right.offset(-15);
-        make.top.bottom.offset(0);
+        make.top.offset(9);
+        make.bottom.offset(-9);
     }];
 }
 

@@ -73,7 +73,7 @@
         
         VehicleFileModel * model = self.dataArray[indexPath.row - 1];
         VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-        [vc showData:model];
+        vc.vehicleFileModel = model;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

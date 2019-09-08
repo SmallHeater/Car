@@ -56,6 +56,7 @@
         _numberPlateLabel = [[UILabel alloc] init];
         _numberPlateLabel.font = BOLDFONT20;
         _numberPlateLabel.textColor = [UIColor whiteColor];
+//        _numberPlateLabel.backgroundColor = [UIColor greenColor];
     }
     return _numberPlateLabel;
 }
@@ -79,6 +80,7 @@
         _carModelLabel = [[UILabel alloc] init];
         _carModelLabel.font = FONT14;
         _carModelLabel.textColor = [UIColor whiteColor];
+//        _carModelLabel.backgroundColor = [UIColor greenColor];
     }
     return _carModelLabel;
 }
@@ -153,10 +155,10 @@
         make.height.offset(16);
     }];
     
-    [self addSubview:self.carModelLabel];
+    [self.bgImageView addSubview:self.carModelLabel];
     [self.carModelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.offset(24);
+        make.left.offset(23);
         make.top.equalTo(self.numberPlateLabel.mas_bottom).offset(17);
         make.width.offset(MAINWIDTH - 32 - 100 - 36);
         make.height.offset(14);
