@@ -10,7 +10,9 @@
 #import "VehicleInformationCell.h"
 #import "DriverInformationCell.h"
 #import "OneCarMaintenanceRecordsViewController.h"
-
+#import "VehicleFileModel.h"
+#import "ModifyVehicleFileRequestModel.h"
+#import "UserInforController.h"
 
 typedef NS_ENUM(NSUInteger,ViewState){
     
@@ -31,7 +33,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
 @property (nonatomic,strong) UILabel * maintenanceRecordsLabel;
 //底部删除，保存按钮view
 @property (nonatomic,strong) UIView * bottomView;
-
+//数据模型
+@property (nonatomic,strong) VehicleFileModel * model;
+//修改请求模型
+@property (nonatomic,strong) ModifyVehicleFileRequestModel * requestModel;
 
 @end
 
@@ -198,9 +203,31 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            __weak typeof(self) weakSelf = self;
+            cell.enCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.engine_no = [NSString repleaseNilOrNull:result];
+            };
+            cell.bmnCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.type  = [NSString repleaseNilOrNull:result];
+            };
+            cell.vinCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.vin = [NSString repleaseNilOrNull:result];
+            };
+            cell.npnCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.license_number  = [NSString repleaseNilOrNull:result];
+            };
         }
         
-        [cell test];
+        if (self.model) {
+            
+            [cell showDataWithDic:@{@"numberPlateNumber":self.model.license_number,@"vehicleIdentificationNumber":[NSString repleaseNilOrNull:self.model.vin],@"brandModelNumber":[NSString repleaseNilOrNull:self.model.type],@"engineNumber":[NSString repleaseNilOrNull:self.model.engine_no]}];
+        }
+        
         
         return cell;
     }
@@ -212,9 +239,29 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            __weak typeof(self) weakSelf = self;
+            cell.contactsCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.contacts = [NSString repleaseNilOrNull:result];
+            };
+            
+            cell.phoneNumberCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.phone = [NSString repleaseNilOrNull:result];
+            };
+            
+            cell.dataCallBack = ^(NSString * _Nonnull result) {
+                
+                weakSelf.requestModel.insurance_period = [NSString repleaseNilOrNull:result];
+            };
         }
         
-        [cell test];
+        if (self.model) {
+            
+            //contact,联系人;phoneNumber,手机号;InsurancePeriod,保险期;
+            [cell showData:@{@"contact":self.model.contacts,@"phoneNumber":self.model.phone,@"InsurancePeriod":[NSString repleaseNilOrNull:self.model.insurance_period]}];
+        }
         
         return cell;
     }
@@ -261,7 +308,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         make.height.offset(47);
     }];
     
-    self.maintenanceRecordsLabel.text = @"维修记录(10)";
+    self.maintenanceRecordsLabel.text = @"维修记录(0)";
     
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -292,11 +339,22 @@ typedef NS_ENUM(NSUInteger,ViewState){
     btn.userInteractionEnabled = YES;
 }
 
+//刷新展示数据
+-(void)showData:(VehicleFileModel *)model{
+    
+    self.model = model;
+    [self.tableView reloadData];
+    self.maintenanceRecordsLabel.text = [[NSString alloc] initWithFormat:@"维修记录(%ld)",model.maintain_count.integerValue];
+    
+    NSDictionary * dic = [model mj_keyValues];
+    self.requestModel = [ModifyVehicleFileRequestModel mj_objectWithKeyValues:dic];
+}
 
 //去维修记录页面
 -(void)maintenanceRecordsViewTaped:(UIGestureRecognizer *)gesture{
     
     OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    vc.car_id = self.model.car_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -304,6 +362,24 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)deleteBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除车辆档案警告" message:@"是否要删除车辆档案？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [weakSelf deleteModifyVehicleFile];
+    }];
+    
+    [alert addAction:cancleAction];
+    [alert addAction:sureAction];
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
     
     btn.userInteractionEnabled = NO;
 }
@@ -313,8 +389,112 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     btn.userInteractionEnabled = NO;
     
+    //车牌，联系人，手机号为必填项
+    if ([NSString strIsEmpty:self.requestModel.license_number]) {
+        
+        [MBProgressHUD wj_showError:@"请输入车牌号"];
+    }
+    else if ([NSString strIsEmpty:self.requestModel.contacts]){
+        
+        [MBProgressHUD wj_showError:@"请输入联系人"];
+    }
+    else if ([NSString strIsEmpty:self.requestModel.phone] || self.requestModel.phone.length != 11){
+        
+        [MBProgressHUD wj_showError:@"请输入正确的手机号"];
+    }
+    else{
+        
+        [self modifyVehicleFile];
+    }
+    
     btn.userInteractionEnabled = NO;
 }
 
+//修改车辆档案
+-(void)modifyVehicleFile{
+
+    NSDictionary * tempBodyParameters = [self.requestModel mj_keyValues];
+    NSMutableDictionary * bodyParameters = [[NSMutableDictionary alloc] initWithDictionary:tempBodyParameters];
+    [bodyParameters setObject:bodyParameters[@"id"] forKey:@"car_id"];
+    [bodyParameters removeObjectForKey:@"id"];
+    
+    
+    NSDictionary * configurationDic = @{@"requestUrlStr":Caredit,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
+                    
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [weakSelf backBtnClicked:nil];
+                    });
+                }
+                else{
+                    
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+//删除车辆档案
+-(void)deleteModifyVehicleFile{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"car_id":self.requestModel.car_id};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Deletecar,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
+                    
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [weakSelf backBtnClicked:nil];
+                    });
+                }
+                else{
+                    
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
 
 @end

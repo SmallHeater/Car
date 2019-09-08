@@ -8,6 +8,8 @@
 
 #import "RepaidViewController.h"
 #import "RepaidCell.h"
+#import "UserInforController.h"
+#import "UnpaidModel.h"
 
 static NSString * cellId = @"RepaidCell";
 @interface RepaidViewController ()
@@ -23,6 +25,7 @@ static NSString * cellId = @"RepaidCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -58,4 +61,50 @@ static NSString * cellId = @"RepaidCell";
     
     self.tableView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight]);
 }
+
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    NSArray * arr = dataDic[@"list"];
+                    for (NSDictionary * dic in arr) {
+                        
+                        UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
+                        [weakSelf.dataArray addObject:model];
+                    }
+                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
+                }
+                else{
+                    
+                    //异常
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
 @end

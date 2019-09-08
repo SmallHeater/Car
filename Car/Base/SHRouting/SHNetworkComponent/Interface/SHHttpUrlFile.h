@@ -29,7 +29,12 @@
 #define Maintainlist [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintainlist",CARDOMAIN]
 //上传文件
 #define Upload [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/upload",CARDOMAIN]
-
+//回款管理
+#define Payment [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/debtlist",CARDOMAIN]
+//车辆档案修改
+#define Caredit [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/caredit",CARDOMAIN]
+//删除车牌
+#define Deletecar [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/deletecar",CARDOMAIN]
 
 
 #endif /* HttpUrlFile_h */

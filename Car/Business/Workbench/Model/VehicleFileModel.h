@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VehicleFileModel : NSObject
 
 //车辆ID
-@property (nonatomic,strong) NSString * carId;
+@property (nonatomic,strong) NSString * car_id;
 @property (nonatomic,strong) NSString * user_id;
 @property (nonatomic,strong) NSString * license_number;
 @property (nonatomic,strong) NSString * vin;

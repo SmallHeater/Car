@@ -8,7 +8,7 @@
 
 #import "RepaidCell.h"
 
-@interface RepaidCell ()
+@interface RepaidCell ()<UITableViewDelegate,UITableViewDataSource>
 
 //背景view
 @property (nonatomic,strong) UIView * bgView;
@@ -29,6 +29,7 @@
 //分割线
 @property (nonatomic,strong) UILabel * firstLineLabel;
 
+@property (nonatomic,strong) UITableView * tableView;
 
 @end
 
@@ -191,6 +192,27 @@
     return _firstLineLabel;
 }
 
+-(UITableView *)tableView{
+    
+    if (!_tableView) {
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 0, 0) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
+        //取消contentSize和contentOffset的改的，解决闪屏问题
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.scrollEnabled = YES;
+        //        _tableView.backgroundColor = [UIColor redColor];
+    }
+    return _tableView;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -201,6 +223,27 @@
         [self drawUI];
     }
     return self;
+}
+
+#pragma mark  ----  代理
+
+#pragma mark  ----  UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 38;
+}
+
+#pragma mark  ----  UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return nil;
 }
 
 #pragma mark  ----  自定义函数

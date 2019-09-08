@@ -43,6 +43,21 @@
 		0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
+		0422D966232291A900AF687D /* UnpaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D965232291A900AF687D /* UnpaidModel.m */; };
+		0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D96823229F4300AF687D /* ReturnRecordCell.m */; };
+		0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D97D23233C5800AF687D /* JHNewUploadLoading.m */; };
+		0422D98D23233C5800AF687D /* NewUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98323233C5800AF687D /* NewUploadController.m */; };
+		0422D98E23233C5800AF687D /* NewImageCompressionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98423233C5800AF687D /* NewImageCompressionController.m */; };
+		0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98F23233C9100AF687D /* SHUploadComponent.m */; };
+		0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D99223233D9300AF687D /* SHUploadConfigurationModel.m */; };
+		0422D99723233F1300AF687D /* SHUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D99623233F1300AF687D /* SHUploadModel.m */; };
+		0422D99A2323404600AF687D /* SHUploadRecordingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D9982323404600AF687D /* SHUploadRecordingModel.m */; };
+		0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D99E2323506E00AF687D /* SHUploadMiddleware.m */; };
+		0422D9A62323C76100AF687D /* BaiduBCESTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A22323C76100AF687D /* BaiduBCESTS.framework */; };
+		0422D9A72323C76100AF687D /* BaiduBCEBasic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A32323C76100AF687D /* BaiduBCEBasic.framework */; };
+		0422D9A82323C76100AF687D /* BaiduBCEVOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A42323C76100AF687D /* BaiduBCEVOD.framework */; };
+		0422D9A92323C76100AF687D /* BaiduBCEBOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */; };
+		0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D9AC2323C7B300AF687D /* BaiDuBosControl.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -59,6 +74,7 @@
 		046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA02312C56000C520D8 /* VehicleFileCell.m */; };
 		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
 		046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */; };
+		04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
@@ -200,6 +216,32 @@
 		0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsOneDayModel.m; sourceTree = "<group>"; };
 		0419F201232277A100E76099 /* RepaidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidCell.m; sourceTree = "<group>"; };
 		0419F202232277A100E76099 /* RepaidCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidCell.h; sourceTree = "<group>"; };
+		0422D964232291A900AF687D /* UnpaidModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidModel.h; sourceTree = "<group>"; };
+		0422D965232291A900AF687D /* UnpaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidModel.m; sourceTree = "<group>"; };
+		0422D96723229F4200AF687D /* ReturnRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReturnRecordCell.h; sourceTree = "<group>"; };
+		0422D96823229F4300AF687D /* ReturnRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReturnRecordCell.m; sourceTree = "<group>"; };
+		0422D97923233C5800AF687D /* JHNewUploadLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHNewUploadLoading.h; sourceTree = "<group>"; };
+		0422D97D23233C5800AF687D /* JHNewUploadLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHNewUploadLoading.m; sourceTree = "<group>"; };
+		0422D98023233C5800AF687D /* NewUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUploadController.h; sourceTree = "<group>"; };
+		0422D98123233C5800AF687D /* NewImageCompressionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewImageCompressionController.h; sourceTree = "<group>"; };
+		0422D98323233C5800AF687D /* NewUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUploadController.m; sourceTree = "<group>"; };
+		0422D98423233C5800AF687D /* NewImageCompressionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewImageCompressionController.m; sourceTree = "<group>"; };
+		0422D98F23233C9100AF687D /* SHUploadComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadComponent.m; sourceTree = "<group>"; };
+		0422D99023233C9100AF687D /* SHUploadComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadComponent.h; sourceTree = "<group>"; };
+		0422D99223233D9300AF687D /* SHUploadConfigurationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadConfigurationModel.m; sourceTree = "<group>"; };
+		0422D99323233D9300AF687D /* SHUploadConfigurationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadConfigurationModel.h; sourceTree = "<group>"; };
+		0422D99523233F1300AF687D /* SHUploadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadModel.h; sourceTree = "<group>"; };
+		0422D99623233F1300AF687D /* SHUploadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadModel.m; sourceTree = "<group>"; };
+		0422D9982323404600AF687D /* SHUploadRecordingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadRecordingModel.m; sourceTree = "<group>"; };
+		0422D9992323404600AF687D /* SHUploadRecordingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadRecordingModel.h; sourceTree = "<group>"; };
+		0422D99E2323506E00AF687D /* SHUploadMiddleware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadMiddleware.m; sourceTree = "<group>"; };
+		0422D99F2323506E00AF687D /* SHUploadMiddleware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadMiddleware.h; sourceTree = "<group>"; };
+		0422D9A22323C76100AF687D /* BaiduBCESTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCESTS.framework; sourceTree = "<group>"; };
+		0422D9A32323C76100AF687D /* BaiduBCEBasic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCEBasic.framework; sourceTree = "<group>"; };
+		0422D9A42323C76100AF687D /* BaiduBCEVOD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCEVOD.framework; sourceTree = "<group>"; };
+		0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCEBOS.framework; sourceTree = "<group>"; };
+		0422D9AB2323C7B300AF687D /* BaiDuBosControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaiDuBosControl.h; sourceTree = "<group>"; };
+		0422D9AC2323C7B300AF687D /* BaiDuBosControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaiDuBosControl.m; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -233,6 +275,8 @@
 		046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastPickUpViewController.m; sourceTree = "<group>"; };
 		046DCBA52312D27F00C520D8 /* IdentificationDrivingLicenseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentificationDrivingLicenseCell.h; sourceTree = "<group>"; };
 		046DCBA62312D27F00C520D8 /* IdentificationDrivingLicenseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentificationDrivingLicenseCell.m; sourceTree = "<group>"; };
+		04715B0923249F8B0008A3C2 /* ModifyVehicleFileRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyVehicleFileRequestModel.h; sourceTree = "<group>"; };
+		04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyVehicleFileRequestModel.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
@@ -327,10 +371,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0422D9A72323C76100AF687D /* BaiduBCEBasic.framework in Frameworks */,
 				62072C42231BC7E50089AD43 /* AipBase.framework in Frameworks */,
+				0422D9A62323C76100AF687D /* BaiduBCESTS.framework in Frameworks */,
 				62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */,
 				30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */,
 				62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */,
+				0422D9A82323C76100AF687D /* BaiduBCEVOD.framework in Frameworks */,
+				0422D9A92323C76100AF687D /* BaiduBCEBOS.framework in Frameworks */,
 				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
 				62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */,
 				62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */,
@@ -482,6 +530,7 @@
 		04048568230C205F00EF17C8 /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
+				0422D9AA2323C79B00AF687D /* BaiDuBos */,
 				628AF59A2318A97F007BC0F8 /* HighOrderPositioning */,
 				0404856B230C205F00EF17C8 /* UIScreenControl.h */,
 				04048569230C205F00EF17C8 /* UIScreenControl.m */,
@@ -492,6 +541,7 @@
 		0404856D230C205F00EF17C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0422D9A12323C76100AF687D /* BaiDuBos */,
 				62072C37231BC28F0089AD43 /* BaiDuAI */,
 				046DCB8C231272A900C520D8 /* TXScrollLabelView */,
 			);
@@ -735,6 +785,7 @@
 		040485B72311096600EF17C8 /* SHRouting */ = {
 			isa = PBXGroup;
 			children = (
+				0422D96A23233C5800AF687D /* SHUploadComponent */,
 				04620C43231BFAA000AA6317 /* SHAlbumComponent */,
 				04620C44231BFAA000AA6317 /* SHCacheManagementComponent */,
 				04620C4C231BFAA000AA6317 /* SHCameraComponent */,
@@ -758,6 +809,8 @@
 		040485B92311096700EF17C8 /* middleware */ = {
 			isa = PBXGroup;
 			children = (
+				0422D99F2323506E00AF687D /* SHUploadMiddleware.h */,
+				0422D99E2323506E00AF687D /* SHUploadMiddleware.m */,
 				040485CA2311096700EF17C8 /* SHNetworkRequestMiddleware.h */,
 				040485C12311096700EF17C8 /* SHNetworkRequestMiddleware.m */,
 				62929BA223193A130018DE07 /* SHCacheManagementMiddleware.h */,
@@ -834,6 +887,8 @@
 				62072C26231B6C8D0089AD43 /* ProfitStatisticsCell.m */,
 				043D5ABB231D456C00CC8B35 /* UnpaidCell.h */,
 				043D5ABC231D456C00CC8B35 /* UnpaidCell.m */,
+				0422D96723229F4200AF687D /* ReturnRecordCell.h */,
+				0422D96823229F4300AF687D /* ReturnRecordCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -845,6 +900,87 @@
 				62072C09231A55C20089AD43 /* UIView */,
 			);
 			path = CarouselView;
+			sourceTree = "<group>";
+		};
+		0422D96A23233C5800AF687D /* SHUploadComponent */ = {
+			isa = PBXGroup;
+			children = (
+				0422D96B23233C5800AF687D /* Interface */,
+				0422D96E23233C5800AF687D /* UIViewController */,
+				0422D97123233C5800AF687D /* Model */,
+				0422D97823233C5800AF687D /* View */,
+				0422D97E23233C5800AF687D /* Control */,
+			);
+			path = SHUploadComponent;
+			sourceTree = "<group>";
+		};
+		0422D96B23233C5800AF687D /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0422D99023233C9100AF687D /* SHUploadComponent.h */,
+				0422D98F23233C9100AF687D /* SHUploadComponent.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0422D96E23233C5800AF687D /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		0422D97123233C5800AF687D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0422D9992323404600AF687D /* SHUploadRecordingModel.h */,
+				0422D9982323404600AF687D /* SHUploadRecordingModel.m */,
+				0422D99523233F1300AF687D /* SHUploadModel.h */,
+				0422D99623233F1300AF687D /* SHUploadModel.m */,
+				0422D99323233D9300AF687D /* SHUploadConfigurationModel.h */,
+				0422D99223233D9300AF687D /* SHUploadConfigurationModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0422D97823233C5800AF687D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0422D97923233C5800AF687D /* JHNewUploadLoading.h */,
+				0422D97D23233C5800AF687D /* JHNewUploadLoading.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0422D97E23233C5800AF687D /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0422D98023233C5800AF687D /* NewUploadController.h */,
+				0422D98323233C5800AF687D /* NewUploadController.m */,
+				0422D98123233C5800AF687D /* NewImageCompressionController.h */,
+				0422D98423233C5800AF687D /* NewImageCompressionController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0422D9A12323C76100AF687D /* BaiDuBos */ = {
+			isa = PBXGroup;
+			children = (
+				0422D9A22323C76100AF687D /* BaiduBCESTS.framework */,
+				0422D9A32323C76100AF687D /* BaiduBCEBasic.framework */,
+				0422D9A42323C76100AF687D /* BaiduBCEVOD.framework */,
+				0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */,
+			);
+			path = BaiDuBos;
+			sourceTree = "<group>";
+		};
+		0422D9AA2323C79B00AF687D /* BaiDuBos */ = {
+			isa = PBXGroup;
+			children = (
+				0422D9AB2323C7B300AF687D /* BaiDuBosControl.h */,
+				0422D9AC2323C7B300AF687D /* BaiDuBosControl.m */,
+			);
+			path = BaiDuBos;
 			sourceTree = "<group>";
 		};
 		04620C41231BFA3300AA6317 /* Base */ = {
@@ -1150,6 +1286,10 @@
 				0419F1F423214BFE00E76099 /* MaintenanceRecordsModel.m */,
 				0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */,
 				0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */,
+				0422D964232291A900AF687D /* UnpaidModel.h */,
+				0422D965232291A900AF687D /* UnpaidModel.m */,
+				04715B0923249F8B0008A3C2 /* ModifyVehicleFileRequestModel.h */,
+				04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1290,12 +1430,14 @@
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
+				0422D966232291A900AF687D /* UnpaidModel.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
+				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
@@ -1309,6 +1451,7 @@
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */,
 				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
 				62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */,
 				62072C36231B77D10089AD43 /* SHMultipleSwitchingItemModel.m in Sources */,
@@ -1316,11 +1459,14 @@
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
+				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F523214BFE00E76099 /* MaintenanceRecordsModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
+				0422D98E23233C5800AF687D /* NewImageCompressionController.m in Sources */,
+				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
@@ -1334,14 +1480,17 @@
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
+				0422D99A2323404600AF687D /* SHUploadRecordingModel.m in Sources */,
 				043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
+				0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
 				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
 				04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */,
+				0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
 				62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
@@ -1354,6 +1503,7 @@
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
+				0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */,
 				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
@@ -1364,9 +1514,11 @@
 				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */,
+				0422D98D23233C5800AF687D /* NewUploadController.m in Sources */,
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
+				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
@@ -1521,6 +1673,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
 					"$(PROJECT_DIR)/Car/Base/SHRouting/SHCameraComponent/Lib/opencv",
+					"$(PROJECT_DIR)/Car/Lib/BaiDuBos",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
@@ -1547,6 +1700,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
 					"$(PROJECT_DIR)/Car/Base/SHRouting/SHCameraComponent/Lib/opencv",
+					"$(PROJECT_DIR)/Car/Lib/BaiDuBos",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;

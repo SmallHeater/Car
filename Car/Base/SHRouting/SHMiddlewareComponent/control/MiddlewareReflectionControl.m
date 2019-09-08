@@ -49,6 +49,8 @@
         [_reflectionDic setObject:@"SHCacheManagementMiddleware" forKey:@"Cache"];
         //相机相关业务
         [_reflectionDic setObject:@"SHCameraMiddleware" forKey:@"Camera"];
+        //上传相关业务
+        [_reflectionDic setObject:@"SHUploadMiddleware" forKey:@"UploadComponent"];
     }
     return _reflectionDic;
 }

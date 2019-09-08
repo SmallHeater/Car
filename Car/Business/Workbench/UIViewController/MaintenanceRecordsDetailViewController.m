@@ -9,6 +9,8 @@
 #import "MaintenanceRecordsDetailViewController.h"
 #import "VehicleFileForDetailVCCell.h"
 #import "MaintenanceLogCell.h"
+#import "VehicleFileModel.h"
+
 
 typedef NS_ENUM(NSUInteger,ViewState){
     
@@ -78,6 +80,15 @@ typedef NS_ENUM(NSUInteger,ViewState){
         }];
     }
     return _bottomView;
+}
+
+-(void)setVehicleFileModel:(VehicleFileModel *)vehicleFileModel{
+    
+    if (vehicleFileModel) {
+        
+        _vehicleFileModel = vehicleFileModel;
+        
+    }
 }
 
 #pragma mark  ----  SET

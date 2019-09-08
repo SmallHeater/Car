@@ -8,6 +8,6 @@ pod 'SDWebImage'
 pod 'MJExtension'
 pod 'MJRefresh'
 pod 'MBProgressHUD+WJExtension'
-
+pod 'AFNetworking'
 
 end

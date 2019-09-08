@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
   - AMapFoundation (1.5.7)
   - AMapLocation (2.6.2):
     - AMapFoundation (~> 1.4)
@@ -17,6 +32,7 @@ PODS:
   - SDWebImage/Core (5.0.6)
 
 DEPENDENCIES:
+  - AFNetworking
   - AMapLocation
   - Masonry
   - "MBProgressHUD+WJExtension"
@@ -28,6 +44,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AFNetworking
     - AMapFoundation
     - AMapLocation
     - Masonry
@@ -39,6 +56,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AMapFoundation: 216d58448c80356434ac4332250a8fdb2f5c4d1e
   AMapLocation: 89a7e4eb6040d32ba73c77a4966ecc66e46aa7c3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -49,6 +67,6 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
-PODFILE CHECKSUM: ec38c868e7f1ba7b583880356187593b8ce0b3b0
+PODFILE CHECKSUM: 09ec40c7f3a4a82602f020b75fff62573b7d7d61
 
 COCOAPODS: 1.5.3

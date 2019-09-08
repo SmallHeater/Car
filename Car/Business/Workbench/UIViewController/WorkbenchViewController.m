@@ -22,6 +22,8 @@
 #import "VehicleFileViewController.h"
 #import "PaymentManagementViewController.h"
 #import "BusinessSummaryViewController.h"
+#import "BaiDuBosControl.h"
+
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
 
@@ -253,8 +255,16 @@
     }
     if (vc) {
         
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([vc isKindOfClass:[FastPickUpViewController class]]) {
+
+            UIImage * image = [UIImage imageNamed:@"verificationCode"];
+            [[BaiDuBosControl sharedManager] uoploadImage:image];
+        }
+        else{
+         
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

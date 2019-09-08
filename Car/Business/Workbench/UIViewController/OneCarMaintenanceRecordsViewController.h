@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class VehicleFileModel;
+
 @interface OneCarMaintenanceRecordsViewController : BaseTableViewController
+
+//车辆ID
+@property (nonatomic,strong) VehicleFileModel * vehicleFileModel;
 
 @end
 
