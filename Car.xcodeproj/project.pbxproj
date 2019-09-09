@@ -47,7 +47,6 @@
 		0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D96823229F4300AF687D /* ReturnRecordCell.m */; };
 		0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D97D23233C5800AF687D /* JHNewUploadLoading.m */; };
 		0422D98D23233C5800AF687D /* NewUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98323233C5800AF687D /* NewUploadController.m */; };
-		0422D98E23233C5800AF687D /* NewImageCompressionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98423233C5800AF687D /* NewImageCompressionController.m */; };
 		0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D98F23233C9100AF687D /* SHUploadComponent.m */; };
 		0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D99223233D9300AF687D /* SHUploadConfigurationModel.m */; };
 		0422D99723233F1300AF687D /* SHUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D99623233F1300AF687D /* SHUploadModel.m */; };
@@ -58,6 +57,22 @@
 		0422D9A82323C76100AF687D /* BaiduBCEVOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A42323C76100AF687D /* BaiduBCEVOD.framework */; };
 		0422D9A92323C76100AF687D /* BaiduBCEBOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */; };
 		0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D9AC2323C7B300AF687D /* BaiDuBosControl.m */; };
+		0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF5E23267EB1002CD639 /* SHPictureSelectionMiddleware.m */; };
+		0432BF8E23267F2D002CD639 /* SHPictureSelectionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF8B23267F2D002CD639 /* SHPictureSelectionComponent.m */; };
+		0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF902326813C002CD639 /* SHPictureSelectionController.m */; };
+		0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF922326818C002CD639 /* SHImageCollectionViewCell.m */; };
+		0432BF972326818C002CD639 /* SHVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF942326818C002CD639 /* SHVideoCollectionViewCell.m */; };
+		0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF99232681D1002CD639 /* SHPictureSelectionViewController.m */; };
+		0432BFA323268223002CD639 /* SHPictureSelectionComponentInitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF9B23268223002CD639 /* SHPictureSelectionComponentInitModel.m */; };
+		0432BFA423268223002CD639 /* SHAssetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF9C23268223002CD639 /* SHAssetBaseModel.m */; };
+		0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BF9F23268223002CD639 /* SHAssetVideoModel.m */; };
+		0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFA223268223002CD639 /* SHAssetImageModel.m */; };
+		0432BFAC2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFAA2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m */; };
+		0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFAF2326951F002CD639 /* SHBigPictureBrowsing.m */; };
+		0432BFBE2326951F002CD639 /* BigPictureBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFB32326951F002CD639 /* BigPictureBrowsing.m */; };
+		0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFB72326951F002CD639 /* BigImageViewCollectionViewCell.m */; };
+		0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFC2232696F8002CD639 /* ImageCompressionController.m */; };
+		0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -225,9 +240,7 @@
 		0422D97923233C5800AF687D /* JHNewUploadLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHNewUploadLoading.h; sourceTree = "<group>"; };
 		0422D97D23233C5800AF687D /* JHNewUploadLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHNewUploadLoading.m; sourceTree = "<group>"; };
 		0422D98023233C5800AF687D /* NewUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUploadController.h; sourceTree = "<group>"; };
-		0422D98123233C5800AF687D /* NewImageCompressionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewImageCompressionController.h; sourceTree = "<group>"; };
 		0422D98323233C5800AF687D /* NewUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUploadController.m; sourceTree = "<group>"; };
-		0422D98423233C5800AF687D /* NewImageCompressionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewImageCompressionController.m; sourceTree = "<group>"; };
 		0422D98F23233C9100AF687D /* SHUploadComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadComponent.m; sourceTree = "<group>"; };
 		0422D99023233C9100AF687D /* SHUploadComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUploadComponent.h; sourceTree = "<group>"; };
 		0422D99223233D9300AF687D /* SHUploadConfigurationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUploadConfigurationModel.m; sourceTree = "<group>"; };
@@ -244,6 +257,38 @@
 		0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCEBOS.framework; sourceTree = "<group>"; };
 		0422D9AB2323C7B300AF687D /* BaiDuBosControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaiDuBosControl.h; sourceTree = "<group>"; };
 		0422D9AC2323C7B300AF687D /* BaiDuBosControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaiDuBosControl.m; sourceTree = "<group>"; };
+		0432BF5D23267EB1002CD639 /* SHPictureSelectionMiddleware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPictureSelectionMiddleware.h; sourceTree = "<group>"; };
+		0432BF5E23267EB1002CD639 /* SHPictureSelectionMiddleware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPictureSelectionMiddleware.m; sourceTree = "<group>"; };
+		0432BF8B23267F2D002CD639 /* SHPictureSelectionComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPictureSelectionComponent.m; sourceTree = "<group>"; };
+		0432BF8D23267F2D002CD639 /* SHPictureSelectionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPictureSelectionComponent.h; sourceTree = "<group>"; };
+		0432BF8F2326813C002CD639 /* SHPictureSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPictureSelectionController.h; sourceTree = "<group>"; };
+		0432BF902326813C002CD639 /* SHPictureSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPictureSelectionController.m; sourceTree = "<group>"; };
+		0432BF922326818C002CD639 /* SHImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHImageCollectionViewCell.m; sourceTree = "<group>"; };
+		0432BF932326818C002CD639 /* SHVideoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHVideoCollectionViewCell.h; sourceTree = "<group>"; };
+		0432BF942326818C002CD639 /* SHVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHVideoCollectionViewCell.m; sourceTree = "<group>"; };
+		0432BF952326818C002CD639 /* SHImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageCollectionViewCell.h; sourceTree = "<group>"; };
+		0432BF98232681D1002CD639 /* SHPictureSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPictureSelectionViewController.h; sourceTree = "<group>"; };
+		0432BF99232681D1002CD639 /* SHPictureSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPictureSelectionViewController.m; sourceTree = "<group>"; };
+		0432BF9B23268223002CD639 /* SHPictureSelectionComponentInitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPictureSelectionComponentInitModel.m; sourceTree = "<group>"; };
+		0432BF9C23268223002CD639 /* SHAssetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAssetBaseModel.m; sourceTree = "<group>"; };
+		0432BF9D23268223002CD639 /* SHAssetVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAssetVideoModel.h; sourceTree = "<group>"; };
+		0432BF9E23268223002CD639 /* SHAssetImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAssetImageModel.h; sourceTree = "<group>"; };
+		0432BF9F23268223002CD639 /* SHAssetVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAssetVideoModel.m; sourceTree = "<group>"; };
+		0432BFA023268223002CD639 /* SHPictureSelectionComponentInitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPictureSelectionComponentInitModel.h; sourceTree = "<group>"; };
+		0432BFA123268223002CD639 /* SHAssetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAssetBaseModel.h; sourceTree = "<group>"; };
+		0432BFA223268223002CD639 /* SHAssetImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAssetImageModel.m; sourceTree = "<group>"; };
+		0432BFAA2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBigPictureBrowsingMiddleware.m; sourceTree = "<group>"; };
+		0432BFAB2326949B002CD639 /* SHBigPictureBrowsingMiddleware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBigPictureBrowsingMiddleware.h; sourceTree = "<group>"; };
+		0432BFAF2326951F002CD639 /* SHBigPictureBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBigPictureBrowsing.m; sourceTree = "<group>"; };
+		0432BFB02326951F002CD639 /* SHBigPictureBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBigPictureBrowsing.h; sourceTree = "<group>"; };
+		0432BFB32326951F002CD639 /* BigPictureBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigPictureBrowsing.m; sourceTree = "<group>"; };
+		0432BFB42326951F002CD639 /* BigPictureBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigPictureBrowsing.h; sourceTree = "<group>"; };
+		0432BFB62326951F002CD639 /* BigImageViewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigImageViewCollectionViewCell.h; sourceTree = "<group>"; };
+		0432BFB72326951F002CD639 /* BigImageViewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigImageViewCollectionViewCell.m; sourceTree = "<group>"; };
+		0432BFC2232696F8002CD639 /* ImageCompressionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCompressionController.m; sourceTree = "<group>"; };
+		0432BFC3232696F8002CD639 /* ImageCompressionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCompressionController.h; sourceTree = "<group>"; };
+		0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelAndLabelView.m; sourceTree = "<group>"; };
+		0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelAndLabelView.h; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -461,7 +506,7 @@
 		04048553230C205F00EF17C8 /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				04620C41231BFA3300AA6317 /* Base */,
+				0432BFC8232698F8002CD639 /* Base */,
 				040485A6230ECC9400EF17C8 /* Account */,
 				04048580230C24D200EF17C8 /* Forum */,
 				04048582230C24D200EF17C8 /* Home */,
@@ -544,6 +589,8 @@
 		04048568230C205F00EF17C8 /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
+				0432BFC3232696F8002CD639 /* ImageCompressionController.h */,
+				0432BFC2232696F8002CD639 /* ImageCompressionController.m */,
 				0422D9AA2323C79B00AF687D /* BaiDuBos */,
 				628AF59A2318A97F007BC0F8 /* HighOrderPositioning */,
 				0404856B230C205F00EF17C8 /* UIScreenControl.h */,
@@ -799,6 +846,8 @@
 		040485B72311096600EF17C8 /* SHRouting */ = {
 			isa = PBXGroup;
 			children = (
+				0432BFAD2326951F002CD639 /* SHBigPictureBrowsing */,
+				0432BF6023267F03002CD639 /* SHPictureSelectionComponent */,
 				0422D96A23233C5800AF687D /* SHUploadComponent */,
 				04620C43231BFAA000AA6317 /* SHAlbumComponent */,
 				04620C44231BFAA000AA6317 /* SHCacheManagementComponent */,
@@ -823,6 +872,10 @@
 		040485B92311096700EF17C8 /* middleware */ = {
 			isa = PBXGroup;
 			children = (
+				0432BFAB2326949B002CD639 /* SHBigPictureBrowsingMiddleware.h */,
+				0432BFAA2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m */,
+				0432BF5D23267EB1002CD639 /* SHPictureSelectionMiddleware.h */,
+				0432BF5E23267EB1002CD639 /* SHPictureSelectionMiddleware.m */,
 				0422D99F2323506E00AF687D /* SHUploadMiddleware.h */,
 				0422D99E2323506E00AF687D /* SHUploadMiddleware.m */,
 				040485CA2311096700EF17C8 /* SHNetworkRequestMiddleware.h */,
@@ -971,8 +1024,6 @@
 			children = (
 				0422D98023233C5800AF687D /* NewUploadController.h */,
 				0422D98323233C5800AF687D /* NewUploadController.m */,
-				0422D98123233C5800AF687D /* NewImageCompressionController.h */,
-				0422D98423233C5800AF687D /* NewImageCompressionController.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -997,17 +1048,129 @@
 			path = BaiDuBos;
 			sourceTree = "<group>";
 		};
-		04620C41231BFA3300AA6317 /* Base */ = {
+		0432BF6023267F03002CD639 /* SHPictureSelectionComponent */ = {
 			isa = PBXGroup;
 			children = (
-				04620C42231BFA3300AA6317 /* BaseView */,
+				0432BF6123267F03002CD639 /* Interface */,
+				0432BF6523267F03002CD639 /* Controller */,
+				0432BF6823267F03002CD639 /* Cell */,
+				0432BF6D23267F03002CD639 /* UIViewController */,
+				0432BF7623267F03002CD639 /* Model */,
+			);
+			path = SHPictureSelectionComponent;
+			sourceTree = "<group>";
+		};
+		0432BF6123267F03002CD639 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0432BF8D23267F2D002CD639 /* SHPictureSelectionComponent.h */,
+				0432BF8B23267F2D002CD639 /* SHPictureSelectionComponent.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0432BF6523267F03002CD639 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0432BF8F2326813C002CD639 /* SHPictureSelectionController.h */,
+				0432BF902326813C002CD639 /* SHPictureSelectionController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0432BF6823267F03002CD639 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0432BF952326818C002CD639 /* SHImageCollectionViewCell.h */,
+				0432BF922326818C002CD639 /* SHImageCollectionViewCell.m */,
+				0432BF932326818C002CD639 /* SHVideoCollectionViewCell.h */,
+				0432BF942326818C002CD639 /* SHVideoCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0432BF6D23267F03002CD639 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0432BF98232681D1002CD639 /* SHPictureSelectionViewController.h */,
+				0432BF99232681D1002CD639 /* SHPictureSelectionViewController.m */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		0432BF7623267F03002CD639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFA123268223002CD639 /* SHAssetBaseModel.h */,
+				0432BF9C23268223002CD639 /* SHAssetBaseModel.m */,
+				0432BF9E23268223002CD639 /* SHAssetImageModel.h */,
+				0432BFA223268223002CD639 /* SHAssetImageModel.m */,
+				0432BF9D23268223002CD639 /* SHAssetVideoModel.h */,
+				0432BF9F23268223002CD639 /* SHAssetVideoModel.m */,
+				0432BFA023268223002CD639 /* SHPictureSelectionComponentInitModel.h */,
+				0432BF9B23268223002CD639 /* SHPictureSelectionComponentInitModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0432BFAD2326951F002CD639 /* SHBigPictureBrowsing */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFAE2326951F002CD639 /* Interface */,
+				0432BFB22326951F002CD639 /* UIView */,
+				0432BFB52326951F002CD639 /* Cell */,
+				0432BFB82326951F002CD639 /* Model */,
+			);
+			path = SHBigPictureBrowsing;
+			sourceTree = "<group>";
+		};
+		0432BFAE2326951F002CD639 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFB02326951F002CD639 /* SHBigPictureBrowsing.h */,
+				0432BFAF2326951F002CD639 /* SHBigPictureBrowsing.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0432BFB22326951F002CD639 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFB42326951F002CD639 /* BigPictureBrowsing.h */,
+				0432BFB32326951F002CD639 /* BigPictureBrowsing.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		0432BFB52326951F002CD639 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFB62326951F002CD639 /* BigImageViewCollectionViewCell.h */,
+				0432BFB72326951F002CD639 /* BigImageViewCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0432BFB82326951F002CD639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0432BFC8232698F8002CD639 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0432BFC9232698F8002CD639 /* BaseView */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		04620C42231BFA3300AA6317 /* BaseView */ = {
+		0432BFC9232698F8002CD639 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */,
+				0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1445,6 +1608,7 @@
 				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */,
+				0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
 				0422D966232291A900AF687D /* UnpaidModel.m in Sources */,
@@ -1456,18 +1620,22 @@
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
+				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
+				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
+				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */,
 				0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */,
 				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
 				62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */,
@@ -1477,22 +1645,26 @@
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
+				0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
-				0422D98E23233C5800AF687D /* NewImageCompressionController.m in Sources */,
 				04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */,
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
+				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,
+				0432BFAC2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m in Sources */,
 				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
+				0432BF8E23267F2D002CD639 /* SHPictureSelectionComponent.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,
+				0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
 				04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */,
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
@@ -1506,7 +1678,9 @@
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
+				0432BFBE2326951F002CD639 /* BigPictureBrowsing.m in Sources */,
 				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
+				0432BFA323268223002CD639 /* SHPictureSelectionComponentInitModel.m in Sources */,
 				04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */,
 				0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
@@ -1515,7 +1689,9 @@
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
 				62929BAF231A1E430018DE07 /* UserInforController.m in Sources */,
+				0432BF972326818C002CD639 /* SHVideoCollectionViewCell.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
+				0432BFA423268223002CD639 /* SHAssetBaseModel.m in Sources */,
 				62072C33231B77870089AD43 /* SHMultipleSwitchingItemsView.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
@@ -1537,11 +1713,13 @@
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
+				0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
+				0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */,
 				62072C0E231A55C20089AD43 /* CarouselView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

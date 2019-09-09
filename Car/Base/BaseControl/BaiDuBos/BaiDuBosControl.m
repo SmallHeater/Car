@@ -33,38 +33,18 @@
     return control;
 }
 
--(void)uoploadImage:(UIImage *)image{
+-(void)uploadImage:(UIImage *)image callBack:(void (^)(NSString * _Nonnull imagePath))callback{
     
     // 初始化
     BCECredentials* credentials = [[BCECredentials alloc] init];
     credentials.accessKey = @"cff28a2799b04549b752202ef41ac3da";
     credentials.secretKey = @"5bbfd04f65c446189e1fb08f54c92e3c";
     BOSClientConfiguration* configuration = [[BOSClientConfiguration alloc] init];
-//    cdds.su.bcebos.com，https://bos.cdds.zyxczs.com,https://bj.bcebos.com
-    configuration.endpoint = @"https://bj.bcebos.com/upload";
+    configuration.endpoint = @"https://bj.bcebos.com";
     configuration.scheme = @"https";
     configuration.credentials = credentials;
     BOSClient* client = [[BOSClient alloc] initWithConfiguration:configuration];
     self.client = client;
-//    // 1. 新建bucket
-//    BCETask* task = [client putBucket:@"carmaster"];
-//    task.then(^(BCEOutput* output) { // 任务可以异步执行。
-//        if (output.response) {
-//            // 任务执行成功。
-//            NSLog(@"任务执行成功");
-//        }
-//
-//        if (output.error) {
-//            // 任务执行失败。
-//            NSLog(@"任务执行失败,%@",output.error);
-//        }
-//
-//        if (output.progress) {
-//            // 任务执行进度。
-//            NSLog(@"任务执行进度");
-//        }
-//    });
-//    [task waitUtilFinished]; // 可以同步方式，等待任务执行完毕。
     
     // 2. 上传Object
     BOSObjectContent* content = [[BOSObjectContent alloc] init];
@@ -72,11 +52,12 @@
     
     BOSPutObjectRequest* request = [[BOSPutObjectRequest alloc] init];
     request.bucket = @"carmaster";
-    NSString * imageName = [[NSUUID UUID] UUIDString];
-    request.key = [[NSString alloc] initWithFormat:@"%@.jpg",imageName];
+    NSString * imageName = [[NSString alloc] initWithFormat:@"%@.jpg",[[NSUUID UUID] UUIDString]];
+    request.key = imageName;
     request.objectContent = content;
     self.request = request;
     
+    NSString * imagePath = [[NSString alloc] initWithFormat:@"https://bj.bcebos.com/%@",imageName];
     __block BOSPutObjectResponse* response = nil;
     BCETask* taskOne = [client putObject:request];
     taskOne.then(^(BCEOutput* output) {
@@ -89,6 +70,7 @@
             response = (BOSPutObjectResponse*)output.response;
             // 打印eTag
             NSLog(@"The eTag is %@", response.metadata.eTag);
+            callback(imagePath);
         }
         
         if (output.error) {

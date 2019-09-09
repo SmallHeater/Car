@@ -15,7 +15,7 @@
 #import "FastPickUpRequestModel.h"
 #import "DrivingLicenseModel.h"
 #import "UserInforController.h"
-
+#import "BaiDuBosControl.h"
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 

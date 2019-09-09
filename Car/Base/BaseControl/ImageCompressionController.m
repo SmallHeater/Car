@@ -6,9 +6,9 @@
 //  Copyright © 2017年 pk. All rights reserved.
 //
 
-#import "NewImageCompressionController.h"
+#import "ImageCompressionController.h"
 
-@implementation NewImageCompressionController
+@implementation ImageCompressionController
 //传入图片大小（内存），返回压缩系数
 +(float)getCompressionFactorWithLength:(float)imageLength andExpextLength:(float)expectLength;{
 

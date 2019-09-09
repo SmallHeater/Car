@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(BaiDuBosControl *)sharedManager;
 
--(void)uoploadImage:(UIImage *)image;
+-(void)uploadImage:(UIImage *)image callBack:(void(^)(NSString * imagePath))callback;
 
 @end
 

@@ -51,6 +51,8 @@
         [_reflectionDic setObject:@"SHCameraMiddleware" forKey:@"Camera"];
         //上传相关业务
         [_reflectionDic setObject:@"SHUploadMiddleware" forKey:@"UploadComponent"];
+        //相册相关业务
+        [_reflectionDic setObject:@"SHPictureSelectionMiddleware" forKey:@"PictureSelection"];
     }
     return _reflectionDic;
 }

@@ -255,16 +255,8 @@
     }
     if (vc) {
         
-        if ([vc isKindOfClass:[FastPickUpViewController class]]) {
-
-            UIImage * image = [UIImage imageNamed:@"verificationCode"];
-            [[BaiDuBosControl sharedManager] uoploadImage:image];
-        }
-        else{
-         
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

@@ -52,6 +52,8 @@
 @property (nonatomic,strong) UILabel * imageCountLabel;
 //添加图片按钮
 @property (nonatomic,strong) UIButton * addImageBtn;
+//图片字典数组,thumbnails,缩略图;screenSizeImage,全屏图;originalImage,普通图
+@property (nonatomic,strong) NSMutableArray<NSDictionary *> * imageArray;
 
 @end
 
@@ -378,6 +380,15 @@
         _imageCountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _imageCountLabel;
+}
+
+-(NSMutableArray<NSDictionary *> *)imageArray{
+    
+    if (!_imageArray) {
+        
+        _imageArray = [[NSMutableArray alloc] init];
+    }
+    return _imageArray;
 }
 
 -(UIButton *)addImageBtn{
@@ -772,6 +783,55 @@
 
 -(void)addImageBtnClicked:(UIButton *)btn{
     
+    btn.userInteractionEnabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:5],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+        
+        if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
+            
+            NSArray * dataArray = resultDic[@"data"];
+            [weakSelf.imageArray removeAllObjects];
+            [weakSelf.imageArray addObjectsFromArray:dataArray];
+            [weakSelf createImageViews];
+        }
+    }];
+    btn.userInteractionEnabled = YES;
+}
+
+//创建图片
+-(void)createImageViews{
+    
+    float imageViewLeft = 15;
+    float imageViewTop = CGRectGetMaxY(self.imageUploadLabel.frame);
+    float imageWidthHeight = 111;
+    float interval = (MAINWIDTH - 15 * 2 - imageWidthHeight * 3) / 2.0;
+    for (NSUInteger i = 0; i < self.imageArray.count; i++) {
+        
+        NSDictionary * dic = self.imageArray[i];
+        UIImage * thumbnailsImage = dic[@"thumbnails"];
+        UIImageView * imageView = [[UIImageView alloc] init];
+        imageView.image = thumbnailsImage;
+        [self addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(imageViewLeft);
+            make.top.offset(imageViewTop);
+            make.width.height.offset(imageWidthHeight);
+        }];
+        imageViewLeft += imageWidthHeight + interval;
+        if (i == 2) {
+            
+            imageViewTop += imageWidthHeight + 10;
+            imageViewLeft = 15;
+        }
+    }
+    
+    [self.addImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(imageViewLeft);
+        make.top.offset(imageViewTop);
+        make.width.height.offset(imageWidthHeight);
+    }];
 }
 
 @end

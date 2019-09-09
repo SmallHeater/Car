@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-            timestampString = "589555687.5255049"
+            timestampString = "589731729.12897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "893"
@@ -68,7 +68,7 @@
                   moduleName = "Car"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Git/Car/Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-                  timestampString = "589645820.4531389"
+                  timestampString = "589731729.567045"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "893"
@@ -83,7 +83,7 @@
                   moduleName = "Car"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Git/Car/Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-                  timestampString = "589645820.45474"
+                  timestampString = "589731729.5703551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "893"
@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-            timestampString = "589555687.528821"
+            timestampString = "589731729.129583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "910"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-            timestampString = "589555687.529068"
+            timestampString = "589731729.1299289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "928"
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-            timestampString = "589555687.529223"
+            timestampString = "589731729.1302741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "895"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-            timestampString = "589555687.529387"
+            timestampString = "589731729.130581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "898"
@@ -164,13 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589630675.0722359"
+            timestampString = "589731729.130926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-uoploadImage:"
-            landmarkType = "7">
+            startingLineNumber = "66"
+            endingLineNumber = "66">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -180,13 +178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589630675.0726171"
+            timestampString = "589731729.130996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-uoploadImage:"
-            landmarkType = "7">
+            startingLineNumber = "72"
+            endingLineNumber = "72">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,29 +192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589630675.0728509"
+            timestampString = "589731729.131047"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-uoploadImage:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589630675.073086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-uoploadImage:"
-            landmarkType = "7">
+            startingLineNumber = "77"
+            endingLineNumber = "77">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
