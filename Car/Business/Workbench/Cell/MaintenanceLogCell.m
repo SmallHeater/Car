@@ -8,13 +8,16 @@
 
 #import "MaintenanceLogCell.h"
 #import "SHTextView.h"
+#import "SHDatePickView.h"
+#import "SHPickerView.h"
 
-@interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate>
+
+@interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate,SHPickerViewDelegate>
 
 @property (nonatomic,strong) UILabel * titleLabel;
 //维修日期
 @property (nonatomic,strong) UILabel * repairDateLabel;
-@property (nonatomic,strong) UITextField * repairDateTF;
+@property (nonatomic,strong) UILabel * repairDate;
 @property (nonatomic,strong) UILabel * firstLineLabel;
 //公里数
 @property (nonatomic,strong) UILabel * kilometersLabel;
@@ -22,8 +25,9 @@
 @property (nonatomic,strong) UILabel * secondLineLabel;
 //关联项目
 @property (nonatomic,strong) UILabel * associatedProjectLabel;
-@property (nonatomic,strong) UITextField * associatedProjectTF;
+@property (nonatomic,strong) UILabel * associatedProject;
 @property (nonatomic,strong) UILabel * thirdLineLabel;
+@property (nonatomic,strong) SHPickerView * projectPickView;
 //总费用
 @property (nonatomic,strong) UILabel * totalCostLabel;
 //应收
@@ -80,17 +84,22 @@
     return _repairDateLabel;
 }
 
--(UITextField *)repairDateTF{
+-(UILabel *)repairDate{
     
-    if (!_repairDateTF) {
+    if (!_repairDate) {
         
-        _repairDateTF = [[UITextField alloc] init];
-        _repairDateTF.font = FONT16;
-        _repairDateTF.textColor = Color_333333;
-        _repairDateTF.placeholder = @"请选择维修日期";
+        _repairDate = [[UILabel alloc] init];
+        _repairDate.font = FONT16;
+        _repairDate.textColor = Color_C7C7CD;
+        _repairDate.text = @"请选择维修日期";
+        _repairDate.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repairDateClicked:)];
+        [_repairDate addGestureRecognizer:tap];
     }
-    return _repairDateTF;
+    return _repairDate;
 }
+
 
 -(UILabel *)firstLineLabel{
     
@@ -151,18 +160,22 @@
     return _associatedProjectLabel;
 }
 
--(UITextField *)associatedProjectTF{
+-(UILabel *)associatedProject{
     
-    if (!_associatedProjectTF) {
+    if (!_associatedProject) {
         
-        _associatedProjectTF = [[UITextField alloc] init];
-        _associatedProjectTF.delegate = self;
-        _associatedProjectTF.font = FONT16;
-        _associatedProjectTF.textColor = Color_333333;
-        _associatedProjectTF.placeholder = @"请选择关联项目";
+        _associatedProject = [[UILabel alloc] init];
+        _associatedProject.font = FONT16;
+        _associatedProject.textColor = Color_C7C7CD;
+        _associatedProject.text = @"请选择关联项目";
+        _associatedProject.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(associatedProjectClicked:)];
+        [_associatedProject addGestureRecognizer:tap];
     }
-    return _associatedProjectTF;
+    return _associatedProject;
 }
+
 
 -(UILabel *)thirdLineLabel{
     
@@ -172,6 +185,16 @@
         _thirdLineLabel.backgroundColor = Color_DEDEDE;
     }
     return _thirdLineLabel;
+}
+
+-(SHPickerView *)projectPickView{
+    
+    if (!_projectPickView) {
+        
+        _projectPickView = [[SHPickerView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) andTitle:@"关联项目" andComponent:1 andData:@[@{@"title":@"保养",@"key":@"0"},@{@"title":@"维修",@"key":@"1"},@{@"title":@"美容洗车",@"key":@"2"}]];
+        _projectPickView.delegate = self;
+    }
+    return _projectPickView;
 }
 
 -(UILabel *)totalCostLabel{
@@ -431,6 +454,23 @@
     }
 }
 
+#pragma mark  ----  SHPickerViewDelegate
+
+-(void)picker:(SHPickerView *)picker didSelectedArray:(NSMutableArray *)selectDicArray{
+    
+    if (selectDicArray && selectDicArray.count > 0) {
+     
+        NSDictionary * dic = (NSDictionary *)selectDicArray.firstObject;
+        self.associatedProject.text = dic[@"title"];
+        self.associatedProject.textColor = Color_333333;
+        if (self.projectCallBack) {
+            
+            NSString * keyValue = dic[@"key"];
+            self.projectCallBack(keyValue.floatValue);
+        }
+    }
+}
+
 #pragma mark  ----  自定义函数
 
 +(float)cellHeightWithContent:(NSString *)content andImageCount:(NSUInteger)imageCount{
@@ -460,8 +500,8 @@
         make.height.offset(16);
     }];
     
-    [self addSubview:self.repairDateTF];
-    [self.repairDateTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.repairDate];
+    [self.repairDate mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.repairDateLabel.mas_right).offset(26);
         make.top.equalTo(self.repairDateLabel.mas_top);
@@ -514,8 +554,8 @@
         make.height.offset(16);
     }];
     
-    [self addSubview:self.associatedProjectTF];
-    [self.associatedProjectTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.associatedProject];
+    [self.associatedProject mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.associatedProjectLabel.mas_right).offset(26);
         make.top.equalTo(self.associatedProjectLabel.mas_top);
@@ -676,11 +716,42 @@
     }];
 }
 
+-(void)repairDateClicked:(UITapGestureRecognizer *)gesture{
+    
+    __weak typeof(self) weakSelf = self;
+    [SHDatePickView showActionSheetDateWith:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+        
+        weakSelf.repairDate.text = dateStr;
+        weakSelf.repairDate.textColor = Color_333333;
+        if (weakSelf.repairDateCallBack) {
+
+            weakSelf.repairDateCallBack(dateStr);
+        }
+    }];
+}
+
+-(void)associatedProjectClicked:(UITapGestureRecognizer *)gesture{
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.projectPickView];
+}
+
 -(void)showData:(NSDictionary *)dic{
     
-    self.repairDateTF.text = dic[@"repairDate"];
+    NSString * repairDate = dic[@"repairDate"];
+    if (![NSString strIsEmpty:repairDate]) {
+        
+        self.repairDate.text = repairDate;
+        self.repairDate.textColor = Color_333333;
+    }
+    
+    NSString * associatedProject = dic[@"associatedProject"];
+    if (![NSString strIsEmpty:associatedProject]) {
+        
+        self.associatedProject.text = dic[@"associatedProject"];
+        self.associatedProject.textColor = Color_333333;
+    }
+    
     self.kilometersTF.text = dic[@"kilometers"];
-    self.associatedProjectTF.text = dic[@"associatedProject"];
     self.repairContentTF.text = dic[@"repairContent"];
     
     float repairContentHeight = [dic[@"repairContent"] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];

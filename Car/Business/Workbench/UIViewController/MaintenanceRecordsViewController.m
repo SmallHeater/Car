@@ -46,6 +46,11 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
     [self requestListData];
 }
 
@@ -160,6 +165,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
+                        [weakSelf.dataArray removeAllObjects];
                         NSArray * list = dataDic[@"list"];
                         for (NSDictionary * dic in list) {
                             

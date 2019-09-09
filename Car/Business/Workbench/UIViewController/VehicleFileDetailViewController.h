@@ -4,7 +4,7 @@
 //
 //  Created by xianjun wang on 2019/8/27.
 //  Copyright © 2019 SmallHeat. All rights reserved.
-//  车辆档案详情页
+//  车辆档案页
 
 #import "BaseTableViewController.h"
 

@@ -126,6 +126,8 @@
 		62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB3231A441F0018DE07 /* WorkbenchModel.m */; };
 		62929BB7231A44640018DE07 /* CarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB6231A44640018DE07 /* CarouselModel.m */; };
 		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
+		62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6C82325D97800A6C456 /* SHDatePickView.m */; };
+		62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6CA2325D97E00A6C456 /* SHPickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -368,6 +370,10 @@
 		62929BB6231A44640018DE07 /* CarouselModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselModel.m; sourceTree = "<group>"; };
 		62929BB8231A44920018DE07 /* AnnouncementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
 		62929BB9231A44920018DE07 /* AnnouncementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
+		62A8F6C72325D97700A6C456 /* SHDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHDatePickView.h; sourceTree = "<group>"; };
+		62A8F6C82325D97800A6C456 /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
+		62A8F6CA2325D97E00A6C456 /* SHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPickerView.m; sourceTree = "<group>"; };
+		62A8F6CB2325D97E00A6C456 /* SHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPickerView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +500,10 @@
 		0404855A230C205F00EF17C8 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				62A8F6CB2325D97E00A6C456 /* SHPickerView.h */,
+				62A8F6CA2325D97E00A6C456 /* SHPickerView.m */,
+				62A8F6C72325D97700A6C456 /* SHDatePickView.h */,
+				62A8F6C82325D97800A6C456 /* SHDatePickView.m */,
 				62072C2B231B77660089AD43 /* SHMultipleSwitchingItemsView */,
 				62072C20231A7A040089AD43 /* SHPageControl.h */,
 				62072C1F231A7A040089AD43 /* SHPageControl.m */,
@@ -1434,6 +1444,7 @@
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
 				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
+				62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
 				0422D966232291A900AF687D /* UnpaidModel.m in Sources */,
@@ -1525,6 +1536,7 @@
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
+				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
@@ -1676,7 +1688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S9Y6LPBJXV;
+				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
@@ -1690,7 +1702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.CarShopMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
@@ -1703,7 +1715,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S9Y6LPBJXV;
+				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Car/Lib/BaiDuAI",
@@ -1717,7 +1729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SmallHeat.CarShopMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";

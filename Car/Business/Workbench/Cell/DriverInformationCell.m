@@ -8,7 +8,7 @@
 
 #import "DriverInformationCell.h"
 #import "DrivingLicenseModel.h"
-
+#import "SHDatePickView.h"
 
 @interface DriverInformationCell ()<UITextFieldDelegate>
 
@@ -144,6 +144,7 @@
     return _InsurancePeriodContentLabel;
 }
 
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -278,7 +279,11 @@
     self.phoneNumberTF.text = phoneNumber;
     
     NSString * InsurancePeriod = dic[@"InsurancePeriod"];
-    self.InsurancePeriodContentLabel.text = InsurancePeriod;
+    if (![NSString strIsEmpty:InsurancePeriod]) {
+     
+        self.InsurancePeriodContentLabel.text = InsurancePeriod;
+        self.InsurancePeriodContentLabel.textColor = Color_333333;
+    }
 }
 
 //数据展示
@@ -290,11 +295,16 @@
 //选择保险到期时间
 -(void)InsurancePeriodContentLabelClicked:(UIGestureRecognizer *)ges{
     
-    NSLog(@"1");
-}
-
--(void)test{
-    
+    __weak typeof(self) weakSelf = self;
+    [SHDatePickView showActionSheetDateWith:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+        
+        weakSelf.InsurancePeriodContentLabel.text = dateStr;
+        weakSelf.InsurancePeriodContentLabel.textColor = Color_333333;
+        if (weakSelf.dataCallBack) {
+            
+            weakSelf.dataCallBack(dateStr);
+        }
+    }];
 }
 
 @end

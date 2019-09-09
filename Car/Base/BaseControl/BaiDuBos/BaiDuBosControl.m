@@ -40,15 +40,14 @@
     credentials.accessKey = @"cff28a2799b04549b752202ef41ac3da";
     credentials.secretKey = @"5bbfd04f65c446189e1fb08f54c92e3c";
     BOSClientConfiguration* configuration = [[BOSClientConfiguration alloc] init];
-//    cdds.su.bcebos.com，https://bos.cdds.zyxczs.com
-    configuration.endpoint = @"https://cdds.su.bcebos.com";
+//    cdds.su.bcebos.com，https://bos.cdds.zyxczs.com,https://bj.bcebos.com
+    configuration.endpoint = @"https://bj.bcebos.com/upload";
     configuration.scheme = @"https";
     configuration.credentials = credentials;
-    
     BOSClient* client = [[BOSClient alloc] initWithConfiguration:configuration];
     self.client = client;
 //    // 1. 新建bucket
-//    BCETask* task = [client getBucketLocation:@"cdds"];
+//    BCETask* task = [client putBucket:@"carmaster"];
 //    task.then(^(BCEOutput* output) { // 任务可以异步执行。
 //        if (output.response) {
 //            // 任务执行成功。
@@ -72,14 +71,15 @@
     content.objectData.data = UIImageJPEGRepresentation(image, 1);
     
     BOSPutObjectRequest* request = [[BOSPutObjectRequest alloc] init];
-    request.bucket = @"cdds";
-    request.key = [[NSUUID UUID] UUIDString];
+    request.bucket = @"carmaster";
+    NSString * imageName = [[NSUUID UUID] UUIDString];
+    request.key = [[NSString alloc] initWithFormat:@"%@.jpg",imageName];
     request.objectContent = content;
     self.request = request;
     
     __block BOSPutObjectResponse* response = nil;
-    BCETask* task = [client putObject:request];
-    task.then(^(BCEOutput* output) {
+    BCETask* taskOne = [client putObject:request];
+    taskOne.then(^(BCEOutput* output) {
         if (output.progress) {
             // 打印进度
             NSLog(@"put object progress is %@", output.progress);
@@ -95,7 +95,7 @@
             NSLog(@"put object failure with %@", output.error);
         }
     });
-    [task waitUtilFinished];
+    [taskOne waitUtilFinished];
 }
 
 @end

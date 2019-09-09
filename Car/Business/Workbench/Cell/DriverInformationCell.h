@@ -27,7 +27,7 @@ typedef void(^CallBack)(NSString * result);
 -(void)showDataWithModel:(DrivingLicenseModel *)model;
 //contact,联系人;phoneNumber,手机号;InsurancePeriod,保险期;
 -(void)showData:(NSDictionary *)dic;
--(void)test;
+
 
 @end
 

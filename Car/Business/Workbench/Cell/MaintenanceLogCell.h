@@ -15,6 +15,8 @@ typedef void(^CallBackStr)(NSString * content);
 
 @interface MaintenanceLogCell : UITableViewCell
 
+//维修日期回调
+@property (nonatomic,copy) CallBackStr repairDateCallBack;
 //公里数回调
 @property (nonatomic,copy) CallBack kmCallBack;
 //关联项目回调

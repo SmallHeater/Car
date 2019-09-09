@@ -30,7 +30,7 @@ static HighOrderPositioningController * manager = nil;
         manager = [[HighOrderPositioningController alloc] init];
         [[AMapServices sharedServices] setEnableHTTPS:YES];
         //高德key
-        [AMapServices sharedServices].apiKey =@"8153919c58569add65076c903511040a";
+        [AMapServices sharedServices].apiKey =@"5e116354fbf19bc9a2e3a1e091dbdd5a";
         
         
         

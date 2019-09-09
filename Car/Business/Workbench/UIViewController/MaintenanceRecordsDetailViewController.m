@@ -198,6 +198,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
             
             __weak typeof(self) weakSelf = self;
+            cell.repairDateCallBack = ^(NSString * _Nonnull content) {
+              
+                weakSelf.detailModel.maintain_day = content;
+            };
             cell.kmCallBack = ^(float value) {
               
                 weakSelf.detailModel.mileage = [NSNumber numberWithFloat:value];

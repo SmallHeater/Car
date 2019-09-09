@@ -37,7 +37,15 @@
     
     [[SHNetworkControl sharedManager] POST:urlStr parameters:bodyParameters headers:nil progress:nil success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
         
-        id dataId = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil]; callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":dataId});
+        id dataId = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        if (dataId) {
+            
+            callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":dataId});
+        }
+        else{
+            
+            callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":@""});
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         callBack(@{@"task":task,@"error":error});
