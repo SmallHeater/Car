@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MaintenanceRecordsDetailViewController : BaseTableViewController
 
-//车辆档案模型
+//车辆档案模型(添加维修记录时需要传)
 @property (nonatomic,strong) VehicleFileModel * vehicleFileModel;
-//维修记录模型
+//维修记录模型(显示维修记录时传)
 @property (nonatomic,strong) MaintenanceRecordsModel * maintenanceRecordsModel;
 
 @end

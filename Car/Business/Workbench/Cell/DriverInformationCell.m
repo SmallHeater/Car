@@ -295,6 +295,7 @@
 //选择保险到期时间
 -(void)InsurancePeriodContentLabelClicked:(UIGestureRecognizer *)ges{
     
+    [self endEditing:YES];
     __weak typeof(self) weakSelf = self;
     [SHDatePickView showActionSheetDateWith:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
         

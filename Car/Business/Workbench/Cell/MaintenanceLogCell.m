@@ -140,6 +140,7 @@
         _kilometersTF.font = FONT16;
         _kilometersTF.textColor = Color_333333;
         _kilometersTF.placeholder = @"请输入公里数";
+        _kilometersTF.keyboardType = UIKeyboardTypePhonePad;
     }
     return _kilometersTF;
 }
@@ -483,6 +484,20 @@
 
 #pragma mark  ----  UITextFieldDelegate
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.kilometersTF]) {
+        
+        NSMutableString * showStr = [[NSMutableString alloc] initWithString:textField.text];
+        if ([showStr rangeOfString:@" 公里"].location != NSNotFound) {
+         
+            [showStr replaceCharactersInRange:[showStr rangeOfString:@" 公里"] withString:@""];
+        }
+        textField.text = showStr;
+    }
+    return YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     
     if ([textField isEqual:self.kilometersTF]) {
@@ -491,6 +506,9 @@
             
             self.kmCallBack(textField.text.floatValue);
         }
+        
+        NSString * mixedStr = [[NSString alloc] initWithFormat:@"%@ 公里",textField.text];
+        textField.text = mixedStr;
     }
     else if ([textField isEqual:self.acceptableTF]){
         

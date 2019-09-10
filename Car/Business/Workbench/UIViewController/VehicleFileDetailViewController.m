@@ -35,7 +35,8 @@ typedef NS_ENUM(NSUInteger,ViewState){
 @property (nonatomic,strong) UIView * bottomView;
 //修改请求模型
 @property (nonatomic,strong) ModifyVehicleFileRequestModel * requestModel;
-
+//提交请求的MBP
+@property (nonatomic,strong) MBProgressHUD * mbp;
 @end
 
 @implementation VehicleFileDetailViewController
@@ -415,6 +416,12 @@ typedef NS_ENUM(NSUInteger,ViewState){
 //修改车辆档案
 -(void)modifyVehicleFile{
 
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+    });
+    
     NSDictionary * tempBodyParameters = [self.requestModel mj_keyValues];
     NSMutableDictionary * bodyParameters = [[NSMutableDictionary alloc] initWithDictionary:tempBodyParameters];
     [bodyParameters setObject:bodyParameters[@"id"] forKey:@"car_id"];
@@ -422,9 +429,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     
     NSDictionary * configurationDic = @{@"requestUrlStr":Caredit,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
+
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
         if (![resultDic.allKeys containsObject:@"error"]) {
             
             //成功的
@@ -461,11 +473,22 @@ typedef NS_ENUM(NSUInteger,ViewState){
 //删除车辆档案
 -(void)deleteModifyVehicleFile{
     
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+    });
+    
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"car_id":self.requestModel.car_id};
     NSDictionary * configurationDic = @{@"requestUrlStr":Deletecar,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
+    
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
         if (![resultDic.allKeys containsObject:@"error"]) {
             
             //成功的

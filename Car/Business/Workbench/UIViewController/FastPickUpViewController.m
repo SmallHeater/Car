@@ -28,6 +28,8 @@
 @property (nonatomic,strong) FastPickUpRequestModel * requestModel;
 //行驶证图片
 @property (nonatomic,strong) UIImage * drivingLicenseImage;
+//提交请求的MBP
+@property (nonatomic,strong) MBProgressHUD * mbp;
 
 @end
 
@@ -150,9 +152,19 @@
             }
             else if ([resultDic.allKeys containsObject:@"image"]){
                 
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD wj_showActivityLoading:@"识别中" toView:weakSelf.view];
+                });
+                
                 UIImage * image = resultDic[@"image"];
                 weakSelf.drivingLicenseImage = image;
                 [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD wj_hideHUDForView:weakSelf.view];
+                    });
                     
                     if (result && [result isKindOfClass:[NSDictionary class]]) {
                         
@@ -185,6 +197,14 @@
                 } failHandler:^(NSError *err) {
                     
                     NSLog(@"失败:%@", err);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD wj_hideHUDForView:weakSelf.view];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [MBProgressHUD wj_showError:@"识别失败，请输入"];
+                        });
+                    });
                 }];
             }
         }];
@@ -396,6 +416,10 @@
         
         //上传行驶证照片
         __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+        });
         [[BaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
             
             if (![NSString strIsEmpty:imagePath]) {
@@ -414,6 +438,12 @@
     NSDictionary * configurationDic = @{@"requestUrlStr":Receptioncar,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
         
         if (![resultDic.allKeys containsObject:@"error"]) {
             
@@ -441,7 +471,6 @@
                 }
             }
             else{
-                
             }
         }
         else{
@@ -449,7 +478,6 @@
             //失败的
         }
     }];
-
 }
 
 -(void)viewTaped:(UIGestureRecognizer *)ges{

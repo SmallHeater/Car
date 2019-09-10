@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger,ViewState){
 @property (nonatomic,strong) UIView * bottomView;
 //提交的维修详情模型
 @property (nonatomic,strong) MaintenanceDetailModel * detailModel;
+//提交请求的MBP
+@property (nonatomic,strong) MBProgressHUD * mbp;
+
 @end
 
 @implementation MaintenanceRecordsDetailViewController
@@ -93,8 +96,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         self.detailModel = [[MaintenanceDetailModel alloc] init];
         self.detailModel.user_id = vehicleFileModel.user_id;
         self.detailModel.car_id = vehicleFileModel.car_id;
-//        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        self.viewState = ViewState_edit;
     }
 }
 
@@ -105,6 +107,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         _maintenanceRecordsModel = maintenanceRecordsModel;
         NSDictionary * dic = [maintenanceRecordsModel mj_keyValues];
         self.detailModel = [MaintenanceDetailModel mj_objectWithKeyValues:dic];
+        self.viewState = ViewState_show;
     }
 }
 
@@ -113,14 +116,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)setViewState:(ViewState)viewState{
     
     _viewState = viewState;
-//    if (_viewState == ViewState_show) {
-//
-//        self.tableView.userInteractionEnabled = NO;
-//    }
-//    else if (_viewState == ViewState_edit){
-//
-//        self.tableView.userInteractionEnabled = YES;
-//    }
+    if (_viewState == ViewState_show) {
+
+        self.tableView.userInteractionEnabled = NO;
+    }
+    else if (_viewState == ViewState_edit){
+
+        self.tableView.userInteractionEnabled = YES;
+    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -251,7 +254,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
                 associatedProject = @"美容洗车";
             }
             
-            
             NSString * acceptable = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.receivable.floatValue];
             NSString * received = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.received.floatValue];
             NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.cost.floatValue];
@@ -326,7 +328,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)deleteBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    if (self.detailModel) {
+    if (self.maintenanceRecordsModel && self.detailModel) {
         
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除车辆维修记录警告" message:@"是否要删除车辆维修记录？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -370,14 +372,26 @@ typedef NS_ENUM(NSUInteger,ViewState){
 //添加维修记录
 -(void)addMaintenanceRecords{
     
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+    });
+    
     NSDictionary * tempBodyParameters = [self.detailModel  mj_keyValues];
     NSMutableDictionary * bodyParameters = [[NSMutableDictionary alloc] initWithDictionary:tempBodyParameters];
     [bodyParameters setObject:tempBodyParameters[@"id"] forKey:@"maintain_id"];
     [bodyParameters removeObjectForKey:@"id"];
     
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainadd,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
+    
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
         
         if (![resultDic.allKeys containsObject:@"error"]) {
             
@@ -415,10 +429,21 @@ typedef NS_ENUM(NSUInteger,ViewState){
 //删除维修记录
 -(void)deleteMaintenanceRecords{
     
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+    });
     NSDictionary * bodyParameters = @{@"user_id":self.detailModel.user_id,@"maintain_id":self.detailModel.maintain_id};
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintaindelete,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
+    
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
         
         if (![resultDic.allKeys containsObject:@"error"]) {
             
