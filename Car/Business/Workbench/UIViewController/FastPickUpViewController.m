@@ -173,6 +173,7 @@
                         weakSelf.drivingLicenseModel.engineNumber = firstDic[@"words"];
                         NSDictionary * secondDic = resultDic[@"号牌号码"];
                         weakSelf.drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
+                        [weakSelf requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber];
                         NSDictionary * thirdDic = resultDic[@"所有人"];
                         weakSelf.drivingLicenseModel.owner = thirdDic[@"words"];
                         NSDictionary * forthDic = resultDic[@"使用性质"];
@@ -255,6 +256,7 @@
             cell.npnCallBack = ^(NSString * _Nonnull result) {
                 
                 weakSelf.drivingLicenseModel.numberPlateNumber = [NSString repleaseNilOrNull:result];
+                [weakSelf requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber];
             };
         }
 
@@ -483,6 +485,51 @@
 -(void)viewTaped:(UIGestureRecognizer *)ges{
     
     [self.view endEditing:YES];
+}
+
+//请求接口，判断车牌档案是否已存在
+-(void)requestIsExistedLicenseNumber:(NSString *)license_number{
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+    });
+    NSDictionary * bodyParameters = @{@"license_number":license_number,@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Checkcar,@"bodyParameters":bodyParameters};
+   
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.mbp hide:YES];
+            weakSelf.mbp = nil;
+        });
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

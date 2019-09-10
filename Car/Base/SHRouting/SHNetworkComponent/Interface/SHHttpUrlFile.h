@@ -35,10 +35,10 @@
 #define Caredit [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/caredit",CARDOMAIN]
 //删除车牌
 #define Deletecar [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/deletecar",CARDOMAIN]
-//添加维修记录
-#define Maintainadd [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintainadd",CARDOMAIN]
 //删除维修记录
 #define Maintaindelete [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintaindelete",CARDOMAIN]
 
+//立即回款
+#define Nowrepay [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/nowrepay",CARDOMAIN]
 
 #endif /* HttpUrlFile_h */

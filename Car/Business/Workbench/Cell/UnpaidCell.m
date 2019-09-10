@@ -379,6 +379,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
        
+        self.backgroundColor = [UIColor clearColor];
         [self drawUI];
     }
     return self;
@@ -405,7 +406,14 @@
 
 -(void)payBackBtnClicked:(UIButton *)btn{
     
+    btn.userInteractionEnabled = NO;
     
+    if (self.btnClickCallBack) {
+        
+        self.btnClickCallBack();
+    }
+    
+    btn.userInteractionEnabled = YES;
 }
 
 

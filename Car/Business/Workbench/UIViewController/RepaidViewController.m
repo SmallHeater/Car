@@ -9,7 +9,7 @@
 #import "RepaidViewController.h"
 #import "RepaidCell.h"
 #import "UserInforController.h"
-#import "UnpaidModel.h"
+#import "RepaidModel.h"
 
 static NSString * cellId = @"RepaidCell";
 @interface RepaidViewController ()
@@ -40,7 +40,7 @@ static NSString * cellId = @"RepaidCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -86,7 +86,7 @@ static NSString * cellId = @"RepaidCell";
                     NSArray * arr = dataDic[@"list"];
                     for (NSDictionary * dic in arr) {
                         
-                        UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
+                        RepaidModel * model = [RepaidModel mj_objectWithKeyValues:dic];
                         [weakSelf.dataArray addObject:model];
                     }
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
@@ -94,7 +94,7 @@ static NSString * cellId = @"RepaidCell";
                 else{
                     
                     //异常
-                    [MBProgressHUD wj_showError:dic[@"msg"]];
+//                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{

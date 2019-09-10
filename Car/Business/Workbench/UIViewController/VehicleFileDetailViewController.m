@@ -384,7 +384,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
     }];
     
-    btn.userInteractionEnabled = NO;
+    btn.userInteractionEnabled = YES;
 }
 
 //保存按钮的响应
@@ -410,7 +410,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         [self modifyVehicleFile];
     }
     
-    btn.userInteractionEnabled = NO;
+    btn.userInteractionEnabled = YES;
 }
 
 //修改车辆档案

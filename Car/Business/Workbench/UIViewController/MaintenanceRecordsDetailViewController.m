@@ -111,21 +111,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
     }
 }
 
-#pragma mark  ----  SET
-
--(void)setViewState:(ViewState)viewState{
-    
-    _viewState = viewState;
-    if (_viewState == ViewState_show) {
-
-        self.tableView.userInteractionEnabled = NO;
-    }
-    else if (_viewState == ViewState_edit){
-
-        self.tableView.userInteractionEnabled = YES;
-    }
-}
-
 #pragma mark  ----  生命周期函数
 
 -(void)viewDidLoad{
@@ -151,11 +136,11 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         if (self.maintenanceRecordsModel) {
             
-            cellHeight = [MaintenanceLogCell cellHeightWithContent:self.maintenanceRecordsModel.content andImageCount:5];
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:self.maintenanceRecordsModel.content];
         }
         else{
             
-            cellHeight = [MaintenanceLogCell cellHeightWithContent:@"维修内容" andImageCount:0];
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:@"维修内容"];
         }
     }
     
@@ -188,6 +173,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
             [cell showDataWithDic:@{@"numberPlate":self.maintenanceRecordsModel.license_number,@"name":self.maintenanceRecordsModel.contacts,@"carModel":[NSString repleaseNilOrNull:self.maintenanceRecordsModel.type],@"phoneNumber":self.maintenanceRecordsModel.phone}];
         }
         
+        cell.userInteractionEnabled = self.viewState == ViewState_show?NO:YES;
         return cell;
     }
     else if (indexPath.row == 1){
@@ -260,6 +246,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
             [cell showData:@{@"repairDate":self.maintenanceRecordsModel.maintain_day,@"kilometers":[[NSString alloc] initWithFormat:@"%ld",self.maintenanceRecordsModel.mileage.integerValue],@"associatedProject":associatedProject,@"repairContent":self.maintenanceRecordsModel.content,@"acceptable":acceptable,@"received":received,@"cost":cost,@"images":[NSString repleaseNilOrNull:self.maintenanceRecordsModel.images]}];
 
         }
+        cell.userInteractionEnabled = self.viewState == ViewState_show?NO:YES;
         return cell;
     }
     return nil;
@@ -320,7 +307,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         self.viewState = ViewState_show;
     }
-    
+    [self.tableView reloadData];
     btn.userInteractionEnabled = YES;
 }
 
@@ -347,41 +334,78 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
         }];
     }
-    btn.userInteractionEnabled = NO;
+    btn.userInteractionEnabled = YES;
 }
 
 //保存按钮的响应
 -(void)saveBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    MaintenanceLogCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    __weak typeof(self) weakSelf = self;
-    cell.imageUrlCallBack = ^(NSString * _Nonnull content) {
-        
-        if (![NSString strIsEmpty:content]) {
-         
-            weakSelf.detailModel.images = content;
-        }
-        [weakSelf addMaintenanceRecords];
-    };
-    [cell startUploadImages];
     
-    btn.userInteractionEnabled = NO;
+    if ([NSString strIsEmpty:self.detailModel.maintain_day]) {
+        
+        [MBProgressHUD wj_showError:@"请选择维修日期"];
+    }
+    else if (!self.detailModel.mileage){
+        
+        [MBProgressHUD wj_showError:@"请输入公里数"];
+    }
+    else if (!self.detailModel.related_service){
+        
+        [MBProgressHUD wj_showError:@"请选择关联项目"];
+    }
+    else if (!self.detailModel.receivable){
+        
+        [MBProgressHUD wj_showError:@"请输入应收金额"];
+    }
+    else if (!self.detailModel.received){
+        
+        [MBProgressHUD wj_showError:@"请输入实收金额"];
+    }else if (!self.detailModel.cost){
+        
+        [MBProgressHUD wj_showError:@"请输入成本"];
+    }else if ([NSString strIsEmpty:self.detailModel.content]){
+        
+        [MBProgressHUD wj_showError:@"请输入维修内容"];
+    }
+//    else if ([NSString strIsEmpty:self.detailModel.images]){
+//
+//        [MBProgressHUD wj_showError:@"请选择图片"];
+//    }
+    else{
+    
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+        });
+        
+        MaintenanceLogCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        cell.imageUrlCallBack = ^(NSString * _Nonnull content) {
+            
+            if (![NSString strIsEmpty:content]) {
+                
+                weakSelf.detailModel.images = content;
+            }
+            [weakSelf addMaintenanceRecords];
+        };
+        [cell startUploadImages];
+    }
+    
+    btn.userInteractionEnabled = YES;
 }
 
 //添加维修记录
 -(void)addMaintenanceRecords{
     
     __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
-    });
-    
     NSDictionary * tempBodyParameters = [self.detailModel  mj_keyValues];
     NSMutableDictionary * bodyParameters = [[NSMutableDictionary alloc] initWithDictionary:tempBodyParameters];
-    [bodyParameters setObject:tempBodyParameters[@"id"] forKey:@"maintain_id"];
-    [bodyParameters removeObjectForKey:@"id"];
+    if ([tempBodyParameters.allKeys containsObject:@"id"]) {
+     
+        [bodyParameters setObject:tempBodyParameters[@"id"] forKey:@"maintain_id"];
+        [bodyParameters removeObjectForKey:@"id"];
+    }
     
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainadd,@"bodyParameters":bodyParameters};
     

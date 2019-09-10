@@ -32,7 +32,7 @@ typedef void(^CallBackStr)(NSString * content);
 //图片路径的回调
 @property (nonatomic,strong) CallBackStr imageUrlCallBack;
 
-+(float)cellHeightWithContent:(NSString *)content andImageCount:(NSUInteger)imageCount;
++(float)cellHeightWithContent:(NSString *)content;
 
 //repairDate,维修日期;kilometers,公里数;associatedProject,关联项目;acceptable,应收;received,实收;cost,成本;images,维修图片组合,以,分隔。
 -(void)showData:(NSDictionary *)dic;

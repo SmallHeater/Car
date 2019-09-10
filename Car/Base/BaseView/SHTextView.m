@@ -36,7 +36,6 @@
         _evaTextView.font = [UIFont systemFontOfSize:14.0];
         _evaTextView.backgroundColor = [UIColor whiteColor];
         _evaTextView.returnKeyType = UIReturnKeyDone;
-        _evaTextView.textColor = Color_333333;
         _evaTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
 //        _evaTextView.backgroundColor = [UIColor greenColor];
     }
@@ -63,12 +62,14 @@
 -(void)setText:(NSString *)text{
     
     self.evaTextView.text = text;
+    self.evaTextView.textColor = self.textColor;
 }
 
 -(void)setPlaceholder:(NSString *)placeholder{
     
     _placeholder = placeholder;
     self.evaTextView.text = _placeholder;
+    self.evaTextView.textColor = self.placeholderColor;
 }
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor{
@@ -105,9 +106,15 @@
     self.evaTextView.returnKeyType = returnKeyType;
 }
 
+-(void)setPlaceholderColor:(UIColor *)placeholderColor{
+    
+    _placeholderColor = placeholderColor;
+    self.evaTextView.textColor = placeholderColor;
+}
+
 -(void)setTextColor:(UIColor *)textColor{
     
-    self.evaTextView.textColor = textColor;
+    _textColor = textColor;
 }
 
 #pragma mark  ----  生命周期函数
@@ -227,7 +234,7 @@
     if ([textView.text isEqualToString:self.placeholder]) {
         
         textView.text = @"";
-        textView.textColor = [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1];
+        textView.textColor = self.textColor;
     }
     
     if (self.delegate) {
@@ -243,7 +250,7 @@
     if (textView.text.length == 0) {
         
         textView.text = self.placeholder;
-        textView.textColor = [UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1];
+        textView.textColor = self.placeholderColor;
     }
     [self endEditing:YES];
     
@@ -338,7 +345,7 @@
         if ([self.evaTextView.text isEqualToString:self.placeholder]) {
             
             self.evaTextView.text = @"";
-            self.evaTextView.textColor = [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1];
+            self.evaTextView.textColor = self.textColor;
         }
         
         NSString * content = self.evaTextView.text;

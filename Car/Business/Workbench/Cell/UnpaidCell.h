@@ -11,7 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CallBack)();
+
 @interface UnpaidCell : UITableViewCell
+
+//立即回款按钮的回调
+@property (nonatomic,copy) CallBack btnClickCallBack;
 
 +(float)cellHeight;
 

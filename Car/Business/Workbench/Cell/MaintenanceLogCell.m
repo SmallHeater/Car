@@ -240,6 +240,7 @@
         _acceptableTF.textColor = Color_333333;
         _acceptableTF.font = FONT16;
         _acceptableTF.textAlignment = NSTextAlignmentCenter;
+        _acceptableTF.keyboardType = UIKeyboardTypePhonePad;
     }
     return _acceptableTF;
 }
@@ -277,6 +278,7 @@
         _receivedTF.textColor = Color_333333;
         _receivedTF.font = FONT16;
         _receivedTF.textAlignment = NSTextAlignmentCenter;
+        _receivedTF.keyboardType = UIKeyboardTypePhonePad;
     }
     return _receivedTF;
 }
@@ -314,6 +316,7 @@
         _costTF.textColor = Color_333333;
         _costTF.font = FONT16;
         _costTF.textAlignment = NSTextAlignmentCenter;
+        _costTF.keyboardType = UIKeyboardTypePhonePad;
     }
     return _costTF;
 }
@@ -347,6 +350,7 @@
         _repairContentTF = [[SHTextView alloc] init];
         _repairContentTF.delegate = self;
         _repairContentTF.textFont = FONT16;
+        _repairContentTF.placeholderColor = Color_C7C7CD;
         _repairContentTF.textColor = Color_333333;
         _repairContentTF.placeholder = @"请输入维修内容";
 //        _repairContentTF.backgroundColor = [UIColor greenColor];
@@ -495,6 +499,16 @@
         }
         textField.text = showStr;
     }
+    else if ([textField isEqual:self.acceptableTF] || [textField isEqual:self.receivedTF] || [textField isEqual:self.costTF]){
+        
+        //应收
+        NSMutableString * showStr = [[NSMutableString alloc] initWithString:textField.text];
+        if ([showStr rangeOfString:@"￥"].location != NSNotFound) {
+            
+            [showStr replaceCharactersInRange:[showStr rangeOfString:@"￥"] withString:@""];
+        }
+        textField.text = showStr;
+    }
     return YES;
 }
 
@@ -516,6 +530,10 @@
             
             self.acceptableCallBack(textField.text.floatValue);
         }
+        
+        NSString * str = [[NSString alloc] initWithFormat:@"%.2f",textField.text.floatValue];
+        NSString * mixedStr = [[NSString alloc] initWithFormat:@"￥%@",str];
+        textField.text = mixedStr;
     }
     else if ([textField isEqual:self.receivedTF]){
         
@@ -523,6 +541,10 @@
             
             self.receivedCallBack(textField.text.floatValue);
         }
+        
+        NSString * str = [[NSString alloc] initWithFormat:@"%.2f",textField.text.floatValue];
+        NSString * mixedStr = [[NSString alloc] initWithFormat:@"￥%@",str];
+        textField.text = mixedStr;
     }
     else if ([textField isEqual:self.costTF]){
         
@@ -530,6 +552,10 @@
             
             self.costCallBack(textField.text.floatValue);
         }
+        
+        NSString * str = [[NSString alloc] initWithFormat:@"%.2f",textField.text.floatValue];
+        NSString * mixedStr = [[NSString alloc] initWithFormat:@"￥%@",str];
+        textField.text = mixedStr;
     }
 }
 
@@ -568,11 +594,11 @@
 
 #pragma mark  ----  自定义函数
 
-+(float)cellHeightWithContent:(NSString *)content andImageCount:(NSUInteger)imageCount{
++(float)cellHeightWithContent:(NSString *)content{
     
     float contentHeight = [[NSString repleaseNilOrNull:content] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
     
-    return 344 + 17 + contentHeight + 19 + 56 + (imageCount > 2?(111 * 2 + 10):111) + 94;
+    return 344 + 17 + contentHeight + 19 + 56 + 111 * 2 + 10 + 94;
 }
 
 -(void)drawUI{
@@ -808,6 +834,7 @@
 
 -(void)associatedProjectClicked:(UITapGestureRecognizer *)gesture{
     
+    [self endEditing:YES];
     [[UIApplication sharedApplication].keyWindow addSubview:self.projectPickView];
 }
 

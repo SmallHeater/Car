@@ -68,7 +68,7 @@
                   moduleName = "Car"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Git/Car/Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-                  timestampString = "589731729.567045"
+                  timestampString = "589819816.905682"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "893"
@@ -83,7 +83,7 @@
                   moduleName = "Car"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Git/Car/Car/Base/SHRouting/SHUploadComponent/Control/NewUploadController.m"
-                  timestampString = "589731729.5703551"
+                  timestampString = "589819816.9101371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "893"
@@ -163,54 +163,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589731729.130926"
+            filePath = "Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
+            timestampString = "589819816.575875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589731729.130996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Base/BaseControl/BaiDuBos/BaiDuBosControl.m"
-            timestampString = "589731729.131047"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Business/Workbench/UIViewController/MaintenanceRecordsDetailViewController.m"
-            timestampString = "589645820.125107"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

@@ -51,9 +51,43 @@ static NSString * cellId = @"UnpaidCell";
         cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+
     //展示数据:numberPlate:车牌;name:姓名;carModel:车型号;phoneNumber:电话;content:维修内容;receivable:应收款;actualHarvest:实收款;arrears:欠款;
     UnpaidModel * model = self.dataArray[indexPath.row];
     [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"receivable":model.receivable,@"actualHarvest":model.received,@"arrears":model.debt}];
+    
+    __weak typeof(self) weakSelf = self;
+    cell.btnClickCallBack = ^{
+        
+        UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"回款" message:nil preferredStyle:
+                                      UIAlertControllerStyleAlert];
+        [alertVc addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            
+            textField.keyboardType = UIKeyboardTypePhonePad;
+            textField.placeholder = @"请输入回款金额";
+        }];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+            // 通过数组拿到textTF的值
+            NSString * str = [[alertVc textFields] objectAtIndex:0].text;
+            if (str.floatValue > model.debt.floatValue) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD wj_showError:@"输入回款金额大于欠款金额，请重新输入"];
+                });
+            }
+            else{
+                
+                [weakSelf payBackWithMaintainId:model.maintain_id  andMoney:str.floatValue];
+            }
+        }];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        // 添加行为
+        [alertVc addAction:action2];
+        [alertVc addAction:action1];
+        [self presentViewController:alertVc animated:YES completion:nil];
+    };
     
     return cell;
 }
@@ -85,12 +119,54 @@ static NSString * cellId = @"UnpaidCell";
                     
                     //成功
                     NSArray * arr = dataDic[@"list"];
+                    [weakSelf.dataArray removeAllObjects];
                     for (NSDictionary * dic in arr) {
                         
                         UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
                         [weakSelf.dataArray addObject:model];
                     }
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
+                }
+                else{
+                    
+                    //异常
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+//回款
+-(void)payBackWithMaintainId:(NSString *)maintain_id andMoney:(float)money{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"maintain_id":maintain_id,@"money":[NSNumber numberWithFloat:money]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Nowrepay,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    [weakSelf requestListData];
                 }
                 else{
                     

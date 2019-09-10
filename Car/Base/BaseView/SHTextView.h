@@ -25,6 +25,7 @@ typedef void(^ReturnBlock)(NSString * str);
 @property(nonatomic,strong) UIColor * textColor;
 //默认placeHold
 @property (nonatomic,strong) NSString * placeholder;
+@property (nonatomic,strong) UIColor * placeholderColor;
 //最大字数
 @property (nonatomic,assign) NSUInteger maxCount;
 //输入完成的回调
