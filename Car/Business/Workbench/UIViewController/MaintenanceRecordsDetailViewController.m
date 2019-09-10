@@ -148,7 +148,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         if (self.maintenanceRecordsModel) {
             
-            cellHeight = [MaintenanceLogCell cellHeightWithContent:self.maintenanceRecordsModel.content andImageCount:0];
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:self.maintenanceRecordsModel.content andImageCount:5];
         }
         else{
             
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
             NSString * acceptable = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.receivable.floatValue];
             NSString * received = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.received.floatValue];
             NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",self.maintenanceRecordsModel.cost.floatValue];
-            [cell showData:@{@"repairDate":self.maintenanceRecordsModel.maintain_day,@"kilometers":[[NSString alloc] initWithFormat:@"%ld",self.maintenanceRecordsModel.mileage.integerValue],@"associatedProject":associatedProject,@"repairContent":self.maintenanceRecordsModel.content,@"acceptable":acceptable,@"received":received,@"cost":cost}];
+            [cell showData:@{@"repairDate":self.maintenanceRecordsModel.maintain_day,@"kilometers":[[NSString alloc] initWithFormat:@"%ld",self.maintenanceRecordsModel.mileage.integerValue],@"associatedProject":associatedProject,@"repairContent":self.maintenanceRecordsModel.content,@"acceptable":acceptable,@"received":received,@"cost":cost,@"images":[NSString repleaseNilOrNull:self.maintenanceRecordsModel.images]}];
 
         }
         return cell;
@@ -352,14 +352,29 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)saveBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
-    [self addMaintenanceRecords];
+    MaintenanceLogCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    __weak typeof(self) weakSelf = self;
+    cell.imageUrlCallBack = ^(NSString * _Nonnull content) {
+        
+        if (![NSString strIsEmpty:content]) {
+         
+            weakSelf.detailModel.images = content;
+        }
+        [weakSelf addMaintenanceRecords];
+    };
+    [cell startUploadImages];
+    
     btn.userInteractionEnabled = NO;
 }
 
 //添加维修记录
 -(void)addMaintenanceRecords{
     
-    NSDictionary * bodyParameters = [self.detailModel  mj_keyValues];
+    NSDictionary * tempBodyParameters = [self.detailModel  mj_keyValues];
+    NSMutableDictionary * bodyParameters = [[NSMutableDictionary alloc] initWithDictionary:tempBodyParameters];
+    [bodyParameters setObject:tempBodyParameters[@"id"] forKey:@"maintain_id"];
+    [bodyParameters removeObjectForKey:@"id"];
+    
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainadd,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

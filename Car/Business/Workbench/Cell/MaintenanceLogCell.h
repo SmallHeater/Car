@@ -29,14 +29,16 @@ typedef void(^CallBackStr)(NSString * content);
 @property (nonatomic,strong) CallBack costCallBack;
 //维修内容回调
 @property (nonatomic,strong) CallBackStr contentCallBack;
-
+//图片路径的回调
+@property (nonatomic,strong) CallBackStr imageUrlCallBack;
 
 +(float)cellHeightWithContent:(NSString *)content andImageCount:(NSUInteger)imageCount;
 
--(void)test;
-
-//repairDate,维修日期;kilometers,公里数;associatedProject,关联项目;acceptable,应收;received,实收;cost,成本;
+//repairDate,维修日期;kilometers,公里数;associatedProject,关联项目;acceptable,应收;received,实收;cost,成本;images,维修图片组合,以,分隔。
 -(void)showData:(NSDictionary *)dic;
+
+//主动开始上传图片
+-(void)startUploadImages;
 
 @end
 

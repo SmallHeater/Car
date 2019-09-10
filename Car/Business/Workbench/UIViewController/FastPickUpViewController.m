@@ -17,7 +17,7 @@
 #import "UserInforController.h"
 #import "BaiDuBosControl.h"
 
-@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UITableView * tableView;
 //保存按钮
@@ -26,6 +26,8 @@
 @property (nonatomic,strong) DrivingLicenseModel * drivingLicenseModel;
 //快速接车请求模型
 @property (nonatomic,strong) FastPickUpRequestModel * requestModel;
+//行驶证图片
+@property (nonatomic,strong) UIImage * drivingLicenseImage;
 
 @end
 
@@ -92,13 +94,26 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = Color_F3F3F3;
-    [[AipOcrService shardService] authWithAK:@"yqvmGyaz0wtcXGCO0rwg5OhD" andSK:@"mC8IKB7HzwRtuwQrloawUPHSFTjGqwHk"];
+    [self addGesture];
+    [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
     [self drawUI];
     [self registrationNotice];
-    [self addGesture];
 }
 
 #pragma mark  ----  代理
+
+# pragma mark ---- UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        
+        return NO;
+    }
+    
+    return  YES;
+}
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -131,10 +146,12 @@
             if ([resultDic.allKeys containsObject:@"error"]) {
                 
                 //异常
+                NSLog(@"快速接车,异常");
             }
             else if ([resultDic.allKeys containsObject:@"image"]){
                 
                 UIImage * image = resultDic[@"image"];
+                weakSelf.drivingLicenseImage = image;
                 [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
                     
                     if (result && [result isKindOfClass:[NSDictionary class]]) {
@@ -316,6 +333,7 @@
 -(void)addGesture{
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
+    tap.delegate = self;
     [self.view addGestureRecognizer:tap];
 }
 
@@ -376,7 +394,16 @@
     }
     else{
         
-        [self submit];
+        //上传行驶证照片
+        __weak typeof(self) weakSelf = self;
+        [[BaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
+            
+            if (![NSString strIsEmpty:imagePath]) {
+                
+                weakSelf.requestModel.vehicle_license_image = imagePath;
+            }
+            [weakSelf submit];
+        }];
     }
 }
 

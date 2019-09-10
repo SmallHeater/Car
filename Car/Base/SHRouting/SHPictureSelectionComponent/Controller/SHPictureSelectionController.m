@@ -263,7 +263,7 @@
     if (!_cameraModel) {
         
         _cameraModel = [[SHAssetImageModel alloc] init];
-        _cameraModel.thumbnails = [UIImage imageNamed:@"SHLivePlayBundle.bundle/cameraTwo.tiff"];
+        _cameraModel.thumbnails = [UIImage imageNamed:@"cameraTwo"];
     }
     return _cameraModel;
 }

@@ -10,7 +10,7 @@
 #import "SHTextView.h"
 #import "SHDatePickView.h"
 #import "SHPickerView.h"
-
+#import "BaiDuBosControl.h"
 
 @interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate,SHPickerViewDelegate>
 
@@ -54,6 +54,11 @@
 @property (nonatomic,strong) UIButton * addImageBtn;
 //图片字典数组,thumbnails,缩略图;screenSizeImage,全屏图;originalImage,普通图
 @property (nonatomic,strong) NSMutableArray<NSDictionary *> * imageArray;
+//图片数组
+@property (nonatomic,strong) NSMutableArray<NSString *> * imageUrlStrArray;
+@property (nonatomic,strong) NSMutableArray<UIImageView *> * imageViewArray;
+//底部图片区view
+@property (nonatomic,strong) UIView * bottomView;
 
 @end
 
@@ -358,6 +363,42 @@
     return _seventhLabel;
 }
 
+-(UIView *)bottomView{
+    
+    if (!_bottomView) {
+        
+        _bottomView = [[UIView alloc] init];
+        
+        [_bottomView addSubview:self.imageUploadLabel];
+        [self.imageUploadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.top.offset(20);
+            make.width.offset(100);
+            make.height.offset(16);
+        }];
+        
+        [_bottomView addSubview:self.imageCountLabel];
+        [self.imageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-18);
+            make.top.offset(20);
+            make.width.offset(50);
+            make.height.offset(16);
+        }];
+        
+        [_bottomView addSubview:self.addImageBtn];
+        [self.addImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(15);
+            make.top.offset(56);
+            make.width.height.offset(111);
+        }];
+//        _bottomView.backgroundColor = [UIColor greenColor];
+    }
+    return _bottomView;
+}
+
 -(UILabel *)imageUploadLabel{
     
     if (!_imageUploadLabel) {
@@ -366,6 +407,7 @@
         _imageUploadLabel.font = FONT16;
         _imageUploadLabel.textColor = Color_666666;
         _imageUploadLabel.text = @"图片上传";
+//        _imageUploadLabel.backgroundColor = [UIColor greenColor];
     }
     return _imageUploadLabel;
 }
@@ -378,6 +420,7 @@
         _imageCountLabel.font = FONT16;
         _imageCountLabel.textColor = Color_999999;
         _imageCountLabel.textAlignment = NSTextAlignmentRight;
+//        _imageCountLabel.backgroundColor = [UIColor greenColor];
     }
     return _imageCountLabel;
 }
@@ -389,6 +432,24 @@
         _imageArray = [[NSMutableArray alloc] init];
     }
     return _imageArray;
+}
+
+-(NSMutableArray<NSString *> *)imageUrlStrArray{
+    
+    if (!_imageUrlStrArray) {
+        
+        _imageUrlStrArray = [[NSMutableArray alloc] init];
+    }
+    return _imageUrlStrArray;
+}
+
+-(NSMutableArray<UIImageView *> *)imageViewArray{
+    
+    if (!_imageViewArray) {
+        
+        _imageViewArray = [[NSMutableArray alloc] init];
+    }
+    return _imageViewArray;
 }
 
 -(UIButton *)addImageBtn{
@@ -413,6 +474,11 @@
         [self drawUI];
     }
     return self;
+}
+
+-(void)dealloc{
+    
+    NSLog(@"MaintenanceLogCell销毁");
 }
 
 #pragma mark  ----  UITextFieldDelegate
@@ -689,7 +755,7 @@
         make.left.equalTo(self.repairContentLabel.mas_right).offset(26);
         make.top.equalTo(self.repairContentLabel.mas_top);
         make.right.offset(-17);
-        make.height.offset(0);
+        make.height.offset(20);
     }];
     
     [self addSubview:self.seventhLabel];
@@ -700,30 +766,11 @@
         make.height.offset(1);
     }];
     
-    [self addSubview:self.imageUploadLabel];
-    [self.imageUploadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.offset(16);
-        make.top.equalTo(self.seventhLabel.mas_bottom).offset(20);
-        make.width.offset(100);
-        make.height.offset(16);
-    }];
-    
-    [self addSubview:self.imageCountLabel];
-    [self.imageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.offset(-18);
-        make.top.equalTo(self.imageUploadLabel.mas_top);
-        make.width.offset(50);
-        make.height.offset(16);
-    }];
-    
-    [self addSubview:self.addImageBtn];
-    [self.addImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.offset(15);
-        make.top.equalTo(self.imageUploadLabel.mas_bottom).offset(21);
-        make.width.height.offset(111);
+        make.left.right.bottom.offset(0);
+        make.top.equalTo(self.seventhLabel.mas_bottom).offset(0);
     }];
 }
 
@@ -766,31 +813,74 @@
     self.repairContentTF.text = dic[@"repairContent"];
     
     float repairContentHeight = [dic[@"repairContent"] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
-    [self.repairContentTF mas_updateConstraints:^(MASConstraintMaker *make) {
-       
-        make.height.offset(repairContentHeight);
-    }];
+    if (repairContentHeight > 20) {
+     
+        [self.repairContentTF mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            NSLog(@"高度：%lf",repairContentHeight);
+            make.height.offset(repairContentHeight);
+        }];
+    }
     
     self.acceptableTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"acceptable"]];
     self.receivedTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"received"]];
     self.costTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"cost"]];
+    
+    if ([dic.allKeys containsObject:@"images"]) {
+        
+        NSString * urlStr = dic[@"images"];
+        NSArray * tempArr = [urlStr componentsSeparatedByString:@","];
+        [self.imageUrlStrArray addObjectsFromArray:tempArr];
+        __weak typeof(self) weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           
+            [weakSelf createImageViews];
+        });
+    }
 }
 
--(void)test{
+//主动开始上传图片
+-(void)startUploadImages{
     
-    [self showData:@{@"repairDate":@"2019-08-14",@"kilometers":@"52365公里",@"associatedProject":@"保养",@"acceptable":@"120",@"received":@"120",@"cost":@"120"}];
+    if (self.imageArray.count > 0) {
+        
+        __block NSMutableArray * imagePathArray = [[NSMutableArray alloc] initWithArray:self.imageUrlStrArray];
+        for (NSDictionary * imageDic in self.imageArray) {
+            
+            UIImage * image = imageDic[@"screenSizeImage"];
+            [[BaiDuBosControl sharedManager] uploadImage:image callBack:^(NSString * _Nonnull imagePath) {
+                
+                [imagePathArray addObject:imagePath];
+                if (imagePathArray.count == self.imageArray.count + self.imageUrlStrArray.count) {
+                    
+                    //上传全部完成
+                    if (self.imageUrlCallBack) {
+    
+                        NSString * callBackImagePath = [imagePathArray componentsJoinedByString:@","];
+                        self.imageUrlCallBack(callBackImagePath);
+                    }
+                }
+            }];
+        }
+    }
+    else{
+        
+        if (self.imageUrlCallBack) {
+            
+            self.imageUrlCallBack(@"");
+        }
+    }
 }
 
 -(void)addImageBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
     __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:5],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+    [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:5 - self.imageArray.count - self.imageUrlStrArray.count],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
         
         if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
             
             NSArray * dataArray = resultDic[@"data"];
-            [weakSelf.imageArray removeAllObjects];
             [weakSelf.imageArray addObjectsFromArray:dataArray];
             [weakSelf createImageViews];
         }
@@ -801,28 +891,61 @@
 //创建图片
 -(void)createImageViews{
     
+    //移除所有imageView
+    for (UIImageView * imageView in self.imageViewArray) {
+        
+        [imageView removeFromSuperview];
+    }
+    //图片总数
+    NSUInteger imageCount = self.imageUrlStrArray.count + self.imageArray.count;
+    self.imageCountLabel.text = [[NSString alloc] initWithFormat:@"%ld / 5",imageCount];
     float imageViewLeft = 15;
-    float imageViewTop = CGRectGetMaxY(self.imageUploadLabel.frame);
+    float imageViewTop = 56;
     float imageWidthHeight = 111;
     float interval = (MAINWIDTH - 15 * 2 - imageWidthHeight * 3) / 2.0;
-    for (NSUInteger i = 0; i < self.imageArray.count; i++) {
+    
+    for (NSUInteger i = 0; i < imageCount; i++) {
         
-        NSDictionary * dic = self.imageArray[i];
-        UIImage * thumbnailsImage = dic[@"thumbnails"];
-        UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.image = thumbnailsImage;
-        [self addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.offset(imageViewLeft);
-            make.top.offset(imageViewTop);
-            make.width.height.offset(imageWidthHeight);
-        }];
-        imageViewLeft += imageWidthHeight + interval;
-        if (i == 2) {
+        if (i < self.imageUrlStrArray.count) {
             
-            imageViewTop += imageWidthHeight + 10;
-            imageViewLeft = 15;
+            NSString * imageUrlStr = self.imageUrlStrArray[i];
+            UIImageView * imageView = [[UIImageView alloc] init];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]];
+            [self.bottomView addSubview:imageView];
+            [self.imageViewArray addObject:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.offset(imageViewLeft);
+                make.top.offset(imageViewTop);
+                make.width.height.offset(imageWidthHeight);
+            }];
+            imageViewLeft += imageWidthHeight + interval;
+            if (i == 2) {
+                
+                imageViewTop += imageWidthHeight + 10;
+                imageViewLeft = 15;
+            }
+        }
+        else{
+            
+            NSDictionary * dic = self.imageArray[i - self.imageUrlStrArray.count];
+            UIImage * thumbnailsImage = dic[@"thumbnails"];
+            UIImageView * imageView = [[UIImageView alloc] init];
+            imageView.image = thumbnailsImage;
+            [self.bottomView addSubview:imageView];
+            [self.imageViewArray addObject:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.offset(imageViewLeft);
+                make.top.offset(imageViewTop);
+                make.width.height.offset(imageWidthHeight);
+            }];
+            imageViewLeft += imageWidthHeight + interval;
+            if (i == 2) {
+                
+                imageViewTop += imageWidthHeight + 10;
+                imageViewLeft = 15;
+            }
         }
     }
     

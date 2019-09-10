@@ -48,8 +48,8 @@
         _selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _selectBtn.frame = CGRectMake(self.frame.size.width - 25, 0, 25, 25);
         [_selectBtn setImageEdgeInsets:UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5)];
-        [_selectBtn setImage:[UIImage imageNamed:@"SHLivePlayBundle.bundle/noSelected.tiff"] forState:UIControlStateNormal];
-        [_selectBtn setImage:[UIImage imageNamed:@"SHLivePlayBundle.bundle/selected.tiff"] forState:UIControlStateSelected];
+        [_selectBtn setImage:[UIImage imageNamed:@"noSelected"] forState:UIControlStateNormal];
+        [_selectBtn setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
     }
     return _selectBtn;
 }

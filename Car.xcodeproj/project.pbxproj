@@ -419,6 +419,10 @@
 		62A8F6C82325D97800A6C456 /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
 		62A8F6CA2325D97E00A6C456 /* SHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPickerView.m; sourceTree = "<group>"; };
 		62A8F6CB2325D97E00A6C456 /* SHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPickerView.h; sourceTree = "<group>"; };
+		62A8F6EE2327231800A6C456 /* LabelAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelAndLabelView.m; sourceTree = "<group>"; };
+		62A8F6EF2327231800A6C456 /* LabelAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelAndLabelView.h; sourceTree = "<group>"; };
+		62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHImageViewWithDeleteBtn.m; sourceTree = "<group>"; };
+		62A8F6F22327236100A6C456 /* SHImageViewWithDeleteBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageViewWithDeleteBtn.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1169,6 +1173,10 @@
 		0432BFC9232698F8002CD639 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				62A8F6F22327236100A6C456 /* SHImageViewWithDeleteBtn.h */,
+				62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */,
+				62A8F6EF2327231800A6C456 /* LabelAndLabelView.h */,
+				62A8F6EE2327231800A6C456 /* LabelAndLabelView.m */,
 				0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */,
 				0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */,
 			);

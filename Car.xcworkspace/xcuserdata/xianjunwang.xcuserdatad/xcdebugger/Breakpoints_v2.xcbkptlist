@@ -35,38 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
-            timestampString = "589694837.407647"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
-            landmarkName = "-keyboardWillHide:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
-            timestampString = "589694837.408083"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
-            landmarkName = "@implementation FastPickUpViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Car/Business/Workbench/Cell/DriverInformationCell.m"
             timestampString = "589684887.648432"
             startingColumnNumber = "9223372036854775807"
@@ -83,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Business/Workbench/UIViewController/MaintenanceRecordsDetailViewController.m"
-            timestampString = "589721776.236639"
+            filePath = "Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
+            timestampString = "589803521.169108"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "-addMaintenanceRecords"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
+            landmarkName = "-viewTaped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
