@@ -32,7 +32,8 @@
 @property (nonatomic,strong) UILabel * arrearsLine;
 //维修量
 @property (nonatomic,strong) SHLabelAndLabelView * maintenanceView;
-
+//底部灰条
+@property (nonatomic,strong) UILabel * bottomLabel;
 @end
 
 @implementation ProfitStatisticsCell
@@ -96,7 +97,7 @@
     
     if (!_acceptableView) {
         
-        _acceptableView = [[SHLabelAndLabelView alloc] init];
+        _acceptableView = [[SHLabelAndLabelView alloc] initWithTopStr:@"应收" andTopLabelHeight:17.0 andBottomStr:@"0.00" andBottomHeight:20];
         [_acceptableView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
         [_acceptableView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
         [_acceptableView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
@@ -118,7 +119,7 @@
     
     if (!_costView) {
         
-        _costView = [[SHLabelAndLabelView alloc] init];
+        _costView = [[SHLabelAndLabelView alloc] initWithTopStr:@"成本" andTopLabelHeight:17.0 andBottomStr:@"0.00" andBottomHeight:20];
         [_costView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
         [_costView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
         [_costView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
@@ -140,7 +141,7 @@
     
     if (!_arrearsView) {
         
-        _arrearsView = [[SHLabelAndLabelView alloc] init];
+        _arrearsView = [[SHLabelAndLabelView alloc] initWithTopStr:@"欠款" andTopLabelHeight:17.0 andBottomStr:@"0.00" andBottomHeight:20];
         [_arrearsView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
         [_arrearsView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
         [_arrearsView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
@@ -162,12 +163,22 @@
     
     if (!_maintenanceView) {
         
-        _maintenanceView = [[SHLabelAndLabelView alloc] init];
+        _maintenanceView = [[SHLabelAndLabelView alloc] initWithTopStr:@"维修量" andTopLabelHeight:17.0 andBottomStr:@"0.00" andBottomHeight:20];
         [_maintenanceView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
         [_maintenanceView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
         [_maintenanceView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
     }
     return _maintenanceView;
+}
+
+-(UILabel *)bottomLabel{
+    
+    if (!_bottomLabel) {
+        
+        _bottomLabel = [[UILabel alloc] init];
+        _bottomLabel.backgroundColor = Color_EEEEEE;
+    }
+    return _bottomLabel;
 }
 
 #pragma mark  ----  生命周期函数
@@ -262,12 +273,45 @@
     [self addSubview:self.costLine];
     [self.costLine mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.acceptableView.mas_right);
+        make.left.equalTo(self.costView.mas_right);
         make.top.equalTo(self.lineLabel.mas_bottom).offset(18);
         make.width.offset(1);
         make.height.offset(14);
     }];
     
+    [self addSubview:self.arrearsView];
+    [self.arrearsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.costLine.mas_right);
+        make.top.equalTo(self.acceptableView.mas_top);
+        make.width.equalTo(self.acceptableView.mas_width);
+        make.height.equalTo(self.acceptableView.mas_height);
+    }];
+    
+    [self addSubview:self.arrearsLine];
+    [self.arrearsLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.arrearsView.mas_right);
+        make.top.equalTo(self.lineLabel.mas_bottom).offset(18);
+        make.width.offset(1);
+        make.height.offset(14);
+    }];
+    
+    [self addSubview:self.maintenanceView];
+    [self.maintenanceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.arrearsLine.mas_right);
+        make.top.equalTo(self.acceptableView.mas_top);
+        make.width.equalTo(self.acceptableView.mas_width);
+        make.height.equalTo(self.acceptableView.mas_height);
+    }];
+    
+    [self addSubview:self.bottomLabel];
+    [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.offset(0);
+        make.height.offset(10);
+    }];
 }
 
 //切换按钮的响应

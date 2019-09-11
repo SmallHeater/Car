@@ -15,6 +15,8 @@
 @property(nonatomic,strong)UIButton * insureBtn;
 @property(nonatomic,strong)UIDatePicker * dataPicker;
 @property(nonatomic,strong)UILabel * titleLabel;
+//显示格式,默认yyyy-MM-dd
+@property (nonatomic,strong) NSString * showFormatter;
 @property (nonatomic, copy) void(^handle)(NSDate * date,NSString * dateStr);
 @end
 
@@ -89,21 +91,21 @@
 }
 #pragma mark - 生命周期函数
 
-+ (void)showActionSheetDateWith:(void(^)(NSDate * date,NSString * dateStr))handle
++ (void)showActionSheetDateWithFormatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    SHDatePickView *view = [[SHDatePickView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    SHDatePickView *view = [[SHDatePickView alloc] initWithFrame:[UIScreen mainScreen].bounds andFormatter:formatter];
     view.handle = handle;
     [window addSubview:view];
     [view showAnimation];
 }
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame andFormatter:(NSString *)formatter{
+    
     if (self = [super initWithFrame:frame])
     {
+        self.showFormatter = formatter;
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         [self addContentView];
-        
     }
     return self;
 }
@@ -157,11 +159,11 @@
         if (sender.tag == 2) {
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            if (!self.returnFormatter) {
+            if (!self.showFormatter) {
                 
-                self.returnFormatter = @"yyyy-MM-dd";
+                self.showFormatter = @"yyyy-MM-dd";
             }
-            [formatter setDateFormat:self.returnFormatter];
+            [formatter setDateFormat:self.showFormatter];
            NSString * resultStr = [formatter stringFromDate:self.dataPicker.date];
             if (self.handle) {
                 self.handle(self.dataPicker.date,resultStr);
@@ -180,33 +182,5 @@
     }];
 }
 
-//#pragma mark tool
-//+ (NSDate *)distanceYear:(int)year{
-//
-//    NSDate * mydate = [NSDate date];
-//
-//    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-//    if (!self.show) {
-//
-//        self.returnFormatter = @"yyyy-MM-dd";
-//    }
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//
-//    NSDateComponents *comps = nil;
-//
-//    comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitMonth fromDate:mydate];
-//
-//    NSDateComponents *adcomps = [[NSDateComponents alloc] init];
-//
-//
-//    [adcomps setYear:year];
-//
-//    NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:mydate options:0];
-//
-//
-//    return newdate;
-//}
 
 @end

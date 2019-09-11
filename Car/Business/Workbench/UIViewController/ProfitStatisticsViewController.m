@@ -8,7 +8,9 @@
 
 #import "ProfitStatisticsViewController.h"
 #import "ProfitStatisticsCell.h"
+#import "CarProfitStatisticsCell.h"
 
+static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 
 @interface ProfitStatisticsViewController ()
 
@@ -56,7 +58,7 @@
     }
     else{
         
-        cellHeight = MAINHEIGHT - 235;
+        cellHeight = 57;
     }
     
     return cellHeight;
@@ -65,7 +67,7 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 11;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -80,21 +82,19 @@
         }
         
         [cell test];
-//        cell.backgroundColor = [UIColor redColor];
         return cell;
     }
-    else if (indexPath.row == 1){
+    else{
         
-//        static NSString * secondCellId = @"MaintenanceLogCell";
-//        MaintenanceLogCell * cell = [tableView dequeueReusableCellWithIdentifier:secondCellId];
-//        if (!cell) {
-//            
-//            cell = [[MaintenanceLogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        }
-//        
-//        [cell test];
-//        return cell;
+        CarProfitStatisticsCell * cell = [tableView dequeueReusableCellWithIdentifier:CarProfitStatisticsCellId];
+        if (!cell) {
+            
+            cell = [[CarProfitStatisticsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarProfitStatisticsCellId];
+        }
+        
+        //linceNumber,车牌;contacts,联系人;profit,利润;arrears,欠款;acceptable,应收;maintenance,维修量
+        [cell showWithDic:@{@"linceNumber":@"京A12345",@"contacts":@"联系人",@"profit":[NSNumber numberWithInt:1200],@"arrears":[NSNumber numberWithInt:100],@"acceptable":[NSNumber numberWithInt:200],@"maintenance":[NSNumber numberWithInt:10],}];
+        return cell;
     }
     return nil;
 }

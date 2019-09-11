@@ -8,9 +8,10 @@
 
 #import "DriverInformationCell.h"
 #import "DrivingLicenseModel.h"
-#import "SHDatePickView.h"
+#import "SHPickerView.h"
 
-@interface DriverInformationCell ()<UITextFieldDelegate>
+
+@interface DriverInformationCell ()<UITextFieldDelegate,SHPickerViewDelegate>
 
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
@@ -25,6 +26,8 @@
 //保险期
 @property (nonatomic,strong) UILabel * InsurancePeriodLabel;
 @property (nonatomic,strong) UILabel * InsurancePeriodContentLabel;
+
+@property (nonatomic,strong) SHPickerView * pickerView;
 
 @end
 
@@ -144,6 +147,15 @@
     return _InsurancePeriodContentLabel;
 }
 
+-(SHPickerView *)pickerView{
+    
+    if (!_pickerView) {
+        
+        _pickerView = [[SHPickerView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) andTitle:@"选择时间" andComponent:1 andData:@[@{@"title":@"1月份"},@{@"title":@"2月份"},@{@"title":@"3月份"},@{@"title":@"4月份"},@{@"title":@"5月份"},@{@"title":@"6月份"},@{@"title":@"7月份"},@{@"title":@"8月份"},@{@"title":@"9月份"},@{@"title":@"10月份"},@{@"title":@"11月份"},@{@"title":@"12月份"}]];
+        _pickerView.delegate = self;
+    }
+    return _pickerView;
+}
 
 #pragma mark  ----  生命周期函数
 
@@ -184,6 +196,15 @@
     
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark  ----  SHPickerViewDelegate
+
+-(void)picker:(SHPickerView *)picker didSelectedArray:(NSMutableArray *)selectDicArray{
+    
+    NSDictionary * dic = selectDicArray[0];
+    self.InsurancePeriodContentLabel.text = dic[@"title"];
+    self.InsurancePeriodContentLabel.textColor = Color_333333;
 }
 
 #pragma mark  ----  自定义函数
@@ -296,16 +317,7 @@
 -(void)InsurancePeriodContentLabelClicked:(UIGestureRecognizer *)ges{
     
     [self endEditing:YES];
-    __weak typeof(self) weakSelf = self;
-    [SHDatePickView showActionSheetDateWith:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
-        
-        weakSelf.InsurancePeriodContentLabel.text = dateStr;
-        weakSelf.InsurancePeriodContentLabel.textColor = Color_333333;
-        if (weakSelf.dataCallBack) {
-            
-            weakSelf.dataCallBack(dateStr);
-        }
-    }];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
 }
 
 @end

@@ -8,9 +8,10 @@
 
 #import "MaintenanceLogCell.h"
 #import "SHTextView.h"
-#import "SHDatePickView.h"
 #import "SHPickerView.h"
 #import "BaiDuBosControl.h"
+#import "SHPickerView.h"
+#import "SHDatePickView.h"
 
 @interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate,SHPickerViewDelegate>
 
@@ -821,12 +822,12 @@
 -(void)repairDateClicked:(UITapGestureRecognizer *)gesture{
     
     __weak typeof(self) weakSelf = self;
-    [SHDatePickView showActionSheetDateWith:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+    [SHDatePickView showActionSheetDateWithFormatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
         
         weakSelf.repairDate.text = dateStr;
         weakSelf.repairDate.textColor = Color_333333;
         if (weakSelf.repairDateCallBack) {
-
+            
             weakSelf.repairDateCallBack(dateStr);
         }
     }];

@@ -12,12 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHDatePickView : UIView
 
-//显示格式,默认yyyy-MM-dd
-@property (nonatomic,strong) NSString * showFormatter;
-//返回格式,默认yyyy-MM-dd
-@property (nonatomic,strong) NSString * returnFormatter;
++ (void)showActionSheetDateWithFormatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle;
 
-+ (void)showActionSheetDateWith:(void(^)(NSDate * date,NSString * dateStr))handle;
 @end
 
 NS_ASSUME_NONNULL_END

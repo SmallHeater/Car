@@ -288,6 +288,7 @@
         else{
         
             //失败的
+            [MBProgressHUD wj_showError:@"服务器异常"];
         }
     }];
 }

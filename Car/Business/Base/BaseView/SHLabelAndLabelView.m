@@ -82,12 +82,12 @@
 
 -(void)refreshTopLabelText:(NSString *)topLabelText bottomLabelText:(NSString *)botomLabelText{
     
-    if ([NSString strIsEmpty:topLabelText]) {
+    if (![NSString strIsEmpty:topLabelText]) {
         
         self.topLabel.text = topLabelText;
     }
     
-    if ([NSString strIsEmpty:botomLabelText]) {
+    if (![NSString strIsEmpty:botomLabelText]) {
         
         self.bottomLabel.text = botomLabelText;
     }

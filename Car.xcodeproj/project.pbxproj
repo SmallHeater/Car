@@ -99,6 +99,8 @@
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C58932327EB1000CB0FEF /* RepaidModel.m */; };
+		04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */; };
+		04A915DD232922F7002DDC02 /* SHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915DC232922F7002DDC02 /* SHTableViewCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
@@ -345,6 +347,10 @@
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
 		049C58922327EB1000CB0FEF /* RepaidModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepaidModel.h; sourceTree = "<group>"; };
 		049C58932327EB1000CB0FEF /* RepaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepaidModel.m; sourceTree = "<group>"; };
+		04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarProfitStatisticsCell.h; sourceTree = "<group>"; };
+		04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarProfitStatisticsCell.m; sourceTree = "<group>"; };
+		04A915DB232922F7002DDC02 /* SHTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHTableViewCell.h; sourceTree = "<group>"; };
+		04A915DC232922F7002DDC02 /* SHTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHTableViewCell.m; sourceTree = "<group>"; };
 		04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManagementViewController.h; sourceTree = "<group>"; };
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		04E5D85A231FF24400E1B6BD /* DrivingLicenseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrivingLicenseModel.h; sourceTree = "<group>"; };
@@ -584,6 +590,8 @@
 				62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */,
 				62A8F705232878D300A6C456 /* SHTableView.h */,
 				62A8F706232878D300A6C456 /* SHTableView.m */,
+				04A915DB232922F7002DDC02 /* SHTableViewCell.h */,
+				04A915DC232922F7002DDC02 /* SHTableViewCell.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -971,6 +979,8 @@
 				043D5ABC231D456C00CC8B35 /* UnpaidCell.m */,
 				0422D96723229F4200AF687D /* ReturnRecordCell.h */,
 				0422D96823229F4300AF687D /* ReturnRecordCell.m */,
+				04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */,
+				04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1655,6 +1665,7 @@
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				04A915DD232922F7002DDC02 /* SHTableViewCell.m in Sources */,
 				0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */,
 				0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */,
 				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
@@ -1664,6 +1675,7 @@
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
+				04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
 				0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
