@@ -89,17 +89,11 @@
     
     if (scrollView.contentOffset.x == 0) {
         
-        UIButton * btn = [self.itemsView viewWithTag:1400];
-        btn.selected = YES;
-        UIButton * otherBtn = [self.itemsView viewWithTag:1401];
-        btn.selected = NO;
+        [self.itemsView setBtnSelectedWithIndex:0];
     }
     else{
         
-        UIButton * btn = [self.itemsView viewWithTag:1400];
-        btn.selected = NO;
-        UIButton * otherBtn = [self.itemsView viewWithTag:1401];
-        btn.selected = YES;
+        [self.itemsView setBtnSelectedWithIndex:1];
     }
 }
 

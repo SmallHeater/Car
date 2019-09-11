@@ -201,4 +201,14 @@
     btn.userInteractionEnabled = YES;
 }
 
+//设置按钮为选中
+-(void)setBtnSelectedWithIndex:(NSUInteger)index{
+    
+    if (index < self.buttonArray.count) {
+        
+        UIButton * btn = self.buttonArray[index];
+        [self btnClicked:btn];
+    }
+}
+
 @end

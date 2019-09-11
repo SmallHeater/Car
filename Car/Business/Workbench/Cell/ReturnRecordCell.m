@@ -39,6 +39,7 @@
         _amountLabel = [[UILabel alloc] init];
         _amountLabel.font = FONT16;
         _amountLabel.textColor = Color_E1534A;
+        _amountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _amountLabel;
 }
@@ -74,6 +75,18 @@
         make.height.offset(23);
         make.width.offset(150);
     }];
+}
+
+-(void)showTime:(NSString *)time andMoney:(NSNumber *)money{
+    
+    self.timeLabel.text = [NSString repleaseNilOrNull:time];
+    
+    NSString * moneyStr = @"";
+    if (money) {
+     
+        moneyStr = [[NSString alloc] initWithFormat:@"%.2f",money.floatValue];
+    }
+    self.amountLabel.text = moneyStr;
 }
 
 @end

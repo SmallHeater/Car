@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RepayModel : NSObject
 
 @property (nonatomic,strong) NSString * createtime;
-@property (nonatomic,strong) NSString * money;
+@property (nonatomic,strong) NSNumber * money;
 
 @end
 

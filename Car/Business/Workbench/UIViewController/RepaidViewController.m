@@ -34,7 +34,8 @@ static NSString * cellId = @"RepaidCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [RepaidCell cellHeight];
+    RepaidModel * model = self.dataArray[indexPath.row];
+    return [RepaidCell cellHeightWithContent:@"" andRepaidListCount:model.repaylist.count];
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -51,7 +52,9 @@ static NSString * cellId = @"RepaidCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell test];
+    RepaidModel * model = self.dataArray[indexPath.row];
+    NSArray * arr = [model mj_keyValues][@"repaylist"];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"repaidList":arr}];
     
     return cell;
 }
@@ -83,6 +86,7 @@ static NSString * cellId = @"RepaidCell";
                 if (code.integerValue == 1) {
                     
                     //成功
+                    [weakSelf.dataArray removeAllObjects];
                     NSArray * arr = dataDic[@"list"];
                     for (NSDictionary * dic in arr) {
                         

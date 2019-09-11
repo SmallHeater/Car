@@ -7,12 +7,14 @@
 //
 
 #import "RepaidCell.h"
+#import "ReturnRecordCell.h"
+
+static NSString * cellId = @"ReturnRecordCell";
 
 @interface RepaidCell ()<UITableViewDelegate,UITableViewDataSource>
 
 //背景view
 @property (nonatomic,strong) UIView * bgView;
-
 //车牌号
 @property (nonatomic,strong) UILabel * numberPlateLabel;
 //车主姓名
@@ -21,15 +23,17 @@
 @property (nonatomic,strong) UILabel * carModelLabel;
 //联系电话
 @property (nonatomic,strong) UILabel * phoneNumberLabel;
-
 //虚线分割线
 @property (nonatomic,strong) UIImageView * dottedLineImageView;
 //内容
 @property (nonatomic,strong) UILabel * contentLabel;
 //分割线
 @property (nonatomic,strong) UILabel * firstLineLabel;
-
-@property (nonatomic,strong) UITableView * tableView;
+//回款记录
+@property (nonatomic,strong) UILabel * RepaidRecordsLabel;
+//列表
+@property (nonatomic,strong) SHTableView * tableView;
+@property (nonatomic,strong) NSMutableArray<NSDictionary *> * dataArray;
 
 @end
 
@@ -109,6 +113,24 @@
             make.left.right.offset(0);
             make.top.equalTo(self.contentLabel.mas_bottom).offset(16);
             make.height.offset(1);
+        }];
+        
+        [_bgView addSubview:self.RepaidRecordsLabel];
+        [self.RepaidRecordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(16);
+            make.top.equalTo(self.firstLineLabel.mas_bottom).offset(15);
+            make.right.offset(-20);
+            make.height.offset(20);
+        }];
+        
+        [_bgView addSubview:self.tableView];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.right.offset(-16);
+            make.top.equalTo(self.RepaidRecordsLabel.mas_bottom).offset(20);
+            make.bottom.offset(0);
         }];
     }
     return _bgView;
@@ -192,23 +214,35 @@
     return _firstLineLabel;
 }
 
--(UITableView *)tableView{
+-(UILabel *)RepaidRecordsLabel{
+    
+    if (!_RepaidRecordsLabel) {
+        
+        _RepaidRecordsLabel = [[UILabel alloc] init];
+        _RepaidRecordsLabel.font = FONT20;
+        _RepaidRecordsLabel.textColor = Color_333333;
+        _RepaidRecordsLabel.text = @"回款记录";
+    }
+    return _RepaidRecordsLabel;
+}
+
+-(NSMutableArray<NSDictionary *> *)dataArray{
+    
+    if (!_dataArray) {
+        
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+
+-(SHTableView *)tableView{
     
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 0, 0) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView = [[SHTableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        //取消contentSize和contentOffset的改的，解决闪屏问题
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.scrollEnabled = YES;
-        //        _tableView.backgroundColor = [UIColor redColor];
+        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
@@ -238,19 +272,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 0;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return nil;
+    ReturnRecordCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        
+        cell = [[ReturnRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    [cell showTime:dic[@"createtime"] andMoney:dic[@"money"]];
+    
+    return cell;
 }
 
 #pragma mark  ----  自定义函数
 
-+(float)cellHeight{
++(float)cellHeightWithContent:(NSString *)content andRepaidListCount:(NSUInteger)count{
     
-    return 333;
+    float listHeight = count * 38;
+    return 159 + 54 + listHeight;
 }
 
 -(void)drawUI{
@@ -265,12 +309,6 @@
     }];
 }
 
--(void)payBackBtnClicked:(UIButton *)btn{
-    
-    
-}
-
-
 -(void)showDataWithDic:(NSDictionary *)dic{
     
     if (dic && [dic isKindOfClass:[NSDictionary class]]) {
@@ -280,6 +318,17 @@
         self.carModelLabel.text = dic[@"carModel"];
         self.phoneNumberLabel.text = dic[@"phoneNumber"];
         self.contentLabel.text = dic[@"content"];
+        
+        if ([dic.allKeys containsObject:@"repaidList"]) {
+            
+            NSArray * arr = dic[@"repaidList"];
+            if (arr && arr.count > 0) {
+             
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:arr];
+            }
+        }
+        [self.tableView reloadData];
     }
     else{
         

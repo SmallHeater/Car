@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ReturnRecordCell : UITableViewCell
 
+-(void)showTime:(NSString *)time andMoney:(NSNumber *)money;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -144,6 +144,8 @@
 		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
 		62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6C82325D97800A6C456 /* SHDatePickView.m */; };
 		62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6CA2325D97E00A6C456 /* SHPickerView.m */; };
+		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
+		62A8F707232878D300A6C456 /* SHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F706232878D300A6C456 /* SHTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -422,10 +424,12 @@
 		62A8F6C82325D97800A6C456 /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
 		62A8F6CA2325D97E00A6C456 /* SHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPickerView.m; sourceTree = "<group>"; };
 		62A8F6CB2325D97E00A6C456 /* SHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPickerView.h; sourceTree = "<group>"; };
-		62A8F6EE2327231800A6C456 /* LabelAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelAndLabelView.m; sourceTree = "<group>"; };
-		62A8F6EF2327231800A6C456 /* LabelAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelAndLabelView.h; sourceTree = "<group>"; };
 		62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHImageViewWithDeleteBtn.m; sourceTree = "<group>"; };
 		62A8F6F22327236100A6C456 /* SHImageViewWithDeleteBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageViewWithDeleteBtn.h; sourceTree = "<group>"; };
+		62A8F7022328780100A6C456 /* SHBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHBaseTableViewCell.h; sourceTree = "<group>"; };
+		62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableViewCell.m; sourceTree = "<group>"; };
+		62A8F705232878D300A6C456 /* SHTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHTableView.h; sourceTree = "<group>"; };
+		62A8F706232878D300A6C456 /* SHTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,6 +580,10 @@
 				0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */,
 				046DCB992312A42200C520D8 /* SHSearchBar.h */,
 				046DCB9A2312A42200C520D8 /* SHSearchBar.m */,
+				62A8F7022328780100A6C456 /* SHBaseTableViewCell.h */,
+				62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */,
+				62A8F705232878D300A6C456 /* SHTableView.h */,
+				62A8F706232878D300A6C456 /* SHTableView.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1178,8 +1186,6 @@
 			children = (
 				62A8F6F22327236100A6C456 /* SHImageViewWithDeleteBtn.h */,
 				62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */,
-				62A8F6EF2327231800A6C456 /* LabelAndLabelView.h */,
-				62A8F6EE2327231800A6C456 /* LabelAndLabelView.m */,
 				0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */,
 				0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */,
 			);
@@ -1615,6 +1621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A8F707232878D300A6C456 /* SHTableView.m in Sources */,
 				0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
@@ -1674,6 +1681,7 @@
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
+				62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */,
 				0432BF8E23267F2D002CD639 /* SHPictureSelectionComponent.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "ProfitStatisticsCell.h"
 #import "SHMultipleSwitchingItemsView.h"
-
+#import "SHLabelAndLabelView.h"
 
 @interface ProfitStatisticsCell ()
 
@@ -21,7 +21,17 @@
 //利润
 @property (nonatomic,strong) UILabel * profitLabel;
 @property (nonatomic,strong) UILabel * lineLabel;
-
+//应收
+@property (nonatomic,strong) SHLabelAndLabelView * acceptableView;
+@property (nonatomic,strong) UILabel * acceptableLine;
+//成本
+@property (nonatomic,strong) SHLabelAndLabelView * costView;
+@property (nonatomic,strong) UILabel * costLine;
+//欠款
+@property (nonatomic,strong) SHLabelAndLabelView * arrearsView;
+@property (nonatomic,strong) UILabel * arrearsLine;
+//维修量
+@property (nonatomic,strong) SHLabelAndLabelView * maintenanceView;
 
 @end
 
@@ -80,6 +90,84 @@
         _lineLabel.backgroundColor = Color_EEEEEE;
     }
     return _lineLabel;
+}
+
+-(SHLabelAndLabelView *)acceptableView{
+    
+    if (!_acceptableView) {
+        
+        _acceptableView = [[SHLabelAndLabelView alloc] init];
+        [_acceptableView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
+        [_acceptableView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
+        [_acceptableView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
+    }
+    return _acceptableView;
+}
+
+-(UILabel *)acceptableLine{
+    
+    if (!_acceptableLine) {
+        
+        _acceptableLine = [[UILabel alloc] init];
+        _acceptableLine.backgroundColor = Color_DBDBDB;
+    }
+    return _acceptableLine;
+}
+
+-(SHLabelAndLabelView *)costView{
+    
+    if (!_costView) {
+        
+        _costView = [[SHLabelAndLabelView alloc] init];
+        [_costView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
+        [_costView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
+        [_costView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
+    }
+    return _costView;
+}
+
+-(UILabel *)costLine{
+    
+    if (!_costLine) {
+        
+        _costLine = [[UILabel alloc] init];
+        _costLine.backgroundColor = Color_DBDBDB;
+    }
+    return _costLine;
+}
+
+-(SHLabelAndLabelView *)arrearsView{
+    
+    if (!_arrearsView) {
+        
+        _arrearsView = [[SHLabelAndLabelView alloc] init];
+        [_arrearsView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
+        [_arrearsView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
+        [_arrearsView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
+    }
+    return _arrearsView;
+}
+
+-(UILabel *)arrearsLine{
+    
+    if (!_arrearsLine) {
+        
+        _arrearsLine = [[UILabel alloc] init];
+        _arrearsLine.backgroundColor = Color_DBDBDB;
+    }
+    return _arrearsLine;
+}
+
+-(SHLabelAndLabelView *)maintenanceView{
+    
+    if (!_maintenanceView) {
+        
+        _maintenanceView = [[SHLabelAndLabelView alloc] init];
+        [_maintenanceView setTopLabelFont:FONT12 bottomLabelFont:FONT14];
+        [_maintenanceView setTopLabelTextColor:Color_999999 bottomLabelTextColor:Color_333333];
+        [_maintenanceView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
+    }
+    return _maintenanceView;
 }
 
 #pragma mark  ----  生命周期函数
@@ -141,6 +229,44 @@
         make.top.equalTo(self.profitLabel.mas_bottom).offset(10);
     }];
     
+    float averageViewWidth = (MAINWIDTH - 3) / 4;
+    float viewHeight = 40;
+    
+    [self addSubview:self.acceptableView];
+    [self.acceptableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.offset(0);
+        make.top.equalTo(self.lineLabel.mas_bottom).offset(10);
+        make.width.offset(averageViewWidth);
+        make.height.offset(viewHeight);
+    }];
+    
+    [self addSubview:self.acceptableLine];
+    [self.acceptableLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.acceptableView.mas_right);
+        make.top.equalTo(self.lineLabel.mas_bottom).offset(18);
+        make.width.offset(1);
+        make.height.offset(14);
+    }];
+    
+    [self addSubview:self.costView];
+    [self.costView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.acceptableLine.mas_right);
+        make.top.equalTo(self.acceptableView.mas_top);
+        make.width.equalTo(self.acceptableView.mas_width);
+        make.height.equalTo(self.acceptableView.mas_height);
+    }];
+    
+    [self addSubview:self.costLine];
+    [self.costLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.acceptableView.mas_right);
+        make.top.equalTo(self.lineLabel.mas_bottom).offset(18);
+        make.width.offset(1);
+        make.height.offset(14);
+    }];
     
 }
 
