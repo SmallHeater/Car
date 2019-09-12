@@ -8,7 +8,7 @@
 
 #import "SHNetworkRequestMiddleware.h"
 #import <objc/message.h>
-#import "SHNetworkControl.h"
+#import "SHNetworkComponent.h"
 
 
 @implementation SHNetworkRequestMiddleware
@@ -34,8 +34,29 @@
     NSDictionary * paramDic = dic;
     NSString * urlStr = paramDic[@"requestUrlStr"];
     NSString * bodyParameters = paramDic[@"bodyParameters"];
+    BOOL isShowLoading;
+    if ([paramDic.allKeys containsObject:@"isShowLoading"]) {
+        
+        NSNumber * isShowLoadingNumber = paramDic[@"isShowLoading"];
+        isShowLoading = isShowLoadingNumber.boolValue;
+    }
+    else{
+        
+        isShowLoading = YES;
+    }
     
-    [[SHNetworkControl sharedManager] POST:urlStr parameters:bodyParameters headers:nil progress:nil success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
+    BOOL isCallBackInMainThread;
+    if ([paramDic.allKeys containsObject:@"isCallBackInMainThread"]) {
+        
+        NSNumber * isCallBackInMainThreadNumber = paramDic[@"isCallBackInMainThread"];
+        isCallBackInMainThread = isCallBackInMainThreadNumber.boolValue;
+    }
+    else{
+        
+        isCallBackInMainThread = YES;
+    }
+    
+    [[SHNetworkComponent sharedManager] postRequestUrlString:urlStr parameters:bodyParameters headers:nil showLoading:isShowLoading callBackInMainThread:isCallBackInMainThread success:^(NSURLResponse *response, NSURLSessionDataTask *task, NSData *data) {
         
         id dataId = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if (dataId) {
@@ -46,7 +67,7 @@
             
             callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":@""});
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         callBack(@{@"task":task,@"error":error});
     }];
