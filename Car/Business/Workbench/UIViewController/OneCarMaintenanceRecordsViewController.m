@@ -189,7 +189,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                 }
                 else{
                     
-                    [MBProgressHUD wj_showError:dic[@"msg"]];
+//                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{
