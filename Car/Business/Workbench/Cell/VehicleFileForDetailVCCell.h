@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  维修记录详情页的车辆档案cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VehicleFileForDetailVCCell : UITableViewCell
+@interface VehicleFileForDetailVCCell : SHBaseTableViewCell
 
 +(float)cellHeight;
 

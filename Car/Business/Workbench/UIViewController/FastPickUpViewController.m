@@ -19,11 +19,9 @@
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
-@property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) SHBaseTableView * tableView;
 //保存按钮
 @property (nonatomic,strong) UIButton * saveBtn;
-//行驶证模型
-@property (nonatomic,strong) DrivingLicenseModel * drivingLicenseModel;
 //快速接车请求模型
 @property (nonatomic,strong) FastPickUpRequestModel * requestModel;
 //行驶证图片
@@ -55,22 +53,13 @@
     return _requestModel;
 }
 
--(UITableView *)tableView{
+-(SHBaseTableView *)tableView{
     
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        //取消contentSize和contentOffset的改的，解决闪屏问题
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        //        _tableView.backgroundColor = [UIColor redColor];
     }
     return _tableView;
 }
@@ -97,7 +86,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = Color_F3F3F3;
     [self addGesture];
-    [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
     [self drawUI];
     [self registrationNotice];
 }
@@ -142,6 +130,7 @@
     
     if (indexPath.row == 0) {
         
+        [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
         __weak typeof(self) weakSelf = self;
         [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
             
@@ -173,7 +162,16 @@
                         weakSelf.drivingLicenseModel.engineNumber = firstDic[@"words"];
                         NSDictionary * secondDic = resultDic[@"号牌号码"];
                         weakSelf.drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
-                        [weakSelf requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber];
+                        [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                            
+                            if (isExisted) {
+                                
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    
+                                    [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+                                });
+                            }
+                        }];
                         NSDictionary * thirdDic = resultDic[@"所有人"];
                         weakSelf.drivingLicenseModel.owner = thirdDic[@"words"];
                         NSDictionary * forthDic = resultDic[@"使用性质"];
@@ -226,7 +224,6 @@
         if (!cell) {
             
             cell = [[IdentificationDrivingLicenseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         return cell;
@@ -238,7 +235,6 @@
         if (!cell) {
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             __weak typeof(self) weakSelf = self;
             cell.enCallBack = ^(NSString * _Nonnull result) {
@@ -256,7 +252,16 @@
             cell.npnCallBack = ^(NSString * _Nonnull result) {
                 
                 weakSelf.drivingLicenseModel.numberPlateNumber = [NSString repleaseNilOrNull:result];
-                [weakSelf requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber];
+                [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                    
+                    if (isExisted) {
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+                        });
+                    }
+                }];
             };
         }
 
@@ -274,7 +279,6 @@
         if (!cell) {
             
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             __weak typeof(self) weakSelf = self;
             cell.contactsCallBack = ^(NSString * _Nonnull result) {
@@ -473,11 +477,14 @@
                 }
             }
             else{
+                
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }
@@ -485,51 +492,6 @@
 -(void)viewTaped:(UIGestureRecognizer *)ges{
     
     [self.view endEditing:YES];
-}
-
-//请求接口，判断车牌档案是否已存在
--(void)requestIsExistedLicenseNumber:(NSString *)license_number{
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
-    });
-    NSDictionary * bodyParameters = @{@"license_number":license_number,@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Checkcar,@"bodyParameters":bodyParameters};
-   
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [weakSelf.mbp hide:YES];
-            weakSelf.mbp = nil;
-        });
-        
-        if (![resultDic.allKeys containsObject:@"error"]) {
-            
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                    [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
-                }
-            }
-            else{
-            }
-        }
-        else{
-            
-            //失败的
-        }
-    }];
 }
 
 @end

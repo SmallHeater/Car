@@ -482,11 +482,6 @@
     return self;
 }
 
--(void)dealloc{
-    
-    NSLog(@"MaintenanceLogCell销毁");
-}
-
 #pragma mark  ----  UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -795,12 +790,14 @@
     }];
     
     [self addSubview:self.repairContentTF];
+    //输入区域高度太矮，加高
+    float defaultContentTFHeight = [@"维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测试" heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
     [self.repairContentTF mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.repairContentLabel.mas_right).offset(26);
         make.top.equalTo(self.repairContentLabel.mas_top);
         make.right.offset(-17);
-        make.height.offset(20);
+        make.height.offset(defaultContentTFHeight);
     }];
     
     [self addSubview:self.seventhLabel];
@@ -822,7 +819,7 @@
 -(void)repairDateClicked:(UITapGestureRecognizer *)gesture{
     
     __weak typeof(self) weakSelf = self;
-    [SHDatePickView showActionSheetDateWithFormatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+    [SHDatePickView showActionSheetDateWithtitle:@"" formatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
         
         weakSelf.repairDate.text = dateStr;
         weakSelf.repairDate.textColor = Color_333333;
@@ -872,9 +869,9 @@
     self.receivedTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"received"]];
     self.costTF.text = [[NSString alloc] initWithFormat:@"￥%@",dic[@"cost"]];
     
-    if ([dic.allKeys containsObject:@"images"]) {
+    NSString * urlStr = dic[@"images"];
+    if (![NSString strIsEmpty:urlStr]) {
         
-        NSString * urlStr = dic[@"images"];
         NSArray * tempArr = [urlStr componentsSeparatedByString:@","];
         [self.imageUrlStrArray addObjectsFromArray:tempArr];
         __weak typeof(self) weakSelf = self;

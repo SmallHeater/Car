@@ -28,6 +28,7 @@ static NSString * cellId = @"RepaidCell";
     [self requestListData];
 }
 
+
 #pragma mark  ----  代理
 
 #pragma mark  ----  UITableViewDelegate
@@ -49,7 +50,6 @@ static NSString * cellId = @"RepaidCell";
     if (!cell) {
         
         cell = [[RepaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     RepaidModel * model = self.dataArray[indexPath.row];
@@ -102,11 +102,14 @@ static NSString * cellId = @"RepaidCell";
                 }
             }
             else{
+                
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

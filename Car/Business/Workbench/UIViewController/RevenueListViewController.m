@@ -10,6 +10,8 @@
 #import "RevenueCell.h"
 #import "MaintenanceRecordsOneDayModel.h"
 #import "UserInforController.h"
+#import "SearchConfigurationModel.h"
+#import "SearchViewController.h"
 
 static NSString * cellId = @"RevenueCell";
 
@@ -70,7 +72,6 @@ static NSString * cellId = @"RevenueCell";
     if (!cell) {
         
         cell = [[RevenueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     MaintenanceRecordsModel * model = self.dataArray[indexPath.row];
@@ -99,6 +100,15 @@ static NSString * cellId = @"RevenueCell";
 -(void)searchBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
+    
+    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    configurationModel.requestUrlStr = Maintainlist;
+    configurationModel.modelName = @"RevenueCell";
+    
+    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+    searchVC.searchType = SearchType_RevenueList;
+    [self.navigationController pushViewController:searchVC animated:YES];
     
     btn.userInteractionEnabled = YES;
 }
@@ -138,17 +148,17 @@ static NSString * cellId = @"RevenueCell";
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
-                    
-                    [MBProgressHUD wj_showError:@"暂时没有营收记录哦"];
                 }
             }
             else{
+                
                 
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

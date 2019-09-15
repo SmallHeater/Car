@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHDatePickView : UIView
 
-+ (void)showActionSheetDateWithFormatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle;
++ (void)showActionSheetDateWithtitle:(NSString *)title formatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle;
 
 @end
 

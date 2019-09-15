@@ -9,5 +9,6 @@ pod 'MJExtension'
 pod 'MJRefresh'
 pod 'MBProgressHUD+WJExtension'
 pod 'AFNetworking'
-
+pod 'PLeakSniffer'
+pod 'iOS-Echarts’
 end

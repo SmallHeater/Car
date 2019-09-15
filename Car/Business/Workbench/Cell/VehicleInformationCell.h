@@ -6,13 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  车辆信息cell,高245
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CallBack)(NSString * result);
 
-@interface VehicleInformationCell : UITableViewCell
+@interface VehicleInformationCell : SHBaseTableViewCell
 
 //车牌号回调
 @property (nonatomic,copy) CallBack npnCallBack;

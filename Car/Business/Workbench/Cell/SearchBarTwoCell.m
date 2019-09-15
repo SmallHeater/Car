@@ -9,7 +9,7 @@
 #import "SearchBarTwoCell.h"
 #import "SHSearchBar.h"
 
-@interface SearchBarTwoCell ()
+@interface SearchBarTwoCell ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) SHSearchBar * searchBar;
 
@@ -25,11 +25,22 @@
     if (!_searchBar) {
         
         _searchBar = [[SHSearchBar alloc] init];
+        _searchBar.delegate = self;
+        _searchBar.returnKeyType = UIReturnKeySearch;
     }
     return _searchBar;
 }
 
 #pragma mark  ----  生命周期函数
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
@@ -39,6 +50,18 @@
         [self drawUI];
     }
     return self;
+}
+
+#pragma mark  ----  UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    if (self.searchCallBack) {
+     
+        self.searchCallBack(textField.text);
+    }
+    return YES;
 }
 
 #pragma mark  ----  自定义函数

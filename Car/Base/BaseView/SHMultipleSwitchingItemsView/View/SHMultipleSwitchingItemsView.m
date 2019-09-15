@@ -185,17 +185,9 @@
         make.left.offset(CGRectGetMinX(btn.frame) + (self.btnWidth - labelWidth) / 2.0);
     }];
     
-    for (SHMultipleSwitchingItemModel * itemModel in self.itemsArray) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(selectedWithBtnTag:)] && btn.tag) {
         
-        if (itemModel.btnTag.integerValue == btn.tag) {
-            
-            if ([itemModel.target respondsToSelector:NSSelectorFromString(itemModel.actionStr)]) {
-                
-                [itemModel.target performSelector:NSSelectorFromString(itemModel.actionStr) withObject:btn];
-            }
-            
-            break;
-        }
+        [self.delegate selectedWithBtnTag:btn.tag];
     }
     
     btn.userInteractionEnabled = YES;

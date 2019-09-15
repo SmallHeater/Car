@@ -6,14 +6,12 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  未回款cell
 
-#import <UIKit/UIKit.h>
-
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CallBack)();
 
-@interface UnpaidCell : UITableViewCell
+@interface UnpaidCell : SHBaseTableViewCell
 
 //立即回款按钮的回调
 @property (nonatomic,copy) CallBack btnClickCallBack;

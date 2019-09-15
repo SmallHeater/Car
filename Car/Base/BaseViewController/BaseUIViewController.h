@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseUIViewController : BaseViewController
 
+//标题
+@property (nonatomic,strong) NSString * navTitle;
 @property (nonatomic,strong) SHNavigationBar * navigationbar;
 
 -(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn;

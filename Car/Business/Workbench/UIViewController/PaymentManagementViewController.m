@@ -10,15 +10,25 @@
 #import "SHMultipleSwitchingItemsView.h"
 #import "UnpaidViewController.h"
 #import "RepaidViewController.h"
+#import "SearchConfigurationModel.h"
+#import "SearchViewController.h"
+#import "UserInforController.h"
 
 
-@interface PaymentManagementViewController ()<UIScrollViewDelegate>
+typedef NS_ENUM(NSUInteger,ViewType){
+    
+    ViewType_Unpaid,//未回款
+    ViewType_Repaid//已回款
+};
+
+@interface PaymentManagementViewController ()<UIScrollViewDelegate,SHMultipleSwitchingItemsViewDelegate>
 
 //搜索按钮
 @property (nonatomic,strong) UIButton * searchBtn;
 //头部切换view
-@property (nonatomic,strong) SHMultipleSwitchingItemsView * itemsView;
+@property (nonatomic,strong) SHMultipleSwitchingItemsView * switchItemsView;
 @property (nonatomic,strong) UIScrollView * bgScrollView;
+@property (nonatomic,assign) ViewType viewType;
 
 @end
 
@@ -37,14 +47,15 @@
     return _searchBtn;
 }
 
--(SHMultipleSwitchingItemsView *)itemsView{
+-(SHMultipleSwitchingItemsView *)switchItemsView{
     
-    if (!_itemsView) {
+    if (!_switchItemsView) {
         
-        _itemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"未回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1400],@"target":self,@"actionStr":@"switchBtnClicked:"},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"已回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1401],@"target":self,@"actionStr":@"switchBtnClicked:"}]];
-        _itemsView.backgroundColor = [UIColor whiteColor];
+        _switchItemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"未回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1400]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"已回款",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1401]}]];
+        _switchItemsView.delegate = self;
+        _switchItemsView.backgroundColor = [UIColor whiteColor];
     }
-    return _itemsView;
+    return _switchItemsView;
 }
 
 -(UIScrollView *)bgScrollView{
@@ -53,20 +64,20 @@
         
         _bgScrollView = [[UIScrollView alloc] init];
         _bgScrollView.delegate = self;
-        _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 2, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 2, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         _bgScrollView.pagingEnabled = YES;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
         //未回款
         UnpaidViewController * unpaidVC = [[UnpaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * unpaidView = unpaidVC.view;
-        unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:unpaidView];
         [self addChildViewController:unpaidVC];
         //已回款
         RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * repaidView = repaidVC.view;
-        repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.itemsView.frame));
+        repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:repaidView];
         [self addChildViewController:repaidVC];
     }
@@ -79,7 +90,7 @@
     
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.viewType = ViewType_Unpaid;
     [self drawUI];
 }
 
@@ -89,11 +100,31 @@
     
     if (scrollView.contentOffset.x == 0) {
         
-        [self.itemsView setBtnSelectedWithIndex:0];
+        self.viewType = ViewType_Unpaid;
+        [self.switchItemsView setBtnSelectedWithIndex:0];
     }
     else{
         
-        [self.itemsView setBtnSelectedWithIndex:1];
+        self.viewType = ViewType_Repaid;
+        [self.switchItemsView setBtnSelectedWithIndex:1];
+    }
+}
+
+#pragma mark  ----  SHMultipleSwitchingItemsViewDelegate
+
+-(void)selectedWithBtnTag:(NSUInteger)btnTag{
+    
+    if (btnTag == 1400) {
+        
+        //未回款按钮的响应
+        self.viewType = ViewType_Unpaid;
+        self.bgScrollView.contentOffset = CGPointMake(0, 0);
+    }
+    else if (btnTag == 1401){
+        
+        //已回款按钮的响应
+        self.viewType = ViewType_Repaid;
+        self.bgScrollView.contentOffset = CGPointMake(MAINWIDTH, 0);
     }
 }
 
@@ -109,8 +140,8 @@
         make.width.height.offset(22);
     }];
     
-    [self.view addSubview:self.itemsView];
-    [self.itemsView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.switchItemsView];
+    [self.switchItemsView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.offset(0);
         make.top.equalTo(self.navigationbar.mas_bottom).offset(0.5);
@@ -123,7 +154,7 @@
     [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.left.right.bottom.offset(0);
-        make.top.equalTo(self.itemsView.mas_bottom);
+        make.top.equalTo(self.switchItemsView.mas_bottom);
     }];
 }
 
@@ -131,22 +162,34 @@
     
     btn.userInteractionEnabled = NO;
     
+    int type;
+    NSString * modelName;
+    SearchType searchType;
+    if (self.viewType == ViewType_Unpaid) {
+        
+        type = 0;
+        modelName = @"UnpaidCell";
+        searchType = SearchType_Unpaid;
+    }
+    else{
+        
+        type = 1;
+        modelName = @"RepaidCell";
+        searchType = SearchType_Repaid;
+    }
+    
+    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:type]};
+    configurationModel.requestUrlStr = Payment;
+    configurationModel.modelName = modelName;
+    
+    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+    searchVC.searchType = searchType;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    
     btn.userInteractionEnabled = YES;
 }
 
-//切换按钮的响应
--(void)switchBtnClicked:(UIButton *)btn{
-    
-    if (btn.tag == 1400) {
-        
-        //未回款按钮的响应
-        self.bgScrollView.contentOffset = CGPointMake(0, 0);
-    }
-    else if (btn.tag == 1401){
-        
-        //已回款按钮的响应
-        self.bgScrollView.contentOffset = CGPointMake(MAINWIDTH, 0);
-    }
-}
+
 
 @end

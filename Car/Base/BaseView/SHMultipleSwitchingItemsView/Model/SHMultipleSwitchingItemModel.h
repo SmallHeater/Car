@@ -26,10 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIFont * selectedfont;
 //tag(必须)
 @property (nonatomic,strong) NSNumber * btnTag;
-//target
-@property (nonatomic,strong) id target;
-//action
-@property (nonatomic,strong) NSString * actionStr;
 
 @end
 

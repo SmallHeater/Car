@@ -14,8 +14,6 @@
 @property (nonatomic,strong) UILabel * titleLabel;
 //是否显示返回按钮
 @property (nonatomic,assign) BOOL isShowBackBtn;
-@property (nonatomic,strong) NSString * navTitle;
-
 
 @end
 
@@ -45,6 +43,14 @@
     return _titleLabel;
 }
 
+#pragma mark  ----  SET
+
+-(void)setNavTitle:(NSString *)navTitle{
+    
+    _navTitle = navTitle;
+    self.titleLabel.text = [NSString repleaseNilOrNull:navTitle];
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithTitle:(NSString *)title andShowBackBtn:(BOOL)isShowBackBtn{
@@ -55,7 +61,6 @@
         self.isShowBackBtn = isShowBackBtn;
         self.navTitle = title;
         [self drawUI];
-        [self showData];
     }
     return self;
 }
@@ -89,11 +94,6 @@
         make.height.offset(18);
         make.bottom.offset(-15);
     }];
-}
-
--(void)showData{
-    
-    self.titleLabel.text = [NSString repleaseNilOrNull:self.navTitle];
 }
 
 -(void)addbackbtnTarget:(id)target andAction:(SEL)action{

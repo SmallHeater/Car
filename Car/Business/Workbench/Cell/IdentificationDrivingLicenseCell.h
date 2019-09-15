@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  识别行驶证cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IdentificationDrivingLicenseCell : UITableViewCell
+@interface IdentificationDrivingLicenseCell : SHBaseTableViewCell
 
 @end
 

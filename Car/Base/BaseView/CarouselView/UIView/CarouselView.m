@@ -52,7 +52,6 @@ static NSString * cellID = @"CarouselCollectionViewCell";
         // 设置布局的内边距
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
-        
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
@@ -65,22 +64,6 @@ static NSString * cellID = @"CarouselCollectionViewCell";
     return _collectionView;
 }
 
-//-(XHPageControl *)pageControl{
-//
-//    if (!_pageControl) {
-//
-//        _pageControl = [[XHPageControl alloc] init];
-//        _pageControl.type = PageControlMiddle;
-//        _pageControl.currentPage = 0;
-//        _pageControl.currentBkImg = [UIImage imageNamed:@"pageIconSelected"];
-//        _pageControl.otherBkImg = [UIImage imageNamed:@"pageIconNormal"];
-//        _pageControl.otherMultiple = 14.0 / 3.0;
-//        _pageControl.currentMultiple = 14.0 / 3.0;
-//        _pageControl.controlSpacing = 4;
-//        _pageControl.controlSize = 3;
-//    }
-//    return _pageControl;
-//}
 
 -(SHPageControl *)pageControl{
     
@@ -115,6 +98,15 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 #pragma mark  ----  代理
 
 #pragma mark  ----  UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CarouselDataModel * model = self.dataArray[indexPath.row];
+    if (self.clickCallBack) {
+        
+        self.clickCallBack(model.urlStr);
+    }
+}
 
 #pragma mark  ----  UICollectionViewDataSource
 

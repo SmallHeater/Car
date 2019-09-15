@@ -6,14 +6,12 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  维修日志cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CallBack)(float value);
 typedef void(^CallBackStr)(NSString * content);
 
-@interface MaintenanceLogCell : UITableViewCell
+@interface MaintenanceLogCell : SHBaseTableViewCell
 
 //维修日期回调
 @property (nonatomic,copy) CallBackStr repairDateCallBack;

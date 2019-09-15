@@ -32,7 +32,7 @@ static NSString * cellId = @"ReturnRecordCell";
 //回款记录
 @property (nonatomic,strong) UILabel * RepaidRecordsLabel;
 //列表
-@property (nonatomic,strong) SHTableView * tableView;
+@property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<NSDictionary *> * dataArray;
 
 @end
@@ -235,11 +235,11 @@ static NSString * cellId = @"ReturnRecordCell";
     return _dataArray;
 }
 
--(SHTableView *)tableView{
+-(SHBaseTableView *)tableView{
     
     if (!_tableView) {
         
-        _tableView = [[SHTableView alloc] init];
+        _tableView = [[SHBaseTableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.scrollEnabled = NO;
@@ -254,6 +254,7 @@ static NSString * cellId = @"ReturnRecordCell";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
        
+        self.backgroundColor = [UIColor clearColor];
         [self drawUI];
     }
     return self;

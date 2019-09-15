@@ -69,17 +69,17 @@ static SHNetworkComponent * manager = nil;
 
 #pragma mark  ----  自定义函数
 
--(NSURLSessionDataTask *)postRequestUrlString:(NSString *)urlStr parameters:(id)parameters headers:(NSDictionary <NSString *, NSString *> *)headers showLoading:(BOOL)show callBackInMainThread:(BOOL)mainThread success:(void (^)(NSURLResponse * __unused response,NSURLSessionDataTask *task,NSData *data))success failure:(void (^)(NSURLSessionDataTask * task, NSError *error))failure{
+-(NSURLSessionDataTask *)postRequestUrlString:(NSString *)urlStr parameters:(id)parameters headers:(NSDictionary <NSString *, NSString *> *)headers showLoading:(BOOL)showLoading callBackInMainThread:(BOOL)mainThread showSuccessMBP:(BOOL)showSuccessMBP successStr:(NSString *)successStr showFailureMBP:(BOOL)showFailureMBP failureStr:(NSString *)failureStr success:(void (^)(NSURLResponse * __unused response,NSURLSessionDataTask *task,NSData *data))success failure:(void (^)(NSURLSessionDataTask * task, NSError *error))failure{
     
     if (![parameters isKindOfClass:[NSDictionary class]] && ![parameters isKindOfClass:[NSArray class]]) {
         
         NSLog(@"异常：parameters格式异常，不是字典，不是数组");
     }
     
-    return [self request:SHRequestTypePOST urlString:urlStr parameters:parameters headers:headers progress:nil showLoading:show callBackInMainThread:mainThread success:success failure:failure];
+    return [self request:SHRequestTypePOST urlString:urlStr parameters:parameters headers:headers progress:nil showLoading:showLoading callBackInMainThread:mainThread showSuccessMBP:showSuccessMBP successStr:successStr showFailureMBP:showFailureMBP failureStr:failureStr success:success failure:failure];
 }
 
--(NSURLSessionDataTask *)request:(SHRequestType)requestType urlString:(NSString *)urlStr parameters:(id)parameters headers:(NSDictionary <NSString *, NSString *> *)headers progress:(void (^)(NSProgress *downloadProgress))downloadProgress showLoading:(BOOL)show callBackInMainThread:(BOOL)mainThread success:(void (^)(NSURLResponse * __unused response,NSURLSessionDataTask *task, NSData *data))success failure:(void (^)(NSURLSessionDataTask * task, NSError *error))failure{
+-(NSURLSessionDataTask *)request:(SHRequestType)requestType urlString:(NSString *)urlStr parameters:(id)parameters headers:(NSDictionary <NSString *, NSString *> *)headers progress:(void (^)(NSProgress *downloadProgress))downloadProgress showLoading:(BOOL)showLoading callBackInMainThread:(BOOL)mainThread showSuccessMBP:(BOOL)showSuccessMBP successStr:(NSString *)successStr showFailureMBP:(BOOL)showFailureMBP failureStr:(NSString *)failureStr success:(void (^)(NSURLResponse * __unused response,NSURLSessionDataTask *task, NSData *data))success failure:(void (^)(NSURLSessionDataTask * task, NSError *error))failure{
     
     void(^ShowLoadingBlock)(void) = ^{
         
@@ -123,7 +123,7 @@ static SHNetworkComponent * manager = nil;
         }
     };
     
-    if (show) {
+    if (showLoading) {
      
         ShowLoadingBlock();
     }
@@ -134,10 +134,32 @@ static SHNetworkComponent * manager = nil;
         
             return [[SHNetworkControl sharedManager] POST:urlStr parameters:parameters headers:headers progress:downloadProgress success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                if (show) {
+                if (showLoading) {
                     
                     HidLoadingBlock();
                 }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -158,7 +180,32 @@ static SHNetworkComponent * manager = nil;
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -184,7 +231,32 @@ static SHNetworkComponent * manager = nil;
         {
             return [[SHNetworkControl sharedManager] GET:urlStr parameters:parameters headers:headers progress:downloadProgress success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -205,7 +277,32 @@ static SHNetworkComponent * manager = nil;
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -232,7 +329,32 @@ static SHNetworkComponent * manager = nil;
         
             return [[SHNetworkControl sharedManager] HEAD:urlStr parameters:parameters headers:headers success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -254,7 +376,32 @@ static SHNetworkComponent * manager = nil;
 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -280,7 +427,32 @@ static SHNetworkComponent * manager = nil;
         {
             return [[SHNetworkControl sharedManager] PUT:urlStr parameters:parameters headers:headers success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -301,7 +473,32 @@ static SHNetworkComponent * manager = nil;
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -327,7 +524,32 @@ static SHNetworkComponent * manager = nil;
         {
             return [[SHNetworkControl sharedManager] PATCH:urlStr parameters:parameters headers:headers success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -348,7 +570,32 @@ static SHNetworkComponent * manager = nil;
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -374,7 +621,32 @@ static SHNetworkComponent * manager = nil;
         {
             return [[SHNetworkControl sharedManager] DELETE:urlStr parameters:parameters headers:headers success:^(NSURLResponse * _Nonnull response, NSURLSessionDataTask * _Nonnull task, NSData * _Nonnull data) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showSuccessMBP) {
+                    
+                    NSString * showSuccessStr;
+                    if ([NSString strIsEmpty:successStr]) {
+                        
+                        showSuccessStr = INTERNETSUCCESS;
+                    }
+                    else{
+                        
+                        showSuccessStr = successStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showSuccess:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showSuccess:"),showSuccessStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {
@@ -395,7 +667,32 @@ static SHNetworkComponent * manager = nil;
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
-                HidLoadingBlock();
+                if (showLoading) {
+                    
+                    HidLoadingBlock();
+                }
+                
+                if (showFailureMBP) {
+                    
+                    NSString * showFailureStr;
+                    if ([NSString strIsEmpty:showFailureStr]) {
+                        
+                        showFailureStr = INTERNETERROR;
+                    }
+                    else{
+                        
+                        showFailureStr = failureStr;
+                    }
+                    
+                    if (NSClassFromString(@"MBProgressHUD") && [NSClassFromString(@"MBProgressHUD") respondsToSelector:NSSelectorFromString(@"wj_showError:")]) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            ((void(*)(id,SEL,NSString *))objc_msgSend)(NSClassFromString(@"MBProgressHUD"),NSSelectorFromString(@"wj_showError:"),showFailureStr);
+                        });
+                    }
+                }
+                
                 if (mainThread) {
                     
                     if ([[NSThread currentThread] isMainThread]) {

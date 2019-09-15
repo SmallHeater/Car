@@ -11,6 +11,8 @@
 #import "MaintenanceRecordsDetailViewController.h"
 #import "UserInforController.h"
 #import "MaintenanceRecordsOneDayModel.h"
+#import "SearchConfigurationModel.h"
+#import "SearchViewController.h"
 
 static NSString * cellId = @"MaintenanceRecordsCell";
 
@@ -113,7 +115,6 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     if (!cell) {
         
         cell = [[MaintenanceRecordsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
@@ -141,6 +142,14 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     
     btn.userInteractionEnabled = NO;
     
+    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    configurationModel.requestUrlStr = Maintainlist;
+    configurationModel.modelName = @"MaintenanceRecordsOneDayModel";
+    
+    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+    searchVC.searchType = SearchType_MaintenanceRecords;
+    [self.navigationController pushViewController:searchVC animated:YES];
     btn.userInteractionEnabled = YES;
 }
 
@@ -176,17 +185,17 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
-                    
-//                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{
                 
+               
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

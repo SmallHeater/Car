@@ -25,7 +25,7 @@
     if (!_imageView) {
         
         _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor darkGrayColor];
+        _imageView.backgroundColor = [UIColor clearColor];
     }
     return _imageView;
 }

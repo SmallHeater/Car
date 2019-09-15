@@ -43,7 +43,11 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (!_editBtn) {
         
         _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_editBtn setImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
+        [_editBtn setTitle:@"修改" forState:UIControlStateNormal];
+        [_editBtn setTitle:@"取消" forState:UIControlStateSelected];
+        _editBtn.titleLabel.font = FONT14;
+        [_editBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
+//        [_editBtn setImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
         [_editBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _editBtn;
@@ -55,14 +59,28 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         _bottomView = [[UIView alloc] init];
         _bottomView.userInteractionEnabled = YES;
-        //删除按钮
-        UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [deleteBtn setBackgroundColor:Color_F23E3E];
-        deleteBtn.titleLabel.font = FONT16;
-        [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-        [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView addSubview:deleteBtn];
+        
+        //添加时不显示删除
+        float buttonWidth = MAINWIDTH;
+        if (self.maintenanceRecordsModel) {
+            
+            //删除按钮
+            UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [deleteBtn setBackgroundColor:Color_F23E3E];
+            deleteBtn.titleLabel.font = FONT16;
+            [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+            [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [_bottomView addSubview:deleteBtn];
+            
+            buttonWidth = MAINWIDTH / 2;
+            [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.top.bottom.offset(0);
+                make.width.offset(buttonWidth);
+            }];
+        }
+        
         //保存按钮
         UIButton * saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [saveBtn setBackgroundColor:Color_0072FF];
@@ -71,13 +89,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:saveBtn];
-        
-        float buttonWidth = MAINWIDTH / 2;
-        [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.top.bottom.offset(0);
-            make.width.offset(buttonWidth);
-        }];
         
         [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -140,7 +151,8 @@ typedef NS_ENUM(NSUInteger,ViewState){
         }
         else{
             
-            cellHeight = [MaintenanceLogCell cellHeightWithContent:@"维修内容"];
+            //默认显示三行内容，51个字
+            cellHeight = [MaintenanceLogCell cellHeightWithContent:@"维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测维修内容测试"];
         }
     }
     
@@ -161,7 +173,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (!cell) {
             
             cell = [[VehicleFileForDetailVCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     
         if (self.vehicleFileModel) {
@@ -183,8 +194,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (!cell) {
             
             cell = [[MaintenanceLogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             
             __weak typeof(self) weakSelf = self;
             cell.repairDateCallBack = ^(NSString * _Nonnull content) {
@@ -256,17 +265,15 @@ typedef NS_ENUM(NSUInteger,ViewState){
 
 -(void)drawUI{
     
-    self.viewState = ViewState_show;
     [self.navigationbar addSubview:self.editBtn];
+    NSUInteger editBtnWidth = 44;
     [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.width.height.offset(22);
+        make.width.height.offset(editBtnWidth);
         make.right.offset(-13);
-        make.bottom.offset(-12);
+        make.bottom.offset(0);
     }];
     
-    self.tableView.scrollEnabled = YES;
-    self.tableView.userInteractionEnabled = YES;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
@@ -298,6 +305,8 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)editBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
+    
+    btn.selected = !btn.selected;
     
     if (self.viewState == ViewState_show) {
         
@@ -441,11 +450,13 @@ typedef NS_ENUM(NSUInteger,ViewState){
             }
             else{
                 
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }
@@ -493,11 +504,13 @@ typedef NS_ENUM(NSUInteger,ViewState){
             }
             else{
                 
+               
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

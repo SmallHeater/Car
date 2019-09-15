@@ -6,8 +6,6 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  已回款cell
 
-#import "SHBaseTableViewCell.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RepaidCell : SHBaseTableViewCell

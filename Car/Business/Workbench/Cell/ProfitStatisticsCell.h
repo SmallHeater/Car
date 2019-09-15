@@ -6,13 +6,17 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  利润统计cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfitStatisticsCell : UITableViewCell
+@class ProfitstatisticsModel;
 
--(void)test;
+typedef void(^DateCallBack)(NSString * date);
+
+@interface ProfitStatisticsCell : SHBaseTableViewCell
+
+@property (nonatomic,copy) DateCallBack dateCallBack;
+
+-(void)showData:(ProfitstatisticsModel *)model;
 
 @end
 

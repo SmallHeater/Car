@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  回款记录cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ReturnRecordCell : UITableViewCell
+@interface ReturnRecordCell : SHBaseTableViewCell
 
 -(void)showTime:(NSString *)time andMoney:(NSNumber *)money;
 

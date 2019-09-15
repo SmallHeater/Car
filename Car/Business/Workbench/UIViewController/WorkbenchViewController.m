@@ -23,6 +23,11 @@
 #import "PaymentManagementViewController.h"
 #import "BusinessSummaryViewController.h"
 #import "BaiDuBosControl.h"
+#import <AipOcrSdk/AipOcrService.h>
+#import <AipOcrSdk/AipCaptureCardVC.h>
+#import "BaseWKWebViewController.h"
+#import "DrivingLicenseModel.h"
+#import "VehicleFileDetailViewController.h"
 
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
@@ -136,6 +141,17 @@
         if (!cell) {
             
             cell = [[CarouselCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            
+            __weak typeof(self) weakSelf = self;
+            cell.clickCallBack = ^(NSString * _Nonnull urlStr) {
+                
+                if (![NSString strIsEmpty:urlStr]) {
+                 
+                    BaseWKWebViewController * webViewController = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                    webViewController.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:webViewController animated:YES];
+                }
+            };
         }
         
         if (self.workbenchModel.banner && self.workbenchModel.banner.count > 0) {
@@ -151,7 +167,19 @@
         if (!cell) {
             
             cell = [[SearchBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            __weak typeof(self) weakSelf = self;
+            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
+                
+                if (![NSString strIsEmpty:searchText]) {
+                 
+                    [weakSelf searchWithStr:searchText];
+                }
+            };
+            
+            cell.scanningCallBack = ^{
+                
+                [weakSelf scanning];
+            };
         }
         
         return cell;
@@ -178,7 +206,6 @@
         if (!cell) {
             
             cell = [[CustomerManagementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:fifthCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.delegate = self;
         }
    
@@ -243,7 +270,7 @@
     else if ([itemId isEqualToString:@"yingyehuizong"]) {
         
         //营业汇总
-        vc = [[BusinessSummaryViewController alloc] initWithTitle:@"营业汇总" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[BusinessSummaryViewController alloc] initWithTitle:@"营业汇总" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStyleGrouped];
     }
     else if ([itemId isEqualToString:@"daishouchaxun"]) {
         
@@ -283,12 +310,159 @@
             }
             else{
                 
+                
             }
         }
         else{
         
             //失败的
-            [MBProgressHUD wj_showError:@"服务器异常"];
+           
+        }
+    }];
+}
+
+//搜索
+-(void)searchWithStr:(NSString *)str{
+    
+    [[PublicRequest sharedManager] requestIsExistedLicenseNumber:str callBack:^(BOOL isExisted,VehicleFileModel * model) {
+        
+        if (isExisted) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+            });
+        }
+        else{
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD wj_showError:@"该车牌档案不存在"];
+            });
+        }
+        
+        
+    }];
+}
+
+//扫描识别
+-(void)scanning{
+    
+    [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
+        
+        if ([resultDic.allKeys containsObject:@"error"]) {
+            
+            //异常
+            NSLog(@"识别异常");
+        }
+        else if ([resultDic.allKeys containsObject:@"image"]){
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD wj_showActivityLoading:@"识别中" toView:weakSelf.view];
+            });
+            
+            UIImage * image = resultDic[@"image"];
+            
+            __block BOOL ocrFinished = NO;
+            [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
+                
+                if (!ocrFinished) {
+                    
+                    ocrFinished = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD wj_hideHUDForView:weakSelf.view];
+                    });
+                    
+                    if (result && [result isKindOfClass:[NSDictionary class]]) {
+                        
+                        DrivingLicenseModel * drivingLicenseModel = [[DrivingLicenseModel alloc] init];
+                        
+                        NSDictionary * resultDic = result[@"words_result"];
+                        if (resultDic.allKeys.count > 5) {
+                            
+                            NSDictionary * firstDic = resultDic[@"发动机号码"];
+                            drivingLicenseModel.engineNumber = firstDic[@"words"];
+                            NSDictionary * secondDic = resultDic[@"号牌号码"];
+                            drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
+                            NSDictionary * thirdDic = resultDic[@"所有人"];
+                            drivingLicenseModel.owner = thirdDic[@"words"];
+                            NSDictionary * forthDic = resultDic[@"使用性质"];
+                            drivingLicenseModel.useTheNature = forthDic[@"words"];
+                            NSDictionary * fifthDic = resultDic[@"住址"];
+                            drivingLicenseModel.address = fifthDic[@"words"];
+                            NSDictionary * sixthDic = resultDic[@"注册日期"];
+                            drivingLicenseModel.registeredDate = sixthDic[@"words"];
+                            NSDictionary * seventhDic = resultDic[@"车辆识别代号"];
+                            drivingLicenseModel.vehicleIdentificationNumber = seventhDic[@"words"];
+                            NSDictionary * eighthDic = resultDic[@"品牌型号"];
+                            drivingLicenseModel.brandModelNumber = eighthDic[@"words"];
+                            NSDictionary * ninthDic = resultDic[@"车辆类型"];
+                            drivingLicenseModel.vehicleType = ninthDic[@"words"];
+                            NSDictionary * tenthDic = resultDic[@"发证日期"];
+                            drivingLicenseModel.dateIssue = tenthDic[@"words"];
+                            
+                            [[PublicRequest sharedManager] requestIsExistedLicenseNumber:drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                                
+                                if (isExisted) {
+                                    
+                                    //已存在，跳转到车辆档案页
+                                    VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                    vc.hidesBottomBarWhenPushed = YES;
+                                    vc.vehicleFileModel = model;
+                                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                                }
+                                else{
+                                    
+                                    FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
+                                    vc.drivingLicenseModel = drivingLicenseModel;
+                                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                                }
+                            }];
+                        }
+                        else{
+                            
+                            [MBProgressHUD wj_showError:@"识别失败"];
+                        }
+                    }
+                }
+            } failHandler:^(NSError *err) {
+                
+                if (!ocrFinished) {
+                 
+                    ocrFinished = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD wj_hideHUDForView:weakSelf.view];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [MBProgressHUD wj_showError:@"识别失败"];
+                        });
+                    });
+                }
+            }];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                if (ocrFinished) {
+                    
+                }
+                else{
+                    
+                    ocrFinished = YES;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [MBProgressHUD wj_hideHUDForView:weakSelf.view];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [MBProgressHUD wj_showError:@"识别失败"];
+                        });
+                    });
+                }
+            });
         }
     }];
 }

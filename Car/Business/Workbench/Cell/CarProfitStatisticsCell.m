@@ -8,6 +8,8 @@
 
 #import "CarProfitStatisticsCell.h"
 #import "SHLabelAndLabelView.h"
+#import "ProfitrankingModel.h"
+
 
 @interface CarProfitStatisticsCell ()
 
@@ -171,24 +173,19 @@
     }];
 }
 
-//linceNumber,车牌;contacts,联系人;profit,利润;arrears,欠款;acceptable,应收;maintenance,维修量
--(void)showWithDic:(NSDictionary *)dic{
+-(void)showData:(ProfitrankingModel *)model{
     
-    [self.numberLabelView refreshTopLabelText:dic[@"linceNumber"] bottomLabelText:dic[@"contacts"]];
-    NSNumber * profitNumber = dic[@"profit"];
-    NSString * profitStr = [[NSString alloc] initWithFormat:@"%.2f",profitNumber.floatValue];
+    [self.numberLabelView refreshTopLabelText:model.license_number bottomLabelText:model.contacts];
+    NSString * profitStr = [[NSString alloc] initWithFormat:@"%.2f",model.profit.floatValue];
     [self.profitLabelView refreshTopLabelText:nil bottomLabelText:profitStr];
     
-    NSNumber * arrearsNumber = dic[@"arrears"];
-    NSString * arrearsStr = [[NSString alloc] initWithFormat:@"%.2f",arrearsNumber.floatValue];
+    NSString * arrearsStr = [[NSString alloc] initWithFormat:@"%.2f",model.debt.floatValue];
     [self.arrearsLabelView refreshTopLabelText:nil bottomLabelText:arrearsStr];
     
-    NSNumber * acceptableNumber = dic[@"acceptable"];
-    NSString * acceptableStr = [[NSString alloc] initWithFormat:@"%.2f",acceptableNumber.floatValue];
+    NSString * acceptableStr = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue];
     [self.acceptableLabelView refreshTopLabelText:nil bottomLabelText:acceptableStr];
-    
-    NSNumber * maintenanceNumber = dic[@"maintenance"];
-    NSString * maintenanceStr = [[NSString alloc] initWithFormat:@"%.2f",maintenanceNumber.floatValue];
+
+    NSString * maintenanceStr = [[NSString alloc] initWithFormat:@"%.2f",model.count.floatValue];
     [self.maintenanceLabelView refreshTopLabelText:nil bottomLabelText:maintenanceStr];
 }
 

@@ -56,7 +56,42 @@
         isCallBackInMainThread = YES;
     }
     
-    [[SHNetworkComponent sharedManager] postRequestUrlString:urlStr parameters:bodyParameters headers:nil showLoading:isShowLoading callBackInMainThread:isCallBackInMainThread success:^(NSURLResponse *response, NSURLSessionDataTask *task, NSData *data) {
+    BOOL isShowSuccessLoading;
+    if ([paramDic.allKeys containsObject:@"isShowSuccessLoading"]) {
+        
+        NSNumber * isShowSuccessLoadingNumber = paramDic[@"isShowSuccessLoading"];
+        isShowSuccessLoading = isShowSuccessLoadingNumber.boolValue;
+    }
+    else{
+        
+        isShowSuccessLoading = NO;
+    }
+    
+    NSString * successStr = @"";
+    if ([paramDic.allKeys containsObject:@"successStr"]) {
+        
+        successStr = paramDic[@"successStr"];
+    }
+    
+    
+    BOOL isShowFailureLoading;
+    if ([paramDic.allKeys containsObject:@"isShowFailureLoading"]) {
+        
+        NSNumber * isShowFailureLoadingNumber = paramDic[@"isShowFailureLoading"];
+        isShowFailureLoading = isShowFailureLoadingNumber.boolValue;
+    }
+    else{
+        
+        isShowFailureLoading = YES;
+    }
+    
+    NSString * failureStr = @"";
+    if ([paramDic.allKeys containsObject:@"failureStr"]) {
+        
+        failureStr = paramDic[@"failureStr"];
+    }
+    
+    [[SHNetworkComponent sharedManager] postRequestUrlString:urlStr parameters:bodyParameters headers:nil showLoading:isShowLoading callBackInMainThread:isCallBackInMainThread showSuccessMBP:isShowSuccessLoading successStr:successStr showFailureMBP:isShowFailureLoading failureStr:failureStr success:^(NSURLResponse *response, NSURLSessionDataTask *task, NSData *data) {
         
         id dataId = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if (dataId) {
@@ -67,11 +102,11 @@
             
             callBack(@{@"response":response,@"task":task,@"data":data,@"dataId":@""});
         }
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         callBack(@{@"task":task,@"error":error});
     }];
-
 }
 
 

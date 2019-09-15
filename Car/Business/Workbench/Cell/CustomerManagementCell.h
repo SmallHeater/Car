@@ -6,8 +6,6 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  客户管理cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol CustomerManagementCellDelegate <NSObject>
@@ -17,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface CustomerManagementCell : UITableViewCell
+@interface CustomerManagementCell : SHBaseTableViewCell
 
 @property (nonatomic,weak) id<CustomerManagementCellDelegate>delegate;
 

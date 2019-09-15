@@ -21,7 +21,7 @@
 
 #pragma mark  ----  懒加载
 
--(UITableView *)tableView{
+-(SHBaseTableView *)tableView{
     
     if (!_tableView) {
         
@@ -31,19 +31,9 @@
             navigationBarHeight = [UIScreenControl navigationBarHeight];
         }
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [UIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [UIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        //取消contentSize和contentOffset的改的，解决闪屏问题
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.scrollEnabled = YES;
-//        _tableView.backgroundColor = [UIColor redColor];
     }
     return _tableView;
 }

@@ -50,7 +50,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self requestListData];
+    [self requestListDataWithContent:@""];
 }
 
 #pragma mark  ----  代理
@@ -96,8 +96,12 @@
         SearchBarTwoCell * cell = [tableView dequeueReusableCellWithIdentifier:firstCellId];
         if (!cell) {
             
+            __weak typeof(self) weakSelf = self;
             cell = [[SearchBarTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
+                
+                [weakSelf requestListDataWithContent:searchText];
+            };
         }
         
         return cell;
@@ -109,7 +113,6 @@
         if (!cell) {
             
             cell = [[VehicleFileCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         VehicleFileModel * model = self.dataArray[indexPath.row - 1];
@@ -139,9 +142,19 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)requestListData{
+-(void)requestListDataWithContent:(NSString *)content{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters;
+    if ([NSString strIsEmpty:content]) {
+        
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    }
+    else{
+        
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"content":content};
+    }
+    
+    
     NSDictionary * configurationDic = @{@"requestUrlStr":Carlist,@"bodyParameters":bodyParameters};
     __weak VehicleFileViewController * weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -155,9 +168,9 @@
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
+                [weakSelf.dataArray removeAllObjects];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                     
-                    [weakSelf.dataArray removeAllObjects];
                     NSArray * list = dataDic[@"list"];
                     for (NSDictionary * dic in list) {
                         
@@ -169,7 +182,6 @@
                 [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }
             else{
-                
             }
         }
         else{
@@ -177,7 +189,6 @@
             //失败的
         }
     }];
-
 }
     
 @end

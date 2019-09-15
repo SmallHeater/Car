@@ -10,6 +10,8 @@
 #import "UnpaidCell.h"
 #import "UserInforController.h"
 #import "UnpaidModel.h"
+#import "BusinessSummaryHeaderModel.h"
+
 
 static NSString * cellId = @"UnpaidCell";
 @interface UnpaidViewController ()
@@ -49,7 +51,6 @@ static NSString * cellId = @"UnpaidCell";
     if (!cell) {
         
         cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     //展示数据:numberPlate:车牌;name:姓名;carModel:车型号;phoneNumber:电话;content:维修内容;receivable:应收款;actualHarvest:实收款;arrears:欠款;
@@ -128,17 +129,17 @@ static NSString * cellId = @"UnpaidCell";
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
-                    
-                    //异常
-                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{
+                
+               
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }
@@ -175,11 +176,14 @@ static NSString * cellId = @"UnpaidCell";
                 }
             }
             else{
+                
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

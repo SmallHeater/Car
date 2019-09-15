@@ -6,13 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  公告cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class AnnouncementModel;
 
-@interface AnnouncementCell : UITableViewCell
+@interface AnnouncementCell : SHBaseTableViewCell
 
 -(void)showData:(NSArray<AnnouncementModel *> *)array;
 

@@ -6,14 +6,12 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  驾驶员信息cell,高194
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CallBack)(NSString * result);
 
 @class DrivingLicenseModel;
-@interface DriverInformationCell : UITableViewCell
+@interface DriverInformationCell : SHBaseTableViewCell
 
 //联系人回调
 @property (nonatomic,copy) CallBack contactsCallBack;

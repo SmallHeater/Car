@@ -151,7 +151,7 @@
     
     if (!_pickerView) {
         
-        _pickerView = [[SHPickerView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) andTitle:@"选择时间" andComponent:1 andData:@[@{@"title":@"1月份"},@{@"title":@"2月份"},@{@"title":@"3月份"},@{@"title":@"4月份"},@{@"title":@"5月份"},@{@"title":@"6月份"},@{@"title":@"7月份"},@{@"title":@"8月份"},@{@"title":@"9月份"},@{@"title":@"10月份"},@{@"title":@"11月份"},@{@"title":@"12月份"}]];
+        _pickerView = [[SHPickerView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) andTitle:@"选择时间" andComponent:1 andData:@[@{@"title":@"1月份",@"key":@"1"},@{@"title":@"2月份",@"key":@"2"},@{@"title":@"3月份",@"key":@"3"},@{@"title":@"4月份",@"key":@"4"},@{@"title":@"5月份",@"key":@"5"},@{@"title":@"6月份",@"key":@"6"},@{@"title":@"7月份",@"key":@"7"},@{@"title":@"8月份",@"key":@"8"},@{@"title":@"9月份",@"key":@"9"},@{@"title":@"10月份",@"key":@"10"},@{@"title":@"11月份",@"key":@"11"},@{@"title":@"12月份",@"key":@"12"}]];
         _pickerView.delegate = self;
     }
     return _pickerView;
@@ -205,6 +205,11 @@
     NSDictionary * dic = selectDicArray[0];
     self.InsurancePeriodContentLabel.text = dic[@"title"];
     self.InsurancePeriodContentLabel.textColor = Color_333333;
+    
+    if (self.dataCallBack) {
+        
+        self.dataCallBack(dic[@"key"]);
+    }
 }
 
 #pragma mark  ----  自定义函数

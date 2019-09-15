@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  营收cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RevenueCell : UITableViewCell
+@interface RevenueCell : SHBaseTableViewCell
 
 //numberPlate,车牌号;name,联系人;carModel,车型号;phoneNumber,联系电话;receivable,应收;cost,成本;profit,利润；
 -(void)showDataWithDic:(NSDictionary *)dic;

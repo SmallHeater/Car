@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  维修记录cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MaintenanceRecordsCell : UITableViewCell
+@interface MaintenanceRecordsCell : SHBaseTableViewCell
 
 //返回cell高度
 +(float)cellHeightWithContent:(NSString *)content;

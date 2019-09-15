@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHNavigationBar : BaseView
 
+@property (nonatomic,strong) NSString * navTitle;
+
 -(instancetype)initWithTitle:(NSString *)title andShowBackBtn:(BOOL)isShowBackBtn;
 
 -(void)addbackbtnTarget:(id)target andAction:(SEL)action;

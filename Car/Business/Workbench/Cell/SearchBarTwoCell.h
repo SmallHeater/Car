@@ -6,11 +6,13 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  车辆档案列表,搜索cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchBarTwoCell : UITableViewCell
+typedef void(^SearchCallBack)(NSString * searchText);
+
+@interface SearchBarTwoCell : SHBaseTableViewCell
+
+@property (nonatomic,copy) SearchCallBack searchCallBack;
 
 @end
 

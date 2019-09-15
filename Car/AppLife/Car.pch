@@ -26,7 +26,9 @@
 #import "UIViewController+SHTool.h"
 #import "AFNetworking.h"
 #import "SHBaseTableViewCell.h"
-#import "SHTableView.h"
+#import "SHBaseTableView.h"
+#import "PublicRequest.h"
+
 
 #define Color_09A200 [UIColor colorWithRed:9.0/255.0 green:162.0/255.0 blue:0 alpha:1]
 #define Color_0072FF [UIColor colorFromHexRGB:@"0072FF"]
@@ -57,6 +59,7 @@
 #define Color_FF58B0 [UIColor colorWithRed:1 green:88.0/255.0 blue:176.0/255.0 alpha:1]
 
 
+#define FONT10 [UIFont systemFontOfSize:10]
 #define FONT11 [UIFont systemFontOfSize:11]
 #define FONT12 [UIFont systemFontOfSize:12]
 #define FONT14 [UIFont systemFontOfSize:14]

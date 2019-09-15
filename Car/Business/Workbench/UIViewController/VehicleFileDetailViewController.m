@@ -48,7 +48,11 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (!_editBtn) {
         
         _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_editBtn setImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
+        [_editBtn setTitle:@"修改" forState:UIControlStateNormal];
+        [_editBtn setTitle:@"取消" forState:UIControlStateSelected];
+        _editBtn.titleLabel.font = FONT14;
+        [_editBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
+//        [_editBtn setImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
         [_editBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _editBtn;
@@ -204,7 +208,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (!cell) {
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             __weak typeof(self) weakSelf = self;
             cell.enCallBack = ^(NSString * _Nonnull result) {
@@ -240,7 +243,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (!cell) {
             
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             __weak typeof(self) weakSelf = self;
             cell.contactsCallBack = ^(NSString * _Nonnull result) {
@@ -262,7 +264,8 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (self.vehicleFileModel) {
             
             //contact,联系人;phoneNumber,手机号;InsurancePeriod,保险期;
-            [cell showData:@{@"contact":self.vehicleFileModel.contacts,@"phoneNumber":self.vehicleFileModel.phone,@"InsurancePeriod":[NSString repleaseNilOrNull:self.vehicleFileModel.insurance_period]}];
+            NSString * InsurancePeriod = [[NSString alloc] initWithFormat:@"%@月份",[NSString repleaseNilOrNull:self.vehicleFileModel.insurance_period]];
+            [cell showData:@{@"contact":self.vehicleFileModel.contacts,@"phoneNumber":self.vehicleFileModel.phone,@"InsurancePeriod":InsurancePeriod}];
         }
         
         return cell;
@@ -279,9 +282,9 @@ typedef NS_ENUM(NSUInteger,ViewState){
     [self.navigationbar addSubview:self.editBtn];
     [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.width.height.offset(22);
+        make.width.height.offset(44);
         make.right.offset(-13);
-        make.bottom.offset(-12);
+        make.bottom.offset(0);
     }];
     
     [self.view addSubview:self.whiteView];
@@ -336,6 +339,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
 -(void)editBtnClicked:(UIButton *)btn{
     
     btn.userInteractionEnabled = NO;
+    btn.selected = !btn.selected;
     
     if (self.viewState == ViewState_show) {
         
@@ -461,11 +465,13 @@ typedef NS_ENUM(NSUInteger,ViewState){
             }
             else{
                 
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }
@@ -513,11 +519,13 @@ typedef NS_ENUM(NSUInteger,ViewState){
             }
             else{
                 
+                
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

@@ -8,7 +8,7 @@
 
 #import "SearchBarCell.h"
 
-@interface SearchBarCell ()
+@interface SearchBarCell ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) UITextField * searchTF;
 
@@ -23,7 +23,9 @@
     if (!_searchTF) {
         
         _searchTF = [[UITextField alloc] init];
-        _searchTF.placeholder = @"请输入需要搜索的内容";
+        _searchTF.delegate = self;
+        _searchTF.placeholder = @"请输入要搜索的车牌号";
+        _searchTF.returnKeyType = UIReturnKeySearch;
         
         _searchTF.backgroundColor = [UIColor whiteColor];
         _searchTF.layer.shadowColor = [UIColor colorWithRed:66/255.0 green:66/255.0 blue:66/255.0 alpha:0.29].CGColor;
@@ -47,14 +49,21 @@
         _searchTF.leftView = leftView;
         
         _searchTF.rightViewMode = UITextFieldViewModeAlways;
-        UIView * rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 12, 35, 17)];
+        UIView * rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 35, 41)];
+        rightView.userInteractionEnabled = YES;
         UIImageView * rightImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"xiangji"]];
         [rightView addSubview:rightImageView];
         [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             
+            make.top.offset(12);
+            make.bottom.offset(-12);
             make.right.offset(-17);
-            make.left.top.bottom.offset(0);
+            make.left.offset(0);
         }];
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanning)];
+        [rightView addGestureRecognizer:tap];
+        
         _searchTF.rightView = rightView;
     }
     return _searchTF;
@@ -72,6 +81,17 @@
     return self;
 }
 
+#pragma mark  ----  UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [textField resignFirstResponder];
+    if (self.searchCallBack) {
+        
+        self.searchCallBack(textField.text);
+    }
+    return YES;
+}
 
 #pragma mark  ----  自定义函数
 
@@ -85,6 +105,14 @@
         make.top.offset(18);
         make.height.offset(40);
     }];
+}
+
+-(void)scanning{
+    
+    if (self.scanningCallBack) {
+        
+        self.scanningCallBack();
+    }
 }
 
 @end

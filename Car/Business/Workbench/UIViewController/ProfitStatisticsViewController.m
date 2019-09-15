@@ -9,6 +9,10 @@
 #import "ProfitStatisticsViewController.h"
 #import "ProfitStatisticsCell.h"
 #import "CarProfitStatisticsCell.h"
+#import "UserInforController.h"
+#import "ProfitstatisticsModel.h"
+#import "ProfitrankingModel.h"
+
 
 static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 
@@ -16,6 +20,7 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 
 //说明按钮
 @property (nonatomic,strong) UIButton * explanationBtn;
+@property (nonatomic,strong) ProfitstatisticsModel * profitstatisticsModel;
 
 @end
 
@@ -43,6 +48,8 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    [self profitstatistics:@"today"];
+    [self profitranking];
 }
 
 #pragma mark  ----  代理
@@ -67,7 +74,7 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 11;
+    return self.dataArray.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -78,10 +85,17 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
         if (!cell) {
             
             cell = [[ProfitStatisticsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            __weak typeof(self) weakSelf = self;
+            cell.dateCallBack = ^(NSString * _Nonnull date) {
+                
+                [weakSelf profitstatistics:date];
+            };
         }
         
-        [cell test];
+        if (self.profitstatisticsModel) {
+
+            [cell showData:self.profitstatisticsModel];
+        }
         return cell;
     }
     else{
@@ -92,8 +106,8 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
             cell = [[CarProfitStatisticsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarProfitStatisticsCellId];
         }
         
-        //linceNumber,车牌;contacts,联系人;profit,利润;arrears,欠款;acceptable,应收;maintenance,维修量
-        [cell showWithDic:@{@"linceNumber":@"京A12345",@"contacts":@"联系人",@"profit":[NSNumber numberWithInt:1200],@"arrears":[NSNumber numberWithInt:100],@"acceptable":[NSNumber numberWithInt:200],@"maintenance":[NSNumber numberWithInt:10],}];
+        ProfitrankingModel * model = self.dataArray[indexPath.row - 1];
+        [cell showData:model];
         return cell;
     }
     return nil;
@@ -122,6 +136,90 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
     btn.userInteractionEnabled = YES;
 }
 
+//利润统计接口
+-(void)profitstatistics:(NSString *)str{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"day":str};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Profitstatistics,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    NSDictionary * modelDic = dataDic[@"sum"];
+                    ProfitstatisticsModel * profitstatisticsModel = [ProfitstatisticsModel mj_objectWithKeyValues:modelDic];
+                    weakSelf.profitstatisticsModel = profitstatisticsModel;
+                    [weakSelf.tableView reloadData];
+                }
+                else{
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            //失败的
+        }
+    }];
+}
 
+//利润排名接口
+-(void)profitranking{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Profitranking,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                [weakSelf.dataArray removeAllObjects];
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    NSArray * listArray = dataDic[@"list"];
+                    for (NSDictionary * dic in listArray) {
+                        
+                        ProfitrankingModel * profitrankingModel = [ProfitrankingModel mj_objectWithKeyValues:dic];
+                        [weakSelf.dataArray addObject:profitrankingModel];
+                    }
+                    [weakSelf.tableView reloadData];
+                }
+                else{
+                    
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
 
 @end

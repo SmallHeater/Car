@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class DrivingLicenseModel;
+
 @interface FastPickUpViewController : BaseUIViewController
+
+//行驶证模型
+@property (nonatomic,strong) DrivingLicenseModel * drivingLicenseModel;
 
 @end
 

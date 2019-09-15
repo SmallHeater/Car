@@ -121,7 +121,6 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     if (!cell) {
         
         cell = [[MaintenanceRecordsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
@@ -188,17 +187,17 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                     [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
-                    
-//                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{
+                
                 
             }
         }
         else{
             
             //失败的
+            
         }
     }];
 }

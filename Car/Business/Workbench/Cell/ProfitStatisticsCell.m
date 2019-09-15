@@ -9,8 +9,10 @@
 #import "ProfitStatisticsCell.h"
 #import "SHMultipleSwitchingItemsView.h"
 #import "SHLabelAndLabelView.h"
+#import "ProfitstatisticsModel.h"
+#import "SHDatePickView.h"
 
-@interface ProfitStatisticsCell ()
+@interface ProfitStatisticsCell ()<SHMultipleSwitchingItemsViewDelegate>
 
 //头部切换view
 @property (nonatomic,strong) SHMultipleSwitchingItemsView * itemsView;
@@ -34,6 +36,11 @@
 @property (nonatomic,strong) SHLabelAndLabelView * maintenanceView;
 //底部灰条
 @property (nonatomic,strong) UILabel * bottomLabel;
+//开始时间
+@property (nonatomic,strong) NSString * startTime;
+//结束时间
+@property (nonatomic,strong) NSString * endTime;
+
 @end
 
 @implementation ProfitStatisticsCell
@@ -44,7 +51,8 @@
     
     if (!_itemsView) {
         
-        _itemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"今日",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1300],@"target":self,@"actionStr":@"switchBtnClicked:"},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"昨日",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1301],@"target":self,@"actionStr":@"switchBtnClicked:"},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"本月",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1302],@"target":self,@"actionStr":@"switchBtnClicked:"},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"其他",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1303],@"target":self,@"actionStr":@"switchBtnClicked:"}]];
+        _itemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"今日",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1300]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"昨日",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1301]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"本月",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1302]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"其他",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1303]}]];
+        _itemsView.delegate = self;
     }
     return _itemsView;
 }
@@ -193,6 +201,59 @@
     return self;
 }
 
+#pragma mark  ----  SHMultipleSwitchingItemsViewDelegate
+
+-(void)selectedWithBtnTag:(NSUInteger)btnTag{
+    
+    if (btnTag == 1300) {
+        
+        [self showTimeWithStr:@"today"];
+        //今日
+        if (self.dateCallBack) {
+            
+            self.dateCallBack(@"today");
+        }
+    }
+    else if (btnTag == 1301){
+        
+        [self showTimeWithStr:@"yesterday"];
+        //昨日
+        if (self.dateCallBack) {
+            
+            self.dateCallBack(@"yesterday");
+        }
+    }
+    else if (btnTag == 1302){
+        
+        [self showTimeWithStr:@"month"];
+        //本月
+        if (self.dateCallBack) {
+            
+            self.dateCallBack(@"month");
+        }
+    }
+    else if (btnTag == 1303){
+        
+        [self showTimeWithStr:@"today"];
+        //其他
+        __weak typeof(self) weakSelf = self;
+        [SHDatePickView showActionSheetDateWithtitle:@"请选择开始时间" formatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+            
+            weakSelf.startTime = dateStr;
+            [SHDatePickView showActionSheetDateWithtitle:@"请选择结束时间" formatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
+                
+                weakSelf.endTime = dateStr;
+                if (weakSelf.dateCallBack) {
+                    
+                    NSString * otherTimeStr = [[NSString alloc] initWithFormat:@"%@,%@",weakSelf.startTime,weakSelf.endTime];
+                    weakSelf.dateCallBack(otherTimeStr);
+                    [weakSelf showTimeWithStr:otherTimeStr];
+                }
+            }];
+        }];
+    }
+}
+
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
@@ -312,37 +373,64 @@
         make.left.right.bottom.offset(0);
         make.height.offset(10);
     }];
+    
+    [self showTimeWithStr:@"today"];
 }
 
-//切换按钮的响应
--(void)switchBtnClicked:(UIButton *)btn{
+-(void)showData:(ProfitstatisticsModel *)model{
     
-    if (btn.tag == 1300) {
-        
-        //今日
-    }
-    else if (btn.tag == 1301){
-        
-        //昨日
-    }
-    else if (btn.tag == 1302){
-        
-        //本月
-    }
-    else if (btn.tag == 1303){
-        
-        //其他
-    }
-}
-
--(void)test{
-    
-    self.timeLabel.text = @"2019-08-27 至 2019-08-27";
-    NSString * profitStr = @"8888.00";
+    NSString * profitStr = [[NSString alloc] initWithFormat:@"%.2f",model.profit.floatValue];
     NSMutableAttributedString * profitAttStr = [[NSMutableAttributedString alloc] initWithString:profitStr];
     [profitAttStr setAttributes:@{NSFontAttributeName:BOLDFONT40} range:NSMakeRange(0, profitStr.length - 3)];
     [profitAttStr setAttributes:@{NSFontAttributeName:BOLDFONT30} range:NSMakeRange(profitStr.length - 3, 3)];
     self.profitLabel.attributedText = profitAttStr;
+    
+    
+    NSString * acceptablleStr = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue];
+    [self.acceptableView refreshTopLabelText:@"" bottomLabelText:acceptablleStr];
+    
+    NSString * costStr = [[NSString alloc] initWithFormat:@"%.2f",model.cost.floatValue];
+    [self.costView refreshTopLabelText:@"" bottomLabelText:costStr];
+    
+    NSString * arrearsStr = [[NSString alloc] initWithFormat:@"%.2f",model.debt.floatValue];
+    [self.arrearsView refreshTopLabelText:@"" bottomLabelText:arrearsStr];
+    
+    NSString * maintenanceStr = [[NSString alloc] initWithFormat:@"%.2f",model.count.floatValue];
+    [self.maintenanceView refreshTopLabelText:@"" bottomLabelText:maintenanceStr];
+}
+
+//时间显示
+-(void)showTimeWithStr:(NSString *)str{
+    
+    NSDate * todayDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString * todayDateStr = [formatter stringFromDate:todayDate];
+    
+    if ([str isEqualToString:@"today"]) {
+        
+        self.timeLabel.text = [[NSString alloc] initWithFormat:@"%@ 至 %@",todayDateStr,todayDateStr];
+    }
+    else if ([str isEqualToString:@"yesterday"]){
+        
+        NSDate * yesterdayDate = [NSDate dateWithTimeIntervalSinceNow:24 * 60 * 60];
+        NSString * yesterdayStr = [formatter stringFromDate:yesterdayDate];
+        self.timeLabel.text = [[NSString alloc] initWithFormat:@"%@ 至 %@",yesterdayStr,yesterdayStr];
+    }
+    else if ([str isEqualToString:@"month"]){
+        
+        NSMutableString * monthFirstDay = [[NSMutableString alloc] initWithString:todayDateStr];
+        [monthFirstDay replaceCharactersInRange:NSMakeRange(monthFirstDay.length - 2, 2) withString:@"01"];
+        self.timeLabel.text = [[NSString alloc] initWithFormat:@"%@ 至 %@",monthFirstDay,todayDateStr];
+    }
+    else{
+        
+        if ([str rangeOfString:@","].location != NSNotFound) {
+            
+            NSArray * arr = [str componentsSeparatedByString:@","];
+            self.timeLabel.text = [[NSString alloc] initWithFormat:@"%@ 至 %@",arr[0],arr[1]];
+        }
+    }
 }
 
 @end

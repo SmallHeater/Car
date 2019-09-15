@@ -52,7 +52,7 @@
             case CameraGetPictureType_IDCard:
             {
                 isNeedToCut = YES;
-                IdeltaCount = 50;
+                IdeltaCount = 80;
             }
                 break;
                 

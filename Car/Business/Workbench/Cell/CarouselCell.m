@@ -31,6 +31,16 @@
     return _carouselView;
 }
 
+#pragma mark  ----  SET
+
+-(void)setClickCallBack:(ClickCallBack)clickCallBack{
+    
+    if (clickCallBack) {
+        
+        self.carouselView.clickCallBack = clickCallBack;
+    }
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

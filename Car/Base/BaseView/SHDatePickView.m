@@ -91,11 +91,15 @@
 }
 #pragma mark - 生命周期函数
 
-+ (void)showActionSheetDateWithFormatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle
++ (void)showActionSheetDateWithtitle:(NSString *)title formatter:(NSString *)formatter callBack:(void(^)(NSDate * date,NSString * dateStr))handle
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     SHDatePickView *view = [[SHDatePickView alloc] initWithFrame:[UIScreen mainScreen].bounds andFormatter:formatter];
     view.handle = handle;
+    if (![NSString strIsEmpty:title]) {
+        
+        view.titleLabel.text = title;
+    }
     [window addSubview:view];
     [view showAnimation];
 }
@@ -143,7 +147,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.topView.mas_centerY);
         make.centerX.equalTo(self.topView.mas_centerX);
-        make.size.mas_offset(CGSizeMake(80, 17));
+        make.size.mas_offset(CGSizeMake(150, 17));
     }];
 }
 

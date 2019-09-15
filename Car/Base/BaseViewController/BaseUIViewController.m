@@ -12,12 +12,8 @@
 
 @interface BaseUIViewController ()
 
-//标题
-@property (nonatomic,strong) NSString * navTitle;
 //是否显示返回按钮
 @property (nonatomic,assign) BOOL isShowBackBtn;
-
-
 
 @end
 
@@ -34,6 +30,14 @@
     return _navigationbar;
 }
 
+#pragma mark  ----  SET
+
+-(void)setNavTitle:(NSString *)navTitle{
+    
+    _navTitle = navTitle;
+    self.navigationbar.navTitle = navTitle;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn{
@@ -41,8 +45,12 @@
     self = [super init];
     if (self) {
         
-        self.navTitle = title;
         self.isShowBackBtn = isShowBackBtn;
+        __weak typeof(self) weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            weakSelf.navTitle = title;
+        });
     }
     return self;
 }

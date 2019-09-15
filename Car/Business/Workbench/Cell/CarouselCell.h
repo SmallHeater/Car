@@ -6,13 +6,15 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  轮播区cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class CarouselModel;
 
-@interface CarouselCell : UITableViewCell
+typedef void(^ClickCallBack)(NSString * urlStr);
+
+@interface CarouselCell : SHBaseTableViewCell
+
+@property (nonatomic,copy) ClickCallBack clickCallBack;
 
 -(void)showData:(NSArray<CarouselModel *> *)array;
 

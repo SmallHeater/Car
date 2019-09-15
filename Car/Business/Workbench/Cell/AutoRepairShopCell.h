@@ -6,11 +6,9 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  汽修厂cell
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AutoRepairShopCell : UITableViewCell
+@interface AutoRepairShopCell : SHBaseTableViewCell
 
 -(void)showAutoRepairShopName:(NSString *)name;
 
