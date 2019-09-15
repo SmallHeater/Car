@@ -20,15 +20,17 @@ typedef void(^CallBackStr)(NSString * content);
 //关联项目回调
 @property (nonatomic,copy) CallBack projectCallBack;
 //应收回调
-@property (nonatomic,strong) CallBack acceptableCallBack;
+@property (nonatomic,copy) CallBack acceptableCallBack;
 //实收回调
-@property (nonatomic,strong) CallBack receivedCallBack;
+@property (nonatomic,copy) CallBack receivedCallBack;
 //成本回调
-@property (nonatomic,strong) CallBack costCallBack;
+@property (nonatomic,copy) CallBack costCallBack;
 //维修内容回调
-@property (nonatomic,strong) CallBackStr contentCallBack;
+@property (nonatomic,copy) CallBackStr contentCallBack;
 //图片路径的回调
-@property (nonatomic,strong) CallBackStr imageUrlCallBack;
+@property (nonatomic,copy) CallBackStr imageUrlCallBack;
+//删除图片路径回调
+@property (nonatomic,copy) CallBackStr deleteImageUrlCallBack;
 
 +(float)cellHeightWithContent:(NSString *)content;
 

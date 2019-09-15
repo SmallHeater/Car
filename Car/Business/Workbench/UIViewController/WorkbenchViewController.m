@@ -324,24 +324,32 @@
 //搜索
 -(void)searchWithStr:(NSString *)str{
     
-    [[PublicRequest sharedManager] requestIsExistedLicenseNumber:str callBack:^(BOOL isExisted,VehicleFileModel * model) {
+    __weak typeof(self) weakSelf = self;
+    [[PublicRequest sharedManager] requestIsExistedLicenseNumber:str callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
         
         if (isExisted) {
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
-                [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+                //已存在，跳转到车辆档案页
+                VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.vehicleFileModel = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             });
         }
         else{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
-                [MBProgressHUD wj_showError:@"该车牌档案不存在"];
+                DrivingLicenseModel * model = [[DrivingLicenseModel alloc] init];
+                model.numberPlateNumber = str;
+                FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.drivingLicenseModel = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             });
         }
-        
-        
     }];
 }
 
@@ -367,7 +375,7 @@
             UIImage * image = resultDic[@"image"];
             
             __block BOOL ocrFinished = NO;
-            [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
+            [[AipOcrService shardService] detectPlateNumberFromImage:image withOptions:nil successHandler:^(id result) {
                 
                 if (!ocrFinished) {
                     
@@ -379,33 +387,13 @@
                     
                     if (result && [result isKindOfClass:[NSDictionary class]]) {
                         
-                        DrivingLicenseModel * drivingLicenseModel = [[DrivingLicenseModel alloc] init];
                         
                         NSDictionary * resultDic = result[@"words_result"];
-                        if (resultDic.allKeys.count > 5) {
+                        if (resultDic && [resultDic isKindOfClass:[NSDictionary class]] && [resultDic.allKeys containsObject:@"number"]) {
                             
-                            NSDictionary * firstDic = resultDic[@"发动机号码"];
-                            drivingLicenseModel.engineNumber = firstDic[@"words"];
-                            NSDictionary * secondDic = resultDic[@"号牌号码"];
-                            drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
-                            NSDictionary * thirdDic = resultDic[@"所有人"];
-                            drivingLicenseModel.owner = thirdDic[@"words"];
-                            NSDictionary * forthDic = resultDic[@"使用性质"];
-                            drivingLicenseModel.useTheNature = forthDic[@"words"];
-                            NSDictionary * fifthDic = resultDic[@"住址"];
-                            drivingLicenseModel.address = fifthDic[@"words"];
-                            NSDictionary * sixthDic = resultDic[@"注册日期"];
-                            drivingLicenseModel.registeredDate = sixthDic[@"words"];
-                            NSDictionary * seventhDic = resultDic[@"车辆识别代号"];
-                            drivingLicenseModel.vehicleIdentificationNumber = seventhDic[@"words"];
-                            NSDictionary * eighthDic = resultDic[@"品牌型号"];
-                            drivingLicenseModel.brandModelNumber = eighthDic[@"words"];
-                            NSDictionary * ninthDic = resultDic[@"车辆类型"];
-                            drivingLicenseModel.vehicleType = ninthDic[@"words"];
-                            NSDictionary * tenthDic = resultDic[@"发证日期"];
-                            drivingLicenseModel.dateIssue = tenthDic[@"words"];
-                            
-                            [[PublicRequest sharedManager] requestIsExistedLicenseNumber:drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                            //车牌号
+                            NSString * number = resultDic[@"number"];
+                            [[PublicRequest sharedManager] requestIsExistedLicenseNumber:number callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
                                 
                                 if (isExisted) {
                                     
@@ -417,8 +405,11 @@
                                 }
                                 else{
                                     
+                                    DrivingLicenseModel * model = [[DrivingLicenseModel alloc] init];
+                                    model.numberPlateNumber = number;
                                     FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
-                                    vc.drivingLicenseModel = drivingLicenseModel;
+                                    vc.hidesBottomBarWhenPushed = YES;
+                                    vc.drivingLicenseModel = model;
                                     [weakSelf.navigationController pushViewController:vc animated:YES];
                                 }
                             }];
@@ -429,10 +420,11 @@
                         }
                     }
                 }
+
             } failHandler:^(NSError *err) {
                 
                 if (!ocrFinished) {
-                 
+                    
                     ocrFinished = YES;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         

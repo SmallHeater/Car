@@ -28,7 +28,6 @@ static NSString * cellId = @"RepaidCell";
     [self requestListData];
 }
 
-
 #pragma mark  ----  代理
 
 #pragma mark  ----  UITableViewDelegate

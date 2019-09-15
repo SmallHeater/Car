@@ -100,6 +100,7 @@
 		04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */; };
 		04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */; };
 		04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */; };
+		04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
@@ -359,6 +360,8 @@
 		04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
 		04715B112324B4B70008A3C2 /* MaintenanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailModel.h; sourceTree = "<group>"; };
 		04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailModel.m; sourceTree = "<group>"; };
+		04854956232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		04854957232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
@@ -1621,6 +1624,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 04048528230C1E6300EF17C8;
 			productRefGroup = 04048532230C1E6400EF17C8 /* Products */;
@@ -1825,6 +1829,7 @@
 				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
 				0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */,
+				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
@@ -1843,6 +1848,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0404853B230C1E6400EF17C8 /* Base */,
+				04854956232E0C800041970E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1851,6 +1857,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				04048540230C1E6600EF17C8 /* Base */,
+				04854957232E0C800041970E /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1862,6 +1869,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1922,6 +1930,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

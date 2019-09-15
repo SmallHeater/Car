@@ -16,6 +16,8 @@
 #import "DrivingLicenseModel.h"
 #import "UserInforController.h"
 #import "BaiDuBosControl.h"
+#import "VehicleFileDetailViewController.h"
+
 
 @interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
@@ -162,14 +164,15 @@
                         weakSelf.drivingLicenseModel.engineNumber = firstDic[@"words"];
                         NSDictionary * secondDic = resultDic[@"号牌号码"];
                         weakSelf.drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
-                        [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                        [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
                             
                             if (isExisted) {
                                 
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                    
-                                    [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
-                                });
+                                //已存在，跳转到车辆档案页
+                                VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc.hidesBottomBarWhenPushed = YES;
+                                vc.vehicleFileModel = model;
+                                [weakSelf.navigationController pushViewController:vc animated:YES];
                             }
                         }];
                         NSDictionary * thirdDic = resultDic[@"所有人"];
@@ -235,6 +238,7 @@
         if (!cell) {
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell.numberCanEdit = YES;
             
             __weak typeof(self) weakSelf = self;
             cell.enCallBack = ^(NSString * _Nonnull result) {
@@ -252,13 +256,17 @@
             cell.npnCallBack = ^(NSString * _Nonnull result) {
                 
                 weakSelf.drivingLicenseModel.numberPlateNumber = [NSString repleaseNilOrNull:result];
-                [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model) {
+                [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
                     
                     if (isExisted) {
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             
-                            [MBProgressHUD wj_showSuccess:@"该车牌档案已存在，请去车辆档案页面操作"];
+                            //已存在，跳转到车辆档案页
+                            VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                            vc.hidesBottomBarWhenPushed = YES;
+                            vc.vehicleFileModel = model;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
                         });
                     }
                 }];

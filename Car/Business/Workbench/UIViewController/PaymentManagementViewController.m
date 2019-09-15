@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger,ViewType){
 @property (nonatomic,strong) SHMultipleSwitchingItemsView * switchItemsView;
 @property (nonatomic,strong) UIScrollView * bgScrollView;
 @property (nonatomic,assign) ViewType viewType;
+@property (nonatomic,strong) UnpaidViewController * unpaidVC;
+@property (nonatomic,strong) RepaidViewController * repaidVC;
 
 @end
 
@@ -74,11 +76,13 @@ typedef NS_ENUM(NSUInteger,ViewType){
         unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:unpaidView];
         [self addChildViewController:unpaidVC];
+        self.unpaidVC = unpaidVC;
         //已回款
         RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UIView * repaidView = repaidVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:repaidView];
+        self.repaidVC = repaidVC;
         [self addChildViewController:repaidVC];
     }
     return _bgScrollView;
@@ -116,14 +120,17 @@ typedef NS_ENUM(NSUInteger,ViewType){
     
     if (btnTag == 1400) {
         
+        [self.unpaidVC requestListData];
         //未回款按钮的响应
         self.viewType = ViewType_Unpaid;
         self.bgScrollView.contentOffset = CGPointMake(0, 0);
     }
     else if (btnTag == 1401){
         
+        [self.repaidVC requestListData];
         //已回款按钮的响应
         self.viewType = ViewType_Repaid;
+        [self addChildViewController:self.repaidVC];
         self.bgScrollView.contentOffset = CGPointMake(MAINWIDTH, 0);
     }
 }

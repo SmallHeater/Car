@@ -229,6 +229,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
               
                 weakSelf.detailModel.content = content;
             };
+            
+            cell.deleteImageUrlCallBack = ^(NSString * _Nonnull content) {
+              
+                NSArray * array = [weakSelf.detailModel.images componentsSeparatedByString:@","];
+                NSMutableArray * imagesUrlArray = [[NSMutableArray alloc] initWithArray:array];
+                [imagesUrlArray removeObject:content];
+                weakSelf.detailModel.images = [imagesUrlArray componentsJoinedByString:@","];
+            };
         }
         
         if (self.maintenanceRecordsModel) {

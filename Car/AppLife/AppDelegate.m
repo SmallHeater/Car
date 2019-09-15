@@ -26,9 +26,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[PLeakSniffer sharedInstance] installLeakSniffer];
-    [[PLeakSniffer sharedInstance] alertLeaks];
-    [[PLeakSniffer sharedInstance] addIgnoreList:@[@"AVCaptureSession",@"AVCaptureVideoDataOutput",@"CALayer"]];
+//    [[PLeakSniffer sharedInstance] installLeakSniffer];
+//    [[PLeakSniffer sharedInstance] alertLeaks];
+//    [[PLeakSniffer sharedInstance] addIgnoreList:@[@"AVCaptureSession",@"AVCaptureVideoDataOutput",@"CALayer"]];
     
 //    //模拟器
 //    UserInforModel * model = [[UserInforModel alloc] init];

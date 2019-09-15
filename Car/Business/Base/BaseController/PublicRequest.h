@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(PublicRequest *)sharedManager;
 
 //请求接口，判断车牌档案是否已存在
--(void)requestIsExistedLicenseNumber:(NSString *)license_number callBack:(void(^)(BOOL isExisted,VehicleFileModel * model))callBack;
+-(void)requestIsExistedLicenseNumber:(NSString *)license_number callBack:(void(^)(BOOL isExisted,VehicleFileModel * model,NSString * msg))callBack;
 
 
 @end

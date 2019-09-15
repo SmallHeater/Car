@@ -12,6 +12,9 @@
 #import "BaiDuBosControl.h"
 #import "SHPickerView.h"
 #import "SHDatePickView.h"
+#import "SHImageViewWithDeleteBtn.h"
+
+#define BTNBASETAG 1300
 
 @interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate,SHPickerViewDelegate>
 
@@ -57,7 +60,7 @@
 @property (nonatomic,strong) NSMutableArray<NSDictionary *> * imageArray;
 //图片数组
 @property (nonatomic,strong) NSMutableArray<NSString *> * imageUrlStrArray;
-@property (nonatomic,strong) NSMutableArray<UIImageView *> * imageViewArray;
+@property (nonatomic,strong) NSMutableArray<SHImageViewWithDeleteBtn *> * imageViewArray;
 //底部图片区view
 @property (nonatomic,strong) UIView * bottomView;
 
@@ -872,6 +875,7 @@
     NSString * urlStr = dic[@"images"];
     if (![NSString strIsEmpty:urlStr]) {
         
+        [self.imageUrlStrArray removeAllObjects];
         NSArray * tempArr = [urlStr componentsSeparatedByString:@","];
         [self.imageUrlStrArray addObjectsFromArray:tempArr];
         __weak typeof(self) weakSelf = self;
@@ -935,10 +939,13 @@
 -(void)createImageViews{
     
     //移除所有imageView
-    for (UIImageView * imageView in self.imageViewArray) {
+    for (SHImageViewWithDeleteBtn * imageViewWithBtn in self.imageViewArray) {
         
-        [imageView removeFromSuperview];
+        [imageViewWithBtn removeFromSuperview];
     }
+    
+    [self.imageViewArray removeAllObjects];
+    
     //图片总数
     NSUInteger imageCount = self.imageUrlStrArray.count + self.imageArray.count;
     self.imageCountLabel.text = [[NSString alloc] initWithFormat:@"%ld / 5",imageCount];
@@ -947,16 +954,27 @@
     float imageWidthHeight = 111;
     float interval = (MAINWIDTH - 15 * 2 - imageWidthHeight * 3) / 2.0;
     
+    __weak typeof(self) weakSelf = self;
     for (NSUInteger i = 0; i < imageCount; i++) {
         
         if (i < self.imageUrlStrArray.count) {
             
             NSString * imageUrlStr = self.imageUrlStrArray[i];
-            UIImageView * imageView = [[UIImageView alloc] init];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]];
-            [self.bottomView addSubview:imageView];
-            [self.imageViewArray addObject:imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:nil andButtonTag:BTNBASETAG + i];
+            imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
+              
+                NSString * str = [weakSelf.imageUrlStrArray objectAtIndex:btnTag - BTNBASETAG];
+                [weakSelf.imageUrlStrArray removeObjectAtIndex:btnTag - BTNBASETAG];
+                if (weakSelf.deleteImageUrlCallBack) {
+                    
+                    weakSelf.deleteImageUrlCallBack(str);
+                }
+                [weakSelf createImageViews];
+            };
+            [imageViewWithBtn.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]];
+            [self.bottomView addSubview:imageViewWithBtn];
+            [self.imageViewArray addObject:imageViewWithBtn];
+            [imageViewWithBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.left.offset(imageViewLeft);
                 make.top.offset(imageViewTop);
@@ -973,11 +991,15 @@
             
             NSDictionary * dic = self.imageArray[i - self.imageUrlStrArray.count];
             UIImage * thumbnailsImage = dic[@"thumbnails"];
-            UIImageView * imageView = [[UIImageView alloc] init];
-            imageView.image = thumbnailsImage;
-            [self.bottomView addSubview:imageView];
-            [self.imageViewArray addObject:imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i];
+            imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
+                
+                [weakSelf.imageArray removeObjectAtIndex:btnTag - BTNBASETAG - self.imageUrlStrArray.count];
+                [weakSelf createImageViews];
+            };
+            [self.bottomView addSubview:imageViewWithBtn];
+            [self.imageViewArray addObject:imageViewWithBtn];
+            [imageViewWithBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.left.offset(imageViewLeft);
                 make.top.offset(imageViewTop);

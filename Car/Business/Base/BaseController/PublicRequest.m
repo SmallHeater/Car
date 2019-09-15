@@ -30,7 +30,7 @@
 #pragma mark  ----  自定义函数
 
 //请求接口，判断车牌档案是否已存在
--(void)requestIsExistedLicenseNumber:(NSString *)license_number callBack:(void(^)(BOOL isExisted,VehicleFileModel * model))callBack{
+-(void)requestIsExistedLicenseNumber:(NSString *)license_number callBack:(void(^)(BOOL isExisted,VehicleFileModel * model,NSString * msg))callBack{
     
     NSDictionary * bodyParameters = @{@"license_number":license_number,@"user_id":[UserInforController sharedManager].userInforModel.userID};
     NSDictionary * configurationDic = @{@"requestUrlStr":Checkcar,@"bodyParameters":bodyParameters};
@@ -54,11 +54,11 @@
                     NSDictionary * modelDic = carArray[0];
                     VehicleFileModel * model = [VehicleFileModel mj_objectWithKeyValues:modelDic];
                     //成功
-                    callBack(YES,model);
+                    callBack(YES,model,@"");
                 }
                 else{
                     
-                    callBack(NO,nil);
+                    callBack(NO,nil,dic[@"msg"]);
                 }
             }
             else{

@@ -208,6 +208,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         if (!cell) {
             
             cell = [[VehicleInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell.numberCanEdit = NO;
             
             __weak typeof(self) weakSelf = self;
             cell.enCallBack = ^(NSString * _Nonnull result) {

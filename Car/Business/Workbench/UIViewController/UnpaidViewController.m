@@ -25,7 +25,6 @@ static NSString * cellId = @"UnpaidCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
     [self requestListData];
@@ -116,30 +115,27 @@ static NSString * cellId = @"UnpaidCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
+                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
                     NSArray * arr = dataDic[@"list"];
-                    [weakSelf.dataArray removeAllObjects];
                     for (NSDictionary * dic in arr) {
                         
                         UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
                         [weakSelf.dataArray addObject:model];
                     }
-                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
                 }
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }
             else{
-                
-               
             }
         }
         else{
             
             //失败的
-            
         }
     }];
 }

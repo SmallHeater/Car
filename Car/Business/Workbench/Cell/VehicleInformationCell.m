@@ -182,6 +182,14 @@
     return _engineNumberTF;
 }
 
+#pragma mark  ----  SET
+
+-(void)setNumberCanEdit:(BOOL)numberCanEdit{
+    
+    _numberCanEdit = numberCanEdit;
+    self.numberPlateTF.userInteractionEnabled = numberCanEdit;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -357,11 +365,6 @@
     self.frameNumberTF.text = dic[@"vehicleIdentificationNumber"];
     self.carModelTF.text = dic[@"brandModelNumber"];
     self.engineNumberTF.text = dic[@"engineNumber"];
-}
-
--(void)test{
-    
-   
 }
 
 @end
