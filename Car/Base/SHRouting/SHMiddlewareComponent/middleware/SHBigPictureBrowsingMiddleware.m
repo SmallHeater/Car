@@ -41,14 +41,14 @@
         else{
             
             //异常
-            [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":@"去大图浏览传参图片数组参数有问题"}];
+            NSLog(@"去大图浏览传参图片数组参数有问题");
             return NO;
         }
     }
     else{
         
         //异常
-        [SHRoutingComponent openURL:REPORTEXCEPTION withParameter:@{@"reason":@"去大图浏览传参没有图片数组参数"}];
+        NSLog(@"去大图浏览传参没有图片数组参数");
         return NO;
     }
 }

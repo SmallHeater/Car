@@ -15,6 +15,7 @@
 #import "SHImageViewWithDeleteBtn.h"
 
 #define BTNBASETAG 1300
+#define IMAGEBASETAG 1500
 
 @interface MaintenanceLogCell ()<UITextFieldDelegate,SHTextViewDelegate,SHPickerViewDelegate>
 
@@ -63,6 +64,8 @@
 @property (nonatomic,strong) NSMutableArray<SHImageViewWithDeleteBtn *> * imageViewArray;
 //底部图片区view
 @property (nonatomic,strong) UIView * bottomView;
+//大图浏览数据数组
+@property (nonatomic,strong) NSMutableArray * bigPictureDataArray;
 
 @end
 
@@ -471,6 +474,15 @@
         [_addImageBtn addTarget:self action:@selector(addImageBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addImageBtn;
+}
+
+-(NSMutableArray *)bigPictureDataArray{
+    
+    if (!_bigPictureDataArray) {
+        
+        _bigPictureDataArray = [[NSMutableArray alloc] init];
+    }
+    return _bigPictureDataArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -945,6 +957,7 @@
     }
     
     [self.imageViewArray removeAllObjects];
+    [self.bigPictureDataArray removeAllObjects];
     
     //图片总数
     NSUInteger imageCount = self.imageUrlStrArray.count + self.imageArray.count;
@@ -961,6 +974,7 @@
             
             NSString * imageUrlStr = self.imageUrlStrArray[i];
             SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:nil andButtonTag:BTNBASETAG + i];
+            imageViewWithBtn.tag = IMAGEBASETAG + i;
             imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
               
                 NSString * str = [weakSelf.imageUrlStrArray objectAtIndex:btnTag - BTNBASETAG];
@@ -971,7 +985,12 @@
                 }
                 [weakSelf createImageViews];
             };
+            
+            UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTaped:)];
+            [imageViewWithBtn addGestureRecognizer:tap];
+            
             [imageViewWithBtn.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]];
+            [self.bigPictureDataArray addObject:imageUrlStr];
             [self.bottomView addSubview:imageViewWithBtn];
             [self.imageViewArray addObject:imageViewWithBtn];
             [imageViewWithBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -991,6 +1010,7 @@
             
             NSDictionary * dic = self.imageArray[i - self.imageUrlStrArray.count];
             UIImage * thumbnailsImage = dic[@"thumbnails"];
+            [self.bigPictureDataArray addObject:thumbnailsImage];
             SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i];
             imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
                 
@@ -1020,6 +1040,13 @@
         make.top.offset(imageViewTop);
         make.width.height.offset(imageWidthHeight);
     }];
+}
+
+-(void)imageTaped:(UITapGestureRecognizer *)gesture{
+    
+    UIView * view = gesture.view;
+    NSUInteger index = view.tag - IMAGEBASETAG;
+    [SHRoutingComponent openURL:BIGPICTUREBROWSING withParameter:@{@"dataArray":self.bigPictureDataArray,@"selectedIndex":[NSNumber numberWithInteger:index]}];
 }
 
 @end

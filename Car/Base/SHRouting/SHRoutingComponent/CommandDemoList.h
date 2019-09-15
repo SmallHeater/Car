@@ -19,17 +19,6 @@
 
 #pragma mark  ----  大图浏览组件命令集合
 
-#pragma mark  ----  加密组件命令集合
-
-/*
- //水印加密图片命令
- image是要加密的图片对象，text是要显示的水印文字
- UIImage * encryptionImage = [JHEncryptionComponent watermarkEncryptionImage:image andText:text];
- 
- */
-
-#pragma mark  ----  加密组件命令集合
-
 #pragma mark  ----  数据采集组件命令集合
 
 /*
@@ -77,16 +66,6 @@
 
 #pragma mark  ----  相册浏览组件命令集合
 
-#pragma mark  ----  账户体系组件命令集合
-
-/*
- //得到用户ID命令,返回@{@"userId":@"123456"}
- [JHRoutingComponent openURL:GETUSERIDCALLBACK callBack:^(NSDictionary *resultDic) {
- }];
- */
-
-#pragma mark  ----  账户体系组件命令集合
-
 #pragma mark  ----  新上传组件命令集合
 
 /*
@@ -111,24 +90,6 @@
 */
 
 #pragma mark  ----  新上传组件命令集合
-
-#pragma mark  ----  直播命令集合
-
-//开始直播命令
-
-
-#pragma mark  ----  直播命令集合
-
-
-#pragma mark  ----  播放命令集合
-
-//开始播放命令
-/*
- //liveType,直播类型，1阿里，2腾讯；pushUrlStr,推流地址；preview，预览view,不传用默认的.controlView,控制view。
- 传参：@{@"pushUrlStr":@"rtmp://video10.iuoooo.com/openlive/201902280930_1",@"preview":self.recordingView,@"controlView":self.recordingView,@"liveType":[NSNumber numberWithInteger:1]
- */
-
-#pragma mark  ----  播放命令集合
 
 #pragma mark  ----  网络请求组件命令集合
 

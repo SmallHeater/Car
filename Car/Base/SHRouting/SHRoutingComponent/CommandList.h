@@ -14,9 +14,6 @@
 #define BIGPICTUREBROWSING @"BusinessFoundation://BigPictureBrowsing:(bigPictureBrowsing:)"
 #pragma mark  ----  大图浏览组件命令集合
 
-#pragma mark  ----  加密组件命令集合
-#pragma mark  ----  加密组件命令集合
-
 #pragma mark  ----  数据采集组件命令集合
 //初始化数据采集组件命令
 #define INITDATASTATISTICSCOMPONENT @"BusinessFoundation://DataStatisticsComponent:(initDataStatisticsComponent:)"
@@ -40,8 +37,6 @@
 
 #pragma mark  ----  相册浏览组件命令集合
 
-#pragma mark  ----  账户体系组件命令集合
-#pragma mark  ----  账户体系组件命令集合
 
 #pragma mark  ----  上传组件命令集合
 //上传命令
@@ -58,17 +53,6 @@
 #define UPLOADNOTFINISHDATA @"Technology://UploadComponent:(uploadNotFinishDatasCallBack:)"
 
 #pragma mark  ----  上传组件命令集合
-
-
-
-#pragma mark  ----  直播命令集合
-
-#pragma mark  ----  直播命令集合
-
-
-#pragma mark  ----  播放命令集合
-
-#pragma mark  ----  播放命令集合
 
 #pragma mark  ----  网络请求组件命令集合
 

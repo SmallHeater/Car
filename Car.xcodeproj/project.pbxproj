@@ -908,7 +908,6 @@
 				0432BFAD2326951F002CD639 /* SHBigPictureBrowsing */,
 				0432BF6023267F03002CD639 /* SHPictureSelectionComponent */,
 				0422D96A23233C5800AF687D /* SHUploadComponent */,
-				04620C43231BFAA000AA6317 /* SHAlbumComponent */,
 				04620C44231BFAA000AA6317 /* SHCacheManagementComponent */,
 				04620C4C231BFAA000AA6317 /* SHCameraComponent */,
 				624A499E23136234005B1391 /* SHNetworkComponent */,
@@ -1243,15 +1242,6 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
-		04620C43231BFAA000AA6317 /* SHAlbumComponent */ = {
-			isa = PBXGroup;
-			children = (
-				04620C50231BFADC00AA6317 /* Controller */,
-				04620C4F231BFADC00AA6317 /* Interface */,
-			);
-			path = SHAlbumComponent;
-			sourceTree = "<group>";
-		};
 		04620C44231BFAA000AA6317 /* SHCacheManagementComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -1290,20 +1280,6 @@
 				04620C52231BFAE600AA6317 /* Interface */,
 			);
 			path = SHCameraComponent;
-			sourceTree = "<group>";
-		};
-		04620C4F231BFADC00AA6317 /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		04620C50231BFADC00AA6317 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		04620C52231BFAE600AA6317 /* Interface */ = {

@@ -128,6 +128,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
+    [self registrationNotice];
     [self addReceivingKeyboard];
     [self drawUI];
 }
@@ -297,6 +298,43 @@ typedef NS_ENUM(NSUInteger,ViewState){
     }];
 }
 
+//注册通知
+-(void)registrationNotice{
+    
+    //键盘监听
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)keyboardWillShow:(NSNotification *)notification{
+    
+    NSDictionary *userInfo = [notification userInfo];
+    CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    CGRect rect = [[userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:duration animations:^{
+        
+        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            make.bottom.offset(-rect.size.height);
+        }];
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification{
+    
+    NSDictionary *userInfo = [notification userInfo];
+    CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:duration animations:^{
+        
+        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            make.bottom.offset(-123);
+        }];
+    }];
+}
+
 //给view设置收键盘
 -(void)addReceivingKeyboard{
     
@@ -385,10 +423,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         [MBProgressHUD wj_showError:@"请输入维修内容"];
     }
-//    else if ([NSString strIsEmpty:self.detailModel.images]){
-//
-//        [MBProgressHUD wj_showError:@"请选择图片"];
-//    }
     else{
     
         __weak typeof(self) weakSelf = self;

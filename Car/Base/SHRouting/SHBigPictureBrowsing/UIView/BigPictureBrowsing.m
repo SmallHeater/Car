@@ -178,7 +178,7 @@
     return 0;
 }
 
-//cell之间的最小列间距
+//cell之间的最小列间距a
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     
     return 0;

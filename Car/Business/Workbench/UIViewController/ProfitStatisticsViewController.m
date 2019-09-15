@@ -96,6 +96,16 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 
             [cell showData:self.profitstatisticsModel];
         }
+        else{
+            
+            ProfitstatisticsModel * model = [[ProfitstatisticsModel alloc] init];
+            model.profit = [NSNumber numberWithInt:0];
+            model.receivable = [NSNumber numberWithInt:0];
+            model.cost = [NSNumber numberWithInt:0];
+            model.debt = [NSNumber numberWithInt:0];
+            model.count = [NSNumber numberWithInt:0];
+            [cell showData:model];
+        }
         return cell;
     }
     else{
@@ -161,11 +171,11 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
                     NSDictionary * modelDic = dataDic[@"sum"];
                     ProfitstatisticsModel * profitstatisticsModel = [ProfitstatisticsModel mj_objectWithKeyValues:modelDic];
                     weakSelf.profitstatisticsModel = profitstatisticsModel;
-                    [weakSelf.tableView reloadData];
                 }
                 else{
                     //异常
                 }
+                [weakSelf.tableView reloadData];
             }
             else{
             }
@@ -200,10 +210,13 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
                     
                     //成功
                     NSArray * listArray = dataDic[@"list"];
-                    for (NSDictionary * dic in listArray) {
+                    if (listArray && [listArray isKindOfClass:[NSArray class]]) {
                         
-                        ProfitrankingModel * profitrankingModel = [ProfitrankingModel mj_objectWithKeyValues:dic];
-                        [weakSelf.dataArray addObject:profitrankingModel];
+                        for (NSDictionary * dic in listArray) {
+                            
+                            ProfitrankingModel * profitrankingModel = [ProfitrankingModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:profitrankingModel];
+                        }
                     }
                     [weakSelf.tableView reloadData];
                 }

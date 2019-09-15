@@ -53,6 +53,8 @@
         [_reflectionDic setObject:@"SHUploadMiddleware" forKey:@"UploadComponent"];
         //相册相关业务
         [_reflectionDic setObject:@"SHPictureSelectionMiddleware" forKey:@"PictureSelection"];
+        //大图浏览相关业务
+        [_reflectionDic setObject:@"SHBigPictureBrowsingMiddleware" forKey:@"BigPictureBrowsing"];
     }
     return _reflectionDic;
 }
