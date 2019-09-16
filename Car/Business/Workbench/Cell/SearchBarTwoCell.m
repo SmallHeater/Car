@@ -7,11 +7,11 @@
 //
 
 #import "SearchBarTwoCell.h"
-#import "SHSearchBar.h"
+#import "SHSearchTF.h"
 
 @interface SearchBarTwoCell ()<UITextFieldDelegate>
 
-@property (nonatomic,strong) SHSearchBar * searchBar;
+@property (nonatomic,strong) SHSearchTF * searchBar;
 
 @end
 
@@ -20,13 +20,13 @@
 
 #pragma mark  ----  懒加载
 
--(SHSearchBar *)searchBar{
+-(SHSearchTF *)searchBar{
     
     if (!_searchBar) {
         
-        _searchBar = [[SHSearchBar alloc] init];
+        _searchBar = [[SHSearchTF alloc] initWithRightImageName:@""];
+        _searchBar.placeholder = @"请输入需要搜索的内容";
         _searchBar.delegate = self;
-        _searchBar.returnKeyType = UIReturnKeySearch;
     }
     return _searchBar;
 }

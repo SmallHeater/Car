@@ -92,7 +92,6 @@
 		046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB8F231272A900C520D8 /* TXScrollLabelView.m */; };
 		046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB90231272A900C520D8 /* UIView+TXFrame.m */; };
 		046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */; };
-		046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9A2312A42200C520D8 /* SHSearchBar.m */; };
 		046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCB9D2312A60300C520D8 /* SearchBarTwoCell.m */; };
 		046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA02312C56000C520D8 /* VehicleFileCell.m */; };
 		046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DCBA32312CEB600C520D8 /* FastPickUpViewController.m */; };
@@ -156,6 +155,8 @@
 		62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB3231A441F0018DE07 /* WorkbenchModel.m */; };
 		62929BB7231A44640018DE07 /* CarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB6231A44640018DE07 /* CarouselModel.m */; };
 		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
+		62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */; };
+		62A80D0A232FB8A800A6C456 /* SHSearchTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D09232FB8A800A6C456 /* SHSearchTF.m */; };
 		62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6C82325D97800A6C456 /* SHDatePickView.m */; };
 		62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6CA2325D97E00A6C456 /* SHPickerView.m */; };
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
@@ -344,8 +345,6 @@
 		046DCB90231272A900C520D8 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
 		046DCB9323129BEA00C520D8 /* VehicleFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileViewController.h; sourceTree = "<group>"; };
 		046DCB9423129BEA00C520D8 /* VehicleFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileViewController.m; sourceTree = "<group>"; };
-		046DCB992312A42200C520D8 /* SHSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSearchBar.h; sourceTree = "<group>"; };
-		046DCB9A2312A42200C520D8 /* SHSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSearchBar.m; sourceTree = "<group>"; };
 		046DCB9C2312A60300C520D8 /* SearchBarTwoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTwoCell.h; sourceTree = "<group>"; };
 		046DCB9D2312A60300C520D8 /* SearchBarTwoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTwoCell.m; sourceTree = "<group>"; };
 		046DCB9F2312C56000C520D8 /* VehicleFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileCell.h; sourceTree = "<group>"; };
@@ -461,6 +460,10 @@
 		62929BB6231A44640018DE07 /* CarouselModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarouselModel.m; sourceTree = "<group>"; };
 		62929BB8231A44920018DE07 /* AnnouncementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
 		62929BB9231A44920018DE07 /* AnnouncementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
+		62A80D05232FB1F100A6C456 /* HomeNavgationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeNavgationBar.h; sourceTree = "<group>"; };
+		62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeNavgationBar.m; sourceTree = "<group>"; };
+		62A80D08232FB8A800A6C456 /* SHSearchTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSearchTF.h; sourceTree = "<group>"; };
+		62A80D09232FB8A800A6C456 /* SHSearchTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSearchTF.m; sourceTree = "<group>"; };
 		62A8F6C72325D97700A6C456 /* SHDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHDatePickView.h; sourceTree = "<group>"; };
 		62A8F6C82325D97800A6C456 /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
 		62A8F6CA2325D97E00A6C456 /* SHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPickerView.m; sourceTree = "<group>"; };
@@ -619,10 +622,10 @@
 				040485B52310E34800EF17C8 /* GetVerificationCodeBtn.m */,
 				0404860923122D1A00EF17C8 /* ImageAndLabelControl.h */,
 				0404860A23122D1A00EF17C8 /* ImageAndLabelControl.m */,
-				046DCB992312A42200C520D8 /* SHSearchBar.h */,
-				046DCB9A2312A42200C520D8 /* SHSearchBar.m */,
 				62A8F7022328780100A6C456 /* SHBaseTableViewCell.h */,
 				62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */,
+				62A80D08232FB8A800A6C456 /* SHSearchTF.h */,
+				62A80D09232FB8A800A6C456 /* SHSearchTF.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -713,10 +716,8 @@
 		04048582230C24D200EF17C8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				04048588230C252A00EF17C8 /* Controller */,
-				04048589230C252A00EF17C8 /* Model */,
+				62A80D04232FB1E000A6C456 /* UIView */,
 				04048587230C252A00EF17C8 /* UIViewController */,
-				0404858A230C252A00EF17C8 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -758,27 +759,6 @@
 				0404859B230C259900EF17C8 /* HomeViewController.m */,
 			);
 			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		04048588230C252A00EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		04048589230C252A00EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0404858A230C252A00EF17C8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		0404858B230C253200EF17C8 /* Model */ = {
@@ -1547,6 +1527,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		62A80D04232FB1E000A6C456 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				62A80D05232FB1F100A6C456 /* HomeNavgationBar.h */,
+				62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		69342650D3B774B22ECBF8D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1697,11 +1686,13 @@
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
+				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
 				0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
+				62A80D0A232FB8A800A6C456 /* SHSearchTF.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
@@ -1743,7 +1734,6 @@
 				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,
 				04A915E4232A5CDD002DDC02 /* NSObjectSafe.m in Sources */,
 				0432BFAC2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m in Sources */,
-				046DCB9B2312A42200C520D8 /* SHSearchBar.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
