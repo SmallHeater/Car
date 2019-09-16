@@ -33,7 +33,7 @@
     if (!_btn) {
         
         _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btn setImage:[UIImage imageNamed:@"yingyehuizong"] forState:UIControlStateNormal];
+        [_btn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btn;
