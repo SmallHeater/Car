@@ -19,6 +19,7 @@
 //右侧发布按钮
 @property (nonatomic,strong) UIButton * releaseBtn;
 
+
 @end
 
 @implementation HomeNavgationBar
@@ -31,6 +32,7 @@
         
         _scanningBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_scanningBtn setImage:[UIImage imageNamed:@"saomiao"] forState:UIControlStateNormal];
+        [_scanningBtn setImageEdgeInsets:UIEdgeInsetsMake(9, 9, 9, 9)];
         [_scanningBtn addTarget:self action:@selector(sacnningBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _scanningBtn;
@@ -53,6 +55,15 @@
     
     if (!_releaseBtn) {
         
+        _releaseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_releaseBtn setImage:[UIImage imageNamed:@"fabu"] forState:UIControlStateNormal];
+        [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
+        _releaseBtn.titleLabel.font = FONT10;
+        [_releaseBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
+        [_releaseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
+        [_releaseBtn setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 0, 0)];
+        [_releaseBtn addTarget:self action:@selector(releaseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _releaseBtn.backgroundColor = [UIColor redColor];
     }
     return _releaseBtn;
 }
@@ -65,6 +76,7 @@
     if (self) {
         
         self.backgroundColor = [UIColor whiteColor];
+        [self drawUI];
     }
     return self;
 }
@@ -73,10 +85,39 @@
 
 -(void)drawUI{
     
+    [self addSubview:self.scanningBtn];
+    [self.scanningBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.offset(0);
+        make.left.offset(8);
+        make.width.height.offset(40);
+    }];
+    
+    [self addSubview:self.searchTF];
+    [self.searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(57);
+        make.top.bottom.offset(0);
+        make.right.offset(-68);
+    }];
+    
+    [self addSubview:self.releaseBtn];
+    [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.bottom.offset(0);
+        make.right.offset(-19);
+        make.width.offset(40);
+    }];
 }
 
 //扫描按钮的响应
 -(void)sacnningBtnClicked:(UIButton *)btn{
+    
+}
+
+//发布按钮的响应
+-(void)releaseBtnClicked:(UIButton *)btn{
+    
     
 }
 

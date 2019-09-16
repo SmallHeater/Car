@@ -70,7 +70,7 @@
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
         self.window.rootViewController = tarBarController;
         tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
-        tarBarController.selectedIndex = 2;
+        tarBarController.selectedIndex = 0;
     }
     else{
         
