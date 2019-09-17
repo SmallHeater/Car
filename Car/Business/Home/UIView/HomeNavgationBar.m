@@ -8,7 +8,7 @@
 
 #import "HomeNavgationBar.h"
 #import "SHSearchTF.h"
-
+#import "SHImageAndTitleBtn.h"
 
 @interface HomeNavgationBar ()<UITextFieldDelegate>
 
@@ -17,7 +17,7 @@
 //中间搜索view
 @property (nonatomic,strong) SHSearchTF * searchTF;
 //右侧发布按钮
-@property (nonatomic,strong) UIButton * releaseBtn;
+@property (nonatomic,strong) SHImageAndTitleBtn * releaseBtn;
 
 
 @end
@@ -44,6 +44,7 @@
         
         _searchTF = [[SHSearchTF alloc] initWithRightImageName:@"xiangji"];
         _searchTF.delegate = self;
+        _searchTF.placeholder = @"请输入需要搜索的内容";
         _searchTF.rightViewCallback = ^{
             
         };
@@ -51,19 +52,11 @@
     return _searchTF;
 }
 
--(UIButton *)releaseBtn{
+-(SHImageAndTitleBtn *)releaseBtn{
     
     if (!_releaseBtn) {
         
-        _releaseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_releaseBtn setImage:[UIImage imageNamed:@"fabu"] forState:UIControlStateNormal];
-        [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
-        _releaseBtn.titleLabel.font = FONT10;
-        [_releaseBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
-        [_releaseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
-        [_releaseBtn setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 0, 0)];
-        [_releaseBtn addTarget:self action:@selector(releaseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        _releaseBtn.backgroundColor = [UIColor redColor];
+        _releaseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36 - 19, 0, 36, 40) andImageFrame:CGRectMake(3, 0, 30, 30) andTitleFrame:CGRectMake(0, 30, 36, 10) andImageName:@"fabu" andSelectedImageName:@"" andTitle:@"发布" andTarget:self andAction:@selector(releaseBtnClicked:)];
     }
     return _releaseBtn;
 }

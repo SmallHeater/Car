@@ -68,7 +68,7 @@
        
         make.left.offset(15);
         make.right.offset(-16);
-        make.top.offset(18);
+        make.top.offset(0);
         make.height.offset(40);
     }];
 }

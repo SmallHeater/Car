@@ -3,7 +3,6 @@
 //  JHLivePlayLibrary
 //
 //  Created by xianjunwang on 2018/4/21.
-//  Copyright © 2018年 pk. All rights reserved.
 //  带placehold的textView
 
 #import <UIKit/UIKit.h>

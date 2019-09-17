@@ -3,7 +3,6 @@
 //  JHLivePlayDemo
 //
 //  Created by xianjunwang on 2017/9/5.
-//  Copyright © 2017年 pk. All rights reserved.
 //  带删除按钮的imageView
 
 #import <UIKit/UIKit.h>

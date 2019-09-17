@@ -3,7 +3,6 @@
 //  JHLivePlayDemo
 //
 //  Created by xianjunwang on 2017/9/11.
-//  Copyright © 2017年 pk. All rights reserved.
 //  带picker的view，最多支持三列,
 
 #import <UIKit/UIKit.h>

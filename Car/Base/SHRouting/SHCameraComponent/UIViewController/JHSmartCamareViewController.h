@@ -2,9 +2,7 @@
 //  SmartCamareViewController.h
 //  JHLivePlayLibrary
 //
-//  Created by pk on 2018/3/13.
-//  Copyright © 2018年 pk. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 

@@ -48,6 +48,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.backgroundColor = [UIColor clearColor];
         [self drawUI];
     }
     return self;
@@ -62,7 +63,8 @@
         
         make.left.offset(15);
         make.right.offset(-16);
-        make.top.bottom.offset(0);
+        make.top.bottom.offset(20);
+        make.bottom.offset(-20);
     }];
 }
 

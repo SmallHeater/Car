@@ -3,7 +3,6 @@
 //  JHLivePlayDemo
 //
 //  Created by xianjunwang on 2017/9/27.
-//  Copyright © 2017年 pk. All rights reserved.
 //  图片压缩控制器
 
 #import <Foundation/Foundation.h>

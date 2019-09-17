@@ -77,15 +77,15 @@
     switch (indexPath.row) {
         case 0:
             
-            cellHeight = 48;
+            cellHeight = 28;
             break;
         case 1:
             
-            cellHeight = (MAINWIDTH - 15 - 16) / 346.0 * 150.0;
+            cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0 + 20 * 2;
             break;
         case 2:
             
-            cellHeight = 58;
+            cellHeight = 40;
             break;
         case 3:
             

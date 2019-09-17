@@ -2,8 +2,6 @@
 //  JHCameraResultView.m
 //  TestWebView
 //
-//  Created by pk on 2018/10/16.
-//  Copyright © 2018年 pk. All rights reserved.
 //
 
 #import "JHCameraResultView.h"

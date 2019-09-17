@@ -3,7 +3,6 @@
 //  JHLivePlayDemo
 //
 //  Created by xianjunwang on 2017/9/11.
-//  Copyright © 2017年 pk. All rights reserved.
 //
 
 #import "SHPickerView.h"

@@ -157,6 +157,8 @@
 		62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62929BB9231A44920018DE07 /* AnnouncementModel.m */; };
 		62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */; };
 		62A80D0A232FB8A800A6C456 /* SHSearchTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D09232FB8A800A6C456 /* SHSearchTF.m */; };
+		62A80D112330603F00A6C456 /* SHImageAndTitleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D102330603E00A6C456 /* SHImageAndTitleBtn.m */; };
+		62A80D152330694300A6C456 /* ItemsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A80D142330694300A6C456 /* ItemsCell.m */; };
 		62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6C82325D97800A6C456 /* SHDatePickView.m */; };
 		62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6CA2325D97E00A6C456 /* SHPickerView.m */; };
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
@@ -464,6 +466,10 @@
 		62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeNavgationBar.m; sourceTree = "<group>"; };
 		62A80D08232FB8A800A6C456 /* SHSearchTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSearchTF.h; sourceTree = "<group>"; };
 		62A80D09232FB8A800A6C456 /* SHSearchTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSearchTF.m; sourceTree = "<group>"; };
+		62A80D0F2330603E00A6C456 /* SHImageAndTitleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageAndTitleBtn.h; sourceTree = "<group>"; };
+		62A80D102330603E00A6C456 /* SHImageAndTitleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHImageAndTitleBtn.m; sourceTree = "<group>"; };
+		62A80D132330694300A6C456 /* ItemsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemsCell.h; sourceTree = "<group>"; };
+		62A80D142330694300A6C456 /* ItemsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemsCell.m; sourceTree = "<group>"; };
 		62A8F6C72325D97700A6C456 /* SHDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHDatePickView.h; sourceTree = "<group>"; };
 		62A8F6C82325D97800A6C456 /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
 		62A8F6CA2325D97E00A6C456 /* SHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPickerView.m; sourceTree = "<group>"; };
@@ -598,6 +604,8 @@
 		0404855A230C205F00EF17C8 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				62A80D0F2330603E00A6C456 /* SHImageAndTitleBtn.h */,
+				62A80D102330603E00A6C456 /* SHImageAndTitleBtn.m */,
 				04A915E7232A5E4B002DDC02 /* SHBaseTableView.h */,
 				04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */,
 				62A8F6CB2325D97E00A6C456 /* SHPickerView.h */,
@@ -716,6 +724,7 @@
 		04048582230C24D200EF17C8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				62A80D122330692900A6C456 /* Cell */,
 				62A80D04232FB1E000A6C456 /* UIView */,
 				04048587230C252A00EF17C8 /* UIViewController */,
 			);
@@ -1536,6 +1545,15 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		62A80D122330692900A6C456 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				62A80D132330694300A6C456 /* ItemsCell.h */,
+				62A80D142330694300A6C456 /* ItemsCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		69342650D3B774B22ECBF8D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1684,6 +1702,7 @@
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
+				62A80D152330694300A6C456 /* ItemsCell.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
@@ -1763,6 +1782,7 @@
 				0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
 				62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */,
+				62A80D112330603F00A6C456 /* SHImageAndTitleBtn.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */,
