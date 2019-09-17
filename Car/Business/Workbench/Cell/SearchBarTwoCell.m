@@ -57,10 +57,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
-    if (self.searchCallBack) {
-     
-        self.searchCallBack(textField.text);
-    }
     return YES;
 }
 

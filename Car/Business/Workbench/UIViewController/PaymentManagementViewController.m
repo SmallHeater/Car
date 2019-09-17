@@ -44,7 +44,38 @@ typedef NS_ENUM(NSUInteger,ViewType){
         
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_searchBtn setImage:[UIImage imageNamed:@"sousuohei"] forState:UIControlStateNormal];
-        [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_searchBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            
+            int type;
+            NSString * modelName;
+            SearchType searchType;
+            if (self.viewType == ViewType_Unpaid) {
+                
+                type = 0;
+                modelName = @"UnpaidCell";
+                searchType = SearchType_Unpaid;
+            }
+            else{
+                
+                type = 1;
+                modelName = @"RepaidCell";
+                searchType = SearchType_Repaid;
+            }
+            
+            SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+            configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:type]};
+            configurationModel.requestUrlStr = Payment;
+            configurationModel.modelName = modelName;
+            
+            SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+            searchVC.searchType = searchType;
+            [weakSelf.navigationController pushViewController:searchVC animated:YES];
+            
+            x.userInteractionEnabled = YES;
+        }];
     }
     return _searchBtn;
 }
@@ -164,39 +195,5 @@ typedef NS_ENUM(NSUInteger,ViewType){
         make.top.equalTo(self.switchItemsView.mas_bottom);
     }];
 }
-
--(void)searchBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    int type;
-    NSString * modelName;
-    SearchType searchType;
-    if (self.viewType == ViewType_Unpaid) {
-        
-        type = 0;
-        modelName = @"UnpaidCell";
-        searchType = SearchType_Unpaid;
-    }
-    else{
-        
-        type = 1;
-        modelName = @"RepaidCell";
-        searchType = SearchType_Repaid;
-    }
-    
-    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
-    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:type]};
-    configurationModel.requestUrlStr = Payment;
-    configurationModel.modelName = modelName;
-    
-    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
-    searchVC.searchType = searchType;
-    [self.navigationController pushViewController:searchVC animated:YES];
-    
-    btn.userInteractionEnabled = YES;
-}
-
-
 
 @end

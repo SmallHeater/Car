@@ -33,7 +33,21 @@ static NSString * cellId = @"MaintenanceRecordsCell";
         
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_searchBtn setImage:[UIImage imageNamed:@"sousuohei"] forState:UIControlStateNormal];
-        [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_searchBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            
+            SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+            configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+            configurationModel.requestUrlStr = Maintainlist;
+            configurationModel.modelName = @"MaintenanceRecordsOneDayModel";
+            
+            SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+            searchVC.searchType = SearchType_MaintenanceRecords;
+            [weakSelf.navigationController pushViewController:searchVC animated:YES];
+            x.userInteractionEnabled = YES;
+        }];
     }
     return _searchBtn;
 }
@@ -136,21 +150,6 @@ static NSString * cellId = @"MaintenanceRecordsCell";
         make.bottom.offset(-12);
         make.width.height.offset(22);
     }];
-}
-
--(void)searchBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
-    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    configurationModel.requestUrlStr = Maintainlist;
-    configurationModel.modelName = @"MaintenanceRecordsOneDayModel";
-    
-    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
-    searchVC.searchType = SearchType_MaintenanceRecords;
-    [self.navigationController pushViewController:searchVC animated:YES];
-    btn.userInteractionEnabled = YES;
 }
 
 -(void)requestListData{

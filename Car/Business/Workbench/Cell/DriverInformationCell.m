@@ -141,7 +141,13 @@
         _InsurancePeriodContentLabel.text = @"请选择保险到期时间";
         _InsurancePeriodContentLabel.userInteractionEnabled = YES;
         
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(InsurancePeriodContentLabelClicked:)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+        __weak typeof(self) weakSelf = self;
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            
+            [weakSelf endEditing:YES];
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.pickerView];
+        }];
         [_InsurancePeriodContentLabel addGestureRecognizer:tap];
     }
     return _InsurancePeriodContentLabel;
@@ -172,26 +178,6 @@
 
 #pragma mark  ----  UITextFieldDelegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    
-    if ([textField isEqual:self.contactTF]) {
-        
-        //联系人
-        if (self.contactsCallBack) {
-            
-            self.contactsCallBack(textField.text);
-        }
-    }
-    else if ([textField isEqual:self.phoneNumberTF]){
-        
-        //手机号
-        if (self.phoneNumberCallBack) {
-            
-            self.phoneNumberCallBack(textField.text);
-        }
-    }
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
@@ -202,13 +188,11 @@
 
 -(void)picker:(SHPickerView *)picker didSelectedArray:(NSMutableArray *)selectDicArray{
     
-    NSDictionary * dic = selectDicArray[0];
-    self.InsurancePeriodContentLabel.text = dic[@"title"];
-    self.InsurancePeriodContentLabel.textColor = Color_333333;
-    
-    if (self.dataCallBack) {
-        
-        self.dataCallBack(dic[@"key"]);
+    if (selectDicArray && [selectDicArray isKindOfClass:[NSArray class]] && selectDicArray.count > 0) {
+     
+        NSDictionary * dic = selectDicArray[0];
+        self.InsurancePeriodContentLabel.text = dic[@"title"];
+        self.InsurancePeriodContentLabel.textColor = Color_333333;
     }
 }
 
@@ -316,13 +300,6 @@
 -(void)showDataWithModel:(DrivingLicenseModel *)model{
     
     self.contactTF.text = [NSString repleaseNilOrNull:model.owner];
-}
-
-//选择保险到期时间
--(void)InsurancePeriodContentLabelClicked:(UIGestureRecognizer *)ges{
-    
-    [self endEditing:YES];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
 }
 
 @end

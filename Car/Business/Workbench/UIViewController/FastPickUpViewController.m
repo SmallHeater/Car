@@ -19,7 +19,7 @@
 #import "VehicleFileDetailViewController.h"
 
 
-@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
 //保存按钮
@@ -76,7 +76,47 @@
         _saveBtn.layer.cornerRadius = 5;
         _saveBtn.titleLabel.font = FONT16;
         [_saveBtn setBackgroundColor:Color_0072FF];
-        [_saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            weakSelf.requestModel.user_id = [UserInforController  sharedManager].userInforModel.userID;
+            weakSelf.requestModel.license_number = weakSelf.drivingLicenseModel.numberPlateNumber;
+            weakSelf.requestModel.vin = weakSelf.drivingLicenseModel.vehicleIdentificationNumber;
+            weakSelf.requestModel.type = weakSelf.drivingLicenseModel.brandModelNumber;
+            weakSelf.requestModel.engine_no = weakSelf.drivingLicenseModel.engineNumber;
+            weakSelf.requestModel.contacts = weakSelf.drivingLicenseModel.owner;
+            weakSelf.requestModel.vehicle_license_image = @"";
+            
+            //车牌，联系人，手机号为必填项
+            if ([NSString strIsEmpty:weakSelf.requestModel.license_number]) {
+                
+                [MBProgressHUD wj_showError:@"请输入车牌号"];
+            }
+            else if ([NSString strIsEmpty:weakSelf.requestModel.contacts]){
+                
+                [MBProgressHUD wj_showError:@"请输入联系人"];
+            }
+            else if ([NSString strIsEmpty:weakSelf.requestModel.phone] || weakSelf.requestModel.phone.length != 11){
+                
+                [MBProgressHUD wj_showError:@"请输入正确的手机号"];
+            }
+            else{
+                
+                //上传行驶证照片
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
+                });
+                [[BaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
+                    
+                    if (![NSString strIsEmpty:imagePath]) {
+                        
+                        weakSelf.requestModel.vehicle_license_image = imagePath;
+                    }
+                    [weakSelf submit];
+                }];
+            }
+        }];
     }
     return _saveBtn;
 }
@@ -93,19 +133,6 @@
 }
 
 #pragma mark  ----  代理
-
-# pragma mark ---- UIGestureRecognizerDelegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
-    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
-        
-        return NO;
-    }
-    
-    return  YES;
-}
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -241,36 +268,46 @@
             cell.numberCanEdit = YES;
             
             __weak typeof(self) weakSelf = self;
-            cell.enCallBack = ^(NSString * _Nonnull result) {
+            //车牌号
+            [[cell rac_valuesForKeyPath:@"numberPlateTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.drivingLicenseModel.engineNumber = [NSString repleaseNilOrNull:result];
-            };
-            cell.bmnCallBack = ^(NSString * _Nonnull result) {
-                
-                weakSelf.drivingLicenseModel.brandModelNumber = [NSString repleaseNilOrNull:result];
-            };
-            cell.vinCallBack = ^(NSString * _Nonnull result) {
-                
-                weakSelf.drivingLicenseModel.vehicleIdentificationNumber = [NSString repleaseNilOrNull:result];
-            };
-            cell.npnCallBack = ^(NSString * _Nonnull result) {
-                
-                weakSelf.drivingLicenseModel.numberPlateNumber = [NSString repleaseNilOrNull:result];
-                [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
-                    
-                    if (isExisted) {
+                weakSelf.drivingLicenseModel.numberPlateNumber = x;
+                if (![NSString strIsEmpty:x]) {
+                 
+                    [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if (isExisted) {
                             
-                            //已存在，跳转到车辆档案页
-                            VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-                            vc.hidesBottomBarWhenPushed = YES;
-                            vc.vehicleFileModel = model;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        });
-                    }
-                }];
-            };
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                
+                                //已存在，跳转到车辆档案页
+                                VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc.hidesBottomBarWhenPushed = YES;
+                                vc.vehicleFileModel = model;
+                                [weakSelf.navigationController pushViewController:vc animated:YES];
+                            });
+                        }
+                    }];
+                }
+            }];
+            
+            //车架号
+            [[cell rac_valuesForKeyPath:@"frameNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                weakSelf.drivingLicenseModel.vehicleIdentificationNumber = x;
+            }];
+            
+            //车型号
+            [[cell rac_valuesForKeyPath:@"carModelTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                weakSelf.drivingLicenseModel.brandModelNumber = x;
+            }];
+            
+            //发动机型号
+            [[cell rac_valuesForKeyPath:@"engineNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                weakSelf.drivingLicenseModel.engineNumber = x;
+            }];
         }
 
         if (self.drivingLicenseModel && ![NSString strIsEmpty:self.drivingLicenseModel.numberPlateNumber]) {
@@ -289,20 +326,25 @@
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
             
             __weak typeof(self) weakSelf = self;
-            cell.contactsCallBack = ^(NSString * _Nonnull result) {
+            [[cell rac_valuesForKeyPath:@"contactTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.drivingLicenseModel.owner = [NSString repleaseNilOrNull:result];
-            };
+                weakSelf.drivingLicenseModel.owner = x;
+            }];
             
-            cell.phoneNumberCallBack = ^(NSString * _Nonnull result) {
-              
-                weakSelf.requestModel.phone = [NSString repleaseNilOrNull:result];
-            };
+            [[cell rac_valuesForKeyPath:@"phoneNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                weakSelf.requestModel.phone = x;
+            }];
             
-            cell.dataCallBack = ^(NSString * _Nonnull result) {
-              
-                weakSelf.requestModel.insurance_period = [NSString repleaseNilOrNull:result];
-            };
+            [[cell rac_valuesForKeyPath:@"InsurancePeriodContentLabel.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                if ([x rangeOfString:@"月份"].location != NSNotFound) {
+                 
+                    NSMutableString * str = [[NSMutableString alloc] initWithString:x];
+                    [str replaceCharactersInRange:[str rangeOfString:@"月份"] withString:@""];
+                    weakSelf.requestModel.insurance_period = str;
+                }
+            }];
         }
         
         if (self.drivingLicenseModel && ![NSString strIsEmpty:self.drivingLicenseModel.owner]) {
@@ -342,7 +384,6 @@
         }];
     }
 
-    
     //需要重新设置导航的层级，不然阴影效果没了
     [self.view bringSubviewToFront:self.navigationbar];
     
@@ -360,90 +401,48 @@
 -(void)registrationNotice{
     
     //键盘监听
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    __weak typeof(self) weakSelf = self;
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        weakSelf.tableView.scrollEnabled = YES;
+        NSDictionary *userInfo = [x userInfo];
+        CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+        CGRect rect = [[userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
+        [UIView animateWithDuration:duration animations:^{
+            
+            [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.offset(-rect.size.height);
+            }];
+        }];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillHideNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        weakSelf.tableView.scrollEnabled = NO;
+        NSDictionary *userInfo = [x userInfo];
+        CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+        __weak typeof(self) weakSelf = self;
+        [UIView animateWithDuration:duration animations:^{
+            
+            [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.offset(-123);
+            }];
+        }];
+    }];
 }
 
 //添加手势
 -(void)addGesture{
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
-    tap.delegate = self;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        
+        [weakSelf.view endEditing:YES];
+    }];
     [self.view addGestureRecognizer:tap];
-}
-
--(void)keyboardWillShow:(NSNotification *)notification{
-    
-    self.tableView.scrollEnabled = YES;
-    NSDictionary *userInfo = [notification userInfo];
-    CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
-    CGRect rect = [[userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:duration animations:^{
-        
-        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            
-            make.bottom.offset(-rect.size.height);
-        }];
-    }];
-}
-
--(void)keyboardWillHide:(NSNotification *)notification{
-    
-    self.tableView.scrollEnabled = NO;
-    NSDictionary *userInfo = [notification userInfo];
-    CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:duration animations:^{
-        
-        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            
-            make.bottom.offset(-123);
-        }];
-    }];
-}
-
-//保存按钮的响应
--(void)saveBtnClicked:(UIButton *)btn{
-    
-    self.requestModel.user_id = [UserInforController  sharedManager].userInforModel.userID;
-    self.requestModel.license_number = self.drivingLicenseModel.numberPlateNumber;
-    self.requestModel.vin = self.drivingLicenseModel.vehicleIdentificationNumber;
-    self.requestModel.type = self.drivingLicenseModel.brandModelNumber;
-    self.requestModel.engine_no = self.drivingLicenseModel.engineNumber;
-    self.requestModel.contacts = self.drivingLicenseModel.owner;
-    self.requestModel.vehicle_license_image = @"";
-    
-    //车牌，联系人，手机号为必填项
-    if ([NSString strIsEmpty:self.requestModel.license_number]) {
-        
-        [MBProgressHUD wj_showError:@"请输入车牌号"];
-    }
-    else if ([NSString strIsEmpty:self.requestModel.contacts]){
-        
-        [MBProgressHUD wj_showError:@"请输入联系人"];
-    }
-    else if ([NSString strIsEmpty:self.requestModel.phone] || self.requestModel.phone.length != 11){
-        
-        [MBProgressHUD wj_showError:@"请输入正确的手机号"];
-    }
-    else{
-        
-        //上传行驶证照片
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
-        });
-        [[BaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
-            
-            if (![NSString strIsEmpty:imagePath]) {
-                
-                weakSelf.requestModel.vehicle_license_image = imagePath;
-            }
-            [weakSelf submit];
-        }];
-    }
 }
 
 //提交
@@ -493,14 +492,8 @@
         else{
             
             //失败的
-            
         }
     }];
-}
-
--(void)viewTaped:(UIGestureRecognizer *)ges{
-    
-    [self.view endEditing:YES];
 }
 
 @end

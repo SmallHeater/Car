@@ -32,7 +32,17 @@ static NSString * cellId = @"MaintenanceRecordsCell";
         
         _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-        [_addBtn addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            
+            MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            vc.vehicleFileModel = weakSelf.vehicleFileModel;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+            x.userInteractionEnabled = YES;
+        }];
     }
     return _addBtn;
 }
@@ -144,16 +154,6 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     }];
 }
 
--(void)addBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-    vc.vehicleFileModel = self.vehicleFileModel;
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    btn.userInteractionEnabled = YES;
-}
 
 -(void)requestListData{
     

@@ -8,24 +8,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^CallBack)(NSString * result);
 
 @class DrivingLicenseModel;
 @interface DriverInformationCell : SHBaseTableViewCell
-
-//联系人回调
-@property (nonatomic,copy) CallBack contactsCallBack;
-//手机号回调
-@property (nonatomic,copy) CallBack phoneNumberCallBack;
-//保险期回调
-@property (nonatomic,copy) CallBack dataCallBack;
-
 
 //数据展示
 -(void)showDataWithModel:(DrivingLicenseModel *)model;
 //contact,联系人;phoneNumber,手机号;InsurancePeriod,保险期;
 -(void)showData:(NSDictionary *)dic;
-
 
 @end
 

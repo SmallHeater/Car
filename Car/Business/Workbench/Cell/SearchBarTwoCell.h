@@ -8,11 +8,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^SearchCallBack)(NSString * searchText);
 
 @interface SearchBarTwoCell : SHBaseTableViewCell
 
-@property (nonatomic,copy) SearchCallBack searchCallBack;
 
 @end
 

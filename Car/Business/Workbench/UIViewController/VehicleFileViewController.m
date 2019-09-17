@@ -31,7 +31,12 @@
         
         _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-        [_addBtn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
     }
     return _addBtn;
 }
@@ -98,10 +103,13 @@
             
             __weak typeof(self) weakSelf = self;
             cell = [[SearchBarTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
-                
-                [weakSelf requestListDataWithContent:searchText];
-            };
+            [[cell rac_valuesForKeyPath:@"searchBar.text" observer:self] subscribeNext:^(id  _Nullable x) {
+               
+                if (![NSString strIsEmpty:x]) {
+                    
+                    [weakSelf requestListDataWithContent:x];
+                }
+            }];
         }
         
         return cell;
@@ -136,11 +144,6 @@
     }];
 }
 
--(void)addBtnClicked{
-    
-    FastPickUpViewController * vc = [[FastPickUpViewController alloc] initWithTitle:@"快速接车" andIsShowBackBtn:YES];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 -(void)requestListDataWithContent:(NSString *)content{
     

@@ -34,7 +34,11 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
         
         _explanationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_explanationBtn setImage:[UIImage imageNamed:@"shuoming"] forState:UIControlStateNormal];
-        [_explanationBtn addTarget:self action:@selector(explanationBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [[_explanationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            x.userInteractionEnabled = YES;
+        }];
     }
     return _explanationBtn;
 }
@@ -134,16 +138,6 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
         make.right.offset(-13);
         make.bottom.offset(-12);
     }];
-}
-
-//说明按钮的响应
--(void)explanationBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-   
-    
-    btn.userInteractionEnabled = YES;
 }
 
 //利润统计接口

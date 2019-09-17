@@ -32,6 +32,23 @@ static NSString * cellId = @"RevenueCell";
         
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_searchBtn setImage:[UIImage imageNamed:@"sousuohei"] forState:UIControlStateNormal];
+        
+        __weak typeof(self) weakSelf = self;
+        [[_searchBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            x.userInteractionEnabled = NO;
+            
+            SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
+            configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+            configurationModel.requestUrlStr = Maintainlist;
+            configurationModel.modelName = @"RevenueCell";
+            
+            SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
+            searchVC.searchType = SearchType_RevenueList;
+            [weakSelf.navigationController pushViewController:searchVC animated:YES];
+            
+            x.userInteractionEnabled = YES;
+        }];
         [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchBtn;
@@ -97,22 +114,6 @@ static NSString * cellId = @"RevenueCell";
     }];
 }
 
--(void)searchBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    SearchConfigurationModel * configurationModel = [[SearchConfigurationModel alloc] init];
-    configurationModel.baseBodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    configurationModel.requestUrlStr = Maintainlist;
-    configurationModel.modelName = @"RevenueCell";
-    
-    SearchViewController * searchVC = [[SearchViewController alloc] initWithTitle:@"搜索" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSearchConfigurationModel:configurationModel];
-    searchVC.searchType = SearchType_RevenueList;
-    [self.navigationController pushViewController:searchVC animated:YES];
-    
-    btn.userInteractionEnabled = YES;
-}
-
 -(void)requestListData{
     
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
@@ -151,14 +152,11 @@ static NSString * cellId = @"RevenueCell";
                 }
             }
             else{
-                
-                
             }
         }
         else{
             
             //失败的
-            
         }
     }];
 }

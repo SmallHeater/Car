@@ -52,8 +52,27 @@ typedef NS_ENUM(NSUInteger,ViewState){
         [_editBtn setTitle:@"取消" forState:UIControlStateSelected];
         _editBtn.titleLabel.font = FONT14;
         [_editBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
-//        [_editBtn setImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
-        [_editBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [[_editBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            x.selected = !x.selected;
+            
+            if (weakSelf.viewState == ViewState_show) {
+                
+                weakSelf.viewState = ViewState_edit;
+                weakSelf.maintenanceRecordsView.hidden = YES;
+                weakSelf.bottomView.hidden = NO;
+            }
+            else if (weakSelf.viewState == ViewState_edit){
+                
+                weakSelf.viewState = ViewState_show;
+                weakSelf.maintenanceRecordsView.hidden = NO;
+                weakSelf.bottomView.hidden = YES;
+            }
+            
+            x.userInteractionEnabled = YES;
+        }];
     }
     return _editBtn;
 }
@@ -103,7 +122,14 @@ typedef NS_ENUM(NSUInteger,ViewState){
             make.width.height.offset(22);
         }];
         
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maintenanceRecordsViewTaped:)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+        __weak typeof(self) weakSelf = self;
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+           
+            OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            vc.vehicleFileModel = weakSelf.vehicleFileModel;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         [_maintenanceRecordsView addGestureRecognizer:tap];
     }
     return _maintenanceRecordsView;
@@ -122,7 +148,30 @@ typedef NS_ENUM(NSUInteger,ViewState){
         deleteBtn.titleLabel.font = FONT16;
         [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
         [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        __weak typeof(self) weakSelf = self;
+        [[deleteBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除车辆档案警告" message:@"是否要删除车辆档案？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [weakSelf deleteModifyVehicleFile];
+            }];
+            
+            [alert addAction:cancleAction];
+            [alert addAction:sureAction];
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+            
+            x.userInteractionEnabled = YES;
+        }];
         [_bottomView addSubview:deleteBtn];
         //保存按钮
         UIButton * saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -130,7 +179,31 @@ typedef NS_ENUM(NSUInteger,ViewState){
         saveBtn.titleLabel.font = FONT16;
         [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
         [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [saveBtn addTarget:self action:@selector(saveBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [[saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            
+            //车牌，联系人，手机号为必填项
+            if ([NSString strIsEmpty:self.requestModel.license_number]) {
+                
+                [MBProgressHUD wj_showError:@"请输入车牌号"];
+            }
+            else if ([NSString strIsEmpty:self.requestModel.contacts]){
+                
+                [MBProgressHUD wj_showError:@"请输入联系人"];
+            }
+            else if ([NSString strIsEmpty:self.requestModel.phone] || self.requestModel.phone.length != 11){
+                
+                [MBProgressHUD wj_showError:@"请输入正确的手机号"];
+            }
+            else{
+                
+                [weakSelf modifyVehicleFile];
+            }
+            
+            x.userInteractionEnabled = YES;
+        }];
+        
         [_bottomView addSubview:saveBtn];
         
         float buttonWidth = MAINWIDTH / 2;
@@ -211,22 +284,29 @@ typedef NS_ENUM(NSUInteger,ViewState){
             cell.numberCanEdit = NO;
             
             __weak typeof(self) weakSelf = self;
-            cell.enCallBack = ^(NSString * _Nonnull result) {
+            //车牌号
+            [[cell rac_valuesForKeyPath:@"numberPlateTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.engine_no = [NSString repleaseNilOrNull:result];
-            };
-            cell.bmnCallBack = ^(NSString * _Nonnull result) {
+                weakSelf.requestModel.license_number = x;
+            }];
+            
+            //车架号
+            [[cell rac_valuesForKeyPath:@"frameNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.type  = [NSString repleaseNilOrNull:result];
-            };
-            cell.vinCallBack = ^(NSString * _Nonnull result) {
+                weakSelf.requestModel.vin = x;
+            }];
+            
+            //车型号
+            [[cell rac_valuesForKeyPath:@"carModelTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.vin = [NSString repleaseNilOrNull:result];
-            };
-            cell.npnCallBack = ^(NSString * _Nonnull result) {
+                weakSelf.requestModel.type = x;
+            }];
+            
+            //发动机型号
+            [[cell rac_valuesForKeyPath:@"engineNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.license_number  = [NSString repleaseNilOrNull:result];
-            };
+                weakSelf.requestModel.engine_no = x;
+            }];
         }
         
         if (self.vehicleFileModel) {
@@ -246,20 +326,26 @@ typedef NS_ENUM(NSUInteger,ViewState){
             cell = [[DriverInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
             
             __weak typeof(self) weakSelf = self;
-            cell.contactsCallBack = ^(NSString * _Nonnull result) {
-                
-                weakSelf.requestModel.contacts = [NSString repleaseNilOrNull:result];
-            };
             
-            cell.phoneNumberCallBack = ^(NSString * _Nonnull result) {
+            [[cell rac_valuesForKeyPath:@"contactTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.phone = [NSString repleaseNilOrNull:result];
-            };
+                weakSelf.requestModel.contacts  = x;
+            }];
             
-            cell.dataCallBack = ^(NSString * _Nonnull result) {
+            [[cell rac_valuesForKeyPath:@"phoneNumberTF.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                weakSelf.requestModel.insurance_period = [NSString repleaseNilOrNull:result];
-            };
+                weakSelf.requestModel.phone = x;
+            }];
+            
+            [[cell rac_valuesForKeyPath:@"InsurancePeriodContentLabel.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                if ([x rangeOfString:@"月份"].location != NSNotFound) {
+                    
+                    NSMutableString * str = [[NSMutableString alloc] initWithString:x];
+                    [str replaceCharactersInRange:[str rangeOfString:@"月份"] withString:@""];
+                    weakSelf.requestModel.insurance_period = str;
+                }
+            }];
         }
         
         if (self.vehicleFileModel) {
@@ -327,95 +413,13 @@ typedef NS_ENUM(NSUInteger,ViewState){
 //添加手势
 -(void)addGesture{
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped)];
-    [self.view addGestureRecognizer:tap];
-}
-
--(void)viewTaped{
-    
-    [self.view endEditing:YES];
-}
-
-//编辑按钮的响应
--(void)editBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    btn.selected = !btn.selected;
-    
-    if (self.viewState == ViewState_show) {
-        
-        self.viewState = ViewState_edit;
-        self.maintenanceRecordsView.hidden = YES;
-        self.bottomView.hidden = NO;
-    }
-    else if (self.viewState == ViewState_edit){
-        
-        self.viewState = ViewState_show;
-        self.maintenanceRecordsView.hidden = NO;
-        self.bottomView.hidden = YES;
-    }
-    
-    btn.userInteractionEnabled = YES;
-}
-
-
-//去维修记录页面
--(void)maintenanceRecordsViewTaped:(UIGestureRecognizer *)gesture{
-    
-    OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-    vc.vehicleFileModel = self.vehicleFileModel;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-//删除按钮的响应
--(void)deleteBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除车辆档案警告" message:@"是否要删除车辆档案？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
     __weak typeof(self) weakSelf = self;
-    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         
-        [weakSelf deleteModifyVehicleFile];
+        [weakSelf.view endEditing:YES];
     }];
-    
-    [alert addAction:cancleAction];
-    [alert addAction:sureAction];
-    [self presentViewController:alert animated:YES completion:^{
-        
-    }];
-    
-    btn.userInteractionEnabled = YES;
-}
-
-//保存按钮的响应
--(void)saveBtnClicked:(UIButton *)btn{
-    
-    btn.userInteractionEnabled = NO;
-    
-    //车牌，联系人，手机号为必填项
-    if ([NSString strIsEmpty:self.requestModel.license_number]) {
-        
-        [MBProgressHUD wj_showError:@"请输入车牌号"];
-    }
-    else if ([NSString strIsEmpty:self.requestModel.contacts]){
-        
-        [MBProgressHUD wj_showError:@"请输入联系人"];
-    }
-    else if ([NSString strIsEmpty:self.requestModel.phone] || self.requestModel.phone.length != 11){
-        
-        [MBProgressHUD wj_showError:@"请输入正确的手机号"];
-    }
-    else{
-        
-        [self modifyVehicleFile];
-    }
-    
-    btn.userInteractionEnabled = YES;
+    [self.view addGestureRecognizer:tap];
 }
 
 //修改车辆档案

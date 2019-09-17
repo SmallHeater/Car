@@ -187,11 +187,14 @@
 
             __weak typeof(self) weakSelf = self;
             cell = [[SearchBarTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
-
-                weakSelf.searchText = searchText;
-                [weakSelf requestListDataWithContent:searchText];
-            };
+            [[cell rac_valuesForKeyPath:@"searchBar.text" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                if ([NSString strIsEmpty:x]) {
+                    
+                    weakSelf.searchText = x;
+                    [weakSelf requestListDataWithContent:x];
+                }
+            }];
         }
         
         return cell;
