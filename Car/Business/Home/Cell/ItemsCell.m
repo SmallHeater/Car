@@ -66,7 +66,7 @@
     
     if (!_itemsImageNameArray) {
         
-        _itemsImageNameArray = [[NSArray alloc] initWithObjects:@"jiyoucaigou",@"peijiancaigou",@"yingxiaoke",@"",@"",@"",@"",@"",@"",@"", nil];
+        _itemsImageNameArray = [[NSArray alloc] initWithObjects:@"jiyoucaigou",@"peijiancaigou",@"yingxiaoke",@"canzhijiaoyi",@"qiuzhizhaopin",@"chachejiahao",@"chaweizhang",@"weixiuziliao",@"chaguzhang",@"yinanzazheng", nil];
     }
     return _itemsImageNameArray;
 }
@@ -116,9 +116,9 @@
     float itemImageX = (itemWidth - itemImageWidthHeight) / 2.0;
     float itemTitleHeight = 12;
     float itemTitleY = itemHeight - itemTitleHeight;
-    for (NSUInteger i = 0; i < 10; i++) {
+    for (NSUInteger i = 0; i < self.itemsTitleArray.count; i++) {
         
-        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(itemX, itemY, itemWidth, itemHeight) andImageFrame:CGRectMake(itemImageX, 0, itemImageWidthHeight, itemImageWidthHeight) andTitleFrame:CGRectMake(0, itemTitleY, itemWidth, itemTitleHeight) andImageName:@"repairShop" andSelectedImageName:@"" andTitle:[[NSString alloc] initWithFormat:@"机油 %ld",i] andTarget:self andAction:@selector(itemClicked:)];
+        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(itemX, itemY, itemWidth, itemHeight) andImageFrame:CGRectMake(itemImageX, 0, itemImageWidthHeight, itemImageWidthHeight) andTitleFrame:CGRectMake(0, itemTitleY, itemWidth, itemTitleHeight) andImageName:self.itemsImageNameArray[i] andSelectedImageName:@"" andTitle:self.itemsTitleArray[i] andTarget:self andAction:@selector(itemClicked:)];
         btn.tag = BASEBTNTAG + i;
         [self.bgScrollView addSubview:btn];
         
@@ -136,8 +136,6 @@
 
 //item项的点击响应
 -(void)itemClicked:(SHImageAndTitleBtn *)btn{
-    
-    NSLog(@"%ld",btn.tag);
 }
 
 

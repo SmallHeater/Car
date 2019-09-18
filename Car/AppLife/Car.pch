@@ -74,6 +74,7 @@
 #define BOLDFONT17 [UIFont boldSystemFontOfSize:17]
 #define BOLDFONT18 [UIFont boldSystemFontOfSize:18]
 #define BOLDFONT20 [UIFont boldSystemFontOfSize:20]
+#define BOLDFONT21 [UIFont boldSystemFontOfSize:21]
 #define BOLDFONT30 [UIFont boldSystemFontOfSize:30]
 #define BOLDFONT32 [UIFont boldSystemFontOfSize:32]
 #define BOLDFONT40 [UIFont boldSystemFontOfSize:40]

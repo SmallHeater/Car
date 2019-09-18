@@ -15,7 +15,11 @@
 #import "TabModel.h"
 #import "UserInforController.h"
 #import "HomeDataModel.h"
+#import "SHImageAndTitleBtn.h"
+#import "SHTabView.h"
+#import "ItemNewsCell.h"
 
+#define BASEBTNTAG 1800
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,6 +27,7 @@
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) HomeDataModel * homeDataModel;
+@property (nonatomic,strong) SHTabView * baseTabView;
 
 
 @end
@@ -62,6 +67,31 @@
     return _dataArray;
 }
 
+-(SHTabView *)baseTabView{
+    
+    if (!_baseTabView) {
+        
+        NSMutableArray * tabModelArray = [[NSMutableArray alloc] init];
+        
+        if (self.homeDataModel && self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0) {
+            
+            for (TabModel * model in self.homeDataModel.tabs) {
+                
+                SHTabModel * tabModel = [[SHTabModel alloc] init];
+                
+                tabModel.tabTitle = model.title;
+                tabModel.normalFont = FONT16;
+                tabModel.normalColor = Color_333333;
+                tabModel.selectedFont = BOLDFONT21;
+                tabModel.selectedColor = Color_333333;
+                [tabModelArray addObject:tabModel];
+            }
+        }
+        _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray];
+    }
+    return _baseTabView;
+}
+
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
@@ -78,30 +108,49 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     float cellHeight = 0;
-    switch (indexPath.row) {
-        case 0:
-            
-            cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0;
-            break;
-        case 1:
-            
-            cellHeight = 180;
-            break;
-        default:
-            break;
+    if (indexPath.section == 0) {
+        
+        switch (indexPath.row) {
+            case 0:
+                
+                cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0;
+                break;
+            case 1:
+                
+                cellHeight = 180;
+                break;
+            default:
+                break;
+        }
     }
-    
+    else{
+        
+        cellHeight = 500;
+    }
     return cellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 0;
+    float headerHeight = 0;
+    if (section == 1) {
+        
+        if (self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0) {
+            
+            headerHeight = 40;
+        }
+    }
+    return headerHeight;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    return nil;
+    UIView * headerView = nil;
+    if (section == 1) {
+        
+        headerView = self.baseTabView;
+    }
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -118,7 +167,7 @@
     }
     else if (section == 1){
         
-        rows = 0;
+        rows = 1;
     }
     return rows;
 }
@@ -165,10 +214,77 @@
             if (!cell) {
                 
                 cell = [[ItemsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemsCellID];
+                
+                __weak typeof(self) weakSelf = self;
+                [[cell rac_signalForSelector:@selector(itemClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+                   
+                    SHImageAndTitleBtn * btn = x.first;
+                    if (btn && [btn isKindOfClass:[SHImageAndTitleBtn class]]) {
+                        
+                        NSUInteger btnTag = btn.tag - BASEBTNTAG;
+                        NSString * urlStr;
+                        switch (btnTag) {
+                            case 0:
+                                
+                                break;
+                            case 1:
+                                
+                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                
+                                break;
+                            case 4:
+                                
+                                break;
+                            case 5:
+                                
+                                break;
+                            case 6:
+                                
+                                break;
+                            case 7:
+                                
+                                urlStr = @"https://zlk.xcbb.zyxczs.com/";
+                                break;
+                            case 8:
+                                
+                                urlStr = @"http://qczl.ycqpmall.com/XmData/Wc/index";
+                                break;
+                            case 9:
+                                
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                        if (![NSString strIsEmpty:urlStr]) {
+                            
+                            BaseWKWebViewController * vc = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                            vc.hidesBottomBarWhenPushed = YES;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
+                    }
+                }];
             }
             
             return cell;
         }
+    }
+    else if (indexPath.section == 1){
+        
+        static NSString * ItemNewsCellID = @"ItemNewsCell";
+        ItemNewsCell * cell = [tableView dequeueReusableCellWithIdentifier:ItemNewsCellID];
+        if (!cell) {
+            
+            cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID];
+            cell.backgroundColor = [UIColor greenColor];
+        }
+        
+        return cell;
     }
     return nil;
 }

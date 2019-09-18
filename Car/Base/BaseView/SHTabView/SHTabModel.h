@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor * selectedColor;
 
 
+//选中状态下的最大宽度
+@property (nonatomic,assign) float btnMaxWidth;
 
 @end
 
