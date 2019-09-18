@@ -11,12 +11,19 @@
 #import "CarouselCell.h"
 #import "BaseWKWebViewController.h"
 #import "ItemsCell.h"
+#import "CarouselModel.h"
+#import "TabModel.h"
+#import "UserInforController.h"
+#import "HomeDataModel.h"
+
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) HomeNavgationBar * homeNavgationBar;
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
+@property (nonatomic,strong) HomeDataModel * homeDataModel;
+
 
 @end
 
@@ -61,6 +68,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self drawUI];
+    [self requestData];
 }
 
 #pragma mark  ----  代理
@@ -142,13 +150,12 @@
                         [weakSelf.navigationController pushViewController:webViewController animated:YES];
                     }
                 };
-                cell.backgroundColor = [UIColor greenColor];
             }
             
-            //        if (self.workbenchModel.banner && self.workbenchModel.banner.count > 0) {
-            //
-            //            [cell showData:self.workbenchModel.banner];
-            //        }
+            if (self.homeDataModel.banner && self.homeDataModel.banner.count > 0) {
+    
+                [cell showData:self.homeDataModel.banner];
+            }
             return cell;
         }
         else if (indexPath.row == 1){
@@ -185,5 +192,49 @@
         make.top.equalTo(self.homeNavgationBar.mas_bottom);
     }];
 }
+
+-(void)requestData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Home,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        
+                        weakSelf.homeDataModel = [HomeDataModel mj_objectWithKeyValues:dataDic];
+                        [weakSelf.tableView reloadData];
+                    }
+                }
+                else{
+                    
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+
 
 @end

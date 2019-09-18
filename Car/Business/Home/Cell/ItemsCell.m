@@ -18,6 +18,10 @@
 @property (nonatomic,strong) UIScrollView * bgScrollView;
 @property (nonatomic,strong) SHPageControl * pageControl;
 
+//项名字，数组
+@property (nonatomic,strong) NSArray * itemsTitleArray;
+//项图片名，数组
+@property (nonatomic,strong) NSArray * itemsImageNameArray;
 
 @end
 
@@ -47,6 +51,24 @@
         _pageControl.numberOfPages = 1;
     }
     return _pageControl;
+}
+
+-(NSArray *)itemsTitleArray{
+    
+    if (!_itemsTitleArray) {
+        
+        _itemsTitleArray = [[NSArray alloc] initWithObjects:@"机油采购",@"配件采购",@"营销课",@"残值交易",@"求职招聘",@"查车架号",@"查违章",@"维修资料",@"查故障",@"疑难杂症", nil];
+    }
+    return _itemsTitleArray;
+}
+
+-(NSArray *)itemsImageNameArray{
+    
+    if (!_itemsImageNameArray) {
+        
+        _itemsImageNameArray = [[NSArray alloc] initWithObjects:@"jiyoucaigou",@"peijiancaigou",@"yingxiaoke",@"",@"",@"",@"",@"",@"",@"", nil];
+    }
+    return _itemsImageNameArray;
 }
 
 #pragma mark  ----  生命周期函数

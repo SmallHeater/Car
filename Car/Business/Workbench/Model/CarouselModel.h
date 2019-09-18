@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 //显示的图片
 @property (nonatomic,strong) NSString * image;
 //是否显示：0不显示、1显示
-@property (nonatomic,strong) NSString * showswitch;
+@property (nonatomic,assign) BOOL showswitch;
 //跳转链接，有则跳转，无则不跳转
 @property (nonatomic,strong) NSString * url;
 @property (nonatomic,strong) NSString * createtime;

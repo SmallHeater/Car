@@ -115,6 +115,10 @@
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
+		620007192331B42400319C33 /* SHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620007182331B42400319C33 /* SHTabView.m */; };
+		6200071C2331B71000319C33 /* SHTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200071B2331B71000319C33 /* SHTabModel.m */; };
+		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
+		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
 		62061FEE231E802100A78462 /* SHCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FED231E802100A78462 /* SHCameraManager.m */; };
 		62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF4231E852400A78462 /* UIViewController+SHTool.m */; };
 		62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF7231E867C00A78462 /* SHCameraMiddleware.m */; };
@@ -394,6 +398,14 @@
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
+		620007172331B42400319C33 /* SHTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHTabView.h; sourceTree = "<group>"; };
+		620007182331B42400319C33 /* SHTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHTabView.m; sourceTree = "<group>"; };
+		6200071A2331B71000319C33 /* SHTabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHTabModel.h; sourceTree = "<group>"; };
+		6200071B2331B71000319C33 /* SHTabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHTabModel.m; sourceTree = "<group>"; };
+		6200075D2332428400319C33 /* TabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
+		6200075E2332428400319C33 /* TabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
+		62000760233244CE00319C33 /* HomeDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDataModel.h; sourceTree = "<group>"; };
+		62000761233244CE00319C33 /* HomeDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeDataModel.m; sourceTree = "<group>"; };
 		62061FEC231E802100A78462 /* SHCameraManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCameraManager.h; sourceTree = "<group>"; };
 		62061FED231E802100A78462 /* SHCameraManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCameraManager.m; sourceTree = "<group>"; };
 		62061FF3231E852400A78462 /* UIViewController+SHTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SHTool.h"; sourceTree = "<group>"; };
@@ -604,6 +616,7 @@
 		0404855A230C205F00EF17C8 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				620007162331B42400319C33 /* SHTabView */,
 				62A80D0F2330603E00A6C456 /* SHImageAndTitleBtn.h */,
 				62A80D102330603E00A6C456 /* SHImageAndTitleBtn.m */,
 				04A915E7232A5E4B002DDC02 /* SHBaseTableView.h */,
@@ -724,6 +737,7 @@
 		04048582230C24D200EF17C8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6200075C2332417100319C33 /* Model */,
 				62A80D122330692900A6C456 /* Cell */,
 				62A80D04232FB1E000A6C456 /* UIView */,
 				04048587230C252A00EF17C8 /* UIViewController */,
@@ -1332,6 +1346,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		620007162331B42400319C33 /* SHTabView */ = {
+			isa = PBXGroup;
+			children = (
+				620007172331B42400319C33 /* SHTabView.h */,
+				620007182331B42400319C33 /* SHTabView.m */,
+				6200071A2331B71000319C33 /* SHTabModel.h */,
+				6200071B2331B71000319C33 /* SHTabModel.m */,
+			);
+			path = SHTabView;
+			sourceTree = "<group>";
+		};
+		6200075C2332417100319C33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6200075D2332428400319C33 /* TabModel.h */,
+				6200075E2332428400319C33 /* TabModel.m */,
+				62000760233244CE00319C33 /* HomeDataModel.h */,
+				62000761233244CE00319C33 /* HomeDataModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		62061FEB231E801500A78462 /* Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1734,7 @@
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
 				0422D966232291A900AF687D /* UnpaidModel.m in Sources */,
+				62000762233244CE00319C33 /* HomeDataModel.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
@@ -1737,6 +1774,7 @@
 				04A915EF232B35F8002DDC02 /* BaseWKWebViewController.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
+				6200075F2332428400319C33 /* TabModel.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
@@ -1764,6 +1802,7 @@
 				0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
 				04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */,
+				6200071C2331B71000319C33 /* SHTabModel.m in Sources */,
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
@@ -1814,6 +1853,7 @@
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
+				620007192331B42400319C33 /* SHTabView.m in Sources */,
 				0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */,
 				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,

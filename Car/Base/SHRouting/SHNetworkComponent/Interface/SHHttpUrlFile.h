@@ -47,6 +47,8 @@
 //利润排名接口
 #define Profitranking  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/profitranking",CARDOMAIN]
 
+//首页接口
+#define Home  [[NSString alloc] initWithFormat:@"%@/api/Home/index",CARDOMAIN]
 
 
 
