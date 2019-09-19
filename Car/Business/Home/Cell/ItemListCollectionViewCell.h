@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ItemListCollectionViewCell : UICollectionViewCell
 
+//请求数据
+-(void)requestWithTabID:(NSString *)tabID;
 
 @end
 

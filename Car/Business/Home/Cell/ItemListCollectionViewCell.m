@@ -8,11 +8,17 @@
 
 #import "ItemListCollectionViewCell.h"
 #import "UserInforController.h"
+#import "CarItemNewModel.h"
+#import "CarItemSingleCell.h"
+
+static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 
 
 @interface ItemListCollectionViewCell ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
+
+@property (nonatomic,strong) NSMutableArray<CarItemNewModel *> * dataArray;
 
 @end
 
@@ -25,10 +31,20 @@
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor greenColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
     return _tableView;
+}
+
+-(NSMutableArray<CarItemNewModel *> *)dataArray{
+    
+    if (!_dataArray) {
+        
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -50,7 +66,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 0;
+    float cellHeight = 130;
     return cellHeight;
 }
 
@@ -61,11 +77,25 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSUInteger rows = 0;
+    NSUInteger rows = self.dataArray.count;
     return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CarItemNewModel * model = self.dataArray[indexPath.row];
+    if ([model.type isEqualToString:@"single"]) {
+        
+        CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
+        if (!cell) {
+            
+            cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    
     
     return nil;
 }
@@ -81,9 +111,10 @@
     }];
 }
 
--(void)requestData{
-    
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":@""};
+//请求数据
+-(void)requestWithTabID:(NSString *)tabID{
+
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -103,6 +134,16 @@
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSArray * arr = dataDic[@"articles"];
+                        if (arr && [arr isKindOfClass:[NSArray class]]) {
+                            
+                            for (NSDictionary * dic in arr) {
+                                
+                                CarItemNewModel * model = [CarItemNewModel mj_objectWithKeyValues:dic];
+                                [weakSelf.dataArray addObject:model];
+                            }
+                        }
                         
                         [weakSelf.tableView reloadData];
                     }

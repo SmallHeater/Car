@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //轮播区数据模型数组
 @property (nonatomic,strong) NSArray<CarouselModel *> * banner;
-//公告区数据模型数组
+//页签项数据模型数组
 @property (nonatomic,strong) NSArray<TabModel *> * tabs;
 
 @end

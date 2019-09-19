@@ -16,6 +16,8 @@ static NSString * cellID = @"ItemListCollectionViewCell";
 
 @property (nonatomic,strong) SHBaseCollectionView * collectionView;
 
+@property (nonatomic,strong) NSMutableArray * tabIDArray;
+
 @end
 
 @implementation ItemNewsCell
@@ -34,13 +36,26 @@ static NSString * cellID = @"ItemListCollectionViewCell";
     return _collectionView;
 }
 
+-(NSMutableArray *)tabIDArray{
+    
+    if (!_tabIDArray) {
+        
+        _tabIDArray = [[NSMutableArray alloc] init];
+    }
+    return _tabIDArray;
+}
+
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andTabIDsArray:(NSMutableArray *)array{
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        if (array) {
+            
+            [self.tabIDArray addObjectsFromArray:array];
+        }
         [self drawUI];
     }
     return self;
@@ -52,13 +67,24 @@ static NSString * cellID = @"ItemListCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 0;
+    return self.tabIDArray.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    NSString * tabID = self.tabIDArray[indexPath.row];
+    if (indexPath.row == 0) {
+        
+        cell.backgroundColor = [UIColor redColor];
+        [cell requestWithTabID:tabID];
+    }
+    else if (indexPath.row == 1){
+        
+        cell.backgroundColor = [UIColor greenColor];
+        [cell requestWithTabID:tabID];
+    }
     return cell;
 }
 
@@ -67,7 +93,7 @@ static NSString * cellID = @"ItemListCollectionViewCell";
 //返回每个item的size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake(MAINWIDTH, MAINHEIGHT);
+    return self.bounds.size;
 }
 
 //返回上左下右四边的距离

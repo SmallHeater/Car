@@ -165,7 +165,7 @@
         
         rows = 2;
     }
-    else if (section == 1){
+    else if (section == 1 && self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0){
         
         rows = 1;
     }
@@ -280,8 +280,13 @@
         ItemNewsCell * cell = [tableView dequeueReusableCellWithIdentifier:ItemNewsCellID];
         if (!cell) {
             
-            cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID];
-            cell.backgroundColor = [UIColor greenColor];
+            NSMutableArray * tabsArray = [[NSMutableArray alloc] init];
+            for (TabModel * model in self.homeDataModel.tabs) {
+                
+                [tabsArray addObject:model.tabID];
+            }
+            
+            cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID andTabIDsArray:tabsArray];
         }
         
         return cell;

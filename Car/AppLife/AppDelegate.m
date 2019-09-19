@@ -15,7 +15,7 @@
 #import "LoginViewController.h"
 #import "UserInforController.h"
 #import "PLeakSniffer.h"
-
+#import "AvoidCrash.h"
 
 @interface AppDelegate ()
 
@@ -25,15 +25,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-//    [[PLeakSniffer sharedInstance] installLeakSniffer];
-//    [[PLeakSniffer sharedInstance] alertLeaks];
-//    [[PLeakSniffer sharedInstance] addIgnoreList:@[@"AVCaptureSession",@"AVCaptureVideoDataOutput",@"CALayer"]];
     
-//    //模拟器
-//    UserInforModel * model = [[UserInforModel alloc] init];
-//    model.userID = @"21";
-//    [UserInforController sharedManager].userInforModel = model;
+    [AvoidCrash makeAllEffective];
+    [AvoidCrash setupNoneSelClassStringPrefixsArr:@[@"SH",@"Car"]];
+    
     
     if ([UserInforController sharedManager].userInforModel) {
         

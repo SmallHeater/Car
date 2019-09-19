@@ -89,6 +89,7 @@
     self = [super init];
     if (self) {
         
+        self.backgroundColor = [UIColor whiteColor];
         [self drawUI];
         if (itemsArray && [itemsArray isKindOfClass:[NSArray class]] && itemsArray.count > 0) {
             

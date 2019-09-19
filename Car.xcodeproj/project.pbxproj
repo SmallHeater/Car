@@ -73,6 +73,10 @@
 		0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFB72326951F002CD639 /* BigImageViewCollectionViewCell.m */; };
 		0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFC2232696F8002CD639 /* ImageCompressionController.m */; };
 		0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */; };
+		0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EE9A2333B123008E33BC /* CarItemNewModel.m */; };
+		0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EE9D2333B545008E33BC /* CarItemSingleCell.m */; };
+		0435EEA12333B55D008E33BC /* CarItemThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA02333B55D008E33BC /* CarItemThreeCell.m */; };
+		0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA32333B574008E33BC /* CarItemVideoCell.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -108,7 +112,6 @@
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C58932327EB1000CB0FEF /* RepaidModel.m */; };
 		04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */; };
-		04A915E4232A5CDD002DDC02 /* NSObjectSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915E1232A5CDD002DDC02 /* NSObjectSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */; };
 		04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EB232A882A002DDC02 /* PublicRequest.m */; };
 		04A915EF232B35F8002DDC02 /* BaseWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EE232B35F8002DDC02 /* BaseWKWebViewController.m */; };
@@ -315,6 +318,14 @@
 		0432BFC3232696F8002CD639 /* ImageCompressionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCompressionController.h; sourceTree = "<group>"; };
 		0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelAndLabelView.m; sourceTree = "<group>"; };
 		0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelAndLabelView.h; sourceTree = "<group>"; };
+		0435EE992333B123008E33BC /* CarItemNewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemNewModel.h; sourceTree = "<group>"; };
+		0435EE9A2333B123008E33BC /* CarItemNewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemNewModel.m; sourceTree = "<group>"; };
+		0435EE9C2333B545008E33BC /* CarItemSingleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemSingleCell.h; sourceTree = "<group>"; };
+		0435EE9D2333B545008E33BC /* CarItemSingleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemSingleCell.m; sourceTree = "<group>"; };
+		0435EE9F2333B55D008E33BC /* CarItemThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemThreeCell.h; sourceTree = "<group>"; };
+		0435EEA02333B55D008E33BC /* CarItemThreeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemThreeCell.m; sourceTree = "<group>"; };
+		0435EEA22333B574008E33BC /* CarItemVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemVideoCell.h; sourceTree = "<group>"; };
+		0435EEA32333B574008E33BC /* CarItemVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemVideoCell.m; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -386,8 +397,6 @@
 		049C58932327EB1000CB0FEF /* RepaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepaidModel.m; sourceTree = "<group>"; };
 		04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarProfitStatisticsCell.h; sourceTree = "<group>"; };
 		04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarProfitStatisticsCell.m; sourceTree = "<group>"; };
-		04A915E1232A5CDD002DDC02 /* NSObjectSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectSafe.m; sourceTree = "<group>"; };
-		04A915E2232A5CDD002DDC02 /* NSObjectSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectSafe.h; sourceTree = "<group>"; };
 		04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableView.m; sourceTree = "<group>"; };
 		04A915E7232A5E4B002DDC02 /* SHBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBaseTableView.h; sourceTree = "<group>"; };
 		04A915EA232A882A002DDC02 /* PublicRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicRequest.h; sourceTree = "<group>"; };
@@ -680,7 +689,6 @@
 		04048568230C205F00EF17C8 /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
-				04A915E0232A5CDD002DDC02 /* NSObjectSafe */,
 				0432BFC3232696F8002CD639 /* ImageCompressionController.h */,
 				0432BFC2232696F8002CD639 /* ImageCompressionController.m */,
 				0422D9AA2323C79B00AF687D /* BaiDuBos */,
@@ -1316,15 +1324,6 @@
 			path = TXScrollLabelView;
 			sourceTree = "<group>";
 		};
-		04A915E0232A5CDD002DDC02 /* NSObjectSafe */ = {
-			isa = PBXGroup;
-			children = (
-				04A915E1232A5CDD002DDC02 /* NSObjectSafe.m */,
-				04A915E2232A5CDD002DDC02 /* NSObjectSafe.h */,
-			);
-			path = NSObjectSafe;
-			sourceTree = "<group>";
-		};
 		04A915E9232A87FD002DDC02 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,6 +1374,8 @@
 				6200075E2332428400319C33 /* TabModel.m */,
 				62000760233244CE00319C33 /* HomeDataModel.h */,
 				62000761233244CE00319C33 /* HomeDataModel.m */,
+				0435EE992333B123008E33BC /* CarItemNewModel.h */,
+				0435EE9A2333B123008E33BC /* CarItemNewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1601,6 +1602,12 @@
 				04CD0E2A233271F7009CA687 /* ItemNewsCell.m */,
 				6200076523330A4500319C33 /* ItemListCollectionViewCell.h */,
 				6200076623330A4500319C33 /* ItemListCollectionViewCell.m */,
+				0435EE9C2333B545008E33BC /* CarItemSingleCell.h */,
+				0435EE9D2333B545008E33BC /* CarItemSingleCell.m */,
+				0435EE9F2333B55D008E33BC /* CarItemThreeCell.h */,
+				0435EEA02333B55D008E33BC /* CarItemThreeCell.m */,
+				0435EEA22333B574008E33BC /* CarItemVideoCell.h */,
+				0435EEA32333B574008E33BC /* CarItemVideoCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1762,11 +1769,13 @@
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
+				0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				62A80D0A232FB8A800A6C456 /* SHSearchTF.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
+				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
@@ -1784,6 +1793,7 @@
 				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
 				62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */,
 				0445C07E232BA0F100A1904D /* ProfitrankingModel.m in Sources */,
+				0435EEA12333B55D008E33BC /* CarItemThreeCell.m in Sources */,
 				62072C36231B77D10089AD43 /* SHMultipleSwitchingItemModel.m in Sources */,
 				62072C21231A7A050089AD43 /* SHPageControl.m in Sources */,
 				04A915EF232B35F8002DDC02 /* BaseWKWebViewController.m in Sources */,
@@ -1806,7 +1816,6 @@
 				6200076A23330B3600319C33 /* SHBaseCollectionView.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
 				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,
-				04A915E4232A5CDD002DDC02 /* NSObjectSafe.m in Sources */,
 				0432BFAC2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */,
@@ -1828,6 +1837,7 @@
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
 				0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
+				0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */,
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
 				04048574230C205F00EF17C8 /* BaseTableViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
