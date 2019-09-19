@@ -120,6 +120,8 @@
 		6200071C2331B71000319C33 /* SHTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200071B2331B71000319C33 /* SHTabModel.m */; };
 		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
 		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
+		6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200076623330A4500319C33 /* ItemListCollectionViewCell.m */; };
+		6200076A23330B3600319C33 /* SHBaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200076923330B3600319C33 /* SHBaseCollectionView.m */; };
 		62061FEE231E802100A78462 /* SHCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FED231E802100A78462 /* SHCameraManager.m */; };
 		62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF4231E852400A78462 /* UIViewController+SHTool.m */; };
 		62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 62061FF7231E867C00A78462 /* SHCameraMiddleware.m */; };
@@ -409,6 +411,10 @@
 		6200075E2332428400319C33 /* TabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
 		62000760233244CE00319C33 /* HomeDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDataModel.h; sourceTree = "<group>"; };
 		62000761233244CE00319C33 /* HomeDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeDataModel.m; sourceTree = "<group>"; };
+		6200076523330A4500319C33 /* ItemListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemListCollectionViewCell.h; sourceTree = "<group>"; };
+		6200076623330A4500319C33 /* ItemListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemListCollectionViewCell.m; sourceTree = "<group>"; };
+		6200076823330B3600319C33 /* SHBaseCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHBaseCollectionView.h; sourceTree = "<group>"; };
+		6200076923330B3600319C33 /* SHBaseCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHBaseCollectionView.m; sourceTree = "<group>"; };
 		62061FEC231E802100A78462 /* SHCameraManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCameraManager.h; sourceTree = "<group>"; };
 		62061FED231E802100A78462 /* SHCameraManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCameraManager.m; sourceTree = "<group>"; };
 		62061FF3231E852400A78462 /* UIViewController+SHTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SHTool.h"; sourceTree = "<group>"; };
@@ -650,6 +656,8 @@
 				62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */,
 				62A80D08232FB8A800A6C456 /* SHSearchTF.h */,
 				62A80D09232FB8A800A6C456 /* SHSearchTF.m */,
+				6200076823330B3600319C33 /* SHBaseCollectionView.h */,
+				6200076923330B3600319C33 /* SHBaseCollectionView.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1591,6 +1599,8 @@
 				62A80D142330694300A6C456 /* ItemsCell.m */,
 				04CD0E29233271F7009CA687 /* ItemNewsCell.h */,
 				04CD0E2A233271F7009CA687 /* ItemNewsCell.m */,
+				6200076523330A4500319C33 /* ItemListCollectionViewCell.h */,
+				6200076623330A4500319C33 /* ItemListCollectionViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1793,6 +1803,7 @@
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
+				6200076A23330B3600319C33 /* SHBaseCollectionView.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
 				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,
 				04A915E4232A5CDD002DDC02 /* NSObjectSafe.m in Sources */,
@@ -1848,6 +1859,7 @@
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
+				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,

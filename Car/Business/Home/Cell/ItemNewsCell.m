@@ -7,9 +7,103 @@
 //
 
 #import "ItemNewsCell.h"
+#import "ItemListCollectionViewCell.h"
+#import "SHBaseCollectionView.h"
+
+static NSString * cellID = @"ItemListCollectionViewCell";
+
+@interface ItemNewsCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@property (nonatomic,strong) SHBaseCollectionView * collectionView;
+
+@end
 
 @implementation ItemNewsCell
 
+#pragma mark  ----  懒加载
 
+-(SHBaseCollectionView *)collectionView{
+    
+    if (!_collectionView) {
+        
+        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[ItemListCollectionViewCell class] forCellWithReuseIdentifier:cellID];
+    }
+    return _collectionView;
+}
+
+#pragma mark  ----  生命周期函数
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        [self drawUI];
+    }
+    return self;
+}
+
+#pragma mark  ----  UICollectionViewDelegate
+
+#pragma mark  ----  UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 0;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark  ----  UICollectionViewDelegateFlowLayout
+
+//返回每个item的size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(MAINWIDTH, MAINHEIGHT);
+}
+
+//返回上左下右四边的距离
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+//返回cell之间的最小行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+//cell之间的最小列间距a
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+#pragma mark  ----  自定义函数
+
++(float)cellHeight{
+    
+    float cellHeight = 0;
+    cellHeight = MAINHEIGHT - [UIScreenControl liuHaiHeight] - 71 - 40 - [UIScreenControl bottomSafeHeight] - 44;
+    return cellHeight;
+}
+
+-(void)drawUI{
+    
+    [self addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.top.bottom.offset(0);
+    }];
+}
 
 @end

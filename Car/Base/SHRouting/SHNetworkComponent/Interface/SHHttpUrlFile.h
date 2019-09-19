@@ -50,6 +50,8 @@
 //首页接口
 #define Home  [[NSString alloc] initWithFormat:@"%@/api/Home/index",CARDOMAIN]
 
+//文章列表接口
+#define GetArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticles",CARDOMAIN]
 
 
 #endif /* HttpUrlFile_h */

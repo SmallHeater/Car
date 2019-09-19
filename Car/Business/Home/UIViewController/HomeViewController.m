@@ -125,7 +125,7 @@
     }
     else{
         
-        cellHeight = 500;
+        cellHeight = [ItemNewsCell cellHeight];
     }
     return cellHeight;
 }
