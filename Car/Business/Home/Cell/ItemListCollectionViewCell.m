@@ -10,9 +10,11 @@
 #import "UserInforController.h"
 #import "CarItemNewModel.h"
 #import "CarItemSingleCell.h"
+#import "CarItemVideoCell.h"
+
 
 static NSString * CarItemSingleCellID = @"CarItemSingleCell";
-
+static NSString * CarItemVideoCellID = @"CarItemVideoCell";
 
 @interface ItemListCollectionViewCell ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -67,6 +69,11 @@ static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     float cellHeight = 130;
+    CarItemNewModel * model = self.dataArray[indexPath.row];
+    if ([model.type isEqualToString:@"video"]) {
+        
+        cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
+    }
     return cellHeight;
 }
 
@@ -90,6 +97,17 @@ static NSString * CarItemSingleCellID = @"CarItemSingleCell";
         if (!cell) {
             
             cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    else if ([model.type isEqualToString:@"video"]){
+        
+        CarItemVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemVideoCellID];
+        if (!cell) {
+            
+            cell = [[CarItemVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemVideoCellID];
         }
         
         [cell show:model];

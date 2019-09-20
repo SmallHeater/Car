@@ -10,7 +10,7 @@
 
 @interface CarItemSingleCell ()
 
-@property (nonatomic,strong) UILabel * contentLabel;
+@property (nonatomic,strong) UILabel * titleLabel;
 //浏览量，买家论坛
 @property (nonatomic,strong) UILabel * pageviewsAndSourceLabel;
 @property (nonatomic,strong) UIImageView * carNewImageView;
@@ -22,16 +22,16 @@
 
 #pragma mark  ----  懒加载
 
--(UILabel *)contentLabel{
+-(UILabel *)titleLabel{
     
-    if (!_contentLabel) {
+    if (!_titleLabel) {
         
-        _contentLabel = [[UILabel alloc] init];
-        _contentLabel.font = FONT17;
-        _contentLabel.textColor = Color_333333;
-        _contentLabel.numberOfLines = 0;
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = FONT17;
+        _titleLabel.textColor = Color_333333;
+        _titleLabel.numberOfLines = 0;
     }
-    return _contentLabel;
+    return _titleLabel;
 }
 
 -(UILabel *)pageviewsAndSourceLabel{
@@ -81,21 +81,21 @@
 
 -(void)drawUI{
     
-    [self addSubview:self.contentLabel];
-    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.offset(15);
-        make.height.offset(20);
-        make.right.offset(149);
+        make.left.offset(14);
+        make.top.offset(20);
+        make.right.offset(-149);
         make.height.offset(37);
     }];
     
     [self addSubview:self.pageviewsAndSourceLabel];
     [self.pageviewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentLabel.mas_left);
+        make.left.equalTo(self.titleLabel.mas_left);
         make.top.offset(90);
-        make.width.equalTo(self.contentLabel.mas_width);
+        make.width.equalTo(self.titleLabel.mas_width);
         make.height.offset(12);
     }];
     
@@ -122,7 +122,7 @@
     
     if (model) {
         
-        self.contentLabel.text = [NSString repleaseNilOrNull:model.title];
+        self.titleLabel.text = [NSString repleaseNilOrNull:model.title];
         NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv.integerValue,model.section_title];
         self.pageviewsAndSourceLabel.text = pageviewsAndSourceStr;
         if (model.images && model.images.count > 0) {
