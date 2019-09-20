@@ -75,16 +75,8 @@ static NSString * cellID = @"ItemListCollectionViewCell";
     
     ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     NSString * tabID = self.tabIDArray[indexPath.row];
-    if (indexPath.row == 0) {
-        
-        cell.backgroundColor = [UIColor redColor];
-        [cell requestWithTabID:tabID];
-    }
-    else if (indexPath.row == 1){
-        
-        cell.backgroundColor = [UIColor greenColor];
-        [cell requestWithTabID:tabID];
-    }
+    [cell requestWithTabID:tabID];
+    
     return cell;
 }
 

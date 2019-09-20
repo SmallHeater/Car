@@ -11,10 +11,12 @@
 #import "CarItemNewModel.h"
 #import "CarItemSingleCell.h"
 #import "CarItemVideoCell.h"
-
+#import "CarItemThreeCell.h"
 
 static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 static NSString * CarItemVideoCellID = @"CarItemVideoCell";
+static NSString * CarItemThreeCellID = @"CarItemThreeCell";
+
 
 @interface ItemListCollectionViewCell ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -102,6 +104,17 @@ static NSString * CarItemVideoCellID = @"CarItemVideoCell";
         [cell show:model];
         return cell;
     }
+    else if ([model.type isEqualToString:@"three"]){
+        
+        CarItemThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemThreeCellID];
+        if (!cell) {
+            
+            cell = [[CarItemThreeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemThreeCellID];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
     else if ([model.type isEqualToString:@"video"]){
         
         CarItemVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemVideoCellID];
@@ -113,6 +126,7 @@ static NSString * CarItemVideoCellID = @"CarItemVideoCell";
         [cell show:model];
         return cell;
     }
+    
     
     
     return nil;

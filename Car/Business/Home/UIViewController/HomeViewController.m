@@ -287,6 +287,15 @@
             }
             
             cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID andTabIDsArray:tabsArray];
+            [[cell rac_valuesForKeyPath:@"collectionView.contentOffset" observer:self] subscribeNext:^(id  _Nullable x) {
+                
+                CGPoint point = [x CGPointValue];
+                
+                NSLog(@"%@",x);
+            } completed:^{
+                
+                NSLog(@"完成");
+            }];
         }
         
         return cell;

@@ -169,6 +169,16 @@
     });
 }
 
+//设置对应的索引按钮选中
+-(void)selectItemWithIndex:(NSUInteger)index{
+    
+    if (index < self.btnArray.count) {
+     
+        UIButton * btn = self.btnArray[index];
+        [self btnClicked:btn];
+    }
+}
+
 -(void)btnClicked:(UIButton *)btn{
     
     for (NSUInteger i = 0; i < self.btnArray.count; i++) {

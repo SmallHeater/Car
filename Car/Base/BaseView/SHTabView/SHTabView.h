@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray;
 
+//设置对应的索引按钮选中
+-(void)selectItemWithIndex:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END
