@@ -144,6 +144,7 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 //CarouselId,CarouselImageUrlStr
 -(void)refreshData:(NSArray<NSDictionary *> *)array{
     
+    [self.dataArray removeAllObjects];
     for (NSDictionary * dic in array) {
         
         CarouselDataModel * model = [CarouselDataModel mj_objectWithKeyValues:dic];

@@ -205,8 +205,6 @@
     
     SHTabModel * tabModel = self.modelArray[btn.tag - BTNBASETAG];
     btn.titleLabel.font = tabModel.selectedFont;
-    
-    NSLog(@"11");
 }
 
 @end

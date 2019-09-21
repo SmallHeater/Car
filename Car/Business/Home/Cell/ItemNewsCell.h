@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(float)cellHeight;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andTabIDsArray:(NSMutableArray *)array;
+//滑动
+-(void)scrollToIndex:(NSUInteger)index;
 
 @end
 

@@ -35,7 +35,6 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor greenColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -127,8 +126,6 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
         return cell;
     }
     
-    
-    
     return nil;
 }
 
@@ -146,53 +143,66 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 //请求数据
 -(void)requestWithTabID:(NSString *)tabID{
 
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
-        
-        if (![resultDic.allKeys containsObject:@"error"]) {
+    //如果已经有数据，则不再请求
+    if (self.dataArray.count == 0) {
+     
+        NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID]};
+        NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
+        __weak typeof(self) weakSelf = self;
+        [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
             
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+            if (![resultDic.allKeys containsObject:@"error"]) {
                 
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
+                //成功的
+                NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                     
-                    //成功
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    id dataId = resultDic[@"dataId"];
+                    NSDictionary * dic = (NSDictionary *)dataId;
+                    NSDictionary * dataDic = dic[@"data"];
+                    NSNumber * code = dic[@"code"];
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                    if (code.integerValue == 1) {
                         
-                        NSArray * arr = dataDic[@"articles"];
-                        if (arr && [arr isKindOfClass:[NSArray class]]) {
+                        //成功
+                        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                             
-                            for (NSDictionary * dic in arr) {
+                            NSArray * arr = dataDic[@"articles"];
+                            if (arr && [arr isKindOfClass:[NSArray class]]) {
                                 
-                                CarItemNewModel * model = [CarItemNewModel mj_objectWithKeyValues:dic];
-                                [weakSelf.dataArray addObject:model];
+                                for (NSDictionary * dic in arr) {
+                                    
+                                    CarItemNewModel * model = [CarItemNewModel mj_objectWithKeyValues:dic];
+                                    [weakSelf.dataArray addObject:model];
+                                }
                             }
                         }
+                    }
+                    else{
                         
-                        [weakSelf.tableView reloadData];
+                        //异常
+                    }
+                    [weakSelf.tableView reloadData];
+                    //如果内容少，则不滑动
+                    if (weakSelf.tableView.contentSize.height < weakSelf.tableView.bounds.size.height) {
+                        
+                        weakSelf.tableView.scrollEnabled = NO;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.scrollEnabled = YES;
                     }
                 }
                 else{
-                    
-                    //异常
                 }
             }
             else{
+                
+                //失败的
             }
-        }
-        else{
-            
-            //失败的
-        }
-    }];
+        }];
+    }
 }
 
 @end

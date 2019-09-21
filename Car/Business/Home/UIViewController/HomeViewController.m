@@ -18,8 +18,11 @@
 #import "SHImageAndTitleBtn.h"
 #import "SHTabView.h"
 #import "ItemNewsCell.h"
+#import "ResidualTransactionViewController.h"
+
 
 #define BASEBTNTAG 1800
+#define ITEMBTNBASETAG 1000
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -41,7 +44,19 @@
     if (!_homeNavgationBar) {
         
         _homeNavgationBar = [[HomeNavgationBar alloc] init];
-//        _homeNavgationBar.backgroundColor = [UIColor greenColor];
+        //点击扫二维码的响应
+        [[_homeNavgationBar rac_signalForSelector:@selector(sacnningBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+           
+            [SHRoutingComponent openURL:SCAN callBack:^(NSDictionary *resultDic) {
+               
+                NSString * result = resultDic[@"result"];
+            }];
+        }];
+        //点击发布的响应
+        [[_homeNavgationBar rac_signalForSelector:@selector(releaseBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            NSLog(@"发布");
+        }];
     }
     return _homeNavgationBar;
 }
@@ -88,6 +103,14 @@
             }
         }
         _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray];
+        __weak typeof(self) weakSelf = self;
+        [[_baseTabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+           
+            UIButton * btn = x.first;
+            NSUInteger index = btn.tag - ITEMBTNBASETAG;
+            ItemNewsCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+            [cell scrollToIndex:index];
+        }];
     }
     return _baseTabView;
 }
@@ -223,6 +246,7 @@
                         
                         NSUInteger btnTag = btn.tag - BASEBTNTAG;
                         NSString * urlStr;
+                        UIViewController * vc;
                         switch (btnTag) {
                             case 0:
                                 
@@ -236,9 +260,10 @@
                                 break;
                             case 3:
                                 
+                                vc = [[ResidualTransactionViewController alloc] initWithTitle:@"残值交易" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
                                 break;
                             case 4:
-                                
+                            
                                 break;
                             case 5:
                                 
@@ -267,6 +292,11 @@
                             vc.hidesBottomBarWhenPushed = YES;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }
+                        else if (vc){
+                            
+                            vc.hidesBottomBarWhenPushed = YES;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
                     }
                 }];
             }
@@ -287,14 +317,17 @@
             }
             
             cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID andTabIDsArray:tabsArray];
+            __weak typeof(self) weakSelf = self;
+            //滑动过程中的回调
             [[cell rac_valuesForKeyPath:@"collectionView.contentOffset" observer:self] subscribeNext:^(id  _Nullable x) {
-                
-                CGPoint point = [x CGPointValue];
-                
-                NSLog(@"%@",x);
-            } completed:^{
-                
-                NSLog(@"完成");
+            
+            }];
+            //滑动完成的回调
+            [[cell rac_signalForSelector:@selector(scrollViewDidEndDecelerating:)] subscribeNext:^(RACTuple * _Nullable x) {
+               
+                UICollectionView * collectionView = x.first;
+                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
+                [weakSelf.baseTabView selectItemWithIndex:index];
             }];
         }
         
@@ -321,6 +354,8 @@
         make.left.right.bottom.offset(0);
         make.top.equalTo(self.homeNavgationBar.mas_bottom);
     }];
+    
+    [self.view bringSubviewToFront:self.homeNavgationBar];
 }
 
 -(void)requestData{

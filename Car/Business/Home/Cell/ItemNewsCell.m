@@ -106,6 +106,11 @@ static NSString * cellID = @"ItemListCollectionViewCell";
     return 0;
 }
 
+#pragma mark  ----  UIScrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+}
+
 #pragma mark  ----  自定义函数
 
 +(float)cellHeight{
@@ -122,6 +127,12 @@ static NSString * cellID = @"ItemListCollectionViewCell";
        
         make.left.right.top.bottom.offset(0);
     }];
+}
+
+//滑动
+-(void)scrollToIndex:(NSUInteger)index{
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }
 
 @end

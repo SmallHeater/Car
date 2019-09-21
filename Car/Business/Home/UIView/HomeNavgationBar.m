@@ -105,13 +105,10 @@
 
 //扫描按钮的响应
 -(void)sacnningBtnClicked:(UIButton *)btn{
-    
 }
 
 //发布按钮的响应
 -(void)releaseBtnClicked:(UIButton *)btn{
-    
-    
 }
 
 @end

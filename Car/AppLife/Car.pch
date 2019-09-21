@@ -56,6 +56,7 @@
 #define Color_F3F3F3 [UIColor colorFromHexRGB:@"F3F3F3"]
 #define Color_F74C32 [UIColor colorWithRed:247.0/255.0 green:76.0/255.0 blue:50.0/255.0 alpha:1]
 #define Color_FD8233 [UIColor colorWithRed:253.0/255.0 green:130.0/255.0 blue:51.0/255.0 alpha:1]
+#define Color_FF3B30 [UIColor colorFromHexRGB:@"FF3B30"]
 #define Color_FF58B0 [UIColor colorWithRed:1 green:88.0/255.0 blue:176.0/255.0 alpha:1]
 
 
@@ -70,6 +71,7 @@
 #define FONT20 [UIFont systemFontOfSize:20]
 #define FONT28 [UIFont systemFontOfSize:28]
 
+#define BOLDFONT14 [UIFont boldSystemFontOfSize:14]
 #define BOLDFONT16 [UIFont boldSystemFontOfSize:16]
 #define BOLDFONT17 [UIFont boldSystemFontOfSize:17]
 #define BOLDFONT18 [UIFont boldSystemFontOfSize:18]

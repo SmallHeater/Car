@@ -81,7 +81,13 @@
 
 +(float)cellHeightWithTitle:(NSString *)title{
     
-    return 326;
+    float cellHeight = 0;
+    cellHeight += 21;
+    cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 46];
+    cellHeight += 19;
+    cellHeight += 190.0 / 345.0 * (MAINWIDTH - 30);
+    cellHeight += 56;
+    return cellHeight;
 }
 
 -(void)drawUI{
@@ -127,7 +133,14 @@
     
     if (model) {
         
-        self.titleLabel.text = [NSString repleaseNilOrNull:model.title];
+        NSString * title = [NSString repleaseNilOrNull:model.title];
+        self.titleLabel.text = [NSString repleaseNilOrNull:title];
+        float labelHeight = [title heightWithFont:FONT17 andWidth:MAINWIDTH - 46];
+        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            make.height.offset(labelHeight);
+        }];
+        
         NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv.integerValue,model.section_title];
         self.pageviewsAndSourceLabel.text = pageviewsAndSourceStr;
         if (model.images && model.images.count > 0) {

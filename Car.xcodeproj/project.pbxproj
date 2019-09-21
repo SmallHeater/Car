@@ -111,6 +111,18 @@
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
 		049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C58932327EB1000CB0FEF /* RepaidModel.m */; };
+		049C78BC233635D600612AF5 /* SHQRCodeLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78AD233635D500612AF5 /* SHQRCodeLibrary.m */; };
+		049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78B1233635D500612AF5 /* QRCodeBacgrouView.m */; };
+		049C78BE233635D600612AF5 /* QRCodeAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78B2233635D500612AF5 /* QRCodeAreaView.m */; };
+		049C78BF233635D600612AF5 /* frame_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049C78B4233635D500612AF5 /* frame_icon@2x.png */; };
+		049C78C0233635D600612AF5 /* frame_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049C78B5233635D500612AF5 /* frame_icon@3x.png */; };
+		049C78C1233635D600612AF5 /* cross@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049C78B6233635D500612AF5 /* cross@3x.png */; };
+		049C78C2233635D600612AF5 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 049C78B7233635D500612AF5 /* line.png */; };
+		049C78C3233635D600612AF5 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049C78B8233635D500612AF5 /* cross@2x.png */; };
+		049C78C4233635D600612AF5 /* QRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78BA233635D500612AF5 /* QRCodeVC.m */; };
+		049C78C72336362900612AF5 /* SHQRCodeMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78C62336362900612AF5 /* SHQRCodeMiddleware.m */; };
+		049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */; };
+		049C78CD233650A500612AF5 /* CommodityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78CC233650A500612AF5 /* CommodityCell.m */; };
 		04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */; };
 		04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */; };
 		04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EB232A882A002DDC02 /* PublicRequest.m */; };
@@ -395,6 +407,25 @@
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
 		049C58922327EB1000CB0FEF /* RepaidModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepaidModel.h; sourceTree = "<group>"; };
 		049C58932327EB1000CB0FEF /* RepaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepaidModel.m; sourceTree = "<group>"; };
+		049C78AC233635D500612AF5 /* SHQRCodeLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHQRCodeLibrary.h; sourceTree = "<group>"; };
+		049C78AD233635D500612AF5 /* SHQRCodeLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHQRCodeLibrary.m; sourceTree = "<group>"; };
+		049C78AF233635D500612AF5 /* QRCodeBacgrouView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeBacgrouView.h; sourceTree = "<group>"; };
+		049C78B0233635D500612AF5 /* QRCodeAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeAreaView.h; sourceTree = "<group>"; };
+		049C78B1233635D500612AF5 /* QRCodeBacgrouView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeBacgrouView.m; sourceTree = "<group>"; };
+		049C78B2233635D500612AF5 /* QRCodeAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeAreaView.m; sourceTree = "<group>"; };
+		049C78B4233635D500612AF5 /* frame_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame_icon@2x.png"; sourceTree = "<group>"; };
+		049C78B5233635D500612AF5 /* frame_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame_icon@3x.png"; sourceTree = "<group>"; };
+		049C78B6233635D500612AF5 /* cross@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@3x.png"; sourceTree = "<group>"; };
+		049C78B7233635D500612AF5 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		049C78B8233635D500612AF5 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
+		049C78BA233635D500612AF5 /* QRCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeVC.m; sourceTree = "<group>"; };
+		049C78BB233635D500612AF5 /* QRCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeVC.h; sourceTree = "<group>"; };
+		049C78C52336362900612AF5 /* SHQRCodeMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHQRCodeMiddleware.h; sourceTree = "<group>"; };
+		049C78C62336362900612AF5 /* SHQRCodeMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHQRCodeMiddleware.m; sourceTree = "<group>"; };
+		049C78C823363CC300612AF5 /* ResidualTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionViewController.h; sourceTree = "<group>"; };
+		049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionViewController.m; sourceTree = "<group>"; };
+		049C78CB233650A500612AF5 /* CommodityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommodityCell.h; sourceTree = "<group>"; };
+		049C78CC233650A500612AF5 /* CommodityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommodityCell.m; sourceTree = "<group>"; };
 		04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarProfitStatisticsCell.h; sourceTree = "<group>"; };
 		04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarProfitStatisticsCell.m; sourceTree = "<group>"; };
 		04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableView.m; sourceTree = "<group>"; };
@@ -799,6 +830,8 @@
 			children = (
 				0404859A230C259900EF17C8 /* HomeViewController.h */,
 				0404859B230C259900EF17C8 /* HomeViewController.m */,
+				049C78C823363CC300612AF5 /* ResidualTransactionViewController.h */,
+				049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -927,6 +960,7 @@
 		040485B72311096600EF17C8 /* SHRouting */ = {
 			isa = PBXGroup;
 			children = (
+				049C78A9233635D500612AF5 /* SHQRCodeLibrary */,
 				0432BFAD2326951F002CD639 /* SHBigPictureBrowsing */,
 				0432BF6023267F03002CD639 /* SHPictureSelectionComponent */,
 				0422D96A23233C5800AF687D /* SHUploadComponent */,
@@ -964,6 +998,8 @@
 				62929BA323193A130018DE07 /* SHCacheManagementMiddleware.m */,
 				62061FF6231E867C00A78462 /* SHCameraMiddleware.h */,
 				62061FF7231E867C00A78462 /* SHCameraMiddleware.m */,
+				049C78C52336362900612AF5 /* SHQRCodeMiddleware.h */,
+				049C78C62336362900612AF5 /* SHQRCodeMiddleware.m */,
 			);
 			path = middleware;
 			sourceTree = "<group>";
@@ -1324,6 +1360,58 @@
 			path = TXScrollLabelView;
 			sourceTree = "<group>";
 		};
+		049C78A9233635D500612AF5 /* SHQRCodeLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				049C78AA233635D500612AF5 /* Interface */,
+				049C78AE233635D500612AF5 /* UIView */,
+				049C78B3233635D500612AF5 /* Source */,
+				049C78B9233635D500612AF5 /* UIViewController */,
+			);
+			path = SHQRCodeLibrary;
+			sourceTree = "<group>";
+		};
+		049C78AA233635D500612AF5 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				049C78AC233635D500612AF5 /* SHQRCodeLibrary.h */,
+				049C78AD233635D500612AF5 /* SHQRCodeLibrary.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		049C78AE233635D500612AF5 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				049C78AF233635D500612AF5 /* QRCodeBacgrouView.h */,
+				049C78B0233635D500612AF5 /* QRCodeAreaView.h */,
+				049C78B1233635D500612AF5 /* QRCodeBacgrouView.m */,
+				049C78B2233635D500612AF5 /* QRCodeAreaView.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		049C78B3233635D500612AF5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				049C78B4233635D500612AF5 /* frame_icon@2x.png */,
+				049C78B5233635D500612AF5 /* frame_icon@3x.png */,
+				049C78B6233635D500612AF5 /* cross@3x.png */,
+				049C78B7233635D500612AF5 /* line.png */,
+				049C78B8233635D500612AF5 /* cross@2x.png */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		049C78B9233635D500612AF5 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				049C78BA233635D500612AF5 /* QRCodeVC.m */,
+				049C78BB233635D500612AF5 /* QRCodeVC.h */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		04A915E9232A87FD002DDC02 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1608,6 +1696,8 @@
 				0435EEA02333B55D008E33BC /* CarItemThreeCell.m */,
 				0435EEA22333B574008E33BC /* CarItemVideoCell.h */,
 				0435EEA32333B574008E33BC /* CarItemVideoCell.m */,
+				049C78CB233650A500612AF5 /* CommodityCell.h */,
+				049C78CC233650A500612AF5 /* CommodityCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1683,7 +1773,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				04048541230C1E6600EF17C8 /* LaunchScreen.storyboard in Resources */,
+				049C78C2233635D600612AF5 /* line.png in Resources */,
+				049C78BF233635D600612AF5 /* frame_icon@2x.png in Resources */,
+				049C78C3233635D600612AF5 /* cross@2x.png in Resources */,
+				049C78C1233635D600612AF5 /* cross@3x.png in Resources */,
 				0404853E230C1E6600EF17C8 /* Assets.xcassets in Resources */,
+				049C78C0233635D600612AF5 /* frame_icon@3x.png in Resources */,
 				0404853C230C1E6400EF17C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1761,6 +1856,7 @@
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
+				049C78CD233650A500612AF5 /* CommodityCell.m in Sources */,
 				62A80D152330694300A6C456 /* ItemsCell.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
@@ -1787,6 +1883,7 @@
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				049C78BC233635D600612AF5 /* SHQRCodeLibrary.m in Sources */,
 				0445C087232CB42900A1904D /* SummaryAnalysisCell.m in Sources */,
 				0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */,
 				0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */,
@@ -1835,6 +1932,9 @@
 				0422D99A2323404600AF687D /* SHUploadRecordingModel.m in Sources */,
 				043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
+				049C78C72336362900612AF5 /* SHQRCodeMiddleware.m in Sources */,
+				049C78C4233635D600612AF5 /* QRCodeVC.m in Sources */,
+				049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */,
 				0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */,
@@ -1864,6 +1964,7 @@
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */,
 				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
+				049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,
@@ -1883,6 +1984,7 @@
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
 				620007192331B42400319C33 /* SHTabView.m in Sources */,
 				0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */,
+				049C78BE233635D600612AF5 /* QRCodeAreaView.m in Sources */,
 				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,

@@ -55,6 +55,8 @@
         [_reflectionDic setObject:@"SHPictureSelectionMiddleware" forKey:@"PictureSelection"];
         //大图浏览相关业务
         [_reflectionDic setObject:@"SHBigPictureBrowsingMiddleware" forKey:@"BigPictureBrowsing"];
+        //扫一扫组件
+        [_reflectionDic setObject:@"SHQRCodeMiddleware" forKey:@"Scan"];
     }
     return _reflectionDic;
 }

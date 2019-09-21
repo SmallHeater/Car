@@ -80,5 +80,11 @@
 
 #pragma mark  ----  相机件命令集合
 
+#pragma mark  ----  扫一扫组件命令
+
+#define SCAN @"Technology://Scan:(scanCallBack:)"
+
+#pragma mark  ----  扫一扫组件命令
+
 
 #endif /* CommandList_h */
