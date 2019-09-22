@@ -16,11 +16,14 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 
 @interface CarouselView ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 
+@property (nonatomic,assign) PageControlType pageControlType;
 @property (nonatomic,strong) NSMutableArray<CarouselDataModel *> * dataArray;
 @property (nonatomic,strong) UICollectionView * collectionView;
 @property (nonatomic,strong) SHPageControl * pageControl;
 //自动轮播定时器
 @property (nonatomic,strong) dispatch_source_t timer;
+//索引记录label
+@property (nonatomic,strong) UILabel * pageIndexLabel;
 
 @end
 
@@ -79,13 +82,29 @@ static NSString * cellID = @"CarouselCollectionViewCell";
     return _pageControl;
 }
 
+-(UILabel *)pageIndexLabel{
+    
+    if (!_pageIndexLabel) {
+        
+        _pageIndexLabel = [[UILabel alloc] init];
+        _pageIndexLabel.backgroundColor = [UIColor colorFromHexRGB:@"000000" alpha:0.7];
+        _pageIndexLabel.layer.cornerRadius = 13;
+        _pageIndexLabel.layer.masksToBounds = YES;
+        _pageIndexLabel.font = FONT14;
+        _pageIndexLabel.textColor = [UIColor whiteColor];
+        _pageIndexLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _pageIndexLabel;
+}
+
 #pragma mark  ----  生命周期函数
 
--(instancetype)init{
+-(instancetype)initWithPageControlType:(PageControlType)type{
     
     self = [super init];
     if (self) {
         
+        self.pageControlType = type;
         //需要等masonry布局完成后才能获取到frame
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
@@ -127,7 +146,14 @@ static NSString * cellID = @"CarouselCollectionViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     NSUInteger index = scrollView.contentOffset.x / CGRectGetWidth(self.frame);
-    self.pageControl.currentPage = index;
+    if (self.pageControlType == PageControlType_MiddlePage) {
+        
+        self.pageControl.currentPage = index;
+    }
+    else if (self.pageControlType == PageControlType_RightLabel){
+        
+        self.pageIndexLabel.text = [[NSString alloc] initWithFormat:@"%ld/%ld",index + 1,self.dataArray.count];
+    }
 }
 
 #pragma mark  ----  自定义函数
@@ -152,24 +178,40 @@ static NSString * cellID = @"CarouselCollectionViewCell";
     }
     
     [self.collectionView reloadData];
-    [self addPageControl];
+    if (self.pageControlType != PageControlType_Default) {
+     
+        [self addPageControl];
+    }
 }
 
 -(void)addPageControl{
     
-    self.pageControl.numberOfPages = self.dataArray.count;
+    if (self.pageControlType == PageControlType_MiddlePage) {
+        
+        self.pageControl.numberOfPages = self.dataArray.count;
+        float pageControlWidth = self.dataArray.count * 18 - 4;
+        [self addSubview:self.pageControl];
+        [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerX.equalTo(self.mas_centerX);
+            make.width.offset(pageControlWidth);
+            make.bottom.offset(-14);
+            make.height.offset(3);
+        }];
+        [self bringSubviewToFront:self.pageControl];
+    }
+    else if (self.pageControlType == PageControlType_RightLabel){
+        
+        [self addSubview:self.pageIndexLabel];
+        [self.pageIndexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-16);
+            make.bottom.offset(-21);
+            make.width.offset(50);
+            make.height.offset(25);
+        }];
+    }
     
-    float pageControlWidth = self.dataArray.count * 18 - 4;
-    
-    [self addSubview:self.pageControl];
-    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerX.equalTo(self.mas_centerX);
-        make.width.offset(pageControlWidth);
-        make.bottom.offset(-14);
-        make.height.offset(3);
-    }];
-    [self bringSubviewToFront:self.pageControl];
     [self addTimer];
 }
 

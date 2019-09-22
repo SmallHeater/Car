@@ -9,7 +9,7 @@
 #import "ResidualTransactionViewController.h"
 #import "CommodityCell.h"
 #import "UserInforController.h"
-
+#import "ResidualTransactionDetailViewController.h"
 
 static NSString * CommodityCellID = @"CommodityCell";
 
@@ -72,6 +72,12 @@ static NSString * CommodityCellID = @"CommodityCell";
     
     float cellHeight = 96;
     return cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ResidualTransactionDetailViewController * vc = [[ResidualTransactionDetailViewController alloc] initWithTitle:@"详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

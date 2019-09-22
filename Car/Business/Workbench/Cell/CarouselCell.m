@@ -24,7 +24,7 @@
     
     if (!_carouselView) {
         
-        _carouselView = [[CarouselView alloc] init];
+        _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
         _carouselView.layer.cornerRadius = 15;
         _carouselView.layer.masksToBounds = YES;
     }

@@ -184,6 +184,8 @@
 		62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6C82325D97800A6C456 /* SHDatePickView.m */; };
 		62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6CA2325D97E00A6C456 /* SHPickerView.m */; };
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
+		62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */; };
+		62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -539,6 +541,10 @@
 		62A8F6F22327236100A6C456 /* SHImageViewWithDeleteBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageViewWithDeleteBtn.h; sourceTree = "<group>"; };
 		62A8F7022328780100A6C456 /* SHBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHBaseTableViewCell.h; sourceTree = "<group>"; };
 		62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableViewCell.m; sourceTree = "<group>"; };
+		62B3C6CA2337536B005CBCA2 /* ResidualTransactionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionDetailViewController.h; sourceTree = "<group>"; };
+		62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionDetailViewController.m; sourceTree = "<group>"; };
+		62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionCarouseCell.h; sourceTree = "<group>"; };
+		62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionCarouseCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -832,6 +838,8 @@
 				0404859B230C259900EF17C8 /* HomeViewController.m */,
 				049C78C823363CC300612AF5 /* ResidualTransactionViewController.h */,
 				049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */,
+				62B3C6CA2337536B005CBCA2 /* ResidualTransactionDetailViewController.h */,
+				62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1698,6 +1706,8 @@
 				0435EEA32333B574008E33BC /* CarItemVideoCell.m */,
 				049C78CB233650A500612AF5 /* CommodityCell.h */,
 				049C78CC233650A500612AF5 /* CommodityCell.m */,
+				62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */,
+				62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1910,6 +1920,7 @@
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
+				62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */,
 				6200076A23330B3600319C33 /* SHBaseCollectionView.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
 				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,
@@ -1936,6 +1947,7 @@
 				049C78C4233635D600612AF5 /* QRCodeVC.m in Sources */,
 				049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */,
 				0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */,
+				62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */,
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,

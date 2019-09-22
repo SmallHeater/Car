@@ -34,6 +34,7 @@
 #define Color_0072FF [UIColor colorFromHexRGB:@"0072FF"]
 #define Color_0272FF [UIColor colorFromHexRGB:@"0272FF"]
 #define Color_333333 [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1]
+#define Color_38AC68 [UIColor colorFromHexRGB:@"38AC68"]
 #define Color_484848 [UIColor colorFromHexRGB:@"484848"]
 #define Color_5795FF [UIColor colorWithRed:87.0/255.0 green:149.0/255.0 blue:1 alpha:1]
 #define Color_60A37D [UIColor colorFromHexRGB:@"60A37D"]
