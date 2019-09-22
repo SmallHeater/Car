@@ -103,6 +103,12 @@
 		04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */; };
 		04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */; };
 		04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */; };
+		047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */; };
+		047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */; };
+		047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */; };
+		047ACA072337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA062337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m */; };
+		047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA092337B520005FC5D0 /* ResidualTransactionComplaintCell.m */; };
+		047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */; };
 		04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
@@ -393,6 +399,18 @@
 		04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
 		04715B112324B4B70008A3C2 /* MaintenanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailModel.h; sourceTree = "<group>"; };
 		04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailModel.m; sourceTree = "<group>"; };
+		047AC9FC233793F2005FC5D0 /* ResidualTransactionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionTitleCell.h; sourceTree = "<group>"; };
+		047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionTitleCell.m; sourceTree = "<group>"; };
+		047AC9FF23379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionAuthenticationCell.h; sourceTree = "<group>"; };
+		047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionAuthenticationCell.m; sourceTree = "<group>"; };
+		047ACA022337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionServiceDetailsCell.h; sourceTree = "<group>"; };
+		047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionServiceDetailsCell.m; sourceTree = "<group>"; };
+		047ACA052337ADA8005FC5D0 /* ResidualTransactionMerchantCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionMerchantCell.h; sourceTree = "<group>"; };
+		047ACA062337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionMerchantCell.m; sourceTree = "<group>"; };
+		047ACA082337B520005FC5D0 /* ResidualTransactionComplaintCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionComplaintCell.h; sourceTree = "<group>"; };
+		047ACA092337B520005FC5D0 /* ResidualTransactionComplaintCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionComplaintCell.m; sourceTree = "<group>"; };
+		047ACA0B2337BE4B005FC5D0 /* JobRecruitmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmentViewController.h; sourceTree = "<group>"; };
+		047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentViewController.m; sourceTree = "<group>"; };
 		04854956232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		04854957232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
@@ -840,6 +858,8 @@
 				049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */,
 				62B3C6CA2337536B005CBCA2 /* ResidualTransactionDetailViewController.h */,
 				62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */,
+				047ACA0B2337BE4B005FC5D0 /* JobRecruitmentViewController.h */,
+				047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1708,6 +1728,16 @@
 				049C78CC233650A500612AF5 /* CommodityCell.m */,
 				62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */,
 				62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */,
+				047AC9FC233793F2005FC5D0 /* ResidualTransactionTitleCell.h */,
+				047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */,
+				047AC9FF23379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.h */,
+				047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */,
+				047ACA022337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.h */,
+				047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */,
+				047ACA052337ADA8005FC5D0 /* ResidualTransactionMerchantCell.h */,
+				047ACA062337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m */,
+				047ACA082337B520005FC5D0 /* ResidualTransactionComplaintCell.h */,
+				047ACA092337B520005FC5D0 /* ResidualTransactionComplaintCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1865,11 +1895,13 @@
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
+				047ACA072337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				049C78CD233650A500612AF5 /* CommodityCell.m in Sources */,
 				62A80D152330694300A6C456 /* ItemsCell.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
+				047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */,
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
 				0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
@@ -1883,6 +1915,7 @@
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
+				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
@@ -1969,6 +2002,8 @@
 				0432BF972326818C002CD639 /* SHVideoCollectionViewCell.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				0432BFA423268223002CD639 /* SHAssetBaseModel.m in Sources */,
+				047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */,
+				047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */,
 				62072C33231B77870089AD43 /* SHMultipleSwitchingItemsView.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
@@ -1977,6 +2012,7 @@
 				0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */,
 				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
 				049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */,
+				047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */,
 				040485DA2311096700EF17C8 /* SHNetworkRequestMiddleware.m in Sources */,
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,

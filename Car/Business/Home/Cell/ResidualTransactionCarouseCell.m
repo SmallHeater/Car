@@ -26,6 +26,7 @@
     if (!_carouselView) {
         
         _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
+//        _carouselView.backgroundColor = [UIColor yellowColor];
     }
     return _carouselView;
 }

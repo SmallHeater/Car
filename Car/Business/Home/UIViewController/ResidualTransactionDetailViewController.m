@@ -9,8 +9,18 @@
 #import "ResidualTransactionDetailViewController.h"
 #import "SHImageAndTitleBtn.h"
 #import "ResidualTransactionCarouseCell.h"
+#import "ResidualTransactionTitleCell.h"
+#import "ResidualTransactionAuthenticationCell.h"
+#import "ResidualTransactionServiceDetailsCell.h"
+#import "ResidualTransactionMerchantCell.h"
+#import "ResidualTransactionComplaintCell.h"
 
 static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarouseCell";
+static NSString * ResidualTransactionTitleCellID = @"ResidualTransactionTitleCell";
+static NSString * ResidualTransactionAuthenticationCellID = @"ResidualTransactionAuthenticationCell";
+static NSString * ResidualTransactionServiceDetailsCellID = @"ResidualTransactionServiceDetailsCell";
+static NSString * ResidualTransactionMerchantCellID = @"ResidualTransactionMerchantCell";
+static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComplaintCell";
 
 @interface ResidualTransactionDetailViewController ()
 
@@ -50,7 +60,7 @@ static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarous
             x.userInteractionEnabled = YES;
         }];
      
-        SHImageAndTitleBtn * phoneBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(collectBtnWidth, 0, phoneBtnWidth, 50) andImageFrame:CGRectMake(113, 14, 22, 22) andTitleFrame:CGRectMake(143, 0, 40, 50) andImageName:@"dianhua" andSelectedImageName:@"" andTitle:@"电话" andTarget:nil andAction:nil];
+        SHImageAndTitleBtn * phoneBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(collectBtnWidth, 0, phoneBtnWidth, 50) andImageFrame:CGRectMake(113, 14, 22, 22) andTitleFrame:CGRectMake(143, 0, 40, 50) andImageName:@"dianhua" andSelectedImageName:@"" andTitle:@"电话"];
         [phoneBtn refreshFont:BOLDFONT18];
         phoneBtn.backgroundColor = Color_38AC68;
         [phoneBtn refreshTitle:@"电话" color:[UIColor whiteColor]];
@@ -88,6 +98,27 @@ static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarous
         
         cellHeight = [ResidualTransactionCarouseCell cellHeight];
     }
+    else if (indexPath.row == 1){
+        
+        cellHeight = 73;
+    }
+    else if (indexPath.row == 2){
+        
+        cellHeight = 32;
+    }
+    else if (indexPath.row == 3){
+        
+        cellHeight = [ResidualTransactionServiceDetailsCell cellHeightWithStr:@""];
+    }
+    else if (indexPath.row == 4){
+        
+        cellHeight = 108;
+    }
+    else if (indexPath.row == 5){
+        
+        cellHeight = 80;
+    }
+    
     return cellHeight;
 }
 
@@ -98,7 +129,7 @@ static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarous
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,7 +146,60 @@ static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarous
         
         return cell;
     }
-    
+    else if (indexPath.row == 1){
+        
+        ResidualTransactionTitleCell * cell = [tableView dequeueReusableCellWithIdentifier:ResidualTransactionTitleCellID];
+        if (!cell) {
+            
+            cell = [[ResidualTransactionTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionTitleCellID];
+        }
+        
+        [cell test];
+        return cell;
+    }
+    else if(indexPath.row == 2){
+        
+        ResidualTransactionAuthenticationCell * cell = [tableView dequeueReusableCellWithIdentifier:ResidualTransactionAuthenticationCellID];
+        if (!cell) {
+            
+            cell = [[ResidualTransactionAuthenticationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionAuthenticationCellID];
+        }
+        
+        return cell;
+    }
+    else if (indexPath.row == 3){
+        
+        ResidualTransactionServiceDetailsCell * cell = [tableView dequeueReusableCellWithIdentifier:ResidualTransactionServiceDetailsCellID];
+        if (!cell) {
+            
+            cell = [[ResidualTransactionServiceDetailsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionServiceDetailsCellID];
+        }
+        
+        [cell test];
+        return cell;
+    }
+    else if (indexPath.row == 4){
+        
+        ResidualTransactionMerchantCell * cell = [tableView dequeueReusableCellWithIdentifier:ResidualTransactionMerchantCellID];
+        if (!cell) {
+            
+            cell = [[ResidualTransactionMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionMerchantCellID];
+        }
+        
+        [cell test];
+        
+        return cell;
+    }
+    else if (indexPath.row == 5){
+        
+        ResidualTransactionComplaintCell * cell = [tableView dequeueReusableCellWithIdentifier:ResidualTransactionComplaintCellID];
+        if (!cell) {
+            
+            cell = [[ResidualTransactionComplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionComplaintCellID];
+        }
+        
+        return cell;
+    }
     
     return nil;
 }

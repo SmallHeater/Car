@@ -118,7 +118,8 @@
     float itemTitleY = itemHeight - itemTitleHeight;
     for (NSUInteger i = 0; i < self.itemsTitleArray.count; i++) {
         
-        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(itemX, itemY, itemWidth, itemHeight) andImageFrame:CGRectMake(itemImageX, 0, itemImageWidthHeight, itemImageWidthHeight) andTitleFrame:CGRectMake(0, itemTitleY, itemWidth, itemTitleHeight) andImageName:self.itemsImageNameArray[i] andSelectedImageName:@"" andTitle:self.itemsTitleArray[i] andTarget:self andAction:@selector(itemClicked:)];
+        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(itemX, itemY, itemWidth, itemHeight) andImageFrame:CGRectMake(itemImageX, 0, itemImageWidthHeight, itemImageWidthHeight) andTitleFrame:CGRectMake(0, itemTitleY, itemWidth, itemTitleHeight) andImageName:self.itemsImageNameArray[i] andSelectedImageName:@"" andTitle:self.itemsTitleArray[i]];
+        [btn addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = BASEBTNTAG + i;
         [self.bgScrollView addSubview:btn];
         

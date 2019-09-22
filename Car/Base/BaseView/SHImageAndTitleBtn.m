@@ -42,7 +42,7 @@
 }
 
 #pragma mark  ----  生命周期函数
--(instancetype)initWithFrame:(CGRect)frame andImageFrame:(CGRect)imageFrame andTitleFrame:(CGRect)titleFrame andImageName:(NSString *)imageName andSelectedImageName:(NSString *)selectedImageName andTitle:(NSString *)title andTarget:(id)target andAction:(SEL)action{
+-(instancetype)initWithFrame:(CGRect)frame andImageFrame:(CGRect)imageFrame andTitleFrame:(CGRect)titleFrame andImageName:(NSString *)imageName andSelectedImageName:(NSString *)selectedImageName andTitle:(NSString *)title{
     
     self = [super initWithFrame:frame];
     if (self) {
@@ -61,11 +61,6 @@
         
         [self addSubview:self.imageView];
         [self addSubview:self.titleLabel];
-        
-        if (target && action) {
-            
-            [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        }
     }
     return self;
 }

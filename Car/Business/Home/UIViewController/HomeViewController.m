@@ -19,7 +19,7 @@
 #import "SHTabView.h"
 #import "ItemNewsCell.h"
 #import "ResidualTransactionViewController.h"
-
+#import "JobRecruitmentViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -264,6 +264,7 @@
                                 break;
                             case 4:
                             
+                                vc = [[JobRecruitmentViewController alloc] initWithTitle:@"求职招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
                                 break;
                             case 5:
                                 

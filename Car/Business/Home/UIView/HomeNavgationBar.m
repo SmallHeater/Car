@@ -56,7 +56,8 @@
     
     if (!_releaseBtn) {
         
-        _releaseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36 - 19, 0, 36, 40) andImageFrame:CGRectMake(3, 0, 30, 30) andTitleFrame:CGRectMake(0, 30, 36, 10) andImageName:@"fabu" andSelectedImageName:@"" andTitle:@"发布" andTarget:self andAction:@selector(releaseBtnClicked:)];
+        _releaseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36 - 19, 0, 36, 40) andImageFrame:CGRectMake(3, 0, 30, 30) andTitleFrame:CGRectMake(0, 30, 36, 10) andImageName:@"fabu" andSelectedImageName:@"" andTitle:@"发布"];
+        [_releaseBtn addTarget:self action:@selector(releaseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _releaseBtn;
 }
