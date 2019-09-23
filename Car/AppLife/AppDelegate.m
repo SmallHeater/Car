@@ -15,7 +15,7 @@
 #import "LoginViewController.h"
 #import "UserInforController.h"
 #import "PLeakSniffer.h"
-#import "AvoidCrash.h"
+//#import "AvoidCrash.h"
 
 @interface AppDelegate ()
 
@@ -26,8 +26,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [AvoidCrash makeAllEffective];
-    [AvoidCrash setupNoneSelClassStringPrefixsArr:@[@"SH",@"Car"]];
+//    [AvoidCrash makeAllEffective];
+//    [AvoidCrash setupNoneSelClassStringPrefixsArr:@[@"SH",@"Car"]];
     
     
     if ([UserInforController sharedManager].userInforModel) {

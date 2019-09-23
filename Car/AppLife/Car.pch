@@ -61,6 +61,7 @@
 #define Color_FF3B30 [UIColor colorFromHexRGB:@"FF3B30"]
 #define Color_FF4C4B [UIColor colorFromHexRGB:@"FF4C4B"]
 #define Color_FF58B0 [UIColor colorWithRed:1 green:88.0/255.0 blue:176.0/255.0 alpha:1]
+#define Color_FF594C [UIColor colorFromHexRGB:@"FF594C"]
 #define Color_FF9B63 [UIColor colorFromHexRGB:@"FF9B63"]
 
 #define FONT10 [UIFont systemFontOfSize:10]

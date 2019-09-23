@@ -11,5 +11,6 @@ pod 'MBProgressHUD+WJExtension'
 pod 'AFNetworking'
 pod 'PLeakSniffer'
 pod 'iOS-Echarts’
-pod 'AvoidCrash'
+#上线在开放本功能
+#pod 'AvoidCrash'
 end

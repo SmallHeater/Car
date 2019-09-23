@@ -14,6 +14,8 @@
 #import "ResidualTransactionServiceDetailsCell.h"
 #import "ResidualTransactionMerchantCell.h"
 #import "ResidualTransactionComplaintCell.h"
+#import "DetailBottomView.h"
+
 
 static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarouseCell";
 static NSString * ResidualTransactionTitleCellID = @"ResidualTransactionTitleCell";
@@ -25,7 +27,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 @interface ResidualTransactionDetailViewController ()
 
 //底部 view
-@property (nonatomic,strong) UIView * bottomView;
+@property (nonatomic,strong) DetailBottomView * bottomView;
 
 @end
 
@@ -33,44 +35,11 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 
 #pragma mark  ----  懒加载
 
--(UIView *)bottomView{
+-(DetailBottomView *)bottomView{
     
     if (!_bottomView) {
         
-        _bottomView = [[UIView alloc] init];
-        _bottomView.backgroundColor = [UIColor whiteColor];
-        
-        float collectBtnWidth = MAINWIDTH * 84.0 / 375.0;
-        float phoneBtnWidth = MAINWIDTH - collectBtnWidth;
-        UIButton * collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [collectBtn setImage:[UIImage imageNamed:@"shoucang"] forState:UIControlStateNormal];
-        [_bottomView addSubview:collectBtn];
-        
-        [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.top.bottom.offset(0);
-            make.width.offset(collectBtnWidth);
-        }];
-        [[collectBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-           
-            x.userInteractionEnabled = NO;
-            x.selected = !x.selected;
-            
-            
-            x.userInteractionEnabled = YES;
-        }];
-     
-        SHImageAndTitleBtn * phoneBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(collectBtnWidth, 0, phoneBtnWidth, 50) andImageFrame:CGRectMake(113, 14, 22, 22) andTitleFrame:CGRectMake(143, 0, 40, 50) andImageName:@"dianhua" andSelectedImageName:@"" andTitle:@"电话"];
-        [phoneBtn refreshFont:BOLDFONT18];
-        phoneBtn.backgroundColor = Color_38AC68;
-        [phoneBtn refreshTitle:@"电话" color:[UIColor whiteColor]];
-        [_bottomView addSubview:phoneBtn];
-        [[phoneBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            
-            x.userInteractionEnabled = NO;
-            
-            x.userInteractionEnabled = YES;
-        }];
+        _bottomView = [[DetailBottomView alloc] init];
     }
     return _bottomView;
 }

@@ -103,6 +103,11 @@
 		04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0A23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m */; };
 		04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */; };
 		04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */; };
+		047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047331872338DB91000BEF04 /* JobRecruitmentCell.m */; };
+		0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473318A2338FDE9000BEF04 /* DetailBottomView.m */; };
+		0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */; };
+		04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */; };
+		0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */; };
 		047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */; };
 		047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */; };
 		047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */; };
@@ -399,6 +404,16 @@
 		04715B0F2324B3B80008A3C2 /* MaintenanceRecordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsModel.m; sourceTree = "<group>"; };
 		04715B112324B4B70008A3C2 /* MaintenanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailModel.h; sourceTree = "<group>"; };
 		04715B122324B4B70008A3C2 /* MaintenanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailModel.m; sourceTree = "<group>"; };
+		047331862338DB91000BEF04 /* JobRecruitmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmentCell.h; sourceTree = "<group>"; };
+		047331872338DB91000BEF04 /* JobRecruitmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentCell.m; sourceTree = "<group>"; };
+		047331892338FDE9000BEF04 /* DetailBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailBottomView.h; sourceTree = "<group>"; };
+		0473318A2338FDE9000BEF04 /* DetailBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailBottomView.m; sourceTree = "<group>"; };
+		0473318C233900D4000BEF04 /* JobRecruitmentDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmentDetailViewController.h; sourceTree = "<group>"; };
+		0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentDetailViewController.m; sourceTree = "<group>"; };
+		0473318F233904E6000BEF04 /* JobRecruitmentWorkTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmentWorkTypeCell.h; sourceTree = "<group>"; };
+		04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentWorkTypeCell.m; sourceTree = "<group>"; };
+		0473319223390520000BEF04 /* JobRecruitmenDescriptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmenDescriptionCell.h; sourceTree = "<group>"; };
+		0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmenDescriptionCell.m; sourceTree = "<group>"; };
 		047AC9FC233793F2005FC5D0 /* ResidualTransactionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionTitleCell.h; sourceTree = "<group>"; };
 		047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionTitleCell.m; sourceTree = "<group>"; };
 		047AC9FF23379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionAuthenticationCell.h; sourceTree = "<group>"; };
@@ -860,6 +875,8 @@
 				62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */,
 				047ACA0B2337BE4B005FC5D0 /* JobRecruitmentViewController.h */,
 				047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */,
+				0473318C233900D4000BEF04 /* JobRecruitmentDetailViewController.h */,
+				0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1705,6 +1722,8 @@
 			children = (
 				62A80D05232FB1F100A6C456 /* HomeNavgationBar.h */,
 				62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */,
+				047331892338FDE9000BEF04 /* DetailBottomView.h */,
+				0473318A2338FDE9000BEF04 /* DetailBottomView.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1738,6 +1757,12 @@
 				047ACA062337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m */,
 				047ACA082337B520005FC5D0 /* ResidualTransactionComplaintCell.h */,
 				047ACA092337B520005FC5D0 /* ResidualTransactionComplaintCell.m */,
+				047331862338DB91000BEF04 /* JobRecruitmentCell.h */,
+				047331872338DB91000BEF04 /* JobRecruitmentCell.m */,
+				0473318F233904E6000BEF04 /* JobRecruitmentWorkTypeCell.h */,
+				04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */,
+				0473319223390520000BEF04 /* JobRecruitmenDescriptionCell.h */,
+				0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1883,10 +1908,12 @@
 				04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
+				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */,
 				62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */,
+				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
@@ -1905,6 +1932,7 @@
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
 				0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
+				0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
 				0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */,
@@ -2018,6 +2046,7 @@
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
+				0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
@@ -2038,6 +2067,7 @@
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
+				04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
 				0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
