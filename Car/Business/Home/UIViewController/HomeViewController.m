@@ -101,10 +101,17 @@
                 tabModel.normalColor = Color_333333;
                 tabModel.selectedFont = BOLDFONT21;
                 tabModel.selectedColor = Color_333333;
+                tabModel.btnWidth = [model.title widthWithFont:BOLDFONT21 andHeight:30] + 10;;
                 [tabModelArray addObject:tabModel];
             }
         }
-        _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray showRightBtn:YES];
+        
+        SHTabSelectLineModel * lineModel = [[SHTabSelectLineModel alloc] init];
+        lineModel.isShowSelectedLine = YES;
+        lineModel.lineHeight = 4;
+        lineModel.lineWidth = 11;
+        lineModel.lineCornerRadio = 2;
+        _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray showRightBtn:YES andSHTabSelectLineModel:lineModel isShowBottomLine:NO];
         __weak typeof(self) weakSelf = self;
         [[_baseTabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
            

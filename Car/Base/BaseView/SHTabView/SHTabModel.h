@@ -22,10 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIFont * selectedFont;
 //选中字体颜色
 @property (nonatomic,strong) UIColor * selectedColor;
+//宽度
+@property (nonatomic,assign) float btnWidth;
 
-
-//选中状态下的最大宽度
-@property (nonatomic,assign) float btnMaxWidth;
 
 @end
 

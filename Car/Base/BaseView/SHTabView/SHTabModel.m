@@ -10,10 +10,5 @@
 
 @implementation SHTabModel
 
--(float)btnMaxWidth{
-    
-    float width = [self.tabTitle widthWithFont:self.selectedFont?self.selectedFont:self.normalFont andHeight:30] + 10;
-    return width;
-}
 
 @end

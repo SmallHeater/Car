@@ -21,6 +21,9 @@
 @property (nonatomic,strong) NSMutableArray<UIButton *> * btnArray;
 //选中的label
 @property (nonatomic,strong) UILabel * selectedLabel;
+@property (nonatomic,strong) SHTabSelectLineModel * lineModel;
+@property (nonatomic,assign) BOOL isShowBottomLine;
+@property (nonatomic,strong) UILabel * bottomLine;
 
 @end
 
@@ -35,7 +38,6 @@
         _bgScrollView = [[UIScrollView alloc] init];
         _bgScrollView.showsVerticalScrollIndicator = NO;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
-        _bgScrollView.backgroundColor = [UIColor greenColor];
     }
     return _bgScrollView;
 }
@@ -79,27 +81,39 @@
         
         _selectedLabel = [[UILabel alloc] init];
         _selectedLabel.backgroundColor = Color_0072FF;
-        _selectedLabel.layer.cornerRadius = 2;
+        _selectedLabel.layer.cornerRadius = self.lineModel.lineCornerRadio;
         _selectedLabel.layer.masksToBounds = YES;
     }
     return _selectedLabel;
 }
 
+-(UILabel *)bottomLine{
+    
+    if (!_bottomLine) {
+        
+        _bottomLine = [[UILabel alloc] init];
+        _bottomLine.backgroundColor = Color_EEEEEE;
+    }
+    return _bottomLine;
+}
+
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray showRightBtn:(BOOL)isShow{
+-(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray showRightBtn:(BOOL)isShow andSHTabSelectLineModel:(SHTabSelectLineModel *)lineModel isShowBottomLine:(BOOL)isShowBottomLine{
     
     self = [super init];
     if (self) {
         
         self.backgroundColor = [UIColor whiteColor];
         self.isShowRightBtn = isShow;
+        self.lineModel = lineModel;
+        self.isShowBottomLine = isShowBottomLine;
         [self drawUI];
         if (itemsArray && [itemsArray isKindOfClass:[NSArray class]] && itemsArray.count > 0) {
             
             [self.modelArray addObjectsFromArray:itemsArray];
             __weak typeof(self) weakSelf = self;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 [weakSelf createItems];
             });
@@ -113,16 +127,23 @@
 
 -(void)drawUI{
     
-    NSUInteger rightInterval = 0;
+    [self addSubview:self.moreBtn];
     if (self.isShowRightBtn) {
         
-        rightInterval = 40;
-        [self addSubview:self.moreBtn];
         [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.right.offset(-18);
             make.width.height.offset(22);
             make.centerY.equalTo(self.mas_centerY);
+        }];
+    }
+    else{
+        
+        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(0);
+            make.width.height.offset(0);
+            make.top.offset(0);
         }];
     }
     
@@ -131,8 +152,18 @@
     [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.bottom.offset(0);
-        make.right.offset(0 - rightInterval);
+        make.right.equalTo(self.moreBtn.mas_left);
     }];
+    
+    if (self.isShowBottomLine) {
+        
+        [self addSubview:self.bottomLine];
+        [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.bottom.offset(0);
+            make.height.offset(1);
+        }];
+    }
 }
 
 -(void)createItems{
@@ -151,34 +182,40 @@
         [btn setTitleColor:model.selectedColor forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgScrollView addSubview:btn];
+        float btnHeight = CGRectGetHeight(self.bgScrollView.frame);
+        if (self.lineModel.isShowSelectedLine && self.lineModel.lineHeight > 0) {
+            
+            btnHeight = btnHeight - self.lineModel.lineHeight;
+        }
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.offset(btnX);
             make.top.offset(0);
-            make.height.offset(CGRectGetHeight(self.frame));
-            make.width.offset(model.btnMaxWidth);
+            make.height.offset(btnHeight);
+            make.width.offset(model.btnWidth);
         }];
         [self.btnArray addObject:btn];
-        btnX += model.btnMaxWidth;
+        btnX += model.btnWidth;
         if (i == 0) {
             
             btn.selected = YES;
             btn.titleLabel.font = model.selectedFont;
             [self.bgScrollView addSubview:self.selectedLabel];
-            [self layoutIfNeeded];
-            
+            float lineWidth = self.lineModel.lineWidth;
+            float lineHeight = self.lineModel.lineHeight;
             [self.selectedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-               
-                make.bottom.offset(0);
-                make.width.offset(10);
-                make.height.offset(4);
+                
+                make.top.equalTo(btn.mas_bottom).offset(0);
+                make.width.offset(lineWidth);
+                make.height.offset(lineHeight);
                 make.centerX.equalTo(btn.mas_centerX);
             }];
         }
-        scrollViewSizeWidth += model.btnMaxWidth;
+        scrollViewSizeWidth += model.btnWidth;
     }
     
     self.bgScrollView.contentSize = CGSizeMake(scrollViewSizeWidth, CGRectGetHeight(self.frame));
+    [self.bgScrollView bringSubviewToFront:self.selectedLabel];
 }
 
 //设置对应的索引按钮选中
@@ -207,11 +244,13 @@
     
     
     btn.selected = YES;
+    float lineWidth = self.lineModel.lineWidth;
+    float lineHeight = self.lineModel.lineHeight;
     [self.selectedLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.offset(0);
-        make.width.offset(10);
-        make.height.offset(4);
+        make.top.equalTo(btn.mas_bottom).offset(0);
+        make.width.offset(lineWidth);
+        make.height.offset(lineHeight);
         make.centerX.equalTo(btn.mas_centerX);
     }];
     

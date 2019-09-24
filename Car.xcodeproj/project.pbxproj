@@ -89,6 +89,8 @@
 		0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C089232CB4D100A1904D /* SummaryItemCell.m */; };
 		0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C08C232CD5CC00A1904D /* SearchViewController.m */; };
 		0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C09A232CFBEA00A1904D /* SearchConfigurationModel.m */; };
+		04544256233A452B0077A3F8 /* SHTabSelectLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04544255233A452B0077A3F8 /* SHTabSelectLineModel.m */; };
+		04544259233A51FA0077A3F8 /* MotorOilMonopolyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -376,6 +378,10 @@
 		0445C08C232CD5CC00A1904D /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		0445C099232CFBEA00A1904D /* SearchConfigurationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchConfigurationModel.h; sourceTree = "<group>"; };
 		0445C09A232CFBEA00A1904D /* SearchConfigurationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchConfigurationModel.m; sourceTree = "<group>"; };
+		04544254233A452B0077A3F8 /* SHTabSelectLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHTabSelectLineModel.h; sourceTree = "<group>"; };
+		04544255233A452B0077A3F8 /* SHTabSelectLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHTabSelectLineModel.m; sourceTree = "<group>"; };
+		04544257233A51FA0077A3F8 /* MotorOilMonopolyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyCell.h; sourceTree = "<group>"; };
+		04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyCell.m; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -1501,6 +1507,8 @@
 				620007182331B42400319C33 /* SHTabView.m */,
 				6200071A2331B71000319C33 /* SHTabModel.h */,
 				6200071B2331B71000319C33 /* SHTabModel.m */,
+				04544254233A452B0077A3F8 /* SHTabSelectLineModel.h */,
+				04544255233A452B0077A3F8 /* SHTabSelectLineModel.m */,
 			);
 			path = SHTabView;
 			sourceTree = "<group>";
@@ -1768,6 +1776,8 @@
 				04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */,
 				0473319223390520000BEF04 /* JobRecruitmenDescriptionCell.h */,
 				0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */,
+				04544257233A51FA0077A3F8 /* MotorOilMonopolyCell.h */,
+				04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1983,6 +1993,7 @@
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
+				04544259233A51FA0077A3F8 /* MotorOilMonopolyCell.m in Sources */,
 				04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */,
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
@@ -2063,6 +2074,7 @@
 				0422D98D23233C5800AF687D /* NewUploadController.m in Sources */,
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
+				04544256233A452B0077A3F8 /* SHTabSelectLineModel.m in Sources */,
 				04715B132324B4B70008A3C2 /* MaintenanceDetailModel.m in Sources */,
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
 				620007192331B42400319C33 /* SHTabView.m in Sources */,
