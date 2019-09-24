@@ -12,6 +12,8 @@
 
 @interface SHTabView ()
 
+@property (nonatomic,assign) BOOL isShowRightBtn;
+
 @property (nonatomic,strong) UIScrollView * bgScrollView;
 //右侧点击滑动出页签项按钮
 @property (nonatomic,strong) UIButton * moreBtn;
@@ -33,6 +35,7 @@
         _bgScrollView = [[UIScrollView alloc] init];
         _bgScrollView.showsVerticalScrollIndicator = NO;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
+        _bgScrollView.backgroundColor = [UIColor greenColor];
     }
     return _bgScrollView;
 }
@@ -84,17 +87,22 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray{
+-(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray showRightBtn:(BOOL)isShow{
     
     self = [super init];
     if (self) {
         
         self.backgroundColor = [UIColor whiteColor];
+        self.isShowRightBtn = isShow;
         [self drawUI];
         if (itemsArray && [itemsArray isKindOfClass:[NSArray class]] && itemsArray.count > 0) {
             
             [self.modelArray addObjectsFromArray:itemsArray];
-            [self createItems];
+            __weak typeof(self) weakSelf = self;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [weakSelf createItems];
+            });
         }
     }
     return self;
@@ -105,19 +113,25 @@
 
 -(void)drawUI{
     
-    [self addSubview:self.moreBtn];
-    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.offset(-18);
-        make.width.height.offset(22);
-        make.centerY.equalTo(self.mas_centerY);
-    }];
+    NSUInteger rightInterval = 0;
+    if (self.isShowRightBtn) {
+        
+        rightInterval = 40;
+        [self addSubview:self.moreBtn];
+        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-18);
+            make.width.height.offset(22);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
+    }
+    
     
     [self addSubview:self.bgScrollView];
     [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.bottom.offset(0);
-        make.right.equalTo(self.moreBtn.mas_left).offset(0);
+        make.right.offset(0 - rightInterval);
     }];
 }
 
@@ -140,7 +154,8 @@
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.offset(btnX);
-            make.top.bottom.offset(0);
+            make.top.offset(0);
+            make.height.offset(CGRectGetHeight(self.frame));
             make.width.offset(model.btnMaxWidth);
         }];
         [self.btnArray addObject:btn];
@@ -163,10 +178,7 @@
         scrollViewSizeWidth += model.btnMaxWidth;
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-       
-        self.bgScrollView.contentSize = CGSizeMake(scrollViewSizeWidth, CGRectGetHeight(self.frame));
-    });
+    self.bgScrollView.contentSize = CGSizeMake(scrollViewSizeWidth, CGRectGetHeight(self.frame));
 }
 
 //设置对应的索引按钮选中

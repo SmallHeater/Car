@@ -20,6 +20,8 @@
 #import "ItemNewsCell.h"
 #import "ResidualTransactionViewController.h"
 #import "JobRecruitmentViewController.h"
+#import "MotorOilMonopolyViewcontroller.h"
+
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -102,7 +104,7 @@
                 [tabModelArray addObject:tabModel];
             }
         }
-        _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray];
+        _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray showRightBtn:YES];
         __weak typeof(self) weakSelf = self;
         [[_baseTabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
            
@@ -250,6 +252,7 @@
                         switch (btnTag) {
                             case 0:
                                 
+                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
                                 break;
                             case 1:
                                 

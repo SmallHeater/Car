@@ -98,8 +98,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[JobRecruitmentWorkTypeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JobRecruitmentWorkTypeCellID];
         }
         
-        cell.backgroundColor = [UIColor greenColor];
-        
+        [cell test];
         return cell;
     }
     else if (indexPath.row == 1){

@@ -197,6 +197,7 @@
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
 		62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */; };
 		62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */; };
+		62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -578,6 +579,8 @@
 		62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionDetailViewController.m; sourceTree = "<group>"; };
 		62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionCarouseCell.h; sourceTree = "<group>"; };
 		62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionCarouseCell.m; sourceTree = "<group>"; };
+		62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyViewcontroller.h; sourceTree = "<group>"; };
+		62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyViewcontroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -877,6 +880,8 @@
 				047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */,
 				0473318C233900D4000BEF04 /* JobRecruitmentDetailViewController.h */,
 				0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */,
+				62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */,
+				62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1959,6 +1964,7 @@
 				0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */,
 				0422D99123233C9100AF687D /* SHUploadComponent.m in Sources */,
 				62061FF8231E867C00A78462 /* SHCameraMiddleware.m in Sources */,
+				62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */,
 				62061FFF231E8B4000A78462 /* JHSmartCamareViewController.mm in Sources */,
 				0445C07E232BA0F100A1904D /* ProfitrankingModel.m in Sources */,
 				0435EEA12333B55D008E33BC /* CarItemThreeCell.m in Sources */,

@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHTabView : UIView
 
--(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray;
+//页签数组;是否显示右侧更多按钮
+-(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray showRightBtn:(BOOL)isShow;
 
 //设置对应的索引按钮选中
 -(void)selectItemWithIndex:(NSUInteger)index;
