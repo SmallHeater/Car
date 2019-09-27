@@ -9,6 +9,8 @@
 #import "MotorOilMonopolyViewcontroller.h"
 #import "SHTabView.h"
 #import "MotorOilMonopolyCell.h"
+#import "SHImageAndTitleBtn.h"
+
 
 #define ITEMBTNBASETAG 1000
 
@@ -114,6 +116,50 @@
         _bottomView.layer.shadowOffset = CGSizeMake(0,1);
         _bottomView.layer.shadowOpacity = 1;
         _bottomView.layer.shadowRadius = 5;
+        
+        //联系商家
+        SHImageAndTitleBtn * contactBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(14, 0, 53, 47) andImageFrame:CGRectMake(13, 5, 22, 22) andTitleFrame:CGRectMake(0, 28, 53, 14) andImageName:@"lianxishangjia" andSelectedImageName:@"" andTitle:@"联系商家"];
+        [contactBtn refreshFont:FONT10];
+        [contactBtn refreshTitle:@"联系商家" color:[UIColor whiteColor]];
+        [_bottomView addSubview:contactBtn];
+        //分割线
+        UILabel * lineLabel = [[UILabel alloc] init];
+        lineLabel.backgroundColor = [UIColor whiteColor];
+        [_bottomView addSubview:lineLabel];
+        [lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(67);
+            make.top.bottom.offset(0);
+            make.width.offset(1);
+        }];
+        
+        //价格总计
+        UILabel * totalPriceLabel = [[UILabel alloc] init];
+        totalPriceLabel.textColor = [UIColor whiteColor];
+        totalPriceLabel.text = @"总计：¥1080.00";
+        [_bottomView addSubview:totalPriceLabel];
+        [totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.equalTo(lineLabel.mas_right).offset(10);
+            make.top.bottom.offset(0);
+            make.width.offset(180);
+        }];
+        
+        //去结算按钮
+        UIButton * settlementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        settlementBtn.layer.masksToBounds = YES;
+        settlementBtn.layer.cornerRadius = 23;
+        settlementBtn.layer.maskedCorners = kCALayerMaxXMaxYCorner | kCALayerMaxXMinYCorner;
+        [settlementBtn setTitle:@"去结算" forState:UIControlStateNormal];
+        [settlementBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [settlementBtn setBackgroundColor:Color_0272FF];
+        settlementBtn.titleLabel.font = FONT16;
+        [_bottomView addSubview:settlementBtn];
+        [settlementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.width.offset(80);
+            make.top.right.bottom.offset(0);
+        }];
     }
     return _bottomView;
 }
