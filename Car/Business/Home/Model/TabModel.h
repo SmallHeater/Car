@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 //tab项ID
 @property (nonatomic,strong) NSString * tabID;
 //标题
-@property (nonatomic,strong) NSString * title;
+@property (nonatomic,strong) NSString * name;
 //排序
 @property (nonatomic,strong) NSString * sort;
 //

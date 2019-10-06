@@ -81,6 +81,21 @@
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
 		043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */; };
+		043E9F5E234589AE00109AC5 /* ForumDetailWebViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */; };
+		043E9F612345943900109AC5 /* ForumDetailInfringementPromptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */; };
+		043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F632345991400109AC5 /* ForumDetaiADCell.m */; };
+		043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F662345A28600109AC5 /* ForumDetailCommentListCell.m */; };
+		043E9F6A2345F23800109AC5 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F692345F23800109AC5 /* CommentModel.m */; };
+		043E9F6D2345F73E00109AC5 /* CommentBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F6C2345F73E00109AC5 /* CommentBaseCell.m */; };
+		043E9F7023482A7F00109AC5 /* CommentDeleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F6F23482A7F00109AC5 /* CommentDeleteCell.m */; };
+		043E9F73234874CF00109AC5 /* PostJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F72234874CF00109AC5 /* PostJobViewController.m */; };
+		043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F752348979700109AC5 /* PostJobInputCell.m */; };
+		043E9F792348A12100109AC5 /* PostJobBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F782348A12100109AC5 /* PostJobBaseCell.m */; };
+		043E9F7C2348B97C00109AC5 /* PostJobMonthlySalaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F7B2348B97C00109AC5 /* PostJobMonthlySalaryCell.m */; };
+		043E9F7F2348CD2B00109AC5 /* PostJobSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F7E2348CD2B00109AC5 /* PostJobSelectCell.m */; };
+		043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */; };
+		043E9F85234984D900109AC5 /* PostJobRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F84234984D900109AC5 /* PostJobRequestModel.m */; };
+		043E9F882349EC2000109AC5 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F872349EC2000109AC5 /* PostViewController.m */; };
 		0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */; };
 		0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C077232B98B400A1904D /* BusinessSummaryItemModel.m */; };
 		0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C07A232B9EE000A1904D /* ProfitstatisticsModel.m */; };
@@ -140,6 +155,18 @@
 		04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */; };
 		04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EB232A882A002DDC02 /* PublicRequest.m */; };
 		04A915EF232B35F8002DDC02 /* BaseWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EE232B35F8002DDC02 /* BaseWKWebViewController.m */; };
+		04ACDD13234063A00050B179 /* JobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD12234063A00050B179 /* JobModel.m */; };
+		04ACDD182340A7C20050B179 /* ForumVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD172340A7C20050B179 /* ForumVideoCell.m */; };
+		04ACDD1B2340A9360050B179 /* ForumBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD1A2340A9360050B179 /* ForumBaseCell.m */; };
+		04ACDD1F2340DA790050B179 /* ForumTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD1E2340DA790050B179 /* ForumTabModel.m */; };
+		04ACDD22234184860050B179 /* ForumArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD21234184860050B179 /* ForumArticleModel.m */; };
+		04ACDD2523418F360050B179 /* ADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD2423418F360050B179 /* ADModel.m */; };
+		04ACDD2823418F6E0050B179 /* FromUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD2723418F6E0050B179 /* FromUserModel.m */; };
+		04ACDD2B2341AC690050B179 /* ForumSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD2A2341AC690050B179 /* ForumSingleCell.m */; };
+		04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD2D2341AC890050B179 /* ForumThreeCell.m */; };
+		04ACDD312341FFAC0050B179 /* ForumDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD302341FFAC0050B179 /* ForumDetailViewController.m */; };
+		04ACDD34234203480050B179 /* ForumDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD33234203480050B179 /* ForumDetailTitleCell.m */; };
+		04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD0E2A233271F7009CA687 /* ItemNewsCell.m */; };
 		04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */; };
@@ -362,6 +389,36 @@
 		043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidViewController.m; sourceTree = "<group>"; };
 		043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidViewController.h; sourceTree = "<group>"; };
 		043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidViewController.m; sourceTree = "<group>"; };
+		043E9F5C234589AE00109AC5 /* ForumDetailWebViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailWebViewCell.h; sourceTree = "<group>"; };
+		043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailWebViewCell.m; sourceTree = "<group>"; };
+		043E9F5F2345943900109AC5 /* ForumDetailInfringementPromptCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailInfringementPromptCell.h; sourceTree = "<group>"; };
+		043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailInfringementPromptCell.m; sourceTree = "<group>"; };
+		043E9F622345991400109AC5 /* ForumDetaiADCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetaiADCell.h; sourceTree = "<group>"; };
+		043E9F632345991400109AC5 /* ForumDetaiADCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetaiADCell.m; sourceTree = "<group>"; };
+		043E9F652345A28600109AC5 /* ForumDetailCommentListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailCommentListCell.h; sourceTree = "<group>"; };
+		043E9F662345A28600109AC5 /* ForumDetailCommentListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailCommentListCell.m; sourceTree = "<group>"; };
+		043E9F682345F23800109AC5 /* CommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		043E9F692345F23800109AC5 /* CommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		043E9F6B2345F73E00109AC5 /* CommentBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentBaseCell.h; sourceTree = "<group>"; };
+		043E9F6C2345F73E00109AC5 /* CommentBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentBaseCell.m; sourceTree = "<group>"; };
+		043E9F6E23482A7F00109AC5 /* CommentDeleteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentDeleteCell.h; sourceTree = "<group>"; };
+		043E9F6F23482A7F00109AC5 /* CommentDeleteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentDeleteCell.m; sourceTree = "<group>"; };
+		043E9F71234874CF00109AC5 /* PostJobViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobViewController.h; sourceTree = "<group>"; };
+		043E9F72234874CF00109AC5 /* PostJobViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobViewController.m; sourceTree = "<group>"; };
+		043E9F742348979700109AC5 /* PostJobInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobInputCell.h; sourceTree = "<group>"; };
+		043E9F752348979700109AC5 /* PostJobInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobInputCell.m; sourceTree = "<group>"; };
+		043E9F772348A12100109AC5 /* PostJobBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobBaseCell.h; sourceTree = "<group>"; };
+		043E9F782348A12100109AC5 /* PostJobBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobBaseCell.m; sourceTree = "<group>"; };
+		043E9F7A2348B97C00109AC5 /* PostJobMonthlySalaryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobMonthlySalaryCell.h; sourceTree = "<group>"; };
+		043E9F7B2348B97C00109AC5 /* PostJobMonthlySalaryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobMonthlySalaryCell.m; sourceTree = "<group>"; };
+		043E9F7D2348CD2B00109AC5 /* PostJobSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobSelectCell.h; sourceTree = "<group>"; };
+		043E9F7E2348CD2B00109AC5 /* PostJobSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobSelectCell.m; sourceTree = "<group>"; };
+		043E9F802348D39400109AC5 /* PostJobDescriptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobDescriptionCell.h; sourceTree = "<group>"; };
+		043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobDescriptionCell.m; sourceTree = "<group>"; };
+		043E9F83234984D900109AC5 /* PostJobRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostJobRequestModel.h; sourceTree = "<group>"; };
+		043E9F84234984D900109AC5 /* PostJobRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobRequestModel.m; sourceTree = "<group>"; };
+		043E9F862349EC2000109AC5 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		043E9F872349EC2000109AC5 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		0445C073232B984400A1904D /* BusinessSummaryHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryHeaderModel.h; sourceTree = "<group>"; };
 		0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryHeaderModel.m; sourceTree = "<group>"; };
 		0445C076232B98B400A1904D /* BusinessSummaryItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryItemModel.h; sourceTree = "<group>"; };
@@ -476,6 +533,30 @@
 		04A915EB232A882A002DDC02 /* PublicRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicRequest.m; sourceTree = "<group>"; };
 		04A915ED232B35F8002DDC02 /* BaseWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseWKWebViewController.h; sourceTree = "<group>"; };
 		04A915EE232B35F8002DDC02 /* BaseWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseWKWebViewController.m; sourceTree = "<group>"; };
+		04ACDD11234063A00050B179 /* JobModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobModel.h; sourceTree = "<group>"; };
+		04ACDD12234063A00050B179 /* JobModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobModel.m; sourceTree = "<group>"; };
+		04ACDD162340A7C20050B179 /* ForumVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumVideoCell.h; sourceTree = "<group>"; };
+		04ACDD172340A7C20050B179 /* ForumVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumVideoCell.m; sourceTree = "<group>"; };
+		04ACDD192340A9360050B179 /* ForumBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumBaseCell.h; sourceTree = "<group>"; };
+		04ACDD1A2340A9360050B179 /* ForumBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumBaseCell.m; sourceTree = "<group>"; };
+		04ACDD1D2340DA790050B179 /* ForumTabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumTabModel.h; sourceTree = "<group>"; };
+		04ACDD1E2340DA790050B179 /* ForumTabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumTabModel.m; sourceTree = "<group>"; };
+		04ACDD20234184860050B179 /* ForumArticleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumArticleModel.h; sourceTree = "<group>"; };
+		04ACDD21234184860050B179 /* ForumArticleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumArticleModel.m; sourceTree = "<group>"; };
+		04ACDD2323418F360050B179 /* ADModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADModel.h; sourceTree = "<group>"; };
+		04ACDD2423418F360050B179 /* ADModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADModel.m; sourceTree = "<group>"; };
+		04ACDD2623418F6E0050B179 /* FromUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FromUserModel.h; sourceTree = "<group>"; };
+		04ACDD2723418F6E0050B179 /* FromUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FromUserModel.m; sourceTree = "<group>"; };
+		04ACDD292341AC690050B179 /* ForumSingleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumSingleCell.h; sourceTree = "<group>"; };
+		04ACDD2A2341AC690050B179 /* ForumSingleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumSingleCell.m; sourceTree = "<group>"; };
+		04ACDD2C2341AC890050B179 /* ForumThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumThreeCell.h; sourceTree = "<group>"; };
+		04ACDD2D2341AC890050B179 /* ForumThreeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumThreeCell.m; sourceTree = "<group>"; };
+		04ACDD2F2341FFAC0050B179 /* ForumDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailViewController.h; sourceTree = "<group>"; };
+		04ACDD302341FFAC0050B179 /* ForumDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailViewController.m; sourceTree = "<group>"; };
+		04ACDD32234203480050B179 /* ForumDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailTitleCell.h; sourceTree = "<group>"; };
+		04ACDD33234203480050B179 /* ForumDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailTitleCell.m; sourceTree = "<group>"; };
+		04ACDD35234216E60050B179 /* ForumDetailAuthorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailAuthorCell.h; sourceTree = "<group>"; };
+		04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailAuthorCell.m; sourceTree = "<group>"; };
 		04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManagementViewController.h; sourceTree = "<group>"; };
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		04CD0E29233271F7009CA687 /* ItemNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemNewsCell.h; sourceTree = "<group>"; };
@@ -813,10 +894,10 @@
 		04048580230C24D200EF17C8 /* Forum */ = {
 			isa = PBXGroup;
 			children = (
-				04048586230C252400EF17C8 /* Controller */,
-				04048585230C252300EF17C8 /* Model */,
+				04ACDD1C2340DA470050B179 /* Model */,
+				04ACDD152340A7580050B179 /* Cell */,
+				04ACDD142340A7580050B179 /* UIView */,
 				04048584230C252300EF17C8 /* UIViewController */,
-				04048583230C252300EF17C8 /* View */,
 			);
 			path = Forum;
 			sourceTree = "<group>";
@@ -843,34 +924,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		04048583230C252300EF17C8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		04048584230C252300EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
 				04048597230C257700EF17C8 /* ForumViewController.h */,
 				04048598230C257700EF17C8 /* ForumViewController.m */,
+				04ACDD2F2341FFAC0050B179 /* ForumDetailViewController.h */,
+				04ACDD302341FFAC0050B179 /* ForumDetailViewController.m */,
 			);
 			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		04048585230C252300EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		04048586230C252400EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		04048587230C252A00EF17C8 /* UIViewController */ = {
@@ -888,6 +950,10 @@
 				0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */,
 				62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */,
 				62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */,
+				043E9F71234874CF00109AC5 /* PostJobViewController.h */,
+				043E9F72234874CF00109AC5 /* PostJobViewController.m */,
+				043E9F862349EC2000109AC5 /* PostViewController.h */,
+				043E9F872349EC2000109AC5 /* PostViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1477,6 +1543,61 @@
 			path = BaseController;
 			sourceTree = "<group>";
 		};
+		04ACDD142340A7580050B179 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		04ACDD152340A7580050B179 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04ACDD162340A7C20050B179 /* ForumVideoCell.h */,
+				04ACDD172340A7C20050B179 /* ForumVideoCell.m */,
+				04ACDD192340A9360050B179 /* ForumBaseCell.h */,
+				04ACDD1A2340A9360050B179 /* ForumBaseCell.m */,
+				04ACDD292341AC690050B179 /* ForumSingleCell.h */,
+				04ACDD2A2341AC690050B179 /* ForumSingleCell.m */,
+				04ACDD2C2341AC890050B179 /* ForumThreeCell.h */,
+				04ACDD2D2341AC890050B179 /* ForumThreeCell.m */,
+				04ACDD32234203480050B179 /* ForumDetailTitleCell.h */,
+				04ACDD33234203480050B179 /* ForumDetailTitleCell.m */,
+				04ACDD35234216E60050B179 /* ForumDetailAuthorCell.h */,
+				04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */,
+				043E9F5C234589AE00109AC5 /* ForumDetailWebViewCell.h */,
+				043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */,
+				043E9F5F2345943900109AC5 /* ForumDetailInfringementPromptCell.h */,
+				043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */,
+				043E9F622345991400109AC5 /* ForumDetaiADCell.h */,
+				043E9F632345991400109AC5 /* ForumDetaiADCell.m */,
+				043E9F652345A28600109AC5 /* ForumDetailCommentListCell.h */,
+				043E9F662345A28600109AC5 /* ForumDetailCommentListCell.m */,
+				043E9F6B2345F73E00109AC5 /* CommentBaseCell.h */,
+				043E9F6C2345F73E00109AC5 /* CommentBaseCell.m */,
+				043E9F6E23482A7F00109AC5 /* CommentDeleteCell.h */,
+				043E9F6F23482A7F00109AC5 /* CommentDeleteCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04ACDD1C2340DA470050B179 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04ACDD1D2340DA790050B179 /* ForumTabModel.h */,
+				04ACDD1E2340DA790050B179 /* ForumTabModel.m */,
+				04ACDD20234184860050B179 /* ForumArticleModel.h */,
+				04ACDD21234184860050B179 /* ForumArticleModel.m */,
+				04ACDD2323418F360050B179 /* ADModel.h */,
+				04ACDD2423418F360050B179 /* ADModel.m */,
+				04ACDD2623418F6E0050B179 /* FromUserModel.h */,
+				04ACDD2723418F6E0050B179 /* FromUserModel.m */,
+				043E9F682345F23800109AC5 /* CommentModel.h */,
+				043E9F692345F23800109AC5 /* CommentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		04E5D856231FED1C00E1B6BD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1522,6 +1643,10 @@
 				62000761233244CE00319C33 /* HomeDataModel.m */,
 				0435EE992333B123008E33BC /* CarItemNewModel.h */,
 				0435EE9A2333B123008E33BC /* CarItemNewModel.m */,
+				04ACDD11234063A00050B179 /* JobModel.h */,
+				04ACDD12234063A00050B179 /* JobModel.m */,
+				043E9F83234984D900109AC5 /* PostJobRequestModel.h */,
+				043E9F84234984D900109AC5 /* PostJobRequestModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1778,6 +1903,16 @@
 				0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */,
 				04544257233A51FA0077A3F8 /* MotorOilMonopolyCell.h */,
 				04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */,
+				043E9F742348979700109AC5 /* PostJobInputCell.h */,
+				043E9F752348979700109AC5 /* PostJobInputCell.m */,
+				043E9F772348A12100109AC5 /* PostJobBaseCell.h */,
+				043E9F782348A12100109AC5 /* PostJobBaseCell.m */,
+				043E9F7A2348B97C00109AC5 /* PostJobMonthlySalaryCell.h */,
+				043E9F7B2348B97C00109AC5 /* PostJobMonthlySalaryCell.m */,
+				043E9F7D2348CD2B00109AC5 /* PostJobSelectCell.h */,
+				043E9F7E2348CD2B00109AC5 /* PostJobSelectCell.m */,
+				043E9F802348D39400109AC5 /* PostJobDescriptionCell.h */,
+				043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1931,10 +2066,12 @@
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
+				04ACDD22234184860050B179 /* ForumArticleModel.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
 				0422D966232291A900AF687D /* UnpaidModel.m in Sources */,
 				62000762233244CE00319C33 /* HomeDataModel.m in Sources */,
 				0404856E230C205F00EF17C8 /* NSString+SHTool.m in Sources */,
+				043E9F6A2345F23800109AC5 /* CommentModel.m in Sources */,
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				047ACA072337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m in Sources */,
@@ -1942,17 +2079,22 @@
 				049C78CD233650A500612AF5 /* CommodityCell.m in Sources */,
 				62A80D152330694300A6C456 /* ItemsCell.m in Sources */,
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
+				04ACDD2823418F6E0050B179 /* FromUserModel.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
 				047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */,
+				043E9F7023482A7F00109AC5 /* CommentDeleteCell.m in Sources */,
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
 				0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
 				0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
+				04ACDD1F2340DA790050B179 /* ForumTabModel.m in Sources */,
 				0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */,
+				04ACDD312341FFAC0050B179 /* ForumDetailViewController.m in Sources */,
 				62061FF5231E852400A78462 /* UIViewController+SHTool.m in Sources */,
 				62A80D0A232FB8A800A6C456 /* SHSearchTF.m in Sources */,
+				04ACDD2B2341AC690050B179 /* ForumSingleCell.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
@@ -1960,15 +2102,18 @@
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
+				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
+				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
 				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
+				043E9F792348A12100109AC5 /* PostJobBaseCell.m in Sources */,
 				049C78BC233635D600612AF5 /* SHQRCodeLibrary.m in Sources */,
 				0445C087232CB42900A1904D /* SummaryAnalysisCell.m in Sources */,
 				0432BF962326818C002CD639 /* SHImageCollectionViewCell.m in Sources */,
@@ -1982,19 +2127,25 @@
 				62072C21231A7A050089AD43 /* SHPageControl.m in Sources */,
 				04A915EF232B35F8002DDC02 /* BaseWKWebViewController.m in Sources */,
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
+				043E9F6D2345F73E00109AC5 /* CommentBaseCell.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
+				04ACDD1B2340A9360050B179 /* ForumBaseCell.m in Sources */,
 				6200075F2332428400319C33 /* TabModel.m in Sources */,
 				04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
 				0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */,
+				043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
+				043E9F612345943900109AC5 /* ForumDetailInfringementPromptCell.m in Sources */,
+				043E9F7C2348B97C00109AC5 /* PostJobMonthlySalaryCell.m in Sources */,
 				04544259233A51FA0077A3F8 /* MotorOilMonopolyCell.m in Sources */,
 				04715B102324B3B80008A3C2 /* MaintenanceRecordsModel.m in Sources */,
+				043E9F85234984D900109AC5 /* PostJobRequestModel.m in Sources */,
 				0422D99723233F1300AF687D /* SHUploadModel.m in Sources */,
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
@@ -2007,7 +2158,10 @@
 				0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
+				04ACDD182340A7C20050B179 /* ForumVideoCell.m in Sources */,
 				62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */,
+				043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */,
+				04ACDD13234063A00050B179 /* JobModel.m in Sources */,
 				0432BF8E23267F2D002CD639 /* SHPictureSelectionComponent.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,
@@ -2040,16 +2194,20 @@
 				62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */,
 				62A80D112330603F00A6C456 /* SHImageAndTitleBtn.m in Sources */,
 				040485B0230ECCDB00EF17C8 /* LoginViewController.m in Sources */,
+				043E9F882349EC2000109AC5 /* PostViewController.m in Sources */,
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
 				62929BAF231A1E430018DE07 /* UserInforController.m in Sources */,
 				0432BF972326818C002CD639 /* SHVideoCollectionViewCell.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
+				043E9F5E234589AE00109AC5 /* ForumDetailWebViewCell.m in Sources */,
 				0432BFA423268223002CD639 /* SHAssetBaseModel.m in Sources */,
 				047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */,
 				047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */,
 				62072C33231B77870089AD43 /* SHMultipleSwitchingItemsView.m in Sources */,
+				04ACDD34234203480050B179 /* ForumDetailTitleCell.m in Sources */,
+				043E9F7F2348CD2B00109AC5 /* PostJobSelectCell.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
@@ -2071,7 +2229,9 @@
 				0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */,
+				04ACDD2523418F360050B179 /* ADModel.m in Sources */,
 				0422D98D23233C5800AF687D /* NewUploadController.m in Sources */,
+				04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */,
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				04048570230C205F00EF17C8 /* BaseView.m in Sources */,
 				04544256233A452B0077A3F8 /* SHTabSelectLineModel.m in Sources */,
@@ -2083,12 +2243,14 @@
 				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				0422D9A02323506E00AF687D /* SHUploadMiddleware.m in Sources */,
+				043E9F73234874CF00109AC5 /* PostJobViewController.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 				04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
 				0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
+				043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */,
 				62072C0E231A55C20089AD43 /* CarouselView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

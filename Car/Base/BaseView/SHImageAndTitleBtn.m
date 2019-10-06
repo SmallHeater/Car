@@ -116,4 +116,20 @@
     }
 }
 
+//设置图片圆角
+-(void)setImageViewCornerRadius:(float)cornerRadius{
+    
+    self.imageView.layer.cornerRadius = cornerRadius;
+    self.imageView.layer.masksToBounds = YES;
+}
+
+//设置图片地址
+-(void)setImageUrl:(NSString *)imageUrl{
+    
+    if (![NSString strIsEmpty:imageUrl]) {
+     
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+    }
+}
+
 @end

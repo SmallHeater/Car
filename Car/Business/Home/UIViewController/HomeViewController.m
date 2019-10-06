@@ -92,17 +92,20 @@
         
         if (self.homeDataModel && self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0) {
             
+            NSUInteger i = 0;
             for (TabModel * model in self.homeDataModel.tabs) {
                 
                 SHTabModel * tabModel = [[SHTabModel alloc] init];
                 
-                tabModel.tabTitle = model.title;
+                tabModel.tabTitle = model.name;
                 tabModel.normalFont = FONT16;
                 tabModel.normalColor = Color_333333;
                 tabModel.selectedFont = BOLDFONT21;
                 tabModel.selectedColor = Color_333333;
-                tabModel.btnWidth = [model.title widthWithFont:BOLDFONT21 andHeight:30] + 10;;
+                tabModel.btnWidth = [model.name widthWithFont:BOLDFONT21 andHeight:30] + 10;
+                tabModel.tabTag = ITEMBTNBASETAG + i;
                 [tabModelArray addObject:tabModel];
+                i++;
             }
         }
         

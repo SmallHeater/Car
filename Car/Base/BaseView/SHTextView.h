@@ -45,7 +45,7 @@ typedef void(^ReturnBlock)(NSString * str);
 
 
 
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)init;
 
 - (BOOL)becomeFirstResponder;
 

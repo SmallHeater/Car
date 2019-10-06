@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHBaseTableViewCell : UITableViewCell
 
+//默认样式
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+
 @end
 
 NS_ASSUME_NONNULL_END

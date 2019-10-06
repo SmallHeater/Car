@@ -17,6 +17,9 @@
 -(void)refreshFont:(UIFont *)labelFont;
 //刷新图片
 -(void)refreshImage:(NSString *)imageName orImageUrlStr:(NSString *)imageUrlStr;
-
+//设置图片圆角
+-(void)setImageViewCornerRadius:(float)cornerRadius;
+//设置图片地址
+-(void)setImageUrl:(NSString *)imageUrl;
 
 @end

@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ResidualTransactionMerchantCell : SHBaseTableViewCell
 
--(void)test;
+//shop_avatar,图片;shop_name,名;shop_phone,号码;shop_credit,信用;
+-(void)showDic:(NSDictionary *)dic;
 
 @end
 

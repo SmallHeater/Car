@@ -96,6 +96,8 @@
         _lookBtn.backgroundColor = Color_0272FF;
         [_lookBtn setTitle:@"查看" forState:UIControlStateNormal];
         [_lookBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _lookBtn.layer.masksToBounds = YES;
+        _lookBtn.layer.cornerRadius = 4;
         _lookBtn.titleLabel.font = FONT14;
     }
     return _lookBtn;
@@ -246,14 +248,75 @@
     }];
 }
 
--(void)test{
+//title,标题;recommend,推荐;wage,工资;workType,工作类型;company,公司;address,位置;tabs,标签数组;
+-(void)showDic:(NSDictionary *)dic{
     
-    self.titleLabel.backgroundColor = [UIColor greenColor];
-    self.recommendLabel.backgroundColor = [UIColor yellowColor];
-    self.wageLabel.backgroundColor = [UIColor redColor];
-    self.workTypeLabel.backgroundColor = [UIColor greenColor];
-    self.companyLabel.backgroundColor = [UIColor yellowColor];
-    self.addressLabel.backgroundColor = [UIColor redColor];
+    NSString * title = @"";
+    if ([dic.allKeys containsObject:@"title"]) {
+        
+        title = dic[@"title"];
+    }
+    self.titleLabel.text = title;
+    
+    NSString * recommend = @"";
+    if ([dic.allKeys containsObject:@"recommend"]) {
+        
+        recommend = dic[@"recommend"];
+    }
+    self.recommendLabel.text = recommend;
+    
+    NSString * wage = @"";
+    if ([dic.allKeys containsObject:@"wage"]) {
+        
+        wage = dic[@"wage"];
+    }
+    self.wageLabel.text = wage;
+    
+    NSString * workType = @"";
+    if ([dic.allKeys containsObject:@"workType"]) {
+        
+        workType = dic[@"workType"];
+    }
+    self.workTypeLabel.text = workType;
+    
+    NSString * company = @"";
+    if ([dic.allKeys containsObject:@"company"]) {
+        
+        company = dic[@"company"];
+    }
+    self.companyLabel.text = company;
+    
+    NSString * address = @"";
+    if ([dic.allKeys containsObject:@"address"]) {
+        
+        address = dic[@"address"];
+    }
+    self.addressLabel.text = address;
+    
+    NSArray * tabs = dic[@"tabs"];
+    float labelX = 16;
+    float labelHeight = 18;
+    for (NSString * str in tabs) {
+        
+        float labelWidth = [str widthWithFont:FONT12 andHeight:labelHeight] + 10;
+        UILabel * label = [[UILabel alloc] init];
+        label.font = FONT12;
+        label.textColor = Color_2E78FF;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = str;
+        label.layer.masksToBounds = YES;
+        label.layer.cornerRadius = 1;
+        label.backgroundColor = [UIColor colorWithRed:0/255.0 green:121/255.0 blue:255/255.0 alpha:0.1];
+        [self addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(labelX);
+            make.top.equalTo(self.wageLabel.mas_bottom).offset(13);
+            make.width.offset(labelWidth);
+            make.height.offset(labelHeight);
+        }];
+        labelX += labelWidth + 5;
+    }
 }
 
 @end

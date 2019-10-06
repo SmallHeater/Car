@@ -23,6 +23,8 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 
 //底部 view
 @property (nonatomic,strong) DetailBottomView * bottomView;
+@property (nonatomic,strong) NSDictionary * jobOptionDic;
+@property (nonatomic,strong) JobModel * jobModel;
 
 @end
 
@@ -40,6 +42,18 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 }
 
 #pragma mark  ----  生命周期函数
+
+//招聘参数字典,jobOptionDic;招聘信息模型，jobModel;
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andJobOptionDic:(NSDictionary *)JobOptionDic andJobModel:(JobModel *)jobModel{
+    
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    if (self) {
+        
+        self.jobOptionDic = JobOptionDic;
+        self.jobModel = jobModel;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     //继承BaseTableViewController使用时，要将本方法提前，保证先添加tableView,再添加导航
@@ -98,7 +112,31 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[JobRecruitmentWorkTypeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JobRecruitmentWorkTypeCellID];
         }
         
-        [cell test];
+        if (self.jobOptionDic && self.jobModel) {
+            
+            //title,标题;wage,工资;workType,工作类型;tabs,标签数组;
+            NSString * workType;
+            NSArray * workTypeArray = self.jobOptionDic[@"job"];
+            for (NSDictionary * dic in workTypeArray) {
+                
+                NSNumber * number = dic[@"id"];
+                if (number.integerValue == self.jobModel.job_id.integerValue) {
+                    
+                    workType = dic[@"name"];
+                    break;
+                }
+            }
+            
+            NSString * wage = [[NSString alloc] initWithFormat:@"%@/月",[NSString repleaseNilOrNull:self.jobModel.monthly_salary]];
+            NSMutableArray * tabsArray = [[NSMutableArray alloc] init];
+            for (NSDictionary * dic in self.jobModel.benefits) {
+                
+                [tabsArray addObject:dic[@"name"]];
+            }
+            
+            [cell showDic:@{@"title":[NSString repleaseNilOrNull:self.jobModel.name],@"wage":wage,@"workType":workType,@"tabs":tabsArray}];
+        }
+        
         return cell;
     }
     else if (indexPath.row == 1){
@@ -120,8 +158,11 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[ResidualTransactionMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionMerchantCellID];
         }
         
-        [cell test];
+        if (self.jobModel) {
         
+            //shop_avatar,图片;shop_name,名;shop_phone,号码;shop_credit,信用;
+            [cell showDic:@{@"shop_avatar":self.jobModel.shop_avatar,@"shop_name":self.jobModel.shop_name,@"shop_phone":self.jobModel.shop_phone,@"shop_credit":self.jobModel.shop_credit}];
+        }
         return cell;
     }
     else if (indexPath.row == 3){

@@ -7,10 +7,14 @@
 //  求职招聘详情页
 
 #import "BaseTableViewController.h"
+#import "JobModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobRecruitmentDetailViewController : BaseTableViewController
+
+//招聘参数字典,jobOptionDic;招聘信息模型，jobModel;
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andJobOptionDic:(NSDictionary *)JobOptionDic andJobModel:(JobModel *)jobModel;
 
 @end
 

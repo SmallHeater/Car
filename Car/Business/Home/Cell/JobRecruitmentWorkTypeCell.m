@@ -120,11 +120,54 @@
     }];
 }
 
--(void)test{
+//title,标题;wage,工资;workType,工作类型;tabs,标签数组;
+-(void)showDic:(NSDictionary *)dic{
     
-    self.workTypeLabel.backgroundColor = [UIColor greenColor];
-    self.wageLabel.backgroundColor = [UIColor redColor];
-    self.titleLabel.backgroundColor = [UIColor yellowColor];
+    NSString * title = @"";
+    if ([dic.allKeys containsObject:@"title"]) {
+        
+        title = dic[@"title"];
+    }
+    self.titleLabel.text = title;
+    
+    NSString * wage = @"";
+    if ([dic.allKeys containsObject:@"wage"]) {
+        
+        wage = dic[@"wage"];
+    }
+    self.wageLabel.text = wage;
+    
+    NSString * workType = @"";
+    if ([dic.allKeys containsObject:@"workType"]) {
+        
+        workType = dic[@"workType"];
+    }
+    self.workTypeLabel.text = workType;
+    
+    NSArray * tabs = dic[@"tabs"];
+    float labelX = 16;
+    float labelHeight = 18;
+    for (NSString * str in tabs) {
+        
+        float labelWidth = [str widthWithFont:FONT12 andHeight:labelHeight] + 10;
+        UILabel * label = [[UILabel alloc] init];
+        label.font = FONT12;
+        label.textColor = Color_2E78FF;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = str;
+        label.layer.masksToBounds = YES;
+        label.layer.cornerRadius = 1;
+        label.backgroundColor = [UIColor colorWithRed:0/255.0 green:121/255.0 blue:255/255.0 alpha:0.1];
+        [self addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(labelX);
+            make.top.equalTo(self.wageLabel.mas_bottom).offset(13);
+            make.width.offset(labelWidth);
+            make.height.offset(labelHeight);
+        }];
+        labelX += labelWidth + 5;
+    }
 }
 
 @end

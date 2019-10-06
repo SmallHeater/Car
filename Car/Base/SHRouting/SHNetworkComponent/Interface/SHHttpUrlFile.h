@@ -52,6 +52,34 @@
 
 //文章列表接口
 #define GetArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticles",CARDOMAIN]
+//浏览量添加接口
+#define ArticlePV  [[NSString alloc] initWithFormat:@"%@/api/Home/articlePV",CARDOMAIN]
+
+//文章点赞接口
+#define ArticleThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/articleThumb",CARDOMAIN]
+//评论点赞接口
+#define CommentThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/commentThumb",CARDOMAIN]
+
+
+
+
+//论坛页获取顶部选项卡列表接口
+#define TabList  [[NSString alloc] initWithFormat:@"%@/api/Home/getTabList",CARDOMAIN]
+//论坛页获取板块列表接口
+#define SectionList  [[NSString alloc] initWithFormat:@"%@/api/Home/getSectionList",CARDOMAIN]
+//论坛页获取帖子列表接口
+#define ForumList  [[NSString alloc] initWithFormat:@"%@/api/Home/getForumList",CARDOMAIN]
+//获取评论
+#define Comments  [[NSString alloc] initWithFormat:@"%@/api/Home/getComments",CARDOMAIN]
+
+
+
+//招聘参数
+#define JobOption  [[NSString alloc] initWithFormat:@"%@/api/Home/getJobOption",CARDOMAIN]
+//招聘列表
+#define JobList  [[NSString alloc] initWithFormat:@"%@/api/Home/jobList",CARDOMAIN]
+//发布招聘
+#define PostJob  [[NSString alloc] initWithFormat:@"%@/api/Home/postJob",CARDOMAIN]
 
 
 #endif /* HttpUrlFile_h */

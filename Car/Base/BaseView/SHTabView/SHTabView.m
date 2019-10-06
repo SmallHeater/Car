@@ -8,8 +8,6 @@
 
 #import "SHTabView.h"
 
-#define BTNBASETAG 1000
-
 @interface SHTabView ()
 
 @property (nonatomic,assign) BOOL isShowRightBtn;
@@ -174,7 +172,11 @@
         
         SHTabModel * model = self.modelArray[i];
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = BTNBASETAG + i;
+        if (model.tabTag > 0) {
+        
+            btn.tag = model.tabTag;
+        }
+        
         [btn setTitle:model.tabTitle forState:UIControlStateNormal];
         btn.titleLabel.font = model.normalFont;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -254,7 +256,18 @@
         make.centerX.equalTo(btn.mas_centerX);
     }];
     
-    SHTabModel * tabModel = self.modelArray[btn.tag - BTNBASETAG];
+    SHTabModel * tabModel;
+    if (btn.tag > 0) {
+        
+        for (SHTabModel * model in self.modelArray) {
+            
+            if (model.tabTag == btn.tag) {
+                
+                tabModel = model;
+                break;
+            }
+        }
+    }
     btn.titleLabel.font = tabModel.selectedFont;
 }
 

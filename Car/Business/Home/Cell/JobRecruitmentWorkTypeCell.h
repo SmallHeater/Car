@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobRecruitmentWorkTypeCell : SHBaseTableViewCell
 
--(void)test;
+//title,标题;wage,工资;workType,工作类型;tabs,标签数组;
+-(void)showDic:(NSDictionary *)dic;
+
 
 @end
 

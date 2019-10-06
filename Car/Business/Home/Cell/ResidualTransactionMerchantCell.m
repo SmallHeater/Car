@@ -28,8 +28,9 @@
     if (!_photoImageView) {
         
         _photoImageView = [[UIImageView alloc] init];
+        _photoImageView.backgroundColor = [UIColor lightGrayColor];
         _photoImageView.layer.masksToBounds = YES;
-        _photoImageView.layer.maskedCorners = 35;
+        _photoImageView.layer.cornerRadius = 35;
     }
     return _photoImageView;
 }
@@ -136,12 +137,36 @@
     }];
 }
 
--(void)test{
+//shop_avatar,图片;shop_name,名;shop_phone,号码;shop_credit,信用;
+-(void)showDic:(NSDictionary *)dic{
     
-    self.photoImageView.backgroundColor = [UIColor grayColor];
-    self.nameLabel.backgroundColor = [UIColor greenColor];
-    self.numberLabel.backgroundColor = [UIColor redColor];
-    self.creditLabel.backgroundColor = [UIColor greenColor];
+    NSString * shop_avatar = @"";
+    if ([dic.allKeys containsObject:@"shop_avatar"]) {
+        
+        shop_avatar = dic[@"shop_avatar"];
+    }
+    [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:shop_avatar]];
+    
+    NSString * shop_name = @"";
+    if ([dic.allKeys containsObject:@"shop_name"]) {
+        
+        shop_name = dic[@"shop_name"];
+    }
+    self.nameLabel.text = shop_name;
+    
+    NSString * shop_phone = @"";
+    if ([dic.allKeys containsObject:@"shop_phone"]) {
+        
+        shop_phone = dic[@"shop_phone"];
+    }
+    self.numberLabel.text = [[NSString alloc] initWithFormat:@"商户号码：%@",shop_phone];
+    
+    NSString * shop_credit = @"";
+    if ([dic.allKeys containsObject:@"shop_credit"]) {
+        
+        shop_credit = dic[@"shop_credit"];
+    }
+    self.creditLabel.text = [[NSString alloc] initWithFormat:@"商户信用：%@",shop_credit];
 }
 
 @end

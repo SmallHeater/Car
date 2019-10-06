@@ -9,6 +9,9 @@
 #import "JobRecruitmentViewController.h"
 #import "JobRecruitmentCell.h"
 #import "JobRecruitmentDetailViewController.h"
+#import "UserInforController.h"
+#import "JobModel.h"
+#import "PostJobViewController.h"
 
 static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 
@@ -16,6 +19,10 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 
 //添加求职招聘按钮
 @property (nonatomic,strong) UIButton * addBtn;
+//招聘参数字典
+@property (nonatomic,strong) NSDictionary * jobOptionDic;
+//是否是首次进入
+@property (nonatomic,assign) BOOL isFirstLoad;
 
 @end
 
@@ -29,8 +36,12 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
         
         _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        __weak typeof(self) weakSelf = self;
         [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
+            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            vc.jobOptionDic = weakSelf.jobOptionDic;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }
     return _addBtn;
@@ -45,7 +56,17 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
-    //    [self requestListData];
+    [self requestJobOption];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    if (!self.isFirstLoad) {
+        
+        [self requestListData];
+    }
+    self.isFirstLoad = NO;
 }
 
 #pragma mark  ----  代理
@@ -61,16 +82,17 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     tableView.userInteractionEnabled = NO;
-    JobRecruitmentDetailViewController * vc = [[JobRecruitmentDetailViewController alloc] initWithTitle:@"招聘详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    JobModel * model = self.dataArray[indexPath.row];
+    JobRecruitmentDetailViewController * vc = [[JobRecruitmentDetailViewController alloc] initWithTitle:@"招聘详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andJobOptionDic:self.jobOptionDic andJobModel:model];
     [self.navigationController pushViewController:vc animated:YES];
-    tableView.userInteractionEnabled = NO;
+    tableView.userInteractionEnabled = YES;
 }
 
 
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -81,7 +103,47 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
         cell = [[JobRecruitmentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JobRecruitmentCellID];
     }
     
-    [cell test];
+    if (self.jobOptionDic && self.dataArray.count > 0) {
+        
+        JobModel * model = self.dataArray[indexPath.row];
+        //title,标题;recommend,推荐;wage,工资;workType,工作类型;company,公司;address,位置;tabs,标签数组;
+        NSString * workType;
+        NSArray * workTypeArray = self.jobOptionDic[@"job"];
+        for (NSDictionary * dic in workTypeArray) {
+            
+            NSNumber * number = dic[@"id"];
+            if (number.integerValue == model.job_id.integerValue) {
+                
+                workType = dic[@"name"];
+                break;
+            }
+        }
+        
+        NSString * wage = [[NSString alloc] initWithFormat:@"%@/月",[NSString repleaseNilOrNull:model.monthly_salary]];
+        
+        NSString * address;
+        NSArray * addressArray = self.jobOptionDic[@"workplace"];
+        for (NSDictionary * dic in addressArray) {
+            
+            NSNumber * number = dic[@"id"];
+            if (number.integerValue == model.workplace_id.integerValue) {
+                
+                address = dic[@"name"];
+                break;
+            }
+        }
+        
+        
+        NSMutableArray * tabsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary * dic in model.benefits) {
+            
+            [tabsArray addObject:dic[@"name"]];
+        }
+        
+        [cell showDic:@{@"title":[NSString repleaseNilOrNull:model.name],@"recommend":@"推荐",@"wage":wage,@"workType":workType,@"company":[NSString repleaseNilOrNull:model.shop_name],@"address":address,@"tabs":tabsArray}];
+    }
+    
+    
     return cell;
 }
 
@@ -98,11 +160,10 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
     }];
 }
 
--(void)requestListData{
-    return;
-    /*
+-(void)requestJobOption{
+    
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    NSDictionary * configurationDic = @{@"requestUrlStr":JobOption,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
@@ -118,16 +179,51 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
                 if (code.integerValue == 1) {
                     
                     NSDictionary * dataDic = dic[@"data"];
+                    weakSelf.jobOptionDic = dataDic;
+                    [weakSelf requestListData];
+                }
+                else{
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+    
+}
+
+
+-(void)requestListData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":JobList,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                [weakSelf.dataArray removeAllObjects];
+                if (code.integerValue == 1) {
+                    
+                    NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
                         NSArray * list = dataDic[@"list"];
                         for (NSDictionary * dic in list) {
                             
-                            //                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                            //                            for (MaintenanceRecordsModel * recordModel in model.list) {
-                            //
-                            //                                [weakSelf.dataArray addObject:recordModel];
-                            //                            }
+                            JobModel * model = [JobModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
                         }
                     }
                     
@@ -144,7 +240,6 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
             //失败的
         }
     }];
-     */
 }
 
 @end

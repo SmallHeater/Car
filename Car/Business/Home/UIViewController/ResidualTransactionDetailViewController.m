@@ -155,7 +155,6 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[ResidualTransactionMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionMerchantCellID];
         }
         
-        [cell test];
         
         return cell;
     }

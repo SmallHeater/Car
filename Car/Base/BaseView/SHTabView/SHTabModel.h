@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIColor * selectedColor;
 //宽度
 @property (nonatomic,assign) float btnWidth;
-
+//tag
+@property (nonatomic,assign) NSUInteger tabTag;
 
 @end
 
