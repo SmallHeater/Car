@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  发帖页
 
-#import "BaseViewController.h"
+#import "BaseUIViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostViewController : BaseViewController
+@interface PostViewController : BaseUIViewController
 
 @end
 

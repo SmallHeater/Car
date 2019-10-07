@@ -54,6 +54,9 @@
 #define GetArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticles",CARDOMAIN]
 //浏览量添加接口
 #define ArticlePV  [[NSString alloc] initWithFormat:@"%@/api/Home/articlePV",CARDOMAIN]
+//发帖接口
+#define PostArticle  [[NSString alloc] initWithFormat:@"%@/api/Home/postArticle",CARDOMAIN]
+
 
 //文章点赞接口
 #define ArticleThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/articleThumb",CARDOMAIN]

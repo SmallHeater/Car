@@ -21,7 +21,7 @@
 #import "ResidualTransactionViewController.h"
 #import "JobRecruitmentViewController.h"
 #import "MotorOilMonopolyViewcontroller.h"
-
+#import "PostViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -55,9 +55,12 @@
             }];
         }];
         //点击发布的响应
+        __weak typeof(self) weakSelf = self;
         [[_homeNavgationBar rac_signalForSelector:@selector(releaseBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
             
-            NSLog(@"发布");
+            PostViewController * vc = [[PostViewController alloc] initWithTitle:@"发布帖子" andIsShowBackBtn:YES];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }
     return _homeNavgationBar;
