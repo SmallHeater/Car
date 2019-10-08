@@ -226,6 +226,8 @@
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
 		62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */; };
 		62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */; };
+		62CC011C234C1323006B72AD /* TopicForumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011B234C1323006B72AD /* TopicForumViewController.m */; };
+		62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011E234C1AE9006B72AD /* TopicForumCell.m */; };
 		62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */; };
 /* End PBXBuildFile section */
 
@@ -666,6 +668,10 @@
 		62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionDetailViewController.m; sourceTree = "<group>"; };
 		62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionCarouseCell.h; sourceTree = "<group>"; };
 		62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionCarouseCell.m; sourceTree = "<group>"; };
+		62CC011A234C1323006B72AD /* TopicForumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicForumViewController.h; sourceTree = "<group>"; };
+		62CC011B234C1323006B72AD /* TopicForumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicForumViewController.m; sourceTree = "<group>"; };
+		62CC011D234C1AE9006B72AD /* TopicForumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicForumCell.h; sourceTree = "<group>"; };
+		62CC011E234C1AE9006B72AD /* TopicForumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicForumCell.m; sourceTree = "<group>"; };
 		62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyViewcontroller.h; sourceTree = "<group>"; };
 		62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyViewcontroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -954,6 +960,8 @@
 				043E9F72234874CF00109AC5 /* PostJobViewController.m */,
 				043E9F862349EC2000109AC5 /* PostViewController.h */,
 				043E9F872349EC2000109AC5 /* PostViewController.m */,
+				62CC011A234C1323006B72AD /* TopicForumViewController.h */,
+				62CC011B234C1323006B72AD /* TopicForumViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1913,6 +1921,8 @@
 				043E9F7E2348CD2B00109AC5 /* PostJobSelectCell.m */,
 				043E9F802348D39400109AC5 /* PostJobDescriptionCell.h */,
 				043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */,
+				62CC011D234C1AE9006B72AD /* TopicForumCell.h */,
+				62CC011E234C1AE9006B72AD /* TopicForumCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2065,6 +2075,7 @@
 				62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */,
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */,
+				62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04ACDD22234184860050B179 /* ForumArticleModel.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
@@ -2175,6 +2186,7 @@
 				0422D99A2323404600AF687D /* SHUploadRecordingModel.m in Sources */,
 				043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
+				62CC011C234C1323006B72AD /* TopicForumViewController.m in Sources */,
 				049C78C72336362900612AF5 /* SHQRCodeMiddleware.m in Sources */,
 				049C78C4233635D600612AF5 /* QRCodeVC.m in Sources */,
 				049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */,

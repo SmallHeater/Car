@@ -10,7 +10,7 @@
 #import "SHTextView.h"
 #import "SHImageAndTitleBtn.h"
 #import "UserInforController.h"
-
+#import "TopicForumViewController.h"
 
 @interface PostViewController ()<UITextFieldDelegate>
 
@@ -122,7 +122,12 @@
         seleceForumBtn.layer.borderWidth = 1;
         seleceForumBtn.layer.borderColor = Color_DEDEDE.CGColor;
         [_bottomView addSubview:seleceForumBtn];
-    
+        __weak typeof(self) weakSelf = self;
+        [[seleceForumBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         
         UIView * whiteView = [[UIView alloc] init];
         whiteView.layer.shadowColor = [UIColor colorWithRed:97/255.0 green:97/255.0 blue:97/255.0 alpha:0.16].CGColor;
