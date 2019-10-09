@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PostViewController : BaseUIViewController
 
+-(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andTabID:(NSString *)tabID;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -48,10 +48,36 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         
+        [self drawUI];
     }
     return self;
 }
 
 #pragma mark  ----  自定义函数
+
+-(void)drawUI{
+    
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(16);
+        make.top.bottom.offset(0);
+        make.right.offset(-16);
+    }];
+    
+    [self addSubview:self.lineLabel];
+    [self.lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(16);
+        make.right.offset(-16);
+        make.bottom.offset(0);
+        make.height.offset(1);
+    }];
+}
+
+-(void)show:(NSString *)str{
+    
+    self.titleLabel.text = [NSString repleaseNilOrNull:str];
+}
 
 @end

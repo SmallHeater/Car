@@ -56,10 +56,20 @@
     return self.evaTextView.selectedRange;
 }
 
+-(NSAttributedString *)attributedStr{
+    
+    if ([self.evaTextView.text isEqualToString:self.placeholder]) {
+        
+        self.evaTextView.text = @"";
+    }
+    return self.evaTextView.attributedText;
+}
+
 #pragma mark  ----  SET
 
 -(void)setText:(NSString *)text{
     
+    self.evaTextView.attributedText = nil;
     self.evaTextView.text = text;
     self.evaTextView.textColor = self.textColor;
 }
@@ -114,6 +124,12 @@
 -(void)setTextColor:(UIColor *)textColor{
     
     _textColor = textColor;
+}
+
+-(void)setAttributedStr:(NSAttributedString *)attributedStr{
+    
+    self.evaTextView.text = @"";
+    self.evaTextView.attributedText = attributedStr;
 }
 
 #pragma mark  ----  生命周期函数

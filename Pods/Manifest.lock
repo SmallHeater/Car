@@ -32,6 +32,7 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetworking
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - ReactiveObjC
   - RealReachability
   - SDWebImage
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -60,6 +62,7 @@ SPEC REPOS:
     - ReactiveObjC
     - RealReachability
     - SDWebImage
+    - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -74,7 +77,8 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c7e9ffc3b790d48c24775d612776ba892a50382b
+PODFILE CHECKSUM: 8332b095cbbf8973e2d760e557adaee47bdc0884
 
 COCOAPODS: 1.5.3

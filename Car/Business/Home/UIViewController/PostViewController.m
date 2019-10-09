@@ -11,8 +11,11 @@
 #import "SHImageAndTitleBtn.h"
 #import "UserInforController.h"
 #import "TopicForumViewController.h"
+#import "LocatingManager.h"
 
 @interface PostViewController ()<UITextFieldDelegate>
+
+@property (nonatomic,strong) NSString * tabID;
 
 //发布按钮
 @property (nonatomic,strong) UIButton * postBtn;
@@ -106,6 +109,8 @@
         _contentTF.placeholderColor = Color_999999;
         _contentTF.textFont = FONT14;
         _contentTF.textColor = Color_333333;
+        _contentTF.canWrap = YES;
+        _contentTF.returnKeyType = UIReturnKeyDefault;
     }
     return _contentTF;
 }
@@ -125,7 +130,24 @@
         __weak typeof(self) weakSelf = self;
         [[seleceForumBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andTabID:weakSelf.tabID];
+            
+            [[vc rac_valuesForKeyPath:@"forumStr" observer:weakSelf] subscribeNext:^(id  _Nullable x) {
+                
+                if ([x isKindOfClass:[NSString class]] && ![NSString strIsEmpty:x]) {
+                    
+                    [seleceForumBtn refreshTitle:x color:nil];
+                }
+            }];
+            
+            [[vc rac_valuesForKeyPath:@"forumId" observer:weakSelf] subscribeNext:^(id  _Nullable x) {
+                
+                if ([x isKindOfClass:[NSString class]] && ![NSString strIsEmpty:x]) {
+                    
+                    weakSelf.section_id = x;
+                }
+            }];
+            
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         
@@ -142,7 +164,8 @@
             make.height.offset(49);
         }];
         
-        __weak typeof(self) weakSelf = self;
+        /*
+         表情，定位，这一期先不要
         //表情按钮
         UIButton * expressionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [expressionButton setImage:[UIImage imageNamed:@"biaoqing"] forState:UIControlStateNormal];
@@ -153,19 +176,22 @@
             make.top.offset(15);
             make.width.height.offset(22);
         }];
+         */
         //拍照按钮
         UIButton * photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [photoButton setImage:[UIImage imageNamed:@"xiangji2"] forState:UIControlStateNormal];
+        [photoButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
         [whiteView addSubview:photoButton];
         [photoButton mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.left.equalTo(expressionButton.mas_right).offset(15);
+            make.left.offset(15);
             make.top.offset(15);
             make.width.height.offset(22);
         }];
         //相册按钮
         UIButton * albumButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [albumButton setImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
+        [albumButton addTarget:self action:@selector(gotoAlbum:) forControlEvents:UIControlEventTouchUpInside];
         [whiteView addSubview:albumButton];
         [albumButton mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -173,9 +199,11 @@
             make.top.offset(15);
             make.width.height.offset(22);
         }];
+        /*
         //定位按钮
         UIButton * locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [locationButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
+        [locationButton addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
         [whiteView addSubview:locationButton];
         [locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -183,6 +211,7 @@
             make.top.offset(15);
             make.width.height.offset(22);
         }];
+         */
         //弹/收键盘按钮
         UIButton * keyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [keyboardButton setImage:[UIImage imageNamed:@"jianpan"] forState:UIControlStateNormal];
@@ -211,6 +240,16 @@
 }
 
 #pragma mark  ----  生命周期函数
+
+-(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andTabID:(NSString *)tabID
+{
+    self = [super initWithTitle:title andIsShowBackBtn:YES];
+    if (self) {
+        
+        self.tabID = [NSString repleaseNilOrNull:tabID];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -350,6 +389,67 @@
             //失败的
         }
     }];
+}
+
+//去拍照
+-(void)takePhoto:(UIButton *)button{
+    
+    button.userInteractionEnabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+        
+        button.userInteractionEnabled = YES;
+        if ([resultDic.allKeys containsObject:@"error"]) {
+            
+            //异常
+            NSLog(@"异常");
+        }
+        else if ([resultDic.allKeys containsObject:@"image"]){
+            
+            UIImage * image = resultDic[@"image"];
+            [weakSelf createStrWithImage:image];
+        }
+    }];
+}
+
+//去相册
+-(void)gotoAlbum:(UIButton *)btn{
+    
+    btn.userInteractionEnabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:9],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+        
+        btn.userInteractionEnabled = YES;
+        if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
+            
+            NSArray * dataArray = resultDic[@"data"];
+        }
+    }];
+}
+
+//定位
+-(void)location:(UIButton *)btn{
+    
+    btn.userInteractionEnabled = YES;
+    [[LocatingManager sharedManager] startLocating:^(NSDictionary * _Nonnull resultDic) {
+        
+    }];
+    btn.userInteractionEnabled = NO;
+}
+
+//创建富文本
+-(void)createStrWithImage:(UIImage *)image{
+    
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTF.attributedStr];
+    //自定义添加的本地图片
+    NSTextAttachment * textAttachment = [[NSTextAttachment alloc] init];
+    textAttachment.image = image;
+    float imageWidth = CGRectGetWidth(self.contentTF.frame) - 10;
+    float imageHeight = image.size.height / image.size.width * imageWidth;
+    textAttachment.bounds = CGRectMake(0, 0, imageWidth, imageHeight);
+    NSAttributedString * textAttactmentStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    [attributedString insertAttributedString:textAttactmentStr atIndex:attributedString.length];
+    self.contentTF.attributedStr = attributedString;
 }
 
 @end

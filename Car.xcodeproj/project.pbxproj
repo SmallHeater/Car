@@ -96,6 +96,7 @@
 		043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */; };
 		043E9F85234984D900109AC5 /* PostJobRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F84234984D900109AC5 /* PostJobRequestModel.m */; };
 		043E9F882349EC2000109AC5 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F872349EC2000109AC5 /* PostViewController.m */; };
+		043E9F8F234DB6D900109AC5 /* LocatingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F8E234DB6D900109AC5 /* LocatingManager.m */; };
 		0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */; };
 		0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C077232B98B400A1904D /* BusinessSummaryItemModel.m */; };
 		0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C07A232B9EE000A1904D /* ProfitstatisticsModel.m */; };
@@ -421,6 +422,8 @@
 		043E9F84234984D900109AC5 /* PostJobRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobRequestModel.m; sourceTree = "<group>"; };
 		043E9F862349EC2000109AC5 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		043E9F872349EC2000109AC5 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		043E9F8D234DB6D900109AC5 /* LocatingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocatingManager.h; sourceTree = "<group>"; };
+		043E9F8E234DB6D900109AC5 /* LocatingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocatingManager.m; sourceTree = "<group>"; };
 		0445C073232B984400A1904D /* BusinessSummaryHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryHeaderModel.h; sourceTree = "<group>"; };
 		0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryHeaderModel.m; sourceTree = "<group>"; };
 		0445C076232B98B400A1904D /* BusinessSummaryItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryItemModel.h; sourceTree = "<group>"; };
@@ -861,6 +864,8 @@
 				628AF59A2318A97F007BC0F8 /* HighOrderPositioning */,
 				0404856B230C205F00EF17C8 /* UIScreenControl.h */,
 				04048569230C205F00EF17C8 /* UIScreenControl.m */,
+				043E9F8D234DB6D900109AC5 /* LocatingManager.h */,
+				043E9F8E234DB6D900109AC5 /* LocatingManager.m */,
 			);
 			path = BaseControl;
 			sourceTree = "<group>";
@@ -2144,6 +2149,7 @@
 				6200075F2332428400319C33 /* TabModel.m in Sources */,
 				04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
+				043E9F8F234DB6D900109AC5 /* LocatingManager.m in Sources */,
 				04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
 				0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */,

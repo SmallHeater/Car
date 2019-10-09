@@ -21,6 +21,7 @@ typedef void(^ReturnBlock)(NSString * str);
 @interface SHTextView : UIView
 
 @property(nonatomic,copy) NSString *text;
+@property (nonatomic,strong) NSAttributedString * attributedStr;
 @property(nonatomic,strong) UIColor * textColor;
 //默认placeHold
 @property (nonatomic,strong) NSString * placeholder;

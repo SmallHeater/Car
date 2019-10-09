@@ -28,7 +28,7 @@
 #import "SHBaseTableViewCell.h"
 #import "SHBaseTableView.h"
 #import "PublicRequest.h"
-
+#import "YYText.h"
 
 #define Color_09A200 [UIColor colorWithRed:9.0/255.0 green:162.0/255.0 blue:0 alpha:1]
 #define Color_108EE9 [UIColor colorFromHexRGB:@"108EE9"]    

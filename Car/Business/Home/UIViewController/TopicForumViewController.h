@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TopicForumViewController : BaseTableViewController
 
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andTabID:(NSString *)tabID;
+
 @end
 
 NS_ASSUME_NONNULL_END

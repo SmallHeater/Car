@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TopicForumCell : SHBaseTableViewCell
 
+-(void)show:(NSString *)str;
+
 @end
 
 NS_ASSUME_NONNULL_END

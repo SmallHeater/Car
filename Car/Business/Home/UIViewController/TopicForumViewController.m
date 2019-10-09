@@ -7,8 +7,20 @@
 //
 
 #import "TopicForumViewController.h"
+#import "TopicForumCell.h"
+#import "UserInforController.h"
+#import "ForumTabModel.h"
+
+static NSString * cellId = @"TopicForumCell";
 
 @interface TopicForumViewController ()
+
+@property (nonatomic,strong) NSString * tabID;
+
+//选中的论坛名称
+@property (nonatomic,strong) NSString * forumStr;
+//论坛ID
+@property (nonatomic,strong) NSString * forumId;
 
 @end
 
@@ -16,12 +28,23 @@
 
 #pragma mark  ----  生命周期函数
 
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andTabID:(NSString *)tabID{
+    
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    if (self) {
+        
+        self.tabID = [NSString repleaseNilOrNull:tabID];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
+    
     //继承BaseTableViewController使用时，要将本方法提前，保证先添加tableView,再添加导航
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //    [self requestListData];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -35,6 +58,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    ForumTabModel * model = self.dataArray[indexPath.row];
+    self.forumStr = model.title;
+    self.forumId = model.ForumID;
+    [self backBtnClicked:nil];
 }
 
 
@@ -46,17 +73,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-   
+    TopicForumCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        
+        cell = [[TopicForumCell alloc] initWithReuseIdentifier:cellId];
+    }
     
-    return nil;
+    ForumTabModel * model = self.dataArray[indexPath.row];
+    [cell show:model.title];
+    
+    return cell;
 }
 
 #pragma mark  ----  自定义函数
-/*
 -(void)requestListData{
-    return;
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":self.tabID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":SectionList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
@@ -68,27 +101,29 @@
                 
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
+                
                 if (code.integerValue == 1) {
                     
-                    NSDictionary * dataDic = dic[@"data"];
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
-                        NSArray * list = dataDic[@"list"];
-                        for (NSDictionary * dic in list) {
+                        NSArray * arr = dataDic[@"sections"];
+                        [weakSelf.dataArray removeAllObjects];
+                        for (NSUInteger i = 0; i < arr.count; i++) {
                             
-                            //                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                            //                            for (MaintenanceRecordsModel * recordModel in model.list) {
-                            //
-                            //                                [weakSelf.dataArray addObject:recordModel];
-                            //                            }
-                        }
+                            NSDictionary * dic = arr[i];
+                            ForumTabModel * model = [ForumTabModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
+                         }
                     }
-                    
-                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
+                    
+                    //异常
                 }
+                [weakSelf.tableView reloadData];
             }
             else{
             }
@@ -99,5 +134,4 @@
         }
     }];
 }
-*/
 @end
