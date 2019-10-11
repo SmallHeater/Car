@@ -32,6 +32,9 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
   - YYText (1.0.7)
 
 DEPENDENCIES:
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - ReactiveObjC
   - RealReachability
   - SDWebImage
+  - YYImage
   - YYText
 
 SPEC REPOS:
@@ -62,6 +66,7 @@ SPEC REPOS:
     - ReactiveObjC
     - RealReachability
     - SDWebImage
+    - YYImage
     - YYText
 
 SPEC CHECKSUMS:
@@ -77,8 +82,9 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 8332b095cbbf8973e2d760e557adaee47bdc0884
+PODFILE CHECKSUM: 37e7db78a44c6b697a318e09a8d1325219f1d2bd
 
 COCOAPODS: 1.5.3

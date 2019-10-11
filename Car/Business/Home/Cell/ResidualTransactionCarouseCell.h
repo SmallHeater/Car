@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ResidualTransactionCarouseCell : SHBaseTableViewCell
 
+-(void)show:(NSArray<NSString *> *)imgUrlArray;
 +(float)cellHeight;
 
 @end

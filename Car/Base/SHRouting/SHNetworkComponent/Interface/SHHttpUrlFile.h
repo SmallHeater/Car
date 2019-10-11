@@ -54,6 +54,8 @@
 #define GetArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticles",CARDOMAIN]
 //浏览量添加接口
 #define ArticlePV  [[NSString alloc] initWithFormat:@"%@/api/Home/articlePV",CARDOMAIN]
+//获取板块列表接口
+#define PostSectionList  [[NSString alloc] initWithFormat:@"%@/api/Home/getPostSectionList",CARDOMAIN]
 //发帖接口
 #define PostArticle  [[NSString alloc] initWithFormat:@"%@/api/Home/postArticle",CARDOMAIN]
 
@@ -83,6 +85,11 @@
 #define JobList  [[NSString alloc] initWithFormat:@"%@/api/Home/jobList",CARDOMAIN]
 //发布招聘
 #define PostJob  [[NSString alloc] initWithFormat:@"%@/api/Home/postJob",CARDOMAIN]
+
+//残值相关-发布残值物品接口
+#define PostHandedGood  [[NSString alloc] initWithFormat:@"%@/api/Home/postHandedGood",CARDOMAIN]
+//残值相关-残值列表接口
+#define HandedGoodList  [[NSString alloc] initWithFormat:@"%@/api/Home/handedGoodList",CARDOMAIN]
 
 
 #endif /* HttpUrlFile_h */

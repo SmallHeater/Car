@@ -27,7 +27,8 @@
     if (!_commodityImageView) {
         
         _commodityImageView = [[UIImageView alloc] init];
-        _commodityImageView.backgroundColor = [UIColor clearColor];
+        _commodityImageView.layer.cornerRadius = 1;
+        _commodityImageView.backgroundColor = [UIColor lightGrayColor];
     }
     return _commodityImageView;
 }
@@ -138,13 +139,44 @@
     }];
 }
 
--(void)test{
+-(void)show:(ResidualTransactionModel *)model{
     
-    self.commodityImageView.backgroundColor = [UIColor greenColor];
-    self.titleLabel.text = @"这里是标题这里是标题单行显示";
-    self.addressLabel.text = @"山东省济南市平阴县";
-    self.priceLabel.text = @"价格面议";
-    self.dateLabel.text = @"2019.09.01";
+    if (model && [model isKindOfClass:[ResidualTransactionModel class]]) {
+        
+        NSString * images = model.images;
+        if (![NSString strIsEmpty:images]) {
+            
+            NSArray * imageArray = [images componentsSeparatedByString:@","];
+            NSURL * url = [NSURL URLWithString:imageArray[0]];
+            [self.commodityImageView sd_setImageWithURL:url];
+        }
+        
+        self.titleLabel.text = [NSString repleaseNilOrNull:model.name];
+        self.addressLabel.text = [NSString repleaseNilOrNull:model.address];
+        NSString * money;
+        if ([model.money isEqualToString:@"面议"]) {
+            
+            money = model.money;
+        }
+        else{
+            
+            money = [[NSString alloc] initWithFormat:@"￥%@",model.money];
+        }
+        self.priceLabel.text = [NSString repleaseNilOrNull:money];
+        
+        NSString * timeStr;
+        if (model.createtime) {
+            
+            NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy.MM.dd"];
+            timeStr = [formatter stringFromDate:model.createtime];
+        }
+        else{
+            
+            timeStr = @"";
+        }
+        self.dateLabel.text = timeStr;
+    }
 }
 
 @end

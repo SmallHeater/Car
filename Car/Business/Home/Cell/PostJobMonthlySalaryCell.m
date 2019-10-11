@@ -94,10 +94,11 @@
     
     if (!_negotiableBtn) {
         
-        _negotiableBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 50 - 18, 18, 50, 14) andImageFrame:CGRectMake(0, 1, 12, 12) andTitleFrame:CGRectMake(19, 0, 31, 14) andImageName:@"xuanze" andSelectedImageName:@"selected" andTitle:@"面议"];
+        _negotiableBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 50 - 18, 18, 50, 14) andImageFrame:CGRectMake(0, 1, 12, 12) andTitleFrame:CGRectMake(19, 0, 31, 14) andImageName:@"xuanze" andSelectedImageName:@"xuanzhonglanse" andTitle:@"面议"];
         __weak typeof(self) weakSelf = self;
         [[_negotiableBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
+            [[UIApplication sharedApplication].keyWindow endEditing:YES];
             x.selected = !x.selected;
             weakSelf.isNegotiable = x.selected;
         }];

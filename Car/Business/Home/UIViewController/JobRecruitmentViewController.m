@@ -40,7 +40,6 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
         [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
-            vc.jobOptionDic = weakSelf.jobOptionDic;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }
@@ -193,9 +192,7 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
             //失败的
         }
     }];
-    
 }
-
 
 -(void)requestListData{
     

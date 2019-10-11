@@ -78,7 +78,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
     }
     else if (indexPath.row == 1){
         
-        cellHeight = 333;
+        cellHeight = [JobRecruitmenDescriptionCell cellHeightWithContent:self.jobModel.jobDescription];
     }
     else if (indexPath.row == 2){
         
@@ -147,6 +147,50 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[JobRecruitmenDescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JobRecruitmenDescriptionCellID];
         }
         
+        if (self.jobOptionDic && self.jobModel) {
+            
+            NSArray * educationArray = self.jobOptionDic[@"education"];
+            NSString * educationStr;
+            for (NSDictionary * dic in educationArray) {
+                
+                NSNumber * number = dic[@"id"];
+                if (number.integerValue == self.jobModel.education_id.integerValue) {
+                    
+                    NSString * tempStr = dic[@"name"];
+                    if ([tempStr isEqualToString:@"不限"]) {
+                     
+                        educationStr = @"学历不限";
+                    }
+                    else{
+                        
+                        educationStr = tempStr;
+                    }
+                    break;
+                }
+            }
+            
+            NSArray * experienceArray = self.jobOptionDic[@"experience"];
+            NSString * experienceStr;
+            for (NSDictionary * dic in experienceArray) {
+                
+                NSNumber * number = dic[@"id"];
+                if (number.integerValue == self.jobModel.experience_id.integerValue) {
+                    
+                    NSString * tempStr = dic[@"name"];
+                    if ([tempStr isEqualToString:@"不限"]) {
+                        
+                        experienceStr = @"经验不限";
+                    }
+                    else{
+                        
+                        experienceStr = tempStr;
+                    }
+                    break;
+                }
+            }
+            
+            [cell showWorkExperienceRequirements:experienceStr academicRequirements:educationStr content:self.jobModel.jobDescription];
+        }
         
         return cell;
     }

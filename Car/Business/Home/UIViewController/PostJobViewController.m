@@ -39,6 +39,8 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
 @property (nonatomic,strong) PostJobSelectCell * workingYearsCell;
 //工作地点cell
 @property (nonatomic,strong) PostJobSelectCell * workingPlaceCell;
+//招聘参数字典
+@property (nonatomic,strong) NSDictionary * jobOptionDic;
 
 @end
 
@@ -138,6 +140,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
     [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self requestJobOption];
     [self drawUI];
 }
 
@@ -431,7 +434,8 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
             case 0:
             {
                 //福利待遇
-                self.postJobRequestModel.benefit_ids = dic[@"title"];
+                NSNumber * number = dic[@"key"];
+                self.postJobRequestModel.benefit_ids = [[NSString alloc] initWithFormat:@"%ld",number.integerValue];
                 [self.welfareTreatmentCell refreshLabel:dic[@"title"]];
                 break;
             }
@@ -497,6 +501,40 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
         make.right.offset(-15);
         make.bottom.offset(-25 - [UIScreenControl bottomSafeHeight]);
         make.height.offset(44);
+    }];
+}
+
+-(void)requestJobOption{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":JobOption,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSNumber * code = dic[@"code"];
+                if (code.integerValue == 1) {
+                    
+                    NSDictionary * dataDic = dic[@"data"];
+                    weakSelf.jobOptionDic = dataDic;
+                }
+                else{
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
     }];
 }
 

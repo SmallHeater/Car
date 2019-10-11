@@ -10,6 +10,7 @@
 #import "CommodityCell.h"
 #import "UserInforController.h"
 #import "ResidualTransactionDetailViewController.h"
+#import "ResidualTransactionModel.h"
 
 static NSString * CommodityCellID = @"CommodityCell";
 
@@ -61,7 +62,7 @@ static NSString * CommodityCellID = @"CommodityCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
-//    [self requestListData];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -76,7 +77,8 @@ static NSString * CommodityCellID = @"CommodityCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ResidualTransactionDetailViewController * vc = [[ResidualTransactionDetailViewController alloc] initWithTitle:@"详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    ResidualTransactionModel * model = self.dataArray[indexPath.row];
+    ResidualTransactionDetailViewController * vc = [[ResidualTransactionDetailViewController alloc] initWithTitle:@"详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andModel:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -84,7 +86,7 @@ static NSString * CommodityCellID = @"CommodityCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,7 +97,8 @@ static NSString * CommodityCellID = @"CommodityCell";
         cell = [[CommodityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CommodityCellID];
     }
     
-    [cell test];
+    ResidualTransactionModel * model = self.dataArray[indexPath.row];
+    [cell show:model];
     
     return cell;
 }
@@ -113,10 +116,10 @@ static NSString * CommodityCellID = @"CommodityCell";
     }];
 }
 
--(void)requestListData{
-    return;
+-(void)requestListData
+{
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    NSDictionary * configurationDic = @{@"requestUrlStr":HandedGoodList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
@@ -137,11 +140,8 @@ static NSString * CommodityCellID = @"CommodityCell";
                         NSArray * list = dataDic[@"list"];
                         for (NSDictionary * dic in list) {
                             
-//                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-//                            for (MaintenanceRecordsModel * recordModel in model.list) {
-//                                
-//                                [weakSelf.dataArray addObject:recordModel];
-//                            }
+                            ResidualTransactionModel * model = [ResidualTransactionModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
                         }
                     }
                     

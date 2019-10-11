@@ -12,6 +12,7 @@ pod 'AFNetworking'
 pod 'PLeakSniffer'
 pod 'iOS-Echarts’
 pod 'YYText'
+pod 'YYImage'
 #上线在开放本功能
 #pod 'AvoidCrash'
 end

@@ -28,6 +28,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 
 //底部 view
 @property (nonatomic,strong) DetailBottomView * bottomView;
+@property (nonatomic,strong) ResidualTransactionModel * model;
 
 @end
 
@@ -40,20 +41,36 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
     if (!_bottomView) {
         
         _bottomView = [[DetailBottomView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        [[_bottomView rac_signalForSelector:@selector(phoneBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            NSString * telStr = [NSString stringWithFormat:@"tel:%@",weakSelf.model.phone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:nil completionHandler:^(BOOL success) {
+                
+            }];
+        }];
     }
     return _bottomView;
 }
 
 #pragma mark  ----  生命周期函数
 
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andModel:(ResidualTransactionModel *)model{
+    
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    if (self) {
+        
+        self.model = model;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     //继承BaseTableViewController使用时，要将本方法提前，保证先添加tableView,再添加导航
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self drawUI];
-    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -111,7 +128,10 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[ResidualTransactionCarouseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionCarouseCellID];
         }
         
-        cell.backgroundColor = [UIColor greenColor];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+            [cell show:[self.model.images componentsSeparatedByString:@","]];
+        });
         
         return cell;
     }
@@ -121,9 +141,16 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
         if (!cell) {
             
             cell = [[ResidualTransactionTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionTitleCellID];
+            NSString * telStr = [NSString stringWithFormat:@"tel:%@",self.model.phone];
+            [[cell rac_signalForSelector:@selector(callImageViewTaped)] subscribeNext:^(RACTuple * _Nullable x) {
+               
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:nil completionHandler:^(BOOL success) {
+                    
+                }];
+            }];
         }
         
-        [cell test];
+        [cell showTitle:self.model.name price:self.model.money];
         return cell;
     }
     else if(indexPath.row == 2){
@@ -144,7 +171,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[ResidualTransactionServiceDetailsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionServiceDetailsCellID];
         }
         
-        [cell test];
+        [cell show:self.model.RTDescription];
         return cell;
     }
     else if (indexPath.row == 4){
@@ -155,7 +182,8 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             cell = [[ResidualTransactionMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResidualTransactionMerchantCellID];
         }
         
-        
+        NSDictionary * dic = @{@"shop_avatar":self.model.shop_avatar,@"shop_name":self.model.shop_name,@"shop_phone":self.model.shop_phone,@"shop_credit":self.model.shop_credit};
+        [cell showDic:dic];
         return cell;
     }
     else if (indexPath.row == 5){
@@ -192,54 +220,4 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
         make.height.offset(50);
     }];
 }
-
--(void)requestListData{
-    [self refreshViewType:BTVCType_RefreshTableView];
-    /*
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
-        
-        if (![resultDic.allKeys containsObject:@"error"]) {
-            
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSNumber * code = dic[@"code"];
-                if (code.integerValue == 1) {
-                    
-                    NSDictionary * dataDic = dic[@"data"];
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
-                        
-                        NSArray * list = dataDic[@"list"];
-                        for (NSDictionary * dic in list) {
-                            
-                            //                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                            //                            for (MaintenanceRecordsModel * recordModel in model.list) {
-                            //
-                            //                                [weakSelf.dataArray addObject:recordModel];
-                            //                            }
-                        }
-                    }
-                    
-                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
-                }
-                else{
-                }
-            }
-            else{
-            }
-        }
-        else{
-            
-            //失败的
-        }
-    }];
-     */
-}
-
 @end

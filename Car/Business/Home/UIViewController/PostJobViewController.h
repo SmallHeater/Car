@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PostJobViewController : BaseTableViewController
 
-//招聘参数字典
-@property (nonatomic,strong) NSDictionary * jobOptionDic;
 
 @end
 

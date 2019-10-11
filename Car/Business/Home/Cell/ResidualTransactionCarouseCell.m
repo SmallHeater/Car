@@ -26,7 +26,6 @@
     if (!_carouselView) {
         
         _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
-//        _carouselView.backgroundColor = [UIColor yellowColor];
     }
     return _carouselView;
 }
@@ -57,6 +56,17 @@
        
         make.left.right.top.bottom.offset(0);
     }];
+}
+
+-(void)show:(NSArray<NSString *> *)imgUrlArray{
+    
+    NSMutableArray * dicArray = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < imgUrlArray.count; i++) {
+        
+        NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:imgUrlArray[i],@"CarouselImageUrlStr", nil];
+        [dicArray addObject:dic];
+    }
+    [self.carouselView refreshData:dicArray];
 }
 
 @end

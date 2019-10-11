@@ -7,12 +7,14 @@
 //  残值交易cell
 
 #import "SHBaseTableViewCell.h"
+#import "ResidualTransactionModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CommodityCell : SHBaseTableViewCell
 
--(void)test;
+-(void)show:(ResidualTransactionModel *)model;
 
 @end
 

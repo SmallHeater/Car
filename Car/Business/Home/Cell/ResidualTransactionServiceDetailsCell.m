@@ -120,9 +120,9 @@
     }];
 }
 
--(void)test{
+-(void)show:(NSString *)str{
     
-    self.contentLabel.text = @"再大的愿景都是从小处着手，越大的图越要从小处搞，越小的东西越要从大处着眼再大的愿景都是从小处着手，越大的图越要从小处搞，越小的东西越要从大处着眼再大的愿景都是从小处着手，越大的图越要从小处搞，越小的东西越要从大处着眼";
+    self.contentLabel.text = [NSString repleaseNilOrNull:str];
 }
 
 @end

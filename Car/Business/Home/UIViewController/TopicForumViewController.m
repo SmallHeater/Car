@@ -15,8 +15,6 @@ static NSString * cellId = @"TopicForumCell";
 
 @interface TopicForumViewController ()
 
-@property (nonatomic,strong) NSString * tabID;
-
 //选中的论坛名称
 @property (nonatomic,strong) NSString * forumStr;
 //论坛ID
@@ -27,16 +25,6 @@ static NSString * cellId = @"TopicForumCell";
 @implementation TopicForumViewController
 
 #pragma mark  ----  生命周期函数
-
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andTabID:(NSString *)tabID{
-    
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
-    if (self) {
-        
-        self.tabID = [NSString repleaseNilOrNull:tabID];
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     
@@ -88,8 +76,8 @@ static NSString * cellId = @"TopicForumCell";
 #pragma mark  ----  自定义函数
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":self.tabID};
-    NSDictionary * configurationDic = @{@"requestUrlStr":SectionList,@"bodyParameters":bodyParameters};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":PostSectionList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

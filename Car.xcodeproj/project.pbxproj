@@ -107,6 +107,11 @@
 		0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C09A232CFBEA00A1904D /* SearchConfigurationModel.m */; };
 		04544256233A452B0077A3F8 /* SHTabSelectLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04544255233A452B0077A3F8 /* SHTabSelectLineModel.m */; };
 		04544259233A51FA0077A3F8 /* MotorOilMonopolyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */; };
+		0458B89B234F5D4C0073B5DB /* PostResidualTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B89A234F5D4C0073B5DB /* PostResidualTransactionViewController.m */; };
+		0458B89E234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B89D234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m */; };
+		0458B8A1234F655D0073B5DB /* PostResidualTransactionAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A0234F655D0073B5DB /* PostResidualTransactionAmountCell.m */; };
+		0458B8A4234F6A0C0073B5DB /* PostResidualTransactionImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */; };
+		0458B8A7235030290073B5DB /* ResidualTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A6235030290073B5DB /* ResidualTransactionModel.m */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -444,6 +449,16 @@
 		04544255233A452B0077A3F8 /* SHTabSelectLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHTabSelectLineModel.m; sourceTree = "<group>"; };
 		04544257233A51FA0077A3F8 /* MotorOilMonopolyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyCell.h; sourceTree = "<group>"; };
 		04544258233A51FA0077A3F8 /* MotorOilMonopolyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyCell.m; sourceTree = "<group>"; };
+		0458B899234F5D4C0073B5DB /* PostResidualTransactionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostResidualTransactionViewController.h; sourceTree = "<group>"; };
+		0458B89A234F5D4C0073B5DB /* PostResidualTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostResidualTransactionViewController.m; sourceTree = "<group>"; };
+		0458B89C234F5FAF0073B5DB /* PostResidualTransactionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostResidualTransactionRequestModel.h; sourceTree = "<group>"; };
+		0458B89D234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostResidualTransactionRequestModel.m; sourceTree = "<group>"; };
+		0458B89F234F655C0073B5DB /* PostResidualTransactionAmountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostResidualTransactionAmountCell.h; sourceTree = "<group>"; };
+		0458B8A0234F655D0073B5DB /* PostResidualTransactionAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostResidualTransactionAmountCell.m; sourceTree = "<group>"; };
+		0458B8A2234F6A0C0073B5DB /* PostResidualTransactionImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostResidualTransactionImageCell.h; sourceTree = "<group>"; };
+		0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostResidualTransactionImageCell.m; sourceTree = "<group>"; };
+		0458B8A5235030290073B5DB /* ResidualTransactionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionModel.h; sourceTree = "<group>"; };
+		0458B8A6235030290073B5DB /* ResidualTransactionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionModel.m; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -967,6 +982,8 @@
 				043E9F872349EC2000109AC5 /* PostViewController.m */,
 				62CC011A234C1323006B72AD /* TopicForumViewController.h */,
 				62CC011B234C1323006B72AD /* TopicForumViewController.m */,
+				0458B899234F5D4C0073B5DB /* PostResidualTransactionViewController.h */,
+				0458B89A234F5D4C0073B5DB /* PostResidualTransactionViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1660,6 +1677,10 @@
 				04ACDD12234063A00050B179 /* JobModel.m */,
 				043E9F83234984D900109AC5 /* PostJobRequestModel.h */,
 				043E9F84234984D900109AC5 /* PostJobRequestModel.m */,
+				0458B89C234F5FAF0073B5DB /* PostResidualTransactionRequestModel.h */,
+				0458B89D234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m */,
+				0458B8A5235030290073B5DB /* ResidualTransactionModel.h */,
+				0458B8A6235030290073B5DB /* ResidualTransactionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1882,6 +1903,8 @@
 		62A80D122330692900A6C456 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0458B89F234F655C0073B5DB /* PostResidualTransactionAmountCell.h */,
+				0458B8A0234F655D0073B5DB /* PostResidualTransactionAmountCell.m */,
 				62A80D132330694300A6C456 /* ItemsCell.h */,
 				62A80D142330694300A6C456 /* ItemsCell.m */,
 				04CD0E29233271F7009CA687 /* ItemNewsCell.h */,
@@ -1928,6 +1951,8 @@
 				043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */,
 				62CC011D234C1AE9006B72AD /* TopicForumCell.h */,
 				62CC011E234C1AE9006B72AD /* TopicForumCell.m */,
+				0458B8A2234F6A0C0073B5DB /* PostResidualTransactionImageCell.h */,
+				0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2076,6 +2101,7 @@
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
+				0458B8A1234F655D0073B5DB /* PostResidualTransactionAmountCell.m in Sources */,
 				0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */,
 				62A8F6E823260D0700A6C456 /* SHPickerView.m in Sources */,
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
@@ -2097,6 +2123,7 @@
 				040485A5230C25F800EF17C8 /* WorkbenchViewController.m in Sources */,
 				04ACDD2823418F6E0050B179 /* FromUserModel.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
+				0458B8A7235030290073B5DB /* ResidualTransactionModel.m in Sources */,
 				047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */,
 				043E9F7023482A7F00109AC5 /* CommentDeleteCell.m in Sources */,
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
@@ -2116,6 +2143,7 @@
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
+				0458B89E234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m in Sources */,
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
@@ -2145,6 +2173,7 @@
 				0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */,
 				043E9F6D2345F73E00109AC5 /* CommentBaseCell.m in Sources */,
 				628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */,
+				0458B8A4234F6A0C0073B5DB /* PostResidualTransactionImageCell.m in Sources */,
 				04ACDD1B2340A9360050B179 /* ForumBaseCell.m in Sources */,
 				6200075F2332428400319C33 /* TabModel.m in Sources */,
 				04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */,
@@ -2167,6 +2196,7 @@
 				04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */,
 				0404859F230C25BA00EF17C8 /* MarketingViewController.m in Sources */,
 				62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */,
+				0458B89B234F5D4C0073B5DB /* PostResidualTransactionViewController.m in Sources */,
 				6200076A23330B3600319C33 /* SHBaseCollectionView.m in Sources */,
 				62062003231E8B4700A78462 /* JHCameraResultView.m in Sources */,
 				0432BFBD2326951F002CD639 /* SHBigPictureBrowsing.m in Sources */,

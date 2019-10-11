@@ -28,6 +28,9 @@
 @property (nonatomic,strong) UILabel * addressLabel;
 @property (nonatomic,strong) UILabel * bottomGrayLabel;
 
+//标签项数组
+@property (nonatomic,strong) NSMutableArray<UILabel *> * tabsArray;
+
 @end
 
 @implementation JobRecruitmentCell
@@ -143,6 +146,15 @@
         _bottomGrayLabel.backgroundColor = Color_F5F5F5;
     }
     return _bottomGrayLabel;
+}
+
+-(NSMutableArray<UILabel *> *)tabsArray{
+    
+    if (!_tabsArray) {
+        
+        _tabsArray = [[NSMutableArray alloc] init];
+    }
+    return _tabsArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -293,6 +305,11 @@
     }
     self.addressLabel.text = address;
     
+    for (UILabel * label in self.tabsArray) {
+        
+        [label removeFromSuperview];
+    }
+    
     NSArray * tabs = dic[@"tabs"];
     float labelX = 16;
     float labelHeight = 18;
@@ -308,6 +325,7 @@
         label.layer.cornerRadius = 1;
         label.backgroundColor = [UIColor colorWithRed:0/255.0 green:121/255.0 blue:255/255.0 alpha:0.1];
         [self addSubview:label];
+        [self.tabsArray addObject:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.offset(labelX);

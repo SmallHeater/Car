@@ -22,18 +22,21 @@
 #import "JobRecruitmentViewController.h"
 #import "MotorOilMonopolyViewcontroller.h"
 #import "PostViewController.h"
+#import "PostResidualTransactionViewController.h"
+#import "PostJobViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
 
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) HomeNavgationBar * homeNavgationBar;
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) HomeDataModel * homeDataModel;
 @property (nonatomic,strong) SHTabView * baseTabView;
-
+//发布view
+@property (nonatomic,strong) UIView * releaseView;
 
 @end
 
@@ -54,16 +57,89 @@
                 NSString * result = resultDic[@"result"];
             }];
         }];
+        
         //点击发布的响应
         __weak typeof(self) weakSelf = self;
         [[_homeNavgationBar rac_signalForSelector:@selector(releaseBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
             
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.releaseView];
+            [weakSelf.releaseView mas_makeConstraints:^(MASConstraintMaker *make) {
+               
+                make.left.right.top.bottom.offset(0);
+            }];
+        }];
+    }
+    return _homeNavgationBar;
+}
+
+-(UIView *)releaseView{
+    
+    if (!_releaseView) {
+        
+        _releaseView = [[UIView alloc] init];
+        _releaseView.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+        tap.delegate = self;
+        __weak typeof(self) weakSelf = self;
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            
+            [weakSelf.releaseView removeFromSuperview];
+        }];
+        [_releaseView addGestureRecognizer:tap];
+        
+        UIView * whiteBGView = [[UIView alloc] init];
+        whiteBGView.backgroundColor = [UIColor whiteColor];
+        //按钮宽度
+        float btnWidth = 60;
+        //按钮间距
+        float interval = (MAINWIDTH - 25 * 2 - btnWidth * 4) / 3;
+        //发布帖子按钮
+        SHImageAndTitleBtn * postBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(25, 14, btnWidth, 52) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 38, btnWidth, 12) andImageName:@"fabutiezi" andSelectedImageName:@"fabutiezi" andTitle:@"发布帖子"];
+        [[postBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            [weakSelf.releaseView removeFromSuperview];
             PostViewController * vc = [[PostViewController alloc] initWithTitle:@"发布帖子" andIsShowBackBtn:YES];
             vc.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
+        [whiteBGView addSubview:postBtn];
+        
+        //发布残值按钮
+        SHImageAndTitleBtn * releaseResidualValueBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(CGRectGetMaxX(postBtn.frame) + interval, CGRectGetMinY(postBtn.frame), btnWidth, 52) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 38, btnWidth, 12) andImageName:@"liruntongji" andSelectedImageName:@"liruntongji" andTitle:@"发布残值"];
+        [[releaseResidualValueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            [weakSelf.releaseView removeFromSuperview];
+            PostResidualTransactionViewController * vc = [[PostResidualTransactionViewController alloc] initWithTitle:@"发布残值" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        [whiteBGView addSubview:releaseResidualValueBtn];
+        //发布招聘按钮
+        SHImageAndTitleBtn * postRecruitmentBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(CGRectGetMaxX(releaseResidualValueBtn.frame) + interval, CGRectGetMinY(postBtn.frame), btnWidth, 52) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 38, btnWidth, 12) andImageName:@"fabuzhaopin" andSelectedImageName:@"fabuzhaopin" andTitle:@"发布招聘"];
+        [[postRecruitmentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            [weakSelf.releaseView removeFromSuperview];
+            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        [whiteBGView addSubview:postRecruitmentBtn];
+        //发布视频按钮
+        SHImageAndTitleBtn * publishVideoBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(CGRectGetMaxX(postRecruitmentBtn.frame) + interval, CGRectGetMinY(postBtn.frame), btnWidth, 52) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 38, btnWidth, 12) andImageName:@"fabushipin" andSelectedImageName:@"fabushipin" andTitle:@"发布视频"];
+        [[publishVideoBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            [weakSelf.releaseView removeFromSuperview];
+        }];
+        [whiteBGView addSubview:publishVideoBtn];
+        [_releaseView addSubview:whiteBGView];
+        [whiteBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.offset(0);
+            make.top.offset(77);
+            make.height.offset(82);
+        }];
     }
-    return _homeNavgationBar;
+    return _releaseView;
 }
 
 -(SHBaseTableView *)tableView{
@@ -351,6 +427,17 @@
         return cell;
     }
     return nil;
+}
+
+#pragma mark  ----  UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SHImageAndTitleBtn"]) {
+        // cell 不需要响应 父视图的手势，保证didselect 可以正常
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark  ----  自定义函数

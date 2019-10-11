@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(float)cellHeightWithStr:(NSString *)str;
 
--(void)test;
+-(void)show:(NSString *)str;
 
 @end
 

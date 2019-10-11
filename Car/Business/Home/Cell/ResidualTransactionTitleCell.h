@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ResidualTransactionTitleCell : SHBaseTableViewCell
 
--(void)test;
+-(void)showTitle:(NSString *)title price:(NSString *)price;
 
 @end
 

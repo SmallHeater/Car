@@ -50,6 +50,10 @@
         
         _callImageView = [[UIImageView alloc] init];
         _callImageView.image = [UIImage imageNamed:@"lijiboda"];
+        _callImageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callImageViewTaped)];
+        [_callImageView addGestureRecognizer:tap];
     }
     return _callImageView;
 }
@@ -118,10 +122,23 @@
     }];
 }
 
--(void)test{
+-(void)showTitle:(NSString *)title price:(NSString *)price{
     
-    self.titleLabel.backgroundColor = [UIColor greenColor];
-    self.priceLabel.backgroundColor = [UIColor yellowColor];
+    self.titleLabel.text = [NSString repleaseNilOrNull:title];
+    NSString * money;
+    if ([price isEqualToString:@"面议"]) {
+        
+        money = price;
+    }
+    else{
+        
+        money = [[NSString alloc] initWithFormat:@"￥%@",price];
+    }
+    self.priceLabel.text = [NSString repleaseNilOrNull:money];
+}
+
+-(void)callImageViewTaped{
+    
 }
 
 @end

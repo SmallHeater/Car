@@ -12,10 +12,12 @@
 #import "UserInforController.h"
 #import "TopicForumViewController.h"
 #import "LocatingManager.h"
+#import "BaiDuBosControl.h"
+#import "ImageCompressionController.h"
+#import "YYAnimatedImageView.h"
+#import "YYImage.h"
 
 @interface PostViewController ()<UITextFieldDelegate>
-
-@property (nonatomic,strong) NSString * tabID;
 
 //发布按钮
 @property (nonatomic,strong) UIButton * postBtn;
@@ -23,7 +25,7 @@
 @property (nonatomic,strong) UITextField * titleTF;
 //分割线
 @property (nonatomic,strong) UILabel * lineLabel;
-@property (nonatomic,strong) SHTextView * contentTF;
+@property (nonatomic,strong) YYTextView * contentTF;
 //底部view
 @property (nonatomic,strong) UIView * bottomView;
 //论坛ID
@@ -51,8 +53,8 @@
                 
                 showStr = @"请输入标题";
             }
-            else if ([NSString strIsEmpty:weakSelf.contentTF.text] || [weakSelf.contentTF.text isEqualToString:weakSelf.contentTF.placeholder]){
-                
+            else if ([NSString strIsEmpty:weakSelf.contentTF.text]){
+
                 showStr = @"请输入正文";
             }
             else if ([NSString strIsEmpty:weakSelf.section_id]){
@@ -62,7 +64,78 @@
             
             if ([NSString strIsEmpty:showStr]) {
                 
-                [weakSelf post];
+                NSString * contentStr;
+                NSString * str = self.contentTF.text;
+                NSArray *attachments = self.contentTF.textLayout.attachments;
+                if (attachments.count > 0) {
+                    
+                    //获取图片资源
+                    NSMutableArray * imageUrlArray = [[NSMutableArray alloc] init];
+                    for(YYTextAttachment *attachment in attachments)
+                    {
+                        YYAnimatedImageView *imageView = attachment.content;
+                        YYImage *image = (YYImage *)imageView.image;
+                        NSData * imageData = UIImageJPEGRepresentation(image,1);
+                        if (!imageData) {
+                            
+                            imageData = UIImagePNGRepresentation(image);
+                        }
+                        //压缩
+                        float length = [imageData length] / 1000.0;
+                        float ratio = [ImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
+                        NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
+                        UIImage * usedImage = [UIImage imageWithData:usedImageData];
+                        [[BaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
+                            
+                            [imageUrlArray addObject:imagePath];
+                        }];
+                    }
+                    
+                    //存储每段纯文字的数组
+                    NSMutableArray * strArray = [[NSMutableArray alloc] init];
+                    NSArray *attachmentRanges = self.contentTF.textLayout.attachmentRanges;
+                    for (NSUInteger i = 0; i < attachmentRanges.count; i++) {
+                        
+                        NSValue * range = attachmentRanges[i];
+                        NSRange r = [range rangeValue];
+                        if (r.location == 0) {
+                            
+                            if (attachmentRanges.count == 1) {
+                                
+                                NSString * tempStr = [str substringFromIndex:1];
+                                [strArray addObject:tempStr];
+                            }
+                            else{
+                             
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            
+                            NSString * tempStr = [str substringWithRange:NSMakeRange(i, r.location)];
+                            [strArray addObject:tempStr];
+                        }
+                    }
+                    
+                    NSMutableString * tempStr = [[NSMutableString alloc] init];
+                    for (NSUInteger i = 0; i < strArray.count; i++) {
+                        
+                        [tempStr appendString:strArray[i]];
+                        if (i < strArray.count - 1) {
+                         
+                            [tempStr appendString:imageUrlArray[i]];
+                        }
+                    }
+                    
+                    contentStr = tempStr;
+                }
+                else{
+                    
+                    //无图片
+                    contentStr = str;
+                }
+                [weakSelf postWithContent:contentStr];
             }
             else{
                 
@@ -100,17 +173,31 @@
     return _lineLabel;
 }
 
--(SHTextView *)contentTF{
+//-(SHTextView *)contentTF{
+//
+//    if (!_contentTF) {
+//
+//        _contentTF = [[SHTextView alloc] init];
+//        _contentTF.placeholder = @"    请输入正文，字数小于10000字";
+//        _contentTF.placeholderColor = Color_999999;
+//        _contentTF.textFont = FONT14;
+//        _contentTF.textColor = Color_333333;
+//        _contentTF.canWrap = YES;
+//        _contentTF.returnKeyType = UIReturnKeyDefault;
+//    }
+//    return _contentTF;
+//}
+
+-(YYTextView *)contentTF{
     
     if (!_contentTF) {
         
-        _contentTF = [[SHTextView alloc] init];
-        _contentTF.placeholder = @"    请输入正文，字数小于10000字";
-        _contentTF.placeholderColor = Color_999999;
-        _contentTF.textFont = FONT14;
-        _contentTF.textColor = Color_333333;
-        _contentTF.canWrap = YES;
-        _contentTF.returnKeyType = UIReturnKeyDefault;
+        _contentTF = [[YYTextView alloc] init];
+        _contentTF.placeholderText = @"    请输入正文，字数小于10000字";
+        _contentTF.placeholderTextColor = Color_999999;
+        _contentTF.font = FONT14;
+        _contentTF.placeholderFont = FONT14;
+        _contentTF.contentSize = CGSizeMake(MAINWIDTH, MAINHEIGHT * 3);
     }
     return _contentTF;
 }
@@ -130,7 +217,7 @@
         __weak typeof(self) weakSelf = self;
         [[seleceForumBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andTabID:weakSelf.tabID];
+            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
             
             [[vc rac_valuesForKeyPath:@"forumStr" observer:weakSelf] subscribeNext:^(id  _Nullable x) {
                 
@@ -241,23 +328,12 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andTabID:(NSString *)tabID
-{
-    self = [super initWithTitle:title andIsShowBackBtn:YES];
-    if (self) {
-        
-        self.tabID = [NSString repleaseNilOrNull:tabID];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self drawUI];
     [self registrationNotice];
-    self.section_id = @"1";
 }
 
 #pragma mark  ----  代理
@@ -309,9 +385,9 @@
     
     [self.view addSubview:self.contentTF];
     [self.contentTF mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.right.offset(0);
-        make.top.equalTo(self.lineLabel.mas_bottom).offset(16);
+        make.top.equalTo(self.lineLabel.mas_bottom);
         make.bottom.equalTo(self.bottomView.mas_top);
     }];
 }
@@ -349,9 +425,9 @@
 }
 
 //发帖
--(void)post{
-    
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"name":self.titleTF.text,@"content":self.contentTF.text,@"section_id":self.section_id};
+-(void)postWithContent:(NSString *)contentStr{
+
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"title":self.titleTF.text,@"content":contentStr,@"section_id":self.section_id};
     NSDictionary * configurationDic = @{@"requestUrlStr":PostArticle,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -407,7 +483,7 @@
         else if ([resultDic.allKeys containsObject:@"image"]){
             
             UIImage * image = resultDic[@"image"];
-            [weakSelf createStrWithImage:image];
+            [weakSelf createStrWithImages:@[image]];
         }
     }];
 }
@@ -423,6 +499,13 @@
         if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
             
             NSArray * dataArray = resultDic[@"data"];
+            NSMutableArray * imageArray = [[NSMutableArray alloc] init];
+            for (NSDictionary * dic in dataArray) {
+                
+                UIImage * image = dic[@"screenSizeImage"];
+                [imageArray addObject:image];
+            }
+            [weakSelf createStrWithImages:imageArray];
         }
     }];
 }
@@ -438,18 +521,25 @@
 }
 
 //创建富文本
--(void)createStrWithImage:(UIImage *)image{
-    
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTF.attributedStr];
-    //自定义添加的本地图片
-    NSTextAttachment * textAttachment = [[NSTextAttachment alloc] init];
-    textAttachment.image = image;
-    float imageWidth = CGRectGetWidth(self.contentTF.frame) - 10;
-    float imageHeight = image.size.height / image.size.width * imageWidth;
-    textAttachment.bounds = CGRectMake(0, 0, imageWidth, imageHeight);
-    NSAttributedString * textAttactmentStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
-    [attributedString insertAttributedString:textAttactmentStr atIndex:attributedString.length];
-    self.contentTF.attributedStr = attributedString;
+-(void)createStrWithImages:(NSMutableArray<UIImage *> *)images{
+
+    //2.初始化富文本对象
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTF.attributedText];
+    [attributedString yy_appendString:@"\n"];
+    for (UIImage * image in images) {
+        
+        //3.初始化NSTextAttachment对象
+        float imageHeight = image.size.height / image.size.width * MAINWIDTH;
+        YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+        imageView.layer.borderColor = Color_333333.CGColor;
+        imageView.layer.borderWidth = 1;
+        imageView.frame = CGRectMake(0, 0,MAINWIDTH,imageHeight);
+        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleAspectFit attachmentSize:CGSizeMake(MAINWIDTH, imageHeight) alignToFont:nil alignment:YYTextVerticalAlignmentCenter];
+        [attributedString appendAttributedString:attachText];
+        [attributedString yy_appendString:@"\n"];
+    }
+    //5.用label的attributedText属性来使用富文本
+    self.contentTF.attributedText = attributedString;
 }
 
 @end
