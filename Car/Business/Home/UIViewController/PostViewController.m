@@ -122,7 +122,7 @@
                     for (NSUInteger i = 0; i < strArray.count; i++) {
                         
                         [tempStr appendString:strArray[i]];
-                        if (i < strArray.count - 1) {
+                        if (i < strArray.count) {
                          
                             [tempStr appendString:imageUrlArray[i]];
                         }

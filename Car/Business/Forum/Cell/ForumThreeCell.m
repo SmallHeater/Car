@@ -64,6 +64,16 @@
 
 #pragma mark  ----  自定义函数
 
++(float)cellHeightWithTitle:(NSString *)title{
+    
+    float cellHeight = 0;
+    cellHeight += 77;
+    cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
+    cellHeight += 17 + 104;
+    cellHeight += 53;
+    return cellHeight;
+}
+
 -(void)drawUI{
     
     [super drawUI];

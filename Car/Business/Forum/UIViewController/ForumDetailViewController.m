@@ -79,7 +79,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         }];
         
         //评论数按钮
-        SHImageAndTitleBtn * commentsBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(225, 16, 40, 20) andImageFrame:CGRectMake(0, 0, 20, 20) andTitleFrame:CGRectMake(25, 0, 15, 20) andImageName:@"pinglunshu" andSelectedImageName:@"pinglunshu" andTitle:@"9"];
+        SHImageAndTitleBtn * commentsBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(225, 16, 40, 20) andImageFrame:CGRectMake(0, 0, 20, 20) andTitleFrame:CGRectMake(25, 0, 15, 20) andImageName:@"pinglunshu" andSelectedImageName:@"pinglunshu" andTitle:[[NSString alloc] initWithFormat:@"%ld",self.forumArticleModel.comments]];
         [_bottomCommentView addSubview:commentsBtn];
         //点赞按钮
         UIButton * praiseBtn = [UIButton buttonWithType:UIButtonTypeCustom];

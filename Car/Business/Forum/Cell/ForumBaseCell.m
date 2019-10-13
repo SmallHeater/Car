@@ -118,7 +118,7 @@
     
     if (!_sharepBtn) {
         
-        _sharepBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36, CGRectGetMinY(self.thumbsUpBtn.frame), 30, CGRectGetHeight(self.thumbsUpBtn.frame)) andImageFrame:CGRectMake(0, 10, 15, 15) andTitleFrame:CGRectMake(15, 0, 15, 10) andImageName:@"luntanfenxiang" andSelectedImageName:@"luntanfenxiang" andTitle:@"0"];
+        _sharepBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36, CGRectGetMinY(self.thumbsUpBtn.frame), 30, CGRectGetHeight(self.thumbsUpBtn.frame)) andImageFrame:CGRectMake(0, 10, 15, 15) andTitleFrame:CGRectMake(15, 0, 15, 10) andImageName:@"luntanfenxiang" andSelectedImageName:@"luntanfenxiang" andTitle:@""];
         _sharepBtn.userInteractionEnabled = NO;
     }
     return _sharepBtn;
@@ -141,6 +141,7 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         
+        [self drawUI];
     }
     return self;
 }
@@ -152,8 +153,7 @@
     float cellHeight = 0;
     cellHeight += 77;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
-    cellHeight += 17 + 104;
-    cellHeight += 53;
+    cellHeight += 56;
     return cellHeight;
 }
 
@@ -249,7 +249,19 @@
     NSString * nickName = [NSString repleaseNilOrNull:model.from_user.nick_name];
     self.nickNameLabel.text = nickName;
     
-    NSString * time = @"1小时前";
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:model.createtime];
+    NSUInteger hour = timeInterval / 3600;
+    NSString * time;
+    if (hour > 24) {
+        
+        NSUInteger day = hour / 24;
+        time = [[NSString alloc] initWithFormat:@"%ld天前",day];
+    }
+    else{
+        
+        time = [[NSString alloc] initWithFormat:@"%ld小时前",hour];
+    }
+    
     self.timeLabel.text = time;
     
     NSString * title = [NSString repleaseNilOrNull:model.title];
@@ -264,6 +276,9 @@
     NSString * views = [[NSString alloc] initWithFormat:@"%ld",model.pv];
     NSString * source = [NSString repleaseNilOrNull:model.section_title];
     self.viewsAndSourceLabel.text = [[NSString alloc] initWithFormat:@"%@浏览量 / %@",views,source];
+    
+    [self.thumbsUpBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.thumbs] color:Color_333333];
+    [self.commentBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.comments] color:Color_333333];
 }
 
 @end

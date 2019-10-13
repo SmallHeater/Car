@@ -19,6 +19,7 @@
 
 #define BASEBTNTAG 1400
 
+static NSString * ForumBaseCellId = @"ForumBaseCell";
 static NSString * ForumSingleCellId = @"ForumSingleCell";
 static NSString * ForumThreeCellId = @"ForumThreeCell";
 static NSString * ForumVideoCellId = @"ForumVideoCell";
@@ -170,7 +171,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     [self requestTablist];
     [self drawTableView];
 }
@@ -183,7 +183,11 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     
     float cellHeight = 0;
     ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    if ([articleModel.type isEqualToString:@"single"]) {
+    if ([articleModel.type isEqualToString:@"zero"]) {
+        
+        cellHeight = [ForumBaseCell cellHeightWithTitle:articleModel.title];
+    }
+    else if ([articleModel.type isEqualToString:@"single"]) {
         
         cellHeight = [ForumSingleCell cellHeightWithTitle:articleModel.title];
     }
@@ -236,7 +240,18 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    if ([articleModel.type isEqualToString:@"single"]) {
+    if ([articleModel.type isEqualToString:@"zero"]) {
+    
+        ForumBaseCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumBaseCellId];
+        if (!cell) {
+            
+            cell = [[ForumBaseCell alloc] initWithReuseIdentifier:ForumBaseCellId];
+        }
+        
+        [cell show:articleModel];
+        return cell;
+    }
+    else if ([articleModel.type isEqualToString:@"single"]) {
         
         ForumSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumSingleCellId];
         if (!cell) {

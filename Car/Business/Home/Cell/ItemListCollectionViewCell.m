@@ -69,12 +69,21 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 130;
+    float cellHeight = 0;
     CarItemNewModel * model = self.dataArray[indexPath.row];
-    if ([model.type isEqualToString:@"video"]) {
+    if ([model.type isEqualToString:@"single"]) {
+        
+        cellHeight = 130;
+    }
+    else if ([model.type isEqualToString:@"three"]) {
+        
+        cellHeight = 222;
+    }
+    else if ([model.type isEqualToString:@"video"]) {
         
         cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
     }
+    
     return cellHeight;
 }
 

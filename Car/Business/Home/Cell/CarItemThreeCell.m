@@ -112,7 +112,7 @@
             float imageViewX = 15;
             NSUInteger imageWidth = 109;
             NSUInteger imageHeight = 81;
-            float interval = (MAINWIDTH - 15 * 2 - imageWidth * 2) / 2;
+            float interval = (MAINWIDTH - 15 * 2 - imageWidth * 3) / 2;
             for (NSString * str in model.images) {
                 
                 UIImageView * imageView = [[UIImageView alloc] init];
@@ -123,7 +123,7 @@
                     make.left.offset(imageViewX);
                     make.width.offset(imageWidth);
                     make.height.offset(imageHeight);
-                    make.bottom.offset(58);
+                    make.bottom.offset(-58);
                 }];
                 [imageView sd_setImageWithURL:[NSURL URLWithString:str]];
                 imageViewX += imageWidth + interval;

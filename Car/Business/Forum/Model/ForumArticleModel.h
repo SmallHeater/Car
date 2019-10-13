@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSDate * createtime;
 //点赞量
 @property (nonatomic,assign) NSUInteger thumbs;
+//评论数
+@property (nonatomic,assign) NSUInteger comments;
 //所属板块
 @property (nonatomic,strong) NSString * section_title;
 @property (nonatomic,strong) ADModel * ad;
