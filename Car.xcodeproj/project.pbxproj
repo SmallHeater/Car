@@ -234,6 +234,10 @@
 		62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */; };
 		62CC011C234C1323006B72AD /* TopicForumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011B234C1323006B72AD /* TopicForumViewController.m */; };
 		62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011E234C1AE9006B72AD /* TopicForumCell.m */; };
+		62D530B42353FC7400BA9AE1 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B32353FC7400BA9AE1 /* ShopModel.m */; };
+		62D530B72353FF2800BA9AE1 /* ShopTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B62353FF2800BA9AE1 /* ShopTabModel.m */; };
+		62D530BA2354006A00BA9AE1 /* ShopCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */; };
+		62D530DB23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */; };
 		62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */; };
 /* End PBXBuildFile section */
 
@@ -690,6 +694,14 @@
 		62CC011B234C1323006B72AD /* TopicForumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicForumViewController.m; sourceTree = "<group>"; };
 		62CC011D234C1AE9006B72AD /* TopicForumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicForumCell.h; sourceTree = "<group>"; };
 		62CC011E234C1AE9006B72AD /* TopicForumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicForumCell.m; sourceTree = "<group>"; };
+		62D530B22353FC7400BA9AE1 /* ShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
+		62D530B32353FC7400BA9AE1 /* ShopModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
+		62D530B52353FF2800BA9AE1 /* ShopTabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopTabModel.h; sourceTree = "<group>"; };
+		62D530B62353FF2800BA9AE1 /* ShopTabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopTabModel.m; sourceTree = "<group>"; };
+		62D530B82354006A00BA9AE1 /* ShopCategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCategoryModel.h; sourceTree = "<group>"; };
+		62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCategoryModel.m; sourceTree = "<group>"; };
+		62D530D923548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyHeaderView.h; sourceTree = "<group>"; };
+		62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyHeaderView.m; sourceTree = "<group>"; };
 		62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyViewcontroller.h; sourceTree = "<group>"; };
 		62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyViewcontroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1681,6 +1693,12 @@
 				0458B89D234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m */,
 				0458B8A5235030290073B5DB /* ResidualTransactionModel.h */,
 				0458B8A6235030290073B5DB /* ResidualTransactionModel.m */,
+				62D530B22353FC7400BA9AE1 /* ShopModel.h */,
+				62D530B32353FC7400BA9AE1 /* ShopModel.m */,
+				62D530B52353FF2800BA9AE1 /* ShopTabModel.h */,
+				62D530B62353FF2800BA9AE1 /* ShopTabModel.m */,
+				62D530B82354006A00BA9AE1 /* ShopCategoryModel.h */,
+				62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1896,6 +1914,8 @@
 				62A80D06232FB1F100A6C456 /* HomeNavgationBar.m */,
 				047331892338FDE9000BEF04 /* DetailBottomView.h */,
 				0473318A2338FDE9000BEF04 /* DetailBottomView.m */,
+				62D530D923548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.h */,
+				62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -2095,6 +2115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0404860B23122D1A00EF17C8 /* ImageAndLabelControl.m in Sources */,
+				62D530DB23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m in Sources */,
 				04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
@@ -2107,6 +2128,7 @@
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				0432BF912326813C002CD639 /* SHPictureSelectionController.m in Sources */,
 				62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */,
+				62D530BA2354006A00BA9AE1 /* ShopCategoryModel.m in Sources */,
 				040485B62310E34800EF17C8 /* GetVerificationCodeBtn.m in Sources */,
 				04ACDD22234184860050B179 /* ForumArticleModel.m in Sources */,
 				04620C55231BFD5500AA6317 /* SHCameraComponent.m in Sources */,
@@ -2153,6 +2175,7 @@
 				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
 				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
+				62D530B72353FF2800BA9AE1 /* ShopTabModel.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */,
@@ -2295,6 +2318,7 @@
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
 				04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */,
+				62D530B42353FC7400BA9AE1 /* ShopModel.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
 				0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
