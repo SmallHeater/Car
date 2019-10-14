@@ -19,7 +19,7 @@
 
 @interface MotorOilMonopolyViewcontroller ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIView * tableHeaderView;
+@property (nonatomic,strong) MotorOilMonopolyHeaderView * tableHeaderView;
 @property (nonatomic,strong) NSMutableArray<NSString *> * tabTitleArray;
 //页签view
 @property (nonatomic,strong) SHTabView * baseTabView;
@@ -36,43 +36,11 @@
 
 #pragma mark  ----  懒加载
 
--(UIView *)tableHeaderView{
+-(MotorOilMonopolyHeaderView *)tableHeaderView{
     
     if (!_tableHeaderView) {
         
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 + [UIScreenControl liuHaiHeight])];
-        _tableHeaderView.backgroundColor = [UIColor whiteColor];
-        UIImageView * imageView = [[UIImageView alloc] init];
-        __weak typeof(self) weak = self;
-        [[self rac_valuesForKeyPath:@"headImageUrlStr" observer:self] subscribeNext:^(id  _Nullable x) {
-           
-            if (![NSString strIsEmpty:weak.headImageUrlStr]) {
-                
-                [imageView sd_setImageWithURL:[NSURL URLWithString:weak.headImageUrlStr]];
-            }
-        }];
-        [_tableHeaderView addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.top.right.offset(0);
-            make.height.offset(144);
-        }];
-        
-        UIView * whiteView = [[UIView alloc] init];
-        whiteView.backgroundColor = [UIColor whiteColor];
-        whiteView.layer.cornerRadius = 4;
-        whiteView.layer.shadowColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:0.4].CGColor;
-        whiteView.layer.shadowOffset = CGSizeMake(0,2);
-        whiteView.layer.shadowOpacity = 1;
-        whiteView.layer.shadowRadius = 10;
-        [_tableHeaderView addSubview:whiteView];
-        [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.offset(9);
-            make.right.offset(-9);
-            make.bottom.offset(-8);
-            make.height.offset(79);
-        }];
+        _tableHeaderView = [[MotorOilMonopolyHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 + [UIScreenControl liuHaiHeight])];
     }
     return _tableHeaderView;
 }
@@ -261,7 +229,6 @@
        
         CGPoint point = [x CGPointValue];
         float y = point.y;
-        NSLog(@"坐标：%lf",y);
         __weak typeof(self) weakSelf = self;
         if (y >= 176 - [UIScreenControl navigationBarHeight] - 20) {
 
@@ -305,18 +272,14 @@
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
                         weakSelf.shopModel = [ShopModel mj_objectWithKeyValues:dataDic[@"shop"]];
+                        [weakSelf.tableHeaderView show:weakSelf.shopModel];
                         if (weakSelf.shopModel.categorys.count > 0) {
                             
-                            if (weakSelf.shopModel.images && [weakSelf.shopModel.images isKindOfClass:[NSArray class]] && weakSelf.shopModel.images.count > 0) {
-                                
-                                weakSelf.headImageUrlStr = weakSelf.shopModel.images[0];
-                            }
                             ShopCategoryModel * firstModel = weakSelf.shopModel.categorys[0];
                             if (firstModel && [firstModel isKindOfClass:[ShopCategoryModel class]]) {
                                 
                                 [weakSelf requestGoodsDataWithTypeId:[[NSString alloc] initWithFormat:@"%ld",firstModel.CategoryId]];
                             }
-                            
                         }
                     }
                 }
@@ -376,7 +339,6 @@
             //失败的
         }
     }];
-    
 }
 
 @end

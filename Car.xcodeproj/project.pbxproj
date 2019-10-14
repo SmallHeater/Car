@@ -112,6 +112,9 @@
 		0458B8A1234F655D0073B5DB /* PostResidualTransactionAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A0234F655D0073B5DB /* PostResidualTransactionAmountCell.m */; };
 		0458B8A4234F6A0C0073B5DB /* PostResidualTransactionImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */; };
 		0458B8A7235030290073B5DB /* ResidualTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458B8A6235030290073B5DB /* ResidualTransactionModel.m */; };
+		045B3C7323549F2700E28F2A /* SHImageViewAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3C7223549F2700E28F2A /* SHImageViewAndLabelView.m */; };
+		045B3C762354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3C752354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m */; };
+		045B3C792354B7B200E28F2A /* GoodsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3C782354B7B200E28F2A /* GoodsCategoryCell.m */; };
 		04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */; };
 		04620C4D231BFAA000AA6317 /* SHCacheManagementcomponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */; };
 		04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04620C4A231BFAA000AA6317 /* SHCacheControl.m */; };
@@ -463,6 +466,12 @@
 		0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostResidualTransactionImageCell.m; sourceTree = "<group>"; };
 		0458B8A5235030290073B5DB /* ResidualTransactionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionModel.h; sourceTree = "<group>"; };
 		0458B8A6235030290073B5DB /* ResidualTransactionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionModel.m; sourceTree = "<group>"; };
+		045B3C7123549F2700E28F2A /* SHImageViewAndLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHImageViewAndLabelView.h; sourceTree = "<group>"; };
+		045B3C7223549F2700E28F2A /* SHImageViewAndLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHImageViewAndLabelView.m; sourceTree = "<group>"; };
+		045B3C742354B41000E28F2A /* MotorOilMonopolyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyGoodsViewController.h; sourceTree = "<group>"; };
+		045B3C752354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyGoodsViewController.m; sourceTree = "<group>"; };
+		045B3C772354B7B200E28F2A /* GoodsCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsCategoryCell.h; sourceTree = "<group>"; };
+		045B3C782354B7B200E28F2A /* GoodsCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsCategoryCell.m; sourceTree = "<group>"; };
 		04620C3E231BF8AF00AA6317 /* BusinessSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryViewController.h; sourceTree = "<group>"; };
 		04620C3F231BF8AF00AA6317 /* BusinessSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryViewController.m; sourceTree = "<group>"; };
 		04620C46231BFAA000AA6317 /* SHCacheManagementcomponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCacheManagementcomponent.m; sourceTree = "<group>"; };
@@ -996,6 +1005,8 @@
 				62CC011B234C1323006B72AD /* TopicForumViewController.m */,
 				0458B899234F5D4C0073B5DB /* PostResidualTransactionViewController.h */,
 				0458B89A234F5D4C0073B5DB /* PostResidualTransactionViewController.m */,
+				045B3C742354B41000E28F2A /* MotorOilMonopolyGoodsViewController.h */,
+				045B3C752354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1460,6 +1471,8 @@
 				62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */,
 				0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */,
 				0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */,
+				045B3C7123549F2700E28F2A /* SHImageViewAndLabelView.h */,
+				045B3C7223549F2700E28F2A /* SHImageViewAndLabelView.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1973,6 +1986,8 @@
 				62CC011E234C1AE9006B72AD /* TopicForumCell.m */,
 				0458B8A2234F6A0C0073B5DB /* PostResidualTransactionImageCell.h */,
 				0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */,
+				045B3C772354B7B200E28F2A /* GoodsCategoryCell.h */,
+				045B3C782354B7B200E28F2A /* GoodsCategoryCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2151,6 +2166,7 @@
 				62A80D07232FB1F100A6C456 /* HomeNavgationBar.m in Sources */,
 				0445C09B232CFBEA00A1904D /* SearchConfigurationModel.m in Sources */,
 				0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */,
+				045B3C7323549F2700E28F2A /* SHImageViewAndLabelView.m in Sources */,
 				0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */,
 				04048575230C205F00EF17C8 /* BaseViewController.m in Sources */,
 				0432BF9A232681D1002CD639 /* SHPictureSelectionViewController.m in Sources */,
@@ -2166,6 +2182,7 @@
 				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				0458B89E234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m in Sources */,
+				045B3C762354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m in Sources */,
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
@@ -2173,6 +2190,7 @@
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
 				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
+				045B3C792354B7B200E28F2A /* GoodsCategoryCell.m in Sources */,
 				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
 				04048576230C205F00EF17C8 /* UIScreenControl.m in Sources */,
 				62D530B72353FF2800BA9AE1 /* ShopTabModel.m in Sources */,
