@@ -241,6 +241,7 @@
 		62D530B72353FF2800BA9AE1 /* ShopTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B62353FF2800BA9AE1 /* ShopTabModel.m */; };
 		62D530BA2354006A00BA9AE1 /* ShopCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */; };
 		62D530DB23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */; };
+		62D530E02355512900BA9AE1 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530DF2355512900BA9AE1 /* GoodsCell.m */; };
 		62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */; };
 /* End PBXBuildFile section */
 
@@ -711,6 +712,8 @@
 		62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCategoryModel.m; sourceTree = "<group>"; };
 		62D530D923548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyHeaderView.h; sourceTree = "<group>"; };
 		62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyHeaderView.m; sourceTree = "<group>"; };
+		62D530DE2355512900BA9AE1 /* GoodsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
+		62D530DF2355512900BA9AE1 /* GoodsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
 		62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyViewcontroller.h; sourceTree = "<group>"; };
 		62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyViewcontroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1988,6 +1991,8 @@
 				0458B8A3234F6A0C0073B5DB /* PostResidualTransactionImageCell.m */,
 				045B3C772354B7B200E28F2A /* GoodsCategoryCell.h */,
 				045B3C782354B7B200E28F2A /* GoodsCategoryCell.m */,
+				62D530DE2355512900BA9AE1 /* GoodsCell.h */,
+				62D530DF2355512900BA9AE1 /* GoodsCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2309,6 +2314,7 @@
 				04048573230C205F00EF17C8 /* BaseUIViewController.m in Sources */,
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
+				62D530E02355512900BA9AE1 /* GoodsCell.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,

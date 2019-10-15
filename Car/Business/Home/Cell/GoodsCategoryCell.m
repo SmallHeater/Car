@@ -12,8 +12,9 @@
 
 //选中条
 @property (nonatomic,strong) UILabel * selectedLabel;
-
 @property (nonatomic,strong) UILabel * titleLabel;
+//数量
+@property (nonatomic,strong) UILabel * countLabel;
 
 @end
 
@@ -36,9 +37,21 @@
     if (!_titleLabel) {
         
         _titleLabel = [[UILabel alloc] init];
-        
     }
     return _titleLabel;
+}
+
+-(UILabel *)countLabel{
+    
+    if (!_countLabel) {
+        
+        _countLabel = [[UILabel alloc] init];
+        _countLabel.backgroundColor = Color_FF3B30;
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.layer.cornerRadius = 7;
+        _countLabel.font = FONT10;
+    }
+    return _countLabel;
 }
 
 #pragma mark  ----  生命周期函数
@@ -80,6 +93,23 @@
        
         make.left.top.bottom.offset(0);
         make.width.offset(3);
+    }];
+    
+    [self addSubview:self.countLabel];
+    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.offset(8);
+        make.right.offset(-16);
+        make.width.height.offset(14);
+    }];
+    
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(16);
+        make.top.equalTo(self.countLabel.mas_bottom);
+        make.right.offset(-33);
+        make.height.offset(31);
     }];
 }
 
