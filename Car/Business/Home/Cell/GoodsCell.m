@@ -22,6 +22,8 @@
 @property (nonatomic,strong) UILabel * countLabel;
 //加按钮
 @property (nonatomic,strong) UIButton * addBtn;
+//存储标签label的数组
+@property (nonatomic,strong) NSMutableArray<UILabel *> * labelArray;
 
 @end
 
@@ -34,6 +36,7 @@
     if (!_iconImageView) {
         
         _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.backgroundColor = [UIColor lightGrayColor];
     }
     return _iconImageView;
 }
@@ -91,6 +94,15 @@
     return _addBtn;
 }
 
+-(NSMutableArray<UILabel *> *)labelArray{
+    
+    if (!_labelArray) {
+        
+        _labelArray = [[UILabel alloc] init];
+    }
+    return _labelArray;
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -110,7 +122,8 @@
     [self addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.offset(10);
+        make.left.offset(10);
+        make.top.offset(0);
         make.width.offset(70);
         make.height.offset(93);
     }];
@@ -118,8 +131,8 @@
     [self addSubview:self.goodsNameLabel];
     [self.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self.iconImageView.mas_right).offset(0);
-        make.top.offset(0);
+        make.left.equalTo(self.iconImageView.mas_right).offset(10);
+        make.top.equalTo(self.iconImageView.mas_top);
         make.right.offset(-16);
         make.height.offset(18);
     }];
@@ -128,7 +141,7 @@
     [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.offset(-16);
-        make.bottom.offset(0);
+        make.bottom.offset(-7);
         make.width.height.offset(20);
     }];
     
@@ -136,21 +149,91 @@
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.equalTo(self.addBtn.mas_left);
-        make.bottom.offset(0);
+        make.bottom.equalTo(self.addBtn.mas_bottom);
         make.height.offset(20);
         make.width.offset(30);
     }];
     
-    
-    
+    [self addSubview:self.subtractBtn];
+    [self.subtractBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.right.equalTo(self.countLabel.mas_left);
+        make.bottom.equalTo(self.addBtn.mas_bottom);
+        make.width.height.offset(20);
+    }];
     
     [self addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.iconImageView.mas_left);
-        make.bottom.offset(0);
+        make.bottom.equalTo(self.addBtn.mas_bottom);
         make.height.offset(20);
+        make.right.equalTo(self.subtractBtn.mas_left);
     }];
+}
+
+-(void)show:(OilGoodModel *)model{
+    
+    for (UILabel * label in self.labelArray) {
+        
+        [label removeFromSuperview];
+    }
+    
+    if (model.images && [model.images isKindOfClass:[NSArray class]] && model.images.count > 0) {
+     
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.images[0]]]];
+    }
+    else{
+        
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@""]];
+    }
+    
+    self.goodsNameLabel.text = [NSString repleaseNilOrNull:model.goods_name];
+    
+    NSString * grade = [NSString repleaseNilOrNull:model.grade];
+    NSString * viscosity = [NSString repleaseNilOrNull:model.viscosity];
+    NSString * origin = [NSString repleaseNilOrNull:model.origin];
+    NSString * pack = [NSString repleaseNilOrNull:model.pack];
+    
+    float labelX = 10;
+    float labelHeight = 18;
+    for (NSUInteger i = 0; i < 4; i++) {
+        
+        UILabel * label = [[UILabel alloc] init];
+        [self.labelArray addObject:label];
+        label.font = FONT9;
+        label.backgroundColor = [UIColor colorWithRed:0/255.0 green:121/255.0 blue:255/255.0 alpha:1.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        
+        float labelWidth;
+        if (i == 0) {
+         
+             label.text = grade;
+        }
+        else if (i == 1){
+            
+             label.text = viscosity;
+        }
+        else if (i == 2){
+            
+             label.text = origin;
+        }
+        else if (i == 3){
+            
+             label.text = pack;
+        }
+        labelWidth = [grade widthWithFont:FONT9 andHeight:labelHeight] + 6;
+        [self addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(labelX);
+            make.top.offset(43);
+            make.width.offset(labelWidth);
+            make.height.offset(labelHeight);
+        }];
+        
+        labelX += labelWidth + 3;
+    }
 }
 
 @end

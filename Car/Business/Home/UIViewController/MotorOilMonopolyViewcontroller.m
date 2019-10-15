@@ -14,6 +14,7 @@
 #import "ShopModel.h"
 #import "MotorOilMonopolyHeaderView.h"
 
+#import "MotorOilMonopolyGoodsViewController.h"
 
 #define ITEMBTNBASETAG 1000
 
@@ -156,6 +157,12 @@
     [self drawUI];
     [self requestListData];
     [self addRac];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        MotorOilMonopolyGoodsViewController * vc = [[MotorOilMonopolyGoodsViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 #pragma mark  ----  代理
@@ -276,54 +283,11 @@
                         if (weakSelf.shopModel.categorys.count > 0) {
                             
                             ShopCategoryModel * firstModel = weakSelf.shopModel.categorys[0];
-                            if (firstModel && [firstModel isKindOfClass:[ShopCategoryModel class]]) {
-                                
-                                [weakSelf requestGoodsDataWithTypeId:[[NSString alloc] initWithFormat:@"%ld",firstModel.CategoryId]];
-                            }
+//                            if (firstModel && [firstModel isKindOfClass:[ShopCategoryModel class]]) {
+//                                
+//                                [weakSelf requestGoodsDataWithTypeId:[[NSString alloc] initWithFormat:@"%ld",firstModel.CategoryId]];
+//                            }
                         }
-                    }
-                }
-                else{
-                    
-                    //异常
-                }
-            }
-            else{
-            }
-        }
-        else{
-            
-            //失败的
-        }
-    }];
-
-}
-
-//获取商品数据
--(void)requestGoodsDataWithTypeId:(NSString *)typeId{
-    
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type_id":typeId};
-    NSDictionary * configurationDic = @{@"requestUrlStr":GetGoodsByType,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
-        
-        if (![resultDic.allKeys containsObject:@"error"]) {
-            
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        
-                        
                     }
                 }
                 else{

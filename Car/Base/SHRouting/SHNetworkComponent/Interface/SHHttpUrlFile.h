@@ -94,8 +94,8 @@
 
 //机油采购--点击首页机油采购调用，返回最近的代理商店铺
 #define GetAgentShop  [[NSString alloc] initWithFormat:@"%@/api/Shop/getAgentShop",CARDOMAIN]
-//机油采购-分类商品列表接口
-#define GetGoodsByType  [[NSString alloc] initWithFormat:@"%@/api/Shop/getGoodsByType",CARDOMAIN]
+//机油采购--获取分类商品列表接口
+#define GetTypeGoodsList  [[NSString alloc] initWithFormat:@"%@/api/Shop/getTypeGoodsList",CARDOMAIN]
 
 
 #endif /* HttpUrlFile_h */

@@ -134,6 +134,8 @@
 		0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473318D233900D4000BEF04 /* JobRecruitmentDetailViewController.m */; };
 		04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */; };
 		0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */; };
+		047702212355F733003E847E /* OilBrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047702202355F733003E847E /* OilBrandModel.m */; };
+		047702242355F80C003E847E /* OilGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047702232355F80C003E847E /* OilGoodModel.m */; };
 		047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */; };
 		047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */; };
 		047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */; };
@@ -512,6 +514,10 @@
 		04733190233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentWorkTypeCell.m; sourceTree = "<group>"; };
 		0473319223390520000BEF04 /* JobRecruitmenDescriptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobRecruitmenDescriptionCell.h; sourceTree = "<group>"; };
 		0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmenDescriptionCell.m; sourceTree = "<group>"; };
+		0477021F2355F733003E847E /* OilBrandModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilBrandModel.h; sourceTree = "<group>"; };
+		047702202355F733003E847E /* OilBrandModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilBrandModel.m; sourceTree = "<group>"; };
+		047702222355F80C003E847E /* OilGoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilGoodModel.h; sourceTree = "<group>"; };
+		047702232355F80C003E847E /* OilGoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilGoodModel.m; sourceTree = "<group>"; };
 		047AC9FC233793F2005FC5D0 /* ResidualTransactionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionTitleCell.h; sourceTree = "<group>"; };
 		047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionTitleCell.m; sourceTree = "<group>"; };
 		047AC9FF23379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionAuthenticationCell.h; sourceTree = "<group>"; };
@@ -1715,6 +1721,10 @@
 				62D530B62353FF2800BA9AE1 /* ShopTabModel.m */,
 				62D530B82354006A00BA9AE1 /* ShopCategoryModel.h */,
 				62D530B92354006A00BA9AE1 /* ShopCategoryModel.m */,
+				0477021F2355F733003E847E /* OilBrandModel.h */,
+				047702202355F733003E847E /* OilBrandModel.m */,
+				047702222355F80C003E847E /* OilGoodModel.h */,
+				047702232355F80C003E847E /* OilGoodModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2222,6 +2232,7 @@
 				0458B8A4234F6A0C0073B5DB /* PostResidualTransactionImageCell.m in Sources */,
 				04ACDD1B2340A9360050B179 /* ForumBaseCell.m in Sources */,
 				6200075F2332428400319C33 /* TabModel.m in Sources */,
+				047702212355F733003E847E /* OilBrandModel.m in Sources */,
 				04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */,
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				043E9F8F234DB6D900109AC5 /* LocatingManager.m in Sources */,
@@ -2324,6 +2335,7 @@
 				0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */,
 				040485E22311096700EF17C8 /* SHRoutingComponent.m in Sources */,
 				62072C12231A568D0089AD43 /* CarouselDataModel.m in Sources */,
+				047702242355F80C003E847E /* OilGoodModel.m in Sources */,
 				04ACDD2523418F360050B179 /* ADModel.m in Sources */,
 				0422D98D23233C5800AF687D /* NewUploadController.m in Sources */,
 				04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */,

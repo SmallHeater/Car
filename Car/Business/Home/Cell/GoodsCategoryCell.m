@@ -37,6 +37,9 @@
     if (!_titleLabel) {
         
         _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = FONT10;
+        _titleLabel.textColor = Color_333333;
+        _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
 }
@@ -49,7 +52,9 @@
         _countLabel.backgroundColor = Color_FF3B30;
         _countLabel.textColor = [UIColor whiteColor];
         _countLabel.layer.cornerRadius = 7;
+        _countLabel.layer.masksToBounds = YES;
         _countLabel.font = FONT10;
+        _countLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _countLabel;
 }
@@ -108,9 +113,28 @@
        
         make.left.offset(16);
         make.top.equalTo(self.countLabel.mas_bottom);
-        make.right.offset(-33);
-        make.height.offset(31);
+        make.right.offset(0);
+        make.height.offset(34);
     }];
+}
+
+-(void)show:(NSString *)title count:(NSUInteger)count{
+    
+    if (![NSString strIsEmpty:title] && title.length > 1) {
+        
+        NSMutableString * titleStr = [[NSMutableString alloc] initWithString:title];
+        [titleStr insertString:@"\n" atIndex:2];
+        NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc] initWithString:titleStr];
+        [attributedStr addAttributes:@{NSFontAttributeName:FONT10,NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(0, 2)];
+        [attributedStr addAttributes:@{NSFontAttributeName:BOLDFONT12,NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(2, titleStr.length - 2)];
+        self.titleLabel.attributedText = attributedStr;
+    }
+    else{
+        
+        self.titleLabel.text = [NSString repleaseNilOrNull:title];
+    }
+    
+    self.countLabel.text = [[NSString alloc] initWithFormat:@"%ld",count];
 }
 
 @end
