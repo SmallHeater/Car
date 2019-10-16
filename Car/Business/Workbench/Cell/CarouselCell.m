@@ -12,6 +12,8 @@
 
 @interface CarouselCell ()
 
+@property (nonatomic,assign) CarouselStyle style;
+
 @property (nonatomic,strong) CarouselView * carouselView;
 
 @end
@@ -25,8 +27,11 @@
     if (!_carouselView) {
         
         _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
-        _carouselView.layer.cornerRadius = 15;
-        _carouselView.layer.masksToBounds = YES;
+        if (self.style == CarouselStyle_gongzuotai) {
+            
+            _carouselView.layer.cornerRadius = 15;
+            _carouselView.layer.masksToBounds = YES;
+        }
     }
     return _carouselView;
 }
@@ -43,12 +48,13 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier andStyle:(CarouselStyle)style{
     
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
+        self.style = style;
         [self drawUI];
     }
     return self;
@@ -59,13 +65,23 @@
 -(void)drawUI{
     
     [self addSubview:self.carouselView];
-    [self.carouselView mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (self.style == CarouselStyle_gongzuotai) {
+     
+        [self.carouselView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(15);
+            make.right.offset(-16);
+            make.top.bottom.offset(20);
+            make.bottom.offset(-20);
+        }];
+    }
+    else if(self.style == CarouselStyle_shouye){
         
-        make.left.offset(15);
-        make.right.offset(-16);
-        make.top.bottom.offset(20);
-        make.bottom.offset(-20);
-    }];
+        [self.carouselView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.top.bottom.offset(0);
+        }];
+    }
 }
 
 -(void)showData:(NSArray<CarouselModel *> *)array{

@@ -20,13 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/Business/Home/UIViewController/MotorOilMonopolyViewcontroller.m"
-            timestampString = "592744049.675956"
+            timestampString = "592881044.50833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "-requestGoodsDataWithTypeId:"
-            landmarkType = "7">
+            startingLineNumber = "309"
+            endingLineNumber = "309">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

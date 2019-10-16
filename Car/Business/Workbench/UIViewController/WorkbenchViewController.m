@@ -140,7 +140,7 @@
         CarouselCell * cell = [tableView dequeueReusableCellWithIdentifier:secondCellId];
         if (!cell) {
             
-            cell = [[CarouselCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:secondCellId];
+            cell = [[CarouselCell alloc] initWithReuseIdentifier:secondCellId andStyle:CarouselStyle_gongzuotai];
             
             __weak typeof(self) weakSelf = self;
             cell.clickCallBack = ^(NSString * _Nonnull urlStr) {

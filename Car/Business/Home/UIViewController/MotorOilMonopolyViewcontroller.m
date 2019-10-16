@@ -158,7 +158,7 @@
     [self requestListData];
     [self addRac];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         MotorOilMonopolyGoodsViewController * vc = [[MotorOilMonopolyGoodsViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

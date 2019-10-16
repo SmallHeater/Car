@@ -13,9 +13,9 @@
 @interface HomeNavgationBar ()<UITextFieldDelegate>
 
 //左侧扫一扫按钮
-@property (nonatomic,strong) UIButton * scanningBtn;
-//中间搜索view
-@property (nonatomic,strong) SHSearchTF * searchTF;
+@property (nonatomic,strong) SHImageAndTitleBtn * scanningBtn;
+//中间标题
+@property (nonatomic,strong) UILabel * titleLabel;
 //右侧发布按钮
 @property (nonatomic,strong) SHImageAndTitleBtn * releaseBtn;
 
@@ -26,37 +26,35 @@
 
 #pragma mark  ----  懒加载
 
--(UIButton *)scanningBtn{
+-(SHImageAndTitleBtn *)scanningBtn{
     
     if (!_scanningBtn) {
         
-        _scanningBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_scanningBtn setImage:[UIImage imageNamed:@"saomiao"] forState:UIControlStateNormal];
-        [_scanningBtn setImageEdgeInsets:UIEdgeInsetsMake(9, 9, 9, 9)];
+        _scanningBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(15, 0, 36, 40) andImageFrame:CGRectMake(10, 0, 20, 20) andTitleFrame:CGRectMake(0, 25, 40, 10) andImageName:@"saomiao" andSelectedImageName:@"saomiao" andTitle:@"机油"];
         [_scanningBtn addTarget:self action:@selector(sacnningBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _scanningBtn;
 }
 
--(SHSearchTF *)searchTF{
+-(UILabel *)titleLabel{
     
-    if (!_searchTF) {
+    if (!_titleLabel) {
         
-        _searchTF = [[SHSearchTF alloc] initWithRightImageName:@"xiangji"];
-        _searchTF.delegate = self;
-        _searchTF.placeholder = @"请输入需要搜索的内容";
-        _searchTF.rightViewCallback = ^{
-            
-        };
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = FONT18;
+        _titleLabel.textColor = Color_333333;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        NSDictionary * infoDic = [NSBundle mainBundle].infoDictionary;
+        _titleLabel.text = infoDic[@"CFBundleDisplayName"];
     }
-    return _searchTF;
+    return _titleLabel;
 }
 
 -(SHImageAndTitleBtn *)releaseBtn{
     
     if (!_releaseBtn) {
         
-        _releaseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36 - 19, 0, 36, 40) andImageFrame:CGRectMake(3, 0, 30, 30) andTitleFrame:CGRectMake(0, 30, 36, 10) andImageName:@"fabu" andSelectedImageName:@"" andTitle:@"发布"];
+        _releaseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 36 - 19, 0, 36, 40) andImageFrame:CGRectMake(10, 0, 20, 20) andTitleFrame:CGRectMake(0, 25, 40, 10) andImageName:@"fabuone" andSelectedImageName:@"" andTitle:@"发布"];
         [_releaseBtn addTarget:self action:@selector(releaseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _releaseBtn;
@@ -84,23 +82,25 @@
         
         make.top.offset(0);
         make.left.offset(8);
-        make.width.height.offset(40);
+        make.width.offset(40);
+        make.height.offset(35);
     }];
-    
-    [self addSubview:self.searchTF];
-    [self.searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.offset(57);
+        make.left.offset(100);
+        make.right.offset(-100);
         make.top.bottom.offset(0);
-        make.right.offset(-68);
     }];
     
     [self addSubview:self.releaseBtn];
     [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.bottom.offset(0);
+        make.top.offset(0);
         make.right.offset(-19);
         make.width.offset(40);
+        make.height.offset(35);
     }];
 }
 
