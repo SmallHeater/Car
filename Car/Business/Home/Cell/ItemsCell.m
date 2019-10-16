@@ -108,7 +108,7 @@
 -(void)creatItems{
     
     float itemX = 15;
-    float itemY = 0;
+    float itemY = 10;
     float itemWidth = 60;
     float itemHeight = 60;
     float itemInterval = (MAINWIDTH - 15 * 2 - itemWidth * 5) / 4.0;

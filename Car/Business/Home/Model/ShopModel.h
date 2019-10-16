@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShopModel : NSObject
 
 @property (nonatomic,assign) NSUInteger shopId;
+@property (nonatomic,strong) NSString * shopIdStr;
 //店铺描述
 @property (nonatomic,strong) NSString * shopDescription;
 @property (nonatomic,strong) NSString * name;

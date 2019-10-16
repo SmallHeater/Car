@@ -10,6 +10,11 @@
 
 @implementation ShopModel
 
+-(NSString *)shopIdStr{
+    
+    return [[NSString alloc] initWithFormat:@"%ld",self.shopId];
+}
+
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     
     return @{@"shopId":@"id",@"shopDescription":@"description"};

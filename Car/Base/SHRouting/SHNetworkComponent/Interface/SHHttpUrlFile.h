@@ -96,6 +96,7 @@
 #define GetAgentShop  [[NSString alloc] initWithFormat:@"%@/api/Shop/getAgentShop",CARDOMAIN]
 //机油采购--获取分类商品列表接口
 #define GetTypeGoodsList  [[NSString alloc] initWithFormat:@"%@/api/Shop/getTypeGoodsList",CARDOMAIN]
-
+//机油采购 商铺获取评论接口
+#define GetShopComments  [[NSString alloc] initWithFormat:@"%@/api/Shop/getShopComments",CARDOMAIN]
 
 #endif /* HttpUrlFile_h */

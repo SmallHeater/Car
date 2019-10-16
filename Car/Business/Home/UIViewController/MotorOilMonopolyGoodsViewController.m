@@ -12,6 +12,7 @@
 #import "OilBrandModel.h"
 #import "GoodsCell.h"
 
+
 static NSString * GoodsCategoryCellId = @"GoodsCategoryCell";
 static NSString * GoodsCellId = @"GoodsCell";
 
@@ -20,7 +21,6 @@ static NSString * GoodsCellId = @"GoodsCell";
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
 @property (nonatomic,strong) SHBaseTableView * rightTableView;
 @property (nonatomic,strong) NSMutableArray<OilBrandModel *> * dataArray;
-
 
 @end
 
@@ -103,6 +103,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         
         OilBrandModel * model = self.dataArray[section];
         UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
+        headerView.backgroundColor = [UIColor whiteColor];
         UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 35)];
         titleLabel.font = FONT12;
         titleLabel.textColor = Color_333333;
@@ -111,10 +112,6 @@ static NSString * GoodsCellId = @"GoodsCell";
         return headerView;
     }
     return nil;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 }
 
 #pragma mark  ----  UITableViewDataSource

@@ -11,4 +11,9 @@
 
 @implementation OilGoodModel
 
+-(NSString *)countStr{
+    
+    return [[NSString alloc] initWithFormat:@"%ld",self.count];
+}
+
 @end

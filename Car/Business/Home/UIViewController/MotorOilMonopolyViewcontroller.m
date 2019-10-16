@@ -13,8 +13,9 @@
 #import "UserInforController.h"
 #import "ShopModel.h"
 #import "MotorOilMonopolyHeaderView.h"
-
 #import "MotorOilMonopolyGoodsViewController.h"
+#import "MotorOilMonopolyEvaluationViewController.h"
+
 
 #define ITEMBTNBASETAG 1000
 
@@ -30,6 +31,8 @@
 @property (nonatomic,strong) ShopModel * shopModel;
 //头部背景图地址
 @property (nonatomic,strong) NSString * headImageUrlStr;
+//存放商品view,评价view,商家view的容器view
+@property (nonatomic,strong) UIScrollView * bgScrollView;
 
 @end
 
@@ -147,6 +150,23 @@
     return _bottomView;
 }
 
+-(UIScrollView *)bgScrollView{
+    
+    if (!_bgScrollView) {
+        
+        _bgScrollView = [[UIScrollView alloc] init];
+        float viewHeight = MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44;
+        _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
+        
+        MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
+        [self addChildViewController:goodsVC];
+        UIView * goodsView = goodsVC.view;
+        goodsView.frame = CGRectMake(0, 0, MAINWIDTH,viewHeight);
+        [_bgScrollView addSubview:goodsView];
+    }
+    return _bgScrollView;
+}
+
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
@@ -157,12 +177,6 @@
     [self drawUI];
     [self requestListData];
     [self addRac];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        MotorOilMonopolyGoodsViewController * vc = [[MotorOilMonopolyGoodsViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    });
 }
 
 #pragma mark  ----  代理
@@ -202,8 +216,12 @@
     if (!cell) {
         
         cell = [[MotorOilMonopolyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MotorOilMonopolyCellID];
+        [cell addSubview:self.bgScrollView];
+        [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.top.bottom.offset(0);
+        }];
     }
-    
     return cell;
 }
 
@@ -280,6 +298,11 @@
                         
                         weakSelf.shopModel = [ShopModel mj_objectWithKeyValues:dataDic[@"shop"]];
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            MotorOilMonopolyEvaluationViewController * vc = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:weakSelf.shopModel.shopIdStr];
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        });
                         if (weakSelf.shopModel.categorys.count > 0) {
                             
                             ShopCategoryModel * firstModel = weakSelf.shopModel.categorys[0];

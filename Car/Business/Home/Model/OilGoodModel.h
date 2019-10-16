@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 //0W-20
 @property (nonatomic,strong) NSString * viscosity;
 
+//已选数量
+@property (nonatomic,assign) NSUInteger count;
+//已选数量的字符串
+@property (nonatomic,strong) NSString * countStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

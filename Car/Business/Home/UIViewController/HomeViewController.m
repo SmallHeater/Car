@@ -231,7 +231,7 @@
                 break;
             case 1:
                 
-                cellHeight = 180;
+                cellHeight = 190;
                 break;
             default:
                 break;

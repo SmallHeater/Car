@@ -149,6 +149,9 @@
 		0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */; };
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
+		049B5CEA23574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CE923574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m */; };
+		049B5CED23575158008B4FCD /* MotorOilCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CEC23575158008B4FCD /* MotorOilCommentModel.m */; };
+		049B5CF023575539008B4FCD /* MotorOilCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CEF23575539008B4FCD /* MotorOilCommentCell.m */; };
 		049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C58932327EB1000CB0FEF /* RepaidModel.m */; };
 		049C78BC233635D600612AF5 /* SHQRCodeLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78AD233635D500612AF5 /* SHQRCodeLibrary.m */; };
 		049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78B1233635D500612AF5 /* QRCodeBacgrouView.m */; };
@@ -544,6 +547,12 @@
 		0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsViewController.m; sourceTree = "<group>"; };
 		0498B5C72315B9C700A5EDC1 /* RevenueListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueListViewController.h; sourceTree = "<group>"; };
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
+		049B5CE823574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyEvaluationViewController.h; sourceTree = "<group>"; };
+		049B5CE923574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyEvaluationViewController.m; sourceTree = "<group>"; };
+		049B5CEB23575158008B4FCD /* MotorOilCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilCommentModel.h; sourceTree = "<group>"; };
+		049B5CEC23575158008B4FCD /* MotorOilCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilCommentModel.m; sourceTree = "<group>"; };
+		049B5CEE23575539008B4FCD /* MotorOilCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilCommentCell.h; sourceTree = "<group>"; };
+		049B5CEF23575539008B4FCD /* MotorOilCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilCommentCell.m; sourceTree = "<group>"; };
 		049C58922327EB1000CB0FEF /* RepaidModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepaidModel.h; sourceTree = "<group>"; };
 		049C58932327EB1000CB0FEF /* RepaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepaidModel.m; sourceTree = "<group>"; };
 		049C78AC233635D500612AF5 /* SHQRCodeLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHQRCodeLibrary.h; sourceTree = "<group>"; };
@@ -1016,6 +1025,8 @@
 				0458B89A234F5D4C0073B5DB /* PostResidualTransactionViewController.m */,
 				045B3C742354B41000E28F2A /* MotorOilMonopolyGoodsViewController.h */,
 				045B3C752354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m */,
+				049B5CE823574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.h */,
+				049B5CE923574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1725,6 +1736,8 @@
 				047702202355F733003E847E /* OilBrandModel.m */,
 				047702222355F80C003E847E /* OilGoodModel.h */,
 				047702232355F80C003E847E /* OilGoodModel.m */,
+				049B5CEB23575158008B4FCD /* MotorOilCommentModel.h */,
+				049B5CEC23575158008B4FCD /* MotorOilCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2003,6 +2016,8 @@
 				045B3C782354B7B200E28F2A /* GoodsCategoryCell.m */,
 				62D530DE2355512900BA9AE1 /* GoodsCell.h */,
 				62D530DF2355512900BA9AE1 /* GoodsCell.m */,
+				049B5CEE23575539008B4FCD /* MotorOilCommentCell.h */,
+				049B5CEF23575539008B4FCD /* MotorOilCommentCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2204,6 +2219,7 @@
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
+				049B5CEA23574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m in Sources */,
 				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
 				045B3C792354B7B200E28F2A /* GoodsCategoryCell.m in Sources */,
 				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
@@ -2303,6 +2319,7 @@
 				046DCBA42312CEB600C520D8 /* FastPickUpViewController.m in Sources */,
 				0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */,
 				0404854F230C1EDD00EF17C8 /* AppDelegate.m in Sources */,
+				049B5CF023575539008B4FCD /* MotorOilCommentCell.m in Sources */,
 				62929BAF231A1E430018DE07 /* UserInforController.m in Sources */,
 				0432BF972326818C002CD639 /* SHVideoCollectionViewCell.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
@@ -2353,6 +2370,7 @@
 				043E9F73234874CF00109AC5 /* PostJobViewController.m in Sources */,
 				624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,
+				049B5CED23575158008B4FCD /* MotorOilCommentModel.m in Sources */,
 				04733191233904E6000BEF04 /* JobRecruitmentWorkTypeCell.m in Sources */,
 				62D530B42353FC7400BA9AE1 /* ShopModel.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
