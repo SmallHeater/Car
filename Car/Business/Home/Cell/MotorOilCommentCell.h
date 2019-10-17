@@ -7,10 +7,14 @@
 //  机油评价cell
 
 #import "SHBaseTableViewCell.h"
+#import "MotorOilCommentModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MotorOilCommentCell : SHBaseTableViewCell
+
+-(void)show:(MotorOilCommentModel *)model;
 
 @end
 

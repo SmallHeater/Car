@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * images;
 @property (nonatomic,assign) NSUInteger pid;
 @property (nonatomic,strong) NSString * remark;
-@property (nonatomic,assign) NSUInteger scope;
+@property (nonatomic,assign) NSUInteger score;
 @property (nonatomic,assign) NSUInteger shop_id;
 @property (nonatomic,strong) NSString * tab_ids;
 @property (nonatomic,assign) NSUInteger thumbs;

@@ -163,6 +163,13 @@
         UIView * goodsView = goodsVC.view;
         goodsView.frame = CGRectMake(0, 0, MAINWIDTH,viewHeight);
         [_bgScrollView addSubview:goodsView];
+        
+        MotorOilMonopolyEvaluationViewController * evaluationVC = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:self.shopModel.shopIdStr];
+        [self addChildViewController:evaluationVC];
+        UIView * evaluationView = evaluationVC.view;
+        evaluationView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH,viewHeight);
+        [_bgScrollView addSubview:evaluationView];
+        
     }
     return _bgScrollView;
 }
@@ -207,7 +214,12 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    NSUInteger rows = 0;
+    if (self.shopModel) {
+        
+        rows = 1;
+    }
+    return rows;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -298,19 +310,7 @@
                         
                         weakSelf.shopModel = [ShopModel mj_objectWithKeyValues:dataDic[@"shop"]];
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            
-                            MotorOilMonopolyEvaluationViewController * vc = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:weakSelf.shopModel.shopIdStr];
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        });
-                        if (weakSelf.shopModel.categorys.count > 0) {
-                            
-                            ShopCategoryModel * firstModel = weakSelf.shopModel.categorys[0];
-//                            if (firstModel && [firstModel isKindOfClass:[ShopCategoryModel class]]) {
-//                                
-//                                [weakSelf requestGoodsDataWithTypeId:[[NSString alloc] initWithFormat:@"%ld",firstModel.CategoryId]];
-//                            }
-                        }
+                        [weakSelf.tableView reloadData];
                     }
                 }
                 else{

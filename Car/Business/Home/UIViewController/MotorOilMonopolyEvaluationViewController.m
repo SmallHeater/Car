@@ -9,7 +9,9 @@
 #import "MotorOilMonopolyEvaluationViewController.h"
 #import "UserInforController.h"
 #import "MotorOilCommentModel.h"
+#import "MotorOilCommentCell.h"
 
+static NSString * cellId = @"MotorOilCommentCell";
 @interface MotorOilMonopolyEvaluationViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
@@ -81,7 +83,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return nil;
+    MotorOilCommentCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        
+        cell = [[MotorOilCommentCell alloc] initWithReuseIdentifier:cellId];
+    }
+    
+    MotorOilCommentModel * model = self.dataArray[indexPath.row];
+    [cell show:model];
+    
+    return cell;
 }
 
 #pragma mark  ----  自定义函数
@@ -91,8 +102,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.top.bottom.offset(0);
-        make.width.offset(75);
+        make.left.top.bottom.right.offset(0);
     }];
 }
 

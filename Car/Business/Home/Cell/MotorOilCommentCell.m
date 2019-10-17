@@ -32,7 +32,7 @@
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor lightGrayColor];
         _iconImageView.layer.masksToBounds = YES;
-        _iconImageView.layer.cornerRadius = 35;
+        _iconImageView.layer.cornerRadius = 18;
     }
     return _iconImageView;
 }
@@ -114,7 +114,7 @@
        
         make.left.offset(16);
         make.top.offset(10);
-        make.width.height.offset(35);
+        make.width.height.offset(36);
     }];
     
     [self addSubview:self.nameLabel];
@@ -135,7 +135,83 @@
         make.height.offset(14);
     }];
     
+    [self addSubview:self.commentLabel];
+    [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.nameLabel.mas_left);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
+        make.width.offset(22);
+        make.height.offset(14);
+    }];
     
+    [self addSubview:self.contentLabel];
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.commentLabel.mas_left);
+        make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
+        make.right.offset(-16);
+        make.height.offset(17);
+    }];
+    
+    [self addSubview:self.lineLabel];
+    [self.lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(16);
+        make.bottom.right.offset(0);
+        make.height.offset(1);
+    }];
+}
+
+-(void)show:(MotorOilCommentModel *)model{
+    
+    if (model && [model isKindOfClass:[MotorOilCommentModel class]]) {
+        
+        NSString * avatarStr = @"";
+        NSString * name = @"";
+        if (model.from_user && [model.from_user isKindOfClass:[NSDictionary class]]) {
+            
+            if ([model.from_user.allKeys containsObject:@"avatar"]) {
+                
+                avatarStr = model.from_user[@"avatar"];
+            }
+            
+            if ([model.from_user.allKeys containsObject:@"shop_name"]) {
+                
+                name = model.from_user[@"shop_name"];
+            }
+        }
+        
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:avatarStr]];
+        self.nameLabel.text = name;
+        self.dateLabel.text = [NSString repleaseNilOrNull:model.createtime];
+        
+        NSString * content = [NSString repleaseNilOrNull:model.content];
+        float contentHeight = 17;
+        float contentWidth = [content widthWithFont:FONT12 andHeight:contentHeight];
+        if (contentWidth > MAINWIDTH - 66 - 16) {
+            
+            //两行
+            [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(self.commentLabel.mas_left);
+                make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
+                make.right.offset(-16);
+                make.height.offset(34);
+            }];
+        }
+        else{
+            
+            //一行
+            [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(self.commentLabel.mas_left);
+                make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
+                make.right.offset(-16);
+                make.height.offset(17);
+            }];
+        }
+        self.contentLabel.text = content;
+    }
 }
 
 @end
