@@ -15,7 +15,7 @@
 #import "MotorOilMonopolyHeaderView.h"
 #import "MotorOilMonopolyGoodsViewController.h"
 #import "MotorOilMonopolyEvaluationViewController.h"
-
+#import "MotorOilMonopolyShopViewController.h"
 
 #define ITEMBTNBASETAG 1000
 
@@ -155,6 +155,7 @@
     if (!_bgScrollView) {
         
         _bgScrollView = [[UIScrollView alloc] init];
+        _bgScrollView.pagingEnabled = YES;
         float viewHeight = MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44;
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
         
@@ -169,7 +170,6 @@
         UIView * evaluationView = evaluationVC.view;
         evaluationView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH,viewHeight);
         [_bgScrollView addSubview:evaluationView];
-        
     }
     return _bgScrollView;
 }
@@ -194,8 +194,6 @@
     
     
 }
-
-
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -312,6 +310,12 @@
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
                         [weakSelf.tableView reloadData];
                     }
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        MotorOilMonopolyShopViewController * vc = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    });
                 }
                 else{
                     

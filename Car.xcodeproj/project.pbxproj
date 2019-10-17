@@ -77,6 +77,9 @@
 		0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EE9D2333B545008E33BC /* CarItemSingleCell.m */; };
 		0435EEA12333B55D008E33BC /* CarItemThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA02333B55D008E33BC /* CarItemThreeCell.m */; };
 		0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA32333B574008E33BC /* CarItemVideoCell.m */; };
+		0437A2A82358A4B400964E1C /* MotorOilMonopolyShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0437A2A72358A4B400964E1C /* MotorOilMonopolyShopViewController.m */; };
+		0437A2AB2358A87900964E1C /* AgentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0437A2AA2358A87900964E1C /* AgentCell.m */; };
+		0437A2AE2358B34A00964E1C /* ProductStatementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0437A2AD2358B34A00964E1C /* ProductStatementCell.m */; };
 		043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABC231D456C00CC8B35 /* UnpaidCell.m */; };
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
@@ -402,6 +405,12 @@
 		0435EEA02333B55D008E33BC /* CarItemThreeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemThreeCell.m; sourceTree = "<group>"; };
 		0435EEA22333B574008E33BC /* CarItemVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemVideoCell.h; sourceTree = "<group>"; };
 		0435EEA32333B574008E33BC /* CarItemVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemVideoCell.m; sourceTree = "<group>"; };
+		0437A2A62358A4B300964E1C /* MotorOilMonopolyShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyShopViewController.h; sourceTree = "<group>"; };
+		0437A2A72358A4B400964E1C /* MotorOilMonopolyShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyShopViewController.m; sourceTree = "<group>"; };
+		0437A2A92358A87900964E1C /* AgentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentCell.h; sourceTree = "<group>"; };
+		0437A2AA2358A87900964E1C /* AgentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentCell.m; sourceTree = "<group>"; };
+		0437A2AC2358B34A00964E1C /* ProductStatementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductStatementCell.h; sourceTree = "<group>"; };
+		0437A2AD2358B34A00964E1C /* ProductStatementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductStatementCell.m; sourceTree = "<group>"; };
 		043D5ABB231D456C00CC8B35 /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		043D5ABC231D456C00CC8B35 /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		043D5ABE231EAC3E00CC8B35 /* FastPickUpRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPickUpRequestModel.h; sourceTree = "<group>"; };
@@ -1003,6 +1012,8 @@
 		04048587230C252A00EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0437A2A62358A4B300964E1C /* MotorOilMonopolyShopViewController.h */,
+				0437A2A72358A4B400964E1C /* MotorOilMonopolyShopViewController.m */,
 				0404859A230C259900EF17C8 /* HomeViewController.h */,
 				0404859B230C259900EF17C8 /* HomeViewController.m */,
 				049C78C823363CC300612AF5 /* ResidualTransactionViewController.h */,
@@ -2018,6 +2029,10 @@
 				62D530DF2355512900BA9AE1 /* GoodsCell.m */,
 				049B5CEE23575539008B4FCD /* MotorOilCommentCell.h */,
 				049B5CEF23575539008B4FCD /* MotorOilCommentCell.m */,
+				0437A2A92358A87900964E1C /* AgentCell.h */,
+				0437A2AA2358A87900964E1C /* AgentCell.m */,
+				0437A2AC2358B34A00964E1C /* ProductStatementCell.h */,
+				0437A2AD2358B34A00964E1C /* ProductStatementCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2216,6 +2231,7 @@
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				0432BFBF2326951F002CD639 /* BigImageViewCollectionViewCell.m in Sources */,
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
+				0437A2AE2358B34A00964E1C /* ProductStatementCell.m in Sources */,
 				62061FFE231E8B4000A78462 /* JHCameraForLicenceViewController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
@@ -2253,6 +2269,7 @@
 				628AF59F2318A97F007BC0F8 /* HighOrderPositioningController.m in Sources */,
 				043E9F8F234DB6D900109AC5 /* LocatingManager.m in Sources */,
 				04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */,
+				0437A2A82358A4B400964E1C /* MotorOilMonopolyShopViewController.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
 				0432BFA523268223002CD639 /* SHAssetVideoModel.m in Sources */,
 				043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */,
@@ -2310,6 +2327,7 @@
 				624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */,
 				0432BFA323268223002CD639 /* SHPictureSelectionComponentInitModel.m in Sources */,
 				04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */,
+				0437A2AB2358A87900964E1C /* AgentCell.m in Sources */,
 				0422D9AD2323C7B300AF687D /* BaiDuBosControl.m in Sources */,
 				0404856F230C205F00EF17C8 /* UIColor+SHTool.m in Sources */,
 				62929BA423193A130018DE07 /* SHCacheManagementMiddleware.m in Sources */,

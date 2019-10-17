@@ -101,6 +101,7 @@
     if (self) {
         
         [self drawUI];
+        self.backgroundColor = [UIColor greenColor];
     }
     return self;
 }
