@@ -57,6 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * delivery_type_text;
 @property (nonatomic,strong) NSString * del_text;
 
+//法律声明
+@property (nonatomic,strong) NSString * declaration_law;
+//产品声明
+@property (nonatomic,strong) NSString * declaration_production;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

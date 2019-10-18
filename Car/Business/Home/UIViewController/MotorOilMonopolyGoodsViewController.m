@@ -21,6 +21,10 @@ static NSString * GoodsCellId = @"GoodsCell";
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
 @property (nonatomic,strong) SHBaseTableView * rightTableView;
 @property (nonatomic,strong) NSMutableArray<OilBrandModel *> * dataArray;
+//存放添加的机油商品模型的数组
+@property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
+//价格
+@property (nonatomic,strong) NSString * priceStr;
 
 @end
 
@@ -59,6 +63,15 @@ static NSString * GoodsCellId = @"GoodsCell";
     return _dataArray;
 }
 
+-(NSMutableArray<OilGoodModel *> *)goodsArray{
+    
+    if (!_goodsArray) {
+        
+        _goodsArray = [[NSMutableArray alloc] init];
+    }
+    return _goodsArray;
+}
+
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
@@ -67,6 +80,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     
     [self drawUI];
     [self requestListData];
+    [self addNotification];
 }
 
 #pragma mark  ----  代理
@@ -188,7 +202,8 @@ static NSString * GoodsCellId = @"GoodsCell";
     [self.view addSubview:self.leftTableView];
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.bottom.offset(0);
+        make.left.bottom.offset(0);
+        make.top.bottom.offset(-20);
         make.width.offset(75);
     }];
     
@@ -196,7 +211,47 @@ static NSString * GoodsCellId = @"GoodsCell";
     [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.leftTableView.mas_right);
-        make.top.bottom.right.offset(0);
+        make.top.bottom.offset(-20);
+        make.width.offset(MAINWIDTH - 75);
+    }];
+}
+
+//添加通知
+-(void)addNotification{
+    
+    //总价
+     __block float totalPrice = 0;
+    //商品数量变动的通知
+    __weak typeof(self) weakSelf = self;
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"GOODSVARIETY" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        totalPrice = 0;
+        [weakSelf.goodsArray removeAllObjects];
+        for (OilBrandModel * oilBrandModel in weakSelf.dataArray) {
+            
+            for (OilGoodModel * goodModel in oilBrandModel.goods) {
+                
+                if (goodModel.count > 0) {
+                 
+                    [weakSelf.goodsArray addObject:goodModel];
+                    float price = 0;
+                    if (goodModel.specs && [goodModel.specs isKindOfClass:[NSArray class]] && goodModel.specs.count > 0) {
+                        
+                        NSDictionary * dic = goodModel.specs[0];
+                        NSNumber * priceNumber = dic[@"goods_price"];
+                        price = priceNumber.floatValue;
+                    }
+                    
+                    totalPrice += goodModel.count * price;
+                }
+            }
+        }
+        
+        weakSelf.priceStr = [[NSString alloc] initWithFormat:@"%.2f",totalPrice];
+        if (weakSelf.callBack) {
+            
+            weakSelf.callBack(weakSelf.goodsArray);
+        }
     }];
 }
 

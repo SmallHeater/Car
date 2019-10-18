@@ -16,6 +16,9 @@
 #import "MotorOilMonopolyGoodsViewController.h"
 #import "MotorOilMonopolyEvaluationViewController.h"
 #import "MotorOilMonopolyShopViewController.h"
+#import "MyShoppingCartView.h"
+#import "OilGoodModel.h"
+
 
 #define ITEMBTNBASETAG 1000
 
@@ -31,8 +34,13 @@
 @property (nonatomic,strong) ShopModel * shopModel;
 //头部背景图地址
 @property (nonatomic,strong) NSString * headImageUrlStr;
+@property (nonatomic,strong) MotorOilMonopolyGoodsViewController * goodsVC;
 //存放商品view,评价view,商家view的容器view
 @property (nonatomic,strong) UIScrollView * bgScrollView;
+//机油总价
+@property (nonatomic,assign) float totalPrice;
+//存放添加的机油商品模型的数组
+@property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
 
 @end
 
@@ -64,6 +72,7 @@
         
         NSMutableArray * tabModelArray = [[NSMutableArray alloc] init];
         
+        NSUInteger i = 0;
         for (NSString * str in self.tabTitleArray) {
             
             SHTabModel * tabModel = [[SHTabModel alloc] init];
@@ -73,6 +82,8 @@
             tabModel.selectedFont = FONT14;
             tabModel.selectedColor = Color_108EE9;
             tabModel.btnWidth = 60;
+            tabModel.tabTag = ITEMBTNBASETAG + i;
+            i++;
             [tabModelArray addObject:tabModel];
         }
         SHTabSelectLineModel * lineModel = [[SHTabSelectLineModel alloc] init];
@@ -86,6 +97,7 @@
             
             UIButton * btn = x.first;
             NSUInteger index = btn.tag - ITEMBTNBASETAG;
+            [weakSelf.bgScrollView setContentOffset:CGPointMake(index * MAINWIDTH, 0) animated:YES];
         }];
     }
     return _baseTabView;
@@ -122,7 +134,23 @@
         //价格总计
         UILabel * totalPriceLabel = [[UILabel alloc] init];
         totalPriceLabel.textColor = [UIColor whiteColor];
-        totalPriceLabel.text = @"总计：¥1080.00";
+        totalPriceLabel.userInteractionEnabled = YES;
+        totalPriceLabel.text = @"总计：¥0.00";
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+        __weak typeof(self) weakSelf = self;
+        
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            
+            MyShoppingCartView * carView = [[MyShoppingCartView alloc] initWithArray:weakSelf.goodsArray];
+            [weakSelf.view addSubview:carView];
+            [carView mas_makeConstraints:^(MASConstraintMaker *make) {
+               
+                make.left.right.top.bottom.offset(0);
+            }];
+            [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
+        }];
+        [totalPriceLabel addGestureRecognizer:tap];
+        
         [_bottomView addSubview:totalPriceLabel];
         [totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -131,6 +159,14 @@
             make.width.offset(180);
         }];
         
+        [[self.goodsVC rac_valuesForKeyPath:@"priceStr" observer:self] subscribeNext:^(id  _Nullable x) {
+            
+            weakSelf.totalPrice = [x floatValue];
+            if (![NSString strIsEmpty:x]) {
+             
+                totalPriceLabel.text = [[NSString alloc] initWithFormat:@"总计：¥%@",x];
+            }
+        }];
         //去结算按钮
         UIButton * settlementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         settlementBtn.layer.masksToBounds = YES;
@@ -155,23 +191,49 @@
     if (!_bgScrollView) {
         
         _bgScrollView = [[UIScrollView alloc] init];
+        _bgScrollView.delegate = self;
         _bgScrollView.pagingEnabled = YES;
         float viewHeight = MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44;
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
         
         MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
-        [self addChildViewController:goodsVC];
+        __weak typeof(self) weakSelf = self;
+        goodsVC.callBack = ^(NSMutableArray * _Nonnull dataArray) {
+            
+            if (dataArray && [dataArray isKindOfClass:[NSMutableArray class]]) {
+             
+                [weakSelf.goodsArray removeAllObjects];
+                [weakSelf.goodsArray addObjectsFromArray:dataArray];
+            }
+        };
+        self.goodsVC = goodsVC;
         UIView * goodsView = goodsVC.view;
-        goodsView.frame = CGRectMake(0, 0, MAINWIDTH,viewHeight);
         [_bgScrollView addSubview:goodsView];
+        goodsView.frame = CGRectMake(0, 0, 0,viewHeight);
+        [self addChildViewController:goodsVC];
         
         MotorOilMonopolyEvaluationViewController * evaluationVC = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:self.shopModel.shopIdStr];
         [self addChildViewController:evaluationVC];
         UIView * evaluationView = evaluationVC.view;
-        evaluationView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH,viewHeight);
+        evaluationView.frame = CGRectMake(MAINWIDTH, 0, 0,viewHeight);
         [_bgScrollView addSubview:evaluationView];
+        
+        MotorOilMonopolyShopViewController * shopVC = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
+        [self addChildViewController:shopVC];
+        UIView * shopView = shopVC.view;
+        shopView.frame = CGRectMake(MAINWIDTH * 2, 0, 0,viewHeight);
+        [_bgScrollView addSubview:shopView];
     }
     return _bgScrollView;
+}
+
+-(NSMutableArray<OilGoodModel *> *)goodsArray{
+    
+    if (!_goodsArray) {
+        
+        _goodsArray = [[NSMutableArray alloc] init];
+    }
+    return _goodsArray;
 }
 
 #pragma mark  ----  生命周期函数
@@ -190,9 +252,10 @@
 
 #pragma mark  ----  UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    
+    float index = scrollView.contentOffset.x / MAINWIDTH;
+    [self.baseTabView selectItemWithIndex:index];
 }
 
 #pragma mark  ----  UITableViewDelegate
@@ -247,14 +310,18 @@
         make.left.right.bottom.offset(0);
     }];
     
-    [self.view addSubview:self.bottomView];
-    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
        
-        make.left.offset(17);
-        make.right.offset(-17);
-        make.bottom.offset(-5 - [UIScreenControl bottomSafeHeight]);
-        make.height.offset(47);
-    }];
+        [weakSelf.view addSubview:weakSelf.bottomView];
+        [weakSelf.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(17);
+            make.right.offset(-17);
+            make.bottom.offset(-5 - [UIScreenControl bottomSafeHeight]);
+            make.height.offset(47);
+        }];
+    });
 }
 
 //添加rac处理
@@ -310,12 +377,6 @@
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
                         [weakSelf.tableView reloadData];
                     }
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        
-                        MotorOilMonopolyShopViewController * vc = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
-                        [self.navigationController pushViewController:vc animated:YES];
-                    });
                 }
                 else{
                     

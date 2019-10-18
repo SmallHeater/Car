@@ -67,11 +67,21 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
     }
     else if (indexPath.row == 1){
         
-        cellHeight = 124;
+        NSString * str;
+        if (![NSString strIsEmpty:self.shopModel.declaration_production]) {
+            
+            str = self.shopModel.declaration_production;
+        }else if (![NSString strIsEmpty:self.shopModel.declaration_law]){
+            
+            str = self.shopModel.declaration_law;
+        }
+        
+        cellHeight = 40 + [str heightWithFont:FONT12 andWidth:MAINWIDTH - 16 * 2] + 18;
     }
     else if (indexPath.row == 2){
         
-        cellHeight = 129;
+        NSString * str = [NSString repleaseNilOrNull:self.shopModel.declaration_law];
+        cellHeight = 40 + [str heightWithFont:FONT12 andWidth:MAINWIDTH - 16 * 2] + 18;
     }
     return cellHeight;
 }
@@ -79,7 +89,19 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSUInteger rows = 3;
+    NSUInteger rows = 1;
+    if (![NSString strIsEmpty:self.shopModel.declaration_production]) {
+        
+        //产品声明
+        rows++;
+    }
+    
+    if (![NSString strIsEmpty:self.shopModel.declaration_law]) {
+        
+        //法律声明
+        rows++;
+    }
+    
     return rows;
 }
 
@@ -105,7 +127,20 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
             cell = [[ProductStatementCell alloc] initWithReuseIdentifier:ProductStatementCellId andShowBottomLine:YES];
         }
         
-        [cell show:@"产品声明" content:@"产品由中材集团（央企）统一销售供应，代理商负责产品配送和客户服务。产品质量由中国人寿保险公司承保，如因产品质量造成的设备故障，将享有保险公司最高1000万理赔。"];
+        NSString * title;
+        NSString * content;
+        if (![NSString strIsEmpty:self.shopModel.declaration_production]) {
+            
+            title = @"产品声明";
+            content = self.shopModel.declaration_production;
+        }
+        else if (![NSString strIsEmpty:self.shopModel.declaration_law]){
+            
+            title = @"法律声明";
+            content = self.shopModel.declaration_law;
+        }
+        
+        [cell show:title content:content];
         
         return cell;
     }
@@ -117,7 +152,9 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
             cell = [[ProductStatementCell alloc] initWithReuseIdentifier:ProductStatementCellId andShowBottomLine:NO];
         }
         
-        [cell show:@"法律声明" content:@"未经中材集团（央企）授权，任何组织和个人不得冒用中材集团（央企）宣传销售假冒伪劣产品。否则追究刑事责任！"];
+        NSString * title = @"法律声明";
+        NSString * content = [NSString repleaseNilOrNull:self.shopModel.declaration_law];
+        [cell show:title content:content];
         return cell;
     }
     

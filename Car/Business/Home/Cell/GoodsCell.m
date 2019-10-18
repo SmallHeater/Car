@@ -82,6 +82,7 @@
                 weakSelf.countLabel.text = weakSelf.model.countStr;
             }
             x.userInteractionEnabled = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
         }];
     }
     return _subtractBtn;
@@ -112,6 +113,7 @@
             weakSelf.model.count++;
             weakSelf.countLabel.text = weakSelf.model.countStr;
             x.userInteractionEnabled = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
         }];
     }
     return _addBtn;

@@ -101,7 +101,6 @@
     if (self) {
         
         [self drawUI];
-        self.backgroundColor = [UIColor greenColor];
     }
     return self;
 }
@@ -135,7 +134,6 @@
         make.width.offset(70);
         make.height.offset(14);
     }];
-    
     [self addSubview:self.commentLabel];
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -185,6 +183,32 @@
         [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:avatarStr]];
         self.nameLabel.text = name;
         self.dateLabel.text = [NSString repleaseNilOrNull:model.createtime];
+        
+        //星
+        NSUInteger score = model.score;
+        float imageX = 91;
+        for (NSUInteger i = 0; i < 5; i++) {
+            
+            NSString * imageName;
+            if (i < score) {
+                
+                imageName = @"xinghongse";
+            }
+            else{
+                
+                imageName = @"xinghuise";
+            }
+            UIImageView * starImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+            [self addSubview:starImageView];
+            [starImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+               
+                make.left.offset(imageX);
+                make.top.equalTo(self.commentLabel.mas_top).offset(2);
+                make.width.height.offset(10);
+            }];
+            
+            imageX += 13;
+        }
         
         NSString * content = [NSString repleaseNilOrNull:model.content];
         float contentHeight = 17;

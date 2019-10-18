@@ -18,6 +18,7 @@
 @property (nonatomic,strong) UIImageView * addressImageView;
 @property (nonatomic,strong) UILabel * addressLabel;
 @property (nonatomic,strong) UILabel * lineLabel;
+@property (nonatomic,strong) UIScrollView * imgBGScrollView;
 @property (nonatomic,strong) UILabel * twoLineLabel;
 @property (nonatomic,strong) UIImageView * productFileImageView;
 @property (nonatomic,strong) UILabel * productFileLabel;
@@ -111,6 +112,15 @@
         _lineLabel.backgroundColor = Color_EEEEEE;
     }
     return _lineLabel;
+}
+
+-(UIScrollView *)imgBGScrollView{
+    
+    if (!_imgBGScrollView) {
+        
+        _imgBGScrollView = [[UIScrollView alloc] init];
+    }
+    return _imgBGScrollView;
 }
 
 -(UILabel *)twoLineLabel{
@@ -248,6 +258,15 @@
         make.height.offset(1);
     }];
     
+    [self addSubview:self.imgBGScrollView];
+    [self.imgBGScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.titleLabel.mas_left);
+        make.top.equalTo(self.lineLabel.mas_bottom).offset(10);
+        make.right.offset(-16);
+        make.height.offset(66);
+    }];
+    
     [self addSubview:self.twoLineLabel];
     [self.twoLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -295,6 +314,23 @@
     self.nameLabel.text = [NSString repleaseNilOrNull:model.name];
     self.phoneLabel.text = [NSString repleaseNilOrNull:model.phone];
     self.addressLabel.text = [NSString repleaseNilOrNull:model.address];
+    
+    float imageViewX = 0;
+    for (NSUInteger i = 0; i < model.images.count; i++) {
+        
+        UIImageView * imageView = [[UIImageView alloc] init];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.images[i]]];
+        [self.imgBGScrollView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(imageViewX);
+            make.top.offset(0);
+            make.width.offset(90);
+            make.height.offset(66);
+        }];
+        
+        imageViewX += 100;
+    }
     
 }
 
