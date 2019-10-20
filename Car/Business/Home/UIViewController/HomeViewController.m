@@ -135,7 +135,7 @@
         [whiteBGView mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.right.offset(0);
-            make.top.offset(77);
+            make.top.offset(71 + [UIScreenControl liuHaiHeight]);
             make.height.offset(82);
         }];
     }

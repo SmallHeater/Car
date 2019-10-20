@@ -56,6 +56,7 @@
 #define Color_DEDEDE [UIColor colorFromHexRGB:@"DEDEDE"]
 #define Color_E1534A [UIColor colorFromHexRGB:@"E1534A"]
 #define Color_E2E2E2 [UIColor colorWithRed:226.0/255.0 green:226.0/255.0 blue:226.0/255.0 alpha:1]
+#define Color_E6E6E6 [UIColor colorFromHexRGB:@"E6E6E6"]
 #define Color_E9E9E9 [UIColor colorFromHexRGB:@"E9E9E9"]
 #define Color_EEEEEE [UIColor colorFromHexRGB:@"EEEEEE"]
 #define Color_F0F2F7 [UIColor colorFromHexRGB:@"F0F2F7"]
@@ -70,6 +71,7 @@
 #define Color_FF58B0 [UIColor colorWithRed:1 green:88.0/255.0 blue:176.0/255.0 alpha:1]
 #define Color_FF594C [UIColor colorFromHexRGB:@"FF594C"]
 #define Color_FF9B63 [UIColor colorFromHexRGB:@"FF9B63"]
+#define Color_FFFEFE [UIColor colorFromHexRGB:@"FFFEFE"]
 
 #define FONT9 [UIFont systemFontOfSize:9]
 #define FONT10 [UIFont systemFontOfSize:10]

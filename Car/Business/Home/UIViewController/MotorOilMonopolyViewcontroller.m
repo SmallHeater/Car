@@ -18,7 +18,7 @@
 #import "MotorOilMonopolyShopViewController.h"
 #import "MyShoppingCartView.h"
 #import "OilGoodModel.h"
-
+#import "SelectPaymentMethodView.h"
 
 #define ITEMBTNBASETAG 1000
 
@@ -41,6 +41,11 @@
 @property (nonatomic,assign) float totalPrice;
 //存放添加的机油商品模型的数组
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
+//支付选择view
+@property (nonatomic,strong) SelectPaymentMethodView * paymentMethodView;
+//结算方式
+@property (nonatomic,strong) NSString * pay_type;
+
 
 @end
 
@@ -103,6 +108,31 @@
     return _baseTabView;
 }
 
+-(SelectPaymentMethodView *)paymentMethodView{
+    
+    if (!_paymentMethodView) {
+        
+        _paymentMethodView = [[SelectPaymentMethodView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        [[_paymentMethodView rac_valuesForKeyPath:@"payMethod" observer:self] subscribeNext:^(id  _Nullable x) {
+           
+            if (![NSString strIsEmpty:x]) {
+                
+                weakSelf.pay_type = x;
+            }
+        }];
+        
+        [[_paymentMethodView rac_signalForSelector:@selector(sureBtnClicked)] subscribeNext:^(RACTuple * _Nullable x) {
+           
+            if (![NSString strIsEmpty:weakSelf.pay_type]) {
+             
+                [weakSelf settlement];
+            }
+        }];
+    }
+    return _paymentMethodView;
+}
+
 -(UIView *)bottomView{
     
     if (!_bottomView) {
@@ -135,7 +165,10 @@
         UILabel * totalPriceLabel = [[UILabel alloc] init];
         totalPriceLabel.textColor = [UIColor whiteColor];
         totalPriceLabel.userInteractionEnabled = YES;
-        totalPriceLabel.text = @"总计：¥0.00";
+        NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:@"总计：¥0.00"];
+        [attStr addAttributes:@{NSFontAttributeName:FONT12} range:NSMakeRange(0, 3)];
+        [attStr addAttributes:@{NSFontAttributeName:FONT18} range:NSMakeRange(3, attStr.length - 3)];
+        totalPriceLabel.attributedText = attStr;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
         __weak typeof(self) weakSelf = self;
         
@@ -164,7 +197,11 @@
             weakSelf.totalPrice = [x floatValue];
             if (![NSString strIsEmpty:x]) {
              
-                totalPriceLabel.text = [[NSString alloc] initWithFormat:@"总计：¥%@",x];
+                NSString * str = [[NSString alloc] initWithFormat:@"总计：¥%@",x];
+                NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:str];
+                [attStr addAttributes:@{NSFontAttributeName:FONT12} range:NSMakeRange(0, 3)];
+                [attStr addAttributes:@{NSFontAttributeName:FONT18} range:NSMakeRange(3, attStr.length - 3)];
+                totalPriceLabel.attributedText = attStr;
             }
         }];
         //去结算按钮
@@ -176,6 +213,19 @@
         [settlementBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [settlementBtn setBackgroundColor:Color_0272FF];
         settlementBtn.titleLabel.font = FONT16;
+        [[settlementBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            x.userInteractionEnabled = NO;
+            if (weakSelf.totalPrice > 0) {
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.paymentMethodView];
+                [weakSelf.paymentMethodView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.right.top.bottom.offset(0);
+                }];
+            }
+            x.userInteractionEnabled = YES;
+        }];
         [_bottomView addSubview:settlementBtn];
         [settlementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -376,6 +426,68 @@
                         weakSelf.shopModel = [ShopModel mj_objectWithKeyValues:dataDic[@"shop"]];
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
                         [weakSelf.tableView reloadData];
+                    }
+                }
+                else{
+                    
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+//结算
+-(void)settlement{
+    
+    //pay_type,结算方式;total_price,商品总价;pay_price,订单支付总价;
+    NSString * total_priceStr = [[NSString alloc] initWithFormat:@"%.2f",self.totalPrice];
+    
+    NSMutableArray * goods = [[NSMutableArray alloc] init];
+    for (OilGoodModel * model in self.goodsArray) {
+        
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:[NSNumber numberWithLong:model.goods_id] forKey:@"goods_id"];
+        [dic setObject:[NSNumber numberWithLong:model.count] forKey:@"total_num"];
+        [dic setObject:[NSNumber numberWithLong:model.spec_type] forKey:@"spec_type"];
+        if (model.spec_type == 20) {
+            
+            if (model.specs && [model.specs isKindOfClass:[NSArray class]] && model.specs.count > 0) {
+                
+                NSDictionary * specDic = model.specs[0];
+                [dic setObject:specDic[@"goods_spec_id"] forKey:@"goods_spec_id"];
+                [dic setObject:specDic[@"spec_sku_id"] forKey:@"spec_sku_id"];
+            }
+        }
+        [goods addObject:dic];
+    }
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"pay_type":self.pay_type,@"total_price":total_priceStr,@"pay_price":total_priceStr,@"goods":goods};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetAgentShop,@"bodyParameters":bodyParameters};
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        
                     }
                 }
                 else{

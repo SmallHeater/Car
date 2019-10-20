@@ -56,7 +56,7 @@
         marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
         marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
         
-        MineViewController * mineVC = [[MineViewController alloc] init];
+        MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
         mineNav.tabBarItem.title = @"我的";
         mineNav.tabBarItem.image = [UIImage imageNamed:@"wode"];

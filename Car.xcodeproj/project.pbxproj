@@ -185,8 +185,12 @@
 		04ACDD34234203480050B179 /* ForumDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD33234203480050B179 /* ForumDetailTitleCell.m */; };
 		04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
+		04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B98EAB235C6209005954A2 /* MineHeadCell.m */; };
 		04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD0E2A233271F7009CA687 /* ItemNewsCell.m */; };
 		04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */; };
+		04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE546E235B238D001C900A /* SPGoodsCell.m */; };
+		04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */; };
+		04EE5475235B338E001C900A /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5474235B338E001C900A /* PaymentMethodCell.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		620007192331B42400319C33 /* SHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620007182331B42400319C33 /* SHTabView.m */; };
 		6200071C2331B71000319C33 /* SHTabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200071B2331B71000319C33 /* SHTabModel.m */; };
@@ -618,10 +622,18 @@
 		04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailAuthorCell.m; sourceTree = "<group>"; };
 		04AF9B0C231AAD90002C8ADB /* PaymentManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManagementViewController.h; sourceTree = "<group>"; };
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
+		04B98EAA235C6209005954A2 /* MineHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
+		04B98EAB235C6209005954A2 /* MineHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
 		04CD0E29233271F7009CA687 /* ItemNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemNewsCell.h; sourceTree = "<group>"; };
 		04CD0E2A233271F7009CA687 /* ItemNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemNewsCell.m; sourceTree = "<group>"; };
 		04E5D85A231FF24400E1B6BD /* DrivingLicenseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrivingLicenseModel.h; sourceTree = "<group>"; };
 		04E5D85B231FF24400E1B6BD /* DrivingLicenseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrivingLicenseModel.m; sourceTree = "<group>"; };
+		04EE546D235B238C001C900A /* SPGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGoodsCell.h; sourceTree = "<group>"; };
+		04EE546E235B238D001C900A /* SPGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGoodsCell.m; sourceTree = "<group>"; };
+		04EE5470235B2EB2001C900A /* SelectPaymentMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectPaymentMethodView.h; sourceTree = "<group>"; };
+		04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentMethodView.m; sourceTree = "<group>"; };
+		04EE5473235B338E001C900A /* PaymentMethodCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodCell.h; sourceTree = "<group>"; };
+		04EE5474235B338E001C900A /* PaymentMethodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodCell.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -960,10 +972,8 @@
 		0404857F230C24D200EF17C8 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				0404858F230C253900EF17C8 /* Controller */,
-				04048592230C253900EF17C8 /* Model */,
+				04B98EA9235C61E8005954A2 /* Cell */,
 				04048591230C253900EF17C8 /* UIViewController */,
-				04048590230C253900EF17C8 /* View */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -1075,20 +1085,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0404858F230C253900EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		04048590230C253900EF17C8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		04048591230C253900EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1096,13 +1092,6 @@
 				040485A1230C25D200EF17C8 /* MineViewController.m */,
 			);
 			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		04048592230C253900EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		04048594230C254000EF17C8 /* UIViewController */ = {
@@ -1687,6 +1676,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		04B98EA9235C61E8005954A2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04B98EAA235C6209005954A2 /* MineHeadCell.h */,
+				04B98EAB235C6209005954A2 /* MineHeadCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		04E5D856231FED1C00E1B6BD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,6 +1969,8 @@
 				62D530DA23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m */,
 				62D5328B2359E01400BA9AE1 /* MyShoppingCartView.h */,
 				62D5328C2359E01400BA9AE1 /* MyShoppingCartView.m */,
+				04EE5470235B2EB2001C900A /* SelectPaymentMethodView.h */,
+				04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1978,6 +1978,8 @@
 		62A80D122330692900A6C456 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				04EE546D235B238C001C900A /* SPGoodsCell.h */,
+				04EE546E235B238D001C900A /* SPGoodsCell.m */,
 				0458B89F234F655C0073B5DB /* PostResidualTransactionAmountCell.h */,
 				0458B8A0234F655D0073B5DB /* PostResidualTransactionAmountCell.m */,
 				62A80D132330694300A6C456 /* ItemsCell.h */,
@@ -2038,6 +2040,8 @@
 				0437A2AA2358A87900964E1C /* AgentCell.m */,
 				0437A2AC2358B34A00964E1C /* ProductStatementCell.h */,
 				0437A2AD2358B34A00964E1C /* ProductStatementCell.m */,
+				04EE5473235B338E001C900A /* PaymentMethodCell.h */,
+				04EE5474235B338E001C900A /* PaymentMethodCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2183,6 +2187,7 @@
 				62D530DB23548EEA00BA9AE1 /* MotorOilMonopolyHeaderView.m in Sources */,
 				04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
+				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
 				040485B3230ECDC600EF17C8 /* ImageViewAndTextFieldAndBottomLineView.m in Sources */,
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62061FEE231E802100A78462 /* SHCameraManager.m in Sources */,
@@ -2305,11 +2310,13 @@
 				62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */,
 				043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */,
 				04ACDD13234063A00050B179 /* JobModel.m in Sources */,
+				04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */,
 				0432BF8E23267F2D002CD639 /* SHPictureSelectionComponent.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				62072C0F231A55C20089AD43 /* CarouselCollectionViewCell.m in Sources */,
 				0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
+				04EE5475235B338E001C900A /* PaymentMethodCell.m in Sources */,
 				04620C4E231BFAA000AA6317 /* SHCacheControl.m in Sources */,
 				6200071C2331B71000319C33 /* SHTabModel.m in Sources */,
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
@@ -2321,6 +2328,7 @@
 				62CC011C234C1323006B72AD /* TopicForumViewController.m in Sources */,
 				049C78C72336362900612AF5 /* SHQRCodeMiddleware.m in Sources */,
 				049C78C4233635D600612AF5 /* QRCodeVC.m in Sources */,
+				04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */,
 				049C78BD233635D600612AF5 /* QRCodeBacgrouView.m in Sources */,
 				0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */,
 				62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */,

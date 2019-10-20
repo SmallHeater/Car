@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * pack;
 @property (nonatomic,assign) NSUInteger sales_actual;
 @property (nonatomic,assign) NSUInteger sales_initial;
+//10单规格，20表示多规格
 @property (nonatomic,assign) NSUInteger spec_type;
 @property (nonatomic,strong) NSArray * specs;
 @property (nonatomic,assign) NSUInteger updatetime;

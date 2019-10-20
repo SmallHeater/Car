@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  我的页面
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MineViewController : BaseViewController
+@interface MineViewController : BaseTableViewController
 
 @end
 

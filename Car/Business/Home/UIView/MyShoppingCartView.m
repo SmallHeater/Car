@@ -8,10 +8,11 @@
 
 #import "MyShoppingCartView.h"
 #import "SHImageAndTitleBtn.h"
-#import "GoodsCell.h"
+#import "SPGoodsCell.h"
 #import "OilGoodModel.h"
+#import "UIViewController+SHTool.h"
 
-static NSString * GoodsCellId = @"GoodsCell";
+static NSString * SPGoodsCellID = @"SPGoodsCell";
 
 @interface MyShoppingCartView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,6 +22,8 @@ static NSString * GoodsCellId = @"GoodsCell";
 //中间tableView
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<OilGoodModel *> * dataArray;
+//箱数目
+@property (nonatomic,strong) NSString * countStr;
 
 @end
 
@@ -40,7 +43,10 @@ static NSString * GoodsCellId = @"GoodsCell";
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
            
             [weakSelf removeFromSuperview];
+            //发送通知，通知机油商品页面刷新
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOPPINGCARTREMOVE" object:nil];
         }];
+        [_topView addGestureRecognizer:tap];
     }
     return _topView;
 }
@@ -54,6 +60,17 @@ static NSString * GoodsCellId = @"GoodsCell";
         titleLabel.font = FONT12;
         titleLabel.textColor = Color_333333;
         titleLabel.text = @"我的购物车";
+        [[self rac_valuesForKeyPath:@"countStr" observer:self] subscribeNext:^(id  _Nullable x) {
+           
+            if (![NSString strIsEmpty:x]) {
+                
+                NSString * str = [[NSString alloc] initWithFormat:@"%@(总计:%@箱)",@"我的购物车",x];
+                NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:str];
+                [attStr addAttributes:@{NSFontAttributeName:FONT12,NSForegroundColorAttributeName:Color_333333} range:NSMakeRange(0, 5)];
+                [attStr addAttributes:@{NSFontAttributeName:FONT10,NSForegroundColorAttributeName:Color_FF4C4B} range:NSMakeRange(5, str.length - 5)];
+                titleLabel.attributedText = attStr;
+            }
+        }];
         [_tableHeadView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -63,13 +80,47 @@ static NSString * GoodsCellId = @"GoodsCell";
             make.height.offset(18);
         }];
         
-        SHImageAndTitleBtn * emptyShoppingCartBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 16 - 61, 14, 61, 12) andImageFrame:CGRectMake(0, 0, 12,12) andTitleFrame:CGRectMake(15, 0, 49, 12) andImageName:@"" andSelectedImageName:@"qingkong" andTitle:@"清空购物车"];
+        SHImageAndTitleBtn * emptyShoppingCartBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 16 - 61, 14, 61, 12) andImageFrame:CGRectMake(0, 0, 12,12) andTitleFrame:CGRectMake(15, 0, 49, 12) andImageName:@"qingkong" andSelectedImageName:@"qingkong" andTitle:@"清空购物车"];
         [emptyShoppingCartBtn refreshFont:FONT9];
         [emptyShoppingCartBtn refreshTitle:@"清空购物车" color:Color_999999];
+        __weak typeof(self) weakSelf = self;
         [[emptyShoppingCartBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
+            x.userInteractionEnabled = NO;
+            
+            UIAlertController * alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否要清空购物车" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                for (OilGoodModel * goodModel in weakSelf.dataArray) {
+                    
+                    goodModel.count = 0;
+                }
+                [weakSelf.dataArray removeAllObjects];
+                [weakSelf.tableView reloadData];
+                [weakSelf setCount];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
+            }];
+            
+            UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            [alertControl addAction:sureAction];
+            [alertControl addAction:cancleAction];
+            
+            [[UIViewController topMostController] presentViewController:alertControl animated:YES completion:nil];
+            x.userInteractionEnabled = YES;
         }];
         [_tableHeadView addSubview:emptyShoppingCartBtn];
+        
+        UILabel * lineLabel = [[UILabel alloc] init];
+        lineLabel.backgroundColor = Color_EEEEEE;
+        [_tableHeadView addSubview:lineLabel];
+        [lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.bottom.offset(0);
+            make.height.offset(1);
+        }];
     }
     return _tableHeadView;
 }
@@ -80,6 +131,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
+        _tableView.dataSource = self;
         _tableView.tableHeaderView = self.tableHeadView;
     }
     return _tableView;
@@ -103,6 +155,8 @@ static NSString * GoodsCellId = @"GoodsCell";
         
         [self.dataArray addObjectsFromArray:array];
         [self drawUI];
+        [self setCount];
+        [self addNotification];
     }
     return self;
 }
@@ -125,10 +179,10 @@ static NSString * GoodsCellId = @"GoodsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    GoodsCell * cell = [tableView dequeueReusableCellWithIdentifier:GoodsCellId];
+    SPGoodsCell * cell = [tableView dequeueReusableCellWithIdentifier:SPGoodsCellID];
     if (!cell) {
         
-        cell = [[GoodsCell alloc] initWithReuseIdentifier:GoodsCellId];
+        cell = [[SPGoodsCell alloc] initWithReuseIdentifier:SPGoodsCellID];
     }
     
     OilGoodModel * goodModel = self.dataArray[indexPath.row];
@@ -155,6 +209,46 @@ static NSString * GoodsCellId = @"GoodsCell";
         make.top.equalTo(self.topView.mas_bottom);
         make.bottom.offset(-57 - [UIScreenControl bottomSafeHeight]);
     }];
+}
+
+-(void)setCount{
+    
+    NSUInteger count = 0;
+    for (OilGoodModel * goodModel in self.dataArray) {
+        
+        count += goodModel.count;
+    }
+    
+    self.countStr = [[NSString alloc] initWithFormat:@"%ld",count];
+}
+
+-(void)addNotification{
+    
+    __weak typeof(self) weakSelf = self;
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"OILCOUNTZERO" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        [weakSelf refreshDataArray];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"GOODSVARIETY" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+       
+        [weakSelf setCount];
+    }];
+}
+
+//刷新数据源（有机油j数量减为零）
+-(void)refreshDataArray{
+    
+    for (OilGoodModel * goodModel in self.dataArray) {
+        
+        if (goodModel.count == 0) {
+            
+            [self.dataArray removeObject:goodModel];
+            break;
+        }
+    }
+    [self setCount];
+    [self.tableView reloadData];
 }
 
 @end

@@ -25,6 +25,8 @@ static NSString * GoodsCellId = @"GoodsCell";
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
 //价格
 @property (nonatomic,strong) NSString * priceStr;
+//右侧view当前选中section
+@property (nonatomic,assign) NSUInteger rightSection;
 
 @end
 
@@ -128,6 +130,15 @@ static NSString * GoodsCellId = @"GoodsCell";
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView isEqual:self.leftTableView]) {
+        
+        NSIndexPath * rightIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+        [self.rightTableView scrollToRowAtIndexPath:rightIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
+}
+
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -169,17 +180,23 @@ static NSString * GoodsCellId = @"GoodsCell";
         }
         
         OilBrandModel * model = self.dataArray[indexPath.row];
-        [cell show:model.name count:model.goods.count];
-        if (indexPath.row == 0) {
+        NSUInteger count = 0;
+        for (OilGoodModel * good in model.goods) {
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [cell setSelected:YES animated:YES];
-            });
+            count += good.count;
         }
+        [cell show:model.name count:count];
         return cell;
     }
     else if ([tableView isEqual:self.rightTableView]){
+        
+        if (indexPath.section != self.rightSection) {
+            
+            NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:indexPath.section inSection:0];
+            [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            self.rightSection = indexPath.section;
+        }
         
         GoodsCell * cell = [tableView dequeueReusableCellWithIdentifier:GoodsCellId];
         if (!cell) {
@@ -202,18 +219,26 @@ static NSString * GoodsCellId = @"GoodsCell";
     [self.view addSubview:self.leftTableView];
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.bottom.offset(0);
-        make.top.bottom.offset(-20);
+        make.left.offset(0);
+        make.top.offset(-20);
         make.width.offset(75);
+        make.height.offset(MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight] - 90);
     }];
     
     [self.view addSubview:self.rightTableView];
     [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.leftTableView.mas_right);
-        make.top.bottom.offset(-20);
+        make.top.offset(-20);
         make.width.offset(MAINWIDTH - 75);
+        make.height.offset(MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight] - 90);
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       
+        NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    });
 }
 
 //添加通知
@@ -225,6 +250,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     __weak typeof(self) weakSelf = self;
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"GOODSVARIETY" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         
+        [weakSelf.leftTableView reloadData];
         totalPrice = 0;
         [weakSelf.goodsArray removeAllObjects];
         for (OilBrandModel * oilBrandModel in weakSelf.dataArray) {
@@ -252,6 +278,12 @@ static NSString * GoodsCellId = @"GoodsCell";
             
             weakSelf.callBack(weakSelf.goodsArray);
         }
+    }];
+    
+    //购物车页面消失的通知，刷新页面
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"SHOPPINGCARTREMOVE" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        [weakSelf.rightTableView reloadData];
     }];
 }
 
