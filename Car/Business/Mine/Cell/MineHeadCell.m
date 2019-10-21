@@ -9,6 +9,8 @@
 #import "MineHeadCell.h"
 #import "SHLabelAndLabelView.h"
 #import "SHImageAndTitleBtn.h"
+#import "UserInforController.h"
+
 
 @interface MineHeadCell ()
 
@@ -50,7 +52,7 @@
     if (!_topImageView) {
         
         _topImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wodebeijingtu"]];
-        
+        _topImageView.backgroundColor = [UIColor greenColor];
         [_topImageView addSubview:self.avaterImageView];
         [self.avaterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -62,8 +64,8 @@
         [_topImageView addSubview:self.shopNameLabel];
         [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.left.equalTo(self.topImageView.mas_right).offset(18);
-            make.top.equalTo(self.topImageView.mas_top).offset(14);
+            make.left.equalTo(self.avaterImageView.mas_right).offset(18);
+            make.top.equalTo(self.avaterImageView.mas_top).offset(14);
             make.height.offset(20);
             make.right.offset(-37);
         }];
@@ -89,7 +91,7 @@
         [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.top.offset(73);
-            make.right.offset(15);
+            make.right.offset(-15);
             make.width.height.offset(22);
         }];
     }
@@ -194,8 +196,6 @@
         
         _middleWhiteView = [[UIView alloc] init];
         _middleWhiteView.backgroundColor = [UIColor whiteColor];
-        _middleWhiteView.layer.masksToBounds = YES;
-        _middleWhiteView.layer.cornerRadius = 10;
         _middleWhiteView.layer.shadowColor = [UIColor colorWithRed:108/255.0 green:108/255.0 blue:108/255.0 alpha:0.23].CGColor;
         _middleWhiteView.layer.shadowOffset = CGSizeMake(0,1);
         _middleWhiteView.layer.shadowOpacity = 1;
@@ -221,6 +221,33 @@
             make.top.offset(40);
             make.width.offset(1.5);
             make.height.offset(13);
+        }];
+        
+        [_middleWhiteView addSubview:self.smsView];
+        [self.smsView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.equalTo(self.firstLine.mas_right);
+            make.top.equalTo(self.redEnvelopeView.mas_top);
+            make.width.offset(oneWidth);
+            make.height.equalTo(self.redEnvelopeView.mas_height);
+        }];
+        
+        [_middleWhiteView addSubview:self.secondLine];
+        [self.secondLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self.smsView.mas_right);
+            make.top.offset(40);
+            make.width.offset(1.5);
+            make.height.offset(13);
+        }];
+        
+        [_middleWhiteView addSubview:self.dailyTaskBtn];
+        [self.dailyTaskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-(oneWidth - 60) / 2);
+            make.top.equalTo(self.redEnvelopeView.mas_top);
+            make.width.offset(60);
+            make.height.equalTo(self.redEnvelopeView.mas_height);
         }];
     }
     return _middleWhiteView;
@@ -274,7 +301,7 @@
     
     if (!_dailyTaskBtn) {
         
-        _dailyTaskBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(14, 0, 21, 20) andTitleFrame:CGRectMake(0, 30, 49, 12) andImageName:@"meirirenwu" andSelectedImageName:@"meirirenwu" andTitle:@"每日任务"];
+        _dailyTaskBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(19.5, 0, 21, 20) andTitleFrame:CGRectMake(0, 30, 60, 12) andImageName:@"meirirenwu" andSelectedImageName:@"meirirenwu" andTitle:@"每日任务"];
     }
     return _dailyTaskBtn;
 }
@@ -283,18 +310,20 @@
     
     if (!_dailyRewardBtn) {
         
-        _dailyRewardBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(0, 0, 39, 31) andTitleFrame:CGRectMake(49, 0, 67, 31) andImageName:@"meirijiangli" andSelectedImageName:@"meirijiangli" andTitle:@"每日奖励"];
+        _dailyRewardBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(0, 0, 39, 31) andTitleFrame:CGRectMake(49, 0, 70, 31) andImageName:@"meirijiangli" andSelectedImageName:@"meirijiangli" andTitle:@"每日奖励"];
+        [_dailyRewardBtn refreshFont:BOLDFONT17];
     }
-    return _dailyTaskBtn;
+    return _dailyRewardBtn;
 }
 
 -(SHImageAndTitleBtn *)signInBtn{
     
     if (!_signInBtn) {
         
-        _signInBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(0, 0, 39, 31) andTitleFrame:CGRectMake(49, 0, 67, 31) andImageName:@"qiandao" andSelectedImageName:@"qiandao" andTitle:@"签到抽大奖"];
+        _signInBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(0, 0, 39, 31) andTitleFrame:CGRectMake(49, 0, 90, 31) andImageName:@"qiandao" andSelectedImageName:@"qiandao" andTitle:@"签到抽大奖"];
+        [_signInBtn refreshFont:BOLDFONT17];
     }
-    return _dailyTaskBtn;
+    return _signInBtn;
 }
 
 -(UILabel *)bottomLineLabel{
@@ -309,12 +338,13 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)init{
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     
-    self = [super init];
+    self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         
         [self drawUI];
+        [self show];
     }
     return self;
 }
@@ -329,8 +359,53 @@
         make.left.top.right.offset(0);
         make.height.offset(176);
     }];
+    
+    [self addSubview:self.middleWhiteView];
+    [self.middleWhiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.offset(139);
+        make.left.offset(15);
+        make.right.offset(-15);
+        make.height.offset(86);
+    }];
+    
+    [self addSubview:self.dailyRewardBtn];
+    [self.dailyRewardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+        make.left.offset(40);
+        make.bottom.offset(-38);
+        make.width.offset(119);
+        make.height.offset(31);
+    }];
+    
+    [self addSubview:self.signInBtn];
+    [self.signInBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.right.offset(-38);
+        make.bottom.equalTo(self.dailyRewardBtn.mas_bottom);
+        make.width.offset(129);
+        make.height.equalTo(self.dailyRewardBtn.mas_height);
+    }];
+    
+    [self addSubview:self.bottomLineLabel];
+    [self.bottomLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.offset(0);
+        make.height.offset(10);
+    }];
 }
 
-
+-(void)show{
+    
+    UserInforModel * userInforModel = [UserInforController sharedManager].userInforModel;
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:@""]]];
+    self.shopNameLabel.text = [NSString repleaseNilOrNull:userInforModel.shop_name];
+    self.phoneLabel.text = [NSString repleaseNilOrNull:userInforModel.phone];
+    self.creditLabel.text = [NSString repleaseNilOrNull:@""];
+    NSString * redStr = [[NSString alloc] initWithFormat:@"%ld",userInforModel.red_packet_num.integerValue];
+    [self.redEnvelopeView refreshTopLabelText:[NSString repleaseNilOrNull:redStr] bottomLabelText:@""];
+    NSString * smsStr = [[NSString alloc] initWithFormat:@"%ld",userInforModel.sms_num.integerValue];
+    [self.smsView refreshTopLabelText:[NSString repleaseNilOrNull:smsStr] bottomLabelText:@""];
+}
 
 @end

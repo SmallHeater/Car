@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
             endingLineNumber = "116"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableHeadView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,7 +41,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
             endingLineNumber = "123"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkName = "-tableHeadView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,56 +57,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkName = "-tableView"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Business/Home/UIView/MyShoppingCartView.m"
-            timestampString = "593099044.645698"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-drawUI"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MyShoppingCartView drawUI]"
-                  moduleName = "Car"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Home/UIView/MyShoppingCartView.m"
-                  timestampString = "593099044.830404"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "368">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__28-[MyShoppingCartView drawUI]_block_invoke_2"
-                  moduleName = "Car"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xianjunwang/Git/my/Car/Car/Business/Home/UIView/MyShoppingCartView.m"
-                  timestampString = "593099044.833068"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

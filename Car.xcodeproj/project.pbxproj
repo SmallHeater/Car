@@ -247,6 +247,7 @@
 		62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F7032328780100A6C456 /* SHBaseTableViewCell.m */; };
 		62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */; };
 		62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */; };
+		62CA4367235DC6D000F4EBE9 /* MineColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CA4366235DC6D000F4EBE9 /* MineColumnCell.m */; };
 		62CC011C234C1323006B72AD /* TopicForumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011B234C1323006B72AD /* TopicForumViewController.m */; };
 		62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC011E234C1AE9006B72AD /* TopicForumCell.m */; };
 		62D530B42353FC7400BA9AE1 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530B32353FC7400BA9AE1 /* ShopModel.m */; };
@@ -737,6 +738,8 @@
 		62B3C6CB2337536B005CBCA2 /* ResidualTransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionDetailViewController.m; sourceTree = "<group>"; };
 		62B3C6CD23376128005CBCA2 /* ResidualTransactionCarouseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionCarouseCell.h; sourceTree = "<group>"; };
 		62B3C6CE23376128005CBCA2 /* ResidualTransactionCarouseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionCarouseCell.m; sourceTree = "<group>"; };
+		62CA4365235DC6D000F4EBE9 /* MineColumnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineColumnCell.h; sourceTree = "<group>"; };
+		62CA4366235DC6D000F4EBE9 /* MineColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineColumnCell.m; sourceTree = "<group>"; };
 		62CC011A234C1323006B72AD /* TopicForumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicForumViewController.h; sourceTree = "<group>"; };
 		62CC011B234C1323006B72AD /* TopicForumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicForumViewController.m; sourceTree = "<group>"; };
 		62CC011D234C1AE9006B72AD /* TopicForumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicForumCell.h; sourceTree = "<group>"; };
@@ -1681,6 +1684,8 @@
 			children = (
 				04B98EAA235C6209005954A2 /* MineHeadCell.h */,
 				04B98EAB235C6209005954A2 /* MineHeadCell.m */,
+				62CA4365235DC6D000F4EBE9 /* MineColumnCell.h */,
+				62CA4366235DC6D000F4EBE9 /* MineColumnCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2233,6 +2238,7 @@
 				04ACDD2B2341AC690050B179 /* ForumSingleCell.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
 				0404857D230C217100EF17C8 /* FilletBtn.m in Sources */,
+				62CA4367235DC6D000F4EBE9 /* MineColumnCell.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
 				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
