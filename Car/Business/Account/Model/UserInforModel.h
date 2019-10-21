@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * userID;
 //店铺名称
 @property (nonatomic,strong) NSString * shop_name;
+//头像
+@property (nonatomic,strong) NSString * avatar;
 //手机号
 @property (nonatomic,strong) NSString * phone;
 //经度(保留六位小数
@@ -33,8 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSNumber * sms_num;
 // 昵称
 @property (nonatomic,strong) NSString * nick_name;
+@property (nonatomic,strong) NSString * notice;
+//信用值
+@property (nonatomic,assign) NSUInteger credit;
+@property (nonatomic,strong) NSString * tab_ids;
 @property (nonatomic,strong) NSString * ip;
-@property (nonatomic,strong) NSString * createtime;
+@property (nonatomic,strong) NSString * litestore_category_ids;
+@property (nonatomic,assign) NSUInteger createtime;
 
 
 @end

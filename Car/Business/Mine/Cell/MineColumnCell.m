@@ -55,6 +55,7 @@
         _countsLabel.textAlignment = NSTextAlignmentCenter;
         _countsLabel.layer.cornerRadius = 7;
         _countsLabel.layer.masksToBounds = YES;
+        _countsLabel.hidden = YES;
     }
     return _countsLabel;
 }
@@ -65,7 +66,6 @@
         
         _bottomLineLabel = [[UILabel alloc] init];
         _bottomLineLabel.backgroundColor = Color_DEDEDE;
-        _bottomLineLabel.hidden = YES;
     }
     return _bottomLineLabel;
 }

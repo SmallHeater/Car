@@ -7,10 +7,13 @@
 //  我的页面头部cell
 
 #import "SHBaseTableViewCell.h"
+#import "UserInforModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MineHeadCell : SHBaseTableViewCell
+
+-(void)show:(UserInforModel *)userInforModel;
 
 @end
 

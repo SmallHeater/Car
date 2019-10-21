@@ -9,9 +9,12 @@
 #import "MineViewController.h"
 #import "MineHeadCell.h"
 #import "MineColumnCell.h"
+#import "UserInforController.h"
+#import "PersonalInformationVC.h"
 
 
 static NSString * MineHeadCellID = @"MineHeadCell";
+static NSString * MineColumnCellID = @"MineColumnCell";
 
 @interface MineViewController ()
 
@@ -27,6 +30,7 @@ static NSString * MineHeadCellID = @"MineHeadCell";
     // Do any additional setup after loading the view.
     [self createData];
     [self drawUI];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -47,10 +51,20 @@ static NSString * MineHeadCellID = @"MineHeadCell";
     return cellHeight;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+        PersonalInformationVC * vc = [[PersonalInformationVC alloc] initWithTitle:@"个人资料" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataArray.count;
+    return self.dataArray.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -62,6 +76,20 @@ static NSString * MineHeadCellID = @"MineHeadCell";
             cell = [[MineHeadCell alloc] initWithReuseIdentifier:MineHeadCellID];
         }
         
+        [cell show:[UserInforController sharedManager].userInforModel];
+        return cell;
+    }
+    else{
+        
+        MineColumnCell * cell = [tableView dequeueReusableCellWithIdentifier:MineColumnCellID];
+        if (!cell) {
+            
+            cell = [[MineColumnCell alloc] initWithReuseIdentifier:MineColumnCellID andCount:0];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        NSDictionary * dic = self.dataArray[indexPath.row - 1];
+        [cell show:dic[@"iconImage"] andTitle:dic[@"title"]];
         return cell;
     }
     
@@ -84,9 +112,9 @@ static NSString * MineHeadCellID = @"MineHeadCell";
     
     NSDictionary * firstDic = @{@"iconImage":@"xiaoxi",@"title":@"我的消息"};
     NSDictionary * secondDic = @{@"iconImage":@"tiezi",@"title":@"我的帖子"};
-    NSDictionary * thirdDic = @{@"iconImage":@"xiaoxi",@"title":@"机油返现"};
-    NSDictionary * forthDic = @{@"iconImage":@"xiaoxi",@"title":@"采购记录"};
-    NSDictionary * fifthDic = @{@"iconImage":@"xiaoxi",@"title":@"关于平台"};
+    NSDictionary * thirdDic = @{@"iconImage":@"fanxian",@"title":@"机油返现"};
+    NSDictionary * forthDic = @{@"iconImage":@"jilu",@"title":@"采购记录"};
+    NSDictionary * fifthDic = @{@"iconImage":@"guanyu",@"title":@"关于平台"};
     [self.dataArray addObject:firstDic];
     [self.dataArray addObject:secondDic];
     [self.dataArray addObject:thirdDic];
@@ -95,7 +123,39 @@ static NSString * MineHeadCellID = @"MineHeadCell";
 }
 
 -(void)requestListData{
-    
+ 
+    //发起请求
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetUserInfo,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSDictionary * staffDic = dataDic[@"staff"];
+                UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
+                [UserInforController sharedManager].userInforModel = userInforModel;
+                [weakSelf.tableView reloadData];
+                NSDictionary * userInforDic = [userInforModel mj_keyValues];
+                //缓存用户信息模型字典
+                [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

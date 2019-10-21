@@ -9,7 +9,6 @@
 #import "MineHeadCell.h"
 #import "SHLabelAndLabelView.h"
 #import "SHImageAndTitleBtn.h"
-#import "UserInforController.h"
 
 
 @interface MineHeadCell ()
@@ -344,7 +343,6 @@
     if (self) {
         
         [self drawUI];
-        [self show];
     }
     return self;
 }
@@ -395,13 +393,12 @@
     }];
 }
 
--(void)show{
+-(void)show:(UserInforModel *)userInforModel{
     
-    UserInforModel * userInforModel = [UserInforController sharedManager].userInforModel;
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:@""]]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:userInforModel.avatar]]];
     self.shopNameLabel.text = [NSString repleaseNilOrNull:userInforModel.shop_name];
     self.phoneLabel.text = [NSString repleaseNilOrNull:userInforModel.phone];
-    self.creditLabel.text = [NSString repleaseNilOrNull:@""];
+    self.creditLabel.text = [[NSString alloc] initWithFormat:@"信用 %ld",userInforModel.credit];
     NSString * redStr = [[NSString alloc] initWithFormat:@"%ld",userInforModel.red_packet_num.integerValue];
     [self.redEnvelopeView refreshTopLabelText:[NSString repleaseNilOrNull:redStr] bottomLabelText:@""];
     NSString * smsStr = [[NSString alloc] initWithFormat:@"%ld",userInforModel.sms_num.integerValue];

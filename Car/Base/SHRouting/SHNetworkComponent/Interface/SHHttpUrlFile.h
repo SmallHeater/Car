@@ -49,7 +49,8 @@
 
 //首页接口
 #define Home  [[NSString alloc] initWithFormat:@"%@/api/Home/index",CARDOMAIN]
-
+//获取用户信息
+#define GetUserInfo  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/getUserInfo",CARDOMAIN]
 //文章列表接口
 #define GetArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticles",CARDOMAIN]
 //浏览量添加接口

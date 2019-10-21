@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MineColumnCell : SHBaseTableViewCell
 
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier andCount:(NSUInteger)count;
+
 -(void)show:(NSString *)iconName andTitle:(NSString *)title;
 -(void)showCount:(NSUInteger)count;
 

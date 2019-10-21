@@ -152,6 +152,8 @@
 		0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C2231573A800A5EDC1 /* MaintenanceRecordsCell.m */; };
 		0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */; };
 		0498B5C92315B9C700A5EDC1 /* RevenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */; };
+		049B27D1235DDC3A00704872 /* PersonalInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B27D0235DDC3A00704872 /* PersonalInformationVC.m */; };
+		049B27D4235DDEBB00704872 /* PersonalInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B27D3235DDEBB00704872 /* PersonalInformationCell.m */; };
 		049B5CEA23574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CE923574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m */; };
 		049B5CED23575158008B4FCD /* MotorOilCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CEC23575158008B4FCD /* MotorOilCommentModel.m */; };
 		049B5CF023575539008B4FCD /* MotorOilCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B5CEF23575539008B4FCD /* MotorOilCommentCell.m */; };
@@ -562,6 +564,10 @@
 		0498B5C52315B16C00A5EDC1 /* MaintenanceRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsViewController.m; sourceTree = "<group>"; };
 		0498B5C72315B9C700A5EDC1 /* RevenueListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueListViewController.h; sourceTree = "<group>"; };
 		0498B5C82315B9C700A5EDC1 /* RevenueListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueListViewController.m; sourceTree = "<group>"; };
+		049B27CF235DDC3A00704872 /* PersonalInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationVC.h; sourceTree = "<group>"; };
+		049B27D0235DDC3A00704872 /* PersonalInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationVC.m; sourceTree = "<group>"; };
+		049B27D2235DDEBB00704872 /* PersonalInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationCell.h; sourceTree = "<group>"; };
+		049B27D3235DDEBB00704872 /* PersonalInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationCell.m; sourceTree = "<group>"; };
 		049B5CE823574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyEvaluationViewController.h; sourceTree = "<group>"; };
 		049B5CE923574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyEvaluationViewController.m; sourceTree = "<group>"; };
 		049B5CEB23575158008B4FCD /* MotorOilCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilCommentModel.h; sourceTree = "<group>"; };
@@ -1093,6 +1099,8 @@
 			children = (
 				040485A0230C25D200EF17C8 /* MineViewController.h */,
 				040485A1230C25D200EF17C8 /* MineViewController.m */,
+				049B27CF235DDC3A00704872 /* PersonalInformationVC.h */,
+				049B27D0235DDC3A00704872 /* PersonalInformationVC.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1686,6 +1694,8 @@
 				04B98EAB235C6209005954A2 /* MineHeadCell.m */,
 				62CA4365235DC6D000F4EBE9 /* MineColumnCell.h */,
 				62CA4366235DC6D000F4EBE9 /* MineColumnCell.m */,
+				049B27D2235DDEBB00704872 /* PersonalInformationCell.h */,
+				049B27D3235DDEBB00704872 /* PersonalInformationCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2214,6 +2224,7 @@
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				047ACA072337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m in Sources */,
+				049B27D4235DDEBB00704872 /* PersonalInformationCell.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				049C78CD233650A500612AF5 /* CommodityCell.m in Sources */,
 				62A80D152330694300A6C456 /* ItemsCell.m in Sources */,
@@ -2310,6 +2321,7 @@
 				0432BFAC2326949B002CD639 /* SHBigPictureBrowsingMiddleware.m in Sources */,
 				0404857C230C217100EF17C8 /* SHNavigationBar.m in Sources */,
 				0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */,
+				049B27D1235DDC3A00704872 /* PersonalInformationVC.m in Sources */,
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
 				04ACDD182340A7C20050B179 /* ForumVideoCell.m in Sources */,
