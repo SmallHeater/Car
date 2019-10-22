@@ -45,7 +45,8 @@
 @property (nonatomic,strong) SelectPaymentMethodView * paymentMethodView;
 //结算方式
 @property (nonatomic,strong) NSString * pay_type;
-
+//我的购物车指针
+@property (nonatomic,strong) MyShoppingCartView * carView;
 
 @end
 
@@ -174,13 +175,22 @@
         
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             
-            MyShoppingCartView * carView = [[MyShoppingCartView alloc] initWithArray:weakSelf.goodsArray];
-            [weakSelf.view addSubview:carView];
-            [carView mas_makeConstraints:^(MASConstraintMaker *make) {
-               
-                make.left.right.top.bottom.offset(0);
-            }];
-            [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
+            if (weakSelf.carView) {
+                
+                [weakSelf.carView removeFromSuperview];
+                weakSelf.carView = nil;
+            }
+            else{
+             
+                MyShoppingCartView * carView = [[MyShoppingCartView alloc] initWithArray:weakSelf.goodsArray];
+                weakSelf.carView = carView;
+                [weakSelf.view addSubview:carView];
+                [carView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.right.top.bottom.offset(0);
+                }];
+                [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
+            }
         }];
         [totalPriceLabel addGestureRecognizer:tap];
         

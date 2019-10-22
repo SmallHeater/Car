@@ -134,7 +134,15 @@
         self.titleLabel.text = [NSString repleaseNilOrNull:title];
     }
     
-    self.countLabel.text = [[NSString alloc] initWithFormat:@"%ld",count];
+    if (count == 0) {
+        
+        self.countLabel.hidden = YES;
+    }
+    else{
+        
+        self.countLabel.hidden = NO;
+        self.countLabel.text = [[NSString alloc] initWithFormat:@"%ld",count];
+    }
 }
 
 @end

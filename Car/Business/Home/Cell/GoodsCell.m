@@ -110,10 +110,28 @@
         [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             x.userInteractionEnabled = NO;
-            weakSelf.model.count++;
-            weakSelf.countLabel.text = weakSelf.model.countStr;
+            if (weakSelf.model.specs && [weakSelf.model.specs isKindOfClass:[NSArray class]] && weakSelf.model.specs.count > 0) {
+             
+                //商品库存数
+                NSDictionary * dic = weakSelf.model.specs[0];
+                NSNumber * stockNumber = dic[@"stock_num"];
+                NSUInteger stock = stockNumber.intValue;
+                if (weakSelf.model.count == stock) {
+                    
+                    [MBProgressHUD wj_showError:@"已达到最大库存数"];
+                }
+                else{
+                    
+                    weakSelf.model.count++;
+                    weakSelf.countLabel.text = weakSelf.model.countStr;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
+                }
+            }
+            else{
+                
+                [MBProgressHUD wj_showError:@"已达到最大库存数"];
+            }
             x.userInteractionEnabled = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
         }];
     }
     return _addBtn;
