@@ -223,6 +223,7 @@
 		62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
 		62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
 		62072C4A231BC8450089AD43 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		623FDFF4236075F100DB0B14 /* WelfareTreatmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */; };
 		624A49A923136234005B1391 /* SHNetworkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A223136234005B1391 /* SHNetworkComponent.m */; };
 		624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A323136234005B1391 /* SHNetworkStatusManagementComponent.m */; };
 		624A49AC23136234005B1391 /* SHNetworkControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 624A49A623136234005B1391 /* SHNetworkControl.m */; };
@@ -687,6 +688,8 @@
 		62072C38231BC28F0089AD43 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipOcrSdk.framework; sourceTree = "<group>"; };
 		62072C39231BC28F0089AD43 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		62072C47231BC83A0089AD43 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
+		623FDFF2236075F100DB0B14 /* WelfareTreatmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelfareTreatmentView.h; sourceTree = "<group>"; };
+		623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelfareTreatmentView.m; sourceTree = "<group>"; };
 		624A49A023136234005B1391 /* SHNetworkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkComponent.h; sourceTree = "<group>"; };
 		624A49A123136234005B1391 /* SHNetworkStatusManagementComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNetworkStatusManagementComponent.h; sourceTree = "<group>"; };
 		624A49A223136234005B1391 /* SHNetworkComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNetworkComponent.m; sourceTree = "<group>"; };
@@ -1986,6 +1989,8 @@
 				62D5328C2359E01400BA9AE1 /* MyShoppingCartView.m */,
 				04EE5470235B2EB2001C900A /* SelectPaymentMethodView.h */,
 				04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */,
+				623FDFF2236075F100DB0B14 /* WelfareTreatmentView.h */,
+				623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -2377,6 +2382,7 @@
 				0432BFA423268223002CD639 /* SHAssetBaseModel.m in Sources */,
 				047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */,
 				047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */,
+				623FDFF4236075F100DB0B14 /* WelfareTreatmentView.m in Sources */,
 				62072C33231B77870089AD43 /* SHMultipleSwitchingItemsView.m in Sources */,
 				04ACDD34234203480050B179 /* ForumDetailTitleCell.m in Sources */,
 				043E9F7F2348CD2B00109AC5 /* PostJobSelectCell.m in Sources */,

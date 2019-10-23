@@ -14,6 +14,8 @@
 #import "SHPickerView.h"
 #import "PostJobRequestModel.h"
 #import "UserInforController.h"
+#import "WelfareTreatmentView.h"
+
 
 static NSString * PostJobInputCellId = @"PostJobInputCell";
 static NSString * PostJobMonthlySalaryCellId = @"PostJobMonthlySalaryCell";
@@ -31,6 +33,8 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
 @property (nonatomic,strong) PostJobRequestModel * postJobRequestModel;
 //福利待遇cell
 @property (nonatomic,strong) PostJobSelectCell * welfareTreatmentCell;
+//福利待遇选择view
+@property (nonatomic,strong) WelfareTreatmentView * welfareTreatmentView;
 //职位类别cell
 @property (nonatomic,strong) PostJobSelectCell * jobCell;
 //学历要求cell
@@ -41,6 +45,8 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
 @property (nonatomic,strong) PostJobSelectCell * workingPlaceCell;
 //招聘参数字典
 @property (nonatomic,strong) NSDictionary * jobOptionDic;
+//福利待遇文字
+@property (nonatomic,strong) NSMutableArray<NSDictionary *> * welfareTreatArray;
 
 @end
 
@@ -111,6 +117,24 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
         }];
     }
     return _postBtn;
+}
+
+-(NSMutableArray<NSDictionary *> *)welfareTreatArray{
+    
+    if (!_welfareTreatArray) {
+        
+        _welfareTreatArray = [[NSMutableArray alloc] init];
+    }
+    return _welfareTreatArray;
+}
+
+-(WelfareTreatmentView *)welfareTreatmentView{
+    
+    if (!_welfareTreatmentView) {
+        
+        _welfareTreatmentView = [[WelfareTreatmentView alloc] init];
+    }
+    return _welfareTreatmentView;
 }
 
 -(SHPickerView *)pickerView{
@@ -256,18 +280,57 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
             [[cell rac_signalForSelector:@selector(selectLabelTaped)] subscribeNext:^(RACTuple * _Nullable x) {
                
                 [weakSelf.view endEditing:YES];
-                NSMutableArray * dicArray = [[NSMutableArray alloc] init];
+                [weakSelf.welfareTreatmentView show:weakSelf.jobOptionDic[@"benefit"]];
+                [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.welfareTreatmentView];
+                [weakSelf.welfareTreatmentView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.right.top.bottom.offset(0);
+                }];
+            }];
+            
+            [[self.welfareTreatmentView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+                
+                UIButton * btn = x;
+                NSString * title = btn.currentTitle;
                 for (NSDictionary * dic in weakSelf.jobOptionDic[@"benefit"]) {
                     
-                    NSDictionary * valueDic = [[NSDictionary alloc] initWithObjectsAndKeys:dic[@"name"],@"title",dic[@"id"],@"key", nil];
-                    [dicArray addObject:valueDic];
+                    if ([title isEqualToString:dic[@"name"]]) {
+                        
+                        if (btn.isSelected) {
+                            
+                            //添加
+                            [weakSelf.welfareTreatArray addObject:dic];
+                            
+                        }
+                        else{
+                            
+                            //删除
+                            [weakSelf.welfareTreatArray removeObject:dic];
+                        }
+                        break;
+                    }
                 }
-                weakSelf.pickerView.data = dicArray;
-                weakSelf.pickerView.tag = PICKERBASETAG;
-                [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.pickerView];
+            }];
+            
+            [[self.welfareTreatmentView rac_signalForSelector:@selector(closeBtnClicked)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+                [weakSelf.welfareTreatArray removeAllObjects];
+            }];
+
+            [[self.welfareTreatmentView rac_signalForSelector:@selector(finishBtnClicked)] subscribeNext:^(RACTuple * _Nullable x) {
+                
+                NSMutableString * str = [[NSMutableString alloc] init];
+                NSMutableArray * idArray = [[NSMutableArray alloc] init];
+                for (NSDictionary * dic in weakSelf.welfareTreatArray) {
+                    
+                    [str appendString:dic[@"name"]];
+                    [idArray addObject:dic[@"id"]];
+                }
+                [cell refreshLabel:str];
+                
+                weakSelf.postJobRequestModel.benefit_ids = [idArray componentsJoinedByString:@","];
             }];
         }
-        
         return cell;
     }
     else if (indexPath.row == 3){
@@ -433,10 +496,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
         switch (picker.tag - PICKERBASETAG) {
             case 0:
             {
-                //福利待遇
-                NSNumber * number = dic[@"key"];
-                self.postJobRequestModel.benefit_ids = [[NSString alloc] initWithFormat:@"%ld",number.integerValue];
-                [self.welfareTreatmentCell refreshLabel:dic[@"title"]];
+                
                 break;
             }
             case 1:
