@@ -146,6 +146,8 @@
 		047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA092337B520005FC5D0 /* ResidualTransactionComplaintCell.m */; };
 		047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */; };
 		04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */; };
+		0486447D2360997200C5A93C /* AddNewVehicleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486447C2360997200C5A93C /* AddNewVehicleVC.m */; };
+		0486448123609A8600C5A93C /* AddNewVehicleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486448023609A8600C5A93C /* AddNewVehicleCell.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
@@ -553,6 +555,10 @@
 		047ACA0C2337BE4B005FC5D0 /* JobRecruitmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobRecruitmentViewController.m; sourceTree = "<group>"; };
 		04854956232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		04854957232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		0486447B2360997200C5A93C /* AddNewVehicleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNewVehicleVC.h; sourceTree = "<group>"; };
+		0486447C2360997200C5A93C /* AddNewVehicleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNewVehicleVC.m; sourceTree = "<group>"; };
+		0486447F23609A8600C5A93C /* AddNewVehicleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNewVehicleCell.h; sourceTree = "<group>"; };
+		0486448023609A8600C5A93C /* AddNewVehicleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNewVehicleCell.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
@@ -1004,10 +1010,8 @@
 		04048581230C24D200EF17C8 /* Marketing */ = {
 			isa = PBXGroup;
 			children = (
-				0404858C230C253200EF17C8 /* Controller */,
-				0404858B230C253200EF17C8 /* Model */,
+				0486447E23609A7500C5A93C /* Cell */,
 				0404858D230C253200EF17C8 /* UIViewController */,
-				0404858E230C253200EF17C8 /* View */,
 			);
 			path = Marketing;
 			sourceTree = "<group>";
@@ -1067,34 +1071,15 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
-		0404858B230C253200EF17C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0404858C230C253200EF17C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		0404858D230C253200EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
 				0404859D230C25BA00EF17C8 /* MarketingViewController.h */,
 				0404859E230C25BA00EF17C8 /* MarketingViewController.m */,
+				0486447B2360997200C5A93C /* AddNewVehicleVC.h */,
+				0486447C2360997200C5A93C /* AddNewVehicleVC.m */,
 			);
 			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		0404858E230C253200EF17C8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		04048591230C253900EF17C8 /* UIViewController */ = {
@@ -1572,6 +1557,15 @@
 				046DCB90231272A900C520D8 /* UIView+TXFrame.m */,
 			);
 			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
+		0486447E23609A7500C5A93C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0486447F23609A8600C5A93C /* AddNewVehicleCell.h */,
+				0486448023609A8600C5A93C /* AddNewVehicleCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		049C78A9233635D500612AF5 /* SHQRCodeLibrary */ = {
@@ -2402,6 +2396,7 @@
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
+				0486448123609A8600C5A93C /* AddNewVehicleCell.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,
@@ -2419,6 +2414,7 @@
 				62A8F6C92325D97800A6C456 /* SHDatePickView.m in Sources */,
 				620007192331B42400319C33 /* SHTabView.m in Sources */,
 				0432BFA623268223002CD639 /* SHAssetImageModel.m in Sources */,
+				0486447D2360997200C5A93C /* AddNewVehicleVC.m in Sources */,
 				049C78BE233635D600612AF5 /* QRCodeAreaView.m in Sources */,
 				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,

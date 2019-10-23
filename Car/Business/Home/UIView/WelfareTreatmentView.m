@@ -66,6 +66,7 @@
         
         _finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_finishBtn setTitleColor:Color_2E78FF forState:UIControlStateNormal];
+        [_finishBtn setTitle:@"完成" forState:UIControlStateNormal];
         _finishBtn.titleLabel.font = FONT16;
         [_finishBtn addTarget:self action:@selector(finishBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -93,14 +94,14 @@
             make.top.offset(17);
             make.height.offset(22);
             make.width.offset(150);
-            make.centerX.equalTo(self.mas_centerX);
+            make.centerX.equalTo(self.bottomView.mas_centerX);
         }];
         
         [_bottomView addSubview:self.finishBtn];
         [self.finishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.top.offset(17);
-            make.right.offset(15);
+            make.right.offset(-15);
             make.width.offset(42);
             make.height.offset(22);
         }];
@@ -153,7 +154,11 @@
             UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.titleLabel.font = FONT14;
             [btn setTitleColor:Color_333333 forState:UIControlStateNormal];
+            [btn setTitleColor:Color_0272FF forState:UIControlStateSelected];
+            btn.layer.borderWidth = 0.5;
+            btn.layer.borderColor = Color_E9E9E9.CGColor;
             btn.backgroundColor = [UIColor whiteColor];
+            [btn setTitle:title forState:UIControlStateNormal];
             btn.layer.masksToBounds = YES;
             btn.layer.cornerRadius = 4;
             [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -164,7 +169,7 @@
                 btnY += btnHeight + 12;
             }
             
-            [self addSubview:btn];
+            [self.bottomView addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                
                 make.left.offset(btnX);
@@ -172,12 +177,22 @@
                 make.width.offset(btnWidth);
                 make.height.offset(btnHeight);
             }];
+            btnX += btnWidth + 10;
         }
     }
 }
 
 -(void)btnClicked:(UIButton *)btn{
     
+    btn.selected = !btn.selected;
+    if (btn.selected) {
+        
+        btn.layer.borderColor = Color_0272FF.CGColor;
+    }
+    else{
+     
+        btn.layer.borderColor = Color_E9E9E9.CGColor;
+    }
 }
 
 -(void)closeBtnClicked{

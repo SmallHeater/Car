@@ -290,7 +290,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
             
             [[self.welfareTreatmentView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
                 
-                UIButton * btn = x;
+                UIButton * btn = x.first;
                 NSString * title = btn.currentTitle;
                 for (NSDictionary * dic in weakSelf.jobOptionDic[@"benefit"]) {
                     
@@ -324,8 +324,11 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
                 for (NSDictionary * dic in weakSelf.welfareTreatArray) {
                     
                     [str appendString:dic[@"name"]];
+                    [str appendString:@","];
                     [idArray addObject:dic[@"id"]];
                 }
+                
+                str = [str substringToIndex:str.length - 1];
                 [cell refreshLabel:str];
                 
                 weakSelf.postJobRequestModel.benefit_ids = [idArray componentsJoinedByString:@","];
