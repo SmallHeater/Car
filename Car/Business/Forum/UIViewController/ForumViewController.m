@@ -16,11 +16,14 @@
 #import "ForumThreeCell.h"
 #import "ForumVideoCell.h"
 #import "ForumDetailViewController.h"
+#import "PostListCell.h"
+#import "SmallVideoViewController.h"
 
 #define BASEBTNTAG 1400
 
 static NSString * ForumBaseCellId = @"ForumBaseCell";
 static NSString * ForumSingleCellId = @"ForumSingleCell";
+static NSString * PostListCellId = @"PostListCell";
 static NSString * ForumThreeCellId = @"ForumThreeCell";
 static NSString * ForumVideoCellId = @"ForumVideoCell";
 
@@ -173,6 +176,9 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     // Do any additional setup after loading the view.
     [self requestTablist];
     [self drawTableView];
+    
+    SmallVideoViewController * vc = [[SmallVideoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark  ----  代理
@@ -190,6 +196,10 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     else if ([articleModel.type isEqualToString:@"single"]) {
         
         cellHeight = [ForumSingleCell cellHeightWithTitle:articleModel.title];
+    }
+    else if ([articleModel.type isEqualToString:@"single_left"]){
+        
+        cellHeight = 129;
     }
     else if ([articleModel.type isEqualToString:@"three"]){
         
@@ -260,6 +270,19 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         }
         
         [cell show:articleModel];
+        return cell;
+    }
+    else if ([articleModel.type isEqualToString:@"single_left"]){
+     
+        PostListCell * cell = [tableView dequeueReusableCellWithIdentifier:PostListCellId];
+        if (!cell) {
+            
+            cell = [[PostListCell alloc] initWithReuseIdentifier:PostListCellId];
+        }
+    
+        //imageUrl,图片地址;title,标题;pv,NSNumber,浏览量;section_title,来源;
+        NSDictionary * dic = @{@"imageUrl":articleModel.images[0],@"title":articleModel.title,@"pv":[NSNumber numberWithInt:articleModel.pv],@"section_title":articleModel.section_title};
+        [cell show:dic];
         return cell;
     }
     else if ([articleModel.type isEqualToString:@"three"]){

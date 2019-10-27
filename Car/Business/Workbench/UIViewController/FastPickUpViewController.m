@@ -62,6 +62,7 @@
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.userInteractionEnabled = YES;
     }
     return _tableView;
 }

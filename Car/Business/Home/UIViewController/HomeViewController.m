@@ -24,6 +24,8 @@
 #import "PostViewController.h"
 #import "PostResidualTransactionViewController.h"
 #import "PostJobViewController.h"
+#import "PostListViewController.h"
+#import "FrameNumberInquiryViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -349,6 +351,7 @@
                                 break;
                             case 2:
                                 
+                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andVCType:VCType_yingxiaoke];
                                 break;
                             case 3:
                                 
@@ -360,9 +363,11 @@
                                 break;
                             case 5:
                                 
+                                vc = [[FrameNumberInquiryViewController alloc] initWithTitle:@"车架号查询" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
                                 break;
                             case 6:
                                 
+                                urlStr = @"https://m.weizhang8.cn/";
                                 break;
                             case 7:
                                 
@@ -374,6 +379,7 @@
                                 break;
                             case 9:
                                 
+                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andVCType:VCType_yinanzazheng];
                                 break;
                             default:
                                 break;

@@ -13,8 +13,8 @@ pod 'PLeakSniffer'
 pod 'iOS-Echarts’
 pod 'YYText'
 pod 'YYImage'
-pod 'AlipaySDK-iOS'
-pod 'WechatOpenSDK'
+#pod 'AlipaySDK-iOS'
+#pod 'WechatOpenSDK'
 #上线在开放本功能
 #pod 'AvoidCrash'
 end

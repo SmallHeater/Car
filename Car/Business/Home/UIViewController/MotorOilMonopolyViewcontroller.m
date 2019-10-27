@@ -20,6 +20,7 @@
 #import "OilGoodModel.h"
 #import "SelectPaymentMethodView.h"
 
+
 #define ITEMBTNBASETAG 1000
 
 @interface MotorOilMonopolyViewcontroller ()<UIScrollViewDelegate>
@@ -514,5 +515,19 @@
         }
     }];
 }
+
+//微信支付
+-(void)WeChatPayment:(NSDictionary *)dict{
+    
+    
+}
+
+//支付宝支付
+-(void)paybyAliPay{
+    
+    
+}
+
+
 
 @end

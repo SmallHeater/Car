@@ -16,6 +16,8 @@
 #import "UserInforController.h"
 #import "PLeakSniffer.h"
 //#import "AvoidCrash.h"
+//#import <WXApi.h>
+//#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
 
@@ -27,8 +29,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 //    [AvoidCrash makeAllEffective];
-//    [AvoidCrash setupNoneSelClassStringPrefixsArr:@[@"SH",@"Car"]];
     
+    //向微信注册
+//    [WXApi registerApp:@""];
     
     if ([UserInforController sharedManager].userInforModel) {
         
@@ -103,4 +106,79 @@
 }
 
 
+/*
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+    }
+    return YES;
+}
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+            
+            if (orderState==9000) {
+                
+                //支付宝支付成功
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYRESULT" object:nil userInfo:@{@"state":[NSNumber numberWithInt:1]}];
+            }else{
+                
+                //支付宝支付失败
+                NSString *returnStr;
+                switch (orderState) {
+                    case 8000:
+                        returnStr=@"订单正在处理中";
+                        break;
+                    case 4000:
+                        returnStr=@"订单支付失败";
+                        break;
+                    case 6001:
+                        returnStr=@"订单取消";
+                        break;
+                    case 6002:
+                        returnStr=@"网络连接出错";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                [MBProgressHUD wj_showError:returnStr];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYRESULT" object:nil userInfo:@{@"state":[NSNumber numberWithInt:0]}];
+            }
+
+        }];
+    }
+    else if ([url.host isEqualToString:@"pay"]){ //微信支付的回调
+        
+        NSString *result = [url absoluteString];
+        NSArray *array = [result componentsSeparatedByString:@"="];
+        NSString *resultNumber = [array lastObject];
+        if ([resultNumber integerValue] == 0){ //成功
+            //发送支付成功的通知
+//            [[NSNotificationCenter defaultCenter] postNotificationName:NoticePaySuccess object:nil];
+        }else if ([resultNumber integerValue] == -1) { //错误
+            //发送支付失败的通知
+//            [[NSNotificationCenter defaultCenter] postNotificationName:NoticePayFailure object:nil];
+        }else if ([resultNumber integerValue] == -2){ //用户取消
+            //发送支付取消的通知
+//            [[NSNotificationCenter defaultCenter] postNotificationName:NoticePayCancel object:nil];
+        }
+    }
+    return YES;
+}
+*/
 @end

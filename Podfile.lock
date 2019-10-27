@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AlipaySDK-iOS (15.5.9)
   - AMapFoundation (1.5.7)
   - AMapLocation (2.6.2):
     - AMapFoundation (~> 1.4)
@@ -33,7 +32,6 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
-  - WechatOpenSDK (1.8.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
@@ -41,7 +39,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - AlipaySDK-iOS
   - AMapLocation
   - iOS-Echarts
   - Masonry
@@ -52,14 +49,12 @@ DEPENDENCIES:
   - ReactiveObjC
   - RealReachability
   - SDWebImage
-  - WechatOpenSDK
   - YYImage
   - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
-    - AlipaySDK-iOS
     - AMapFoundation
     - AMapLocation
     - iOS-Echarts
@@ -71,13 +66,11 @@ SPEC REPOS:
     - ReactiveObjC
     - RealReachability
     - SDWebImage
-    - WechatOpenSDK
     - YYImage
     - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AlipaySDK-iOS: 1c5283b30977a24acecc0114662697f7dc78f618
   AMapFoundation: 216d58448c80356434ac4332250a8fdb2f5c4d1e
   AMapLocation: 89a7e4eb6040d32ba73c77a4966ecc66e46aa7c3
   iOS-Echarts: dbc7423d861e5eedee78906a39d205b5c4da9a13
@@ -89,10 +82,9 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
-  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c369eed2902bf5b32377070d1e9fd5c923e304af
+PODFILE CHECKSUM: cc2b7d18682ea044063b8130337a3c290b9a7214
 
 COCOAPODS: 1.5.3

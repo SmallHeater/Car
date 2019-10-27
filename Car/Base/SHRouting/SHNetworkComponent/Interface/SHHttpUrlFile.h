@@ -77,6 +77,8 @@
 #define ForumList  [[NSString alloc] initWithFormat:@"%@/api/Home/getForumList",CARDOMAIN]
 //获取评论
 #define Comments  [[NSString alloc] initWithFormat:@"%@/api/Home/getComments",CARDOMAIN]
+//获取小视频列表接口
+#define GetVideos  [[NSString alloc] initWithFormat:@"%@/api/Home/getVideos",CARDOMAIN]
 
 
 
