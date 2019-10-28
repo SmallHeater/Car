@@ -43,6 +43,10 @@
 		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
+		041CC9442367162300C130E6 /* OilPurchaseRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC9432367162300C130E6 /* OilPurchaseRecordViewController.m */; };
+		041CC9472367175900C130E6 /* OilPurchaseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC9462367175900C130E6 /* OilPurchaseRecordCell.m */; };
+		041CC94B23671A4100C130E6 /* OilPurchaseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC94A23671A4100C130E6 /* OilPurchaseRecord.m */; };
+		041CC94E23671B6600C130E6 /* GoodsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC94D23671B6600C130E6 /* GoodsItem.m */; };
 		0422D966232291A900AF687D /* UnpaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D965232291A900AF687D /* UnpaidModel.m */; };
 		0422D96923229F4300AF687D /* ReturnRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D96823229F4300AF687D /* ReturnRecordCell.m */; };
 		0422D98B23233C5800AF687D /* JHNewUploadLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0422D97D23233C5800AF687D /* JHNewUploadLoading.m */; };
@@ -362,6 +366,14 @@
 		0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsOneDayModel.m; sourceTree = "<group>"; };
 		0419F201232277A100E76099 /* RepaidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidCell.m; sourceTree = "<group>"; };
 		0419F202232277A100E76099 /* RepaidCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidCell.h; sourceTree = "<group>"; };
+		041CC9422367162300C130E6 /* OilPurchaseRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilPurchaseRecordViewController.h; sourceTree = "<group>"; };
+		041CC9432367162300C130E6 /* OilPurchaseRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilPurchaseRecordViewController.m; sourceTree = "<group>"; };
+		041CC9452367175900C130E6 /* OilPurchaseRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilPurchaseRecordCell.h; sourceTree = "<group>"; };
+		041CC9462367175900C130E6 /* OilPurchaseRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilPurchaseRecordCell.m; sourceTree = "<group>"; };
+		041CC94923671A4100C130E6 /* OilPurchaseRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilPurchaseRecord.h; sourceTree = "<group>"; };
+		041CC94A23671A4100C130E6 /* OilPurchaseRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilPurchaseRecord.m; sourceTree = "<group>"; };
+		041CC94C23671B6600C130E6 /* GoodsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsItem.h; sourceTree = "<group>"; };
+		041CC94D23671B6600C130E6 /* GoodsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsItem.m; sourceTree = "<group>"; };
 		0422D964232291A900AF687D /* UnpaidModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidModel.h; sourceTree = "<group>"; };
 		0422D965232291A900AF687D /* UnpaidModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidModel.m; sourceTree = "<group>"; };
 		0422D96723229F4200AF687D /* ReturnRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReturnRecordCell.h; sourceTree = "<group>"; };
@@ -1022,6 +1034,7 @@
 		0404857F230C24D200EF17C8 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				041CC94823671A2B00C130E6 /* Model */,
 				04B98EA9235C61E8005954A2 /* Cell */,
 				04048591230C253900EF17C8 /* UIViewController */,
 			);
@@ -1127,6 +1140,8 @@
 				040485A1230C25D200EF17C8 /* MineViewController.m */,
 				049B27CF235DDC3A00704872 /* PersonalInformationVC.h */,
 				049B27D0235DDC3A00704872 /* PersonalInformationVC.m */,
+				041CC9422367162300C130E6 /* OilPurchaseRecordViewController.h */,
+				041CC9432367162300C130E6 /* OilPurchaseRecordViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1324,6 +1339,17 @@
 				62072C09231A55C20089AD43 /* UIView */,
 			);
 			path = CarouselView;
+			sourceTree = "<group>";
+		};
+		041CC94823671A2B00C130E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				041CC94923671A4100C130E6 /* OilPurchaseRecord.h */,
+				041CC94A23671A4100C130E6 /* OilPurchaseRecord.m */,
+				041CC94C23671B6600C130E6 /* GoodsItem.h */,
+				041CC94D23671B6600C130E6 /* GoodsItem.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0422D96A23233C5800AF687D /* SHUploadComponent */ = {
@@ -1736,6 +1762,8 @@
 				62CA4366235DC6D000F4EBE9 /* MineColumnCell.m */,
 				049B27D2235DDEBB00704872 /* PersonalInformationCell.h */,
 				049B27D3235DDEBB00704872 /* PersonalInformationCell.m */,
+				041CC9452367175900C130E6 /* OilPurchaseRecordCell.h */,
+				041CC9462367175900C130E6 /* OilPurchaseRecordCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2451,9 +2479,11 @@
 				043E9F7F2348CD2B00109AC5 /* PostJobSelectCell.m in Sources */,
 				624A49AA23136234005B1391 /* SHNetworkStatusManagementComponent.m in Sources */,
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
+				041CC9472367175900C130E6 /* OilPurchaseRecordCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				0422D99423233D9300AF687D /* SHUploadConfigurationModel.m in Sources */,
+				041CC9442367162300C130E6 /* OilPurchaseRecordViewController.m in Sources */,
 				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
 				049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */,
 				047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */,
@@ -2464,6 +2494,7 @@
 				62D530E02355512900BA9AE1 /* GoodsCell.m in Sources */,
 				040485E02311096700EF17C8 /* SHMiddlewareComponent.m in Sources */,
 				0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */,
+				041CC94E23671B6600C130E6 /* GoodsItem.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
 				0486448123609A8600C5A93C /* AddNewVehicleCell.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
@@ -2499,6 +2530,7 @@
 				62D530B42353FC7400BA9AE1 /* ShopModel.m in Sources */,
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
 				0432BFC4232696F8002CD639 /* ImageCompressionController.m in Sources */,
+				041CC94B23671A4100C130E6 /* OilPurchaseRecord.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
 				043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */,
 				62072C0E231A55C20089AD43 /* CarouselView.m in Sources */,
@@ -2668,7 +2700,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
@@ -2696,7 +2728,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;

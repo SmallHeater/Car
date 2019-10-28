@@ -11,7 +11,7 @@
 #import "MineColumnCell.h"
 #import "UserInforController.h"
 #import "PersonalInformationVC.h"
-
+#import "OilPurchaseRecordViewController.h"
 
 static NSString * MineHeadCellID = @"MineHeadCell";
 static NSString * MineColumnCellID = @"MineColumnCell";
@@ -56,6 +56,15 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     if (indexPath.row == 0) {
         
         PersonalInformationVC * vc = [[PersonalInformationVC alloc] initWithTitle:@"个人资料" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 1){
+        
+    }
+    else if (indexPath.row == 2){
+        
+        OilPurchaseRecordViewController * vc = [[OilPurchaseRecordViewController alloc] initWithTitle:@"机油采购记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -109,16 +118,16 @@ static NSString * MineColumnCellID = @"MineColumnCell";
 
 //创造数据
 -(void)createData{
-    
-    //上线暂时注释
-//    NSDictionary * firstDic = @{@"iconImage":@"xiaoxi",@"title":@"我的消息"};
+//    
+//    //上线暂时注释
+////    NSDictionary * firstDic = @{@"iconImage":@"xiaoxi",@"title":@"我的消息"};
 //    NSDictionary * secondDic = @{@"iconImage":@"tiezi",@"title":@"我的帖子"};
-//    NSDictionary * thirdDic = @{@"iconImage":@"fanxian",@"title":@"机油返现"};
+////    NSDictionary * thirdDic = @{@"iconImage":@"fanxian",@"title":@"机油返现"};
 //    NSDictionary * forthDic = @{@"iconImage":@"jilu",@"title":@"采购记录"};
 //    NSDictionary * fifthDic = @{@"iconImage":@"guanyu",@"title":@"关于平台"};
-//    [self.dataArray addObject:firstDic];
+////    [self.dataArray addObject:firstDic];
 //    [self.dataArray addObject:secondDic];
-//    [self.dataArray addObject:thirdDic];
+////    [self.dataArray addObject:thirdDic];
 //    [self.dataArray addObject:forthDic];
 //    [self.dataArray addObject:fifthDic];
 }

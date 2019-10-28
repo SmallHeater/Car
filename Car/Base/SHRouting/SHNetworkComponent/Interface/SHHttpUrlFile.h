@@ -101,5 +101,8 @@
 #define GetTypeGoodsList  [[NSString alloc] initWithFormat:@"%@/api/Shop/getTypeGoodsList",CARDOMAIN]
 //机油采购 商铺获取评论接口
 #define GetShopComments  [[NSString alloc] initWithFormat:@"%@/api/Shop/getShopComments",CARDOMAIN]
+//机油采购记录（订单）接口
+#define GetOrders  [[NSString alloc] initWithFormat:@"%@/api/Shop/getOrders",CARDOMAIN]
+
 
 #endif /* HttpUrlFile_h */
