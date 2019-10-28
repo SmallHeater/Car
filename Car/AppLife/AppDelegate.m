@@ -41,11 +41,12 @@
         homeNav.tabBarItem.image = [UIImage imageNamed:@"shouye"];
         homeNav.tabBarItem.selectedImage = [UIImage imageNamed:@"shouye"];
         
-        ForumViewController * forumVC = [[ForumViewController alloc] init];
-        UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
-        forumNav.tabBarItem.title = @"论坛";
-        forumNav.tabBarItem.image = [UIImage imageNamed:@"luntan"];
-        forumNav.tabBarItem.selectedImage = [UIImage imageNamed:@"luntan"];
+        //上线暂时注释
+//        ForumViewController * forumVC = [[ForumViewController alloc] init];
+//        UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
+//        forumNav.tabBarItem.title = @"论坛";
+//        forumNav.tabBarItem.image = [UIImage imageNamed:@"luntan"];
+//        forumNav.tabBarItem.selectedImage = [UIImage imageNamed:@"luntan"];
         
         WorkbenchViewController * workbenchVC = [[WorkbenchViewController alloc] init];
         UINavigationController * workbenchNav = [[UINavigationController alloc] initWithRootViewController:workbenchVC];
@@ -53,11 +54,12 @@
         workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
         workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
         
-        MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
-        UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
-        marketingNav.tabBarItem.title = @"营销";
-        marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
-        marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
+        //上线暂时注释
+//        MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
+//        UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
+//        marketingNav.tabBarItem.title = @"营销";
+//        marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
+//        marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
         
         MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
@@ -67,7 +69,7 @@
         
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
         self.window.rootViewController = tarBarController;
-        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
+        tarBarController.viewControllers = @[homeNav,workbenchNav,mineNav];
         tarBarController.selectedIndex = 0;
     }
     else{

@@ -110,16 +110,17 @@ static NSString * MineColumnCellID = @"MineColumnCell";
 //创造数据
 -(void)createData{
     
-    NSDictionary * firstDic = @{@"iconImage":@"xiaoxi",@"title":@"我的消息"};
-    NSDictionary * secondDic = @{@"iconImage":@"tiezi",@"title":@"我的帖子"};
-    NSDictionary * thirdDic = @{@"iconImage":@"fanxian",@"title":@"机油返现"};
-    NSDictionary * forthDic = @{@"iconImage":@"jilu",@"title":@"采购记录"};
-    NSDictionary * fifthDic = @{@"iconImage":@"guanyu",@"title":@"关于平台"};
-    [self.dataArray addObject:firstDic];
-    [self.dataArray addObject:secondDic];
-    [self.dataArray addObject:thirdDic];
-    [self.dataArray addObject:forthDic];
-    [self.dataArray addObject:fifthDic];
+    //上线暂时注释
+//    NSDictionary * firstDic = @{@"iconImage":@"xiaoxi",@"title":@"我的消息"};
+//    NSDictionary * secondDic = @{@"iconImage":@"tiezi",@"title":@"我的帖子"};
+//    NSDictionary * thirdDic = @{@"iconImage":@"fanxian",@"title":@"机油返现"};
+//    NSDictionary * forthDic = @{@"iconImage":@"jilu",@"title":@"采购记录"};
+//    NSDictionary * fifthDic = @{@"iconImage":@"guanyu",@"title":@"关于平台"};
+//    [self.dataArray addObject:firstDic];
+//    [self.dataArray addObject:secondDic];
+//    [self.dataArray addObject:thirdDic];
+//    [self.dataArray addObject:forthDic];
+//    [self.dataArray addObject:fifthDic];
 }
 
 -(void)requestListData{

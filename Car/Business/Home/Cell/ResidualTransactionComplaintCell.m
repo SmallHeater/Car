@@ -73,7 +73,8 @@
     [attributedStr setAttributes:@{NSForegroundColorAttributeName:Color_FF3B30} range:NSMakeRange(9,5)];
     self.titleLabel.attributedText = attributedStr;
     
-    [self addSubview:self.complaintBtn];
+    //上线暂时注释
+//    [self addSubview:self.complaintBtn];
 }
 
 @end

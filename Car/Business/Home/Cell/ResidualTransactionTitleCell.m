@@ -99,7 +99,7 @@
        
         make.left.equalTo(self.titleLabel.mas_left);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
-        make.width.offset(50);
+        make.width.offset(0);
         make.height.offset(23);
     }];
     
@@ -134,6 +134,16 @@
         
         money = [[NSString alloc] initWithFormat:@"￥%@",price];
     }
+    
+    float width = [money widthWithFont:FONT16 andHeight:23] + 2;
+    [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.titleLabel.mas_left);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
+        make.width.offset(width);
+        make.height.offset(23);
+    }];
+    
     self.priceLabel.text = [NSString repleaseNilOrNull:money];
 }
 

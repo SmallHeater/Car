@@ -31,6 +31,8 @@
 //短信
 @property (nonatomic,strong) SHLabelAndLabelView * smsView;
 @property (nonatomic,strong) UILabel * secondLine;
+//信用额
+@property (nonatomic,strong) SHLabelAndLabelView * creditAmountView;
 //每日任务
 @property (nonatomic,strong) SHImageAndTitleBtn * dailyTaskBtn;
 //每日奖励
@@ -240,14 +242,23 @@
             make.height.offset(13);
         }];
         
-        [_middleWhiteView addSubview:self.dailyTaskBtn];
-        [self.dailyTaskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+        [_middleWhiteView addSubview:self.creditAmountView];
+        [self.creditAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
+
             make.right.offset(-(oneWidth - 60) / 2);
             make.top.equalTo(self.redEnvelopeView.mas_top);
             make.width.offset(60);
             make.height.equalTo(self.redEnvelopeView.mas_height);
         }];
+        
+//        [_middleWhiteView addSubview:self.dailyTaskBtn];
+//        [self.dailyTaskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.right.offset(-(oneWidth - 60) / 2);
+//            make.top.equalTo(self.redEnvelopeView.mas_top);
+//            make.width.offset(60);
+//            make.height.equalTo(self.redEnvelopeView.mas_height);
+//        }];
     }
     return _middleWhiteView;
 }
@@ -284,6 +295,18 @@
         [_smsView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
     }
     return _smsView;
+}
+
+-(SHLabelAndLabelView *)creditAmountView{
+    
+    if (!_creditAmountView) {
+        
+        _creditAmountView = [[SHLabelAndLabelView alloc] initWithTopStr:@"0" andTopLabelHeight:16 andBottomStr:@"信用额" andBottomHeight:12];
+        [_creditAmountView setTopLabelFont:BOLDFONT20 bottomLabelFont:FONT12];
+        [_creditAmountView setTopLabelTextColor:Color_333333 bottomLabelTextColor:Color_333333];
+        [_creditAmountView setTopLabelTextAlignment:NSTextAlignmentCenter bottomLabelTextAlignment:NSTextAlignmentCenter];
+    }
+    return _creditAmountView;
 }
 
 -(UILabel *)secondLine{
@@ -367,23 +390,24 @@
         make.height.offset(86);
     }];
     
-    [self addSubview:self.dailyRewardBtn];
-    [self.dailyRewardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    
-        make.left.offset(40);
-        make.bottom.offset(-38);
-        make.width.offset(119);
-        make.height.offset(31);
-    }];
-    
-    [self addSubview:self.signInBtn];
-    [self.signInBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.offset(-38);
-        make.bottom.equalTo(self.dailyRewardBtn.mas_bottom);
-        make.width.offset(129);
-        make.height.equalTo(self.dailyRewardBtn.mas_height);
-    }];
+    //上线暂时注释
+//    [self addSubview:self.dailyRewardBtn];
+//    [self.dailyRewardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.offset(40);
+//        make.bottom.offset(-38);
+//        make.width.offset(119);
+//        make.height.offset(31);
+//    }];
+//
+//    [self addSubview:self.signInBtn];
+//    [self.signInBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.right.offset(-38);
+//        make.bottom.equalTo(self.dailyRewardBtn.mas_bottom);
+//        make.width.offset(129);
+//        make.height.equalTo(self.dailyRewardBtn.mas_height);
+//    }];
     
     [self addSubview:self.bottomLineLabel];
     [self.bottomLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {

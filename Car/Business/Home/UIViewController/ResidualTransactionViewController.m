@@ -107,13 +107,14 @@ static NSString * CommodityCellID = @"CommodityCell";
 
 -(void)drawUI{
     
-    [self.navigationbar addSubview:self.searchBtn];
-    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.right.offset(-12);
-        make.bottom.offset(-12);
-        make.width.height.offset(22);
-    }];
+    //上线暂时注释
+//    [self.navigationbar addSubview:self.searchBtn];
+//    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.right.offset(-12);
+//        make.bottom.offset(-12);
+//        make.width.height.offset(22);
+//    }];
 }
 
 -(void)requestListData

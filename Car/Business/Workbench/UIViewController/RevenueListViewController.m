@@ -96,7 +96,7 @@ static NSString * cellId = @"RevenueCell";
     NSString * receivable = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue];
     NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",model.cost.floatValue];
     NSString * profit = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue - model.cost.floatValue];
-    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"receivable":receivable,@"cost":cost,@"profit":profit}];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"receivable":receivable,@"cost":cost,@"profit":profit}];
     
     return cell;
 }
