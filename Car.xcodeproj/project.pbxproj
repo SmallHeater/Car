@@ -2650,6 +2650,7 @@
 			baseConfigurationReference = 5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2677,6 +2678,7 @@
 			baseConfigurationReference = 11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				FRAMEWORK_SEARCH_PATHS = (
