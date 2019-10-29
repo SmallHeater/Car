@@ -40,6 +40,8 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 @property (nonatomic,strong) UIScrollView * sectionView;
 @property (nonatomic,strong) NSMutableArray<ForumArticleModel *> * dataArray;
 @property (nonatomic,strong) SHBaseTableView * tableView;
+//小视频列表view
+@property (nonatomic,strong) UIView * smallVideoView;
 
 @end
 
@@ -111,7 +113,19 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
             
             ForumTabModel * model = weakSelf.tabForumTabModelArray[index];
             model.isSelected = YES;
-            [weakSelf requestSectionListWithTabID:model.ForumID];
+            if ([model.title isEqualToString:@"小视频"]) {
+                
+                [weakSelf.smallVideoView removeFromSuperview];
+                weakSelf.tableView.hidden = YES;
+                weakSelf.smallVideoView.hidden = NO;
+                [weakSelf.view addSubview:weakSelf.smallVideoView];
+            }
+            else{
+             
+                weakSelf.tableView.hidden = NO;
+                weakSelf.smallVideoView.hidden = YES;
+                [weakSelf requestSectionListWithTabID:model.ForumID];
+            }
         }];
     }
     return _baseTabView;
@@ -169,6 +183,18 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     return _tableView;
 }
 
+-(UIView *)smallVideoView{
+    
+    if (!_smallVideoView) {
+        
+        SmallVideoViewController * vc = [[SmallVideoViewController alloc] initWithType:VCType_Forum];
+        _smallVideoView = vc.view;
+        _smallVideoView.frame = CGRectMake(0, CGRectGetMaxY(self.forumNavView.frame) + 10, MAINWIDTH, MAINHEIGHT - CGRectGetHeight(self.forumNavView.frame) - 10 - 44 - [SHUIScreenControl bottomSafeHeight]);
+        [self addChildViewController:vc];
+    }
+    return _smallVideoView;
+}
+
 #pragma mark  ----  生命周期函数
 
 - (void)viewDidLoad {
@@ -176,9 +202,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     // Do any additional setup after loading the view.
     [self requestTablist];
     [self drawTableView];
-    
-    SmallVideoViewController * vc = [[SmallVideoViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark  ----  代理

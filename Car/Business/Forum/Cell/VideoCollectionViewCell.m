@@ -139,4 +139,20 @@
     }];
 }
 
+
+-(void)show:(VideoModel *)model{
+    
+    if (model && [model isKindOfClass:[VideoModel class]]) {
+        
+        NSString * imageUrlStr = [NSString repleaseNilOrNull:model.image];
+        [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]];
+        self.titleLabel.text = [NSString repleaseNilOrNull:model.name];
+        NSString * avaterUrlStr = [NSString repleaseNilOrNull:model.avatar];
+        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:avaterUrlStr]];
+        self.nickNameLabel.text = [NSString repleaseNilOrNull:model.shop_name];
+        NSString * playCountsStr = [[NSString alloc] initWithFormat:@"%ld播放",model.views];
+        self.playCountLabel.text = playCountsStr;
+    }
+}
+
 @end

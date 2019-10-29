@@ -7,10 +7,14 @@
 //  小视频cell
 
 #import <UIKit/UIKit.h>
+#import "VideoModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoCollectionViewCell : UICollectionViewCell
+
+-(void)show:(VideoModel *)model;
 
 @end
 

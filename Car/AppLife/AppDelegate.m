@@ -42,11 +42,11 @@
         homeNav.tabBarItem.selectedImage = [UIImage imageNamed:@"shouye"];
         
         //上线暂时注释
-//        ForumViewController * forumVC = [[ForumViewController alloc] init];
-//        UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
-//        forumNav.tabBarItem.title = @"论坛";
-//        forumNav.tabBarItem.image = [UIImage imageNamed:@"luntan"];
-//        forumNav.tabBarItem.selectedImage = [UIImage imageNamed:@"luntan"];
+        ForumViewController * forumVC = [[ForumViewController alloc] init];
+        UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
+        forumNav.tabBarItem.title = @"论坛";
+        forumNav.tabBarItem.image = [UIImage imageNamed:@"luntan"];
+        forumNav.tabBarItem.selectedImage = [UIImage imageNamed:@"luntan"];
         
         WorkbenchViewController * workbenchVC = [[WorkbenchViewController alloc] init];
         UINavigationController * workbenchNav = [[UINavigationController alloc] initWithRootViewController:workbenchVC];
@@ -69,8 +69,8 @@
         
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
         self.window.rootViewController = tarBarController;
-        tarBarController.viewControllers = @[homeNav,workbenchNav,mineNav];
-        tarBarController.selectedIndex = 0;
+        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,mineNav];
+        tarBarController.selectedIndex = 1;
     }
     else{
         

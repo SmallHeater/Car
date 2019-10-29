@@ -132,8 +132,7 @@
             
             [weakSelf.releaseView removeFromSuperview];
         }];
-        //上线暂时注释
-//        [whiteBGView addSubview:publishVideoBtn];
+        [whiteBGView addSubview:publishVideoBtn];
         [_releaseView addSubview:whiteBGView];
         [whiteBGView mas_makeConstraints:^(MASConstraintMaker *make) {
            

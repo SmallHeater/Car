@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger,VCType){
+    
+    VCType_Forum = 0,//论坛
+    VCType_Home //首页
+};
+
 @interface SmallVideoViewController : SHBaseViewController
+
+-(instancetype)initWithType:(VCType)type;
 
 @end
 

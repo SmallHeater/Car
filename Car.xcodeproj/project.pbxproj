@@ -180,6 +180,7 @@
 		049C78C72336362900612AF5 /* SHQRCodeMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78C62336362900612AF5 /* SHQRCodeMiddleware.m */; };
 		049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */; };
 		049C78CD233650A500612AF5 /* CommodityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78CC233650A500612AF5 /* CommodityCell.m */; };
+		04A8A4A1236872980006BBE3 /* PushAndPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */; };
 		04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */; };
 		04A915E8232A5E4B002DDC02 /* SHBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */; };
 		04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EB232A882A002DDC02 /* PublicRequest.m */; };
@@ -635,6 +636,8 @@
 		049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionViewController.m; sourceTree = "<group>"; };
 		049C78CB233650A500612AF5 /* CommodityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommodityCell.h; sourceTree = "<group>"; };
 		049C78CC233650A500612AF5 /* CommodityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommodityCell.m; sourceTree = "<group>"; };
+		04A8A49F236872980006BBE3 /* PushAndPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushAndPlayViewController.h; sourceTree = "<group>"; };
+		04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushAndPlayViewController.m; sourceTree = "<group>"; };
 		04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarProfitStatisticsCell.h; sourceTree = "<group>"; };
 		04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarProfitStatisticsCell.m; sourceTree = "<group>"; };
 		04A915E6232A5E4A002DDC02 /* SHBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableView.m; sourceTree = "<group>"; };
@@ -1092,6 +1095,8 @@
 				04ACDD302341FFAC0050B179 /* ForumDetailViewController.m */,
 				0490B7E2236583D400DC33BB /* SmallVideoViewController.h */,
 				0490B7E3236583D400DC33BB /* SmallVideoViewController.m */,
+				04A8A49F236872980006BBE3 /* PushAndPlayViewController.h */,
+				04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -2515,6 +2520,7 @@
 				041CC94E23671B6600C130E6 /* GoodsItem.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
 				0486448123609A8600C5A93C /* AddNewVehicleCell.m in Sources */,
+				04A8A4A1236872980006BBE3 /* PushAndPlayViewController.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,
