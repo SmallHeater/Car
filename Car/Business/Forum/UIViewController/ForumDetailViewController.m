@@ -374,14 +374,14 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
        
         make.left.right.offset(0);
         make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-        make.bottom.offset(51 + [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(51 + [SHUIScreenControl bottomSafeHeight]);
     }];
     
     [self.view addSubview:self.bottomCommentView];
     [self.bottomCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.offset(0);
-        make.bottom.offset([UIScreenControl bottomSafeHeight]);
+        make.bottom.offset([SHUIScreenControl bottomSafeHeight]);
         make.height.offset(51);
     }];
 }

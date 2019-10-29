@@ -25,7 +25,7 @@
 #import "BaiDuBosControl.h"
 #import <AipOcrSdk/AipOcrService.h>
 #import <AipOcrSdk/AipCaptureCardVC.h>
-#import "BaseWKWebViewController.h"
+#import "SHBaseWKWebViewController.h"
 #import "DrivingLicenseModel.h"
 #import "VehicleFileDetailViewController.h"
 
@@ -143,7 +143,7 @@
                 
                 if (![NSString strIsEmpty:urlStr]) {
                  
-                    BaseWKWebViewController * webViewController = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                    SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
                     webViewController.hidesBottomBarWhenPushed = YES;
                     [weakSelf.navigationController pushViewController:webViewController animated:YES];
                 }
@@ -232,7 +232,7 @@
 
 -(void)itemClickedWithItemID:(NSString *)itemId{
     
-    BaseViewController * vc;
+    SHBaseViewController * vc;
     if ([itemId isEqualToString:@"kuaisujieche"]) {
         
         //快速接车

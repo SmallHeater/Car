@@ -6,18 +6,18 @@
 //  Copyright © 2019 IP. All rights reserved.
 //
 
-#import "BaseUIViewController.h"
+#import "SHBaseUIViewController.h"
 
 
 
-@interface BaseUIViewController ()
+@interface SHBaseUIViewController ()
 
 //是否显示返回按钮
 @property (nonatomic,assign) BOOL isShowBackBtn;
 
 @end
 
-@implementation BaseUIViewController
+@implementation SHBaseUIViewController
 
 #pragma mark  ----  懒加载
 -(SHNavigationBar *)navigationbar{
@@ -73,7 +73,7 @@
     [self.navigationbar mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.right.offset(0);
-        make.height.offset([UIScreenControl navigationBarHeight]);
+        make.height.offset([SHUIScreenControl navigationBarHeight]);
     }];
 }
 

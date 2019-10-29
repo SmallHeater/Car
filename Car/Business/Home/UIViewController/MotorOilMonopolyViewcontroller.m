@@ -59,7 +59,7 @@
     
     if (!_tableHeaderView) {
         
-        _tableHeaderView = [[MotorOilMonopolyHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 + [UIScreenControl liuHaiHeight])];
+        _tableHeaderView = [[MotorOilMonopolyHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 + [SHUIScreenControl liuHaiHeight])];
     }
     return _tableHeaderView;
 }
@@ -254,7 +254,7 @@
         _bgScrollView = [[UIScrollView alloc] init];
         _bgScrollView.delegate = self;
         _bgScrollView.pagingEnabled = YES;
-        float viewHeight = MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44;
+        float viewHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44;
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
         
         MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
@@ -323,7 +323,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44;
+    return MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -379,7 +379,7 @@
             
             make.left.offset(17);
             make.right.offset(-17);
-            make.bottom.offset(-5 - [UIScreenControl bottomSafeHeight]);
+            make.bottom.offset(-5 - [SHUIScreenControl bottomSafeHeight]);
             make.height.offset(47);
         }];
     });
@@ -393,7 +393,7 @@
         CGPoint point = [x CGPointValue];
         float y = point.y;
         __weak typeof(self) weakSelf = self;
-        if (y >= 176 - [UIScreenControl navigationBarHeight] - 20) {
+        if (y >= 176 - [SHUIScreenControl navigationBarHeight] - 20) {
 
             [UIView animateWithDuration:0.5 animations:^{
 

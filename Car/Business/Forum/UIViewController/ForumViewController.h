@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  论坛页面
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ForumViewController : BaseViewController
+@interface ForumViewController : SHBaseViewController
 
 @end
 

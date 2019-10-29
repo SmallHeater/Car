@@ -1,13 +1,13 @@
 //
-//  ImageCompressionController.m
+//  SHImageCompressionController.m
 //  JHLivePlayDemo
 //
 //  Created by xianjunwang on 2017/9/27.
 //
 
-#import "ImageCompressionController.h"
+#import "SHImageCompressionController.h"
 
-@implementation ImageCompressionController
+@implementation SHImageCompressionController
 //传入图片大小（内存），返回压缩系数
 +(float)getCompressionFactorWithLength:(float)imageLength andExpextLength:(float)expectLength;{
 

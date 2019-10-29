@@ -6,13 +6,13 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  一辆车的维修记录列表
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class VehicleFileModel;
 
-@interface OneCarMaintenanceRecordsViewController : BaseTableViewController
+@interface OneCarMaintenanceRecordsViewController : SHBaseTableViewController
 
 //车辆ID
 @property (nonatomic,strong) VehicleFileModel * vehicleFileModel;

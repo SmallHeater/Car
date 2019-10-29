@@ -129,7 +129,7 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.offset(0);
-        make.height.offset([UIScreenControl bottomSafeHeight] + 260);
+        make.height.offset([SHUIScreenControl bottomSafeHeight] + 260);
     }];
     [self addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {

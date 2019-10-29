@@ -165,7 +165,7 @@
 #pragma mark - set buttons
 - (UIButton *)cameraLightBtn{
     if (_cameraLightBtn == nil) {
-        _cameraLightBtn = [[UIButton alloc] initWithFrame:CGRectMake((MAINWIDTH - 80)/2, 23 + [UIScreenControl liuHaiHeight], 80, 44)];
+        _cameraLightBtn = [[UIButton alloc] initWithFrame:CGRectMake((MAINWIDTH - 80)/2, 23 + [SHUIScreenControl liuHaiHeight], 80, 44)];
         _cameraLightBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
         _cameraLightBtn.layer.cornerRadius = 22.0;
         _cameraLightBtn.clipsToBounds = YES;

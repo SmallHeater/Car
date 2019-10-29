@@ -1,14 +1,14 @@
 //
-//  BaseTableViewController.m
+//  SHBaseTableViewController.m
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/26.
 //  Copyright © 2019 IP. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
-@interface BaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SHBaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 //是否展示导航条
 @property (nonatomic,assign) BOOL showNavigationBar;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation BaseTableViewController
+@implementation SHBaseTableViewController
 
 #pragma mark  ----  懒加载
 
@@ -28,10 +28,10 @@
         NSUInteger navigationBarHeight = 0;
         if (self.showNavigationBar) {
             
-            navigationBarHeight = [UIScreenControl navigationBarHeight];
+            navigationBarHeight = [SHUIScreenControl navigationBarHeight];
         }
         
-        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [UIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
+        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [SHUIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

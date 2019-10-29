@@ -6,12 +6,12 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  求职招聘详情页
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 #import "JobModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobRecruitmentDetailViewController : BaseTableViewController
+@interface JobRecruitmentDetailViewController : SHBaseTableViewController
 
 //招聘参数字典,jobOptionDic;招聘信息模型，jobModel;
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andJobOptionDic:(NSDictionary *)JobOptionDic andJobModel:(JobModel *)jobModel;

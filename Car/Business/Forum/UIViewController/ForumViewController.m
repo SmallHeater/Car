@@ -319,7 +319,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     [self.forumNavView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.right.offset(0);
-        make.height.offset([UIScreenControl navigationBarHeight]);
+        make.height.offset([SHUIScreenControl navigationBarHeight]);
     }];
 }
 
@@ -371,7 +371,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.bottom.offset(0);
-        make.top.offset([UIScreenControl navigationBarHeight] + 90);
+        make.top.offset([SHUIScreenControl navigationBarHeight] + 90);
     }];
 }
 

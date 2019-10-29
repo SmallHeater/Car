@@ -1,5 +1,5 @@
 //
-//  UIScreenControl.h
+//  SHUIScreenControl.h
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/25.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIScreenControl : NSObject
+@interface SHUIScreenControl : NSObject
 
 //是否是刘海屏
 +(BOOL)isLiuHaiScreen;

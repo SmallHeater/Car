@@ -6,13 +6,13 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  机油销售商品页面
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^ArrayCallBack)(NSMutableArray * dataArray);
 
-@interface MotorOilMonopolyGoodsViewController : BaseViewController
+@interface MotorOilMonopolyGoodsViewController : SHBaseViewController
 
 //购买的机油数据模型的回调
 @property (nonatomic,copy) ArrayCallBack callBack;

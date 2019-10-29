@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  机油专卖页面
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MotorOilMonopolyViewcontroller : BaseTableViewController
+@interface MotorOilMonopolyViewcontroller : SHBaseTableViewController
 
 @end
 

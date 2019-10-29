@@ -6,7 +6,7 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  搜索
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger,SearchType){
 
 
 
-@interface SearchViewController : BaseTableViewController
+@interface SearchViewController : SHBaseTableViewController
 
 @property (nonatomic,assign) SearchType searchType;
 

@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Masonry.h"
-#import "UIScreenControl.h"
+#import "SHUIScreenControl.h"
 #import "NSString+SHTool.h"
 #import "UIColor+SHTool.h"
 #import <ReactiveObjC.h>
@@ -29,6 +29,8 @@
 #import "SHBaseTableView.h"
 #import "PublicRequest.h"
 #import "YYText.h"
+#import "NSAttributedString+SHTool.h"
+
 
 #define Color_09A200 [UIColor colorWithRed:9.0/255.0 green:162.0/255.0 blue:0 alpha:1]
 #define Color_108EE9 [UIColor colorFromHexRGB:@"108EE9"]    
@@ -73,12 +75,14 @@
 #define Color_FF58B0 [UIColor colorWithRed:1 green:88.0/255.0 blue:176.0/255.0 alpha:1]
 #define Color_FF594C [UIColor colorFromHexRGB:@"FF594C"]
 #define Color_FF9B63 [UIColor colorFromHexRGB:@"FF9B63"]
+#define Color_FFEBEB [UIColor colorFromHexRGB:@"FFEBEB"]
 #define Color_FFFEFE [UIColor colorFromHexRGB:@"FFFEFE"]
 
 #define FONT9 [UIFont systemFontOfSize:9]
 #define FONT10 [UIFont systemFontOfSize:10]
 #define FONT11 [UIFont systemFontOfSize:11]
 #define FONT12 [UIFont systemFontOfSize:12]
+#define FONT13 [UIFont systemFontOfSize:13]
 #define FONT14 [UIFont systemFontOfSize:14]
 #define FONT15 [UIFont systemFontOfSize:15]
 #define FONT16 [UIFont systemFontOfSize:16]

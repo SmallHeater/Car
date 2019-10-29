@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  发布残值交易页面
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostResidualTransactionViewController : BaseTableViewController
+@interface PostResidualTransactionViewController : SHBaseTableViewController
 
 @end
 

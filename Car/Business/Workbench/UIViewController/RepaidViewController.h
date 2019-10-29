@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  已回款页面
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RepaidViewController : BaseTableViewController
+@interface RepaidViewController : SHBaseTableViewController
 
 @end
 

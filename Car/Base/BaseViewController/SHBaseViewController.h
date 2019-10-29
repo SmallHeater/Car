@@ -1,5 +1,5 @@
 //
-//  BaseViewController.h
+//  SHBaseViewController.h
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/24.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseViewController : UIViewController
+@interface SHBaseViewController : UIViewController
 
 @end
 

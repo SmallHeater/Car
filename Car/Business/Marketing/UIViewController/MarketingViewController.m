@@ -121,7 +121,7 @@
      [self.marketingNav mas_makeConstraints:^(MASConstraintMaker *make) {
          
          make.left.right.top.offset(0);
-         make.height.offset([UIScreenControl navigationBarHeight]);
+         make.height.offset([SHUIScreenControl navigationBarHeight]);
      }];
     
     AddNewVehicleVC * vc = [[AddNewVehicleVC alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];

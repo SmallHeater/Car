@@ -1,5 +1,5 @@
 //
-//  LocatingManager.h
+//  SHLocatingManager.h
 //  Car
 //
 //  Created by mac on 2019/10/9.
@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 //isSuccess,NSNumber，定位结果;location,NSString*,位置;longitude,NSNumber,经度;latitude,NSNumber,维度;
 typedef void(^CallBack)(NSDictionary * resultDic);
 
-@interface LocatingManager : NSObject
+@interface SHLocatingManager : NSObject
 
-+(LocatingManager *)sharedManager;
++(SHLocatingManager *)sharedManager;
 
 -(void)startLocating:(CallBack)callBack;
 

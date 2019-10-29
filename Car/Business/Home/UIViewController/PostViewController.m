@@ -11,9 +11,9 @@
 #import "SHImageAndTitleBtn.h"
 #import "UserInforController.h"
 #import "TopicForumViewController.h"
-#import "LocatingManager.h"
+#import "SHLocatingManager.h"
 #import "BaiDuBosControl.h"
-#import "ImageCompressionController.h"
+#import "SHImageCompressionController.h"
 #import "YYAnimatedImageView.h"
 #import "YYImage.h"
 
@@ -82,7 +82,7 @@
                         }
                         //压缩
                         float length = [imageData length] / 1000.0;
-                        float ratio = [ImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
+                        float ratio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
                         NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
                         UIImage * usedImage = [UIImage imageWithData:usedImageData];
                         [[BaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
@@ -379,7 +379,7 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.offset(0);
-        make.bottom.offset(-[UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
         make.height.offset(103);
     }];
     
@@ -418,7 +418,7 @@
         [weakSelf.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
             
             make.left.right.offset(0);
-            make.bottom.offset(-[UIScreenControl bottomSafeHeight]);
+            make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
             make.height.offset(103);
         }];
     }];
@@ -514,7 +514,7 @@
 -(void)location:(UIButton *)btn{
     
     btn.userInteractionEnabled = YES;
-    [[LocatingManager sharedManager] startLocating:^(NSDictionary * _Nonnull resultDic) {
+    [[SHLocatingManager sharedManager] startLocating:^(NSDictionary * _Nonnull resultDic) {
         
     }];
     btn.userInteractionEnabled = NO;

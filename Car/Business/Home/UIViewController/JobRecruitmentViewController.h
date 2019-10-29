@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  求职招聘页
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobRecruitmentViewController : BaseTableViewController
+@interface JobRecruitmentViewController : SHBaseTableViewController
 
 @end
 

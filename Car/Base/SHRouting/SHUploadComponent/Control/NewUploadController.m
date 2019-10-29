@@ -8,7 +8,7 @@
 
 #import "NewUploadController.h"
 #import "SHUploadModel.h"
-#import "ImageCompressionController.h"
+#import "SHImageCompressionController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVKit/AVKit.h>
 #import "SHUploadConfigurationModel.h"
@@ -281,7 +281,7 @@ typedef void(^RuturnBlock)(NSDictionary *retultDic);
                         float length = [imageData length] / 1000.0;
                         if (length > 300.0) {
                             
-                            float radio = [ImageCompressionController getCompressionFactorWithLength:length andExpextLength:300];
+                            float radio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:300];
                             //需要压缩
                             willUploadData=UIImageJPEGRepresentation(uploadImage,radio);
                         }
@@ -685,7 +685,7 @@ typedef void(^RuturnBlock)(NSDictionary *retultDic);
                         float length = [imageData length] / 1000.0;
                         if (length > 300.0) {
                             
-                            float radio = [ImageCompressionController getCompressionFactorWithLength:length andExpextLength:300];
+                            float radio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:300];
                             //需要压缩
                             willUploadData=UIImageJPEGRepresentation(uploadImage,radio);
                         }

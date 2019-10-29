@@ -7,11 +7,11 @@
 //  登录页面
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginViewController : BaseViewController
+@interface LoginViewController : SHBaseViewController
 
 @end
 

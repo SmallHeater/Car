@@ -6,7 +6,7 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  帖子列表（营销课页面，疑难杂症页面）
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger,VCType){
     VCType_yinanzazheng = 1 //疑难杂症页面
 };
 
-@interface PostListViewController : BaseTableViewController
+@interface PostListViewController : SHBaseTableViewController
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andVCType:(VCType)type;
 

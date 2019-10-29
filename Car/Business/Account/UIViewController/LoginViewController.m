@@ -175,7 +175,7 @@
     [self.appIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.width.height.offset(65);
-        make.top.offset([UIScreenControl navigationBarHeight] + 51);
+        make.top.offset([SHUIScreenControl navigationBarHeight] + 51);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     

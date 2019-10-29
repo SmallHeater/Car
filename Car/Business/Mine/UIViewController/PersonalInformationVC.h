@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  个人资料页面
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PersonalInformationVC : BaseTableViewController
+@interface PersonalInformationVC : SHBaseTableViewController
 
 @end
 

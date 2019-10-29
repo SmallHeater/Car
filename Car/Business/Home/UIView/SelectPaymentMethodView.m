@@ -194,7 +194,7 @@ static NSString * cellId = @"PaymentMethodCell";
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.top.right.offset(0);
-        make.height.offset(MAINHEIGHT - 204 - [UIScreenControl bottomSafeHeight]);
+        make.height.offset(MAINHEIGHT - 204 - [SHUIScreenControl bottomSafeHeight]);
     }];
     
     [self addSubview:self.tableView];
@@ -210,7 +210,7 @@ static NSString * cellId = @"PaymentMethodCell";
        
         make.left.offset(16);
         make.right.offset(-16);
-        make.bottom.offset(-5 - [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(-5 - [SHUIScreenControl bottomSafeHeight]);
         make.height.offset(47);
     }];
 }

@@ -1,18 +1,18 @@
 //
-//  BaseViewController.m
+//  SHBaseViewController.m
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/24.
 //  Copyright © 2019 IP. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 
-@interface BaseViewController ()
+@interface SHBaseViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation SHBaseViewController
 
 - (void)viewDidLoad {
     

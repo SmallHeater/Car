@@ -9,7 +9,7 @@
 #import "FrameNumberInquiryViewController.h"
 #import "SHImageAndTitleBtn.h"
 #import "FrameNumberTF.h"
-#import "BaseWKWebViewController.h"
+#import "SHBaseWKWebViewController.h"
 #import "FrameNumberCell.h"
 #import "CarInfoModel.h"
 
@@ -77,7 +77,7 @@ static NSString * cellId = @"FrameNumberCell";
         [[maipeijianBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
             NSString * urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
-            BaseWKWebViewController * vc = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [_tableHeaderView addSubview:maipeijianBtn];

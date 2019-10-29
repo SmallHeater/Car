@@ -6,13 +6,13 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  机油专卖商家页面
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 #import "ShopModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MotorOilMonopolyShopViewController : BaseViewController
+@interface MotorOilMonopolyShopViewController : SHBaseViewController
 
 -(instancetype)initWithShopModel:(ShopModel *)shopModel;
 

@@ -1,14 +1,14 @@
 //
-//  UIScreenControl.m
+//  SHUIScreenControl.m
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/25.
 //  Copyright © 2019 IP. All rights reserved.
 //
 
-#import "UIScreenControl.h"
+#import "SHUIScreenControl.h"
 
-@implementation UIScreenControl
+@implementation SHUIScreenControl
 
 #pragma mark  ----  自定义函数
 
@@ -46,13 +46,13 @@
 //导航高度
 +(float)navigationBarHeight{
     
-    return 64.0 + [UIScreenControl liuHaiHeight];
+    return 64.0 + [SHUIScreenControl liuHaiHeight];
 }
 
 //底部安全区高度
 +(float)bottomSafeHeight{
     
-    if ([UIScreenControl isLiuHaiScreen]) {
+    if ([SHUIScreenControl isLiuHaiScreen]) {
         
         return 34;
     }

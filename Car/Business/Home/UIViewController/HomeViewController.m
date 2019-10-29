@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "HomeNavgationBar.h"
 #import "CarouselCell.h"
-#import "BaseWKWebViewController.h"
+#import "SHBaseWKWebViewController.h"
 #import "ItemsCell.h"
 #import "CarouselModel.h"
 #import "TabModel.h"
@@ -138,7 +138,7 @@
         [whiteBGView mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.right.offset(0);
-            make.top.offset(71 + [UIScreenControl liuHaiHeight]);
+            make.top.offset(71 + [SHUIScreenControl liuHaiHeight]);
             make.height.offset(82);
         }];
     }
@@ -311,7 +311,7 @@
                     
                     if (![NSString strIsEmpty:urlStr]) {
                         
-                        BaseWKWebViewController * webViewController = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                        SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
                         webViewController.hidesBottomBarWhenPushed = YES;
                         [weakSelf.navigationController pushViewController:webViewController animated:YES];
                     }
@@ -388,7 +388,7 @@
                         
                         if (![NSString strIsEmpty:urlStr]) {
                             
-                            BaseWKWebViewController * vc = [[BaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
                             vc.hidesBottomBarWhenPushed = YES;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }
@@ -455,7 +455,7 @@
     [self.homeNavgationBar mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.offset(0);
-        make.top.offset(31 + [UIScreenControl liuHaiHeight]);
+        make.top.offset(31 + [SHUIScreenControl liuHaiHeight]);
         make.height.offset(40);
     }];
     

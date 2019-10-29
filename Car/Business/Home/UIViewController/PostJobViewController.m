@@ -477,7 +477,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
                     
                     [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                         
-                        make.bottom.offset(104 + [UIScreenControl bottomSafeHeight]);
+                        make.bottom.offset(104 + [SHUIScreenControl bottomSafeHeight]);
                     }];
                 }];
             }];
@@ -553,7 +553,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
        
         make.left.right.offset(0);
         make.top.equalTo(self.navigationbar.mas_bottom);
-        make.bottom.offset(104 + [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(104 + [SHUIScreenControl bottomSafeHeight]);
     }];
 
     
@@ -562,7 +562,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
        
         make.left.offset(15);
         make.right.offset(-15);
-        make.bottom.offset(-25 - [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(-25 - [SHUIScreenControl bottomSafeHeight]);
         make.height.offset(44);
     }];
 }

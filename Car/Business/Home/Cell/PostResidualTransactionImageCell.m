@@ -9,7 +9,7 @@
 #import "PostResidualTransactionImageCell.h"
 #import "SHImageViewWithDeleteBtn.h"
 #import "BaiDuBosControl.h"
-#import "ImageCompressionController.h"
+#import "SHImageCompressionController.h"
 
 
 #define BTNBASETAG 1600
@@ -238,7 +238,7 @@
         }
         //压缩
         float length = [imageData length] / 1000.0;
-        float ratio = [ImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
+        float ratio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
         NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
         UIImage * usedImage = [UIImage imageWithData:usedImageData];
         [[BaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {

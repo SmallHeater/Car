@@ -9,7 +9,7 @@
 #import "BaiDuBosControl.h"
 #import <BaiduBCEBasic/BaiduBCEBasic.h>
 #import <BaiduBCEBOS/BaiduBCEBOS.h>
-#import "ImageCompressionController.h"
+#import "SHImageCompressionController.h"
 
 @interface BaiDuBosControl ()
 
@@ -39,7 +39,7 @@
     if (image) {
      
         NSData * imageData = UIImageJPEGRepresentation(image, 1);
-        float compression = [ImageCompressionController getCompressionFactorWithLength:imageData.length andExpextLength:500];
+        float compression = [SHImageCompressionController getCompressionFactorWithLength:imageData.length andExpextLength:500];
         NSData * usedImageData = UIImageJPEGRepresentation(image, compression);
         NSLog(@"%lu,%lu",(unsigned long)imageData.length,(unsigned long)usedImageData.length);
         // 初始化

@@ -133,7 +133,7 @@
 
 - (void)createBtns{
     
-    UIView * btnBgView = [[UIView alloc] initWithFrame:CGRectMake(0, MAINHEIGHT - 80 - [UIScreenControl bottomSafeHeight], MAINWIDTH, 80)];
+    UIView * btnBgView = [[UIView alloc] initWithFrame:CGRectMake(0, MAINHEIGHT - 80 - [SHUIScreenControl bottomSafeHeight], MAINWIDTH, 80)];
     btnBgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [self.view addSubview:btnBgView];
     

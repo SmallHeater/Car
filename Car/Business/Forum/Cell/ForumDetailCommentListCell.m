@@ -233,7 +233,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
 -(void)requestData{
     
     self.pagesLabel.text = @"1 / 3";
-    self.cellHeight = MAINHEIGHT - [UIScreenControl navigationBarHeight];
+    self.cellHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight];
     //commentable_type,评论类型：article（文章）、video(视频)
     NSDictionary * bodyParameters = @{@"user_id":@"1",@"commentable_type":@"article",@"commentable_id":[[NSString alloc] initWithFormat:@"%ld",2]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Comments,@"bodyParameters":bodyParameters};

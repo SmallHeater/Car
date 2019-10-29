@@ -9,6 +9,9 @@
 #import "OilPurchaseRecordViewController.h"
 #import "UserInforController.h"
 #import "OilPurchaseRecord.h"
+#import "OilPurchaseRecordCell.h"
+
+static NSString * cellId = @"OilPurchaseRecordCell";
 
 @interface OilPurchaseRecordViewController ()
 
@@ -31,15 +34,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 0;
-    if (indexPath.row == 0) {
-        
-        cellHeight = 318;
-    }
-    else{
-        
-        cellHeight = 61;
-    }
+    OilPurchaseRecord * model = self.dataArray[indexPath.row];
+    float cellHeight = [OilPurchaseRecordCell cellHeightWithModel:model];
     return cellHeight;
 }
 
@@ -53,7 +49,16 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return nil;
+    OilPurchaseRecordCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        
+        cell = [[OilPurchaseRecordCell alloc] initWithReuseIdentifier:cellId];
+    }
+    
+    OilPurchaseRecord * model = self.dataArray[indexPath.row];
+    [cell show:model];
+    
+    return cell;
 }
 
 #pragma mark  ----  自定义函数

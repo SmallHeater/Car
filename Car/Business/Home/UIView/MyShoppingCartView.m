@@ -207,7 +207,7 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
        
         make.left.right.offset(0);
         make.top.equalTo(self.topView.mas_bottom);
-        make.bottom.offset(-57 - [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(-57 - [SHUIScreenControl bottomSafeHeight]);
     }];
 }
 

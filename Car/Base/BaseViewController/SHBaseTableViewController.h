@@ -1,12 +1,12 @@
 //
-//  BaseTableViewController.h
+//  SHBaseTableViewController.h
 //  IntimatePersonForOC
 //
 //  Created by mac on 2019/4/26.
 //  Copyright © 2019 IP. All rights reserved.
 //  列表基类视图控制器
 
-#import "BaseUIViewController.h"
+#import "SHBaseUIViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger,BTVCType){
     BTVCType_NoInterNet//无网络
 };
 
-@interface BaseTableViewController : BaseUIViewController
+@interface SHBaseTableViewController : SHBaseUIViewController
 
 //考虑到有的场景，虽然不是只有tableView一个控件，但是也适合本基类，所以让tableView指针开放出来
 @property (nonatomic,strong) SHBaseTableView * tableView;

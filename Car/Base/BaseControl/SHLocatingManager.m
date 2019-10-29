@@ -1,16 +1,16 @@
 //
-//  LocatingManager.m
+//  SHLocatingManager.m
 //  Car
 //
 //  Created by mac on 2019/10/9.
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "LocatingManager.h"
+#import "SHLocatingManager.h"
 #import <AddressBook/AddressBook.h>
 
 
-@interface LocatingManager ()<CLLocationManagerDelegate>
+@interface SHLocatingManager ()<CLLocationManagerDelegate>
 
 @property (nonatomic,strong) CLLocationManager * locationManager;
 // 用作地理编码、反地理编码的工具类
@@ -19,15 +19,15 @@
 
 @end
 
-@implementation LocatingManager
+@implementation SHLocatingManager
 
 #pragma mark  ----  懒加载
 
--(CLLocationManager *)locationManager
+-(SHLocatingManager *)locationManager
 {
     if (!_locationManager) {
         
-        _locationManager = [[CLLocationManager alloc]init];
+        _locationManager = [[SHLocatingManager alloc]init];
         // 设置定位距离过滤参数 （当上次定位和本次定位之间的距离 > 此值时，才会调用代理通知开发者）
         _locationManager.distanceFilter = kCLDistanceFilterNone;
         // 设置定位精度 （精确度越高，越耗电，所以需要我们根据实际情况，设定对应的精度）
@@ -50,13 +50,13 @@
 
 #pragma mark  ----  生命周期函数
 
-+(LocatingManager *)sharedManager{
++(SHLocatingManager *)sharedManager{
     
-    static LocatingManager * manager = nil;
+    static SHLocatingManager * manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        manager = [[LocatingManager alloc] init];
+        manager = [[SHLocatingManager alloc] init];
     });
     
     return manager;

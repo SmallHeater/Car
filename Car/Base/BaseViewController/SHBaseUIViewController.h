@@ -6,12 +6,12 @@
 //  Copyright © 2019 IP. All rights reserved.
 //  带导航的基类视图控制器
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 #import "SHNavigationBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseUIViewController : BaseViewController
+@interface SHBaseUIViewController : SHBaseViewController
 
 //标题
 @property (nonatomic,strong) NSString * navTitle;

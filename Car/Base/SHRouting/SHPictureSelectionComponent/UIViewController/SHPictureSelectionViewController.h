@@ -6,7 +6,7 @@
 //  Copyright © 2017年 xianjunwang. All rights reserved.
 //  照片选择页面
 
-#import "BaseUIViewController.h"
+#import "SHBaseUIViewController.h"
 #import "SHAssetImageModel.h"
 #import "SHAssetVideoModel.h"
 
@@ -20,7 +20,7 @@ typedef void(^resultBlock)(NSMutableArray<SHAssetBaseModel *> * selectModelArray
 
 @end
 
-@interface SHPictureSelectionViewController : BaseUIViewController
+@interface SHPictureSelectionViewController : SHBaseUIViewController
 
 //代理和Block两种回调二选一
 @property (nonatomic,copy) resultBlock block;

@@ -1,16 +1,16 @@
 //
-//  BaseWKWebViewController.m
+//  SHBaseWKWebViewController.m
 //  Car
 //
 //  Created by mac on 2019/9/13.
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "BaseWKWebViewController.h"
+#import "SHBaseWKWebViewController.h"
 #import <WebKit/WKWebView.h>
 #import <WebKit/WKWebViewConfiguration.h>
 
-@interface BaseWKWebViewController ()
+@interface SHBaseWKWebViewController ()
 
 //地址
 @property (nonatomic,strong) NSString * urlStr;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation BaseWKWebViewController
+@implementation SHBaseWKWebViewController
 
 #pragma mark  ----  懒加载
 

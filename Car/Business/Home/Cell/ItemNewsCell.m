@@ -116,7 +116,7 @@ static NSString * cellID = @"ItemListCollectionViewCell";
 +(float)cellHeight{
     
     float cellHeight = 0;
-    cellHeight = MAINHEIGHT - [UIScreenControl liuHaiHeight] - 71 - 40 - [UIScreenControl bottomSafeHeight] - 44;
+    cellHeight = MAINHEIGHT - [SHUIScreenControl liuHaiHeight] - 71 - 40 - [SHUIScreenControl bottomSafeHeight] - 44;
     return cellHeight;
 }
 

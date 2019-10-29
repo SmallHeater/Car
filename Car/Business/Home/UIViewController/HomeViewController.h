@@ -6,11 +6,11 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  首页页面
 
-#import "BaseViewController.h"
+#import "SHBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : SHBaseViewController
 
 @end
 

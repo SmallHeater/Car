@@ -393,7 +393,7 @@
        
         make.left.offset(15);
         make.right.offset(-15);
-        make.bottom.offset(-30 - [UIScreenControl bottomSafeHeight]);
+        make.bottom.offset(-30 - [SHUIScreenControl bottomSafeHeight]);
         make.height.offset(44);
     }];
 }

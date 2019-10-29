@@ -222,7 +222,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         make.left.offset(0);
         make.top.offset(-20);
         make.width.offset(75);
-        make.height.offset(MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight] - 90);
+        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 90);
     }];
     
     [self.view addSubview:self.rightTableView];
@@ -231,7 +231,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         make.left.equalTo(self.leftTableView.mas_right);
         make.top.offset(-20);
         make.width.offset(MAINWIDTH - 75);
-        make.height.offset(MAINHEIGHT - [UIScreenControl navigationBarHeight] - 44 - [UIScreenControl bottomSafeHeight] - 90);
+        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 90);
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

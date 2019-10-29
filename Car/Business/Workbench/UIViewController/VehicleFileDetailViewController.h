@@ -6,14 +6,14 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  车辆档案页
 
-#import "BaseTableViewController.h"
+#import "SHBaseTableViewController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class VehicleFileModel;
 
-@interface VehicleFileDetailViewController : BaseTableViewController
+@interface VehicleFileDetailViewController : SHBaseTableViewController
 
 @property (nonatomic,strong) VehicleFileModel * vehicleFileModel;
 

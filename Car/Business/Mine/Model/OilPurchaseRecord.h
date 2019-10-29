@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * order_status;
 @property (nonatomic , copy) NSString              * transaction_id;
 @property (nonatomic , assign) NSInteger              user_id;
-@property (nonatomic , assign) NSInteger              createtime;
+@property (nonatomic , copy) NSString *              createtime;
 @property (nonatomic , assign) NSInteger              updatetime;
 @property (nonatomic , strong) NSArray <GoodsItem *>              * goods;
 @property (nonatomic , copy) NSString              * pay_status_text;
