@@ -41,7 +41,6 @@
         homeNav.tabBarItem.image = [UIImage imageNamed:@"shouye"];
         homeNav.tabBarItem.selectedImage = [UIImage imageNamed:@"shouye"];
         
-        //上线暂时注释
         ForumViewController * forumVC = [[ForumViewController alloc] init];
         UINavigationController * forumNav = [[UINavigationController alloc] initWithRootViewController:forumVC];
         forumNav.tabBarItem.title = @"论坛";
@@ -55,11 +54,11 @@
         workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
         
         //上线暂时注释
-//        MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
-//        UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
-//        marketingNav.tabBarItem.title = @"营销";
-//        marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
-//        marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
+        MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
+        UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
+        marketingNav.tabBarItem.title = @"营销";
+        marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
+        marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
         
         MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
         UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
@@ -69,7 +68,7 @@
         
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
         self.window.rootViewController = tarBarController;
-        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,mineNav];
+        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
         tarBarController.selectedIndex = 1;
     }
     else{
