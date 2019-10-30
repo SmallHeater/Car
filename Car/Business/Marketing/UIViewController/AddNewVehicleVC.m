@@ -9,7 +9,7 @@
 #import "AddNewVehicleVC.h"
 #import "AddNewVehicleCell.h"
 #import "CustomerManagementCell.h"
-
+#import "BusinessReturnVisitViewController.h"
 
 @interface AddNewVehicleVC ()<CustomerManagementCellDelegate>
 
@@ -51,7 +51,7 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -99,6 +99,17 @@
 
 -(void)itemClickedWithItemID:(NSString *)itemId{
     
+    if ([itemId isEqualToString:@"yewuhuifang"]) {
+        
+        //业务回访
+        BusinessReturnVisitViewController * vc = [[BusinessReturnVisitViewController alloc] initWithTitle:@"业务回访" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([itemId isEqualToString:@"baoyangtuijian"]){
+        
+        //保养推荐
+    }
 }
 
 @end

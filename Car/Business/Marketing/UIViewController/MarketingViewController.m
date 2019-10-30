@@ -93,13 +93,13 @@
             make.width.offset(100);
         }];
         
-        [_marketingNav addSubview:self.descriptionBtn];
-        [self.descriptionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.bottom.offset(-5);
-            make.right.offset(-12);
-            make.width.height.offset(22);
-        }];
+//        [_marketingNav addSubview:self.descriptionBtn];
+//        [self.descriptionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            
+//            make.bottom.offset(-5);
+//            make.right.offset(-12);
+//            make.width.height.offset(22);
+//        }];
     }
     return _marketingNav;
 }
@@ -133,6 +133,7 @@
         make.top.equalTo(self.marketingNav.mas_bottom);
     }];
     [self addChildViewController:vc];
+    [self.view bringSubviewToFront:self.marketingNav];
 }
 
 @end

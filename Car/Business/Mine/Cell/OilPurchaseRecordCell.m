@@ -181,27 +181,8 @@ static NSString * cellId = @"OneOilCell";
 
 -(void)drawUI{
     
-    //编号，日期，一半一半
-    float interval = 16;
-    float numberingWidth = (MAINWIDTH - interval * 2) / 2;
-    float numberingHeight = 20;
     [self addSubview:self.numberingLabel];
-    [self.numberingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.offset(interval);
-        make.top.offset(15);
-        make.width.offset(numberingWidth);
-        make.height.offset(numberingHeight);
-    }];
     [self addSubview:self.dateLabel];
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.offset(-interval);
-        make.top.equalTo(self.numberingLabel.mas_top);
-        make.width.offset(numberingWidth);
-        make.height.offset(numberingHeight);
-    }];
-    
     [self addSubview:self.bottomLineLabel];
     [self.bottomLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -234,9 +215,24 @@ static NSString * cellId = @"OneOilCell";
         }
         
         NSMutableAttributedString * numberingAttStr = [[NSMutableAttributedString alloc] initWithString:numberingStr];
-        [numberingAttStr addAttributes:@{NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(0, 3)];
-        [numberingAttStr addAttributes:@{NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(3, numberingAttStr.length - 3)];
+        [numberingAttStr addAttributes:@{NSFontAttributeName:FONT14,NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(0, 3)];
+        [numberingAttStr addAttributes:@{NSFontAttributeName:FONT14,NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(3, numberingAttStr.length - 3)];
         self.numberingLabel.attributedText = numberingAttStr;
+        float numberingWidth = [numberingAttStr widthWithHeight:20] + 4;
+        [self.numberingLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.top.offset(15);
+            make.width.offset(numberingWidth);
+            make.height.offset(20);
+        }];
+        [self.dateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-16);
+            make.top.equalTo(self.numberingLabel.mas_top);
+            make.left.equalTo(self.numberingLabel.mas_right).offset(0);
+            make.height.offset(20);
+        }];
         //日期
         NSString * dateStr = @"";
         if (![NSString strIsEmpty:model.createtime]) {

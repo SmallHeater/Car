@@ -199,6 +199,11 @@
 		04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B98EAB235C6209005954A2 /* MineHeadCell.m */; };
+		04C250082369C0AB00D7AF4A /* BusinessReturnVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C250062369C0AB00D7AF4A /* BusinessReturnVisitViewController.m */; };
+		04C250112369C28300D7AF4A /* VisitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C250102369C28300D7AF4A /* VisitedViewController.m */; };
+		04C250142369C2E900D7AF4A /* VisitedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C250132369C2E900D7AF4A /* VisitedCell.m */; };
+		04C2501A2369C74800D7AF4A /* BusinessVisitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C250192369C74800D7AF4A /* BusinessVisitController.m */; };
+		04C250202369CACA00D7AF4A /* BusinessVisitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2501E2369CAC900D7AF4A /* BusinessVisitCell.m */; };
 		04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD0E2A233271F7009CA687 /* ItemNewsCell.m */; };
 		04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0AB8923642ACE00382F4E /* PayModel.m */; };
 		04E4EBA1236446D800BC3EE9 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4EBA0236446D800BC3EE9 /* PostListViewController.m */; };
@@ -674,6 +679,16 @@
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		04B98EAA235C6209005954A2 /* MineHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		04B98EAB235C6209005954A2 /* MineHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
+		04C250062369C0AB00D7AF4A /* BusinessReturnVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReturnVisitViewController.m; sourceTree = "<group>"; };
+		04C250072369C0AB00D7AF4A /* BusinessReturnVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReturnVisitViewController.h; sourceTree = "<group>"; };
+		04C2500F2369C28300D7AF4A /* VisitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitedViewController.h; sourceTree = "<group>"; };
+		04C250102369C28300D7AF4A /* VisitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitedViewController.m; sourceTree = "<group>"; };
+		04C250122369C2E800D7AF4A /* VisitedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitedCell.h; sourceTree = "<group>"; };
+		04C250132369C2E900D7AF4A /* VisitedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitedCell.m; sourceTree = "<group>"; };
+		04C250172369C71B00D7AF4A /* BusinessVisitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessVisitController.h; sourceTree = "<group>"; };
+		04C250192369C74800D7AF4A /* BusinessVisitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessVisitController.m; sourceTree = "<group>"; };
+		04C2501E2369CAC900D7AF4A /* BusinessVisitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessVisitCell.m; sourceTree = "<group>"; };
+		04C2501F2369CACA00D7AF4A /* BusinessVisitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessVisitCell.h; sourceTree = "<group>"; };
 		04CD0E29233271F7009CA687 /* ItemNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemNewsCell.h; sourceTree = "<group>"; };
 		04CD0E2A233271F7009CA687 /* ItemNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemNewsCell.m; sourceTree = "<group>"; };
 		04D0AB8823642ACE00382F4E /* PayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayManager.h; sourceTree = "<group>"; };
@@ -1141,6 +1156,12 @@
 		0404858D230C253200EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04C250172369C71B00D7AF4A /* BusinessVisitController.h */,
+				04C250192369C74800D7AF4A /* BusinessVisitController.m */,
+				04C2500F2369C28300D7AF4A /* VisitedViewController.h */,
+				04C250102369C28300D7AF4A /* VisitedViewController.m */,
+				04C250072369C0AB00D7AF4A /* BusinessReturnVisitViewController.h */,
+				04C250062369C0AB00D7AF4A /* BusinessReturnVisitViewController.m */,
 				0404859D230C25BA00EF17C8 /* MarketingViewController.h */,
 				0404859E230C25BA00EF17C8 /* MarketingViewController.m */,
 				0486447B2360997200C5A93C /* AddNewVehicleVC.h */,
@@ -1644,6 +1665,10 @@
 		0486447E23609A7500C5A93C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				04C2501F2369CACA00D7AF4A /* BusinessVisitCell.h */,
+				04C2501E2369CAC900D7AF4A /* BusinessVisitCell.m */,
+				04C250122369C2E800D7AF4A /* VisitedCell.h */,
+				04C250132369C2E900D7AF4A /* VisitedCell.m */,
 				0486447F23609A8600C5A93C /* AddNewVehicleCell.h */,
 				0486448023609A8600C5A93C /* AddNewVehicleCell.m */,
 			);
@@ -2334,6 +2359,7 @@
 				62072C24231B69EC0089AD43 /* ProfitStatisticsViewController.m in Sources */,
 				0404854E230C1EDD00EF17C8 /* main.m in Sources */,
 				047ACA072337ADA8005FC5D0 /* ResidualTransactionMerchantCell.m in Sources */,
+				04C2501A2369C74800D7AF4A /* BusinessVisitController.m in Sources */,
 				049B27D4235DDEBB00704872 /* PersonalInformationCell.m in Sources */,
 				62929B94231936E50018DE07 /* LogInRegisterModel.m in Sources */,
 				049C78CD233650A500612AF5 /* CommodityCell.m in Sources */,
@@ -2374,6 +2400,7 @@
 				628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */,
 				0490B7E4236583D400DC33BB /* SmallVideoViewController.m in Sources */,
 				049B5CEA23574D31008B4FCD /* MotorOilMonopolyEvaluationViewController.m in Sources */,
+				04C250112369C28300D7AF4A /* VisitedViewController.m in Sources */,
 				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
 				045B3C792354B7B200E28F2A /* GoodsCategoryCell.m in Sources */,
 				0432BF5F23267EB2002CD639 /* SHPictureSelectionMiddleware.m in Sources */,
@@ -2383,6 +2410,7 @@
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
 				628AF5A22318A9A8007BC0F8 /* PositioningResultModel.m in Sources */,
 				0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */,
+				04C250082369C0AB00D7AF4A /* BusinessReturnVisitViewController.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
 				043E9F792348A12100109AC5 /* PostJobBaseCell.m in Sources */,
 				049C78BC233635D600612AF5 /* SHQRCodeLibrary.m in Sources */,
@@ -2415,6 +2443,7 @@
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				040485E12311096700EF17C8 /* MiddlewareReflectionControl.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
+				04C250142369C2E900D7AF4A /* VisitedCell.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				6288094B23684F28007742FF /* PostManagementViewController.m in Sources */,
 				0490B7E123654E0200DC33BB /* CarInfoModel.m in Sources */,
@@ -2440,6 +2469,7 @@
 				040D63E3232531C500AAFE7F /* SHTextView.m in Sources */,
 				04ACDD182340A7C20050B179 /* ForumVideoCell.m in Sources */,
 				62A8F7042328780100A6C456 /* SHBaseTableViewCell.m in Sources */,
+				04C250202369CACA00D7AF4A /* BusinessVisitCell.m in Sources */,
 				043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */,
 				04ACDD13234063A00050B179 /* JobModel.m in Sources */,
 				04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */,
