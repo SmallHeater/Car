@@ -22,7 +22,7 @@
 #import "VehicleFileViewController.h"
 #import "PaymentManagementViewController.h"
 #import "BusinessSummaryViewController.h"
-#import "BaiDuBosControl.h"
+#import "SHBaiDuBosControl.h"
 #import <AipOcrSdk/AipOcrService.h>
 #import <AipOcrSdk/AipCaptureCardVC.h>
 #import "SHBaseWKWebViewController.h"

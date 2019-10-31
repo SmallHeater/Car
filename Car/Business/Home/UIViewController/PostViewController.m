@@ -12,7 +12,7 @@
 #import "UserInforController.h"
 #import "TopicForumViewController.h"
 #import "SHLocatingManager.h"
-#import "BaiDuBosControl.h"
+#import "SHBaiDuBosControl.h"
 #import "SHImageCompressionController.h"
 #import "YYAnimatedImageView.h"
 #import "YYImage.h"
@@ -85,7 +85,7 @@
                         float ratio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
                         NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
                         UIImage * usedImage = [UIImage imageWithData:usedImageData];
-                        [[BaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
+                        [[SHBaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
                             
                             [imageUrlArray addObject:imagePath];
                         }];

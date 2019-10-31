@@ -15,7 +15,7 @@
 #import "FastPickUpRequestModel.h"
 #import "DrivingLicenseModel.h"
 #import "UserInforController.h"
-#import "BaiDuBosControl.h"
+#import "SHBaiDuBosControl.h"
 #import "VehicleFileDetailViewController.h"
 
 
@@ -108,7 +108,7 @@
                     
                     weakSelf.mbp = [MBProgressHUD wj_showActivityLoadingToView:weakSelf.view];
                 });
-                [[BaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
+                [[SHBaiDuBosControl sharedManager] uploadImage:self.drivingLicenseImage callBack:^(NSString * _Nonnull imagePath) {
                     
                     if (![NSString strIsEmpty:imagePath]) {
                         

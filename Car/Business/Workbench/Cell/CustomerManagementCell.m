@@ -7,7 +7,7 @@
 //
 
 #import "CustomerManagementCell.h"
-#import "ImageAndLabelControl.h"
+#import "SHImageAndLabelControl.h"
 
 @interface CustomerManagementCell ()
 
@@ -94,7 +94,7 @@
         NSNumber * imageWidthNumber = dic[@"imageWidth"];
         NSNumber * imageHeightNumber = dic[@"imageHeight"];
         NSString * title = dic[@"btnTitle"];
-        ImageAndLabelControl * control = [[ImageAndLabelControl alloc] initWithImageName:[NSString repleaseNilOrNull:imageName] andImageSize:CGSizeMake(imageWidthNumber.floatValue, imageHeightNumber.floatValue) andTitle:[NSString repleaseNilOrNull:title]];
+        SHImageAndLabelControl * control = [[SHImageAndLabelControl alloc] initWithImageName:[NSString repleaseNilOrNull:imageName] andImageSize:CGSizeMake(imageWidthNumber.floatValue, imageHeightNumber.floatValue) andTitle:[NSString repleaseNilOrNull:title]];
 //        control.backgroundColor = [UIColor redColor];
         [control addTarget:self action:@selector(controlClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.btnBGScrollView addSubview:control];
@@ -115,7 +115,7 @@
     self.btnBGScrollView.contentSize = CGSizeMake(scrollViewWidth, 118);
 }
 
--(void)controlClicked:(ImageAndLabelControl *)control{
+-(void)controlClicked:(SHImageAndLabelControl *)control{
     
     NSString * title = control.title;
     for (NSUInteger i = 0; i < self.btnDicArray.count; i++) {

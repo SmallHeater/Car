@@ -8,7 +8,7 @@
 
 #import "PostResidualTransactionImageCell.h"
 #import "SHImageViewWithDeleteBtn.h"
-#import "BaiDuBosControl.h"
+#import "SHBaiDuBosControl.h"
 #import "SHImageCompressionController.h"
 
 
@@ -241,7 +241,7 @@
         float ratio = [SHImageCompressionController getCompressionFactorWithLength:length andExpextLength:600];
         NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
         UIImage * usedImage = [UIImage imageWithData:usedImageData];
-        [[BaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
+        [[SHBaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
             
             if (i == 0) {
                 

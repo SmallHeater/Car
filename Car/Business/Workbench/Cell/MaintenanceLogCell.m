@@ -9,7 +9,7 @@
 #import "MaintenanceLogCell.h"
 #import "SHTextView.h"
 #import "SHPickerView.h"
-#import "BaiDuBosControl.h"
+#import "SHBaiDuBosControl.h"
 #import "SHPickerView.h"
 #import "SHDatePickView.h"
 #import "SHImageViewWithDeleteBtn.h"
@@ -907,7 +907,7 @@
         for (NSDictionary * imageDic in self.imageArray) {
             
             UIImage * image = imageDic[@"screenSizeImage"];
-            [[BaiDuBosControl sharedManager] uploadImage:image callBack:^(NSString * _Nonnull imagePath) {
+            [[SHBaiDuBosControl sharedManager] uploadImage:image callBack:^(NSString * _Nonnull imagePath) {
                 
                 [imagePathArray addObject:imagePath];
                 if (imagePathArray.count == self.imageArray.count + self.imageUrlStrArray.count) {

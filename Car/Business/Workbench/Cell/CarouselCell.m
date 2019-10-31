@@ -7,14 +7,14 @@
 //
 
 #import "CarouselCell.h"
-#import "CarouselView.h"
+#import "SHCarouselView.h"
 #import "CarouselModel.h"
 
 @interface CarouselCell ()
 
 @property (nonatomic,assign) CarouselStyle style;
 
-@property (nonatomic,strong) CarouselView * carouselView;
+@property (nonatomic,strong) SHCarouselView * carouselView;
 
 @end
 
@@ -22,11 +22,11 @@
 
 #pragma mark  ----  懒加载
 
--(CarouselView *)carouselView{
+-(SHCarouselView *)carouselView{
     
     if (!_carouselView) {
         
-        _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
+        _carouselView = [[SHCarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
         if (self.style == CarouselStyle_gongzuotai) {
             
             _carouselView.layer.cornerRadius = 15;

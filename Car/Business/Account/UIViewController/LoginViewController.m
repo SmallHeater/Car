@@ -7,9 +7,9 @@
 //
 
 #import "LoginViewController.h"
-#import "ImageViewAndTextFieldAndBottomLineView.h"
-#import "GetVerificationCodeBtn.h"
-#import "HighOrderPositioningController.h"
+#import "SHImageViewAndTextFieldAndBottomLineView.h"
+#import "SHGetVerificationCodeBtn.h"
+#import "SHHighOrderPositioningController.h"
 #import "LogInRegisterModel.h"
 #import "UserInforModel.h"
 #import "HomeViewController.h"
@@ -25,15 +25,15 @@
 //图标标题
 @property (nonatomic,strong) UILabel * appIconLabel;
 //请输入手机号view
-@property (nonatomic,strong) ImageViewAndTextFieldAndBottomLineView * phoneView;
+@property (nonatomic,strong) SHImageViewAndTextFieldAndBottomLineView * phoneView;
 //请输入验证码view
-@property (nonatomic,strong) ImageViewAndTextFieldAndBottomLineView * verificationCodeView;
+@property (nonatomic,strong) SHImageViewAndTextFieldAndBottomLineView * verificationCodeView;
 //请输入验证码按钮
-@property (nonatomic,strong) GetVerificationCodeBtn * verificationCodeBtn;
+@property (nonatomic,strong) SHGetVerificationCodeBtn * verificationCodeBtn;
 //补的分割线
 @property (nonatomic,strong) UILabel * lineLabel;
 //请输入修理厂名称view
-@property (nonatomic,strong) ImageViewAndTextFieldAndBottomLineView * repairShopNameView;
+@property (nonatomic,strong) SHImageViewAndTextFieldAndBottomLineView * repairShopNameView;
 //登录按钮
 @property (nonatomic,strong) UIButton * loginBtn;
 //登录注册模型
@@ -73,31 +73,31 @@
     return _appIconLabel;
 }
 
--(ImageViewAndTextFieldAndBottomLineView *)phoneView{
+-(SHImageViewAndTextFieldAndBottomLineView *)phoneView{
     
     if (!_phoneView) {
         
-        _phoneView = [[ImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"phone",@"placeholder":@"请输入手机号"}];
+        _phoneView = [[SHImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"phone",@"placeholder":@"请输入手机号"}];
         [_phoneView setKeyboardType:UIKeyboardTypePhonePad];
     }
     return _phoneView;
 }
 
--(ImageViewAndTextFieldAndBottomLineView *)verificationCodeView{
+-(SHImageViewAndTextFieldAndBottomLineView *)verificationCodeView{
     
     if (!_verificationCodeView) {
         
-        _verificationCodeView = [[ImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"verificationCode",@"placeholder":@"请输入验证码"}];
+        _verificationCodeView = [[SHImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"verificationCode",@"placeholder":@"请输入验证码"}];
         [_verificationCodeView setKeyboardType:UIKeyboardTypePhonePad];
     }
     return _verificationCodeView;
 }
 
--(GetVerificationCodeBtn *)verificationCodeBtn{
+-(SHGetVerificationCodeBtn *)verificationCodeBtn{
     
     if (!_verificationCodeBtn) {
         
-        _verificationCodeBtn = [[GetVerificationCodeBtn alloc] initWithConfigurationDic:@{@"normalTitle":@"获取验证码",@"time":[NSNumber numberWithInteger:60]}];
+        _verificationCodeBtn = [[SHGetVerificationCodeBtn alloc] initWithConfigurationDic:@{@"normalTitle":@"获取验证码",@"time":[NSNumber numberWithInteger:60]}];
         [_verificationCodeBtn addTarget:self action:@selector(requestVerificationCode) forControlEvents:UIControlEventTouchUpInside];
     }
     return _verificationCodeBtn;
@@ -113,11 +113,11 @@
     return _lineLabel;
 }
 
--(ImageViewAndTextFieldAndBottomLineView *)repairShopNameView{
+-(SHImageViewAndTextFieldAndBottomLineView *)repairShopNameView{
     
     if (!_repairShopNameView) {
         
-        _repairShopNameView = [[ImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"repairShop",@"placeholder":@"请输入修理厂名称"}];
+        _repairShopNameView = [[SHImageViewAndTextFieldAndBottomLineView alloc] initWithConfigurationDic:@{@"imageName":@"repairShop",@"placeholder":@"请输入修理厂名称"}];
     }
     return _repairShopNameView;
 }
@@ -246,10 +246,10 @@
 //定位
 -(void)startPositioning{
     
-    HighOrderPositioningController * control = [HighOrderPositioningController sharedManager];
+    SHHighOrderPositioningController * control = [SHHighOrderPositioningController sharedManager];
     
     __weak LoginViewController * weakSelf = self;
-    control.callBack = ^(PositioningResultModel * _Nonnull result) {
+    control.callBack = ^(SHPositioningResultModel * _Nonnull result) {
       
         if (result.errorCode == 0) {
             

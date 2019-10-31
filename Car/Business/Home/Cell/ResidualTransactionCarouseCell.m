@@ -8,12 +8,12 @@
 //
 
 #import "ResidualTransactionCarouseCell.h"
-#import "CarouselView.h"
+#import "SHCarouselView.h"
 
 
 @interface ResidualTransactionCarouseCell ()
 
-@property (nonatomic,strong) CarouselView * carouselView;
+@property (nonatomic,strong) SHCarouselView * carouselView;
 
 @end
 
@@ -21,11 +21,11 @@
 
 #pragma mark  ----  懒加载
 
--(CarouselView *)carouselView{
+-(SHCarouselView *)carouselView{
     
     if (!_carouselView) {
         
-        _carouselView = [[CarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
+        _carouselView = [[SHCarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
     }
     return _carouselView;
 }
