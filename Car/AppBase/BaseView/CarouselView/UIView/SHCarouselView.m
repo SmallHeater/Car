@@ -62,7 +62,7 @@ static NSString * cellID = @"SHCarouselCollectionViewCell";
         _collectionView.pagingEnabled = YES;
         _collectionView.showsHorizontalScrollIndicator = NO;
         
-        [_collectionView registerClass:NSClassFromString(@"CarouselCollectionViewCell") forCellWithReuseIdentifier:cellID];
+        [_collectionView registerClass:NSClassFromString(@"SHCarouselCollectionViewCell") forCellWithReuseIdentifier:cellID];
     }
     return _collectionView;
 }

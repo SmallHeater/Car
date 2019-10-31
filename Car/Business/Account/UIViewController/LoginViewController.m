@@ -15,7 +15,6 @@
 #import "HomeViewController.h"
 #import "ForumViewController.h"
 #import "WorkbenchViewController.h"
-#import "MarketingViewController.h"
 #import "MineViewController.h"
 
 @interface LoginViewController ()
@@ -448,12 +447,6 @@
     workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
     workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
     
-    MarketingViewController * marketingVC = [[MarketingViewController alloc] init];
-    UINavigationController * marketingNav = [[UINavigationController alloc] initWithRootViewController:marketingVC];
-    marketingNav.tabBarItem.title = @"营销";
-    marketingNav.tabBarItem.image = [UIImage imageNamed:@"yingxiao"];
-    marketingNav.tabBarItem.selectedImage = [UIImage imageNamed:@"yingxiao"];
-    
     MineViewController * mineVC = [[MineViewController alloc] init];
     UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
     mineNav.tabBarItem.title = @"我的";
@@ -463,7 +456,7 @@
     UITabBarController * tarBarController = [[UITabBarController alloc] init];
     [UIApplication sharedApplication].keyWindow.rootViewController = nil;
     [UIApplication sharedApplication].keyWindow.rootViewController = tarBarController;
-    tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,marketingNav,mineNav];
+    tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,mineNav];
     tarBarController.selectedIndex = 2;
 }
 
