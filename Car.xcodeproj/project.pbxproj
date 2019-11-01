@@ -257,6 +257,9 @@
 		62880D06236AC539007742FF /* SHSearchTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880CED236AC539007742FF /* SHSearchTF.m */; };
 		62880D07236AC539007742FF /* SHTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880CEF236AC539007742FF /* SHTextView.m */; };
 		62880D08236AC539007742FF /* SHDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880CF0236AC539007742FF /* SHDatePickView.m */; };
+		62880D0D236BBA66007742FF /* MaintenanceReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880D0C236BBA66007742FF /* MaintenanceReminderViewController.m */; };
+		62880D12236BBC99007742FF /* RemindedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880D0F236BBC98007742FF /* RemindedViewController.m */; };
+		62880D13236BBC99007742FF /* NotRemindedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880D11236BBC98007742FF /* NotRemindedController.m */; };
 		628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */; };
 		628AF568231607FA007BC0F8 /* RevenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF567231607FA007BC0F8 /* RevenueCell.m */; };
 		628AF56E2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628AF56D2316926C007BC0F8 /* MaintenanceRecordsDetailViewController.m */; };
@@ -783,6 +786,12 @@
 		62880CEF236AC539007742FF /* SHTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHTextView.m; sourceTree = "<group>"; };
 		62880CF0236AC539007742FF /* SHDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHDatePickView.m; sourceTree = "<group>"; };
 		62880CF1236AC539007742FF /* SHImageAndTitleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageAndTitleBtn.h; sourceTree = "<group>"; };
+		62880D0B236BBA66007742FF /* MaintenanceReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceReminderViewController.h; sourceTree = "<group>"; };
+		62880D0C236BBA66007742FF /* MaintenanceReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceReminderViewController.m; sourceTree = "<group>"; };
+		62880D0E236BBC98007742FF /* RemindedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindedViewController.h; sourceTree = "<group>"; };
+		62880D0F236BBC98007742FF /* RemindedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindedViewController.m; sourceTree = "<group>"; };
+		62880D10236BBC98007742FF /* NotRemindedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotRemindedController.h; sourceTree = "<group>"; };
+		62880D11236BBC98007742FF /* NotRemindedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotRemindedController.m; sourceTree = "<group>"; };
 		628AF1DD2314B238007BC0F8 /* VehicleFileDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileDetailViewController.h; sourceTree = "<group>"; };
 		628AF1DE2314B238007BC0F8 /* VehicleFileDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileDetailViewController.m; sourceTree = "<group>"; };
 		628AF566231607FA007BC0F8 /* RevenueCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevenueCell.h; sourceTree = "<group>"; };
@@ -1055,6 +1064,12 @@
 		04048594230C254000EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				62880D10236BBC98007742FF /* NotRemindedController.h */,
+				62880D11236BBC98007742FF /* NotRemindedController.m */,
+				62880D0E236BBC98007742FF /* RemindedViewController.h */,
+				62880D0F236BBC98007742FF /* RemindedViewController.m */,
+				62880D0B236BBA66007742FF /* MaintenanceReminderViewController.h */,
+				62880D0C236BBA66007742FF /* MaintenanceReminderViewController.m */,
 				04823DE9236B133D00AAB423 /* VisitedViewController.h */,
 				04823DE8236B133D00AAB423 /* VisitedViewController.m */,
 				04823DD9236B12A200AAB423 /* BusinessReturnVisitViewController.h */,
@@ -2297,8 +2312,10 @@
 				62880CF5236AC539007742FF /* SHNavigationBar.m in Sources */,
 				62880C9C236AC3E6007742FF /* SHUploadComponent.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
+				62880D0D236BBA66007742FF /* MaintenanceReminderViewController.m in Sources */,
 				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
+				62880D12236BBC99007742FF /* RemindedViewController.m in Sources */,
 				62880C8F236AC3E6007742FF /* SHPictureSelectionController.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				0458B8A1234F655D0073B5DB /* PostResidualTransactionAmountCell.m in Sources */,
@@ -2338,6 +2355,7 @@
 				0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */,
 				04ACDD1F2340DA790050B179 /* ForumTabModel.m in Sources */,
 				62880CB9236AC3E6007742FF /* QRCodeVC.m in Sources */,
+				62880D13236BBC99007742FF /* NotRemindedController.m in Sources */,
 				0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */,
 				62880C99236AC3E6007742FF /* SHNetworkStatusManagementComponent.m in Sources */,
 				04ACDD312341FFAC0050B179 /* ForumDetailViewController.m in Sources */,

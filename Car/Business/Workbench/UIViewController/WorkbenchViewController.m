@@ -29,6 +29,8 @@
 #import "DrivingLicenseModel.h"
 #import "VehicleFileDetailViewController.h"
 #import "BusinessReturnVisitViewController.h"
+#import "MaintenanceReminderViewController.h"
+
 
 @interface WorkbenchViewController ()<CustomerManagementCellDelegate>
 
@@ -290,6 +292,9 @@
     else if ([itemId isEqualToString:@"baoyangtuijian"]){
         
         //保养推荐
+        MaintenanceReminderViewController * vc = [[MaintenanceReminderViewController alloc] initWithTitle:@"保养提醒" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     if (vc) {
         
