@@ -152,6 +152,7 @@
 		04C70560236E858800A697C5 /* FormDetailUrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7055F236E858800A697C5 /* FormDetailUrlCell.m */; };
 		04C70563236EA2AB00A697C5 /* CommentFromUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70562236EA2AB00A697C5 /* CommentFromUserModel.m */; };
 		04C70566236EA2D900A697C5 /* CommentToUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70565236EA2D900A697C5 /* CommentToUserModel.m */; };
+		04C70569236F0BE200A697C5 /* PayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0AB8A23642ACE00382F4E /* PayManager.m */; };
 		04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD0E2A233271F7009CA687 /* ItemNewsCell.m */; };
 		04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0AB8923642ACE00382F4E /* PayModel.m */; };
 		04E4EBA1236446D800BC3EE9 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4EBA0236446D800BC3EE9 /* PostListViewController.m */; };
@@ -2326,6 +2327,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-resources.sh",
+				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/iOS-Echarts/iOS-Echarts.bundle",
 			);
@@ -2333,6 +2335,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/iOS-Echarts.bundle",
 			);
@@ -2575,6 +2578,7 @@
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				62880C92236AC3E6007742FF /* SHPictureSelectionViewController.m in Sources */,
+				04C70569236F0BE200A697C5 /* PayManager.m in Sources */,
 				043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */,
 				62880C96236AC3E6007742FF /* SHAssetBaseModel.m in Sources */,
 				0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */,

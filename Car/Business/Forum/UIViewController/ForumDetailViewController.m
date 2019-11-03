@@ -365,15 +365,15 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         if (!cell) {
             
             cell = [[ForumDetailAuthorCell alloc] initWithReuseIdentifier:ForumDetailAuthorCellId];
+            __weak typeof(self) weakSelf = self;
+            [[cell rac_signalForSelector:@selector(attentionBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+                
+                //去作者的帖子列表页面
+                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:@"我的帖子" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"" vcType:VCType_wodetieziliebiao];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }];
         }
         
-        __weak typeof(self) weakSelf = self;
-        [[cell rac_signalForSelector:@selector(attentionBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
-           
-            //去作者的帖子列表页面
-            PostListViewController * vc = [[PostListViewController alloc] initWithTitle:@"我的帖子" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"" vcType:VCType_wodetieziliebiao];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }];
         [cell show:self.forumArticleModel];
         return cell;
     }

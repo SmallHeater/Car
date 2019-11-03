@@ -113,7 +113,7 @@
 #define GetShopComments  [[NSString alloc] initWithFormat:@"%@/api/Shop/getShopComments",CARDOMAIN]
 //机油采购记录（订单）接口
 #define GetOrders  [[NSString alloc] initWithFormat:@"%@/api/Shop/getOrders",CARDOMAIN]
-//机油采购-订单创建接口没调用
+//机油采购-订单创建接口
 #define OrderCreate  [[NSString alloc] initWithFormat:@"%@/api/Shop/orderCreate",CARDOMAIN]
 
 //个人中心

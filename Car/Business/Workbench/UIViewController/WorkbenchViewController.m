@@ -223,7 +223,7 @@
         else if (indexPath.row == 6) {
             
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
-            dataDic = @{@"title":@"客户维护",@"btnDicArray":@[@{@"imageName":@"yewuhuifang",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"业务回访",@"itemId":@"yewuhuifang"},@{@"imageName":@"baoyangtuijian",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"保养推荐",@"itemId":@"baoyangtuijian"}]};
+            dataDic = @{@"title":@"客户维护",@"btnDicArray":@[@{@"imageName":@"yewuhuifang",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"业务回访",@"itemId":@"yewuhuifang"},@{@"imageName":@"baoyangtuijian",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"保养提醒",@"itemId":@"baoyangtuijian"}]};
         }
         
         [cell showData:dataDic];
@@ -291,7 +291,7 @@
     }
     else if ([itemId isEqualToString:@"baoyangtuijian"]){
         
-        //保养推荐
+        //保养提醒
         MaintenanceReminderViewController * vc = [[MaintenanceReminderViewController alloc] initWithTitle:@"保养提醒" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];

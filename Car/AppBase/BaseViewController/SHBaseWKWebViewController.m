@@ -54,7 +54,7 @@
     if (self) {
         
         NSString * tempUrlStr = [NSString repleaseNilOrNull:urlStr];
-        if ([urlStr hasPrefix:@"http://"] || [urlStr hasSuffix:@"https://"]) {
+        if ([tempUrlStr hasPrefix:@"http:"] || [tempUrlStr hasPrefix:@"https:"]) {
             
             self.urlStr = tempUrlStr;
         }

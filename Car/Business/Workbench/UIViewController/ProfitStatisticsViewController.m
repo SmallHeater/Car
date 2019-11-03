@@ -12,7 +12,7 @@
 #import "UserInforController.h"
 #import "ProfitstatisticsModel.h"
 #import "ProfitrankingModel.h"
-
+#import "SHBaseWKWebViewController.h"
 
 static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
 
@@ -34,9 +34,13 @@ static NSString * CarProfitStatisticsCellId = @"CarProfitStatisticsCell";
         
         _explanationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_explanationBtn setImage:[UIImage imageNamed:@"shuoming"] forState:UIControlStateNormal];
+        __weak typeof(self) weakSelf = self;
         [[_explanationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             x.userInteractionEnabled = NO;
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"6"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"利润统计" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
             x.userInteractionEnabled = YES;
         }];
     }

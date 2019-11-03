@@ -19,7 +19,7 @@
 #import "MyShoppingCartView.h"
 #import "OilGoodModel.h"
 #import "SelectPaymentMethodView.h"
-
+#import "PayManager.h"
 
 #define ITEMBTNBASETAG 1000
 
@@ -490,7 +490,8 @@
     }
     
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"pay_type":self.pay_type,@"total_price":total_priceStr,@"pay_price":total_priceStr,@"goods":goods};
-    NSDictionary * configurationDic = @{@"requestUrlStr":GetAgentShop,@"bodyParameters":bodyParameters};
+    NSDictionary * configurationDic = @{@"requestUrlStr":OrderCreate,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
         if (![resultDic.allKeys containsObject:@"error"]) {
@@ -508,7 +509,20 @@
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        
+                     
+                        NSString * paramsStr = dataDic[@"params"];
+                        if ([weakSelf.pay_type isEqualToString:@"wechat"]) {
+                            
+                            NSData *jsonData = [paramsStr dataUsingEncoding:NSUTF8StringEncoding];
+                            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+                            //微信支付
+                            [[PayManager sharedManager] weChatPayWithDic:dic];
+                        }
+                        else if ([weakSelf.pay_type isEqualToString:@"alipay"]){
+                            
+                            //支付宝支付
+                            [[PayManager sharedManager] alipayPayWithOrderString:paramsStr];
+                        }
                     }
                 }
                 else{
@@ -524,18 +538,6 @@
             //失败的
         }
     }];
-}
-
-//微信支付
--(void)WeChatPayment:(NSDictionary *)dict{
-    
-    
-}
-
-//支付宝支付
--(void)paybyAliPay{
-    
-    
 }
 
 

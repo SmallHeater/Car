@@ -29,11 +29,11 @@ typedef NS_ENUM(NSUInteger,PayType){
 
 +(PayManager *)sharedManager;
 
-//创建支付订单
--(void)createPaymentOrderWithPayType:(PayType)payType andPayModel:(PayModel *)payModel;
 //支付宝支付
--(void)alipayPayWithPayModel:(PayModel *)payModel;
+-(void)alipayPayWithOrderString:(NSString *)orderString;
 
+//微信支付
+-(void)weChatPayWithDic:(NSDictionary *)dic;
 
 @end
 

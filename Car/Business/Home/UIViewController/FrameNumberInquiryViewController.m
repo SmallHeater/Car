@@ -95,7 +95,9 @@ static NSString * cellId = @"FrameNumberCell";
         [weixiujiluBtn refreshColor:Color_666666];
         [[weixiujiluBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [MBProgressHUD wj_showError:@"暂未开放"];
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"2"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"维修记录" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [_tableHeaderView addSubview:weixiujiluBtn];
         [weixiujiluBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +114,9 @@ static NSString * cellId = @"FrameNumberCell";
         [chuxianjiluBtn refreshColor:Color_666666];
         [[chuxianjiluBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [MBProgressHUD wj_showError:@"暂未开放"];
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"3"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"出险记录" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [_tableHeaderView addSubview:chuxianjiluBtn];
         [chuxianjiluBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,7 +133,9 @@ static NSString * cellId = @"FrameNumberCell";
         [chekuangchaxunBtn refreshColor:Color_666666];
         [[chekuangchaxunBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [MBProgressHUD wj_showError:@"暂未开放"];
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"4"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"车况查询" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [_tableHeaderView addSubview:chekuangchaxunBtn];
         [chekuangchaxunBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,7 +152,9 @@ static NSString * cellId = @"FrameNumberCell";
         [yuanchangshujuBtn refreshColor:Color_666666];
         [[yuanchangshujuBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [MBProgressHUD wj_showError:@"暂未开放"];
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"5"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"原厂数据" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [_tableHeaderView addSubview:yuanchangshujuBtn];
         [yuanchangshujuBtn mas_makeConstraints:^(MASConstraintMaker *make) {

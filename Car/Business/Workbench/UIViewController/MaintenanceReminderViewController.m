@@ -13,7 +13,7 @@
 #import "SearchConfigurationModel.h"
 #import "SearchViewController.h"
 #import "UserInforController.h"
-
+#import "SHBaseWKWebViewController.h"
 
 typedef NS_ENUM(NSUInteger,ViewType){
     
@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger,ViewType){
 
 @interface MaintenanceReminderViewController ()<UIScrollViewDelegate,SHMultipleSwitchingItemsViewDelegate>
 
+//说明按钮
+@property (nonatomic,strong) UIButton * explanationBtn;
 //头部切换view
 @property (nonatomic,strong) SHMultipleSwitchingItemsView * switchItemsView;
 @property (nonatomic,strong) UIScrollView * bgScrollView;
@@ -35,6 +37,25 @@ typedef NS_ENUM(NSUInteger,ViewType){
 @implementation MaintenanceReminderViewController
 
 #pragma mark  ----  懒加载
+
+-(UIButton *)explanationBtn{
+    
+    if (!_explanationBtn) {
+        
+        _explanationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_explanationBtn setImage:[UIImage imageNamed:@"shuoming"] forState:UIControlStateNormal];
+        __weak typeof(self) weakSelf = self;
+        [[_explanationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.userInteractionEnabled = NO;
+            NSString * urlStr = [[NSString alloc] initWithFormat:@"%@/index/Html/article?article_id=%@",CARDOMAIN,@"9"];
+            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"保养提醒" andIsShowBackBtn:YES andURLStr:urlStr];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            x.userInteractionEnabled = YES;
+        }];
+    }
+    return _explanationBtn;
+}
 
 -(SHMultipleSwitchingItemsView *)switchItemsView{
     
@@ -125,6 +146,14 @@ typedef NS_ENUM(NSUInteger,ViewType){
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
+    
+    [self.navigationbar addSubview:self.explanationBtn];
+    [self.explanationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.height.offset(22);
+        make.right.offset(-13);
+        make.bottom.offset(-12);
+    }];
     
     [self.view addSubview:self.switchItemsView];
     [self.switchItemsView mas_makeConstraints:^(MASConstraintMaker *make) {
