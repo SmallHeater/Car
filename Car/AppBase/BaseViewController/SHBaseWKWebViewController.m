@@ -53,7 +53,16 @@
     self = [super initWithTitle:title andIsShowBackBtn:isShowBackBtn];
     if (self) {
         
-        self.urlStr = [NSString repleaseNilOrNull:urlStr];
+        NSString * tempUrlStr = [NSString repleaseNilOrNull:urlStr];
+        if ([urlStr hasPrefix:@"http://"] || [urlStr hasSuffix:@"https://"]) {
+            
+            self.urlStr = tempUrlStr;
+        }
+        else{
+            
+            self.urlStr = @"https://www.baidu.com";
+            NSLog(@"异常：地址不合规");
+        }
     }
     return self;
 }

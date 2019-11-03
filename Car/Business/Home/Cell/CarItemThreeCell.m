@@ -100,12 +100,12 @@
     }];
 }
 
--(void)show:(CarItemNewModel *)model{
+-(void)show:(ForumArticleModel *)model{
     
     if (model) {
         
         self.titleLabel.text = [NSString repleaseNilOrNull:model.title];
-        NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv.integerValue,model.section_title];
+        NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv,model.section_title];
         self.pageviewsAndSourceLabel.text = pageviewsAndSourceStr;
         if (model.images && model.images.count > 0) {
 

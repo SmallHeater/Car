@@ -4,7 +4,7 @@
 //
 //  Created by mac on 2019/9/30.
 //  Copyright © 2019 SmallHeat. All rights reserved.
-//
+//  论坛详情广告模型
 
 #import <Foundation/Foundation.h>
 
@@ -12,14 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ADModel : NSObject
 
-@property (nonatomic,assign) NSUInteger ADID;
-@property (nonatomic,assign) NSUInteger position_id;
-@property (nonatomic,strong) NSString * type;
-@property (nonatomic,strong) NSString * image;
-@property (nonatomic,assign) BOOL showswitch;
-@property (nonatomic,strong) NSString * url;
-@property (nonatomic,strong) NSString * createtime;
-@property (nonatomic,strong) NSString * type_text;
+@property (nonatomic , assign) NSInteger              ADID;
+@property (nonatomic , assign) NSInteger              position_id;
+@property (nonatomic , copy) NSString              * type;
+@property (nonatomic , copy) NSString              * image;
+@property (nonatomic , assign) NSInteger              showswitch;
+@property (nonatomic , copy) NSString              * url;
+@property (nonatomic , assign) NSInteger              createtime;
+@property (nonatomic , copy) NSString              * type_text;
 
 @end
 

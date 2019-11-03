@@ -8,10 +8,13 @@
 
 #import "ItemListCollectionViewCell.h"
 #import "UserInforController.h"
-#import "CarItemNewModel.h"
+#import "ForumArticleModel.h"
 #import "CarItemSingleCell.h"
 #import "CarItemVideoCell.h"
 #import "CarItemThreeCell.h"
+#import "ForumDetailViewController.h"
+
+
 
 static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 static NSString * CarItemVideoCellID = @"CarItemVideoCell";
@@ -22,7 +25,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
 
-@property (nonatomic,strong) NSMutableArray<CarItemNewModel *> * dataArray;
+@property (nonatomic,strong) NSMutableArray<ForumArticleModel *> * dataArray;
 
 @end
 
@@ -41,7 +44,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     return _tableView;
 }
 
--(NSMutableArray<CarItemNewModel *> *)dataArray{
+-(NSMutableArray<ForumArticleModel *> *)dataArray{
     
     if (!_dataArray) {
         
@@ -70,7 +73,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     float cellHeight = 0;
-    CarItemNewModel * model = self.dataArray[indexPath.row];
+    ForumArticleModel * model = self.dataArray[indexPath.row];
     if ([model.type isEqualToString:@"single"]) {
         
         cellHeight = 130;
@@ -89,6 +92,19 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    ForumArticleModel * articleModel = self.dataArray[indexPath.row];
+    ForumDetailViewController * vc = [[ForumDetailViewController alloc] initWithTitle:articleModel.section_title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andModel:articleModel];
+    vc.hidesBottomBarWhenPushed = YES;
+    UIViewController * topVc = [UIViewController topMostController];
+    if (topVc.navigationController) {
+        
+        [topVc.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [topVc presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -100,7 +116,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CarItemNewModel * model = self.dataArray[indexPath.row];
+    ForumArticleModel * model = self.dataArray[indexPath.row];
     if ([model.type isEqualToString:@"single"]) {
         
         CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
@@ -182,7 +198,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
                                 
                                 for (NSDictionary * dic in arr) {
                                     
-                                    CarItemNewModel * model = [CarItemNewModel mj_objectWithKeyValues:dic];
+                                    ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
                                     [weakSelf.dataArray addObject:model];
                                 }
                             }

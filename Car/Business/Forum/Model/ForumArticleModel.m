@@ -35,4 +35,9 @@
     return oldValue;
 }
 
++(NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"content_list":@"ContentListItemModel"};
+}
+
 @end

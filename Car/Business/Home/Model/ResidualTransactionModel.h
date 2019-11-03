@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * shop_avatar;
 @property (nonatomic,strong) NSString * shop_credit;
 @property (nonatomic,strong) NSString * address;
-
+//是否收藏
+@property (nonatomic,assign) BOOL markered;
 @end
 
 NS_ASSUME_NONNULL_END

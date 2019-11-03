@@ -37,7 +37,7 @@
         
         _complaintBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 40, 18, 24, 40) andImageFrame:CGRectMake(0, 0, 24, 24) andTitleFrame:CGRectMake(0, 24, 24, 16) andImageName:@"tousu" andSelectedImageName:@"tousu" andTitle:@"投诉"];
         [_complaintBtn refreshFont:FONT11];
-        [_complaintBtn refreshTitle:nil color:Color_FF3B30];
+        [_complaintBtn refreshColor:Color_FF3B30];
     }
     return _complaintBtn;
 }

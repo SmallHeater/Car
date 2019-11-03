@@ -7,14 +7,14 @@
 //  新闻，单图，cell
 
 #import "SHBaseTableViewCell.h"
-#import "CarItemNewModel.h"
+#import "ForumArticleModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CarItemSingleCell : SHBaseTableViewCell
 
--(void)show:(CarItemNewModel *)model;
+-(void)show:(ForumArticleModel *)model;
 
 @end
 

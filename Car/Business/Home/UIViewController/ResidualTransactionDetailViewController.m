@@ -15,7 +15,7 @@
 #import "ResidualTransactionMerchantCell.h"
 #import "ResidualTransactionComplaintCell.h"
 #import "DetailBottomView.h"
-
+#import "UserInforController.h"
 
 static NSString * ResidualTransactionCarouseCellID = @"ResidualTransactionCarouseCell";
 static NSString * ResidualTransactionTitleCellID = @"ResidualTransactionTitleCell";
@@ -41,11 +41,36 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
     if (!_bottomView) {
         
         _bottomView = [[DetailBottomView alloc] init];
+        [_bottomView refreshCollectinState:self.model.markered];
         __weak typeof(self) weakSelf = self;
+        [[_bottomView rac_signalForSelector:@selector(collectBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            //收藏的响应
+            NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"id":weakSelf.model.RTId};
+            NSDictionary * configurationDic = @{@"requestUrlStr":HandedGoodMarkered,@"bodyParameters":bodyParameters};
+            [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+                
+                if (![resultDic.allKeys containsObject:@"error"]) {
+                    
+                    //成功的
+                    NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                    if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                        
+                        weakSelf.model.markered = !weakSelf.model.markered;
+                    }
+                    else{
+                    }
+                }
+                else{
+                    
+                    //失败的
+                }
+            }];
+        }];
         [[_bottomView rac_signalForSelector:@selector(phoneBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
             
             NSString * telStr = [NSString stringWithFormat:@"tel:%@",weakSelf.model.phone];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:nil completionHandler:^(BOOL success) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:@{} completionHandler:^(BOOL success) {
                 
             }];
         }];
@@ -144,7 +169,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
             NSString * telStr = [NSString stringWithFormat:@"tel:%@",self.model.phone];
             [[cell rac_signalForSelector:@selector(callImageViewTaped)] subscribeNext:^(RACTuple * _Nullable x) {
                
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:nil completionHandler:^(BOOL success) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr] options:@{} completionHandler:^(BOOL success) {
                     
                 }];
             }];

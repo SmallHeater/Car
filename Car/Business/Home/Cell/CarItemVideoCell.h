@@ -7,7 +7,7 @@
 //  新闻，视频，cell
 
 #import "SHBaseTableViewCell.h"
-#import "CarItemNewModel.h"
+#import "ForumArticleModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(float)cellHeightWithTitle:(NSString *)title;
 
--(void)show:(CarItemNewModel *)model;
+-(void)show:(ForumArticleModel *)model;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "CommentBaseCell.h"
 #import "SHImageAndTitleBtn.h"
+#import "UserInforController.h"
 
 @interface CommentBaseCell ()
 
@@ -21,6 +22,9 @@
 //楼
 @property (nonatomic,strong) UILabel * floorLabel;
 @property (nonatomic,strong) UILabel * bottomLineLabel;
+
+@property (nonatomic,strong) CommentModel * model;
+
 
 @end
 
@@ -57,7 +61,12 @@
         
         _praiseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 19 - 19, 15, 19, 32) andImageFrame:CGRectMake(0, 0, 19, 19) andTitleFrame:CGRectMake(0, 22, 19, 10) andImageName:@"dianzan" andSelectedImageName:@"dianzanxuanzhong" andTitle:@"0"];
         [_praiseBtn refreshFont:FONT10];
-        [_praiseBtn refreshTitle:@"0" color:Color_333333];
+        __weak typeof(self) weakSelf = self;
+        [[_praiseBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            x.selected = !x.selected;
+            [weakSelf commentLike];
+        }];
     }
     return _praiseBtn;
 }
@@ -81,6 +90,11 @@
         [_replyBtn setTitle:@"回复" forState:UIControlStateNormal];
         [_replyBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
         _replyBtn.titleLabel.font = FONT12;
+        
+        [[_replyBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PINGLUNHUIFU" object:@{@"CommentModel":self.model}];
+        }];
     }
     return _replyBtn;
 }
@@ -130,6 +144,11 @@
         //删除评论样式
         cellHeight = 131;
     }
+    else{
+        
+        float contentHeight = [[NSString repleaseNilOrNull:model.content] heightWithFont:FONT16 andWidth:MAINWIDTH - 59 - 16];
+        cellHeight = 59 + 40 + contentHeight;
+    }
     return cellHeight;
 }
 
@@ -159,7 +178,7 @@
         make.left.equalTo(self.nickNameLabel.mas_left);
         make.bottom.offset(-11);
         make.height.offset(21);
-        make.width.offset(70);
+        make.width.offset(75);
     }];
     
     [self addSubview:self.replyBtn];
@@ -175,7 +194,7 @@
     [self.floorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.offset(-19);
-        make.width.offset(20);
+        make.width.offset(30);
         make.bottom.equalTo(self.timeLabel.mas_bottom);
         make.height.equalTo(self.timeLabel.mas_height);
     }];
@@ -194,10 +213,37 @@
     
     if (commentModel && [commentModel isKindOfClass:[commentModel class]]) {
      
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:commentModel.from_user[@"avatar"]]]];
-        self.nickNameLabel.text = [NSString repleaseNilOrNull:commentModel.from_user[@"shop_name"]];
+        self.model = commentModel;
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:commentModel.from_user.avatar]]];
+        self.nickNameLabel.text = [NSString repleaseNilOrNull:commentModel.from_user.shop_name];
+        [self.praiseBtn refreshTitle:[NSString stringWithFormat:@"%ld",(long)commentModel.thumbs]];
         self.timeLabel.text = [NSString repleaseNilOrNull:commentModel.createtime];
+        self.floorLabel.text = [NSString repleaseNilOrNull:commentModel.floor];
+        self.praiseBtn.selected = commentModel.thumbed;
     }
+}
+
+//点赞
+-(void)commentLike{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"id":[NSString stringWithFormat:@"%ld",(long)self.model.comId]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":CommentThumb,@"bodyParameters":bodyParameters};
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

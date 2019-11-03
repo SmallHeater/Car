@@ -65,6 +65,12 @@ static NSString * CommodityCellID = @"CommodityCell";
     [self requestListData];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+}
+
 #pragma mark  ----  代理
 
 #pragma mark  ----  UITableViewDelegate

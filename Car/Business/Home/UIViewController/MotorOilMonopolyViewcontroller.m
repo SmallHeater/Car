@@ -150,7 +150,19 @@
         //联系商家
         SHImageAndTitleBtn * contactBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(14, 0, 53, 47) andImageFrame:CGRectMake(13, 5, 22, 22) andTitleFrame:CGRectMake(0, 28, 53, 14) andImageName:@"lianxishangjia" andSelectedImageName:@"" andTitle:@"联系商家"];
         [contactBtn refreshFont:FONT10];
-        [contactBtn refreshTitle:@"联系商家" color:[UIColor whiteColor]];
+        [contactBtn refreshColor:[UIColor whiteColor]];
+        __weak typeof(self) weakSelf = self;
+        [[contactBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            x.userInteractionEnabled = NO;
+            
+            if (![NSString strIsEmpty:weakSelf.shopModel.phone]) {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",weakSelf.shopModel.phone]] options:@{} completionHandler:nil];
+            }
+            
+            x.userInteractionEnabled = YES;
+        }];
         [_bottomView addSubview:contactBtn];
         //分割线
         UILabel * lineLabel = [[UILabel alloc] init];
@@ -172,8 +184,6 @@
         [attStr addAttributes:@{NSFontAttributeName:FONT18} range:NSMakeRange(3, attStr.length - 3)];
         totalPriceLabel.attributedText = attStr;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
-        __weak typeof(self) weakSelf = self;
-        
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             
             if (weakSelf.carView) {

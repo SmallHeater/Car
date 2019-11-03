@@ -12,7 +12,7 @@
 #import "JobRecruitmenDescriptionCell.h"
 #import "ResidualTransactionMerchantCell.h"
 #import "ResidualTransactionComplaintCell.h"
-
+#import "UserInforController.h"
 
 static NSString * JobRecruitmentWorkTypeCellID = @"JobRecruitmentWorkTypeCell";
 static NSString * JobRecruitmenDescriptionCellID = @"JobRecruitmenDescriptionCell";
@@ -37,6 +37,38 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
     if (!_bottomView) {
         
         _bottomView = [[DetailBottomView alloc] init];
+        [_bottomView refreshCollectinState:self.jobModel.markered];
+        __weak typeof(self) weakSelf = self;
+        [[_bottomView rac_signalForSelector:@selector(collectBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            //收藏的响应
+            NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"id":weakSelf.jobModel.jobModelId};
+            NSDictionary * configurationDic = @{@"requestUrlStr":EmploymentMarkered,@"bodyParameters":bodyParameters};
+            [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+                
+                if (![resultDic.allKeys containsObject:@"error"]) {
+                    
+                    //成功的
+                    NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                    if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                        
+                        weakSelf.jobModel.markered = !weakSelf.jobModel.markered;
+                    }
+                    else{
+                    }
+                }
+                else{
+                    
+                    //失败的
+                }
+            }];
+        }];
+        [[_bottomView rac_signalForSelector:@selector(phoneBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            //电话的响应
+            NSString * str = [[NSString alloc] initWithFormat:@"tel:%@",self.jobModel.phone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
+        }];
     }
     return _bottomView;
 }
@@ -205,7 +237,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
         if (self.jobModel) {
         
             //shop_avatar,图片;shop_name,名;shop_phone,号码;shop_credit,信用;
-            [cell showDic:@{@"shop_avatar":self.jobModel.shop_avatar,@"shop_name":self.jobModel.shop_name,@"shop_phone":self.jobModel.shop_phone,@"shop_credit":self.jobModel.shop_credit}];
+            [cell showDic:@{@"shop_avatar":[NSString repleaseNilOrNull:self.jobModel.shop_avatar],@"shop_name":[NSString repleaseNilOrNull:self.jobModel.shop_name],@"shop_phone":[NSString repleaseNilOrNull:self.jobModel.shop_phone],@"shop_credit":[NSString repleaseNilOrNull:self.jobModel.shop_credit]}];
         }
         return cell;
     }

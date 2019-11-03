@@ -66,13 +66,17 @@
 }
 
 #pragma mark  ----  自定义函数
-//刷新文字和色值
--(void)refreshTitle:(NSString *)title color:(UIColor *)textColor{
+
+//刷新文字
+-(void)refreshTitle:(NSString *)title{
     
     if (title) {
         
         self.titleLabel.text = title;
     }
+}
+//刷新色值
+-(void)refreshColor:(UIColor *)textColor{
     
     if (textColor) {
         

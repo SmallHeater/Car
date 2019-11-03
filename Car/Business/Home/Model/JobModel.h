@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * shop_credit;
 //标签项（福利）
 @property (nonatomic,strong) NSArray<NSDictionary *> * benefits;
+//是否收藏
+@property (nonatomic,assign) BOOL markered;
+
 
 @end
 

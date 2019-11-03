@@ -82,7 +82,7 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
         
         SHImageAndTitleBtn * emptyShoppingCartBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 16 - 61, 14, 61, 12) andImageFrame:CGRectMake(0, 0, 12,12) andTitleFrame:CGRectMake(15, 0, 49, 12) andImageName:@"qingkong" andSelectedImageName:@"qingkong" andTitle:@"清空购物车"];
         [emptyShoppingCartBtn refreshFont:FONT9];
-        [emptyShoppingCartBtn refreshTitle:@"清空购物车" color:Color_999999];
+        [emptyShoppingCartBtn refreshColor:Color_999999];
         __weak typeof(self) weakSelf = self;
         [[emptyShoppingCartBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             

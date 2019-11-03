@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailBottomView : UIView
 
+-(void)refreshCollectinState:(BOOL)isCollected;
+
 @end
 
 NS_ASSUME_NONNULL_END

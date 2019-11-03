@@ -14,6 +14,7 @@
 #import "OilPurchaseRecordViewController.h"
 #import "SHBaseWKWebViewController.h"
 #import "PostManagementViewController.h"
+#import "AboutViewController.h"
 
 static NSString * MineHeadCellID = @"MineHeadCell";
 static NSString * MineColumnCellID = @"MineColumnCell";
@@ -76,7 +77,7 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     else if (indexPath.row == 3){
         
         //关于
-        SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"关于平台" andIsShowBackBtn:YES andURLStr:@""];
+        AboutViewController * vc = [[AboutViewController alloc] initWithTitle:@"关于平台" andIsShowBackBtn:YES];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

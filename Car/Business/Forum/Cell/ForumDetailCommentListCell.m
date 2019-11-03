@@ -10,8 +10,16 @@
 #import "UserInforController.h"
 #import "CommentModel.h"
 #import "CommentDeleteCell.h"
+#import "CommentNoReplyCell.h"
 
 static NSString * CommentDeleteCellId = @"CommentDeleteCell";
+static NSString * CommentNoReplyCellId = @"CommentNoReplyCell";
+
+typedef NS_ENUM(NSUInteger,ShowType){
+    
+    ShowType_All = 0,//全部回复
+    ShowType_OnlyLandlord//只看楼主
+};
 
 @interface ForumDetailCommentListCell ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -29,7 +37,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
 @property (nonatomic,strong) UIImageView * triangleImageView;
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<CommentModel *> * dataArray;
-
+@property (nonatomic,assign) ShowType type;
 
 @end
 
@@ -42,7 +50,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
     if (!_headerView) {
         
         _headerView = [[UIView alloc] init];
-        
+        _headerView.backgroundColor = [UIColor whiteColor];
         [_headerView addSubview:self.replyAllBtn];
         [self.replyAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -56,9 +64,9 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         [self.onlyLandlordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(self.replyAllBtn.mas_right).offset(25);
-            make.top.offset(9);
-            make.width.offset(65);
-            make.height.offset(21);
+            make.top.offset(0);
+            make.width.offset(95);
+            make.height.offset(33);
         }];
         
         [_headerView addSubview:self.pagesLabel];
@@ -90,8 +98,15 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         [_replyAllBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
         _replyAllBtn.titleLabel.font = BOLDFONT23;
         _replyAllBtn.selected = YES;
+        __weak typeof(self) weakSelf = self;
         [[_replyAllBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
+            x.selected = YES;
+            weakSelf.onlyLandlordBtn.selected = NO;
+            weakSelf.onlyLandlordBtn.titleLabel.font = FONT15;
+            weakSelf.replyAllBtn.titleLabel.font = BOLDFONT23;
+            weakSelf.type = ShowType_All;
+            [weakSelf requestData];
         }];
     }
     return _replyAllBtn;
@@ -105,8 +120,15 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         [_onlyLandlordBtn setTitle:@"只看楼主" forState:UIControlStateNormal];
         [_onlyLandlordBtn setTitleColor:Color_333333 forState:UIControlStateNormal];
         _onlyLandlordBtn.titleLabel.font = FONT15;
+        __weak typeof(self) weakSelf = self;
         [[_onlyLandlordBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
+            x.selected = YES;
+            weakSelf.replyAllBtn.selected = NO;
+            weakSelf.replyAllBtn.titleLabel.font = FONT15;
+            weakSelf.onlyLandlordBtn.titleLabel.font = BOLDFONT23;
+            weakSelf.type = ShowType_OnlyLandlord;
+            [weakSelf requestData];
         }];
     }
     return _onlyLandlordBtn;
@@ -140,6 +162,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
@@ -161,6 +184,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
     if (self) {
         
         [self drawUI];
+        self.type = ShowType_All;
     }
     return self;
 }
@@ -207,6 +231,18 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         [cell show:model];
         return cell;
     }
+    else{
+        
+        //无回复的评论cell
+        CommentNoReplyCell * cell = [tableView dequeueReusableCellWithIdentifier:CommentNoReplyCellId];
+        if (!cell) {
+            
+            cell = [[CommentNoReplyCell alloc] initWithReuseIdentifier:CommentNoReplyCellId];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
     return nil;
 }
 
@@ -222,7 +258,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
 }
 
 -(void)drawUI{
-    
+
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -232,10 +268,17 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
 
 -(void)requestData{
     
-    self.pagesLabel.text = @"1 / 3";
-    self.cellHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight];
-    //commentable_type,评论类型：article（文章）、video(视频)
-    NSDictionary * bodyParameters = @{@"user_id":@"1",@"commentable_type":@"article",@"commentable_id":[[NSString alloc] initWithFormat:@"%ld",2]};
+    //owner_id,楼主ID，commentable_type,评论类型：article（文章）、video(视频)
+    NSDictionary * bodyParameters;
+    if (self.type == ShowType_All) {
+        
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"commentable_type":@"article",@"commentable_id":[[NSString alloc] initWithFormat:@"%ld",(long)self.model.ArticleId]};
+    }
+    else if (self.type == ShowType_OnlyLandlord){
+        
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"owner_id":[NSString stringWithFormat:@"%ld",self.model.from_user.userId],@"commentable_type":@"article",@"commentable_id":[[NSString alloc] initWithFormat:@"%ld",(long)self.model.ArticleId]};
+    }
+    
     NSDictionary * configurationDic = @{@"requestUrlStr":Comments,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -243,6 +286,7 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
         if (![resultDic.allKeys containsObject:@"error"]) {
             
             //成功的
+            float listCellHeight = 0;
             NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
             if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                 
@@ -261,17 +305,23 @@ static NSString * CommentDeleteCellId = @"CommentDeleteCell";
                             
                             CommentModel * model = [CommentModel mj_objectWithKeyValues:dic];
                             [weakSelf.dataArray addObject:model];
+                            listCellHeight += [CommentBaseCell cellHeightWithModel:model];
                         }
+                        
+                        NSUInteger index = 1;
+                        NSUInteger count = [dataDic[@"pages"] integerValue];
+                        weakSelf.pagesLabel.text = [NSString stringWithFormat:@"%ld / %ld",index,count];
                     }
                 }
                 else{
                     
                     //异常
                 }
-                [weakSelf.tableView reloadData];
             }
             else{
             }
+            weakSelf.cellHeight = listCellHeight + 33;
+            [weakSelf.tableView reloadData];
         }
         else{
             

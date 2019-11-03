@@ -10,13 +10,14 @@
 #import "PostListCell.h"
 #import "UserInforController.h"
 #import "ForumArticleModel.h"
-
+#import "ForumDetailViewController.h"
 
 static NSString * cellID = @"PostListCell";
 
 @interface PostListViewController ()
 
 @property (nonatomic,assign) VCType vcType;
+@property (nonatomic,strong) NSString * sectionId;
 
 @end
 
@@ -24,12 +25,16 @@ static NSString * cellID = @"PostListCell";
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andVCType:(VCType)type{
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andSectionId:(NSString *)sectionId vcType:(VCType)vcType{
     
     self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
     if (self) {
         
-        self.vcType = type;
+        self.vcType = vcType;
+        if (vcType == VCType_tieziliebiao) {
+         
+            self.sectionId = [NSString repleaseNilOrNull:sectionId];
+        }
     }
     return self;
 }
@@ -38,7 +43,15 @@ static NSString * cellID = @"PostListCell";
     
     [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
-    [self requestData];
+    
+    if (self.vcType == VCType_tieziliebiao) {
+        
+        [self requestData];
+    }
+    else if (self.vcType == VCType_wodetieziliebiao){
+        
+        [self requestMyArticleData];
+    }
 }
 
 #pragma mark  ----  代理
@@ -52,6 +65,10 @@ static NSString * cellID = @"PostListCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    ForumArticleModel * articleModel = self.dataArray[indexPath.row];
+    ForumDetailViewController * detailViewController = [[ForumDetailViewController alloc] initWithTitle:articleModel.section_title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andModel:articleModel];
+    detailViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -80,7 +97,7 @@ static NSString * cellID = @"PostListCell";
         
         imageUrl = model.images[0];
     }
-    NSDictionary * dic = @{@"imageUrl":imageUrl,@"title":model.title,@"pv":[NSNumber numberWithInt:model.pv],@"section_title":model.section_title};
+    NSDictionary * dic = @{@"imageUrl":imageUrl,@"title":model.title,@"pv":[NSNumber numberWithInteger:model.pv],@"section_title":model.section_title};
     [cell show:dic];
     return cell;
 }
@@ -89,18 +106,58 @@ static NSString * cellID = @"PostListCell";
 
 -(void)requestData{
     
-    NSString * tabID = @"0";
-    if (self.vcType == VCType_yingxiaoke) {
-        
-        tabID = @"5";
-    }
-    else if (self.vcType == VCType_yinanzazheng){
-        
-        tabID = @"8";
-    }
-    
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":tabID};
+    //GetUserArticles
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":self.sectionId};
     NSDictionary * configurationDic = @{@"requestUrlStr":ForumList,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                [weakSelf.dataArray removeAllObjects];
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSArray * array = dataDic[@"articles"];
+                        for (NSDictionary * dic in array) {
+                            
+                            ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
+                        }
+                    }
+                }
+                else{
+                    
+                    //异常
+                }
+                
+                [weakSelf.tableView reloadData];
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+-(void)requestMyArticleData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetUserArticles,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

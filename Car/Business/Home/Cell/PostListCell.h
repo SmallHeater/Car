@@ -7,7 +7,7 @@
 //  帖子列表cell
 
 #import "SHBaseTableViewCell.h"
-#import "CarItemNewModel.h"
+
 
 
 NS_ASSUME_NONNULL_BEGIN

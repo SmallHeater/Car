@@ -16,7 +16,7 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //浏览量和日期
 @property (nonatomic,strong) UILabel * pageviewsAndDateLabel;
-//关注
+//看TA
 @property (nonatomic,strong) UIButton * attentionBtn;
 
 @end
@@ -65,6 +65,7 @@
         
         _attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_attentionBtn setImage:[UIImage imageNamed:@"guanzhu"] forState:UIControlStateNormal];
+        [_attentionBtn addTarget:self action:@selector(attentionBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _attentionBtn;
 }
@@ -119,6 +120,10 @@
         make.width.offset(66);
         make.height.offset(32);
     }];
+}
+
+-(void)attentionBtnClicked:(UIButton *)btn{
+    
 }
 
 -(void)show:(ForumArticleModel *)model{

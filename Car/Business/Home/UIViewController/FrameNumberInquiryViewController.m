@@ -73,7 +73,7 @@ static NSString * cellId = @"FrameNumberCell";
         //买配件按钮
         SHImageAndTitleBtn * maipeijianBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 37, btnWidth, 12) andImageName:@"maipeijian" andSelectedImageName:@"maipeijian" andTitle:@"买配件"];
         [maipeijianBtn refreshFont:FONT12];
-        [maipeijianBtn refreshTitle:@"买配件" color:Color_666666];
+        [maipeijianBtn refreshColor:Color_666666];
         [[maipeijianBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
             NSString * urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
@@ -92,7 +92,7 @@ static NSString * cellId = @"FrameNumberCell";
         //维修记录按钮
         SHImageAndTitleBtn * weixiujiluBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 37, btnWidth, 12) andImageName:@"weixiujilu" andSelectedImageName:@"weixiujilu" andTitle:@"维修记录"];
         [weixiujiluBtn refreshFont:FONT12];
-        [weixiujiluBtn refreshTitle:@"维修记录" color:Color_666666];
+        [weixiujiluBtn refreshColor:Color_666666];
         [[weixiujiluBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [MBProgressHUD wj_showError:@"暂未开放"];
@@ -109,7 +109,7 @@ static NSString * cellId = @"FrameNumberCell";
         //出险记录按钮
         SHImageAndTitleBtn * chuxianjiluBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 37, btnWidth, 12) andImageName:@"fasongjilu" andSelectedImageName:@"fasongjilu" andTitle:@"出险记录"];
         [chuxianjiluBtn refreshFont:FONT12];
-        [chuxianjiluBtn refreshTitle:@"出险记录" color:Color_666666];
+        [chuxianjiluBtn refreshColor:Color_666666];
         [[chuxianjiluBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [MBProgressHUD wj_showError:@"暂未开放"];
@@ -126,7 +126,7 @@ static NSString * cellId = @"FrameNumberCell";
         //车况查询按钮
         SHImageAndTitleBtn * chekuangchaxunBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 37, btnWidth, 12) andImageName:@"daishouchaxun" andSelectedImageName:@"daishouchaxun" andTitle:@"车况查询"];
         [chekuangchaxunBtn refreshFont:FONT12];
-        [chekuangchaxunBtn refreshTitle:@"车况查询" color:Color_666666];
+        [chekuangchaxunBtn refreshColor:Color_666666];
         [[chekuangchaxunBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [MBProgressHUD wj_showError:@"暂未开放"];
@@ -143,7 +143,7 @@ static NSString * cellId = @"FrameNumberCell";
         //原厂数据按钮
         SHImageAndTitleBtn * yuanchangshujuBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 37, btnWidth, 12) andImageName:@"yewuhuifang" andSelectedImageName:@"yewuhuifang" andTitle:@"原厂数据"];
         [yuanchangshujuBtn refreshFont:FONT12];
-        [yuanchangshujuBtn refreshTitle:@"原厂数据" color:Color_666666];
+        [yuanchangshujuBtn refreshColor:Color_666666];
         [[yuanchangshujuBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [MBProgressHUD wj_showError:@"暂未开放"];

@@ -7,13 +7,13 @@
 //  新闻，三图，cell
 
 #import "SHBaseTableViewCell.h"
-#import "CarItemNewModel.h"
+#import "ForumArticleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CarItemThreeCell : SHBaseTableViewCell
 
--(void)show:(CarItemNewModel *)model;
+-(void)show:(ForumArticleModel *)model;
 
 @end
 

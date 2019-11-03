@@ -36,7 +36,6 @@
 		0422D9A82323C76100AF687D /* BaiduBCEVOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A42323C76100AF687D /* BaiduBCEVOD.framework */; };
 		0422D9A92323C76100AF687D /* BaiduBCEBOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */; };
 		0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */; };
-		0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EE9A2333B123008E33BC /* CarItemNewModel.m */; };
 		0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EE9D2333B545008E33BC /* CarItemSingleCell.m */; };
 		0435EEA12333B55D008E33BC /* CarItemThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA02333B55D008E33BC /* CarItemThreeCell.m */; };
 		0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435EEA32333B574008E33BC /* CarItemVideoCell.m */; };
@@ -47,7 +46,7 @@
 		043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5ABF231EAC3E00CC8B35 /* FastPickUpRequestModel.m */; };
 		043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */; };
 		043D5AC6231EB20A00CC8B35 /* RepaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */; };
-		043E9F5E234589AE00109AC5 /* ForumDetailWebViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */; };
+		043E9F5E234589AE00109AC5 /* ForumDetailContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F5D234589AE00109AC5 /* ForumDetailContentCell.m */; };
 		043E9F612345943900109AC5 /* ForumDetailInfringementPromptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */; };
 		043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F632345991400109AC5 /* ForumDetaiADCell.m */; };
 		043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F662345A28600109AC5 /* ForumDetailCommentListCell.m */; };
@@ -144,6 +143,15 @@
 		04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B98EAB235C6209005954A2 /* MineHeadCell.m */; };
+		04C7054E236D38EB00A697C5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7054D236D38EB00A697C5 /* AboutViewController.m */; };
+		04C70551236D4FDB00A697C5 /* FormDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70550236D4FDB00A697C5 /* FormDetailTextCell.m */; };
+		04C70554236D4FFB00A697C5 /* FormDetailImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70553236D4FFB00A697C5 /* FormDetailImgCell.m */; };
+		04C70557236D500A00A697C5 /* FormDetailVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70556236D500A00A697C5 /* FormDetailVideoCell.m */; };
+		04C7055A236D75BC00A697C5 /* ContentListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70559236D75BC00A697C5 /* ContentListItemModel.m */; };
+		04C7055D236D96B000A697C5 /* CommentNoReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7055C236D96B000A697C5 /* CommentNoReplyCell.m */; };
+		04C70560236E858800A697C5 /* FormDetailUrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7055F236E858800A697C5 /* FormDetailUrlCell.m */; };
+		04C70563236EA2AB00A697C5 /* CommentFromUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70562236EA2AB00A697C5 /* CommentFromUserModel.m */; };
+		04C70566236EA2D900A697C5 /* CommentToUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70565236EA2D900A697C5 /* CommentToUserModel.m */; };
 		04CD0E2B233271F7009CA687 /* ItemNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD0E2A233271F7009CA687 /* ItemNewsCell.m */; };
 		04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0AB8923642ACE00382F4E /* PayModel.m */; };
 		04E4EBA1236446D800BC3EE9 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4EBA0236446D800BC3EE9 /* PostListViewController.m */; };
@@ -357,8 +365,6 @@
 		0422D9A52323C76100AF687D /* BaiduBCEBOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduBCEBOS.framework; sourceTree = "<group>"; };
 		0432BFCA232698F8002CD639 /* SHLabelAndLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelAndLabelView.m; sourceTree = "<group>"; };
 		0432BFCB232698F8002CD639 /* SHLabelAndLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelAndLabelView.h; sourceTree = "<group>"; };
-		0435EE992333B123008E33BC /* CarItemNewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemNewModel.h; sourceTree = "<group>"; };
-		0435EE9A2333B123008E33BC /* CarItemNewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemNewModel.m; sourceTree = "<group>"; };
 		0435EE9C2333B545008E33BC /* CarItemSingleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemSingleCell.h; sourceTree = "<group>"; };
 		0435EE9D2333B545008E33BC /* CarItemSingleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarItemSingleCell.m; sourceTree = "<group>"; };
 		0435EE9F2333B55D008E33BC /* CarItemThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarItemThreeCell.h; sourceTree = "<group>"; };
@@ -379,8 +385,8 @@
 		043D5AC2231EAF1F00CC8B35 /* UnpaidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidViewController.m; sourceTree = "<group>"; };
 		043D5AC4231EB20A00CC8B35 /* RepaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepaidViewController.h; sourceTree = "<group>"; };
 		043D5AC5231EB20A00CC8B35 /* RepaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepaidViewController.m; sourceTree = "<group>"; };
-		043E9F5C234589AE00109AC5 /* ForumDetailWebViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailWebViewCell.h; sourceTree = "<group>"; };
-		043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailWebViewCell.m; sourceTree = "<group>"; };
+		043E9F5C234589AE00109AC5 /* ForumDetailContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailContentCell.h; sourceTree = "<group>"; };
+		043E9F5D234589AE00109AC5 /* ForumDetailContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailContentCell.m; sourceTree = "<group>"; };
 		043E9F5F2345943900109AC5 /* ForumDetailInfringementPromptCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetailInfringementPromptCell.h; sourceTree = "<group>"; };
 		043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumDetailInfringementPromptCell.m; sourceTree = "<group>"; };
 		043E9F622345991400109AC5 /* ForumDetaiADCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumDetaiADCell.h; sourceTree = "<group>"; };
@@ -573,6 +579,24 @@
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		04B98EAA235C6209005954A2 /* MineHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		04B98EAB235C6209005954A2 /* MineHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
+		04C7054C236D38EB00A697C5 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		04C7054D236D38EB00A697C5 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		04C7054F236D4FDB00A697C5 /* FormDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormDetailTextCell.h; sourceTree = "<group>"; };
+		04C70550236D4FDB00A697C5 /* FormDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormDetailTextCell.m; sourceTree = "<group>"; };
+		04C70552236D4FFB00A697C5 /* FormDetailImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormDetailImgCell.h; sourceTree = "<group>"; };
+		04C70553236D4FFB00A697C5 /* FormDetailImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormDetailImgCell.m; sourceTree = "<group>"; };
+		04C70555236D500A00A697C5 /* FormDetailVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormDetailVideoCell.h; sourceTree = "<group>"; };
+		04C70556236D500A00A697C5 /* FormDetailVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormDetailVideoCell.m; sourceTree = "<group>"; };
+		04C70558236D75BC00A697C5 /* ContentListItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentListItemModel.h; sourceTree = "<group>"; };
+		04C70559236D75BC00A697C5 /* ContentListItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentListItemModel.m; sourceTree = "<group>"; };
+		04C7055B236D96B000A697C5 /* CommentNoReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentNoReplyCell.h; sourceTree = "<group>"; };
+		04C7055C236D96B000A697C5 /* CommentNoReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentNoReplyCell.m; sourceTree = "<group>"; };
+		04C7055E236E858700A697C5 /* FormDetailUrlCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormDetailUrlCell.h; sourceTree = "<group>"; };
+		04C7055F236E858800A697C5 /* FormDetailUrlCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormDetailUrlCell.m; sourceTree = "<group>"; };
+		04C70561236EA2AB00A697C5 /* CommentFromUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentFromUserModel.h; sourceTree = "<group>"; };
+		04C70562236EA2AB00A697C5 /* CommentFromUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentFromUserModel.m; sourceTree = "<group>"; };
+		04C70564236EA2D900A697C5 /* CommentToUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentToUserModel.h; sourceTree = "<group>"; };
+		04C70565236EA2D900A697C5 /* CommentToUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentToUserModel.m; sourceTree = "<group>"; };
 		04CD0E29233271F7009CA687 /* ItemNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemNewsCell.h; sourceTree = "<group>"; };
 		04CD0E2A233271F7009CA687 /* ItemNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemNewsCell.m; sourceTree = "<group>"; };
 		04D0AB8823642ACE00382F4E /* PayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayManager.h; sourceTree = "<group>"; };
@@ -1057,6 +1081,8 @@
 				041CC9432367162300C130E6 /* OilPurchaseRecordViewController.m */,
 				6288094923684F28007742FF /* PostManagementViewController.h */,
 				6288094A23684F28007742FF /* PostManagementViewController.m */,
+				04C7054C236D38EB00A697C5 /* AboutViewController.h */,
+				04C7054D236D38EB00A697C5 /* AboutViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1290,8 +1316,8 @@
 				04ACDD33234203480050B179 /* ForumDetailTitleCell.m */,
 				04ACDD35234216E60050B179 /* ForumDetailAuthorCell.h */,
 				04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */,
-				043E9F5C234589AE00109AC5 /* ForumDetailWebViewCell.h */,
-				043E9F5D234589AE00109AC5 /* ForumDetailWebViewCell.m */,
+				043E9F5C234589AE00109AC5 /* ForumDetailContentCell.h */,
+				043E9F5D234589AE00109AC5 /* ForumDetailContentCell.m */,
 				043E9F5F2345943900109AC5 /* ForumDetailInfringementPromptCell.h */,
 				043E9F602345943900109AC5 /* ForumDetailInfringementPromptCell.m */,
 				043E9F622345991400109AC5 /* ForumDetaiADCell.h */,
@@ -1304,6 +1330,16 @@
 				043E9F6F23482A7F00109AC5 /* CommentDeleteCell.m */,
 				0490B7E823658BB400DC33BB /* VideoCollectionViewCell.h */,
 				0490B7E923658BB400DC33BB /* VideoCollectionViewCell.m */,
+				04C7054F236D4FDB00A697C5 /* FormDetailTextCell.h */,
+				04C70550236D4FDB00A697C5 /* FormDetailTextCell.m */,
+				04C70552236D4FFB00A697C5 /* FormDetailImgCell.h */,
+				04C70553236D4FFB00A697C5 /* FormDetailImgCell.m */,
+				04C70555236D500A00A697C5 /* FormDetailVideoCell.h */,
+				04C70556236D500A00A697C5 /* FormDetailVideoCell.m */,
+				04C7055B236D96B000A697C5 /* CommentNoReplyCell.h */,
+				04C7055C236D96B000A697C5 /* CommentNoReplyCell.m */,
+				04C7055E236E858700A697C5 /* FormDetailUrlCell.h */,
+				04C7055F236E858800A697C5 /* FormDetailUrlCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1323,6 +1359,12 @@
 				043E9F692345F23800109AC5 /* CommentModel.m */,
 				0490B7E52365870600DC33BB /* VideoModel.h */,
 				0490B7E62365870600DC33BB /* VideoModel.m */,
+				04C70558236D75BC00A697C5 /* ContentListItemModel.h */,
+				04C70559236D75BC00A697C5 /* ContentListItemModel.m */,
+				04C70561236EA2AB00A697C5 /* CommentFromUserModel.h */,
+				04C70562236EA2AB00A697C5 /* CommentFromUserModel.m */,
+				04C70564236EA2D900A697C5 /* CommentToUserModel.h */,
+				04C70565236EA2D900A697C5 /* CommentToUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1370,8 +1412,6 @@
 				6200075E2332428400319C33 /* TabModel.m */,
 				62000760233244CE00319C33 /* HomeDataModel.h */,
 				62000761233244CE00319C33 /* HomeDataModel.m */,
-				0435EE992333B123008E33BC /* CarItemNewModel.h */,
-				0435EE9A2333B123008E33BC /* CarItemNewModel.m */,
 				04ACDD11234063A00050B179 /* JobModel.h */,
 				04ACDD12234063A00050B179 /* JobModel.m */,
 				043E9F83234984D900109AC5 /* PostJobRequestModel.h */,
@@ -2316,10 +2356,12 @@
 				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62880D12236BBC99007742FF /* RemindedViewController.m in Sources */,
+				04C7054E236D38EB00A697C5 /* AboutViewController.m in Sources */,
 				62880C8F236AC3E6007742FF /* SHPictureSelectionController.m in Sources */,
 				04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */,
 				0458B8A1234F655D0073B5DB /* PostResidualTransactionAmountCell.m in Sources */,
 				0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */,
+				04C70563236EA2AB00A697C5 /* CommentFromUserModel.m in Sources */,
 				62880C89236AC3E6007742FF /* SHLocatingManager.m in Sources */,
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */,
@@ -2361,9 +2403,9 @@
 				04ACDD312341FFAC0050B179 /* ForumDetailViewController.m in Sources */,
 				04ACDD2B2341AC690050B179 /* ForumSingleCell.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
+				04C70560236E858800A697C5 /* FormDetailUrlCell.m in Sources */,
 				62CA4367235DC6D000F4EBE9 /* MineColumnCell.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
-				0435EE9B2333B123008E33BC /* CarItemNewModel.m in Sources */,
 				62880D01236AC539007742FF /* SHBaseCollectionView.m in Sources */,
 				046DCBA12312C56000C520D8 /* VehicleFileCell.m in Sources */,
 				0458B89E234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m in Sources */,
@@ -2372,6 +2414,7 @@
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
 				62880CA2236AC3E6007742FF /* SHQRCodeMiddleware.m in Sources */,
 				62880C8E236AC3E6007742FF /* SHPictureSelectionComponent.m in Sources */,
+				04C7055D236D96B000A697C5 /* CommentNoReplyCell.m in Sources */,
 				62880C81236AC3E6007742FF /* SHBaseTableViewController.m in Sources */,
 				0437A2AE2358B34A00964E1C /* ProductStatementCell.m in Sources */,
 				62880D02236AC539007742FF /* SHTabSelectLineModel.m in Sources */,
@@ -2414,9 +2457,11 @@
 				62880D05236AC539007742FF /* SHFilletBtn.m in Sources */,
 				0437A2A82358A4B400964E1C /* MotorOilMonopolyShopViewController.m in Sources */,
 				04715B0B23249F8B0008A3C2 /* ModifyVehicleFileRequestModel.m in Sources */,
+				04C70566236EA2D900A697C5 /* CommentToUserModel.m in Sources */,
 				043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */,
 				62880D04236AC539007742FF /* SHTabModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
+				04C7055A236D75BC00A697C5 /* ContentListItemModel.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				62880CFA236AC539007742FF /* SHBaseTableView.m in Sources */,
@@ -2445,6 +2490,8 @@
 				046DCBA72312D27F00C520D8 /* IdentificationDrivingLicenseCell.m in Sources */,
 				04ACDD182340A7C20050B179 /* ForumVideoCell.m in Sources */,
 				62880C9F236AC3E6007742FF /* SHUploadModel.m in Sources */,
+				04C70557236D500A00A697C5 /* FormDetailVideoCell.m in Sources */,
+				04C70554236D4FFB00A697C5 /* FormDetailImgCell.m in Sources */,
 				62880C9E236AC3E6007742FF /* SHUploadRecordingModel.m in Sources */,
 				043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */,
 				04ACDD13234063A00050B179 /* JobModel.m in Sources */,
@@ -2495,7 +2542,7 @@
 				04E4EBA1236446D800BC3EE9 /* PostListViewController.m in Sources */,
 				62880D03236AC539007742FF /* SHTabView.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
-				043E9F5E234589AE00109AC5 /* ForumDetailWebViewCell.m in Sources */,
+				043E9F5E234589AE00109AC5 /* ForumDetailContentCell.m in Sources */,
 				62880CF4236AC539007742FF /* SHCarouselDataModel.m in Sources */,
 				047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */,
 				04823DEA236B133D00AAB423 /* VisitedViewController.m in Sources */,
@@ -2552,6 +2599,7 @@
 				04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */,
 				040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */,
 				04E4EBAD23646BF700BC3EE9 /* FrameNumberTF.m in Sources */,
+				04C70551236D4FDB00A697C5 /* FormDetailTextCell.m in Sources */,
 				62880C8A236AC3E6007742FF /* SHImageCompressionController.m in Sources */,
 				043E9F73234874CF00109AC5 /* PostJobViewController.m in Sources */,
 				046DCB9E2312A60300C520D8 /* SearchBarTwoCell.m in Sources */,

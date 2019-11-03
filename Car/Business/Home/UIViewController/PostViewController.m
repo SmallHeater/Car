@@ -223,7 +223,7 @@
                 
                 if ([x isKindOfClass:[NSString class]] && ![NSString strIsEmpty:x]) {
                     
-                    [seleceForumBtn refreshTitle:x color:nil];
+                    [seleceForumBtn refreshTitle:x];
                 }
             }];
             

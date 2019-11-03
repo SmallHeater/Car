@@ -370,7 +370,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         ForumTabModel * tabModel = self.sectionForumTabModelArray[i];
         SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(btnX, 20, btnWidth, 70) andImageFrame:CGRectMake(0, 0, btnWidth, btnWidth) andTitleFrame:CGRectMake(0, 58, btnWidth, 12) andImageName:@"" andSelectedImageName:@"" andTitle:tabModel.title];
         [btn refreshFont:FONT12];
-        [btn refreshTitle:tabModel.title color:Color_333333];
+        [btn refreshTitle:tabModel.title];
         [btn setImageUrl:tabModel.image];
         [btn setImageViewCornerRadius:btnWidth/2];
         btnX += btnWidth + 25;

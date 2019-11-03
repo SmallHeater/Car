@@ -10,7 +10,7 @@
 #define HttpUrlFile_h
 
 //域名
-#define CARDOMAIN @"https://garage.jnmsywl.com"
+#define CARDOMAIN @"https://cdds.app.zyxczs.com"
 //获取验证码地址
 #define GetVerificationCode [[NSString alloc] initWithFormat:@"%@/api/sms/send",CARDOMAIN]
 //注册地址
@@ -63,8 +63,10 @@
 
 //文章点赞接口
 #define ArticleThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/articleThumb",CARDOMAIN]
-//评论点赞接口
+//评论点赞
 #define CommentThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/commentThumb",CARDOMAIN]
+//发表评论接口
+#define PostComment  [[NSString alloc] initWithFormat:@"%@/api/Home/postComment",CARDOMAIN]
 
 
 
@@ -75,12 +77,16 @@
 #define SectionList  [[NSString alloc] initWithFormat:@"%@/api/Home/getSectionList",CARDOMAIN]
 //论坛页获取帖子列表接口
 #define ForumList  [[NSString alloc] initWithFormat:@"%@/api/Home/getForumList",CARDOMAIN]
-//获取评论
+//获取评论接口，当前评论为盖楼式评论，评论的回复会作为新的评论显示（同时显示出其回复的对象和评论）
 #define Comments  [[NSString alloc] initWithFormat:@"%@/api/Home/getComments",CARDOMAIN]
 //获取小视频列表接口
 #define GetVideos  [[NSString alloc] initWithFormat:@"%@/api/Home/getVideos",CARDOMAIN]
+//发布小视频列表接口
+#define PostVideo  [[NSString alloc] initWithFormat:@"%@/api/Home/postVideo",CARDOMAIN]
 
 
+//文章/论坛收藏接口每调用
+#define ArticleMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/articleMarkered",CARDOMAIN]
 
 //招聘参数
 #define JobOption  [[NSString alloc] initWithFormat:@"%@/api/Home/getJobOption",CARDOMAIN]
@@ -88,11 +94,15 @@
 #define JobList  [[NSString alloc] initWithFormat:@"%@/api/Home/jobList",CARDOMAIN]
 //发布招聘
 #define PostJob  [[NSString alloc] initWithFormat:@"%@/api/Home/postJob",CARDOMAIN]
+//招聘相关-收藏接口
+#define EmploymentMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/employmentMarkered",CARDOMAIN]
 
 //残值相关-发布残值物品接口
 #define PostHandedGood  [[NSString alloc] initWithFormat:@"%@/api/Home/postHandedGood",CARDOMAIN]
 //残值相关-残值列表接口
 #define HandedGoodList  [[NSString alloc] initWithFormat:@"%@/api/Home/handedGoodList",CARDOMAIN]
+//残值相关-收藏接口
+#define HandedGoodMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/handedGoodMarkered",CARDOMAIN]
 
 
 //机油采购--点击首页机油采购调用，返回最近的代理商店铺
@@ -103,6 +113,17 @@
 #define GetShopComments  [[NSString alloc] initWithFormat:@"%@/api/Shop/getShopComments",CARDOMAIN]
 //机油采购记录（订单）接口
 #define GetOrders  [[NSString alloc] initWithFormat:@"%@/api/Shop/getOrders",CARDOMAIN]
+//机油采购-订单创建接口没调用
+#define OrderCreate  [[NSString alloc] initWithFormat:@"%@/api/Shop/orderCreate",CARDOMAIN]
+
+//个人中心
+//个人中心--获取我的帖子接口没调用
+#define GetMyForums  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyForums",CARDOMAIN]
+//获取我的回帖和回复我的接口没调用
+#define GetMyComments  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyComments",CARDOMAIN]
+//用户文章列表接口
+#define GetUserArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getUserArticles",CARDOMAIN]
+
 
 
 #endif /* HttpUrlFile_h */

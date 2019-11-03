@@ -249,7 +249,7 @@
     NSString * nickName = [NSString repleaseNilOrNull:model.from_user.nick_name];
     self.nickNameLabel.text = nickName;
     
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:model.createtime];
+    NSTimeInterval timeInterval =[model.createtime timeIntervalSince1970];
     NSUInteger hour = timeInterval / 3600;
     NSString * time;
     if (hour > 24) {
@@ -277,8 +277,8 @@
     NSString * source = [NSString repleaseNilOrNull:model.section_title];
     self.viewsAndSourceLabel.text = [[NSString alloc] initWithFormat:@"%@浏览量 / %@",views,source];
     
-    [self.thumbsUpBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.thumbs] color:Color_333333];
-    [self.commentBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.comments] color:Color_333333];
+    [self.thumbsUpBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.thumbs]];
+    [self.commentBtn refreshTitle:[[NSString alloc] initWithFormat:@"%ld",model.comments]];
 }
 
 @end

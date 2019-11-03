@@ -21,8 +21,6 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 @property (nonatomic,strong) UIButton * addBtn;
 //招聘参数字典
 @property (nonatomic,strong) NSDictionary * jobOptionDic;
-//是否是首次进入
-@property (nonatomic,assign) BOOL isFirstLoad;
 
 @end
 
@@ -53,19 +51,8 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self drawUI];
     [self requestJobOption];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    if (!self.isFirstLoad) {
-        
-        [self requestListData];
-    }
-    self.isFirstLoad = NO;
 }
 
 #pragma mark  ----  代理

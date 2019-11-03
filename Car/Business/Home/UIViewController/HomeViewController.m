@@ -351,7 +351,7 @@
                                 break;
                             case 2:
                                 
-                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andVCType:VCType_yingxiaoke];
+                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5" vcType:VCType_tieziliebiao];
                                 break;
                             case 3:
                                 
@@ -379,7 +379,7 @@
                                 break;
                             case 9:
                                 
-                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andVCType:VCType_yinanzazheng];
+                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8" vcType:VCType_tieziliebiao];
                                 break;
                             default:
                                 break;

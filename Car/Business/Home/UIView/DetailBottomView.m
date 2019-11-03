@@ -26,6 +26,7 @@
         
         _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectBtn setImage:[UIImage imageNamed:@"shoucang"] forState:UIControlStateNormal];
+        [_collectBtn setImage:[UIImage imageNamed:@"shoucangxuanzhong"] forState:UIControlStateSelected];
         [_collectBtn addTarget:self action:@selector(collectBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _collectBtn;
@@ -41,7 +42,7 @@
         _phoneBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(collectBtnWidth, 0, phoneBtnWidth, 50) andImageFrame:CGRectMake(113, 14, 22, 22) andTitleFrame:CGRectMake(143, 0, 40, 50) andImageName:@"dianhua" andSelectedImageName:@"" andTitle:@"电话"];
         [_phoneBtn refreshFont:BOLDFONT18];
         _phoneBtn.backgroundColor = Color_38AC68;
-        [_phoneBtn refreshTitle:@"电话" color:[UIColor whiteColor]];
+        [_phoneBtn refreshColor:[UIColor whiteColor]];
         [_phoneBtn addTarget:self action:@selector(phoneBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
@@ -73,6 +74,11 @@
         make.width.offset(collectBtnWidth);
     }];
     [self addSubview:self.phoneBtn];
+}
+
+-(void)refreshCollectinState:(BOOL)isCollected{
+    
+    [self.collectBtn setSelected:isCollected];
 }
 
 -(void)collectBtnClicked:(UIButton *)btn{

@@ -1,5 +1,5 @@
 //
-//  ForumDetailWebViewCell.h
+//  ForumDetailContentCell.h
 //  Car
 //
 //  Created by mac on 2019/10/3.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ForumDetailWebViewCell : SHBaseTableViewCell
+@interface ForumDetailContentCell : SHBaseTableViewCell
 
 +(float)cellHeightWithModel:(ForumArticleModel *)model;
 

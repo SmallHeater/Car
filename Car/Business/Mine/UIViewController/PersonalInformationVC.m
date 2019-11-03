@@ -126,11 +126,11 @@ static NSString * cellId = @"PersonalInformationCell";
             PersonalInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
             if (!cell) {
                 
-                cell = [[PersonalInformationCell alloc] initWithReuseIdentifier:cellId andCellType:CellType_LabelAndLabelWarning];
+                cell = [[PersonalInformationCell alloc] initWithReuseIdentifier:cellId andCellType:CellType_LabelAndLabel];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             
-            [cell show:self.dataArray[indexPath.row] andAvater:@"" andContent:@"未认证"];
+            [cell show:self.dataArray[indexPath.row] andAvater:@"" andContent:@"已认证"];
             return cell;
         }
         else if (indexPath.row == 3){
