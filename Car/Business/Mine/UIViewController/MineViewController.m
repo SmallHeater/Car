@@ -64,7 +64,7 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     }
     else if (indexPath.row == 1){
         
-        PostManagementViewController * vc = [[PostManagementViewController alloc] initWithTitle:@"帖子管理" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        PostManagementViewController * vc = [[PostManagementViewController alloc] initWithTitle:@"帖子管理" andIsShowBackBtn:YES];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

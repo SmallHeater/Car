@@ -71,7 +71,7 @@
 //支付宝支付
 -(void)alipayPayWithOrderString:(NSString *)orderString{
     
-    NSString *appScheme = @"com.nuanfengkeji.alypay";
+    NSString *appScheme = @"com.nfkj.CarShopMaster";
     // NOTE: 调用支付结果开始支付
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         
