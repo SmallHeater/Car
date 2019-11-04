@@ -304,7 +304,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         }
     
         //imageUrl,图片地址;title,标题;pv,NSNumber,浏览量;section_title,来源;
-        NSDictionary * dic = @{@"imageUrl":articleModel.images[0],@"title":articleModel.title,@"pv":[NSNumber numberWithInt:articleModel.pv],@"section_title":articleModel.section_title};
+        NSDictionary * dic = @{@"imageUrl":articleModel.images[0],@"title":articleModel.title,@"pv":[NSNumber numberWithInteger:articleModel.pv],@"section_title":articleModel.section_title};
         [cell show:dic];
         return cell;
     }

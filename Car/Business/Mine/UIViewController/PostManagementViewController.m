@@ -8,11 +8,17 @@
 
 #import "PostManagementViewController.h"
 #import "SHTabView.h"
+#import "MyPostViewController.h"
+#import "ItemListCollectionViewCell.h"
+#import "SHBaseCollectionView.h"
+#import "MyReplyViewController.h"
 
-
+static NSString * cellID = @"UICollectionViewCell";
 static NSUInteger tabBaseTag = 1650;
 
-@interface PostManagementViewController ()
+@interface PostManagementViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@property (nonatomic,strong) SHBaseCollectionView * collectionView;
 
 @property (nonatomic,strong) SHTabView * tabView;
 
@@ -64,8 +70,29 @@ static NSUInteger tabBaseTag = 1650;
         shadowRect = CGRectMake(0, sizeHeight, sizeWith, shadowPathWidth);
         UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:shadowRect];
         _tabView.layer.shadowPath = bezierPath.CGPath;//阴影路径
+        
+        __weak typeof(self) weakSelf = self;
+        [[_tabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+            
+            UIButton * btn = x.first;
+            NSUInteger index = btn.tag - tabBaseTag;
+            NSIndexPath * path = [NSIndexPath indexPathForRow:index inSection:0];
+            [weakSelf.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        }];
     }
     return _tabView;
+}
+
+-(SHBaseCollectionView *)collectionView{
+    
+    if (!_collectionView) {
+        
+        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellID];
+    }
+    return _collectionView;
 }
 
 #pragma mark  ----  生命周期函数
@@ -75,6 +102,79 @@ static NSUInteger tabBaseTag = 1650;
     // Do any additional setup after loading the view.
     
     [self drawUI];
+}
+
+#pragma mark  ----  UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 3;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        
+        MyPostViewController * myPostVC = [[MyPostViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        [self addChildViewController:myPostVC];
+        UIView * view = myPostVC.view;
+        view.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44);
+        [cell addSubview:view];
+    }
+    else if (indexPath.row == 1){
+        
+        MyReplyViewController * vc = [[MyReplyViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain VCType:VCType_MyReply];
+        [self addChildViewController:vc];
+        UIView * view = vc.view;
+        view.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44);
+        [cell addSubview:view];
+    }
+    else if (indexPath.row == 2){
+        
+        MyReplyViewController * vc = [[MyReplyViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain VCType:VCType_ReplyToMe];
+        [self addChildViewController:vc];
+        UIView * view = vc.view;
+        view.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44);
+        [cell addSubview:view];
+    }
+    
+    return cell;
+}
+
+#pragma mark  ----  UICollectionViewDelegateFlowLayout
+
+//返回每个item的size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - [SHUIScreenControl bottomSafeHeight] - 44);
+}
+
+//返回上左下右四边的距离
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+//返回cell之间的最小行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+//cell之间的最小列间距a
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+#pragma mark  ----  UIScrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    NSUInteger index = scrollView.contentOffset.x / MAINWIDTH;
+    [self.tabView selectItemWithIndex:index];
 }
 
 
@@ -88,6 +188,13 @@ static NSUInteger tabBaseTag = 1650;
         make.left.right.offset(0);
         make.top.equalTo(self.navigationbar.mas_bottom);
         make.height.offset(44);
+    }];
+    
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(self.tabView.mas_bottom);
+        make.left.right.bottom.offset(0);
     }];
 }
 

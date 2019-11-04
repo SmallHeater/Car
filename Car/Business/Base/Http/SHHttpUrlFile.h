@@ -119,7 +119,7 @@
 //个人中心
 //个人中心--获取我的帖子接口没调用
 #define GetMyForums  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyForums",CARDOMAIN]
-//获取我的回帖和回复我的接口没调用
+//获取我的回帖和回复我的
 #define GetMyComments  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyComments",CARDOMAIN]
 //用户文章列表接口
 #define GetUserArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getUserArticles",CARDOMAIN]

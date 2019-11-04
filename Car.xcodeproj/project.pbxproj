@@ -61,6 +61,9 @@
 		043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F812348D39400109AC5 /* PostJobDescriptionCell.m */; };
 		043E9F85234984D900109AC5 /* PostJobRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F84234984D900109AC5 /* PostJobRequestModel.m */; };
 		043E9F882349EC2000109AC5 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E9F872349EC2000109AC5 /* PostViewController.m */; };
+		0444409A2370502600AB8E95 /* MyPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044440992370502600AB8E95 /* MyPostViewController.m */; };
+		044440A0237058CE00AB8E95 /* CarItemTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444409F237058CE00AB8E95 /* CarItemTextCell.m */; };
+		044440A323705DF300AB8E95 /* MyReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044440A223705DF300AB8E95 /* MyReplyViewController.m */; };
 		0445C075232B984400A1904D /* BusinessSummaryHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */; };
 		0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C077232B98B400A1904D /* BusinessSummaryItemModel.m */; };
 		0445C07B232B9EE000A1904D /* ProfitstatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445C07A232B9EE000A1904D /* ProfitstatisticsModel.m */; };
@@ -416,6 +419,12 @@
 		043E9F84234984D900109AC5 /* PostJobRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostJobRequestModel.m; sourceTree = "<group>"; };
 		043E9F862349EC2000109AC5 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		043E9F872349EC2000109AC5 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		044440982370502600AB8E95 /* MyPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPostViewController.h; sourceTree = "<group>"; };
+		044440992370502600AB8E95 /* MyPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPostViewController.m; sourceTree = "<group>"; };
+		0444409E237058CD00AB8E95 /* CarItemTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarItemTextCell.h; sourceTree = "<group>"; };
+		0444409F237058CE00AB8E95 /* CarItemTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarItemTextCell.m; sourceTree = "<group>"; };
+		044440A123705DF300AB8E95 /* MyReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyReplyViewController.h; sourceTree = "<group>"; };
+		044440A223705DF300AB8E95 /* MyReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyReplyViewController.m; sourceTree = "<group>"; };
 		0445C073232B984400A1904D /* BusinessSummaryHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryHeaderModel.h; sourceTree = "<group>"; };
 		0445C074232B984400A1904D /* BusinessSummaryHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessSummaryHeaderModel.m; sourceTree = "<group>"; };
 		0445C076232B98B400A1904D /* BusinessSummaryItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessSummaryItemModel.h; sourceTree = "<group>"; };
@@ -1074,6 +1083,8 @@
 		04048591230C253900EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				044440A123705DF300AB8E95 /* MyReplyViewController.h */,
+				044440A223705DF300AB8E95 /* MyReplyViewController.m */,
 				040485A0230C25D200EF17C8 /* MineViewController.h */,
 				040485A1230C25D200EF17C8 /* MineViewController.m */,
 				049B27CF235DDC3A00704872 /* PersonalInformationVC.h */,
@@ -1084,6 +1095,8 @@
 				6288094A23684F28007742FF /* PostManagementViewController.m */,
 				04C7054C236D38EB00A697C5 /* AboutViewController.h */,
 				04C7054D236D38EB00A697C5 /* AboutViewController.m */,
+				044440982370502600AB8E95 /* MyPostViewController.h */,
+				044440992370502600AB8E95 /* MyPostViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -2140,6 +2153,8 @@
 		62A80D122330692900A6C456 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0444409E237058CD00AB8E95 /* CarItemTextCell.h */,
+				0444409F237058CE00AB8E95 /* CarItemTextCell.m */,
 				04EE546D235B238C001C900A /* SPGoodsCell.h */,
 				04EE546E235B238D001C900A /* SPGoodsCell.m */,
 				0458B89F234F655C0073B5DB /* PostResidualTransactionAmountCell.h */,
@@ -2507,15 +2522,18 @@
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */,
 				62880C83236AC3E6007742FF /* SHBaseUIViewController.m in Sources */,
+				0444409A2370502600AB8E95 /* MyPostViewController.m in Sources */,
 				046DCB92231272A900C520D8 /* UIView+TXFrame.m in Sources */,
 				62880D07236AC539007742FF /* SHTextView.m in Sources */,
 				04EE5475235B338E001C900A /* PaymentMethodCell.m in Sources */,
 				04823DDD236B12A200AAB423 /* BusinessReturnVisitViewController.m in Sources */,
 				62929BB7231A44640018DE07 /* CarouselModel.m in Sources */,
+				044440A0237058CE00AB8E95 /* CarItemTextCell.m in Sources */,
 				62880C84236AC3E6007742FF /* SHBaseWKWebViewController.m in Sources */,
 				046DCB91231272A900C520D8 /* TXScrollLabelView.m in Sources */,
 				62880C68236AC3E6007742FF /* UIColor+SHTool.m in Sources */,
 				0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */,
+				044440A323705DF300AB8E95 /* MyReplyViewController.m in Sources */,
 				62880C69236AC3E6007742FF /* UIViewController+SHTool.m in Sources */,
 				043D5AC0231EAC3E00CC8B35 /* FastPickUpRequestModel.m in Sources */,
 				0404859C230C259900EF17C8 /* HomeViewController.m in Sources */,
