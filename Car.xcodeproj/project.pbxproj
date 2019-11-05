@@ -111,6 +111,7 @@
 		04823DE7236B12B800AAB423 /* BusinessVisitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04823DE4236B12B800AAB423 /* BusinessVisitCell.m */; };
 		04823DEA236B133D00AAB423 /* VisitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04823DE8236B133D00AAB423 /* VisitedViewController.m */; };
 		04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */; };
+		048D7C542371A9E90088F76B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048D7C532371A9E90088F76B /* ReportViewController.m */; };
 		0490B7E123654E0200DC33BB /* CarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E023654E0200DC33BB /* CarInfoModel.m */; };
 		0490B7E4236583D400DC33BB /* SmallVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E3236583D400DC33BB /* SmallVideoViewController.m */; };
 		0490B7E72365870600DC33BB /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E62365870600DC33BB /* VideoModel.m */; };
@@ -519,6 +520,8 @@
 		04823DE9236B133D00AAB423 /* VisitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitedViewController.h; sourceTree = "<group>"; };
 		04854956232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		04854957232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		048D7C522371A9E90088F76B /* ReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		048D7C532371A9E90088F76B /* ReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0490B7DF23654E0200DC33BB /* CarInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarInfoModel.h; sourceTree = "<group>"; };
 		0490B7E023654E0200DC33BB /* CarInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoModel.m; sourceTree = "<group>"; };
 		0490B7E2236583D400DC33BB /* SmallVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmallVideoViewController.h; sourceTree = "<group>"; };
@@ -1039,6 +1042,8 @@
 				0490B7E3236583D400DC33BB /* SmallVideoViewController.m */,
 				04A8A49F236872980006BBE3 /* PushAndPlayViewController.h */,
 				04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */,
+				048D7C522371A9E90088F76B /* ReportViewController.h */,
+				048D7C532371A9E90088F76B /* ReportViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -2480,6 +2485,7 @@
 				62880D04236AC539007742FF /* SHTabModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
 				04C7055A236D75BC00A697C5 /* ContentListItemModel.m in Sources */,
+				048D7C542371A9E90088F76B /* ReportViewController.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				62880CFA236AC539007742FF /* SHBaseTableView.m in Sources */,

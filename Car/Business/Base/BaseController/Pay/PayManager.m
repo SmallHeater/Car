@@ -89,6 +89,10 @@
         //成功
 //        [self createPaymentOrderWithPayType:@"2" andScenicModel:self.scenicModel andActivationCode:@""];
     }
+    else{
+        
+        //失败
+    }
 }
 
 //微信支付

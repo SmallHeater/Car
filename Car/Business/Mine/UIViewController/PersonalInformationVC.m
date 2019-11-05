@@ -73,6 +73,21 @@ static NSString * cellId = @"PersonalInformationCell";
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        
+        __weak typeof(self) weakSelf = self;
+        [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:1],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+            
+            if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
+                
+                NSArray * dataArray = resultDic[@"data"];
+            }
+        }];
+    }
+}
+
 #pragma mark  ----  UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

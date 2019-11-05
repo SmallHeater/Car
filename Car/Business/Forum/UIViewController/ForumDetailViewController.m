@@ -18,7 +18,7 @@
 #import "UserInforController.h"
 #import "PostListViewController.h"
 #import "CommentModel.h"
-
+#import "ReportViewController.h"
 
 static NSString * ForumDetailTitleCellId = @"ForumDetailTitleCell";
 static NSString * ForumDetailAuthorCellId = @"ForumDetailAuthorCell";
@@ -88,6 +88,12 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         _reportBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake(0, 0, 24, 24) andTitleFrame:CGRectMake(0, 24, 24, 16) andImageName:@"tousu" andSelectedImageName:@"tousu" andTitle:@"举报"];
         [_reportBtn refreshFont:FONT11];
         [_reportBtn refreshColor:Color_FF3B30];
+        __weak typeof(self) weakSelf = self;
+        [[_reportBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            ReportViewController * vc = [[ReportViewController alloc] initWithTitle:@"举报" andIsShowBackBtn:YES andId:[NSString stringWithFormat:@"%ld",weakSelf.forumArticleModel.ArticleId]];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
     }
     return _reportBtn;
 }
@@ -296,8 +302,19 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     self.ForumDetailContentCellHeight = MAINHEIGHT;
     self.ForumDetailCommentListCellHeight = 100;
     [self drawUI];
-    [self registrationNotice];
     [self addArticlePV];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self registrationNotice];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    [self removeNotice];
 }
 
 #pragma mark  ----  代理
@@ -477,38 +494,46 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 -(void)registrationNotice{
     
     //键盘监听
-    __weak typeof(self) weakSelf = self;
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        
-        NSDictionary *userInfo = [x userInfo];
-        CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
-        CGRect rect = [[userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
-        [weakSelf.textView becomeFirstResponder];
-        [UIView animateWithDuration:duration animations:^{
-            
-            [[UIApplication sharedApplication].keyWindow addSubview:self.postCommentView];
-            [weakSelf.whiteView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pinglunhuifu:) name:@"PINGLUNHUIFU" object:nil];
+}
 
-                make.left.right.offset(0);
-                make.height.offset(155);
-                make.bottom.offset(-rect.size.height);
-            }];
+-(void)keyBoardWillShow:(NSNotification *)notification{
+    
+    NSDictionary *userInfo = [notification userInfo];
+    CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    CGRect rect = [[userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
+    [self.textView becomeFirstResponder];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:duration animations:^{
+
+        [[UIApplication sharedApplication].keyWindow addSubview:self.postCommentView];
+        [weakSelf.whiteView mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+            make.left.right.offset(0);
+            make.height.offset(155);
+            make.bottom.offset(-rect.size.height);
         }];
     }];
+}
+
+-(void)keyBoardWillHide:(NSNotification *)notification{
     
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillHideNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        
-        [weakSelf.postCommentView removeFromSuperview];
-    }];
+    [self.postCommentView removeFromSuperview];
+}
+
+-(void)pinglunhuifu:(NSNotification *)notification{
     
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"PINGLUNHUIFU" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        
-        NSDictionary * dic = x.object;
-        weakSelf.commentModel = dic[@"CommentModel"];
-        [weakSelf.commentTF becomeFirstResponder];
-    }];
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"PINGLUNHUIFU" object:@{@"CommentModel":self.model}];
+    NSDictionary * dic = notification.object;
+    self.commentModel = dic[@"CommentModel"];
+    [self.commentTF becomeFirstResponder];
+}
+
+//取消监听
+-(void)removeNotice{
+ 
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 //增加浏览量
@@ -523,20 +548,6 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
             //成功的
             NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
             if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                }
-                else{
-                    
-                    //异常
-                }
             }
             else{
             }
