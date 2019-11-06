@@ -183,6 +183,8 @@
 		62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
 		62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; };
 		62072C4A231BC8450089AD43 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62072C47231BC83A0089AD43 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		620BF2092372D71300661240 /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 620BF2062372D71300661240 /* UIImage+Helper.m */; };
+		620BF20A2372D71300661240 /* PTImageCropVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 620BF2072372D71300661240 /* PTImageCropVC.m */; };
 		623FDFF4236075F100DB0B14 /* WelfareTreatmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */; };
 		6288093A2367C669007742FF /* OneOilCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628809392367C669007742FF /* OneOilCell.m */; };
 		6288094B23684F28007742FF /* PostManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6288094A23684F28007742FF /* PostManagementViewController.m */; };
@@ -650,6 +652,10 @@
 		62072C38231BC28F0089AD43 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipOcrSdk.framework; sourceTree = "<group>"; };
 		62072C39231BC28F0089AD43 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		62072C47231BC83A0089AD43 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
+		620BF2052372D71300661240 /* PTImageCropVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageCropVC.h; sourceTree = "<group>"; };
+		620BF2062372D71300661240 /* UIImage+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helper.m"; sourceTree = "<group>"; };
+		620BF2072372D71300661240 /* PTImageCropVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageCropVC.m; sourceTree = "<group>"; };
+		620BF2082372D71300661240 /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
 		623FDFF2236075F100DB0B14 /* WelfareTreatmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelfareTreatmentView.h; sourceTree = "<group>"; };
 		623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelfareTreatmentView.m; sourceTree = "<group>"; };
 		628809382367C669007742FF /* OneOilCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneOilCell.h; sourceTree = "<group>"; };
@@ -981,6 +987,7 @@
 		0404856D230C205F00EF17C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				620BF2042372D71300661240 /* PTImageCropVC */,
 				0422D9A12323C76100AF687D /* BaiDuBos */,
 				62072C37231BC28F0089AD43 /* BaiDuAI */,
 				046DCB8C231272A900C520D8 /* TXScrollLabelView */,
@@ -1465,6 +1472,17 @@
 				62072C39231BC28F0089AD43 /* AipBase.framework */,
 			);
 			path = BaiDuAI;
+			sourceTree = "<group>";
+		};
+		620BF2042372D71300661240 /* PTImageCropVC */ = {
+			isa = PBXGroup;
+			children = (
+				620BF2052372D71300661240 /* PTImageCropVC.h */,
+				620BF2062372D71300661240 /* UIImage+Helper.m */,
+				620BF2072372D71300661240 /* PTImageCropVC.m */,
+				620BF2082372D71300661240 /* UIImage+Helper.h */,
+			);
+			path = PTImageCropVC;
 			sourceTree = "<group>";
 		};
 		62880B86236AC3AF007742FF /* Http */ = {
@@ -2434,6 +2452,7 @@
 				0458B89E234F5FAF0073B5DB /* PostResidualTransactionRequestModel.m in Sources */,
 				045B3C762354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m in Sources */,
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
+				620BF2092372D71300661240 /* UIImage+Helper.m in Sources */,
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
 				62880CA2236AC3E6007742FF /* SHQRCodeMiddleware.m in Sources */,
 				62880C8E236AC3E6007742FF /* SHPictureSelectionComponent.m in Sources */,
@@ -2470,6 +2489,7 @@
 				04ACDD1B2340A9360050B179 /* ForumBaseCell.m in Sources */,
 				62880C8D236AC3E6007742FF /* BigImageViewCollectionViewCell.m in Sources */,
 				6200075F2332428400319C33 /* TabModel.m in Sources */,
+				620BF20A2372D71300661240 /* PTImageCropVC.m in Sources */,
 				62880C94236AC3E6007742FF /* SHAssetImageModel.m in Sources */,
 				047702212355F733003E847E /* OilBrandModel.m in Sources */,
 				62880C98236AC3E6007742FF /* SHCacheControl.m in Sources */,

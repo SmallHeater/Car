@@ -9,7 +9,8 @@
 #import "PersonalInformationVC.h"
 #import "PersonalInformationCell.h"
 #import "UserInforController.h"
-
+#import "PTImageCropVC.h"
+#import "SHBaiDuBosControl.h"
 
 static NSString * cellId = @"PersonalInformationCell";
 
@@ -78,11 +79,41 @@ static NSString * cellId = @"PersonalInformationCell";
     if (indexPath.section == 0 && indexPath.row == 0) {
         
         __weak typeof(self) weakSelf = self;
+        
         [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:1],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
             
             if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
                 
                 NSArray * dataArray = resultDic[@"data"];
+                if (dataArray && [dataArray isKindOfClass:[NSArray class]] && dataArray.count > 0) {
+                  
+                    NSDictionary * dic = dataArray[0];
+                    UIImage * selectedImage;
+                    if ([dic.allKeys containsObject:@"screenSizeImage"]) {
+                        
+                        selectedImage = dic[@"screenSizeImage"];
+                    }
+                    else if ([dic.allKeys containsObject:@"originalImage"]){
+                        
+                        selectedImage = dic[@"originalImage"];
+                    }
+                    
+                    if (selectedImage) {
+                        
+                        PTImageCropVC * vc = [[PTImageCropVC alloc] initWithTitle:@"截图" andIsShowBackBtn:YES andImage:selectedImage withCropScale:1 complentBlock:^(UIImage *image) {
+                            
+                            if (image) {
+                                
+                                [[SHBaiDuBosControl sharedManager] uploadImage:image callBack:^(NSString * _Nonnull imagePath) {
+                                    
+                                    NSLog(@"%@",imagePath);
+                                    [weakSelf refreshAvatar:imagePath];
+                                }];
+                            }
+                        } cancelBlock:nil];
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                }
             }
         }];
     }
@@ -218,5 +249,36 @@ static NSString * cellId = @"PersonalInformationCell";
     }];
     self.tableView.scrollEnabled = NO;
 }
+
+//更新头像
+-(void)refreshAvatar:(NSString *)avatar{
+    
+    //发起请求
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"avatar":[NSString repleaseNilOrNull:avatar]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":UpdateUserInfo,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                [UserInforController sharedManager].userInforModel.avatar = avatar;
+                NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+
+}
+
 
 @end

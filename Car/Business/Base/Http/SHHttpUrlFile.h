@@ -118,13 +118,13 @@
 #define OrderCreate  [[NSString alloc] initWithFormat:@"%@/api/Shop/orderCreate",CARDOMAIN]
 
 //个人中心
-//个人中心--获取我的帖子接口没调用
+//个人中心--获取我的帖子接口
 #define GetMyForums  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyForums",CARDOMAIN]
 //获取我的回帖和回复我的
 #define GetMyComments  [[NSString alloc] initWithFormat:@"%@/api/Home/getMyComments",CARDOMAIN]
 //用户文章列表接口
 #define GetUserArticles  [[NSString alloc] initWithFormat:@"%@/api/Home/getUserArticles",CARDOMAIN]
-
-
+//修改用户信息
+#define UpdateUserInfo  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/updateUserInfo",CARDOMAIN]
 
 #endif /* HttpUrlFile_h */
