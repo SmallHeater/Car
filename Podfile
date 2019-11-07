@@ -15,6 +15,7 @@ pod 'YYText'
 pod 'YYImage'
 pod 'AlipaySDK-iOS'
 pod 'WechatOpenSDK'
+pod 'KSVSShortVideoCore_iOS', '~>1.1.0'
 #上线在开放本功能
 #pod 'AvoidCrash'
 end

@@ -8,8 +8,12 @@
 
 #import "PushAndPlayViewController.h"
 #import "SHImageAndTitleBtn.h"
+#import <QNRTCKit/QNRTCKit.h>
 
-@interface PushAndPlayViewController ()
+
+
+
+@interface PushAndPlayViewController ()<QNRTCEngineDelegate>
 
 @property (nonatomic,strong) UIImageView * bgImageView;
 //关闭按钮
@@ -30,6 +34,10 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
+@property (nonatomic, strong) QNRTCEngine *engine;
+@property (nonatomic, assign) AVCaptureDevicePosition   captureDevicePosition;
+@property (nonatomic, assign) AVCaptureVideoOrientation videoOrientation;
+@property (nonatomic, strong, readonly) UIView *previewView;
 
 @end
 
@@ -225,6 +233,7 @@
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    [self Recording];
 }
 
 #pragma mark  ----  代理
@@ -240,5 +249,13 @@
     }];
 }
 
+//拍摄
+-(void)Recording{
+    
+    self.engine = [[QNRTCEngine alloc] init];
+    self.engine.delegate = self;
+    [self.view insertSubview:self.engine.previewView atIndex:0];
+    [self.engine startCapture];
+}
 
 @end

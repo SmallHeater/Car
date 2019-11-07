@@ -15,7 +15,7 @@
 #import "UserInforController.h"
 #import "PLeakSniffer.h"
 //#import "AvoidCrash.h"
-//#import <WXApi.h>
+#import <WXApi.h>
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
@@ -28,7 +28,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 //    [AvoidCrash makeAllEffective];
-    
     //向微信注册
 //    [WXApi registerApp:@""];
     

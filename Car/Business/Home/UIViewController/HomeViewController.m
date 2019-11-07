@@ -26,6 +26,8 @@
 #import "PostJobViewController.h"
 #import "PostListViewController.h"
 #import "FrameNumberInquiryViewController.h"
+#import "PushAndPlayViewController.h"
+
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -131,6 +133,9 @@
         [[publishVideoBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [weakSelf.releaseView removeFromSuperview];
+            PushAndPlayViewController * vc = [[PushAndPlayViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [whiteBGView addSubview:publishVideoBtn];
         [_releaseView addSubview:whiteBGView];
