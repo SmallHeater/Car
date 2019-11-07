@@ -91,4 +91,59 @@
     }
 }
 
+-(void)uploadWithPath:(NSString *)path callBack:(void(^)(NSString * dataPath))callback{
+    
+    if (![NSString strIsEmpty:path]) {
+        
+        NSData * data = [NSData dataWithContentsOfFile:path];
+        // 初始化
+        BCECredentials* credentials = [[BCECredentials alloc] init];
+        credentials.accessKey = @"cff28a2799b04549b752202ef41ac3da";
+        credentials.secretKey = @"5bbfd04f65c446189e1fb08f54c92e3c";
+        BOSClientConfiguration* configuration = [[BOSClientConfiguration alloc] init];
+        configuration.endpoint = @"https://bj.bcebos.com";
+        configuration.scheme = @"https";
+        configuration.credentials = credentials;
+        BOSClient* client = [[BOSClient alloc] initWithConfiguration:configuration];
+        self.client = client;
+        
+        // 2. 上传Object
+        BOSObjectContent* content = [[BOSObjectContent alloc] init];
+        content.objectData.data = data;
+        
+        BOSPutObjectRequest* request = [[BOSPutObjectRequest alloc] init];
+        request.bucket = @"carmaster";
+        NSString * videoName = [[NSString alloc] initWithFormat:@"%@.mp4",[[NSUUID UUID] UUIDString]];
+        request.key = videoName;
+        request.objectContent = content;
+        self.request = request;
+        NSString * videoPath = [[NSString alloc] initWithFormat:@"https://%@bj.bcebos.com/%@",@"carmaster.",videoName];
+        __block BOSPutObjectResponse* response = nil;
+        BCETask* taskOne = [client putObject:request];
+        taskOne.then(^(BCEOutput* output) {
+            if (output.progress) {
+                // 打印进度
+                NSLog(@"put object progress is %@", output.progress);
+            }
+            
+            if (output.response) {
+                response = (BOSPutObjectResponse*)output.response;
+                // 打印eTag
+                NSLog(@"The eTag is %@,路径：%@", response.metadata.eTag,videoPath);
+                callback(videoPath);
+            }
+            
+            if (output.error) {
+                NSLog(@"put object failure with %@", output.error);
+            }
+        });
+        [taskOne waitUtilFinished];
+    }
+    else{
+        
+        callback(@"");
+    }
+
+}
+
 @end

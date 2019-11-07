@@ -8,7 +8,10 @@
 
 #import "PushAndPlayViewController.h"
 #import "SHImageAndTitleBtn.h"
-#import <QNRTCKit/QNRTCKit.h>
+#import "VideoRecordingView.h"
+#import "SHBaiDuBosControl.h"
+#import "UserInforController.h"
+
 
 
 
@@ -16,12 +19,16 @@
 @interface PushAndPlayViewController ()<QNRTCEngineDelegate>
 
 @property (nonatomic,strong) UIImageView * bgImageView;
+//停止录制
+@property (nonatomic,strong) UIButton * stopRecordingBtn;
 //关闭按钮
 @property (nonatomic,strong) UIButton * clostBtn;
 //发布按钮
 @property (nonatomic,strong) SHImageAndTitleBtn * publishBtn;
 //我发布的
 @property (nonatomic,strong) SHImageAndTitleBtn * myPublish;
+//开始录制按钮
+@property (nonatomic,strong) UIButton * startRecordingBtn;
 //头像
 @property (nonatomic,strong) UIImageView * avaterImageView;
 //收藏
@@ -34,10 +41,13 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
-@property (nonatomic, strong) QNRTCEngine *engine;
-@property (nonatomic, assign) AVCaptureDevicePosition   captureDevicePosition;
-@property (nonatomic, assign) AVCaptureVideoOrientation videoOrientation;
-@property (nonatomic, strong, readonly) UIView *previewView;
+//录制view
+@property (nonatomic,strong) VideoRecordingView * recordingView;
+//视频路径
+@property (nonatomic,strong) NSString * videoPath;
+//视频上传到服务器路径
+@property (nonatomic,strong) NSString * dataPath;
+
 
 @end
 
@@ -51,7 +61,6 @@
         
         _bgImageView = [[UIImageView alloc] init];
         _bgImageView.userInteractionEnabled = YES;
-        _bgImageView.backgroundColor = [UIColor grayColor];
         
         [_bgImageView addSubview:self.clostBtn];
         [self.clostBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,6 +87,17 @@
             make.width.offset(30);
             make.height.equalTo(self.myPublish.mas_height);
         }];
+        
+        [_bgImageView addSubview:self.startRecordingBtn];
+        __weak typeof(self) weakSelf = self;
+        [self.startRecordingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.width.offset(43);
+            make.height.offset(46.5);
+            make.centerX.equalTo(weakSelf.bgImageView.mas_centerX);
+            make.centerY.equalTo(weakSelf.bgImageView.mas_centerY);
+        }];
+        
         
         [_bgImageView addSubview:self.shareBtn];
         [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,6 +147,23 @@
     return _bgImageView;
 }
 
+-(UIButton *)stopRecordingBtn{
+    
+    if (!_stopRecordingBtn) {
+        
+        _stopRecordingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        __weak typeof(self) weakSelf = self;
+        [[_stopRecordingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            [weakSelf.recordingView stopRunning];
+            [weakSelf.recordingView stopCapture];
+            [weakSelf.stopRecordingBtn removeFromSuperview];
+            weakSelf.bgImageView.hidden = NO;
+        }];
+    }
+    return _stopRecordingBtn;
+}
+
 -(UIButton *)clostBtn{
     
     if (!_clostBtn) {
@@ -149,8 +186,32 @@
         
         NSUInteger btnWidth = 30;
         _publishBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 17) / 2, 0, 17, 17) andTitleFrame:CGRectMake(0, 22, btnWidth, 12) andImageName:@"fabubaise" andSelectedImageName:@"fabubaise" andTitle:@"发布"];
+        [_publishBtn refreshColor:[UIColor whiteColor]];
     }
     return _publishBtn;
+}
+
+-(UIButton *)startRecordingBtn{
+    
+    if (!_startRecordingBtn) {
+        
+        _startRecordingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_startRecordingBtn setImage:[UIImage imageNamed:@"kaishiluzhi"] forState:UIControlStateNormal];
+        __weak typeof(self) weakSelf = self;
+        
+        [[_startRecordingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            //开始录制
+            [weakSelf.recordingView startCapture];
+            weakSelf.bgImageView.hidden = YES;
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.stopRecordingBtn];
+            [weakSelf.stopRecordingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+               
+                make.left.right.top.bottom.offset(0);
+            }];
+        }];
+    }
+    return _startRecordingBtn;
 }
 
 -(SHImageAndTitleBtn *)myPublish{
@@ -159,6 +220,7 @@
         
         NSUInteger btnWidth = 60;
         _myPublish = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 17) / 2, 0, 17, 17) andTitleFrame:CGRectMake(0, 22, btnWidth, 12) andImageName:@"wofabude" andSelectedImageName:@"wofabude" andTitle:@"我发布的"];
+        [_myPublish refreshColor:[UIColor whiteColor]];
     }
     return _myPublish;
 }
@@ -179,6 +241,7 @@
         
         NSUInteger btnWidth = 26;
         _collectBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"shoucangbaise" andSelectedImageName:@"shoucangbaise" andTitle:@"0"];
+        [_collectBtn refreshColor:[UIColor whiteColor]];
     }
     return _collectBtn;
 }
@@ -189,6 +252,7 @@
         
         NSUInteger btnWidth = 26;
         _praiseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"zan" andSelectedImageName:@"zan" andTitle:@"0"];
+        [_praiseBtn refreshColor:[UIColor whiteColor]];
     }
     return _praiseBtn;
 }
@@ -199,6 +263,7 @@
         
         NSUInteger btnWidth = 26;
         _shareBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"fenxiangbaise" andSelectedImageName:@"fenxiangbaise" andTitle:@"0"];
+        [_shareBtn refreshColor:[UIColor whiteColor]];
     }
     return _shareBtn;
 }
@@ -219,11 +284,46 @@
     if (!_titleLabel) {
         
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = FONT15;
+        _titleLabel.font = BOLDFONT16;
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
+}
+
+-(VideoRecordingView *)recordingView{
+    
+    if (!_recordingView) {
+        
+        _recordingView = [[VideoRecordingView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT)];
+        __weak typeof(self) weakSelf = self;
+        _recordingView.pathCallBack = ^(NSString * _Nonnull path) {
+            
+            if (![NSString strIsEmpty:path]) {
+                
+                weakSelf.videoPath = path;
+                //是否上传
+                UIAlertController * alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否上传小视频" preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                
+                UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"上传" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    
+                    [[SHBaiDuBosControl sharedManager] uploadWithPath:path callBack:^(NSString * _Nonnull dataPath) {
+                        
+                        weakSelf.dataPath = dataPath;
+                    }];
+                }];
+                
+                [alertControl addAction:cancelAction];
+                [alertControl addAction:sureAction];
+                [weakSelf presentViewController:alertControl animated:YES completion:nil];
+            }
+        };
+    }
+    return _recordingView;
 }
 
 #pragma mark  ----  生命周期函数
@@ -242,6 +342,8 @@
 
 -(void)drawUI{
     
+    [self.view addSubview:self.recordingView];
+    
     [self.view addSubview:self.bgImageView];
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -249,13 +351,62 @@
     }];
 }
 
-//拍摄
--(void)Recording{
+-(void)submitData{
     
-    self.engine = [[QNRTCEngine alloc] init];
-    self.engine.delegate = self;
-    [self.view insertSubview:self.engine.previewView atIndex:0];
-    [self.engine startCapture];
+    //name,标题;image,封面;href,视频地址
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"name":@"",@"":@"",@"":@""};
+    NSDictionary * configurationDic = @{@"requestUrlStr":PostVideo,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSArray * arr = dataDic[@"sections"];
+                        for (NSUInteger i = 0; i < arr.count; i++) {
+                            
+                            NSDictionary * dic = arr[i];
+                            ForumTabModel * model = [ForumTabModel mj_objectWithKeyValues:dic];
+                            [weakSelf.tabForumTabModelArray addObject:model];
+                            if (i == 0) {
+                                
+                                model.isSelected = YES;
+                                [weakSelf requestSectionListWithTabID:model.ForumID];
+                            }
+                            else{
+                                
+                                model.isSelected = NO;
+                            }
+                        }
+                        [weakSelf drawNav];
+                    }
+                }
+                else{
+                    
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

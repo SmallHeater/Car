@@ -186,6 +186,7 @@
 		620BF2092372D71300661240 /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 620BF2062372D71300661240 /* UIImage+Helper.m */; };
 		620BF20A2372D71300661240 /* PTImageCropVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 620BF2072372D71300661240 /* PTImageCropVC.m */; };
 		623FDFF4236075F100DB0B14 /* WelfareTreatmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */; };
+		624097F6237428BB00029143 /* VideoRecordingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 624097F5237428BB00029143 /* VideoRecordingView.m */; };
 		6288093A2367C669007742FF /* OneOilCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628809392367C669007742FF /* OneOilCell.m */; };
 		6288094B23684F28007742FF /* PostManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6288094A23684F28007742FF /* PostManagementViewController.m */; };
 		62880C66236AC3E6007742FF /* NSString+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880B8A236AC3E5007742FF /* NSString+SHTool.m */; };
@@ -658,6 +659,8 @@
 		620BF2082372D71300661240 /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
 		623FDFF2236075F100DB0B14 /* WelfareTreatmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelfareTreatmentView.h; sourceTree = "<group>"; };
 		623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelfareTreatmentView.m; sourceTree = "<group>"; };
+		624097F4237428BB00029143 /* VideoRecordingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRecordingView.h; sourceTree = "<group>"; };
+		624097F5237428BB00029143 /* VideoRecordingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRecordingView.m; sourceTree = "<group>"; };
 		628809382367C669007742FF /* OneOilCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneOilCell.h; sourceTree = "<group>"; };
 		628809392367C669007742FF /* OneOilCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneOilCell.m; sourceTree = "<group>"; };
 		6288094923684F28007742FF /* PostManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostManagementViewController.h; sourceTree = "<group>"; };
@@ -1019,9 +1022,9 @@
 		04048580230C24D200EF17C8 /* Forum */ = {
 			isa = PBXGroup;
 			children = (
+				624097F32374289700029143 /* UIView */,
 				04ACDD1C2340DA470050B179 /* Model */,
 				04ACDD152340A7580050B179 /* Cell */,
-				04ACDD142340A7580050B179 /* UIView */,
 				04048584230C252300EF17C8 /* UIViewController */,
 			);
 			path = Forum;
@@ -1320,13 +1323,6 @@
 			path = BaseController;
 			sourceTree = "<group>";
 		};
-		04ACDD142340A7580050B179 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIView;
-			sourceTree = "<group>";
-		};
 		04ACDD152340A7580050B179 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,6 +1479,15 @@
 				620BF2082372D71300661240 /* UIImage+Helper.h */,
 			);
 			path = PTImageCropVC;
+			sourceTree = "<group>";
+		};
+		624097F32374289700029143 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				624097F4237428BB00029143 /* VideoRecordingView.h */,
+				624097F5237428BB00029143 /* VideoRecordingView.m */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		62880B86236AC3AF007742FF /* Http */ = {
@@ -2684,6 +2689,7 @@
 				041CC94B23671A4100C130E6 /* OilPurchaseRecord.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
 				043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */,
+				624097F6237428BB00029143 /* VideoRecordingView.m in Sources */,
 				62880CAE236AC3E6007742FF /* JHCameraForLicenceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

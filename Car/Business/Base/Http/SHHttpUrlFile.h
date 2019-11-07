@@ -86,7 +86,7 @@
 //举报接口
 #define Inform  [[NSString alloc] initWithFormat:@"%@/api/Home/inform",CARDOMAIN]
 
-//文章/论坛收藏接口每调用
+//文章/论坛收藏接口
 #define ArticleMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/articleMarkered",CARDOMAIN]
 
 //招聘参数
