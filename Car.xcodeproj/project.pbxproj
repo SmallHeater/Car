@@ -2277,7 +2277,6 @@
 				0404852F230C1E6400EF17C8 /* Resources */,
 				7FAF6D56F04C832F89E65F39 /* [CP] Copy Pods Resources */,
 				62072C40231BC2AD0089AD43 /* Embed Frameworks */,
-				67A09350E4C0D5D7CEEF3186 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2360,30 +2359,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		67A09350E4C0D5D7CEEF3186 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-frameworks.sh",
-				"${PODS_ROOT}/QNRTCKit/Pod/iphoneos/QNRTCKit.framework",
-				"${PODS_ROOT}/QNRTCKit/Pod/iphoneos/QNRTCKit.framework.dSYM",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QNRTCKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/QNRTCKit.framework.dSYM",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7FAF6D56F04C832F89E65F39 /* [CP] Copy Pods Resources */ = {

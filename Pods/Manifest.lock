@@ -24,7 +24,6 @@ PODS:
   - MJExtension (3.0.17)
   - MJRefresh (3.2.0)
   - PLeakSniffer (0.1.0)
-  - QNRTCKit (2.3.0)
   - ReactiveObjC (3.1.1)
   - RealReachability (1.3.0):
     - RealReachability/Connection (= 1.3.0)
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - PLeakSniffer
-  - QNRTCKit (~> 2.0)
   - ReactiveObjC
   - RealReachability
   - SDWebImage
@@ -70,7 +68,6 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - PLeakSniffer
-    - QNRTCKit
     - ReactiveObjC
     - RealReachability
     - SDWebImage
@@ -89,7 +86,6 @@ SPEC CHECKSUMS:
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   PLeakSniffer: f7eb13cd3a36150e0a2fd5fe8a33ca83bd2646d4
-  QNRTCKit: 1ec69261ae4bcd48984eaf211a44f63a30c42bfc
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
@@ -97,6 +93,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 58c4b93fb44f5909cb3eb8e3f989c95c3a4d3d91
+PODFILE CHECKSUM: c369eed2902bf5b32377070d1e9fd5c923e304af
 
 COCOAPODS: 1.5.3
