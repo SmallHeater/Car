@@ -140,12 +140,20 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         UIButton * praiseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.praiseBtn = praiseBtn;
         praiseBtn.selected = self.forumArticleModel.thumbed;
+        if (self.forumArticleModel.thumbed) {
+            
+            praiseBtn.userInteractionEnabled = NO;
+        }
         [praiseBtn setImage:[UIImage imageNamed:@"dianzan"] forState:UIControlStateNormal];
         [praiseBtn setImage:[UIImage imageNamed:@"dianzanxuanzhong"] forState:UIControlStateSelected];
         __weak typeof(self) weakSelf = self;
         [[praiseBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
             x.selected = !x.selected;
+            if (x.selected) {
+                
+                x.userInteractionEnabled = NO;
+            }
             [weakSelf addArticleThumb];
         }];
         [_bottomCommentView addSubview:praiseBtn];

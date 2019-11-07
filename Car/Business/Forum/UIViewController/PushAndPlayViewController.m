@@ -16,7 +16,7 @@
 
 
 
-@interface PushAndPlayViewController ()<QNRTCEngineDelegate>
+@interface PushAndPlayViewController ()
 
 @property (nonatomic,strong) UIImageView * bgImageView;
 //停止录制
@@ -333,7 +333,6 @@
     // Do any additional setup after loading the view.
     
     [self drawUI];
-    [self Recording];
 }
 
 #pragma mark  ----  代理
@@ -375,23 +374,6 @@
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
-                        NSArray * arr = dataDic[@"sections"];
-                        for (NSUInteger i = 0; i < arr.count; i++) {
-                            
-                            NSDictionary * dic = arr[i];
-                            ForumTabModel * model = [ForumTabModel mj_objectWithKeyValues:dic];
-                            [weakSelf.tabForumTabModelArray addObject:model];
-                            if (i == 0) {
-                                
-                                model.isSelected = YES;
-                                [weakSelf requestSectionListWithTabID:model.ForumID];
-                            }
-                            else{
-                                
-                                model.isSelected = NO;
-                            }
-                        }
-                        [weakSelf drawNav];
                     }
                 }
                 else{

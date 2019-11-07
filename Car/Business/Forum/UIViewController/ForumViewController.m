@@ -33,6 +33,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 @property (nonatomic,strong) NSMutableArray<ForumTabModel *> * tabForumTabModelArray;
 //第二行页签项模型数组
 @property (nonatomic,strong) NSMutableArray<ForumTabModel *> * sectionForumTabModelArray;
+@property (nonatomic,strong) NSMutableArray<SHImageAndTitleBtn *> * sectionBtnArray;
 @property (nonatomic,strong) NSMutableArray<SHTabModel *> * tabModelArray;
 @property (nonatomic,strong) SHTabView * baseTabView;
 //论坛页导航
@@ -65,6 +66,15 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         _sectionForumTabModelArray = [[NSMutableArray alloc] init];
     }
     return _sectionForumTabModelArray;
+}
+
+-(NSMutableArray<SHImageAndTitleBtn *> *)sectionBtnArray{
+    
+    if (!_sectionBtnArray) {
+        
+        _sectionBtnArray = [[NSMutableArray alloc] init];
+    }
+    return _sectionBtnArray;
 }
 
 -(NSMutableArray<SHTabModel *> *)tabModelArray{
@@ -348,8 +358,14 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 
 -(void)drawSectionView{
     
+    for (SHImageAndTitleBtn * btn in self.sectionBtnArray) {
+        
+        [btn removeFromSuperview];
+    }
+    
     if (self.sectionView) {
         
+        [self.sectionView removeFromSuperview];
         self.sectionView = nil;
     }
    
@@ -368,12 +384,13 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     for (NSUInteger i = 0; i < self.sectionForumTabModelArray.count; i++) {
         
         ForumTabModel * tabModel = self.sectionForumTabModelArray[i];
-        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(btnX, 20, btnWidth, 70) andImageFrame:CGRectMake(0, 0, btnWidth, btnWidth) andTitleFrame:CGRectMake(0, 58, btnWidth, 12) andImageName:@"" andSelectedImageName:@"" andTitle:tabModel.title];
+        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(btnX, 20, btnWidth, btnHeight) andImageFrame:CGRectMake(0, 0, btnWidth, btnWidth) andTitleFrame:CGRectMake(0, 58, btnWidth, 12) andImageName:@"" andSelectedImageName:@"" andTitle:tabModel.title];
         [btn refreshFont:FONT12];
         [btn refreshTitle:tabModel.title];
         [btn setImageUrl:tabModel.image];
         [btn setImageViewCornerRadius:btnWidth/2];
         btnX += btnWidth + 25;
+        [self.sectionBtnArray addObject:btn];
         [self.sectionView addSubview:btn];
         __weak typeof(self) weakSelf = self;
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
