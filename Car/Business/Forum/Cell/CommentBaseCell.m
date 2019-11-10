@@ -16,6 +16,8 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //点赞，点赞数按钮
 @property (nonatomic,strong) SHImageAndTitleBtn * praiseBtn;
+//原文
+@property (nonatomic,strong) UILabel * originalTitleLabel;
 @property (nonatomic,strong) UILabel * timeLabel;
 //回复按钮
 @property (nonatomic,strong) UIButton * replyBtn;
@@ -69,6 +71,18 @@
         }];
     }
     return _praiseBtn;
+}
+
+-(UILabel *)originalTitleLabel{
+    
+    if (!_originalTitleLabel) {
+        
+        _originalTitleLabel = [[UILabel alloc] init];
+        _originalTitleLabel.font = FONT12;
+        _originalTitleLabel.textColor = Color_495B73;
+        _originalTitleLabel.backgroundColor = Color_F0F2F7;
+    }
+    return _originalTitleLabel;
 }
 
 -(UILabel *)timeLabel{
@@ -146,8 +160,28 @@
     }
     else{
         
-        float contentHeight = [[NSString repleaseNilOrNull:model.content] heightWithFont:FONT16 andWidth:MAINWIDTH - 59 - 16];
-        cellHeight = 59 + 40 + contentHeight;
+        if (model.to_user && [model.to_user isKindOfClass:[CommentToUserModel class]]) {
+            
+            //有回复
+            float contentHeight = [[NSString repleaseNilOrNull:model.content] heightWithFont:FONT16 andWidth:MAINWIDTH - 59 - 16];
+            float contentTwoHeight = [[NSString repleaseNilOrNull:model.to_user.comment] heightWithFont:FONT16 andWidth:MAINWIDTH - 59 - 16 - 5];
+            float titleHeight = 0;
+            if (![NSString strIsEmpty:model.commentable_title]) {
+                
+                titleHeight = 35 + 20;
+            }
+            cellHeight = 59 + 40 + contentHeight + 10 + 22 + 5 + contentTwoHeight + titleHeight;
+        }
+        else{
+            
+            float contentHeight = [[NSString repleaseNilOrNull:model.content] heightWithFont:FONT16 andWidth:MAINWIDTH - 59 - 16];
+            float titleHeight = 0;
+            if (![NSString strIsEmpty:model.commentable_title]) {
+                
+                titleHeight = 35 + 20;
+            }
+            cellHeight = 59 + 40 + contentHeight + titleHeight;
+        }
     }
     return cellHeight;
 }
@@ -172,6 +206,16 @@
     }];
     
     [self addSubview:self.praiseBtn];
+    
+    [self addSubview:self.originalTitleLabel];
+    [self.originalTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(59);
+        make.right.offset(-16);
+        make.height.offset(0);
+        make.bottom.offset(-42);
+    }];
+    
     [self addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -220,6 +264,17 @@
         self.timeLabel.text = [NSString repleaseNilOrNull:commentModel.createtime];
         self.floorLabel.text = [NSString repleaseNilOrNull:commentModel.floor];
         self.praiseBtn.selected = commentModel.thumbed;
+        if (![NSString strIsEmpty:self.model.commentable_title]) {
+            
+            [self.originalTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.offset(59);
+                make.right.offset(-16);
+                make.height.offset(35);
+                make.bottom.offset(-42);
+            }];
+            self.originalTitleLabel.text = [NSString stringWithFormat:@"原文：%@",self.model.commentable_title];
+        }
     }
 }
 

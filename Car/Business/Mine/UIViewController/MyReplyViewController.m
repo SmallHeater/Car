@@ -11,9 +11,12 @@
 #import "CommentModel.h"
 #import "CommentDeleteCell.h"
 #import "CommentNoReplyCell.h"
+#import "CommentWithReplyCell.h"
+
 
 static NSString * CommentDeleteCellId = @"CommentDeleteCell";
 static NSString * CommentNoReplyCellId = @"CommentNoReplyCell";
+static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
 
 @interface MyReplyViewController ()
 
@@ -76,15 +79,30 @@ static NSString * CommentNoReplyCellId = @"CommentNoReplyCell";
     }
     else{
         
-        //无回复的评论cell
-        CommentNoReplyCell * cell = [tableView dequeueReusableCellWithIdentifier:CommentNoReplyCellId];
-        if (!cell) {
+        if (model.to_user && [model.to_user isKindOfClass:[CommentToUserModel class]]) {
             
-            cell = [[CommentNoReplyCell alloc] initWithReuseIdentifier:CommentNoReplyCellId];
+            //有回复
+            CommentWithReplyCell * cell = [tableView dequeueReusableCellWithIdentifier:CommentWithReplyCellId];
+            if (!cell) {
+                
+                cell = [[CommentWithReplyCell alloc] initWithReuseIdentifier:CommentWithReplyCellId];
+            }
+            
+            [cell show:model];
+            return cell;
         }
-        
-        [cell show:model];
-        return cell;
+        else{
+            
+            //无回复的评论cell
+            CommentNoReplyCell * cell = [tableView dequeueReusableCellWithIdentifier:CommentNoReplyCellId];
+            if (!cell) {
+                
+                cell = [[CommentNoReplyCell alloc] initWithReuseIdentifier:CommentNoReplyCellId];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
     }
     return nil;
 }

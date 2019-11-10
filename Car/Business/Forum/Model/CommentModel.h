@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * floor;
 @property (nonatomic , strong) CommentFromUserModel  * from_user;
 @property (nonatomic , strong) CommentToUserModel    * to_user;
+//原文标题
+@property (nonatomic,strong) NSString * commentable_title;
 
 @end
 

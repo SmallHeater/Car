@@ -148,6 +148,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         _forumNavView = [[UIView alloc] init];
         //搜索按钮
         UIButton * searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        searchBtn.hidden = YES;
         [searchBtn setImage:[UIImage imageNamed:@"sousuohei"] forState:UIControlStateNormal];
         [[searchBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
@@ -264,7 +265,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    ForumDetailViewController * detailViewController = [[ForumDetailViewController alloc] initWithTitle:articleModel.section_title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andModel:articleModel];
+    ForumDetailViewController * detailViewController = [[ForumDetailViewController alloc] initWithTitle:articleModel.section_title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:[NSString stringWithFormat:@"%ld",articleModel.ArticleId]];
     detailViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }

@@ -49,6 +49,8 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 @property (nonatomic,strong) SHTextView * textView;
 //点赞按钮
 @property (nonatomic,strong) UIButton * praiseBtn;
+//文章ID
+@property (nonatomic,strong) NSString * articleId;
 //回复的评论模型
 @property (nonatomic,strong) CommentModel * commentModel;
 
@@ -134,7 +136,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         }];
         
         //评论数按钮
-        SHImageAndTitleBtn * commentsBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(225, 16, 40, 20) andImageFrame:CGRectMake(0, 0, 20, 20) andTitleFrame:CGRectMake(25, 0, 15, 20) andImageName:@"pinglunshu" andSelectedImageName:@"pinglunshu" andTitle:[[NSString alloc] initWithFormat:@"%ld",self.forumArticleModel.comments]];
+        SHImageAndTitleBtn * commentsBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(225, 16, 50, 20) andImageFrame:CGRectMake(0, 0, 20, 20) andTitleFrame:CGRectMake(25, 0, 25, 20) andImageName:@"pinglunshu" andSelectedImageName:@"pinglunshu" andTitle:[[NSString alloc] initWithFormat:@"%ld",self.forumArticleModel.comments]];
         [_bottomCommentView addSubview:commentsBtn];
         //点赞按钮
         UIButton * praiseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -160,7 +162,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.top.offset(14);
-            make.left.equalTo(commentsBtn.mas_right).offset((MAINWIDTH - 265 - 34 - 19) / 2);
+            make.left.equalTo(commentsBtn.mas_right).offset((MAINWIDTH - 275 - 34 - 19) / 2);
             make.width.height.offset(19);
         }];
         //收藏按钮
@@ -291,13 +293,13 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andModel:(ForumArticleModel *)model{
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andArticleId:(NSString *)articleId{
     
     self = [super initWithTitle:@"" andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
     if (self) {
         
         self.titleStr = [NSString repleaseNilOrNull:title];
-        self.forumArticleModel = model;
+        self.articleId = articleId;
     }
     return self;
 }
@@ -309,8 +311,8 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     //webview默认高度为0的话不会加载网页
     self.ForumDetailContentCellHeight = MAINHEIGHT;
     self.ForumDetailCommentListCellHeight = 100;
-    [self drawUI];
     [self addArticlePV];
+    [self requestData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -498,6 +500,53 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     }];
 }
 
+-(void)requestData{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":self.articleId};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetArticleDetail,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
+                    
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"detail"]) {
+                        
+                        NSDictionary * detailDic = dataDic[@"detail"];
+                        if (detailDic && [detailDic isKindOfClass:[NSDictionary class]]) {
+                            
+                            weakSelf.forumArticleModel = [ForumArticleModel mj_objectWithKeyValues:detailDic];
+                            [weakSelf drawUI];
+                            [weakSelf.tableView reloadData];
+                        }
+                    }
+                }
+                else{
+                    
+                    //异常
+                }
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
 //注册通知
 -(void)registrationNotice{
     
@@ -547,7 +596,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 //增加浏览量
 -(void)addArticlePV{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":[[NSString alloc] initWithFormat:@"%ld",self.forumArticleModel.ArticleId]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":[[NSString alloc] initWithFormat:@"%ld",self.articleId]};
     NSDictionary * configurationDic = @{@"requestUrlStr":ArticlePV,@"bodyParameters":bodyParameters};
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

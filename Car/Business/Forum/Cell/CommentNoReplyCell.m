@@ -25,6 +25,7 @@
         _contentLabel = [[UILabel alloc] init];
         _contentLabel.font = FONT16;
         _contentLabel.textColor = Color_333333;
+        _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
 }
@@ -58,6 +59,28 @@
 -(void)show:(CommentModel *)commentModel{
     
     [super show:commentModel];
+    
+    if ([NSString strIsEmpty:commentModel.commentable_title]) {
+        
+        [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(59);
+            make.top.offset(59);
+            make.right.offset(-16);
+            make.bottom.offset(-40);
+        }];
+    }
+    else{
+        
+        [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(59);
+            make.top.offset(59);
+            make.right.offset(-16);
+            make.bottom.offset(-87);
+        }];
+    }
+    
     self.contentLabel.text = [NSString repleaseNilOrNull:commentModel.content];
 }
 

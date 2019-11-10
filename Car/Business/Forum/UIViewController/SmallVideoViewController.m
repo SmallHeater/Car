@@ -12,11 +12,14 @@
 #import "SHBaseCollectionView.h"
 #import "VideoCollectionViewCell.h"
 #import "PlayViewController.h"
+#import "SHNavigationBar.h"
+
 
 static NSString * cellID = @"VideoCollectionViewCell";
 
 @interface SmallVideoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
+@property (nonatomic,strong) SHNavigationBar * navigationbar;
 @property (nonatomic,assign) VCType type;
 @property (nonatomic,strong) SHBaseCollectionView * collectionView;
 @property (nonatomic,strong) NSMutableArray<VideoModel *> * dataArray;
@@ -26,6 +29,17 @@ static NSString * cellID = @"VideoCollectionViewCell";
 @implementation SmallVideoViewController
 
 #pragma mark  ----  懒加载
+
+#pragma mark  ----  懒加载
+-(SHNavigationBar *)navigationbar{
+    
+    if (!_navigationbar) {
+        
+        _navigationbar = [[SHNavigationBar alloc] initWithTitle:@"我发布的视频列表" andShowBackBtn:YES];
+        [_navigationbar addbackbtnTarget:self andAction:@selector(backBtnClicked:)];
+    }
+    return _navigationbar;
+}
 
 -(SHBaseCollectionView *)collectionView{
     
@@ -125,11 +139,41 @@ static NSString * cellID = @"VideoCollectionViewCell";
 
 -(void)drawUI{
     
+    NSUInteger topHeight = 0;
+    if (self.type == VCType_MyVideos) {
+        
+        topHeight = [SHUIScreenControl navigationBarHeight];
+        [self.view addSubview:self.navigationbar];
+        [self.navigationbar mas_remakeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.top.offset(0);
+            make.height.offset([SHUIScreenControl navigationBarHeight]);
+        }];
+    }
+    
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.right.top.bottom.offset(0);
+        make.top.offset(topHeight);
+        make.left.right.bottom.offset(0);
     }];
+}
+
+-(void)backBtnClicked:(UIButton *)btn{
+    
+    if (self.navigationController) {
+        
+        if (self.navigationController.viewControllers.count == 1) {
+            
+            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+        }else{
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 -(void)requestData{
@@ -146,7 +190,17 @@ static NSString * cellID = @"VideoCollectionViewCell";
         position_id = @"3";
     }
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2"};
+    NSDictionary * bodyParameters;
+    if (self.type == VCType_MyVideos) {
+        
+        position_id = @"0";
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2",@"owner_id":[UserInforController sharedManager].userInforModel.userID};
+    }
+    else{
+        
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2"};
+    }
+    
     NSDictionary * configurationDic = @{@"requestUrlStr":GetVideos,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

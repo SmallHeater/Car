@@ -85,7 +85,8 @@
 #define PostVideo  [[NSString alloc] initWithFormat:@"%@/api/Home/postVideo",CARDOMAIN]
 //举报接口
 #define Inform  [[NSString alloc] initWithFormat:@"%@/api/Home/inform",CARDOMAIN]
-
+//文章详情接口
+#define GetArticleDetail  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticleDetail",CARDOMAIN]
 //文章/论坛收藏接口
 #define ArticleMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/articleMarkered",CARDOMAIN]
 

@@ -68,7 +68,7 @@
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(16);
-        make.right.offset(16);
+        make.right.offset(-16);
         make.top.offset(0);
         make.height.offset(192.0 / 343.0 * (MAINWIDTH - 32));
     }];

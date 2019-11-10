@@ -25,6 +25,7 @@
 		040C55262377C72400D81B14 /* VideoCompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C55252377C72400D81B14 /* VideoCompress.m */; };
 		040C55292377F4ED00D81B14 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C55282377F4ED00D81B14 /* PlayViewController.m */; };
 		040C552C2377F55D00D81B14 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C552B2377F55D00D81B14 /* PushViewController.m */; };
+		040C55342378297A00D81B14 /* CommentWithReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C55332378297A00D81B14 /* CommentWithReplyCell.m */; };
 		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
@@ -357,6 +358,8 @@
 		040C55282377F4ED00D81B14 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		040C552A2377F55D00D81B14 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		040C552B2377F55D00D81B14 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		040C55322378297A00D81B14 /* CommentWithReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentWithReplyCell.h; sourceTree = "<group>"; };
+		040C55332378297A00D81B14 /* CommentWithReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentWithReplyCell.m; sourceTree = "<group>"; };
 		0419F1F02321453900E76099 /* VehicleFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileModel.h; sourceTree = "<group>"; };
 		0419F1F12321453900E76099 /* VehicleFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileModel.m; sourceTree = "<group>"; };
 		0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsOneDayModel.h; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 		04ACDD152340A7580050B179 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				040C55322378297A00D81B14 /* CommentWithReplyCell.h */,
+				040C55332378297A00D81B14 /* CommentWithReplyCell.m */,
 				04ACDD162340A7C20050B179 /* ForumVideoCell.h */,
 				04ACDD172340A7C20050B179 /* ForumVideoCell.m */,
 				04ACDD192340A9360050B179 /* ForumBaseCell.h */,
@@ -2459,6 +2464,7 @@
 				04ACDD312341FFAC0050B179 /* ForumDetailViewController.m in Sources */,
 				04ACDD2B2341AC690050B179 /* ForumSingleCell.m in Sources */,
 				0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */,
+				040C55342378297A00D81B14 /* CommentWithReplyCell.m in Sources */,
 				04C70560236E858800A697C5 /* FormDetailUrlCell.m in Sources */,
 				62CA4367235DC6D000F4EBE9 /* MineColumnCell.m in Sources */,
 				62929BBA231A44920018DE07 /* AnnouncementModel.m in Sources */,
