@@ -7,6 +7,8 @@
 //
 
 #import "VideoRecordingView.h"
+#import "VideoCompress.h"
+
 
 @interface VideoRecordingView ()<AVCaptureFileOutputRecordingDelegate>
 
@@ -297,16 +299,22 @@
 //录制完成回调
 -(void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error{
     
-//        上传视频转换视频名称代码，不要直接干了就是
-    //视频录入完成之后在后台将视频存储到相册
-    NSString * uploadAddress = [outputFileURL absoluteString];
-    NSMutableString * mString = [NSMutableString stringWithString:uploadAddress];
-    NSString *strUrl = [mString stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-  
-    if (self.pathCallBack) {
+    [MBProgressHUD wj_showActivityLoading:@"处理中" toView:[UIApplication sharedApplication].keyWindow];
+    [VideoCompress compressVideoWithVideoUrl:outputFileURL withBiteRate:nil withFrameRate:nil withVideoWidth:[NSNumber numberWithInteger:1080] withVideoHeight:[NSNumber numberWithInteger:1920] compressComplete:^(id  _Nonnull responseObjc) {
         
-        self.pathCallBack(strUrl);
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            [MBProgressHUD wj_hideHUDForView:[UIApplication sharedApplication].keyWindow];
+        });
+        NSDictionary * dic = (NSDictionary *)responseObjc;
+        if (dic && [dic isKindOfClass:[NSDictionary class]] && [dic.allKeys containsObject:@"urlStr"]) {
+            
+            if (self.pathCallBack) {
+                
+                self.pathCallBack(dic[@"urlStr"]);
+            }
+        }
+    }];
 }
 
 //视频地址
@@ -323,8 +331,6 @@
     return videoCache;
 }
 
-
-
 //拼接视频文件名称
 - (NSString *)getVideoNameWithType:(NSString *)fileType
 {
@@ -336,7 +342,5 @@
     NSString *fileName = [NSString stringWithFormat:@"video_%@.%@",timeStr,fileType];
     return fileName;
 }
-
-
 
 @end

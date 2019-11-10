@@ -26,7 +26,7 @@
 #import "PostJobViewController.h"
 #import "PostListViewController.h"
 #import "FrameNumberInquiryViewController.h"
-#import "PushAndPlayViewController.h"
+#import "PushViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -132,7 +132,7 @@
         [[publishVideoBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [weakSelf.releaseView removeFromSuperview];
-            PushAndPlayViewController * vc = [[PushAndPlayViewController alloc] init];
+            PushViewController * vc = [[PushViewController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
@@ -346,7 +346,7 @@
                         UIViewController * vc;
                         switch (btnTag) {
                             case 0:
-                                
+        
                                 vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
                                 break;
                             case 1:
@@ -390,13 +390,13 @@
                         }
                         
                         if (![NSString strIsEmpty:urlStr]) {
-                            
+
                             SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
                             vc.hidesBottomBarWhenPushed = YES;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }
                         else if (vc){
-                            
+
                             vc.hidesBottomBarWhenPushed = YES;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }

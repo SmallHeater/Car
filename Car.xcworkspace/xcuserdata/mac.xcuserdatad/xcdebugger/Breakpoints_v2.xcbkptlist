@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Business/Forum/UIViewController/PushAndPlayViewController.m"
-            timestampString = "594827667.21934"
+            filePath = "Car/Business/Forum/UIViewController/PlayViewController.m"
+            timestampString = "595072266.641394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-praiseBtn"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
+            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

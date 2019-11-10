@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(SHBaiDuBosControl *)sharedManager;
 
 -(void)uploadImage:(UIImage *)image callBack:(void(^)(NSString * imagePath))callback;
--(void)uploadWithPath:(NSString *)path callBack:(void(^)(NSString * dataPath))callback;
+-(void)uploadWithVideoTitle:(NSString *)videoTitle videoPath:(NSString *)path callBack:(void(^)(NSString * videoPath,NSString * imgPath))callback;
 
 @end
 

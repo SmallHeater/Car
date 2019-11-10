@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger,VCType){
     
     VCType_Forum = 0,//论坛
-    VCType_Home //首页
+    VCType_Home, //首页
+    VCType_MyVideos //我发布的视频页
 };
 
 @interface SmallVideoViewController : SHBaseViewController

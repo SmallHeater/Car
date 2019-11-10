@@ -4,13 +4,13 @@
 //
 //  Created by mac on 2019/10/29.
 //  Copyright © 2019 SmallHeat. All rights reserved.
-//  发布和播放页面
+//  发布页面
 
 #import "SHBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PushAndPlayViewController : SHBaseViewController
+@interface PushViewController : SHBaseViewController
 
 @end
 

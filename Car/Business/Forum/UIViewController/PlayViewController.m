@@ -6,34 +6,29 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "PushAndPlayViewController.h"
+#import "PlayViewController.h"
 #import "SHImageAndTitleBtn.h"
-#import "VideoRecordingView.h"
-#import "SHBaiDuBosControl.h"
-#import "UserInforController.h"
+#import  <AVFoundation/AVFoundation.h>
+#import "SmallVideoViewController.h"
 
-
-
-
-
-@interface PushAndPlayViewController ()
+@interface PlayViewController ()
 
 @property (nonatomic,strong) UIImageView * bgImageView;
-//停止录制
-@property (nonatomic,strong) UIButton * stopRecordingBtn;
+//停止播放
+@property (nonatomic,strong) UIButton * stopPlayBtn;
 //关闭按钮
 @property (nonatomic,strong) UIButton * clostBtn;
 //发布按钮
 @property (nonatomic,strong) SHImageAndTitleBtn * publishBtn;
 //我发布的
 @property (nonatomic,strong) SHImageAndTitleBtn * myPublish;
-//开始录制按钮
-@property (nonatomic,strong) UIButton * startRecordingBtn;
+//开始播放按钮
+@property (nonatomic,strong) UIButton * startPlayBtn;
 //头像
 @property (nonatomic,strong) UIImageView * avaterImageView;
-//收藏
+//点赞按钮
 @property (nonatomic,strong) SHImageAndTitleBtn * collectBtn;
-//点赞
+//播放次数
 @property (nonatomic,strong) SHImageAndTitleBtn * praiseBtn;
 //分享
 @property (nonatomic,strong) SHImageAndTitleBtn * shareBtn;
@@ -41,17 +36,20 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
-//录制view
-@property (nonatomic,strong) VideoRecordingView * recordingView;
-//视频路径
-@property (nonatomic,strong) NSString * videoPath;
-//视频上传到服务器路径
-@property (nonatomic,strong) NSString * dataPath;
+@property (nonatomic,strong) VideoModel * model;
+
+@property (nonatomic,strong)AVPlayer *player;//播放器对象
+
+@property (nonatomic, strong) AVPlayerLayer *playerLayer;
+
+@property (nonatomic,strong)AVPlayerItem *currentPlayerItem;
+
+@property (nonatomic,strong)UIView *containerView;
 
 
 @end
 
-@implementation PushAndPlayViewController
+@implementation PlayViewController
 
 #pragma mark  ----  懒加载
 
@@ -88,9 +86,9 @@
             make.height.equalTo(self.myPublish.mas_height);
         }];
         
-        [_bgImageView addSubview:self.startRecordingBtn];
+        [_bgImageView addSubview:self.startPlayBtn];
         __weak typeof(self) weakSelf = self;
-        [self.startRecordingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.startPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.width.offset(43);
             make.height.offset(46.5);
@@ -98,6 +96,11 @@
             make.centerY.equalTo(weakSelf.bgImageView.mas_centerY);
         }];
         
+        [_bgImageView addSubview:self.stopPlayBtn];
+        [self.stopPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.top.bottom.offset(0);
+        }];
         
         [_bgImageView addSubview:self.shareBtn];
         [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,21 +150,20 @@
     return _bgImageView;
 }
 
--(UIButton *)stopRecordingBtn{
+-(UIButton *)stopPlayBtn{
     
-    if (!_stopRecordingBtn) {
+    if (!_stopPlayBtn) {
         
-        _stopRecordingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _stopPlayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         __weak typeof(self) weakSelf = self;
-        [[_stopRecordingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [[_stopPlayBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [weakSelf.recordingView stopRunning];
-            [weakSelf.recordingView stopCapture];
-            [weakSelf.stopRecordingBtn removeFromSuperview];
-            weakSelf.bgImageView.hidden = NO;
+            weakSelf.stopPlayBtn.hidden = YES;
+            weakSelf.startPlayBtn.hidden = NO;
+            [weakSelf.player pause];
         }];
     }
-    return _stopRecordingBtn;
+    return _stopPlayBtn;
 }
 
 -(UIButton *)clostBtn{
@@ -187,31 +189,28 @@
         NSUInteger btnWidth = 30;
         _publishBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 17) / 2, 0, 17, 17) andTitleFrame:CGRectMake(0, 22, btnWidth, 12) andImageName:@"fabubaise" andSelectedImageName:@"fabubaise" andTitle:@"发布"];
         [_publishBtn refreshColor:[UIColor whiteColor]];
+        //播放，发布分离
+        _publishBtn.hidden = YES;
     }
     return _publishBtn;
 }
 
--(UIButton *)startRecordingBtn{
+-(UIButton *)startPlayBtn{
     
-    if (!_startRecordingBtn) {
+    if (!_startPlayBtn) {
         
-        _startRecordingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_startRecordingBtn setImage:[UIImage imageNamed:@"kaishiluzhi"] forState:UIControlStateNormal];
+        _startPlayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_startPlayBtn setImage:[UIImage imageNamed:@"kaishiluzhi"] forState:UIControlStateNormal];
+        _startPlayBtn.hidden = YES;
         __weak typeof(self) weakSelf = self;
-        
-        [[_startRecordingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [[_startPlayBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            //开始录制
-            [weakSelf.recordingView startCapture];
-            weakSelf.bgImageView.hidden = YES;
-            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.stopRecordingBtn];
-            [weakSelf.stopRecordingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-               
-                make.left.right.top.bottom.offset(0);
-            }];
+            weakSelf.startPlayBtn.hidden = YES;
+            weakSelf.stopPlayBtn.hidden = NO;
+            [weakSelf.player play];
         }];
     }
-    return _startRecordingBtn;
+    return _startPlayBtn;
 }
 
 -(SHImageAndTitleBtn *)myPublish{
@@ -221,6 +220,12 @@
         NSUInteger btnWidth = 60;
         _myPublish = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 17) / 2, 0, 17, 17) andTitleFrame:CGRectMake(0, 22, btnWidth, 12) andImageName:@"wofabude" andSelectedImageName:@"wofabude" andTitle:@"我发布的"];
         [_myPublish refreshColor:[UIColor whiteColor]];
+        __weak typeof(self) weakSelf = self;
+        [[_myPublish rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            SmallVideoViewController * vc = [[SmallVideoViewController alloc] initWithType:VCType_MyVideos];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
     }
     return _myPublish;
 }
@@ -231,6 +236,8 @@
         
         _avaterImageView = [[UIImageView alloc] init];
         _avaterImageView.layer.cornerRadius = 24;
+        _avaterImageView.layer.masksToBounds = YES;
+        [_avaterImageView sd_setImageWithURL:[NSURL URLWithString:self.model.avatar]];
     }
     return _avaterImageView;
 }
@@ -242,6 +249,7 @@
         NSUInteger btnWidth = 26;
         _collectBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"shoucangbaise" andSelectedImageName:@"shoucangbaise" andTitle:@"0"];
         [_collectBtn refreshColor:[UIColor whiteColor]];
+        [_collectBtn refreshTitle:[NSString stringWithFormat:@"%ld",self.model.likes]];
     }
     return _collectBtn;
 }
@@ -252,7 +260,9 @@
         
         NSUInteger btnWidth = 26;
         _praiseBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"zan" andSelectedImageName:@"zan" andTitle:@"0"];
+        _praiseBtn.userInteractionEnabled = NO;
         [_praiseBtn refreshColor:[UIColor whiteColor]];
+        [_praiseBtn refreshTitle:[NSString stringWithFormat:@"%ld",self.model.views]];
     }
     return _praiseBtn;
 }
@@ -264,6 +274,7 @@
         NSUInteger btnWidth = 26;
         _shareBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"fenxiangbaise" andSelectedImageName:@"fenxiangbaise" andTitle:@"0"];
         [_shareBtn refreshColor:[UIColor whiteColor]];
+        [_shareBtn refreshTitle:[NSString stringWithFormat:@"%ld",self.model.shares]];
     }
     return _shareBtn;
 }
@@ -275,6 +286,7 @@
         _nickNameLabel = [[UILabel alloc] init];
         _nickNameLabel.font = BOLDFONT16;
         _nickNameLabel.textColor = [UIColor whiteColor];
+        _nickNameLabel.text = [NSString stringWithFormat:@"@%@",self.model.shop_name];
     }
     return _nickNameLabel;
 }
@@ -287,46 +299,57 @@
         _titleLabel.font = BOLDFONT16;
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.numberOfLines = 0;
+        _titleLabel.text = self.model.name;
     }
     return _titleLabel;
 }
 
--(VideoRecordingView *)recordingView{
+-(AVPlayerItem *)currentPlayerItem{
     
-    if (!_recordingView) {
+    if (!_currentPlayerItem) {
         
-        _recordingView = [[VideoRecordingView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT)];
-        __weak typeof(self) weakSelf = self;
-        _recordingView.pathCallBack = ^(NSString * _Nonnull path) {
-            
-            if (![NSString strIsEmpty:path]) {
-                
-                weakSelf.videoPath = path;
-                //是否上传
-                UIAlertController * alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否上传小视频" preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    
-                }];
-                
-                UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"上传" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                    
-                    [[SHBaiDuBosControl sharedManager] uploadWithPath:path callBack:^(NSString * _Nonnull dataPath) {
-                        
-                        weakSelf.dataPath = dataPath;
-                    }];
-                }];
-                
-                [alertControl addAction:cancelAction];
-                [alertControl addAction:sureAction];
-                [weakSelf presentViewController:alertControl animated:YES completion:nil];
-            }
-        };
+        _currentPlayerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:self.model.href]];
+        //通过KVO来观察status属性的变化，来获得播放之前的错误信息
+        [_currentPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     }
-    return _recordingView;
+    return _currentPlayerItem;
+}
+
+-(AVPlayer *)player{
+    
+    if (!_player) {
+        
+        _player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+    }
+    return _player;
+}
+
+-(AVPlayerLayer *)playerLayer{
+    
+    if (!_playerLayer) {
+        
+        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+        self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
+        _playerLayer.frame = CGRectMake(0, 0,MAINWIDTH,MAINHEIGHT);
+        [self.player play];
+    }
+    return _playerLayer;
 }
 
 #pragma mark  ----  生命周期函数
+
+-(instancetype)initWithVideoModel:(VideoModel *)model{
+    
+    self = [super init];
+    if (self) {
+        
+        if (model && [model isKindOfClass:[VideoModel class]]) {
+            
+            self.model = model;
+        }
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -341,7 +364,7 @@
 
 -(void)drawUI{
     
-    [self.view addSubview:self.recordingView];
+    [self.view.layer addSublayer:self.playerLayer];
     
     [self.view addSubview:self.bgImageView];
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -350,45 +373,54 @@
     }];
 }
 
--(void)submitData{
+-(void)backBtnClicked:(UIButton *)btn{
     
-    //name,标题;image,封面;href,视频地址
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"name":@"",@"":@"",@"":@""};
-    NSDictionary * configurationDic = @{@"requestUrlStr":PostVideo,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+    if (self.navigationController) {
         
-        if (![resultDic.allKeys containsObject:@"error"]) {
+        if (self.navigationController.viewControllers.count == 1) {
             
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        
-                    }
-                }
-                else{
-                    
-                    //异常
-                }
-            }
-            else{
-            }
-        }
-        else{
+            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+        }else{
             
-            //失败的
+            [self.navigationController popViewControllerAnimated:YES];
         }
-    }];
+    }else{
+        
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
+}
+
+//监听状态回调方法
+
+-(void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void*)context{
+    
+    if ([keyPath isEqualToString:@"status"]) {
+        
+        //取出status的新值
+        AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] intValue];
+        switch(status) {
+
+            case AVPlayerItemStatusFailed:
+                //失败 做相关失败操作
+                break;
+            case AVPlayerItemStatusReadyToPlay:
+                //成功开始播放
+                [self.player play];
+                break;
+            case AVPlayerItemStatusUnknown:
+
+                NSLog(@"视频资源出现未知错误");
+
+                break;
+
+            default:
+
+                break;
+            }
+    }
+
+    //移除监听（观察者）
+    [object removeObserver:self forKeyPath:@"status"];
 }
 
 @end

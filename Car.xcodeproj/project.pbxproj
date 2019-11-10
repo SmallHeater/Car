@@ -22,6 +22,9 @@
 		040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FB231187AD00EF17C8 /* SearchBarCell.m */; };
 		040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040485FE2311880200EF17C8 /* AnnouncementCell.m */; };
 		040486022311883B00EF17C8 /* CustomerManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040486012311883B00EF17C8 /* CustomerManagementCell.m */; };
+		040C55262377C72400D81B14 /* VideoCompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C55252377C72400D81B14 /* VideoCompress.m */; };
+		040C55292377F4ED00D81B14 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C55282377F4ED00D81B14 /* PlayViewController.m */; };
+		040C552C2377F55D00D81B14 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C552B2377F55D00D81B14 /* PushViewController.m */; };
 		0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1F12321453900E76099 /* VehicleFileModel.m */; };
 		0419F1FB23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F1FA23214C8D00E76099 /* MaintenanceRecordsOneDayModel.m */; };
 		0419F203232277A200E76099 /* RepaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419F201232277A100E76099 /* RepaidCell.m */; };
@@ -130,7 +133,6 @@
 		049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C58932327EB1000CB0FEF /* RepaidModel.m */; };
 		049C78CA23363CC300612AF5 /* ResidualTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */; };
 		049C78CD233650A500612AF5 /* CommodityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049C78CC233650A500612AF5 /* CommodityCell.m */; };
-		04A8A4A1236872980006BBE3 /* PushAndPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */; };
 		04A915DA2329221F002DDC02 /* CarProfitStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */; };
 		04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A915EB232A882A002DDC02 /* PublicRequest.m */; };
 		04ACDD13234063A00050B179 /* JobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD12234063A00050B179 /* JobModel.m */; };
@@ -349,6 +351,12 @@
 		040485FE2311880200EF17C8 /* AnnouncementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCell.m; sourceTree = "<group>"; };
 		040486002311883B00EF17C8 /* CustomerManagementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerManagementCell.h; sourceTree = "<group>"; };
 		040486012311883B00EF17C8 /* CustomerManagementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerManagementCell.m; sourceTree = "<group>"; };
+		040C55242377C72400D81B14 /* VideoCompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCompress.h; sourceTree = "<group>"; };
+		040C55252377C72400D81B14 /* VideoCompress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCompress.m; sourceTree = "<group>"; };
+		040C55272377F4ED00D81B14 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		040C55282377F4ED00D81B14 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		040C552A2377F55D00D81B14 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
+		040C552B2377F55D00D81B14 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
 		0419F1F02321453900E76099 /* VehicleFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleFileModel.h; sourceTree = "<group>"; };
 		0419F1F12321453900E76099 /* VehicleFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleFileModel.m; sourceTree = "<group>"; };
 		0419F1F923214C8D00E76099 /* MaintenanceRecordsOneDayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsOneDayModel.h; sourceTree = "<group>"; };
@@ -561,8 +569,6 @@
 		049C78C923363CC300612AF5 /* ResidualTransactionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionViewController.m; sourceTree = "<group>"; };
 		049C78CB233650A500612AF5 /* CommodityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommodityCell.h; sourceTree = "<group>"; };
 		049C78CC233650A500612AF5 /* CommodityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommodityCell.m; sourceTree = "<group>"; };
-		04A8A49F236872980006BBE3 /* PushAndPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushAndPlayViewController.h; sourceTree = "<group>"; };
-		04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushAndPlayViewController.m; sourceTree = "<group>"; };
 		04A915D82329221F002DDC02 /* CarProfitStatisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarProfitStatisticsCell.h; sourceTree = "<group>"; };
 		04A915D92329221F002DDC02 /* CarProfitStatisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarProfitStatisticsCell.m; sourceTree = "<group>"; };
 		04A915EA232A882A002DDC02 /* PublicRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicRequest.h; sourceTree = "<group>"; };
@@ -1044,14 +1050,16 @@
 		04048584230C252300EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				040C552A2377F55D00D81B14 /* PushViewController.h */,
+				040C552B2377F55D00D81B14 /* PushViewController.m */,
+				040C55272377F4ED00D81B14 /* PlayViewController.h */,
+				040C55282377F4ED00D81B14 /* PlayViewController.m */,
 				04048597230C257700EF17C8 /* ForumViewController.h */,
 				04048598230C257700EF17C8 /* ForumViewController.m */,
 				04ACDD2F2341FFAC0050B179 /* ForumDetailViewController.h */,
 				04ACDD302341FFAC0050B179 /* ForumDetailViewController.m */,
 				0490B7E2236583D400DC33BB /* SmallVideoViewController.h */,
 				0490B7E3236583D400DC33BB /* SmallVideoViewController.m */,
-				04A8A49F236872980006BBE3 /* PushAndPlayViewController.h */,
-				04A8A4A0236872980006BBE3 /* PushAndPlayViewController.m */,
 				048D7C522371A9E90088F76B /* ReportViewController.h */,
 				048D7C532371A9E90088F76B /* ReportViewController.m */,
 			);
@@ -1543,6 +1551,8 @@
 		62880BD1236AC3E5007742FF /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
+				040C55242377C72400D81B14 /* VideoCompress.h */,
+				040C55252377C72400D81B14 /* VideoCompress.m */,
 				62880BD2236AC3E5007742FF /* BaiDuBos */,
 				62880BD5236AC3E5007742FF /* SHImageCompressionController.h */,
 				62880BE0236AC3E5007742FF /* SHImageCompressionController.m */,
@@ -2458,6 +2468,7 @@
 				045B3C762354B41000E28F2A /* MotorOilMonopolyGoodsViewController.m in Sources */,
 				047ACA0A2337B520005FC5D0 /* ResidualTransactionComplaintCell.m in Sources */,
 				620BF2092372D71300661240 /* UIImage+Helper.m in Sources */,
+				040C55292377F4ED00D81B14 /* PlayViewController.m in Sources */,
 				043E9F822348D39400109AC5 /* PostJobDescriptionCell.m in Sources */,
 				62880CA2236AC3E6007742FF /* SHQRCodeMiddleware.m in Sources */,
 				62880C8E236AC3E6007742FF /* SHPictureSelectionComponent.m in Sources */,
@@ -2515,6 +2526,7 @@
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				62880CFA236AC539007742FF /* SHBaseTableView.m in Sources */,
 				62880CB1236AC3E6007742FF /* SHQRCodeLibrary.m in Sources */,
+				040C55262377C72400D81B14 /* VideoCompress.m in Sources */,
 				62880CF3236AC539007742FF /* SHCarouselCollectionViewCell.m in Sources */,
 				6288094B23684F28007742FF /* PostManagementViewController.m in Sources */,
 				0490B7E123654E0200DC33BB /* CarInfoModel.m in Sources */,
@@ -2574,6 +2586,7 @@
 				04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */,
 				62B3C6CC2337536B005CBCA2 /* ResidualTransactionDetailViewController.m in Sources */,
 				0490B7E72365870600DC33BB /* VideoModel.m in Sources */,
+				040C552C2377F55D00D81B14 /* PushViewController.m in Sources */,
 				62880C97236AC3E6007742FF /* SHCacheManagementcomponent.m in Sources */,
 				04048599230C257700EF17C8 /* ForumViewController.m in Sources */,
 				0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */,
@@ -2623,7 +2636,6 @@
 				62880CF9236AC539007742FF /* SHImageAndLabelControl.m in Sources */,
 				041CC94E23671B6600C130E6 /* GoodsItem.m in Sources */,
 				6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */,
-				04A8A4A1236872980006BBE3 /* PushAndPlayViewController.m in Sources */,
 				049C58942327EB1000CB0FEF /* RepaidModel.m in Sources */,
 				628AF5712316979F007BC0F8 /* VehicleFileForDetailVCCell.m in Sources */,
 				62880C92236AC3E6007742FF /* SHPictureSelectionViewController.m in Sources */,

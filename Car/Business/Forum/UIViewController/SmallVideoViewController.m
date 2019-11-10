@@ -11,8 +11,7 @@
 #import "VideoModel.h"
 #import "SHBaseCollectionView.h"
 #import "VideoCollectionViewCell.h"
-#import "PushAndPlayViewController.h"
-
+#import "PlayViewController.h"
 
 static NSString * cellID = @"VideoCollectionViewCell";
 
@@ -72,21 +71,10 @@ static NSString * cellID = @"VideoCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    PushAndPlayViewController * vc = [[PushAndPlayViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-//    VideoModel * model = self.dataArray[indexPath.row];
-//    NSURL*url = [NSURL URLWithString:@"http://dlhls.cdn.zhanqi.tv/zqlive/3884_bR1ms.m3u8"];
-//
-//    AVPlayerViewController* play = [[AVPlayerViewController alloc]init];
-//
-//    play.player= [[AVPlayer alloc]initWithURL:url];
-//
-//    play.allowsPictureInPicturePlayback=YES;//这个是允许画中画的,默认应该是开启的,但是我的没有效果,现在还不知道什么原因
-//
-//    [play.player play]; //这里我设置直接播放,页面弹出后会直接播放,要不然还需要点击一下播放按钮
-//
-//    [self presentViewController:play animated:YES completion:nil];
+    VideoModel * model = self.dataArray[indexPath.row];
+    PlayViewController * playVC = [[PlayViewController alloc] initWithVideoModel:model];
+    playVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:playVC animated:YES];
 }
 
 #pragma mark  ----  UICollectionViewDataSource
