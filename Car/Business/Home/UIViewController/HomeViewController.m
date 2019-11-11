@@ -27,6 +27,7 @@
 #import "PostListViewController.h"
 #import "FrameNumberInquiryViewController.h"
 #import "PushViewController.h"
+#import "ForumDetailViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -314,10 +315,20 @@
                     
                     if (![NSString strIsEmpty:urlStr]) {
                         
-                        SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
-                        webViewController.hidesBottomBarWhenPushed = YES;
-                        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+                        if ([urlStr hasPrefix:@"http"]) {
+                            
+                            SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                            webViewController.hidesBottomBarWhenPushed = YES;
+                            [weakSelf.navigationController pushViewController:webViewController animated:YES];
+                        }
+                        else{
+                            
+                            //去详情页
+                            ForumDetailViewController * vc = [[ForumDetailViewController alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:urlStr];
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
                     }
+                    
                 };
             }
             

@@ -299,7 +299,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     if (self) {
         
         self.titleStr = [NSString repleaseNilOrNull:title];
-        self.articleId = articleId;
+        self.articleId = [NSString repleaseNilOrNull:articleId];
     }
     return self;
 }
@@ -527,6 +527,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
                         if (detailDic && [detailDic isKindOfClass:[NSDictionary class]]) {
                             
                             weakSelf.forumArticleModel = [ForumArticleModel mj_objectWithKeyValues:detailDic];
+                            weakSelf.titleStr = weakSelf.forumArticleModel.section_title;
                             [weakSelf drawUI];
                             [weakSelf.tableView reloadData];
                         }
@@ -596,7 +597,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 //增加浏览量
 -(void)addArticlePV{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":[[NSString alloc] initWithFormat:@"%ld",self.articleId]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":self.articleId};
     NSDictionary * configurationDic = @{@"requestUrlStr":ArticlePV,@"bodyParameters":bodyParameters};
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

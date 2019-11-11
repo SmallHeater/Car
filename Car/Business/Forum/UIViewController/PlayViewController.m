@@ -10,6 +10,8 @@
 #import "SHImageAndTitleBtn.h"
 #import  <AVFoundation/AVFoundation.h>
 #import "SmallVideoViewController.h"
+#import "UserInforController.h"
+
 
 @interface PlayViewController ()
 
@@ -248,8 +250,15 @@
         
         NSUInteger btnWidth = 26;
         _collectBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectZero andImageFrame:CGRectMake((btnWidth - 26) / 2, 0, 26, 26) andTitleFrame:CGRectMake(0, 33, btnWidth, 12) andImageName:@"shoucangbaise" andSelectedImageName:@"shoucangbaise" andTitle:@"0"];
+        _collectBtn.selected = self.model.thumbed;
         [_collectBtn refreshColor:[UIColor whiteColor]];
-        [_collectBtn refreshTitle:[NSString stringWithFormat:@"%ld",self.model.likes]];
+        [_collectBtn refreshTitle:[NSString stringWithFormat:@"%ld",self.model.thumbs]];
+        __weak typeof(self) weakSelf = self;
+        [[_collectBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            x.selected = !x.selected;
+            [weakSelf videoThum];
+        }];
     }
     return _collectBtn;
 }
@@ -356,6 +365,7 @@
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    [self addArticlePV];
 }
 
 #pragma mark  ----  代理
@@ -421,6 +431,52 @@
 
     //移除监听（观察者）
     [object removeObserver:self forKeyPath:@"status"];
+}
+
+//增加浏览量
+-(void)addArticlePV{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"article_id":[NSString stringWithFormat:@"%ld",self.model.videoId]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":ArticlePV,@"bodyParameters":bodyParameters};
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
+}
+
+//视频点赞
+-(void)videoThum{
+    
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"video_id":[NSString stringWithFormat:@"%ld",self.model.videoId]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":VideoThumb,@"bodyParameters":bodyParameters};
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
+            
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+            }
+            else{
+            }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

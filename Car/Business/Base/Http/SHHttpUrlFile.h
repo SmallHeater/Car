@@ -89,6 +89,8 @@
 #define GetArticleDetail  [[NSString alloc] initWithFormat:@"%@/api/Home/getArticleDetail",CARDOMAIN]
 //文章/论坛收藏接口
 #define ArticleMarkered  [[NSString alloc] initWithFormat:@"%@/api/Home/articleMarkered",CARDOMAIN]
+//视频点赞接口
+#define VideoThumb  [[NSString alloc] initWithFormat:@"%@/api/Home/videoThumb",CARDOMAIN]
 
 //招聘参数
 #define JobOption  [[NSString alloc] initWithFormat:@"%@/api/Home/getJobOption",CARDOMAIN]

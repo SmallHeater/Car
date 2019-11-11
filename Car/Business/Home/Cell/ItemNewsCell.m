@@ -9,14 +9,16 @@
 #import "ItemNewsCell.h"
 #import "ItemListCollectionViewCell.h"
 #import "SHBaseCollectionView.h"
+#import "SmallVideoViewController.h"
 
+static NSString * defaultCellId = @"UICollectionViewCell";
 static NSString * cellID = @"ItemListCollectionViewCell";
 
 @interface ItemNewsCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong) SHBaseCollectionView * collectionView;
-
 @property (nonatomic,strong) NSMutableArray * tabIDArray;
+@property (nonatomic,strong) SmallVideoViewController * vc;
 
 @end
 
@@ -32,6 +34,7 @@ static NSString * cellID = @"ItemListCollectionViewCell";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[ItemListCollectionViewCell class] forCellWithReuseIdentifier:cellID];
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:defaultCellId];
     }
     return _collectionView;
 }
@@ -43,6 +46,15 @@ static NSString * cellID = @"ItemListCollectionViewCell";
         _tabIDArray = [[NSMutableArray alloc] init];
     }
     return _tabIDArray;
+}
+
+-(SmallVideoViewController *)vc{
+    
+    if (!_vc) {
+        
+        _vc = [[SmallVideoViewController alloc] initWithType:VCType_Home];
+    }
+    return _vc;
 }
 
 #pragma mark  ----  生命周期函数
@@ -73,11 +85,25 @@ static NSString * cellID = @"ItemListCollectionViewCell";
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     NSString * tabID = self.tabIDArray[indexPath.row];
-    [cell requestWithTabID:tabID];
-    
-    return cell;
+    if ([tabID isEqualToString:@"5"]) {
+        
+        //小视频
+        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:defaultCellId forIndexPath:indexPath];
+        UIView * tempView = self.vc.view;
+        tempView.frame = CGRectMake(0, 0, MAINWIDTH,[ItemNewsCell cellHeight]);
+        [cell addSubview:tempView];
+        return cell;
+    }
+    else{
+     
+        ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+        
+        [cell requestWithTabID:tabID];
+        
+        return cell;
+    }
+    return nil;
 }
 
 #pragma mark  ----  UICollectionViewDelegateFlowLayout

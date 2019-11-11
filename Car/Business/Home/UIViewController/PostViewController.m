@@ -64,7 +64,7 @@
             
             if ([NSString strIsEmpty:showStr]) {
                 
-                NSString * contentStr;
+                NSMutableArray * contentArray = [[NSMutableArray alloc] init];
                 NSString * str = self.contentTF.text;
                 NSArray *attachments = self.contentTF.textLayout.attachments;
                 if (attachments.count > 0) {
@@ -118,24 +118,24 @@
                         }
                     }
                     
-                    NSMutableString * tempStr = [[NSMutableString alloc] init];
                     for (NSUInteger i = 0; i < strArray.count; i++) {
                         
-                        [tempStr appendString:strArray[i]];
+                        NSDictionary * dic = @{@"type":@"text",@"content":strArray[i]};
+                        [contentArray addObject:dic];
                         if (i < strArray.count) {
                          
-                            [tempStr appendString:imageUrlArray[i]];
+                            NSDictionary * dic = @{@"type":@"img",@"content":imageUrlArray[i]};
+                            [contentArray addObject:dic];
                         }
                     }
-                    
-                    contentStr = tempStr;
                 }
                 else{
                     
                     //无图片
-                    contentStr = str;
+                    NSDictionary * dic = @{@"type":@"text",@"content":str};
+                    [contentArray addObject:dic];
                 }
-                [weakSelf postWithContent:contentStr];
+                [weakSelf postWithContent:contentArray];
             }
             else{
                 
@@ -425,9 +425,9 @@
 }
 
 //发帖
--(void)postWithContent:(NSString *)contentStr{
+-(void)postWithContent:(NSMutableArray *)contentArray{
 
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"title":self.titleTF.text,@"content":contentStr,@"section_id":self.section_id};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"title":self.titleTF.text,@"content":contentArray,@"section_id":self.section_id};
     NSDictionary * configurationDic = @{@"requestUrlStr":PostArticle,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

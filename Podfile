@@ -16,5 +16,6 @@ pod 'YYImage'
 pod 'AlipaySDK-iOS'
 pod 'WechatOpenSDK'
 #上线在开放本功能
-#pod 'AvoidCrash'
+pod 'AvoidCrash'
+pod 'Bugly'
 end

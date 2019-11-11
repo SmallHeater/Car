@@ -49,6 +49,7 @@ static NSString * cellID = @"VideoCollectionViewCell";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:cellID];
+        _collectionView.backgroundColor = [UIColor greenColor];
     }
     return _collectionView;
 }
@@ -155,7 +156,8 @@ static NSString * cellID = @"VideoCollectionViewCell";
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.offset(topHeight);
-        make.left.right.bottom.offset(0);
+        make.left.bottom.offset(0);
+        make.width.offset(MAINWIDTH);
     }];
 }
 

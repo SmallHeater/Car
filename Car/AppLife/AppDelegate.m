@@ -14,9 +14,11 @@
 #import "LoginViewController.h"
 #import "UserInforController.h"
 #import "PLeakSniffer.h"
-//#import "AvoidCrash.h"
+#import "AvoidCrash.h"
 #import <WXApi.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import <Bugly/Bugly.h>
+
 
 @interface AppDelegate ()
 
@@ -27,9 +29,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [AvoidCrash makeAllEffective];
-    //向微信注册
-//    [WXApi registerApp:@""];
+    //容灾
+    [AvoidCrash becomeEffective];
+    //Bugly
+    [Bugly startWithAppId:@"af9aecbea0"];
+    
     
     if ([UserInforController sharedManager].userInforModel) {
         
