@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * CarouselId;
 //1工作台
 @property (nonatomic,strong) NSString * position_id;
-// 默认0：图片
+//type=0时 url为数字（详情页id）点击跳转论坛详情页,type=1 时 url为链接  跳转网页
 @property (nonatomic,strong) NSString * type;
 //显示的图片
 @property (nonatomic,strong) NSString * image;

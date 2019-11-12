@@ -10,4 +10,9 @@
 
 @implementation VideoModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    
+    return @{@"videoId":@"id"};
+}
+
 @end

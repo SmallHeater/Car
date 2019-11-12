@@ -90,7 +90,7 @@
     for (CarouselModel * model in array) {
         
         NSString * CarouselImageUrlStr = [[NSString alloc] initWithFormat:@"%@",model.image];
-        NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:model.CarouselId,@"CarouselId",CarouselImageUrlStr,@"CarouselImageUrlStr", nil];
+        NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:model.CarouselId,@"CarouselId",CarouselImageUrlStr,@"CarouselImageUrlStr",model.type,@"type",model.url,@"urlStr", nil];
         [carouselDicArray addObject:dic];
     }
     [self.carouselView refreshData:carouselDicArray];

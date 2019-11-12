@@ -22,15 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSUInteger createtime;
 //视频链接
 @property (nonatomic,strong) NSString * href;
-@property (nonatomic,assign) NSUInteger id;
+@property (nonatomic,assign) NSUInteger videoId;
 //视频首图
 @property (nonatomic,strong) NSString * image;
 @property (nonatomic,strong) NSString * image_s;
 @property (nonatomic,assign) NSUInteger is_ad;
 @property (nonatomic,assign) NSUInteger isdel;
 @property (nonatomic,strong) NSString * lat;
+//是否已赞
+@property (nonatomic,assign) BOOL thumbed;
 //点赞数量
-@property (nonatomic,assign) NSUInteger likes;
+@property (nonatomic,assign) NSUInteger thumbs;
 @property (nonatomic,strong) NSString * lng;
 @property (nonatomic,assign) NSUInteger music_id;
 @property (nonatomic,strong) NSString * name;
