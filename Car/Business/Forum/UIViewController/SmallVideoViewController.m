@@ -28,7 +28,6 @@ static NSString * cellID = @"VideoCollectionViewCell";
 
 @implementation SmallVideoViewController
 
-#pragma mark  ----  懒加载
 
 #pragma mark  ----  懒加载
 -(SHNavigationBar *)navigationbar{
@@ -46,6 +45,7 @@ static NSString * cellID = @"VideoCollectionViewCell";
     if (!_collectionView) {
         
         _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
+        _collectionView.alwaysBounceVertical = YES;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:cellID];
