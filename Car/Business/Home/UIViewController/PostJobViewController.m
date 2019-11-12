@@ -328,7 +328,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
                     [idArray addObject:dic[@"id"]];
                 }
                 
-                str = [str substringToIndex:str.length - 1];
+                str = (NSMutableString *)[str substringToIndex:str.length - 1];
                 [cell refreshLabel:str];
                 
                 weakSelf.postJobRequestModel.benefit_ids = [idArray componentsJoinedByString:@","];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SHUploadConfigurationModel.h"
 
-typedef void(^CallBack)(NSDictionary * retultDic);
+typedef void(^CallBack)(NSDictionary * _Nullable retultDic);
 
 NS_ASSUME_NONNULL_BEGIN
 

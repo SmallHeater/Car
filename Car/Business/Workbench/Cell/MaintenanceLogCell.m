@@ -455,7 +455,7 @@
     return _imageUrlStrArray;
 }
 
--(NSMutableArray<UIImageView *> *)imageViewArray{
+-(NSMutableArray<SHImageViewWithDeleteBtn *> *)imageViewArray{
     
     if (!_imageViewArray) {
         

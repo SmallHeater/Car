@@ -13,7 +13,7 @@
 /**
  *  缩略图（默认尺寸kThumbnailTargetSize)
  */
-@property (nonatomic, strong) UIImage * thumbnails;
+@property (nonatomic, strong) UIImage * _Nullable thumbnails;
 /**
  *  是否选中
  */

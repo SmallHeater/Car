@@ -8,7 +8,7 @@
 
 #import "SHBaseTableViewCell.h"
 
-typedef void(^CallBack)(NSString * imagesUrl);
+typedef void(^CallBack)(NSString * _Nullable imagesUrl);
 
 NS_ASSUME_NONNULL_BEGIN
 

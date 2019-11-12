@@ -216,7 +216,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.keepImageAlive) {
                 self.imageView.image = MatToUIImage(outCopyImg);
-                finishBtn.hidden = NO;
+                self->finishBtn.hidden = NO;
                 self.imageView.alpha = 0.0;
                 [UIView animateWithDuration:0.5f animations:^{
                     self.imageView.alpha = 1.0;

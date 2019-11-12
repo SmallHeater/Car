@@ -25,6 +25,5 @@
 
 -(instancetype)initWithTitle:(NSString *)title andIsShowBackBtn:(BOOL)isShowBackBtn andImage:(UIImage*)image withCropScale:(CGFloat)cropScale complentBlock:(void (^)(UIImage* image))complentBlock cancelBlock:(void (^)(id sender))cancelBlock;
 
-- (instancetype)initWithImage:(UIImage*)image withCropScale:(CGFloat)cropScale complentBlock:(void (^)(UIImage* image))complentBlock cancelBlock:(void (^)(id sender))cancelBlock;
 
 @end

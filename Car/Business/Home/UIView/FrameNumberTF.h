@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^SearchCallBack)();
+typedef void(^SearchCallBack)(void);
 
 @interface FrameNumberTF : UITextField
 

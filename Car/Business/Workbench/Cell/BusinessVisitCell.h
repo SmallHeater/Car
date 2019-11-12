@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^CallBack)();
+typedef void(^CallBack)(void);
 
 @interface BusinessVisitCell : SHBaseTableViewCell
 

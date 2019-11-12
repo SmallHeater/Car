@@ -30,9 +30,9 @@
 @property (nonatomic, strong, readonly, nonnull) UIImage * previewImage;
 
 //当前屏幕大小,原图片比例的图片
-@property (nonatomic,strong) UIImage * screenSizeImage;
+@property (nonatomic,strong) UIImage * _Nullable screenSizeImage;
 //当前屏幕大小图片数据
-@property (nonatomic,strong) NSData * originalImageData;
+@property (nonatomic,strong) NSData * _Nullable originalImageData;
 
 
 
