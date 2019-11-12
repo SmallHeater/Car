@@ -46,6 +46,11 @@
 #define Profitstatistics  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/profitstatistics",CARDOMAIN]
 //利润排名接口
 #define Profitranking  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/profitranking",CARDOMAIN]
+//发送回访短信接口
+#define SendVisitSms  [[NSString alloc] initWithFormat:@"%@/api/sms/sendVisitSms",CARDOMAIN]
+//业务回访接口
+#define BusinessVisit  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/businessVisit",CARDOMAIN]
+
 
 //首页接口
 #define Home  [[NSString alloc] initWithFormat:@"%@/api/Home/index",CARDOMAIN]

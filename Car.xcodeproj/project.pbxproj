@@ -190,6 +190,7 @@
 		620BF20A2372D71300661240 /* PTImageCropVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 620BF2072372D71300661240 /* PTImageCropVC.m */; };
 		623FDFF4236075F100DB0B14 /* WelfareTreatmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */; };
 		624097F6237428BB00029143 /* VideoRecordingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 624097F5237428BB00029143 /* VideoRecordingView.m */; };
+		624097FD2378E81000029143 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 624097FC2378E81000029143 /* ExampleModel.m */; };
 		6288093A2367C669007742FF /* OneOilCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 628809392367C669007742FF /* OneOilCell.m */; };
 		6288094B23684F28007742FF /* PostManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6288094A23684F28007742FF /* PostManagementViewController.m */; };
 		62880C66236AC3E6007742FF /* NSString+SHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 62880B8A236AC3E5007742FF /* NSString+SHTool.m */; };
@@ -670,6 +671,8 @@
 		623FDFF3236075F100DB0B14 /* WelfareTreatmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelfareTreatmentView.m; sourceTree = "<group>"; };
 		624097F4237428BB00029143 /* VideoRecordingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRecordingView.h; sourceTree = "<group>"; };
 		624097F5237428BB00029143 /* VideoRecordingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRecordingView.m; sourceTree = "<group>"; };
+		624097FB2378E81000029143 /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
+		624097FC2378E81000029143 /* ExampleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleModel.m; sourceTree = "<group>"; };
 		628809382367C669007742FF /* OneOilCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneOilCell.h; sourceTree = "<group>"; };
 		628809392367C669007742FF /* OneOilCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneOilCell.m; sourceTree = "<group>"; };
 		6288094923684F28007742FF /* PostManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostManagementViewController.h; sourceTree = "<group>"; };
@@ -2168,6 +2171,8 @@
 				0445C07D232BA0F100A1904D /* ProfitrankingModel.m */,
 				0445C099232CFBEA00A1904D /* SearchConfigurationModel.h */,
 				0445C09A232CFBEA00A1904D /* SearchConfigurationModel.m */,
+				624097FB2378E81000029143 /* ExampleModel.h */,
+				624097FC2378E81000029143 /* ExampleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2447,6 +2452,7 @@
 				62880CFE236AC539007742FF /* SHMultipleSwitchingItemModel.m in Sources */,
 				04ACDD2823418F6E0050B179 /* FromUserModel.m in Sources */,
 				0419F203232277A200E76099 /* RepaidCell.m in Sources */,
+				624097FD2378E81000029143 /* ExampleModel.m in Sources */,
 				0458B8A7235030290073B5DB /* ResidualTransactionModel.m in Sources */,
 				047ACA0D2337BE4B005FC5D0 /* JobRecruitmentViewController.m in Sources */,
 				043E9F7023482A7F00109AC5 /* CommentDeleteCell.m in Sources */,

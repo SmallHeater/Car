@@ -10,6 +10,7 @@
 #import "VisitedCell.h"
 #import "UserInforController.h"
 #import "RepaidModel.h"
+#import "ExampleModel.h"
 
 static NSString * cellId = @"VisitedCell";
 @interface VisitedViewController ()
@@ -25,7 +26,7 @@ static NSString * cellId = @"VisitedCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
-//    [self requestListData];
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -40,7 +41,7 @@ static NSString * cellId = @"VisitedCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -50,10 +51,8 @@ static NSString * cellId = @"VisitedCell";
         cell = [[VisitedCell alloc] initWithReuseIdentifier:cellId];
     }
     
-//    RepaidModel * model = self.dataArray[indexPath.row];
-//    NSArray * arr = [model mj_keyValues][@"repaylist"];
-//    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"repaidList":arr}];
-    [cell test];
+    ExampleModel * model = self.dataArray[indexPath.row];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"content":model.content,@"date":model.maintain_day}];
     return cell;
 }
 
@@ -65,8 +64,8 @@ static NSString * cellId = @"VisitedCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"business_visit":[NSNumber numberWithInt:1]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":BusinessVisit,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
@@ -81,33 +80,27 @@ static NSString * cellId = @"VisitedCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
+                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
-                    [weakSelf.dataArray removeAllObjects];
                     NSArray * arr = dataDic[@"list"];
                     for (NSDictionary * dic in arr) {
                         
-                        RepaidModel * model = [RepaidModel mj_objectWithKeyValues:dic];
+                        ExampleModel * model = [ExampleModel mj_objectWithKeyValues:dic];
                         [weakSelf.dataArray addObject:model];
                     }
-                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
-                    
-                    //异常
-//                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
+                [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }
             else{
-                
-                
             }
         }
         else{
             
             //失败的
-            
         }
     }];
 }
