@@ -489,7 +489,7 @@
         [goods addObject:dic];
     }
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"pay_type":self.pay_type,@"total_price":total_priceStr,@"pay_price":total_priceStr,@"goods":goods};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"pay_type":self.pay_type,@"total_price":total_priceStr,@"pay_price":total_priceStr,@"goods":goods,@"shop_id":[NSString stringWithFormat:@"%ld",self.shopModel.shopId]};
     NSDictionary * configurationDic = @{@"requestUrlStr":OrderCreate,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

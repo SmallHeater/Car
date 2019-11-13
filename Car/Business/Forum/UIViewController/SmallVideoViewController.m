@@ -44,12 +44,11 @@ static NSString * cellID = @"VideoCollectionViewCell";
     
     if (!_collectionView) {
         
-        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
+        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) collectionViewLayout:nil];
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:cellID];
-        _collectionView.backgroundColor = [UIColor greenColor];
     }
     return _collectionView;
 }
