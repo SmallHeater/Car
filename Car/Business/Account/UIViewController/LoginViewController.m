@@ -16,6 +16,8 @@
 #import "ForumViewController.h"
 #import "WorkbenchViewController.h"
 #import "MineViewController.h"
+#import "UserInforController.h"
+
 
 @interface LoginViewController ()
 
@@ -424,10 +426,12 @@
                                             if (staffDic && [staffDic isKindOfClass:[NSDictionary class]]) {
                                              
                                                 UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
+                                                [UserInforController sharedManager].userInforModel = userInforModel;
                                                 NSDictionary * userInforDic = [userInforModel mj_keyValues];
                                                 //缓存用户信息模型字典
                                                 [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
-                                                [weakSelf refreshRootVC];
+                                                [weakSelf back];
+//                                                [weakSelf refreshRootVC];
                                             }
                                         }
                                         else{
@@ -458,6 +462,23 @@
         [MBProgressHUD wj_showError:@"请输入正确的验证码"];
     }
 
+}
+
+-(void)back{
+    
+    if (self.navigationController) {
+        
+        if (self.navigationController.viewControllers.count == 1) {
+            
+            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+        }else{
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 //重新设置根指针

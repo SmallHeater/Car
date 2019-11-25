@@ -42,7 +42,7 @@
         }
         else{
             
-            _userInforModel = nil;
+            _userInforModel = [UserInforModel mj_objectWithKeyValues:@{@"id":@"0"}];
         }
     }
     return _userInforModel;

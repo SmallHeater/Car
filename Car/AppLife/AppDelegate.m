@@ -20,7 +20,7 @@
 #import <Bugly/Bugly.h>
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -35,7 +35,7 @@
     [Bugly startWithAppId:@"af9aecbea0"];
     
     
-    if ([UserInforController sharedManager].userInforModel) {
+//    if ([UserInforController sharedManager].userInforModel) {
         
         HomeViewController * homeVC = [[HomeViewController alloc] init];
         UINavigationController * homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
@@ -62,14 +62,15 @@
         mineNav.tabBarItem.selectedImage = [UIImage imageNamed:@"wode"];
         
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
+        tarBarController.delegate = self;
         self.window.rootViewController = tarBarController;
         tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,mineNav];
         tarBarController.selectedIndex = 0;
-    }
-    else{
-        
-        self.window.rootViewController = [[LoginViewController alloc] init];
-    }
+//    }
+//    else{
+//
+//        self.window.rootViewController = [[LoginViewController alloc] init];
+//    }
     
     return YES;
 }
@@ -161,4 +162,27 @@
     return YES;
 }
 
+#pragma mark  ----  代理
+
+#pragma mark  ----  UITabBarControllerDelegate
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    
+    BOOL canSelect = YES;
+    UINavigationController * nav = (UINavigationController * )viewController;
+    if ([NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"WorkbenchViewController"] || [NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"MineViewController"]) {
+        
+        if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+            
+            //未登录
+            canSelect = NO;
+            LoginViewController * vc = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            nav.hidesBottomBarWhenPushed = YES;
+            nav.modalPresentationStyle = UIModalPresentationFullScreen;
+            [[UIViewController topMostController] presentViewController:nav animated:YES completion:nil];
+        }
+    }
+    return canSelect;
+}
 @end

@@ -140,13 +140,13 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 
 -(void)drawUI{
     
-    [self.navigationbar addSubview:self.addBtn];
-    [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.bottom.offset(0);
-        make.right.offset(-4);
-        make.width.height.offset(44);
-    }];
+//    [self.navigationbar addSubview:self.addBtn];
+//    [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//       
+//        make.bottom.offset(0);
+//        make.right.offset(-4);
+//        make.width.height.offset(44);
+//    }];
 }
 
 -(void)requestJobOption{

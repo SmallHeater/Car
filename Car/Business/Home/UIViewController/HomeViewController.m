@@ -28,6 +28,7 @@
 #import "FrameNumberInquiryViewController.h"
 #import "PushViewController.h"
 #import "ForumDetailViewController.h"
+#import "LoginViewController.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -66,11 +67,21 @@
         __weak typeof(self) weakSelf = self;
         [[_homeNavgationBar rac_signalForSelector:@selector(releaseBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
             
-            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.releaseView];
-            [weakSelf.releaseView mas_makeConstraints:^(MASConstraintMaker *make) {
-               
-                make.left.right.top.bottom.offset(0);
-            }];
+            if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                
+                //未登录
+                LoginViewController * vc = [[LoginViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.releaseView];
+                [weakSelf.releaseView mas_makeConstraints:^(MASConstraintMaker *make) {
+                   
+                    make.left.right.top.bottom.offset(0);
+                }];
+            }
         }];
     }
     return _homeNavgationBar;
@@ -359,11 +370,13 @@
                         switch (btnTag) {
                             case 0:
         
-                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
+//                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 1:
                                 
-                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
+                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
+//                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
                                 break;
                             case 2:
                                 
