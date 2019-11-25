@@ -18,6 +18,7 @@ static NSString * cellID = @"PostListCell";
 
 @property (nonatomic,assign) VCType vcType;
 @property (nonatomic,strong) NSString * sectionId;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -27,7 +28,7 @@ static NSString * cellID = @"PostListCell";
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andSectionId:(NSString *)sectionId vcType:(VCType)vcType{
     
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:YES andIsShowFoot:YES];
     if (self) {
         
         self.vcType = vcType;
@@ -107,7 +108,7 @@ static NSString * cellID = @"PostListCell";
 -(void)requestData{
     
     //GetUserArticles
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":self.sectionId};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":self.sectionId,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":ForumList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -129,7 +130,21 @@ static NSString * cellID = @"PostListCell";
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
                         NSArray * array = dataDic[@"articles"];
+                        
+                        if (array.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        
                         for (NSDictionary * dic in array) {
                             
                             ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
@@ -156,7 +171,7 @@ static NSString * cellID = @"PostListCell";
 
 -(void)requestMyArticleData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetUserArticles,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -172,13 +187,25 @@ static NSString * cellID = @"PostListCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
+
                 if (code.integerValue == 1) {
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
                         NSArray * array = dataDic[@"articles"];
+                        if (array.count == MAXCOUNT) {
+                                           
+                               weakSelf.page++;
+                           }
+                           else{
+                               
+                               weakSelf.tableView.mj_footer = nil;
+                           }
                         for (NSDictionary * dic in array) {
                             
                             ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
@@ -201,6 +228,36 @@ static NSString * cellID = @"PostListCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新
+-(void)loadNewData{
+    
+    self.page = 0;
+   if (self.vcType == VCType_tieziliebiao) {
+        
+        [self requestData];
+    }
+    else if (self.vcType == VCType_wodetieziliebiao){
+        
+        [self requestMyArticleData];
+    }
+    
+    [super loadNewData];
+}
+//上拉加载
+-(void)loadMoreData{
+    
+    if (self.vcType == VCType_tieziliebiao) {
+        
+        [self requestData];
+    }
+    else if (self.vcType == VCType_wodetieziliebiao){
+        
+        [self requestMyArticleData];
+    }
+    
+    [super loadMoreData];
 }
 
 @end

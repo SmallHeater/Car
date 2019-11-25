@@ -58,7 +58,7 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     
     if (indexPath.row == 0) {
         
-        PersonalInformationVC * vc = [[PersonalInformationVC alloc] initWithTitle:@"个人资料" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        PersonalInformationVC * vc = [[PersonalInformationVC alloc] initWithTitle:@"个人资料" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -70,7 +70,7 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     }
     else if (indexPath.row == 2){
         
-        OilPurchaseRecordViewController * vc = [[OilPurchaseRecordViewController alloc] initWithTitle:@"机油采购记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        OilPurchaseRecordViewController * vc = [[OilPurchaseRecordViewController alloc] initWithTitle:@"机油采购记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

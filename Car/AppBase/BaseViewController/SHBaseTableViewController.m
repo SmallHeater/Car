@@ -12,7 +12,10 @@
 
 //是否展示导航条
 @property (nonatomic,assign) BOOL showNavigationBar;
-
+//是否展示下拉刷新
+@property (nonatomic,assign) BOOL isShowHead;
+//是否展示上拉加载
+@property (nonatomic,assign) BOOL isShowFoot;
 @property (nonatomic,assign) UITableViewStyle tableViewStyle;
 
 @end
@@ -34,6 +37,15 @@
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,navigationBarHeight, MAINWIDTH, MAINHEIGHT - navigationBarHeight - [SHUIScreenControl bottomSafeHeight]) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        if (self.isShowHead) {
+            
+             _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        }
+       
+        if (self.isShowFoot) {
+            
+            _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        }
     }
     return _tableView;
 }
@@ -49,7 +61,8 @@
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;{
+//isShowHead,是否显示下拉刷新;isShowFoot，是否显示上拉加载
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andIsShowHead:(BOOL)isShowHead andIsShowFoot:(BOOL)isShowFoot{
 
     self = [super initWithTitle:title andIsShowBackBtn:isShowBackBtn];
     if (self) {
@@ -57,6 +70,8 @@
         self.showNavigationBar = isShowNavgationBar;
         self.tableViewStyle = style;
         self.navigationbar.hidden = !isShowNavgationBar;
+        self.isShowHead = isShowHead;
+        self.isShowFoot = isShowFoot;
     }
     return self;
 }
@@ -64,6 +79,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
 }
 
 #pragma mark  ----  代理
@@ -89,6 +106,18 @@
 -(void)requestListData{
     
 }
+
+//下拉刷新
+-(void)loadNewData{
+    
+    [self.tableView.mj_header endRefreshing];
+}
+//上拉加载
+-(void)loadMoreData{
+    
+    [self.tableView.mj_footer endRefreshing];
+}
+
 
 -(void)refreshViewType:(BTVCType)viewType{
     

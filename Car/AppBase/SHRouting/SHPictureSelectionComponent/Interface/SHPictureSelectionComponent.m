@@ -71,7 +71,7 @@
             
         };
        
-            
+        imagePickerVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:imagePickerVC animated:NO completion:^{
             
         }];
@@ -87,6 +87,7 @@
         }];
         [alert addAction:sureAction];
         
+        alert.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:alert animated:NO completion:nil];
     }
     else if ([[SHPictureSelectionController sharedManager] getAlbumAuthority] == AlbumStatusNotDetermined){

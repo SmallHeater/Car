@@ -26,6 +26,37 @@
 
 @implementation QRCodeVC
 
+#pragma mark  ----  懒加载
+
+-(QRCodeBacgrouView *)backgroundView{
+
+    if (!_backgroundView) {
+        
+        _backgroundView = [[QRCodeBacgrouView alloc]initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT)];
+    }
+    return _backgroundView;
+}
+-(QRCodeAreaView *)areaView{
+
+    if (!_areaView) {
+        
+        _areaView = [[QRCodeAreaView alloc]initWithFrame:CGRectMake((MAINWIDTH - FRAMEWIDTH)/2, (MAINHEIGHT - FRAMEWIDTH)/2, FRAMEWIDTH, FRAMEWIDTH)];
+        //提示文字
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_areaView.frame) + 20, MAINWIDTH, 14)];
+        label.text = @"将条形码放入框内，即可自动识别";
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:label];
+        
+        UIButton * endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [endBtn setImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
+        endBtn.frame = CGRectMake((MAINWIDTH - 42) / 2, CGRectGetMaxY(label.frame) + 83, 42, 42);
+        [endBtn addTarget:self action:@selector(endBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:endBtn];
+    }
+    return _areaView;
+}
+
 #pragma mark  ---- 生命周期函数
 
 -(void)viewDidLoad{
@@ -96,38 +127,6 @@
     }else{
         [self dismissViewControllerAnimated:NO completion:nil];
     }
-}
-
-
-#pragma mark  ----  懒加载
-
--(QRCodeBacgrouView *)backgroundView{
-
-    if (!_backgroundView) {
-        
-        _backgroundView = [[QRCodeBacgrouView alloc]initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT)];
-    }
-    return _backgroundView;
-}
--(QRCodeAreaView *)areaView{
-
-    if (!_areaView) {
-        
-        _areaView = [[QRCodeAreaView alloc]initWithFrame:CGRectMake((MAINWIDTH - FRAMEWIDTH)/2, (MAINHEIGHT - FRAMEWIDTH)/2, FRAMEWIDTH, FRAMEWIDTH)];
-        //提示文字
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_areaView.frame) + 20, MAINWIDTH, 14)];
-        label.text = @"将条形码放入框内，即可自动识别";
-        label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        [self.view addSubview:label];
-        
-        UIButton * endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [endBtn setImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
-        endBtn.frame = CGRectMake((MAINWIDTH - 42) / 2, CGRectGetMaxY(label.frame) + 83, 42, 42);
-        [endBtn addTarget:self action:@selector(endBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:endBtn];
-    }
-    return _areaView;
 }
 
 @end

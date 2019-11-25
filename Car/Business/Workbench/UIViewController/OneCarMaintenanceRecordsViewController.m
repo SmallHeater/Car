@@ -19,6 +19,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 //添加按钮
 @property (nonatomic,strong) UIButton * addBtn;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -37,7 +38,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
             
             x.userInteractionEnabled = NO;
             
-            MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
             vc.vehicleFileModel = weakSelf.vehicleFileModel;
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
@@ -63,7 +64,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.page = 0;
     [self drawUI];
 }
 
@@ -108,7 +109,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     
     MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
     MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
-    MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+    MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
     vc.maintenanceRecordsModel = recordModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -116,8 +117,13 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    MaintenanceRecordsOneDayModel * model = self.dataArray[section];
-    return model.list.count;
+    NSUInteger count = 0;
+    if (self.dataArray && self.dataArray.count > 0) {
+        
+        MaintenanceRecordsOneDayModel * model = self.dataArray[section];
+        count = model.list.count;
+    }
+    return count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -157,7 +163,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"car_id":self.vehicleFileModel.car_id};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"car_id":self.vehicleFileModel.car_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -176,8 +182,20 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
-                        [weakSelf.dataArray removeAllObjects];
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
+                        
                         NSArray * list = dataDic[@"list"];
+                        if (list.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
                         for (NSDictionary * dic in list) {
                             
                             MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
@@ -200,6 +218,20 @@ static NSString * cellId = @"MaintenanceRecordsCell";
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

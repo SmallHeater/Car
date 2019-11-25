@@ -14,6 +14,8 @@
 static NSString * cellId = @"RepaidCell";
 @interface RepaidViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation RepaidViewController
@@ -25,6 +27,7 @@ static NSString * cellId = @"RepaidCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -66,7 +69,7 @@ static NSString * cellId = @"RepaidCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -85,8 +88,20 @@ static NSString * cellId = @"RepaidCell";
                 if (code.integerValue == 1) {
                     
                     //成功
-                    [weakSelf.dataArray removeAllObjects];
+                    if (weakSelf.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
+                    
                     NSArray * arr = dataDic[@"list"];
+                    if (arr.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
                     for (NSDictionary * dic in arr) {
                         
                         RepaidModel * model = [RepaidModel mj_objectWithKeyValues:dic];
@@ -111,6 +126,20 @@ static NSString * cellId = @"RepaidCell";
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+     [self requestListData];
+    [super loadMoreData];
 }
 
 @end

@@ -44,6 +44,9 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 //小视频列表view
 @property (nonatomic,strong) UIView * smallVideoView;
 
+@property (nonatomic,strong) NSString * section_id;
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation ForumViewController
@@ -190,9 +193,24 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
+        __weak typeof(self) weakSelf = self;
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+           
+            weakSelf.page = 0;
+            [weakSelf requestForumList];
+            [weakSelf.tableView.mj_header endRefreshing];
+        }];
+        
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            
+            [weakSelf requestForumList];
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }];
     }
     return _tableView;
 }
+
+
 
 -(UIView *)smallVideoView{
     
@@ -211,6 +229,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.page = 0;
     [self requestTablist];
     [self drawTableView];
 }
@@ -396,7 +415,8 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         __weak typeof(self) weakSelf = self;
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            [weakSelf requestForumListWithSectionId:tabModel.ForumID];
+            weakSelf.section_id = tabModel.ForumID;
+            [weakSelf requestForumList];
         }];
     }
     
@@ -506,7 +526,8 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                             if (i == 0) {
                                 
                                 model.isSelected = YES;
-                                [weakSelf requestForumListWithSectionId:model.ForumID];
+                                weakSelf.section_id = model.ForumID;
+                                [weakSelf requestForumList];
                             }
                             else{
                                 
@@ -531,9 +552,9 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     }];
 }
 
--(void)requestForumListWithSectionId:(NSString *)sectionId{
+-(void)requestForumList{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":[NSString repleaseNilOrNull:sectionId]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":[NSString repleaseNilOrNull:self.section_id],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":ForumList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -549,13 +570,21 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
+                
                 if (code.integerValue == 1) {
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
                         NSArray * array = dataDic[@"articles"];
+                        if (array.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
                         for (NSDictionary * dic in array) {
                             
                             ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];

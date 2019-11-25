@@ -231,7 +231,7 @@ static NSUInteger tabBaseTag = 1650;
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         
-        MyPostViewController * myPostVC = [[MyPostViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        MyPostViewController * myPostVC = [[MyPostViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         [self addChildViewController:myPostVC];
         UIView * view = myPostVC.view;
         view.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44);

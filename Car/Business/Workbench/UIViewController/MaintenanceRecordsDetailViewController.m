@@ -385,6 +385,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         [alert addAction:cancleAction];
         [alert addAction:sureAction];
+        alert.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:alert animated:YES completion:^{
             
         }];

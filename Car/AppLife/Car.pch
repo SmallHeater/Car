@@ -30,7 +30,7 @@
 #import "PublicRequest.h"
 #import "YYText.h"
 #import "NSAttributedString+SHTool.h"
-
+#import "MJRefresh.h"
 
 #define Color_09A200 [UIColor colorWithRed:9.0/255.0 green:162.0/255.0 blue:0 alpha:1]
 #define Color_108EE9 [UIColor colorFromHexRGB:@"108EE9"]    
@@ -109,5 +109,8 @@
 #define MAINHEIGHT [UIScreen mainScreen].bounds.size.height
 
 #define INTERNETERROR @"网络异常，请稍后再试"
+
+//统一数据个数
+#define MAXCOUNT 20
 
 #endif /* Car_pch */

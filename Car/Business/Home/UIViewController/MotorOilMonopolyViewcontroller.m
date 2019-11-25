@@ -452,6 +452,7 @@
                 else{
                     
                     //异常
+                    [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
             }
             else{

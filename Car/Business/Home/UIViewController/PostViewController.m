@@ -217,7 +217,7 @@
         __weak typeof(self) weakSelf = self;
         [[seleceForumBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            TopicForumViewController * vc = [[TopicForumViewController alloc] initWithTitle:@"主题论坛" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
             
             [[vc rac_valuesForKeyPath:@"forumStr" observer:weakSelf] subscribeNext:^(id  _Nullable x) {
                 

@@ -14,6 +14,8 @@
 static NSString * cellId = @"VisitedCell";
 @interface RemindedViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation RemindedViewController
@@ -25,7 +27,8 @@ static NSString * cellId = @"VisitedCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
-//    [self requestListData];
+    self.page = 0;
+    [self requestListData];
 }
 
 #pragma mark  ----  代理
@@ -50,10 +53,10 @@ static NSString * cellId = @"VisitedCell";
         cell = [[VisitedCell alloc] initWithReuseIdentifier:cellId];
     }
     
-//    RepaidModel * model = self.dataArray[indexPath.row];
-//    NSArray * arr = [model mj_keyValues][@"repaylist"];
-//    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"repaidList":arr}];
-    [cell test];
+    RepaidModel * model = self.dataArray[indexPath.row];
+    NSArray * arr = [model mj_keyValues][@"repaylist"];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"repaidList":arr}];
+//    [cell test];
     return cell;
 }
 
@@ -65,7 +68,7 @@ static NSString * cellId = @"VisitedCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -81,11 +84,24 @@ static NSString * cellId = @"VisitedCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
+                
                 if (code.integerValue == 1) {
                     
                     //成功
-                    [weakSelf.dataArray removeAllObjects];
                     NSArray * arr = dataDic[@"list"];
+                    if (arr.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
+                    
                     for (NSDictionary * dic in arr) {
                         
                         RepaidModel * model = [RepaidModel mj_objectWithKeyValues:dic];
@@ -110,6 +126,20 @@ static NSString * cellId = @"VisitedCell";
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

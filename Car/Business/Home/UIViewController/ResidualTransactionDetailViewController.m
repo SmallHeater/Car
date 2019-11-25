@@ -82,7 +82,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andModel:(ResidualTransactionModel *)model{
     
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:NO andIsShowFoot:NO];
     if (self) {
         
         self.model = model;

@@ -16,6 +16,8 @@
 static NSString * cellId = @"BusinessVisitCell";
 @interface NotRemindedController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation NotRemindedController
@@ -52,7 +54,7 @@ static NSString * cellId = @"BusinessVisitCell";
         cell = [[BusinessVisitCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
 
-   /* //展示数据:numberPlate:车牌;name:姓名;carModel:车型号;phoneNumber:电话;content:维修内容;receivable:应收款;actualHarvest:实收款;arrears:欠款;
+    //展示数据:numberPlate:车牌;name:姓名;carModel:车型号;phoneNumber:电话;content:维修内容;receivable:应收款;actualHarvest:实收款;arrears:欠款;
     UnpaidModel * model = self.dataArray[indexPath.row];
     [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"content":model.content,@"receivable":model.receivable,@"actualHarvest":model.received,@"arrears":model.debt}];
     
@@ -88,8 +90,7 @@ static NSString * cellId = @"BusinessVisitCell";
         [alertVc addAction:action1];
         [self presentViewController:alertVc animated:YES completion:nil];
     };
-    */
-    [cell test];
+    
     return cell;
 }
 
@@ -100,7 +101,7 @@ static NSString * cellId = @"BusinessVisitCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:0]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:0],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -116,11 +117,24 @@ static NSString * cellId = @"BusinessVisitCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
+                
                 if (code.integerValue == 1) {
                     
                     //成功
                     NSArray * arr = dataDic[@"list"];
+                    if (arr.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
+                    
                     for (NSDictionary * dic in arr) {
                         
                         UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
@@ -183,6 +197,20 @@ static NSString * cellId = @"BusinessVisitCell";
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

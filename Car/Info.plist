@@ -37,12 +37,12 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx268417062a763c9d</string>
+				<string>wx49e2438fe82e9e8c</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>Microphone Usage Description</key>
@@ -55,7 +55,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>是否允许此App使用你的相机？</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>车店大师需要定位权限才可以正常使用</string>
+	<string>车店大师需要定位权限才可以帮你推荐周边的机油代理点</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许此App访问你的媒体资料库？</string>
 	<key>UIMainStoryboardFile</key>

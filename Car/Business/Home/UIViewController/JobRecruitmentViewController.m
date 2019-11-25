@@ -22,6 +22,8 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 //招聘参数字典
 @property (nonatomic,strong) NSDictionary * jobOptionDic;
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation JobRecruitmentViewController
@@ -37,7 +39,7 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
         __weak typeof(self) weakSelf = self;
         [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }
@@ -52,6 +54,7 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self drawUI];
+    self.page = 0;
     [self requestJobOption];
 }
 
@@ -183,7 +186,7 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":JobList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -203,7 +206,17 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
                         NSArray * list = dataDic[@"list"];
+                        
+                        if (list.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        
                         for (NSDictionary * dic in list) {
                             
                             JobModel * model = [JobModel mj_objectWithKeyValues:dic];
@@ -224,6 +237,20 @@ static NSString * JobRecruitmentCellID = @"JobRecruitmentCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

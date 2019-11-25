@@ -101,8 +101,9 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
         [topVc.navigationController pushViewController:vc animated:YES];
     }
     else{
-        
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
         [topVc presentViewController:nav animated:YES completion:nil];
     }
 }

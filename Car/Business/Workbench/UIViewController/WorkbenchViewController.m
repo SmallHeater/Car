@@ -45,7 +45,7 @@
 
 -(instancetype)init{
     
-    self = [super initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+    self = [super initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
     if (self) {
         
     }
@@ -54,8 +54,9 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];
     [self refreshViewType:BTVCType_AddTableView];
+    [super viewDidLoad];
+    [self drawUI];
     [self requestListData];
 }
 
@@ -79,7 +80,7 @@
     switch (indexPath.row) {
         case 0:
             
-            cellHeight = 28;
+            cellHeight = 38 + [SHUIScreenControl liuHaiHeight];
             break;
         case 1:
             
@@ -248,32 +249,32 @@
     else if ([itemId isEqualToString:@"kehudangan"]) {
         
         //车辆档案
-        vc = [[VehicleFileViewController alloc] initWithTitle:@"车辆档案列表" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[VehicleFileViewController alloc] initWithTitle:@"车辆档案列表" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
     }
     else if ([itemId isEqualToString:@"weixiujilu"]) {
         
         //维修记录
-        vc = [[MaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[MaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
     }
     else if ([itemId isEqualToString:@"yingshouliebiao"]) {
         
         //营收列表
-        vc = [[RevenueListViewController alloc] initWithTitle:@"营收列表" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[RevenueListViewController alloc] initWithTitle:@"营收列表" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
     }
     else if ([itemId isEqualToString:@"huikuanguanli"]) {
         
         //回款管理
-        vc = [[PaymentManagementViewController alloc] initWithTitle:@"回款管理" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[PaymentManagementViewController alloc] initWithTitle:@"回款管理" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
     }
     else if ([itemId isEqualToString:@"liruntongji"]) {
         
         //利润统计
-        vc = [[ProfitStatisticsViewController alloc] initWithTitle:@"利润统计" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        vc = [[ProfitStatisticsViewController alloc] initWithTitle:@"利润统计" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
     }
     else if ([itemId isEqualToString:@"yingyehuizong"]) {
         
         //营业汇总
-        vc = [[BusinessSummaryViewController alloc] initWithTitle:@"营业汇总" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStyleGrouped];
+        vc = [[BusinessSummaryViewController alloc] initWithTitle:@"营业汇总" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStyleGrouped andIsShowHead:NO andIsShowFoot:NO];
     }
     else if ([itemId isEqualToString:@"daishouchaxun"]) {
         
@@ -286,14 +287,14 @@
     else if ([itemId isEqualToString:@"yewuhuifang"]) {
         
         //业务回访
-        BusinessReturnVisitViewController * vc = [[BusinessReturnVisitViewController alloc] initWithTitle:@"业务回访" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        BusinessReturnVisitViewController * vc = [[BusinessReturnVisitViewController alloc] initWithTitle:@"业务回访" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if ([itemId isEqualToString:@"baoyangtuijian"]){
         
         //保养提醒
-        MaintenanceReminderViewController * vc = [[MaintenanceReminderViewController alloc] initWithTitle:@"保养提醒" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        MaintenanceReminderViewController * vc = [[MaintenanceReminderViewController alloc] initWithTitle:@"保养提醒" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -305,6 +306,15 @@
 }
 
 #pragma mark  ----  自定义函数
+
+-(void)drawUI{
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.top.right.offset(0);
+        make.bottom.offset(-44 - [SHUIScreenControl bottomSafeHeight]);
+    }];
+}
 
 -(void)requestListData{
     
@@ -349,7 +359,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 //已存在，跳转到车辆档案页
-                VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.vehicleFileModel = model;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -415,7 +425,7 @@
                                 if (isExisted) {
                                     
                                     //已存在，跳转到车辆档案页
-                                    VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                    VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                     vc.hidesBottomBarWhenPushed = YES;
                                     vc.vehicleFileModel = model;
                                     [weakSelf.navigationController pushViewController:vc animated:YES];

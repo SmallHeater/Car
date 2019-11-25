@@ -51,9 +51,9 @@
     [self.autoRepairShopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(16);
-        make.top.offset(11);
         make.right.offset(0);
         make.height.offset(18);
+        make.bottom.offset(0);
     }];
 }
 

@@ -15,6 +15,8 @@
 static NSString * cellId = @"VisitedCell";
 @interface VisitedViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation VisitedViewController
@@ -26,6 +28,7 @@ static NSString * cellId = @"VisitedCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -64,7 +67,7 @@ static NSString * cellId = @"VisitedCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"business_visit":[NSNumber numberWithInt:1]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"business_visit":[NSNumber numberWithInt:1],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":BusinessVisit,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -80,11 +83,23 @@ static NSString * cellId = @"VisitedCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
+                    if (weakSelf.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
                     NSArray * arr = dataDic[@"list"];
+                    if (arr.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
+                    
                     for (NSDictionary * dic in arr) {
                         
                         ExampleModel * model = [ExampleModel mj_objectWithKeyValues:dic];
@@ -103,6 +118,20 @@ static NSString * cellId = @"VisitedCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

@@ -18,6 +18,8 @@
 
 //添加按钮
 @property (nonatomic,strong) UIButton * addBtn;
+@property (nonatomic,assign) NSUInteger page;
+@property (nonatomic,strong) NSString * content;
 
 @end
 
@@ -49,6 +51,7 @@
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.page = 0;
     [self drawUI];
 }
 
@@ -82,7 +85,7 @@
     if (indexPath.row != 0) {
         
         VehicleFileModel * model = self.dataArray[indexPath.row - 1];
-        VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.vehicleFileModel = model;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -157,6 +160,7 @@
         bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"content":content};
     }
     
+    self.content = content;
     
     NSDictionary * configurationDic = @{@"requestUrlStr":Carlist,@"bodyParameters":bodyParameters};
     __weak VehicleFileViewController * weakSelf = self;
@@ -171,10 +175,25 @@
                 id dataId = resultDic[@"dataId"];
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
-                [weakSelf.dataArray removeAllObjects];
+               
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                     
+                    if (self.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
+                    
                     NSArray * list = dataDic[@"list"];
+                    
+                    if (list.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
+                    
                     for (NSDictionary * dic in list) {
                         
                         VehicleFileModel * model = [VehicleFileModel mj_objectWithKeyValues:dic];
@@ -194,4 +213,17 @@
     }];
 }
     
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListDataWithContent:self.content];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListDataWithContent:self.content];
+    [super loadMoreData];
+}
 @end

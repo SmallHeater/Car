@@ -102,14 +102,14 @@ typedef NS_ENUM(NSUInteger,ViewType){
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
         //未回款
-        UnpaidViewController * unpaidVC = [[UnpaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        UnpaidViewController * unpaidVC = [[UnpaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * unpaidView = unpaidVC.view;
         unpaidView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:unpaidView];
         [self addChildViewController:unpaidVC];
         self.unpaidVC = unpaidVC;
         //已回款
-        RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        RepaidViewController * repaidVC = [[RepaidViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * repaidView = repaidVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:repaidView];

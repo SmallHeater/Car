@@ -107,7 +107,7 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
             
             [alertControl addAction:sureAction];
             [alertControl addAction:cancleAction];
-            
+            alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
             [[UIViewController topMostController] presentViewController:alertControl animated:YES completion:nil];
             x.userInteractionEnabled = YES;
         }];

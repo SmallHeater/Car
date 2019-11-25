@@ -295,7 +295,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andArticleId:(NSString *)articleId{
     
-    self = [super initWithTitle:@"" andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:@"" andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:NO andIsShowFoot:NO];
     if (self) {
         
         self.titleStr = [NSString repleaseNilOrNull:title];

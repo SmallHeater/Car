@@ -142,6 +142,12 @@
     if (!_logInRegisterModel) {
         
         _logInRegisterModel = [[LogInRegisterModel alloc] init];
+        //设置默认值
+        _logInRegisterModel.lng = @"116.305600";
+        _logInRegisterModel.lat = @"40.064563";
+        _logInRegisterModel.province = @"北京市";
+        _logInRegisterModel.city = @"北京市";
+        _logInRegisterModel.district = @"昌平区";
     }
     return _logInRegisterModel;
 }
@@ -290,38 +296,44 @@
         __weak LoginViewController * weakSelf = self;
         [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
            
-            NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
-            if (SHNetworkStatusNumber.intValue == 0) {
-                
-                //无网
-                [MBProgressHUD wj_showError:INTERNETERROR];
-            }
-            else{
-                
-                //发起请求
-                int num = (arc4random() % 10000);
-                NSString * randomNumber = [NSString stringWithFormat:@"%.4d", num];
-                NSDictionary * bodyParameters = @{@"mobile":phoneNumber,@"code":randomNumber,@"event":@"register"};
-                NSDictionary * configurationDic = @{@"requestUrlStr":GetVerificationCode,@"bodyParameters":bodyParameters};
-                [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+            if (resultDic && [resultDic isKindOfClass:[NSDictionary class]] && [resultDic.allKeys containsObject:@"SHNetworkStatus"]) {
+             
+                NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
+                if (SHNetworkStatusNumber.intValue == 0) {
                     
-                    if (![resultDic.allKeys containsObject:@"error"]) {
+                    //无网
+                    [MBProgressHUD wj_showError:INTERNETERROR];
+                }
+                else{
+                    
+                    //发起请求
+                    int num = (arc4random() % 10000);
+                    NSString * randomNumber = [NSString stringWithFormat:@"%.4d", num];
+                    NSDictionary * bodyParameters = @{@"mobile":phoneNumber,@"code":randomNumber,@"event":@"register"};
+                    NSDictionary * configurationDic = @{@"requestUrlStr":GetVerificationCode,@"bodyParameters":bodyParameters};
+                    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
                         
-                        //成功的
-                        NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-                        if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                        if (resultDic && [resultDic isKindOfClass:[NSDictionary class]] && ![resultDic.allKeys containsObject:@"error"]) {
                             
-                            weakSelf.verificationCode = randomNumber;
+                            if ([resultDic.allKeys containsObject:@"response"]) {
+                             
+                                //成功的
+                                NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                                if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                                    
+                                    weakSelf.verificationCode = randomNumber;
+                                }
+                                else{
+                                    
+                                }
+                            }
                         }
                         else{
                             
+                            //失败的
                         }
-                    }
-                    else{
-                        
-                        //失败的
-                    }
-                }];
+                    }];
+                }
             }
         }];
     }
@@ -347,6 +359,7 @@
             
             if (self.logInRegisterModel.shop_name && self.logInRegisterModel.shop_name.length > 0) {
             
+                [self.view endEditing:YES];
                 [self logIn];
             }
             else{
@@ -393,26 +406,47 @@
                     if (![resultDic.allKeys containsObject:@"error"]) {
                         
                         //成功的
-                        NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-                        if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                            
-                            id dataId = resultDic[@"dataId"];
-                            NSDictionary * dic = (NSDictionary *)dataId;
-                            NSDictionary * dataDic = dic[@"data"];
-                            NSDictionary * staffDic = dataDic[@"staff"];
-                            UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
-                            NSDictionary * userInforDic = [userInforModel mj_keyValues];
-                            //缓存用户信息模型字典
-                            [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
-                            [weakSelf refreshRootVC];
-                        }
-                        else{
-                            
+                        if ([resultDic.allKeys containsObject:@"response"]) {
+                         
+                            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+                            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                                
+                                if ([resultDic.allKeys containsObject:@"dataId"]) {
+                                 
+                                    id dataId = resultDic[@"dataId"];
+                                    NSDictionary * dic = (NSDictionary *)dataId;
+                                    if (dic && [dic isKindOfClass:[NSDictionary class]] && [dic.allKeys containsObject:@"data"]) {
+                                     
+                                        NSDictionary * dataDic = dic[@"data"];
+                                        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"staff"]) {
+                                         
+                                            NSDictionary * staffDic = dataDic[@"staff"];
+                                            if (staffDic && [staffDic isKindOfClass:[NSDictionary class]]) {
+                                             
+                                                UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
+                                                NSDictionary * userInforDic = [userInforModel mj_keyValues];
+                                                //缓存用户信息模型字典
+                                                [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+                                                [weakSelf refreshRootVC];
+                                            }
+                                        }
+                                        else{
+                                            
+                                            [MBProgressHUD wj_showError:@"登录失败，请稍后重试"];
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                               
+                                [MBProgressHUD wj_showError:@"登录失败，请稍后重试"];
+                            }
                         }
                     }
                     else{
                         
                         //失败的
+                        [MBProgressHUD wj_showError:@"登录失败，请稍后重试"];
                     }
                 }];
             }
@@ -447,7 +481,7 @@
     workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
     workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
     
-    MineViewController * mineVC = [[MineViewController alloc] init];
+    MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
     UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
     mineNav.tabBarItem.title = @"我的";
     mineNav.tabBarItem.image = [UIImage imageNamed:@"wode"];

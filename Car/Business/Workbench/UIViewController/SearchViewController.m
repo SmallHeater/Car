@@ -34,7 +34,7 @@
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andSearchConfigurationModel:(SearchConfigurationModel *)configurationModel{
     
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:NO andIsShowFoot:NO];
     if (self) {
         
         self.configurationModel = configurationModel;
@@ -133,7 +133,7 @@
      
         MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section - 1];
         MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
-        MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+        MaintenanceRecordsDetailViewController * vc = [[MaintenanceRecordsDetailViewController alloc] initWithTitle:@"维修记录详情" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         vc.maintenanceRecordsModel = recordModel;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -278,6 +278,7 @@
                 // 添加行为
                 [alertVc addAction:action2];
                 [alertVc addAction:action1];
+                alertVc.modalPresentationStyle = UIModalPresentationFullScreen;
                 [self presentViewController:alertVc animated:YES completion:nil];
             };
             

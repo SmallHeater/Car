@@ -15,6 +15,8 @@ static NSString * cellId = @"OilPurchaseRecordCell";
 
 @interface OilPurchaseRecordViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation OilPurchaseRecordViewController
@@ -66,7 +68,7 @@ static NSString * cellId = @"OilPurchaseRecordCell";
 -(void)requestListData{
     
     //发起请求
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetOrders,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -82,7 +84,20 @@ static NSString * cellId = @"OilPurchaseRecordCell";
                 NSDictionary * dataDic = dic[@"data"];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                     
+                    if (weakSelf.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
                     NSArray * list = dataDic[@"list"];
+                    
+                    if (list.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
                     if (list && [list isKindOfClass:[NSArray class]]) {
                         
                         for (NSDictionary * dic in list) {
@@ -102,6 +117,20 @@ static NSString * cellId = @"OilPurchaseRecordCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

@@ -24,6 +24,8 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 @interface MyPostViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation MyPostViewController
@@ -144,7 +146,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 -(void)requestListData{
     
     //发起请求
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetMyForums,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -160,13 +162,26 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
+                
                 if (code.integerValue == 1) {
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
                         NSArray * arr = dataDic[@"articles"];
+                        if (arr.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        
                         if (arr && [arr isKindOfClass:[NSArray class]]) {
                             
                             for (NSDictionary * dic in arr) {
@@ -201,6 +216,20 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

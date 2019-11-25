@@ -78,7 +78,7 @@ static NSString * ResidualTransactionComplaintCellID = @"ResidualTransactionComp
 //招聘参数字典,jobOptionDic;招聘信息模型，jobModel;
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andJobOptionDic:(NSDictionary *)JobOptionDic andJobModel:(JobModel *)jobModel{
     
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:NO andIsShowFoot:NO];
     if (self) {
         
         self.jobOptionDic = JobOptionDic;

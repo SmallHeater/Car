@@ -113,7 +113,7 @@
         [[releaseResidualValueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [weakSelf.releaseView removeFromSuperview];
-            PostResidualTransactionViewController * vc = [[PostResidualTransactionViewController alloc] initWithTitle:@"发布残值" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            PostResidualTransactionViewController * vc = [[PostResidualTransactionViewController alloc] initWithTitle:@"发布残值" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
             vc.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
@@ -123,7 +123,7 @@
         [[postRecruitmentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             [weakSelf.releaseView removeFromSuperview];
-            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            PostJobViewController * vc = [[PostJobViewController alloc] initWithTitle:@"发布招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
             vc.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
@@ -325,6 +325,7 @@
                             
                             //去详情页
                             ForumDetailViewController * vc = [[ForumDetailViewController alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:urlStr];
+                            vc.hidesBottomBarWhenPushed = YES;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }
                     }
@@ -358,7 +359,7 @@
                         switch (btnTag) {
                             case 0:
         
-                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 1:
                                 
@@ -370,15 +371,15 @@
                                 break;
                             case 3:
                                 
-                                vc = [[ResidualTransactionViewController alloc] initWithTitle:@"残值交易" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc = [[ResidualTransactionViewController alloc] initWithTitle:@"残值交易" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 4:
                             
-                                vc = [[JobRecruitmentViewController alloc] initWithTitle:@"求职招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc = [[JobRecruitmentViewController alloc] initWithTitle:@"求职招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 5:
                                 
-                                vc = [[FrameNumberInquiryViewController alloc] initWithTitle:@"车架号查询" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+                                vc = [[FrameNumberInquiryViewController alloc] initWithTitle:@"车架号查询" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 6:
                                 
@@ -439,9 +440,9 @@
             //滑动完成的回调
             [[cell rac_signalForSelector:@selector(scrollViewDidEndDecelerating:)] subscribeNext:^(RACTuple * _Nullable x) {
                
-                UICollectionView * collectionView = x.first;
-                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
-                [weakSelf.baseTabView selectItemWithIndex:index];
+//                UICollectionView * collectionView = x.first;
+//                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
+//                [weakSelf.baseTabView selectItemWithIndex:index];
             }];
         }
         

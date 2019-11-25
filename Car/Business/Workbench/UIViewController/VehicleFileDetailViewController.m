@@ -126,7 +126,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
         __weak typeof(self) weakSelf = self;
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
            
-            OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain];
+            OneCarMaintenanceRecordsViewController * vc = [[OneCarMaintenanceRecordsViewController alloc] initWithTitle:@"维修记录" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
             vc.vehicleFileModel = weakSelf.vehicleFileModel;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
@@ -166,6 +166,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
             
             [alert addAction:cancleAction];
             [alert addAction:sureAction];
+            alert.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:alert animated:YES completion:^{
                 
             }];

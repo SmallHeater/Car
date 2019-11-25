@@ -79,14 +79,14 @@ typedef NS_ENUM(NSUInteger,ViewType){
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
         //未回款
-        BusinessVisitController * businessVisitVC = [[BusinessVisitController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        BusinessVisitController * businessVisitVC = [[BusinessVisitController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * businessVisitView = businessVisitVC.view;
         businessVisitView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:businessVisitView];
         [self addChildViewController:businessVisitVC];
         self.businessVisitVC = businessVisitVC;
         //已回款
-        VisitedViewController * visitedVC = [[VisitedViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        VisitedViewController * visitedVC = [[VisitedViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * repaidView = visitedVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:repaidView];

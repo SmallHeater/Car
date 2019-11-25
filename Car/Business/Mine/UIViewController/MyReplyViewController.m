@@ -21,6 +21,7 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
 @interface MyReplyViewController ()
 
 @property (nonatomic,assign) VCType type;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -30,7 +31,7 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
 
 -(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style VCType:(VCType)type{
     
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style];
+    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:YES andIsShowFoot:YES];
     if (self) {
         
         self.type = type;
@@ -130,7 +131,7 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
         type = @"1";
     }
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":type,@"commentable_type":@"article",};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":type,@"commentable_type":@"article",@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetMyComments,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -145,14 +146,26 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
+                if (weakSelf.page == 0) {
+                    
+                    [weakSelf.dataArray removeAllObjects];
+                }
                 
-                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
-                        for (NSDictionary * dic in dataDic[@"comments"]) {
+                        NSArray * arr = dataDic[@"comments"];
+                        if (arr.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        for (NSDictionary * dic in arr) {
                             
                             CommentModel * model = [CommentModel mj_objectWithKeyValues:dic];
                             [weakSelf.dataArray addObject:model];
@@ -183,6 +196,20 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

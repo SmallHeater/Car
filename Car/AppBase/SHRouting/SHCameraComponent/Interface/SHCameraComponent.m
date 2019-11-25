@@ -34,6 +34,7 @@
             
         }];
         [alert addAction:sureAction];
+        alert.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController] presentViewController:alert animated:YES completion:nil];
         callBack(@{@"error":@"无权限"});
     }

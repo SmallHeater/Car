@@ -55,7 +55,7 @@
         workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
         workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
         
-        MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain];
+        MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
         mineNav.tabBarItem.title = @"我的";
         mineNav.tabBarItem.image = [UIImage imageNamed:@"wode"];

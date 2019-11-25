@@ -114,7 +114,7 @@ static SHCameraManager * manager = nil;
         picker.delegate = weakSelf;
         picker.sourceType=sourceType;
         picker.allowsEditing= YES;
-       
+        picker.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:picker animated:YES completion:nil];
     }
     else if (self.cameraType == SHCamareType_SmartLicense){
@@ -135,10 +135,12 @@ static SHCameraManager * manager = nil;
             picker.delegate=weakSelf;
             picker.sourceType=sourceType;
             picker.allowsEditing= NO;
+            picker.modalPresentationStyle = UIModalPresentationFullScreen;
             [[UIViewController topMostController]  presentViewController:picker animated:YES completion:nil];
         };
         secVC.showSysCamare = [showSysCamareCallBack copy];
         secVC.getImageCallBack = [callback copy];
+        secVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:secVC animated:NO completion:nil];
     }
     else if (self.cameraType == SHCamareType_SmartIDCard){
@@ -159,10 +161,12 @@ static SHCameraManager * manager = nil;
             picker.delegate=weakSelf;
             picker.sourceType=sourceType;
             picker.allowsEditing= NO;
+            picker.modalPresentationStyle = UIModalPresentationFullScreen;
             [[UIViewController topMostController]  presentViewController:picker animated:YES completion:nil];
         };
         secVC.showSysCamare = [showSysCamareCallBack copy];
         secVC.getImageCallBack = [callback copy];
+        secVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:secVC animated:NO completion:nil];
     }
     else if (self.cameraType == SHCamareType_HorizontalScreen){
@@ -172,6 +176,7 @@ static SHCameraManager * manager = nil;
             
             [weakSelf finishedTakeImage:cutImage];
         };
+        secVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:secVC animated:NO completion:nil];
     }
 }

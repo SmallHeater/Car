@@ -183,6 +183,7 @@
                 self.playerVC.player = [AVPlayer playerWithURL:videoModel.videoUrl];
             }
             
+            self.playerVC.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:self.playerVC animated:YES completion:^{
                 
             }];

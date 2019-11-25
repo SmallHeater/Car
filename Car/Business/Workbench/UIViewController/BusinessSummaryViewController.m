@@ -21,6 +21,7 @@
 @property (nonatomic,strong) UIButton * explanationBtn;
 @property (nonatomic,strong) NSArray * headStrArray;
 @property (nonatomic,strong) BusinessSummaryHeaderModel * headerModel;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -63,6 +64,7 @@
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -197,7 +199,7 @@
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Businesssummarytop,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -213,13 +215,24 @@
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
+                    if (weakSelf.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
                     NSDictionary * sumDic = dataDic[@"sum"];
                     self.headerModel = [BusinessSummaryHeaderModel mj_objectWithKeyValues:sumDic];
                     NSArray * list = dataDic[@"list"];
+                    if (list.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
                     for (NSDictionary * dic in list) {
                         
                         BusinessSummaryItemModel * itemModel = [BusinessSummaryItemModel mj_objectWithKeyValues:dic];
@@ -241,6 +254,20 @@
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

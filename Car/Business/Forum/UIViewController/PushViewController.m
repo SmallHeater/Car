@@ -34,6 +34,9 @@
 @property (nonatomic,strong) NSString * dataPath;
 //封面图路径
 @property (nonatomic,strong) NSString * imagePath;
+//录制时长
+@property (nonatomic,assign) __block NSUInteger time;
+@property (nonatomic,strong) dispatch_source_t timer;
 
 @end
 
@@ -83,14 +86,7 @@
     if (!_stopRecordingBtn) {
         
         _stopRecordingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        __weak typeof(self) weakSelf = self;
-        [[_stopRecordingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            
-            [weakSelf.recordingView stopRunning];
-            [weakSelf.recordingView stopCapture];
-            [weakSelf.stopRecordingBtn removeFromSuperview];
-            weakSelf.bgImageView.hidden = NO;
-        }];
+        [_stopRecordingBtn addTarget:self action:@selector(stopRecordingBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _stopRecordingBtn;
 }
@@ -140,6 +136,19 @@
                
                 make.left.right.top.bottom.offset(0);
             }];
+            
+            //开启定时器计时，视频录制时长限制3-15秒
+            weakSelf.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
+            dispatch_source_set_timer(weakSelf.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+            dispatch_source_set_event_handler(weakSelf.timer, ^{
+                
+                weakSelf.time++;
+                if (weakSelf.time >= 16) {
+                    
+                    [weakSelf performSelectorOnMainThread:@selector(stopRecordingBtnClicked) withObject:nil waitUntilDone:YES];
+                }
+            });
+            dispatch_resume(weakSelf.timer);
         }];
     }
     return _startRecordingBtn;
@@ -170,6 +179,7 @@
                 
                 [alertControl addAction:cancelAction];
                 [alertControl addAction:sureAction];
+                alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
                 [weakSelf presentViewController:alertControl animated:YES completion:nil];
             }
         };
@@ -243,7 +253,7 @@
     
     [alertControl addAction:cancleAction];
     [alertControl addAction:sureAction];
-    
+    alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:alertControl animated:YES completion:nil];
 }
 
@@ -261,6 +271,21 @@
     }else{
         
         [self dismissViewControllerAnimated:NO completion:nil];
+    }
+}
+
+-(void)stopRecordingBtnClicked{
+    
+    if (self.time < 3) {
+        
+        [MBProgressHUD wj_showError:@"小视频录制时长最短3秒"];
+    }
+    else{
+     
+        [self.recordingView stopRunning];
+        [self.recordingView stopCapture];
+        [self.stopRecordingBtn removeFromSuperview];
+        self.bgImageView.hidden = NO;
     }
 }
 

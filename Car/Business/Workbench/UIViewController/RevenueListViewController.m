@@ -19,6 +19,7 @@ static NSString * cellId = @"RevenueCell";
 
 //搜索按钮
 @property (nonatomic,strong) UIButton * searchBtn;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -63,6 +64,7 @@ static NSString * cellId = @"RevenueCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -116,7 +118,7 @@ static NSString * cellId = @"RevenueCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -135,7 +137,19 @@ static NSString * cellId = @"RevenueCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
                         NSArray * list = dataDic[@"list"];
+                        if (list.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
                         for (NSDictionary * dic in list) {
                             
                             MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
@@ -159,6 +173,20 @@ static NSString * cellId = @"RevenueCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

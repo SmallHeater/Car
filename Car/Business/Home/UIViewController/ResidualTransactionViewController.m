@@ -18,6 +18,7 @@ static NSString * CommodityCellID = @"CommodityCell";
 
 //搜索按钮
 @property (nonatomic,strong) UIButton * searchBtn;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -62,6 +63,7 @@ static NSString * CommodityCellID = @"CommodityCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -125,7 +127,7 @@ static NSString * CommodityCellID = @"CommodityCell";
 
 -(void)requestListData
 {
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":HandedGoodList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -144,7 +146,15 @@ static NSString * CommodityCellID = @"CommodityCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
                         NSArray * list = dataDic[@"list"];
+                        if (list.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
                         for (NSDictionary * dic in list) {
                             
                             ResidualTransactionModel * model = [ResidualTransactionModel mj_objectWithKeyValues:dic];
@@ -165,6 +175,20 @@ static NSString * CommodityCellID = @"CommodityCell";
             //失败的
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

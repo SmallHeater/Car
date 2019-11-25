@@ -25,12 +25,16 @@ typedef NS_ENUM(NSUInteger,BTVCType){
 @property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style;
+//isShowHead,是否显示下拉刷新;isShowFoot，是否显示上拉加载
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andIsShowHead:(BOOL)isShowHead andIsShowFoot:(BOOL)isShowFoot;
 
 
 //请求列表数据
 -(void)requestListData;
-
+//下拉刷新(回调函数)
+-(void)loadNewData;
+//上拉加载(回调函数)
+-(void)loadMoreData;
 //刷新展示
 -(void)refreshViewType:(BTVCType)viewType;
 

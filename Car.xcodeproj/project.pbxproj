@@ -120,6 +120,7 @@
 		0490B7E4236583D400DC33BB /* SmallVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E3236583D400DC33BB /* SmallVideoViewController.m */; };
 		0490B7E72365870600DC33BB /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E62365870600DC33BB /* VideoModel.m */; };
 		0490B7EA23658BB400DC33BB /* VideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E923658BB400DC33BB /* VideoCollectionViewCell.m */; };
+		049214E5237D83B4004BCE3E /* VideoPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049214E4237D83B4004BCE3E /* VideoPlayCell.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
 		0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BE23156D0000A5EDC1 /* OneCarMaintenanceRecordsViewController.m */; };
@@ -545,6 +546,8 @@
 		0490B7E62365870600DC33BB /* VideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		0490B7E823658BB400DC33BB /* VideoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCollectionViewCell.h; sourceTree = "<group>"; };
 		0490B7E923658BB400DC33BB /* VideoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCollectionViewCell.m; sourceTree = "<group>"; };
+		049214E3237D83B4004BCE3E /* VideoPlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayCell.h; sourceTree = "<group>"; };
+		049214E4237D83B4004BCE3E /* VideoPlayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayCell.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
 		0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformationCell.m; sourceTree = "<group>"; };
 		0498B5BA23141A4A00A5EDC1 /* DriverInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverInformationCell.h; sourceTree = "<group>"; };
@@ -1378,6 +1381,8 @@
 				04C7055C236D96B000A697C5 /* CommentNoReplyCell.m */,
 				04C7055E236E858700A697C5 /* FormDetailUrlCell.h */,
 				04C7055F236E858800A697C5 /* FormDetailUrlCell.m */,
+				049214E3237D83B4004BCE3E /* VideoPlayCell.h */,
+				049214E4237D83B4004BCE3E /* VideoPlayCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2542,6 +2547,7 @@
 				62880CF3236AC539007742FF /* SHCarouselCollectionViewCell.m in Sources */,
 				6288094B23684F28007742FF /* PostManagementViewController.m in Sources */,
 				0490B7E123654E0200DC33BB /* CarInfoModel.m in Sources */,
+				049214E5237D83B4004BCE3E /* VideoPlayCell.m in Sources */,
 				62880C95236AC3E6007742FF /* SHAssetVideoModel.m in Sources */,
 				043E9F612345943900109AC5 /* ForumDetailInfringementPromptCell.m in Sources */,
 				043E9F7C2348B97C00109AC5 /* PostJobMonthlySalaryCell.m in Sources */,
@@ -2840,6 +2846,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2870,6 +2877,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

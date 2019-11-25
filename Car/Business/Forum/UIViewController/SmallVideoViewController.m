@@ -85,10 +85,20 @@ static NSString * cellID = @"VideoCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    VideoModel * model = self.dataArray[indexPath.row];
-    PlayViewController * playVC = [[PlayViewController alloc] initWithVideoModel:model];
+    PlayViewController * playVC = [[PlayViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andDataArray:self.dataArray andSelectIndex:indexPath.row];
     playVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:playVC animated:YES];
+    if (self.navigationController) {
+        
+        [self.navigationController pushViewController:playVC animated:YES];
+    }
+    else{
+        
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playVC];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
+        [[UIViewController topMostController] presentViewController:nav animated:YES completion:^{
+            
+        }];
+    }
 }
 
 #pragma mark  ----  UICollectionViewDataSource

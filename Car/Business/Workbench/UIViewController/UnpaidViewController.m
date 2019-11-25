@@ -16,6 +16,8 @@
 static NSString * cellId = @"UnpaidCell";
 @interface UnpaidViewController ()
 
+@property (nonatomic,assign) NSUInteger page;
+
 @end
 
 @implementation UnpaidViewController
@@ -27,6 +29,7 @@ static NSString * cellId = @"UnpaidCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
+    self.page = 0;
     [self requestListData];
 }
 
@@ -86,6 +89,7 @@ static NSString * cellId = @"UnpaidCell";
         // 添加行为
         [alertVc addAction:action2];
         [alertVc addAction:action1];
+        alertVc.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:alertVc animated:YES completion:nil];
     };
     
@@ -99,7 +103,7 @@ static NSString * cellId = @"UnpaidCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:0]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:0],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -115,11 +119,22 @@ static NSString * cellId = @"UnpaidCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
+                    if (weakSelf.page == 0) {
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                    }
                     NSArray * arr = dataDic[@"list"];
+                    if (arr.count == MAXCOUNT) {
+                        
+                        weakSelf.page++;
+                    }
+                    else{
+                        
+                        weakSelf.tableView.mj_footer = nil;
+                    }
                     for (NSDictionary * dic in arr) {
                         
                         UnpaidModel * model = [UnpaidModel mj_objectWithKeyValues:dic];
@@ -182,6 +197,20 @@ static NSString * cellId = @"UnpaidCell";
             
         }
     }];
+}
+
+//下拉刷新(回调函数)
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+    [super loadNewData];
+}
+//上拉加载(回调函数)
+-(void)loadMoreData{
+    
+    [self requestListData];
+    [super loadMoreData];
 }
 
 @end

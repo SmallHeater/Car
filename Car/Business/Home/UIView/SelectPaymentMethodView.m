@@ -53,7 +53,7 @@ static NSString * cellId = @"PaymentMethodCell";
             
             [alertControl addAction:sureAction];
             [alertControl addAction:cancleAction];
-            
+            alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
             [[UIViewController topMostController] presentViewController:alertControl animated:YES completion:nil];
         }];
         [_topView addGestureRecognizer:tap];

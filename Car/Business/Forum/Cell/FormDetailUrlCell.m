@@ -57,7 +57,7 @@
         NSString * str = URL.absoluteString;
         NSString * urlStr = [str substringFromIndex:14];
         SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
-        
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
         UIViewController * topVc = [UIViewController topMostController];
         if (topVc.navigationController) {
             

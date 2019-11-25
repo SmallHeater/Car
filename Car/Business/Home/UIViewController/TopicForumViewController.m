@@ -19,6 +19,7 @@ static NSString * cellId = @"TopicForumCell";
 @property (nonatomic,strong) NSString * forumStr;
 //论坛ID
 @property (nonatomic,strong) NSString * forumId;
+@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -76,7 +77,7 @@ static NSString * cellId = @"TopicForumCell";
 #pragma mark  ----  自定义函数
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":PostSectionList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -97,8 +98,19 @@ static NSString * cellId = @"TopicForumCell";
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
+                        if (weakSelf.page == 0) {
+                            
+                            [weakSelf.dataArray removeAllObjects];
+                        }
                         NSArray * arr = dataDic[@"sections"];
-                        [weakSelf.dataArray removeAllObjects];
+                        if (arr.count == MAXCOUNT) {
+                            
+                            weakSelf.page++;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
                         for (NSUInteger i = 0; i < arr.count; i++) {
                             
                             NSDictionary * dic = arr[i];
@@ -122,4 +134,17 @@ static NSString * cellId = @"TopicForumCell";
         }
     }];
 }
+
+//下拉刷新
+-(void)loadNewData{
+    
+    self.page = 0;
+    [self requestListData];
+}
+//上拉加载
+-(void)loadMoreData{
+    
+    [self requestListData];
+}
+
 @end

@@ -128,6 +128,7 @@
     
     [alertCtrl addAction:continueAct];
     [alertCtrl addAction:tkSystemAct];
+    alertCtrl.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:alertCtrl animated:YES completion:nil];
 }
 
