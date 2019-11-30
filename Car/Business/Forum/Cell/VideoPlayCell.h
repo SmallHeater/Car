@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)playVideo:(VideoModel *)video;
 
+//暂停播放
+-(void)pausePlay;
+//继续播放
+-(void)resumePlayback;
+
 @end
 
 NS_ASSUME_NONNULL_END

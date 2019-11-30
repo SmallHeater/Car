@@ -57,7 +57,8 @@
     
     if (!_itemsTitleArray) {
         
-        _itemsTitleArray = [[NSArray alloc] initWithObjects:@"维修保养",@"行业信息",@"营销课",@"残值交易",@"求职招聘",@"查车架号",@"查违章",@"维修资料",@"查故障",@"疑难杂症", nil];
+        //@"维修保养",@"行业信息"
+        _itemsTitleArray = [[NSArray alloc] initWithObjects:@"机油采购",@"配件采购",@"营销课",@"残值交易",@"求职招聘",@"查车架号",@"查违章",@"维修资料",@"查故障",@"疑难杂症", nil];
     }
     return _itemsTitleArray;
 }

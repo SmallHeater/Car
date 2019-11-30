@@ -22,7 +22,10 @@ static NSString * cellId = @"VideoPlayCell";
 //我发布的
 @property (nonatomic,strong) SHImageAndTitleBtn * myPublish;
 @property (nonatomic,assign) NSUInteger index;
-
+//上一个cell
+@property (nonatomic,strong) VideoPlayCell * previousCell;
+//当前cell
+@property (nonatomic,strong) VideoPlayCell * currentCell;
 @end
 
 @implementation PlayViewController
@@ -111,8 +114,27 @@ static NSString * cellId = @"VideoPlayCell";
     return cellHeight;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    //播放延时，解决滑动时就开始播放的问题
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       
+        VideoModel * video = self.dataArray[indexPath.row];
+        [(VideoPlayCell *)cell playVideo:video];
+    });
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath{
+    
+    if ([cell isEqual:self.currentCell]) {
+        
+        [self.currentCell pausePlay];
+    }
+    else{
+        
+        self.previousCell = (VideoPlayCell *)cell;
+        [self.previousCell pausePlay];
+    }
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -128,13 +150,12 @@ static NSString * cellId = @"VideoPlayCell";
     if (!cell) {
         
         cell = [[VideoPlayCell alloc] initWithReuseIdentifier:cellId];
-        cell.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = [UIColor clearColor];
     }
-    
-    VideoModel * video = self.dataArray[indexPath.row];
-    [cell playVideo:video];
+    self.currentCell = cell;
     return cell;
 }
+
 
 #pragma mark  ----  自定义函数
 

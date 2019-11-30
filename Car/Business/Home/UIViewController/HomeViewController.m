@@ -370,13 +370,13 @@
                         switch (btnTag) {
                             case 0:
         
-                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
-//                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+//                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
+                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 1:
                                 
-                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
-//                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
+//                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
+                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
                                 break;
                             case 2:
                                 

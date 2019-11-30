@@ -101,8 +101,6 @@
     }];
     
     [self.view bringSubviewToFront:self.navigationbar];
-    
-    
 }
 
 //增加kvo监听，获得页面title和加载进度值

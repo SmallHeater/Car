@@ -31,7 +31,7 @@
 @property (nonatomic,strong) UILabel * nickNameLabel;
 //标题
 @property (nonatomic,strong) UILabel * titleLabel;
-@property (nonatomic,strong)AVPlayer *player;//播放器对象
+@property (nonatomic,strong) AVPlayer *player;//播放器对象
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic,strong)AVPlayerItem *currentPlayerItem;
 @property (nonatomic,strong)UIView *containerView;
@@ -239,7 +239,6 @@
 }
 
 -(void)dealloc{
-
 }
 
 //监听状态回调方法
@@ -349,6 +348,9 @@
         self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
         self.playerLayer.frame = CGRectMake(0, 0,MAINWIDTH,MAINHEIGHT);
         [self.layer addSublayer:self.playerLayer];
+        //解决暂停后滑动，还显示暂停按钮的问题
+        self.stopPlayBtn.hidden = NO;
+        self.startPlayBtn.hidden = YES;
         [self.player play];
         
         [self addSubview:self.bgImageView];
@@ -364,6 +366,24 @@
         [self.shareBtn refreshTitle:[NSString stringWithFormat:@"%ld",video.shares]];
         self.nickNameLabel.text = [NSString stringWithFormat:@"@%@",video.shop_name];
         self.titleLabel.text = video.name;
+    }
+}
+
+//暂停播放
+-(void)pausePlay{
+    
+    if (self.player) {
+
+        [self.player pause];
+    }
+}
+
+//继续播放
+-(void)resumePlayback{
+    
+    if (self.player) {
+
+        [self.player play];
     }
 }
 
