@@ -620,7 +620,7 @@ static NSString * PostJobDescriptionCellId = @"PostJobDescriptionCell";
                 NSNumber * code = dic[@"code"];
                 if (code.integerValue == 1) {
                     
-                    [MBProgressHUD wj_showSuccess:dic[@"msg"]];
+                    [MBProgressHUD wj_showSuccess:@"发布招聘成功，请等待人工审核"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                        
                         [weakSelf backBtnClicked:nil];

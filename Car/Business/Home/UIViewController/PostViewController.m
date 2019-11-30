@@ -445,8 +445,8 @@
                 if (code.integerValue == 1) {
                     
                     //成功
-                    [MBProgressHUD wj_showSuccess:@"发帖成功"];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [MBProgressHUD wj_showSuccess:@"发帖成功，等待人工审核"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         
                         [weakSelf backBtnClicked:nil];
                     });
