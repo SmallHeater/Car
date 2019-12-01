@@ -154,55 +154,17 @@
                 
                 //打开相机
                 __weak typeof(self) weakSelf = self;
-                [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
+                [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
                     
-                    if ([resultDic.allKeys containsObject:@"error"]) {
-                        
-                        //异常
-                        NSLog(@"行驶证识别异常");
-                    }
-                    else if ([resultDic.allKeys containsObject:@"image"]){
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [MBProgressHUD wj_showActivityLoading:@"识别中" toView:[UIApplication sharedApplication].keyWindow];
-                        });
+                    
+                    if ([resultDic.allKeys containsObject:@"image"]){
                         
                         UIImage * image = resultDic[@"image"];
-                        [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
-                            
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                
-                                [MBProgressHUD wj_hideHUDForView:[UIApplication sharedApplication].keyWindow];
-                            });
-                            
-                            if (result && [result isKindOfClass:[NSDictionary class]]) {
-                                
-                                NSDictionary * workResultDic = result[@"words_result"];
-                                NSDictionary * seventhDic = workResultDic[@"车辆识别代号"];
-                                //车辆识别代号
-                                NSString * vin = seventhDic[@"words"];
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                   
-                                    weakSelf.text = vin;
-                                    if (weakSelf.callBack) {
-                                        
-                                        weakSelf.callBack();
-                                    }
-                                });
-                            }
-                        } failHandler:^(NSError *err) {
-                            
-                            NSLog(@"失败:%@", err);
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                
-                                [MBProgressHUD wj_hideHUDForView:[UIApplication sharedApplication].keyWindow];
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                    
-                                    [MBProgressHUD wj_showError:@"识别失败，请输入"];
-                                });
-                            });
-                        }];
+                        [weakSelf finishedTakeImage:image];
+                    }
+                    else{
+                        
+                        [MBProgressHUD wj_showError:@"拍照异常"];
                     }
                 }];
             }
@@ -335,56 +297,54 @@
     return 6;
 }
 
-#pragma mark  ----  UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-     [self finishedTakeImage:image];
-}
-
 - (void)finishedTakeImage:(UIImage *)image{
-    if (image) {
-        
-        NSMutableArray * selectedImageArray = [[NSMutableArray alloc] init];
-        
-        __weak typeof(self) wkself = self;
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        if (image) {
             
-            [PHAssetCreationRequest creationRequestForAssetFromImage:image];
-            
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            
-            if (success) {
+            NSMutableArray * selectedImageArray = [[NSMutableArray alloc] init];
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
                 
-                [[SHPictureSelectionController sharedManager] loadAllPhoto:^(NSMutableArray<SHAssetBaseModel *> *arr) {
+                [PHAssetCreationRequest creationRequestForAssetFromImage:image];
+                
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                
+                if (success) {
                     
-                    if (arr.count > 0) {
+                    [[SHPictureSelectionController sharedManager] loadAllPhoto:^(NSMutableArray<SHAssetBaseModel *> *arr) {
                         
-                        //第一个是默认的照相机项
-                        if (arr.count > 1) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
                             
-                            SHAssetBaseModel * model = arr[1];
-                            [selectedImageArray addObject:model];
-                            [wkself backBtnClicked:nil];
-                            if (wkself.block) {
+                            if (arr.count > 0) {
                                 
-                                wkself.block(selectedImageArray);
+                                //第一个是默认的照相机项
+                                if (arr.count > 1) {
+                                    
+                                    SHAssetBaseModel * model = arr[1];
+                                    [selectedImageArray addObject:model];
+                                    [weakSelf backBtnClicked:nil];
+                                    if (weakSelf.block) {
+                                        
+                                        weakSelf.block(selectedImageArray);
+                                    }
+                                    else if (weakSelf.delegate){
+                                        
+                                        [weakSelf.delegate finiSHSelectedWithArray:selectedImageArray];
+                                    }
+                                }
                             }
-                            else if (wkself.delegate){
-                                
-                                [wkself.delegate finiSHSelectedWithArray:selectedImageArray];
-                            }
-                        }
-                    }
-                }];
-            }
-            else{
-                
-                NSLog(@"image转PHAsset失败，%@",error);
-            }
-        }];
-    }
+                        });
+                    }];
+                }
+                else{
+                    
+                    NSLog(@"image转PHAsset失败，%@",error);
+                }
+            }];
+        }
+    });
 }
 #pragma mark  ----  自定义函数
 

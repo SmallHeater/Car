@@ -34,16 +34,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1A4B2FF9-8B19-4A19-89E4-3622169AB717"
+            uuid = "D1CEDA44-9F43-4652-A67A-E6B33CF63590"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Car/AppBase/SHRouting/SHPictureSelectionComponent/UIViewController/SHPictureSelectionViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "-finishBtnClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

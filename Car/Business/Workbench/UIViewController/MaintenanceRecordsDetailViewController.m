@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (!_bottomView) {
         
         _bottomView = [[UIView alloc] init];
+        _bottomView.hidden = YES;
         _bottomView.userInteractionEnabled = YES;
         
         //添加时不显示删除
@@ -357,10 +358,12 @@ typedef NS_ENUM(NSUInteger,ViewState){
     if (self.viewState == ViewState_show) {
         
         self.viewState = ViewState_edit;
+        self.bottomView.hidden = NO;
     }
     else if (self.viewState == ViewState_edit){
         
         self.viewState = ViewState_show;
+        self.bottomView.hidden = YES;
     }
     [self.tableView reloadData];
     btn.userInteractionEnabled = YES;

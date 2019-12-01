@@ -113,7 +113,7 @@ static SHCameraManager * manager = nil;
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.delegate = weakSelf;
         picker.sourceType=sourceType;
-        picker.allowsEditing= YES;
+//        picker.allowsEditing= YES;
         picker.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:picker animated:YES completion:nil];
     }
