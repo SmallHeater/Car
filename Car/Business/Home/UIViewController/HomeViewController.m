@@ -24,11 +24,12 @@
 #import "PostViewController.h"
 #import "PostResidualTransactionViewController.h"
 #import "PostJobViewController.h"
-#import "PostListViewController.h"
+#import "MultiStylePostListViewController.h"
 #import "FrameNumberInquiryViewController.h"
 #import "PushViewController.h"
 #import "ForumDetailViewController.h"
 #import "LoginViewController.h"
+
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
@@ -380,7 +381,7 @@
                                 break;
                             case 2:
                                 
-                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5" vcType:VCType_tieziliebiao];
+                                vc = [[MultiStylePostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5" vcType:MultiStylePostListVCType_tieziliebiao];
                                 break;
                             case 3:
                                 
@@ -408,7 +409,7 @@
                                 break;
                             case 9:
                                 
-                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8" vcType:VCType_tieziliebiao];
+                                vc = [[MultiStylePostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8" vcType:MultiStylePostListVCType_tieziliebiao];
                                 break;
                             default:
                                 break;

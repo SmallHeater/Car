@@ -122,6 +122,7 @@
 		0490B7EA23658BB400DC33BB /* VideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E923658BB400DC33BB /* VideoCollectionViewCell.m */; };
 		04919D412393B1760031107A /* SmallVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D402393B1760031107A /* SmallVideoCollectionViewCell.m */; };
 		04919D472393B4480031107A /* ForumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D462393B4480031107A /* ForumListViewController.m */; };
+		04919D4C2393E0CA0031107A /* MultiStylePostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */; };
 		049214E5237D83B4004BCE3E /* VideoPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049214E4237D83B4004BCE3E /* VideoPlayCell.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
@@ -553,6 +554,8 @@
 		04919D402393B1760031107A /* SmallVideoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmallVideoCollectionViewCell.m; sourceTree = "<group>"; };
 		04919D452393B4480031107A /* ForumListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumListViewController.h; sourceTree = "<group>"; };
 		04919D462393B4480031107A /* ForumListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumListViewController.m; sourceTree = "<group>"; };
+		04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiStylePostListViewController.m; sourceTree = "<group>"; };
+		04919D4B2393E0CA0031107A /* MultiStylePostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiStylePostListViewController.h; sourceTree = "<group>"; };
 		049214E3237D83B4004BCE3E /* VideoPlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayCell.h; sourceTree = "<group>"; };
 		049214E4237D83B4004BCE3E /* VideoPlayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayCell.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
@@ -1086,6 +1089,8 @@
 		04048587230C252A00EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04919D4B2393E0CA0031107A /* MultiStylePostListViewController.h */,
+				04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */,
 				0437A2A62358A4B300964E1C /* MotorOilMonopolyShopViewController.h */,
 				0437A2A72358A4B400964E1C /* MotorOilMonopolyShopViewController.m */,
 				0404859A230C259900EF17C8 /* HomeViewController.h */,
@@ -2435,6 +2440,7 @@
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				62880D0D236BBA66007742FF /* MaintenanceReminderViewController.m in Sources */,
 				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
+				04919D4C2393E0CA0031107A /* MultiStylePostListViewController.m in Sources */,
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62880D12236BBC99007742FF /* RemindedViewController.m in Sources */,
 				04C7054E236D38EB00A697C5 /* AboutViewController.m in Sources */,
@@ -2858,7 +2864,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2890,7 +2896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

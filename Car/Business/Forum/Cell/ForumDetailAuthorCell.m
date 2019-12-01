@@ -129,7 +129,7 @@
 -(void)show:(ForumArticleModel *)model{
     
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.from_user.avatar]]];
-    self.nickNameLabel.text = [NSString repleaseNilOrNull:model.from_user.nick_name];
+    self.nickNameLabel.text = [NSString repleaseNilOrNull:model.from_user.shop_name];
  
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd hh:mm"];

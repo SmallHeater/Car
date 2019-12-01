@@ -97,7 +97,7 @@
         _appIconLabel.textAlignment = NSTextAlignmentCenter;
         _appIconLabel.font = BOLDFONT18;
         _appIconLabel.textColor = Color_333333;
-        _appIconLabel.text = @"APP图标";
+        _appIconLabel.text = @"车店大师";
     }
     return _appIconLabel;
 }
@@ -428,13 +428,13 @@
         __weak LoginViewController * weakSelf = self;
         [SHRoutingComponent openURL:GETNETWORKTYPE callBack:^(NSDictionary *resultDic) {
             
-            NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
-            if (SHNetworkStatusNumber.intValue == 0) {
-                
-                //无网
-                [MBProgressHUD wj_showError:INTERNETERROR];
-            }
-            else{
+//            NSNumber * SHNetworkStatusNumber = resultDic[@"SHNetworkStatus"];
+//            if (SHNetworkStatusNumber.intValue == 0) {
+//                
+//                //无网
+//                [MBProgressHUD wj_showError:INTERNETERROR];
+//            }
+//            else{
                 
                 //发起请求
                 NSDictionary * bodyParameters = [self.logInRegisterModel mj_keyValues];;
@@ -489,7 +489,7 @@
                         [MBProgressHUD wj_showError:@"登录失败，请稍后重试"];
                     }
                 }];
-            }
+//            }
         }];
     }
     else{

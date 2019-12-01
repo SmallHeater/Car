@@ -69,8 +69,8 @@
     float cellHeight = 0;
     cellHeight += 77;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
-    cellHeight += 17 + 104;
-    cellHeight += 53;
+    cellHeight += 15 + 81;
+    cellHeight += 45;
     return cellHeight;
 }
 
@@ -79,14 +79,14 @@
     [super drawUI];
     
     NSUInteger imageWidth = 109;
-    NSUInteger imageHeight = 104;
+    NSUInteger imageHeight = 81;
     float interval = (MAINWIDTH - 15 * 2 - imageWidth * 3) / 2;
     
     [self addSubview:self.oneImageView];
     [self.oneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(15);
-        make.bottom.offset(-53);
+        make.bottom.offset(-45);
         make.width.offset(imageWidth);
         make.height.offset(imageHeight);
     }];
@@ -118,7 +118,7 @@
         
         NSString * firstImgUrl = model.images[0];
         NSString * secondImgUrl = model.images[1];
-        NSString * thirdImgUrl = model.images[0];
+        NSString * thirdImgUrl = model.images[2];
         [self.oneImageView sd_setImageWithURL:[NSURL URLWithString:firstImgUrl]];
         [self.twoImageView sd_setImageWithURL:[NSURL URLWithString:secondImgUrl]];
         [self.threeImageView sd_setImageWithURL:[NSURL URLWithString:thirdImgUrl]];

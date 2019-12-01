@@ -6,46 +6,42 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //
 
-#import "PostListViewController.h"
-#import "PostListCell.h"
+#import "MultiStylePostListViewController.h"
 #import "UserInforController.h"
 #import "ForumArticleModel.h"
 #import "ForumDetailViewController.h"
+#import "CarItemVideoCell.h"
+#import "CarItemTextCell.h"
+#import "CarItemSingleCell.h"
+#import "CarItemThreeCell.h"
 
-static NSString * cellID = @"PostListCell";
+static NSString * CarItemTextCellId = @"CarItemTextCell";
+static NSString * CarItemSingleCellID = @"CarItemSingleCell";
+static NSString * CarItemVideoCellID = @"CarItemVideoCell";
+static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
-@interface PostListViewController ()
+@interface MultiStylePostListViewController ()
 
-@property (nonatomic,assign) PostListVCType vcType;
+@property (nonatomic,assign) MultiStylePostListVCType vcType;
 @property (nonatomic,strong) NSString * sectionId;
-@property (nonatomic,strong) NSString * userId;
 @property (nonatomic,assign) NSUInteger page;
 
 @end
 
-@implementation PostListViewController
+@implementation MultiStylePostListViewController
 
 #pragma mark  ----  生命周期函数
 
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andSectionId:(NSString *)sectionId{
+-(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andSectionId:(NSString *)sectionId vcType:(MultiStylePostListVCType)vcType{
     
     self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:YES andIsShowFoot:YES];
     if (self) {
         
-        self.vcType = PostListVCType_tieziliebiao;
-        self.sectionId = [NSString repleaseNilOrNull:sectionId];
-    }
-    return self;
-}
-
-//用户的帖子列表
--(instancetype)initWithTitle:(NSString *)title andShowNavgationBar:(BOOL)isShowNavgationBar andIsShowBackBtn:(BOOL)isShowBackBtn andTableViewStyle:(UITableViewStyle)style andUserId:(NSString *)userId{
-    
-    self = [super initWithTitle:title andShowNavgationBar:isShowNavgationBar andIsShowBackBtn:isShowBackBtn andTableViewStyle:style andIsShowHead:YES andIsShowFoot:YES];
-    if (self) {
-        
-        self.vcType = PostListVCType_wodetieziliebiao;
-        self.userId = [NSString repleaseNilOrNull:userId];
+        self.vcType = vcType;
+        if (vcType == MultiStylePostListVCType_tieziliebiao) {
+         
+            self.sectionId = [NSString repleaseNilOrNull:sectionId];
+        }
     }
     return self;
 }
@@ -55,11 +51,11 @@ static NSString * cellID = @"PostListCell";
     [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     self.page = 1;
-    if (self.vcType == PostListVCType_tieziliebiao) {
+    if (self.vcType == MultiStylePostListVCType_tieziliebiao) {
         
         [self requestData];
     }
-    else if (self.vcType == PostListVCType_wodetieziliebiao){
+    else if (self.vcType == MultiStylePostListVCType_wodetieziliebiao){
         
         [self requestMyArticleData];
     }
@@ -71,7 +67,26 @@ static NSString * cellID = @"PostListCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 129;
+    float cellHeight = 0;
+    ForumArticleModel * model = self.dataArray[indexPath.row];
+    if ([model.type isEqualToString:@"single"]) {
+        
+        cellHeight = 130;
+    }
+    else if ([model.type isEqualToString:@"three"]) {
+        
+        cellHeight = 222;
+    }
+    else if ([model.type isEqualToString:@"video"]) {
+        
+        cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
+    }
+    else if ([model.type isEqualToString:@"zero"]){
+        
+        cellHeight = [CarItemTextCell cellHeight:model];
+    }
+    
+    return cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,22 +110,53 @@ static NSString * cellID = @"PostListCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    PostListCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
+    ForumArticleModel * model = self.dataArray[indexPath.row];
+    if ([model.type isEqualToString:@"zero"]) {
         
-        cell = [[PostListCell alloc] initWithReuseIdentifier:cellID];
+        CarItemTextCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemTextCellId];
+        if (!cell) {
+            
+            cell = [[CarItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemTextCellId];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    else if ([model.type isEqualToString:@"single"]) {
+        
+            CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
+        if (!cell) {
+            
+            cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    else if ([model.type isEqualToString:@"three"]){
+        
+        CarItemThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemThreeCellID];
+        if (!cell) {
+            
+            cell = [[CarItemThreeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemThreeCellID];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    else if ([model.type isEqualToString:@"video"]){
+        
+        CarItemVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemVideoCellID];
+        if (!cell) {
+            
+            cell = [[CarItemVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemVideoCellID];
+        }
+        
+        [cell show:model];
+        return cell;
     }
     
-    ForumArticleModel * model = self.dataArray[indexPath.row];
-    //imageUrl,图片地址;title,标题;pv,NSNumber,浏览量;section_title,来源;
-    NSString * imageUrl = @"";
-    if (model.images && [model.images isKindOfClass:[NSArray class]] && model.images.count > 0) {
-        
-        imageUrl = model.images[0];
-    }
-    NSDictionary * dic = @{@"imageUrl":imageUrl,@"title":model.title,@"pv":[NSNumber numberWithInteger:model.pv],@"section_title":model.section_title};
-    [cell show:dic];
-    return cell;
+    return nil;
 }
 
 #pragma mark  ----  自定义函数
@@ -179,7 +225,7 @@ static NSString * cellID = @"PostListCell";
 
 -(void)requestMyArticleData{
     
-    NSDictionary * bodyParameters = @{@"user_id":self.userId,@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetUserArticles,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
@@ -242,11 +288,11 @@ static NSString * cellID = @"PostListCell";
 -(void)loadNewData{
     
     self.page = 1;
-   if (self.vcType == PostListVCType_tieziliebiao) {
+   if (self.vcType == MultiStylePostListVCType_tieziliebiao) {
         
         [self requestData];
     }
-    else if (self.vcType == PostListVCType_wodetieziliebiao){
+    else if (self.vcType == MultiStylePostListVCType_wodetieziliebiao){
         
         [self requestMyArticleData];
     }
@@ -256,11 +302,11 @@ static NSString * cellID = @"PostListCell";
 //上拉加载
 -(void)loadMoreData{
     
-    if (self.vcType == PostListVCType_tieziliebiao) {
+    if (self.vcType == MultiStylePostListVCType_tieziliebiao) {
         
         [self requestData];
     }
-    else if (self.vcType == PostListVCType_wodetieziliebiao){
+    else if (self.vcType == MultiStylePostListVCType_wodetieziliebiao){
         
         [self requestMyArticleData];
     }

@@ -15,6 +15,7 @@
 #import "SHBaseCollectionView.h"
 #import "SmallVideoCollectionViewCell.h"
 #import "ForumListViewController.h"
+#import "MultiStylePostListViewController.h"
 
 
 #define BASEBTNTAG 1400
@@ -93,26 +94,8 @@ static NSString * smallVideoCellId = @"SmallVideoCollectionViewCell";
             
             UIButton * btn = x.first;
             NSUInteger index = btn.tag - BASEBTNTAG;
-            for (ForumTabModel * model in weakSelf.tabForumTabModelArray) {
-                
-                model.isSelected = NO;
-            }
-            
-            ForumTabModel * model = weakSelf.tabForumTabModelArray[index];
-            model.isSelected = YES;
-            if ([model.title isEqualToString:@"小视频"]) {
-                
-//                [weakSelf.smallVideoView removeFromSuperview];
-//                weakSelf.tableView.hidden = YES;
-//                weakSelf.smallVideoView.hidden = NO;
-//                [weakSelf.view addSubview:weakSelf.smallVideoView];
-            }
-            else{
-             
-//                weakSelf.tableView.hidden = NO;
-//                weakSelf.smallVideoView.hidden = YES;
-//                [weakSelf requestSectionListWithTabID:model.ForumID];
-            }
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [weakSelf.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         }];
     }
     return _baseTabView;
@@ -329,23 +312,21 @@ static NSString * smallVideoCellId = @"SmallVideoCollectionViewCell";
             [vc requestSectionListWithTabID:model.ForumID];
         }
         else if ([model.title isEqualToString:@"杂谈"]){
-            
-            ForumListViewController * vc = [[ForumListViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+
+            MultiStylePostListViewController * vc = [[MultiStylePostListViewController alloc] initWithTitle:model.title andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andSectionId:model.ForumID vcType:MultiStylePostListVCType_tieziliebiao];
             self.miscellaneousView = vc.view;
             self.miscellaneousView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
             [self addChildViewController:vc];
-            [vc requestSectionListWithTabID:model.ForumID];
         }
         else if ([model.title isEqualToString:@"学知识"]){
-            
-            ForumListViewController * vc = [[ForumListViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+
+            MultiStylePostListViewController * vc = [[MultiStylePostListViewController alloc] initWithTitle:model.title andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andSectionId:model.ForumID vcType:MultiStylePostListVCType_tieziliebiao];
             self.learnKnowledgeView = vc.view;
             self.learnKnowledgeView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
             [self addChildViewController:vc];
-            [vc requestSectionListWithTabID:model.ForumID];
         }
         else if ([model.title isEqualToString:@"小视频"]){
-            
+
             SmallVideoViewController * vc = [[SmallVideoViewController alloc] initWithType:VCType_Forum];
             self.smallVideoView = vc.view;
             self.smallVideoView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);

@@ -18,32 +18,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9870C149-A75C-4682-BC70-145DB876246C"
+            uuid = "B761C082-0999-4340-BB9C-13E86BCBCACB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Car/Business/Forum/UIViewController/ForumListViewController.m"
+            filePath = "Car/Business/Home/Cell/ItemListCollectionViewCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "-requestSectionListWithTabID:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2755A641-B93B-42C2-BC93-E4980C17E6A3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Car/Business/Forum/UIViewController/ForumListViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "-requestForumList"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-requestWithTabID:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

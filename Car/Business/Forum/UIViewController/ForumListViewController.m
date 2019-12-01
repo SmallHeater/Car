@@ -18,6 +18,7 @@
 #import "ForumVideoCell.h"
 #import "ForumDetailViewController.h"
 #import "UserInforController.h"
+#import "PostListViewController.h"
 
 
 static NSString * ForumBaseCellId = @"ForumBaseCell";
@@ -222,6 +223,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     }
    
     self.sectionView = [[UIScrollView alloc] init];
+    self.sectionView.scrollEnabled = NO;
     [self.tableHeaderView addSubview:self.sectionView];
     [self.sectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -233,6 +235,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     float btnX = 15;
     float btnWidth = 50;
     float btnHeight = 70;
+    float btnInterval = (MAINWIDTH - btnX * 2 - btnWidth * 5) / 4;
     for (NSUInteger i = 0; i < self.sectionForumTabModelArray.count; i++) {
         
         ForumTabModel * tabModel = self.sectionForumTabModelArray[i];
@@ -241,15 +244,29 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         [btn refreshTitle:tabModel.title];
         [btn setImageUrl:tabModel.image];
         [btn setImageViewCornerRadius:btnWidth/2];
-        [btn showImageStr:[NSString stringWithFormat:@"%ld",tabModel.count]];
-        btnX += btnWidth + 25;
+        if ([tabModel.title isEqualToString:@"全部论坛"] == NO) {
+         
+            [btn showImageStr:[NSString stringWithFormat:@"%ld",tabModel.count]];
+        }
+        btnX += btnWidth + btnInterval;
         [self.sectionBtnArray addObject:btn];
         [self.sectionView addSubview:btn];
         __weak typeof(self) weakSelf = self;
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
             weakSelf.section_id = tabModel.ForumID;
-            [weakSelf requestForumList];
+            if ([weakSelf.section_id isEqualToString:@"0"]) {
+                
+                //全部论坛
+                [weakSelf requestForumList];
+            }
+            else{
+                
+                //其余项，如维修保养，电子电路等
+                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:tabModel.title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:weakSelf.section_id];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
         }];
     }
     

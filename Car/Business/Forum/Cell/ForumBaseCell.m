@@ -98,7 +98,9 @@
 
     if (!_thumbsUpBtn) {
 
-        _thumbsUpBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 115, CGRectGetHeight(self.frame) - 42, 30, 24) andImageFrame:CGRectMake(0, 10, 15, 15) andTitleFrame:CGRectMake(15, 0, 15, 10) andImageName:@"luntanzan" andSelectedImageName:@"luntanzan" andTitle:@"0"];
+        _thumbsUpBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 115, CGRectGetHeight(self.frame) - 42, 28, 24) andImageFrame:CGRectMake(0, 10, 13, 13) andTitleFrame:CGRectMake(13, 0, 15, 10) andImageName:@"luntanzan" andSelectedImageName:@"luntanzan" andTitle:@"0"];
+        [_thumbsUpBtn refreshFont:FONT10];
+        [_thumbsUpBtn refreshColor:Color_666666];
         _thumbsUpBtn.userInteractionEnabled = NO;
     }
     return _thumbsUpBtn;
@@ -108,7 +110,9 @@
     
     if (!_commentBtn) {
         
-        _commentBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 76, CGRectGetMinY(self.thumbsUpBtn.frame), 30, CGRectGetHeight(self.thumbsUpBtn.frame)) andImageFrame:CGRectMake(0, 10, 15, 15) andTitleFrame:CGRectMake(15, 0, 15, 10) andImageName:@"luntanpinglun" andSelectedImageName:@"luntanpinglun" andTitle:@"0"];
+        _commentBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(MAINWIDTH - 76, CGRectGetMinY(self.thumbsUpBtn.frame), 28, CGRectGetHeight(self.thumbsUpBtn.frame)) andImageFrame:CGRectMake(0, 10, 13, 13) andTitleFrame:CGRectMake(13, 0, 15, 10) andImageName:@"luntanpinglun" andSelectedImageName:@"luntanpinglun" andTitle:@"0"];
+        [_commentBtn refreshFont:FONT10];
+        [_commentBtn refreshColor:Color_666666];
         _commentBtn.userInteractionEnabled = NO;
     }
     return _commentBtn;
@@ -153,7 +157,7 @@
     float cellHeight = 0;
     cellHeight += 77;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
-    cellHeight += 56;
+    cellHeight += 45;
     return cellHeight;
 }
 
@@ -198,7 +202,7 @@
     [self.viewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.avatarImageView.mas_left);
-        make.bottom.offset(-19);
+        make.bottom.offset(-15);
         make.height.offset(12);
         make.right.offset(-120);
     }];
@@ -207,7 +211,7 @@
     [self.thumbsUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.offset(-90);
-        make.bottom.offset(-19);
+        make.bottom.offset(-15);
         make.width.offset(30);
         make.height.offset(24);
     }];
@@ -216,7 +220,7 @@
     [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.offset(-49);
-        make.bottom.offset(-19);
+        make.bottom.offset(-15);
         make.width.offset(30);
         make.height.offset(24);
     }];
@@ -225,7 +229,7 @@
     [self.sharepBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.offset(-15);
-        make.bottom.offset(-19);
+        make.bottom.offset(-15);
         make.width.offset(30);
         make.height.offset(24);
     }];
@@ -246,22 +250,13 @@
     NSString * avatar = [NSString repleaseNilOrNull:model.from_user.avatar];
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar]];
     
-    NSString * nickName = [NSString repleaseNilOrNull:model.from_user.nick_name];
+    NSString * nickName = [NSString repleaseNilOrNull:model.from_user.shop_name];
     self.nickNameLabel.text = nickName;
     
-    NSTimeInterval timeInterval =[model.createtime timeIntervalSince1970];
-    NSUInteger hour = timeInterval / 3600;
-    NSString * time;
-    if (hour > 24) {
-        
-        NSUInteger day = hour / 24;
-        time = [[NSString alloc] initWithFormat:@"%ld天前",day];
-    }
-    else{
-        
-        time = [[NSString alloc] initWithFormat:@"%ld小时前",hour];
-    }
-    
+    NSDate * date = model.createtime;
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString * time = [formatter stringFromDate:date];
     self.timeLabel.text = time;
     
     NSString * title = [NSString repleaseNilOrNull:model.title];

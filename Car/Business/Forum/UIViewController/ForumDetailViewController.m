@@ -76,7 +76,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         __weak typeof(self) weakSelf = self;
         [[_titleBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
-            PostListViewController * vc = [[PostListViewController alloc] initWithTitle:weakSelf.titleStr andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:[NSString stringWithFormat:@"%ld",(long)weakSelf.forumArticleModel.section_id] vcType:VCType_tieziliebiao];
+            PostListViewController * vc = [[PostListViewController alloc] initWithTitle:weakSelf.titleStr andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:[NSString stringWithFormat:@"%ld",(long)weakSelf.forumArticleModel.section_id]];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }
@@ -396,7 +396,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
             [[cell rac_signalForSelector:@selector(attentionBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
                 
                 //去作者的帖子列表页面
-                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:@"我的帖子" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"" vcType:VCType_wodetieziliebiao];
+                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:@"我的帖子" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andUserId:[NSString stringWithFormat:@"%ld",weakSelf.forumArticleModel.from_user.userId]];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }];
         }

@@ -47,8 +47,8 @@
     float cellHeight = 0;
     cellHeight += 77;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
-    cellHeight += 17 + 104;
-    cellHeight += 53;
+    cellHeight += 17 + 81;
+    cellHeight += 45;
     return cellHeight;
 }
 
@@ -60,8 +60,9 @@
     [self.singleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(15);
-        make.bottom.offset(-53);
-        make.width.height.offset(104);
+        make.bottom.offset(-45);
+        make.width.offset(104);
+        make.height.offset(81);
     }];
 }
 

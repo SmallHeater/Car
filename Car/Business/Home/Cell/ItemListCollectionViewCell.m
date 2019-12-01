@@ -40,7 +40,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-//        _tableView.bounces = NO;
+        _tableView.bounces = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         __weak typeof(self) weakSelf = self;
@@ -194,6 +194,8 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 //请求数据
 -(void)requestWithTabID:(NSString *)tabID{
 
+    [self.dataArray removeAllObjects];
+    [self.tableView reloadData];
     self.tabID = [NSString repleaseNilOrNull:tabID];
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
@@ -221,7 +223,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
                             
                             if (arr.count == MAXCOUNT) {
                                 
-                                weakSelf.page++;
+//                                weakSelf.page++;
                             }
                             
                             for (NSDictionary * dic in arr) {

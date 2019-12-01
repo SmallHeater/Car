@@ -48,7 +48,7 @@
     cellHeight += 77;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
     cellHeight += 17 + 190.0 / 345.0 * (MAINWIDTH - 30);
-    cellHeight += 53;
+    cellHeight += 45;
     return cellHeight;
 }
 
@@ -61,7 +61,7 @@
        
         make.left.offset(15);
         make.right.offset(-15);
-        make.bottom.offset(-53);
+        make.bottom.offset(-45);
         make.height.offset(imageViewHeight);
     }];
 }
