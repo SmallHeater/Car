@@ -11,7 +11,7 @@
 
 @property (nonatomic,strong) UIImageView * imageView;
 @property (nonatomic,strong) UILabel * titleLabel;
-
+@property (nonatomic,strong) UILabel * imageStrLabel;
 @property (nonatomic,copy) NSString * imageName;
 @property (nonatomic,copy) NSString * selectedImageName;
 
@@ -41,6 +41,19 @@
     return _titleLabel;
 }
 
+-(UILabel *)imageStrLabel{
+    
+    if (_imageStrLabel == nil) {
+        
+        _imageStrLabel = [[UILabel alloc] init];
+        _imageStrLabel.font = BOLDFONT21;
+        _imageStrLabel.textColor = [UIColor whiteColor];
+        _imageStrLabel.textAlignment = NSTextAlignmentCenter;
+        _imageStrLabel.hidden = YES;
+    }
+    return _imageStrLabel;
+}
+
 #pragma mark  ----  生命周期函数
 -(instancetype)initWithFrame:(CGRect)frame andImageFrame:(CGRect)imageFrame andTitleFrame:(CGRect)titleFrame andImageName:(NSString *)imageName andSelectedImageName:(NSString *)selectedImageName andTitle:(NSString *)title{
     
@@ -61,6 +74,11 @@
         
         [self addSubview:self.imageView];
         [self addSubview:self.titleLabel];
+        [self.imageView addSubview:self.imageStrLabel];
+        [self.imageStrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.top.bottom.offset(0);
+        }];
     }
     return self;
 }
@@ -134,6 +152,13 @@
      
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
     }
+}
+
+//图片上显示内容
+-(void)showImageStr:(NSString *)imageStr{
+    
+    self.imageStrLabel.hidden = NO;
+    self.imageStrLabel.text = [NSString repleaseNilOrNull:imageStr];
 }
 
 @end

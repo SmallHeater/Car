@@ -10,42 +10,35 @@
 #import "SHTabView.h"
 #import "UserInforController.h"
 #import "ForumTabModel.h"
-#import "SHImageAndTitleBtn.h"
 #import "ForumArticleModel.h"
-#import "ForumSingleCell.h"
-#import "ForumThreeCell.h"
-#import "ForumVideoCell.h"
-#import "ForumDetailViewController.h"
-#import "PostListCell.h"
 #import "SmallVideoViewController.h"
+#import "SHBaseCollectionView.h"
+#import "SmallVideoCollectionViewCell.h"
+#import "ForumListViewController.h"
+
 
 #define BASEBTNTAG 1400
+static NSString * defaultCellId = @"UICollectionViewCell";
+static NSString * smallVideoCellId = @"SmallVideoCollectionViewCell";
 
-static NSString * ForumBaseCellId = @"ForumBaseCell";
-static NSString * ForumSingleCellId = @"ForumSingleCell";
-static NSString * PostListCellId = @"PostListCell";
-static NSString * ForumThreeCellId = @"ForumThreeCell";
-static NSString * ForumVideoCellId = @"ForumVideoCell";
-
-@interface ForumViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ForumViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 //头部页签项模型数组
 @property (nonatomic,strong) NSMutableArray<ForumTabModel *> * tabForumTabModelArray;
-//第二行页签项模型数组
-@property (nonatomic,strong) NSMutableArray<ForumTabModel *> * sectionForumTabModelArray;
-@property (nonatomic,strong) NSMutableArray<SHImageAndTitleBtn *> * sectionBtnArray;
 @property (nonatomic,strong) NSMutableArray<SHTabModel *> * tabModelArray;
 @property (nonatomic,strong) SHTabView * baseTabView;
 //论坛页导航
 @property (nonatomic,strong) UIView * forumNavView;
-@property (nonatomic,strong) UIScrollView * sectionView;
-@property (nonatomic,strong) NSMutableArray<ForumArticleModel *> * dataArray;
-@property (nonatomic,strong) SHBaseTableView * tableView;
+@property (nonatomic,strong) SHBaseCollectionView * collectionView;
+//行业论坛view
+@property (nonatomic,strong) UIView * industryForumView;
+//杂谈view
+@property (nonatomic,strong) UIView * miscellaneousView;
+//学知识view
+@property (nonatomic,strong) UIView * learnKnowledgeView;
 //小视频列表view
 @property (nonatomic,strong) UIView * smallVideoView;
 
-@property (nonatomic,strong) NSString * section_id;
-@property (nonatomic,assign) NSUInteger page;
 
 @end
 
@@ -60,24 +53,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         _tabForumTabModelArray = [[NSMutableArray alloc] init];
     }
     return _tabForumTabModelArray;
-}
-
--(NSMutableArray<ForumTabModel *> *)sectionForumTabModelArray{
-    
-    if (!_sectionForumTabModelArray) {
-        
-        _sectionForumTabModelArray = [[NSMutableArray alloc] init];
-    }
-    return _sectionForumTabModelArray;
-}
-
--(NSMutableArray<SHImageAndTitleBtn *> *)sectionBtnArray{
-    
-    if (!_sectionBtnArray) {
-        
-        _sectionBtnArray = [[NSMutableArray alloc] init];
-    }
-    return _sectionBtnArray;
 }
 
 -(NSMutableArray<SHTabModel *> *)tabModelArray{
@@ -103,7 +78,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     return _tabModelArray;
 }
 
-
 -(SHTabView *)baseTabView{
     
     if (!_baseTabView) {
@@ -128,16 +102,16 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
             model.isSelected = YES;
             if ([model.title isEqualToString:@"小视频"]) {
                 
-                [weakSelf.smallVideoView removeFromSuperview];
-                weakSelf.tableView.hidden = YES;
-                weakSelf.smallVideoView.hidden = NO;
-                [weakSelf.view addSubview:weakSelf.smallVideoView];
+//                [weakSelf.smallVideoView removeFromSuperview];
+//                weakSelf.tableView.hidden = YES;
+//                weakSelf.smallVideoView.hidden = NO;
+//                [weakSelf.view addSubview:weakSelf.smallVideoView];
             }
             else{
              
-                weakSelf.tableView.hidden = NO;
-                weakSelf.smallVideoView.hidden = YES;
-                [weakSelf requestSectionListWithTabID:model.ForumID];
+//                weakSelf.tableView.hidden = NO;
+//                weakSelf.smallVideoView.hidden = YES;
+//                [weakSelf requestSectionListWithTabID:model.ForumID];
             }
         }];
     }
@@ -176,52 +150,17 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     return _forumNavView;
 }
 
--(NSMutableArray<ForumArticleModel *> *)dataArray{
+-(SHBaseCollectionView *)collectionView{
     
-    if (!_dataArray) {
+    if (!_collectionView) {
         
-        _dataArray = [[NSMutableArray alloc] init];
+        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:defaultCellId];
+        [_collectionView registerClass:[SmallVideoCollectionViewCell class] forCellWithReuseIdentifier:smallVideoCellId];
     }
-    return _dataArray;
-}
-
--(SHBaseTableView *)tableView{
-    
-    if (!_tableView) {
-        
-        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor clearColor];
-        __weak typeof(self) weakSelf = self;
-        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-           
-            weakSelf.page = 1;
-            [weakSelf requestForumList];
-            [weakSelf.tableView.mj_header endRefreshing];
-        }];
-        
-        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            
-            [weakSelf requestForumList];
-            [weakSelf.tableView.mj_footer endRefreshing];
-        }];
-    }
-    return _tableView;
-}
-
-
-
--(UIView *)smallVideoView{
-    
-    if (!_smallVideoView) {
-        
-        SmallVideoViewController * vc = [[SmallVideoViewController alloc] initWithType:VCType_Forum];
-        _smallVideoView = vc.view;
-        _smallVideoView.frame = CGRectMake(0, CGRectGetMaxY(self.forumNavView.frame) + 10, MAINWIDTH, MAINHEIGHT - CGRectGetHeight(self.forumNavView.frame) - 10 - 44 - [SHUIScreenControl bottomSafeHeight]);
-        [self addChildViewController:vc];
-    }
-    return _smallVideoView;
+    return _collectionView;
 }
 
 #pragma mark  ----  生命周期函数
@@ -229,139 +168,81 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.page = 1;
     [self requestTablist];
-    [self drawTableView];
 }
 
-#pragma mark  ----  代理
+#pragma mark  ----  UICollectionViewDelegate
 
-#pragma mark  ----  UITableViewDelegate
+#pragma mark  ----  UICollectionViewDataSource
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    float cellHeight = 0;
-    ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    if ([articleModel.type isEqualToString:@"zero"]) {
-        
-        cellHeight = [ForumBaseCell cellHeightWithTitle:articleModel.title];
-    }
-    else if ([articleModel.type isEqualToString:@"single"]) {
-        
-        cellHeight = [ForumSingleCell cellHeightWithTitle:articleModel.title];
-    }
-    else if ([articleModel.type isEqualToString:@"single_left"]){
-        
-        cellHeight = 129;
-    }
-    else if ([articleModel.type isEqualToString:@"three"]){
-        
-        cellHeight = [ForumThreeCell cellHeightWithTitle:articleModel.title];
-    }
-    else if ([articleModel.type isEqualToString:@"video"]){
-        
-        cellHeight = [ForumVideoCell cellHeightWithTitle:articleModel.title];
-    }
-    return cellHeight;
+    return self.tabModelArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    float headerHeight = 80;
-    return headerHeight;
-}
+    SHTabModel * model = self.tabModelArray[indexPath.row];
+    if ([model.tabTitle isEqualToString:@"行业论坛"]){
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UILabel * headerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 80)];
-    headerView.backgroundColor = [UIColor whiteColor];
-    headerView.font = BOLDFONT21;
-    headerView.textColor = Color_333333;
-    headerView.text = @"  论坛动态";
-    return headerView;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    ForumDetailViewController * detailViewController = [[ForumDetailViewController alloc] initWithTitle:articleModel.section_title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:[NSString stringWithFormat:@"%ld",articleModel.ArticleId]];
-    detailViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
-#pragma mark  ----  UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return self.dataArray.count;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    ForumArticleModel * articleModel = self.dataArray[indexPath.row];
-    if ([articleModel.type isEqualToString:@"zero"]) {
-    
-        ForumBaseCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumBaseCellId];
-        if (!cell) {
-            
-            cell = [[ForumBaseCell alloc] initWithReuseIdentifier:ForumBaseCellId];
-        }
-        
-        [cell show:articleModel];
+        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:defaultCellId forIndexPath:indexPath];
+        [cell addSubview:self.industryForumView];
         return cell;
     }
-    else if ([articleModel.type isEqualToString:@"single"]) {
-        
-        ForumSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumSingleCellId];
-        if (!cell) {
-            
-            cell = [[ForumSingleCell alloc] initWithReuseIdentifier:ForumSingleCellId];
-        }
-        
-        [cell show:articleModel];
+    else if ([model.tabTitle isEqualToString:@"杂谈"]){
+
+        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:defaultCellId forIndexPath:indexPath];
+         [cell addSubview:self.miscellaneousView];
         return cell;
     }
-    else if ([articleModel.type isEqualToString:@"single_left"]){
-     
-        PostListCell * cell = [tableView dequeueReusableCellWithIdentifier:PostListCellId];
-        if (!cell) {
-            
-            cell = [[PostListCell alloc] initWithReuseIdentifier:PostListCellId];
-        }
-    
-        //imageUrl,图片地址;title,标题;pv,NSNumber,浏览量;section_title,来源;
-        NSDictionary * dic = @{@"imageUrl":articleModel.images[0],@"title":articleModel.title,@"pv":[NSNumber numberWithInteger:articleModel.pv],@"section_title":articleModel.section_title};
-        [cell show:dic];
+    else if ([model.tabTitle isEqualToString:@"学知识"]){
+
+        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:defaultCellId forIndexPath:indexPath];
+        [cell addSubview:self.learnKnowledgeView];
         return cell;
     }
-    else if ([articleModel.type isEqualToString:@"three"]){
-        
-        ForumThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumThreeCellId];
-        if (!cell) {
-            
-            cell = [[ForumThreeCell alloc] initWithReuseIdentifier:ForumThreeCellId];
-        }
-        
-        [cell show:articleModel];
+    else if ([model.tabTitle isEqualToString:@"小视频"]) {
+
+        //小视频
+        SmallVideoCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:smallVideoCellId forIndexPath:indexPath];
+        [cell addSubview:self.smallVideoView];
         return cell;
     }
-    else if ([articleModel.type isEqualToString:@"video"]){
-        
-        ForumVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumVideoCellId];
-        if (!cell) {
-            
-            cell = [[ForumVideoCell alloc] initWithReuseIdentifier:ForumVideoCellId];
-        }
-        
-        [cell show:articleModel];
-        return cell;
-    }
-    
     return nil;
+}
+
+#pragma mark  ----  UICollectionViewDelegateFlowLayout
+
+//返回每个item的size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
+}
+
+//返回上左下右四边的距离
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+//返回cell之间的最小行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+//cell之间的最小列间距a
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    
+    return 0;
+}
+
+#pragma mark  ----  UIScrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    NSUInteger index = scrollView.contentOffset.x / MAINWIDTH;
+    [self.baseTabView selectItemWithIndex:index];
 }
 
 #pragma mark  ----  自定义函数
@@ -374,65 +255,13 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         make.left.top.right.offset(0);
         make.height.offset([SHUIScreenControl navigationBarHeight]);
     }];
-}
+    
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 
--(void)drawSectionView{
-    
-    for (SHImageAndTitleBtn * btn in self.sectionBtnArray) {
-        
-        [btn removeFromSuperview];
-    }
-    
-    if (self.sectionView) {
-        
-        [self.sectionView removeFromSuperview];
-        self.sectionView = nil;
-    }
-   
-    self.sectionView = [[UIScrollView alloc] init];
-    [self.view addSubview:self.sectionView];
-    [self.sectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.right.offset(0);
         make.top.equalTo(self.forumNavView.mas_bottom).offset(0);
-        make.height.offset(90);
-    }];
-    
-    float btnX = 15;
-    float btnWidth = 50;
-    float btnHeight = 70;
-    for (NSUInteger i = 0; i < self.sectionForumTabModelArray.count; i++) {
-        
-        ForumTabModel * tabModel = self.sectionForumTabModelArray[i];
-        SHImageAndTitleBtn * btn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(btnX, 20, btnWidth, btnHeight) andImageFrame:CGRectMake(0, 0, btnWidth, btnWidth) andTitleFrame:CGRectMake(0, 58, btnWidth, 12) andImageName:@"" andSelectedImageName:@"" andTitle:tabModel.title];
-        [btn refreshFont:FONT12];
-        [btn refreshTitle:tabModel.title];
-        [btn setImageUrl:tabModel.image];
-        [btn setImageViewCornerRadius:btnWidth/2];
-        btnX += btnWidth + 25;
-        [self.sectionBtnArray addObject:btn];
-        [self.sectionView addSubview:btn];
-        __weak typeof(self) weakSelf = self;
-        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-           
-            weakSelf.section_id = tabModel.ForumID;
-            [weakSelf requestForumList];
-        }];
-    }
-    
-    if (btnX + 15 > MAINWIDTH) {
-        
-        self.sectionView.contentSize = CGSizeMake(btnX + 15, 70);
-    }
-}
-
--(void)drawTableView{
-    
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.right.bottom.offset(0);
-        make.top.offset([SHUIScreenControl navigationBarHeight] + 90);
+        make.left.right.offset(0);
+        make.bottom.offset(-44 - [SHUIScreenControl bottomSafeHeight]);
     }];
 }
 
@@ -465,16 +294,8 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                             NSDictionary * dic = arr[i];
                             ForumTabModel * model = [ForumTabModel mj_objectWithKeyValues:dic];
                             [weakSelf.tabForumTabModelArray addObject:model];
-                            if (i == 0) {
-                                
-                                model.isSelected = YES;
-                                [weakSelf requestSectionListWithTabID:model.ForumID];
-                            }
-                            else{
-                                
-                                model.isSelected = NO;
-                            }
                         }
+                        [weakSelf createViews];
                         [weakSelf drawNav];
                     }
                 }
@@ -493,126 +314,44 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     }];
 }
 
--(void)requestSectionListWithTabID:(NSString *)tabId{
+//实力化行业论坛view，杂谈view等
+-(void)createViews{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabId]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":SectionList,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+    for (NSUInteger i = 0; i < self.tabForumTabModelArray.count; i++) {
         
-        if (![resultDic.allKeys containsObject:@"error"]) {
+        ForumTabModel * model = self.tabForumTabModelArray[i];
+        if ([model.title isEqualToString:@"行业论坛"]) {
             
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        
-                        NSArray * arr = dataDic[@"sections"];
-                        [weakSelf.sectionForumTabModelArray removeAllObjects];
-                        for (NSUInteger i = 0; i < arr.count; i++) {
-                            
-                            NSDictionary * dic = arr[i];
-                            ForumTabModel * model = [ForumTabModel mj_objectWithKeyValues:dic];
-                            [weakSelf.sectionForumTabModelArray addObject:model];
-                            if (i == 0) {
-                                
-                                model.isSelected = YES;
-                                weakSelf.section_id = model.ForumID;
-                                [weakSelf requestForumList];
-                            }
-                            else{
-                                
-                                model.isSelected = NO;
-                            }
-                        }
-                        [weakSelf drawSectionView];
-                    }
-                }
-                else{
-                    
-                    //异常
-                }
-            }
-            else{
-            }
+            ForumListViewController * vc = [[ForumListViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+            self.industryForumView = vc.view;
+            self.industryForumView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
+            [self addChildViewController:vc];
+            [vc requestSectionListWithTabID:model.ForumID];
         }
-        else{
+        else if ([model.title isEqualToString:@"杂谈"]){
             
-            //失败的
+            ForumListViewController * vc = [[ForumListViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+            self.miscellaneousView = vc.view;
+            self.miscellaneousView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
+            [self addChildViewController:vc];
+            [vc requestSectionListWithTabID:model.ForumID];
         }
-    }];
+        else if ([model.title isEqualToString:@"学知识"]){
+            
+            ForumListViewController * vc = [[ForumListViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+            self.learnKnowledgeView = vc.view;
+            self.learnKnowledgeView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
+            [self addChildViewController:vc];
+            [vc requestSectionListWithTabID:model.ForumID];
+        }
+        else if ([model.title isEqualToString:@"小视频"]){
+            
+            SmallVideoViewController * vc = [[SmallVideoViewController alloc] initWithType:VCType_Forum];
+            self.smallVideoView = vc.view;
+            self.smallVideoView.frame = CGRectMake(0,0, MAINWIDTH, MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight]);
+            [self addChildViewController:vc];
+        }
+    }
 }
-
--(void)requestForumList{
-    
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"section_id":[NSString repleaseNilOrNull:self.section_id],@"page":[NSString stringWithFormat:@"%ld",self.page]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":ForumList,@"bodyParameters":bodyParameters};
-    __weak typeof(self) weakSelf = self;
-    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
-        
-        if (![resultDic.allKeys containsObject:@"error"]) {
-            
-            //成功的
-            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
-                
-                id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSNumber * code = dic[@"code"];
-                
-                if (weakSelf.page == 1) {
-                    
-                    [weakSelf.dataArray removeAllObjects];
-                }
-                
-                if (code.integerValue == 1) {
-                    
-                    //成功
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        
-                        NSArray * array = dataDic[@"articles"];
-                        if (array.count == MAXCOUNT) {
-                            
-                            weakSelf.page++;
-                        }
-                        else if (array.count == 0){
-                            
-                            [MBProgressHUD wj_showError:@"没有更多数据啦"];
-                        }
-                        
-                        for (NSDictionary * dic in array) {
-                            
-                            ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
-                            [weakSelf.dataArray addObject:model];
-                        }
-                    }
-                }
-                else{
-                    
-                    //异常
-                }
-                
-                [weakSelf.tableView reloadData];
-            }
-            else{
-            }
-        }
-        else{
-            
-            //失败的
-        }
-    }];
-}
-
 
 @end

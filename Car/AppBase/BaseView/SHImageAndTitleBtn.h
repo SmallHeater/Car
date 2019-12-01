@@ -23,5 +23,7 @@
 -(void)setImageViewCornerRadius:(float)cornerRadius;
 //设置图片地址
 -(void)setImageUrl:(NSString *)imageUrl;
+//图片上显示内容
+-(void)showImageStr:(NSString *)imageStr;
 
 @end
