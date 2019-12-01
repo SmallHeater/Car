@@ -150,6 +150,62 @@
                 [MBProgressHUD wj_showError:@"选择照片和拍摄不能同时使用!"];
                 return;
             }
+            else{
+                
+                //打开相机
+                __weak typeof(self) weakSelf = self;
+                [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
+                    
+                    if ([resultDic.allKeys containsObject:@"error"]) {
+                        
+                        //异常
+                        NSLog(@"行驶证识别异常");
+                    }
+                    else if ([resultDic.allKeys containsObject:@"image"]){
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            [MBProgressHUD wj_showActivityLoading:@"识别中" toView:[UIApplication sharedApplication].keyWindow];
+                        });
+                        
+                        UIImage * image = resultDic[@"image"];
+                        [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                [MBProgressHUD wj_hideHUDForView:[UIApplication sharedApplication].keyWindow];
+                            });
+                            
+                            if (result && [result isKindOfClass:[NSDictionary class]]) {
+                                
+                                NSDictionary * workResultDic = result[@"words_result"];
+                                NSDictionary * seventhDic = workResultDic[@"车辆识别代号"];
+                                //车辆识别代号
+                                NSString * vin = seventhDic[@"words"];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                   
+                                    weakSelf.text = vin;
+                                    if (weakSelf.callBack) {
+                                        
+                                        weakSelf.callBack();
+                                    }
+                                });
+                            }
+                        } failHandler:^(NSError *err) {
+                            
+                            NSLog(@"失败:%@", err);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                [MBProgressHUD wj_hideHUDForView:[UIApplication sharedApplication].keyWindow];
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    
+                                    [MBProgressHUD wj_showError:@"识别失败，请输入"];
+                                });
+                            });
+                        }];
+                    }
+                }];
+            }
         }
         else{
             

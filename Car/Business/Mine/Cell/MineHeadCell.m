@@ -53,7 +53,6 @@
     if (!_topImageView) {
         
         _topImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wodebeijingtu"]];
-        _topImageView.backgroundColor = [UIColor greenColor];
         [_topImageView addSubview:self.avaterImageView];
         [self.avaterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
            

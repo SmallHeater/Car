@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHBaseCollectionView : UICollectionView
 
-//layout可传nil.
+//layout可传nil.默认左右滑动
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;
 
 @end

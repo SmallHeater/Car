@@ -833,6 +833,7 @@
 
 -(void)repairDateClicked:(UITapGestureRecognizer *)gesture{
     
+    [self endEditing:YES];
     __weak typeof(self) weakSelf = self;
     [SHDatePickView showActionSheetDateWithtitle:@"" formatter:@"yyyy-MM-dd" callBack:^(NSDate * _Nonnull date, NSString * _Nonnull dateStr) {
         

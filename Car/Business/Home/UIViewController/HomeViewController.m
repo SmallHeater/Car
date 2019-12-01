@@ -453,9 +453,9 @@
             //滑动完成的回调
             [[cell rac_signalForSelector:@selector(scrollViewDidEndDecelerating:)] subscribeNext:^(RACTuple * _Nullable x) {
                
-//                UICollectionView * collectionView = x.first;
-//                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
-//                [weakSelf.baseTabView selectItemWithIndex:index];
+                UICollectionView * collectionView = x.first;
+                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
+                [weakSelf.baseTabView selectItemWithIndex:index];
             }];
         }
         

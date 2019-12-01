@@ -44,7 +44,7 @@ static NSString * cellID = @"PostListCell";
     
     [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
-    
+    self.page = 1;
     if (self.vcType == VCType_tieziliebiao) {
         
         [self requestData];
@@ -123,14 +123,12 @@ static NSString * cellID = @"PostListCell";
                 NSDictionary * dic = (NSDictionary *)dataId;
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
-                
-                [weakSelf.dataArray removeAllObjects];
                 if (code.integerValue == 1) {
                     
                     //成功
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
-                        if (weakSelf.page == 0) {
+                        if (weakSelf.page == 1) {
                             
                             [weakSelf.dataArray removeAllObjects];
                         }
@@ -140,9 +138,9 @@ static NSString * cellID = @"PostListCell";
                             
                             weakSelf.page++;
                         }
-                        else{
+                        else if (array.count == 0){
                             
-                            weakSelf.tableView.mj_footer = nil;
+                            [MBProgressHUD wj_showError:@"没有更多数据啦"];
                         }
                         
                         for (NSDictionary * dic in array) {
@@ -187,7 +185,7 @@ static NSString * cellID = @"PostListCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                if (weakSelf.page == 0) {
+                if (weakSelf.page == 1) {
                     
                     [weakSelf.dataArray removeAllObjects];
                 }
@@ -233,7 +231,7 @@ static NSString * cellID = @"PostListCell";
 //下拉刷新
 -(void)loadNewData{
     
-    self.page = 0;
+    self.page = 1;
    if (self.vcType == VCType_tieziliebiao) {
         
         [self requestData];

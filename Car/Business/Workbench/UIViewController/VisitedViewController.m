@@ -28,7 +28,7 @@ static NSString * cellId = @"VisitedCell";
     // Do any additional setup after loading the view.
     [self refreshViewType:BTVCType_AddTableView];
     [self drawUI];
-    self.page = 0;
+    self.page = 1;
     [self requestListData];
 }
 
@@ -86,7 +86,7 @@ static NSString * cellId = @"VisitedCell";
                 if (code.integerValue == 1) {
                     
                     //成功
-                    if (weakSelf.page == 0) {
+                    if (weakSelf.page == 1) {
                         
                         [weakSelf.dataArray removeAllObjects];
                     }
@@ -123,7 +123,7 @@ static NSString * cellId = @"VisitedCell";
 //下拉刷新(回调函数)
 -(void)loadNewData{
     
-    self.page = 0;
+    self.page = 1;
     [self requestListData];
     [super loadNewData];
 }

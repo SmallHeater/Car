@@ -98,9 +98,7 @@ static NSString * cellID = @"ItemListCollectionViewCell";
     else{
      
         ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-        
         [cell requestWithTabID:tabID];
-        
         return cell;
     }
     return nil;

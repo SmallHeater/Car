@@ -24,7 +24,8 @@
         myLayout = [[UICollectionViewFlowLayout alloc] init];
         myLayout.minimumLineSpacing = 0;
         myLayout.minimumInteritemSpacing = 0;
-        myLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        //默认左右滑动
+        myLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }
     
     self = [super initWithFrame:frame collectionViewLayout:myLayout];

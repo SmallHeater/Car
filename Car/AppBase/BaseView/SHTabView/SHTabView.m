@@ -246,6 +246,18 @@
     
     
     btn.selected = YES;
+    
+    if (btn.frame.origin.x + btn.frame.size.width - self.bgScrollView.contentOffset.x >= self.bgScrollView.frame.size.width - 22) {
+        
+        //选中的按钮在右侧显示不出来，需要移动scrollview
+        self.bgScrollView.contentOffset = CGPointMake(btn.frame.origin.x + btn.frame.size.width - self.bgScrollView.frame.size.width + 22, 0);
+    }
+    else if (btn.frame.origin.x < self.bgScrollView.contentOffset.x){
+        
+        //选中的按钮在左侧显示不出来，需要移动scrollview
+        self.bgScrollView.contentOffset = CGPointMake(btn.frame.origin.x, 0);
+    }
+    
     float lineWidth = self.lineModel.lineWidth;
     float lineHeight = self.lineModel.lineHeight;
     [self.selectedLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

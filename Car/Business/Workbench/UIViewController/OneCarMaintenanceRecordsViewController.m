@@ -64,7 +64,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     [self refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.page = 0;
+    self.page = 1;
     [self drawUI];
 }
 
@@ -182,7 +182,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
                     NSDictionary * dataDic = dic[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]] && [dataDic.allKeys containsObject:@"list"]) {
                         
-                        if (weakSelf.page == 0) {
+                        if (weakSelf.page == 1) {
                             
                             [weakSelf.dataArray removeAllObjects];
                         }
@@ -223,7 +223,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
 //下拉刷新(回调函数)
 -(void)loadNewData{
     
-    self.page = 0;
+    self.page = 1;
     [self requestListData];
     [super loadNewData];
 }

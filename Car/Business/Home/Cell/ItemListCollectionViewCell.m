@@ -13,9 +13,9 @@
 #import "CarItemVideoCell.h"
 #import "CarItemThreeCell.h"
 #import "ForumDetailViewController.h"
+#import "CarItemTextCell.h"
 
-
-
+static NSString * CarItemTextCellId = @"CarItemTextCell";
 static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 static NSString * CarItemVideoCellID = @"CarItemVideoCell";
 static NSString * CarItemThreeCellID = @"CarItemThreeCell";
@@ -25,6 +25,8 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
 
+@property (nonatomic,strong) NSString * tabID;
+@property (nonatomic,assign) NSUInteger page;
 @property (nonatomic,strong) NSMutableArray<ForumArticleModel *> * dataArray;
 
 @end
@@ -38,8 +40,15 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//        _tableView.bounces = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        __weak typeof(self) weakSelf = self;
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            
+            [weakSelf requestWithTabID:weakSelf.tabID];
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }];
     }
     return _tableView;
 }
@@ -61,6 +70,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     if (self) {
         
         [self drawUI];
+        self.page = 1;
     }
     
     return self;
@@ -86,6 +96,10 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
         
         cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
     }
+    else if ([model.type isEqualToString:@"zero"]){
+        
+        cellHeight = [CarItemTextCell cellHeight:model];
+    }
     
     return cellHeight;
 }
@@ -97,7 +111,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     vc.hidesBottomBarWhenPushed = YES;
     UIViewController * topVc = [UIViewController topMostController];
     if (topVc.navigationController) {
-        
+
         [topVc.navigationController pushViewController:vc animated:YES];
     }
     else{
@@ -118,9 +132,20 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ForumArticleModel * model = self.dataArray[indexPath.row];
-    if ([model.type isEqualToString:@"single"]) {
+    if ([model.type isEqualToString:@"zero"]) {
         
-        CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
+        CarItemTextCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemTextCellId];
+        if (!cell) {
+            
+            cell = [[CarItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemTextCellId];
+        }
+        
+        [cell show:model];
+        return cell;
+    }
+    else if ([model.type isEqualToString:@"single"]) {
+        
+            CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
         if (!cell) {
             
             cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
@@ -169,66 +194,67 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 //请求数据
 -(void)requestWithTabID:(NSString *)tabID{
 
-    //如果已经有数据，则不再请求
-    if (self.dataArray.count == 0) {
-     
-        NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID]};
-        NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
-        __weak typeof(self) weakSelf = self;
-        [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+    self.tabID = [NSString repleaseNilOrNull:tabID];
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID],@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
+    [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
+        
+        if (![resultDic.allKeys containsObject:@"error"]) {
             
-            if (![resultDic.allKeys containsObject:@"error"]) {
+            //成功的
+            NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
+            if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                 
-                //成功的
-                NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
-                if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+                id dataId = resultDic[@"dataId"];
+                NSDictionary * dic = (NSDictionary *)dataId;
+                NSDictionary * dataDic = dic[@"data"];
+                NSNumber * code = dic[@"code"];
+                
+                if (code.integerValue == 1) {
                     
-                    id dataId = resultDic[@"dataId"];
-                    NSDictionary * dic = (NSDictionary *)dataId;
-                    NSDictionary * dataDic = dic[@"data"];
-                    NSNumber * code = dic[@"code"];
-                    
-                    [weakSelf.dataArray removeAllObjects];
-                    if (code.integerValue == 1) {
+                    //成功
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
-                        //成功
-                        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        NSArray * arr = dataDic[@"articles"];
+                        if (arr && [arr isKindOfClass:[NSArray class]]) {
                             
-                            NSArray * arr = dataDic[@"articles"];
-                            if (arr && [arr isKindOfClass:[NSArray class]]) {
+                            if (arr.count == MAXCOUNT) {
                                 
-                                for (NSDictionary * dic in arr) {
-                                    
-                                    ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
-                                    [weakSelf.dataArray addObject:model];
-                                }
+                                weakSelf.page++;
+                            }
+                            
+                            for (NSDictionary * dic in arr) {
+                                
+                                ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
+                                [weakSelf.dataArray addObject:model];
                             }
                         }
                     }
-                    else{
-                        
-                        //异常
-                    }
-                    [weakSelf.tableView reloadData];
-                    //如果内容少，则不滑动
-                    if (weakSelf.tableView.contentSize.height < weakSelf.tableView.bounds.size.height) {
-                        
-                        weakSelf.tableView.scrollEnabled = NO;
-                    }
-                    else{
-                        
-                        weakSelf.tableView.scrollEnabled = YES;
-                    }
                 }
                 else{
+                    
+                    //异常
+                }
+                [weakSelf.tableView reloadData];
+                //如果内容少，则不滑动
+                if (weakSelf.tableView.contentSize.height < weakSelf.tableView.bounds.size.height) {
+                    
+                    weakSelf.tableView.scrollEnabled = NO;
+                }
+                else{
+                    
+                    weakSelf.tableView.scrollEnabled = YES;
                 }
             }
             else{
-                
-                //失败的
             }
-        }];
-    }
+        }
+        else{
+            
+            //失败的
+        }
+    }];
 }
 
 @end

@@ -21,6 +21,7 @@
 
 @interface LoginViewController ()
 
+@property (nonatomic,strong) UIButton * backBtn;
 //图标
 @property (nonatomic,strong) UIImageView * appIconImageView;
 //图标标题
@@ -47,6 +48,33 @@
 @implementation LoginViewController
 
 #pragma mark  ----  懒加载
+
+-(UIButton *)backBtn{
+    
+    if (!_backBtn) {
+        
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 16, 16, 16)];
+        [[_backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            if (self.navigationController) {
+                
+                if (self.navigationController.viewControllers.count == 1) {
+                    
+                    [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+                }else{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }else{
+                
+                [self dismissViewControllerAnimated:NO completion:nil];
+            }
+        }];
+    }
+    return _backBtn;
+}
 
 -(UIImageView *)appIconImageView{
     
@@ -177,6 +205,14 @@
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
+    
+    [self.view addSubview:self.backBtn];
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.offset(0);
+        make.top.offset(20 + [SHUIScreenControl liuHaiHeight]);
+        make.width.height.offset(44);
+    }];
     
     [self.view addSubview:self.appIconImageView];
     [self.appIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {

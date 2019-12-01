@@ -44,7 +44,12 @@ static NSString * cellID = @"VideoCollectionViewCell";
     
     if (!_collectionView) {
         
-        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) collectionViewLayout:nil];
+        UICollectionViewFlowLayout * myLayout = [[UICollectionViewFlowLayout alloc] init];
+        myLayout.minimumLineSpacing = 0;
+        myLayout.minimumInteritemSpacing = 0;
+        //默认左右滑动
+        myLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT) collectionViewLayout:myLayout];
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

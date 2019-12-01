@@ -800,7 +800,6 @@
 		62880C62236AC3E6007742FF /* SHRoutingComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHRoutingComponent.m; sourceTree = "<group>"; };
 		62880C63236AC3E6007742FF /* CommandList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandList.h; sourceTree = "<group>"; };
 		62880C64236AC3E6007742FF /* SHRoutingComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHRoutingComponent.h; sourceTree = "<group>"; };
-		62880C65236AC3E6007742FF /* CommandDemoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandDemoList.h; sourceTree = "<group>"; };
 		62880CBC236AC539007742FF /* SHImageAndLabelControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageAndLabelControl.h; sourceTree = "<group>"; };
 		62880CBD236AC539007742FF /* SHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBaseView.h; sourceTree = "<group>"; };
 		62880CBE236AC539007742FF /* SHImageViewAndTextFieldAndBottomLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHImageViewAndTextFieldAndBottomLineView.h; sourceTree = "<group>"; };
@@ -1997,7 +1996,6 @@
 				62880C62236AC3E6007742FF /* SHRoutingComponent.m */,
 				62880C63236AC3E6007742FF /* CommandList.h */,
 				62880C64236AC3E6007742FF /* SHRoutingComponent.h */,
-				62880C65236AC3E6007742FF /* CommandDemoList.h */,
 			);
 			path = SHRoutingComponent;
 			sourceTree = "<group>";
@@ -2846,7 +2844,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2878,7 +2876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

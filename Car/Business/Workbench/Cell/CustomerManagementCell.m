@@ -95,7 +95,6 @@
         NSNumber * imageHeightNumber = dic[@"imageHeight"];
         NSString * title = dic[@"btnTitle"];
         SHImageAndLabelControl * control = [[SHImageAndLabelControl alloc] initWithImageName:[NSString repleaseNilOrNull:imageName] andImageSize:CGSizeMake(imageWidthNumber.floatValue, imageHeightNumber.floatValue) andTitle:[NSString repleaseNilOrNull:title]];
-//        control.backgroundColor = [UIColor redColor];
         [control addTarget:self action:@selector(controlClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.btnBGScrollView addSubview:control];
         [control mas_makeConstraints:^(MASConstraintMaker *make) {

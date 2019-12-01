@@ -19,7 +19,7 @@
 #import "VehicleFileDetailViewController.h"
 
 
-@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FastPickUpViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) SHBaseTableView * tableView;
 //保存按钮
@@ -359,6 +359,19 @@
     return nil;
 }
 
+#pragma mark  ----  UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    BOOL canResponse = YES;
+    CGPoint point = [touch locationInView:self.view];
+    if (point.y < 103 + [SHUIScreenControl navigationBarHeight]) {
+        
+        canResponse = NO;
+    }
+    return canResponse;
+}
+
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
@@ -438,6 +451,7 @@
 -(void)addGesture{
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+    tap.delegate = self;
     __weak typeof(self) weakSelf = self;
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         

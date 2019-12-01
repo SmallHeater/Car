@@ -196,12 +196,12 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
         __weak typeof(self) weakSelf = self;
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
            
-            weakSelf.page = 0;
+            weakSelf.page = 1;
             [weakSelf requestForumList];
             [weakSelf.tableView.mj_header endRefreshing];
         }];
         
-        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             
             [weakSelf requestForumList];
             [weakSelf.tableView.mj_footer endRefreshing];
@@ -229,7 +229,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.page = 0;
+    self.page = 1;
     [self requestTablist];
     [self drawTableView];
 }
@@ -570,7 +570,7 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                 NSDictionary * dataDic = dic[@"data"];
                 NSNumber * code = dic[@"code"];
                 
-                if (weakSelf.page == 0) {
+                if (weakSelf.page == 1) {
                     
                     [weakSelf.dataArray removeAllObjects];
                 }
@@ -585,6 +585,11 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                             
                             weakSelf.page++;
                         }
+                        else if (array.count == 0){
+                            
+                            [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                        }
+                        
                         for (NSDictionary * dic in array) {
                             
                             ForumArticleModel * model = [ForumArticleModel mj_objectWithKeyValues:dic];
