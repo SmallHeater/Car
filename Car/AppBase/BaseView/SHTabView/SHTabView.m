@@ -130,7 +130,7 @@
         
         [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.right.offset(-18);
+            make.right.offset(-15);
             make.width.height.offset(22);
             make.centerY.equalTo(self.mas_centerY);
         }];

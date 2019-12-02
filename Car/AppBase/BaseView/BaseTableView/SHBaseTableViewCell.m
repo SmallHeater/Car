@@ -32,4 +32,10 @@
     return self;
 }
 
+#pragma mark  ----  自定义函数
++(float)cellHeight{
+    
+    return 0;
+}
+
 @end

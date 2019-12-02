@@ -26,6 +26,9 @@
         
         _oneImageView = [[UIImageView alloc] init];
         _oneImageView.backgroundColor = [UIColor clearColor];
+        _oneImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _oneImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _oneImageView.clipsToBounds = YES;
     }
     return _oneImageView;
 }
@@ -36,6 +39,9 @@
         
         _twoImageView = [[UIImageView alloc] init];
         _twoImageView.backgroundColor = [UIColor clearColor];
+        _twoImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _twoImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _twoImageView.clipsToBounds = YES;
     }
     return _twoImageView;
 }
@@ -46,6 +52,9 @@
         
         _threeImageView = [[UIImageView alloc] init];
         _threeImageView.backgroundColor = [UIColor clearColor];
+        _threeImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _threeImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _threeImageView.clipsToBounds = YES;
     }
     return _threeImageView;
 }
@@ -67,7 +76,7 @@
 +(float)cellHeightWithTitle:(NSString *)title{
     
     float cellHeight = 0;
-    cellHeight += 77;
+    cellHeight += 73;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
     cellHeight += 15 + 81;
     cellHeight += 45;

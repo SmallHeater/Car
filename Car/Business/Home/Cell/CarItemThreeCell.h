@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CarItemThreeCell : SHBaseTableViewCell
 
++(float)cellHeightWithText:(NSString *)text;
+
 -(void)show:(ForumArticleModel *)model;
 
 @end

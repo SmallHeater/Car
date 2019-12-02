@@ -24,6 +24,9 @@
         
         _videoImageView = [[UIImageView alloc] init];
         _videoImageView.backgroundColor = [UIColor clearColor];
+        _videoImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _videoImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _videoImageView.clipsToBounds = YES;
     }
     return _videoImageView;
 }
@@ -45,9 +48,9 @@
 +(float)cellHeightWithTitle:(NSString *)title{
     
     float cellHeight = 0;
-    cellHeight += 77;
+    cellHeight += 73;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
-    cellHeight += 17 + 190.0 / 345.0 * (MAINWIDTH - 30);
+    cellHeight += 15 + 190.0 / 345.0 * (MAINWIDTH - 30);
     cellHeight += 45;
     return cellHeight;
 }

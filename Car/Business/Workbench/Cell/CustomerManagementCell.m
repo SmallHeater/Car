@@ -38,7 +38,6 @@
     if (!_btnBGScrollView) {
         
         _btnBGScrollView = [[UIScrollView alloc] init];
-//        _btnBGScrollView.backgroundColor = [UIColor greenColor];
     }
     return _btnBGScrollView;
 }

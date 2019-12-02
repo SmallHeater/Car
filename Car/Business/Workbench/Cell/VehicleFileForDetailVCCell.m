@@ -56,7 +56,6 @@
         _numberPlateLabel = [[UILabel alloc] init];
         _numberPlateLabel.font = BOLDFONT20;
         _numberPlateLabel.textColor = [UIColor whiteColor];
-//        _numberPlateLabel.backgroundColor = [UIColor greenColor];
     }
     return _numberPlateLabel;
 }
@@ -80,7 +79,6 @@
         _carModelLabel = [[UILabel alloc] init];
         _carModelLabel.font = FONT14;
         _carModelLabel.textColor = [UIColor whiteColor];
-//        _carModelLabel.backgroundColor = [UIColor greenColor];
     }
     return _carModelLabel;
 }

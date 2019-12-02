@@ -26,10 +26,12 @@
         
         _imageView = [[UIImageView alloc] init];
         _imageView.backgroundColor = [UIColor clearColor];
+        _imageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _imageView.clipsToBounds = YES;
     }
     return _imageView;
 }
-
 
 #pragma mark  ----  生命周期函数
 

@@ -360,7 +360,6 @@
         _repairContentTF.placeholderColor = Color_C7C7CD;
         _repairContentTF.textColor = Color_333333;
         _repairContentTF.placeholder = @"请输入维修内容";
-//        _repairContentTF.backgroundColor = [UIColor greenColor];
     }
     return _repairContentTF;
 }
@@ -406,7 +405,6 @@
             make.top.offset(56);
             make.width.height.offset(111);
         }];
-//        _bottomView.backgroundColor = [UIColor greenColor];
     }
     return _bottomView;
 }
@@ -419,7 +417,6 @@
         _imageUploadLabel.font = FONT16;
         _imageUploadLabel.textColor = Color_666666;
         _imageUploadLabel.text = @"图片上传";
-//        _imageUploadLabel.backgroundColor = [UIColor greenColor];
     }
     return _imageUploadLabel;
 }

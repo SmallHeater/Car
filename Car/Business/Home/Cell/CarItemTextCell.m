@@ -70,7 +70,7 @@
 
 +(float)cellHeight:(ForumArticleModel *)model{
     
-    return [[NSString repleaseNilOrNull:model.title] heightWithFont:FONT17 andWidth:MAINWIDTH - 14 * 2] + 20 + 40;
+    return [[NSString repleaseNilOrNull:model.title] heightWithFont:FONT17 andWidth:MAINWIDTH - 14 * 2] + 16 * 3 + 12 + 1;
 }
 
 -(void)drawUI{
@@ -79,16 +79,16 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(14);
-        make.top.offset(20);
+        make.top.offset(16);
         make.right.offset(-14);
-        make.bottom.offset(-40);
+        make.bottom.offset(-45);
     }];
     
     [self addSubview:self.pageviewsAndSourceLabel];
     [self.pageviewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.titleLabel.mas_left);
-        make.bottom.offset(-18);
+        make.bottom.offset(-17);
         make.width.offset(MAINWIDTH - 14 * 2);
         make.height.offset(12);
     }];

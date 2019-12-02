@@ -69,14 +69,30 @@
 
 #pragma mark  ----  自定义函数
 
++(float)cellHeightWithText:(NSString *)text{
+    
+    float cellHeight = 0;
+    //间隔
+    cellHeight += 16 * 4;
+    //标题
+    cellHeight += [[NSString repleaseNilOrNull:text] heightWithFont:FONT17 andWidth:MAINWIDTH - 14 * 2];
+    //图片
+    cellHeight += 81;
+    //浏览量
+    cellHeight += 12;
+    //分割线
+    cellHeight += 1;
+    return cellHeight;
+}
+
 -(void)drawUI{
     
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(14);
-        make.top.offset(20);
-        make.right.offset(-31);
+        make.top.offset(16);
+        make.right.offset(-14);
         make.height.offset(37);
     }];
     
@@ -84,7 +100,7 @@
     [self.pageviewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.titleLabel.mas_left);
-        make.bottom.offset(-23);
+        make.bottom.offset(-17);
         make.right.offset(-14);
         make.height.offset(12);
     }];
@@ -104,7 +120,16 @@
     
     if (model) {
         
-        self.titleLabel.text = [NSString repleaseNilOrNull:model.title];
+        NSString * title = [NSString repleaseNilOrNull:model.title];
+        float titleHeight = [title heightWithFont:FONT17 andWidth:MAINWIDTH - 14 * 2];
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(14);
+            make.top.offset(16);
+            make.right.offset(-14);
+            make.height.offset(titleHeight);
+        }];
+        self.titleLabel.text = title;
         NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv,model.section_title];
         self.pageviewsAndSourceLabel.text = pageviewsAndSourceStr;
         if (model.images && model.images.count > 0) {
@@ -117,13 +142,16 @@
                 
                 UIImageView * imageView = [[UIImageView alloc] init];
                 imageView.backgroundColor = [UIColor clearColor];
+                imageView.contentMode =  UIViewContentModeScaleAspectFill;
+                imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+                imageView.clipsToBounds = YES;
                 [self addSubview:imageView];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                    
                     make.left.offset(imageViewX);
                     make.width.offset(imageWidth);
                     make.height.offset(imageHeight);
-                    make.bottom.offset(-58);
+                    make.bottom.offset(-45);
                 }];
                 [imageView sd_setImageWithURL:[NSURL URLWithString:str]];
                 imageViewX += imageWidth + interval;

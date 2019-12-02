@@ -30,6 +30,7 @@
         _titleLabel.font = FONT17;
         _titleLabel.textColor = Color_333333;
         _titleLabel.numberOfLines = 0;
+        _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     }
     return _titleLabel;
 }
@@ -51,6 +52,9 @@
         
         _carNewImageView = [[UIImageView alloc] init];
         _carNewImageView.backgroundColor = [UIColor clearColor];
+        _carNewImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _carNewImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _carNewImageView.clipsToBounds = YES;
     }
     return _carNewImageView;
 }
@@ -79,14 +83,19 @@
 
 #pragma mark  ----  自定义函数
 
++(float)cellheight{
+    
+    return 16 * 2 + 86 + 1;
+}
+
 -(void)drawUI{
     
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(14);
-        make.top.offset(20);
-        make.right.offset(-149);
+        make.top.offset(16);
+        make.right.offset(-129 - 16);
         make.height.offset(37);
     }];
     
@@ -94,7 +103,7 @@
     [self.pageviewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.titleLabel.mas_left);
-        make.top.offset(90);
+        make.bottom.offset(-17);
         make.width.equalTo(self.titleLabel.mas_width);
         make.height.offset(12);
     }];
@@ -104,7 +113,7 @@
        
         make.width.offset(113);
         make.height.offset(86);
-        make.top.offset(21);
+        make.top.offset(16);
         make.right.offset(-16);
     }];
     
@@ -122,7 +131,21 @@
     
     if (model) {
         
-        self.titleLabel.text = [NSString repleaseNilOrNull:model.title];
+        NSString * title = [NSString repleaseNilOrNull:model.title];
+        float titleHeight = [title heightWithFont:FONT17 andWidth:MAINWIDTH - 145 - 14];
+        if(titleHeight > 41){
+            
+            //最多两行
+            titleHeight = 41;
+        }
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(14);
+            make.top.offset(20);
+            make.right.offset(-129 - 16);
+            make.height.offset(titleHeight);
+        }];
+        self.titleLabel.text = title;
         NSString * pageviewsAndSourceStr = [[NSString alloc] initWithFormat:@"%ld浏览量 / %@",model.pv,model.section_title];
         self.pageviewsAndSourceLabel.text = pageviewsAndSourceStr;
         if (model.images && model.images.count > 0) {

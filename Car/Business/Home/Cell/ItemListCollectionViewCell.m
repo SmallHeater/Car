@@ -86,11 +86,11 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     ForumArticleModel * model = self.dataArray[indexPath.row];
     if ([model.type isEqualToString:@"single"]) {
         
-        cellHeight = 130;
+        cellHeight = [CarItemSingleCell cellheight];
     }
     else if ([model.type isEqualToString:@"three"]) {
         
-        cellHeight = 222;
+        cellHeight = [CarItemThreeCell cellHeightWithText:model.title];
     }
     else if ([model.type isEqualToString:@"video"]) {
         
@@ -145,7 +145,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     }
     else if ([model.type isEqualToString:@"single"]) {
         
-            CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
+        CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
         if (!cell) {
             
             cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];

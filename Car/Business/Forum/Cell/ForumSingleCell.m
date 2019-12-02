@@ -24,6 +24,9 @@
         
         _singleImageView = [[UIImageView alloc] init];
         _singleImageView.backgroundColor = [UIColor clearColor];
+        _singleImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _singleImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _singleImageView.clipsToBounds = YES;
     }
     return _singleImageView;
 }
@@ -45,7 +48,7 @@
 +(float)cellHeightWithTitle:(NSString *)title{
     
     float cellHeight = 0;
-    cellHeight += 77;
+    cellHeight += 73;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
     cellHeight += 17 + 81;
     cellHeight += 45;

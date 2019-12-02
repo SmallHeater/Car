@@ -24,7 +24,7 @@
 #import "PostViewController.h"
 #import "PostResidualTransactionViewController.h"
 #import "PostJobViewController.h"
-#import "MultiStylePostListViewController.h"
+#import "PostListViewController.h"
 #import "FrameNumberInquiryViewController.h"
 #import "PushViewController.h"
 #import "ForumDetailViewController.h"
@@ -246,11 +246,11 @@
         switch (indexPath.row) {
             case 0:
                 
-                cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0;
+                cellHeight = MAINWIDTH / 2;
                 break;
             case 1:
                 
-                cellHeight = 190;
+                cellHeight = 159 + 10 + 7;
                 break;
             default:
                 break;
@@ -372,16 +372,33 @@
                             case 0:
         
 //                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
+                                if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                                    
+                                    //未登录
+                                    LoginViewController * vc = [[LoginViewController alloc] init];
+                                    vc.hidesBottomBarWhenPushed = YES;
+                                    [self.navigationController pushViewController:vc animated:YES];
+                                    return;
+                                }
+                                
                                 vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                                 break;
                             case 1:
                                 
 //                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
+                                if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                                    
+                                    //未登录
+                                    LoginViewController * vc = [[LoginViewController alloc] init];
+                                    vc.hidesBottomBarWhenPushed = YES;
+                                    [self.navigationController pushViewController:vc animated:YES];
+                                    return;
+                                }
                                 urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
                                 break;
                             case 2:
                                 
-                                vc = [[MultiStylePostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5" vcType:MultiStylePostListVCType_tieziliebiao];
+                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5"];
                                 break;
                             case 3:
                                 
@@ -405,11 +422,11 @@
                                 break;
                             case 8:
                                 
-                                urlStr = @"http://qczl.ycqpmall.com/XmData/Wc/index";
+                                urlStr = @"https://cx2.ycqpmall.com/XmData/Wc/index";
                                 break;
                             case 9:
                                 
-                                vc = [[MultiStylePostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8" vcType:MultiStylePostListVCType_tieziliebiao];
+                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8"];
                                 break;
                             default:
                                 break;

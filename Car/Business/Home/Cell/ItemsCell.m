@@ -101,7 +101,7 @@
         
         make.centerX.equalTo(self.mas_centerX);
         make.width.offset(18);
-        make.bottom.offset(-14);
+        make.bottom.offset(-7);
         make.height.offset(3);
     }];
 }
@@ -111,9 +111,9 @@
     float itemX = 15;
     float itemY = 10;
     float itemWidth = 60;
-    float itemHeight = 60;
+    float itemHeight = 62;
     float itemInterval = (MAINWIDTH - 15 * 2 - itemWidth * 5) / 4.0;
-    float itemImageWidthHeight = 35;
+    float itemImageWidthHeight = 42;
     float itemImageX = (itemWidth - itemImageWidthHeight) / 2.0;
     float itemTitleHeight = 12;
     float itemTitleY = itemHeight - itemTitleHeight;
@@ -127,7 +127,7 @@
         if (i == 4) {
             
             itemX = 15;
-            itemY = itemHeight + 20;
+            itemY = itemY +itemHeight + 16;
         }
         else{
             

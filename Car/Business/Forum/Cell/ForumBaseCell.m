@@ -155,7 +155,7 @@
 +(float)cellHeightWithTitle:(NSString *)title{
     
     float cellHeight = 0;
-    cellHeight += 77;
+    cellHeight += 73;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 15 * 2];
     cellHeight += 45;
     return cellHeight;
@@ -193,7 +193,7 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.avatarImageView.mas_left);
-        make.top.equalTo(self.avatarImageView.mas_bottom).offset(22);
+        make.top.equalTo(self.avatarImageView.mas_bottom).offset(18);
         make.right.offset(-15);
         make.height.offset(41);
     }];

@@ -36,7 +36,6 @@
         _evaTextView.backgroundColor = [UIColor whiteColor];
         _evaTextView.returnKeyType = UIReturnKeyDone;
         _evaTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//        _evaTextView.backgroundColor = [UIColor greenColor];
     }
     return _evaTextView;
 }

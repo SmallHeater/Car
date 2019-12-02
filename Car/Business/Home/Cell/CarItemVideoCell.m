@@ -40,6 +40,9 @@
         
         _carNewImageView = [[UIImageView alloc] init];
         _carNewImageView.backgroundColor = [UIColor clearColor];
+        _carNewImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _carNewImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _carNewImageView.clipsToBounds = YES;
     }
     return _carNewImageView;
 }
@@ -82,11 +85,11 @@
 +(float)cellHeightWithTitle:(NSString *)title{
     
     float cellHeight = 0;
-    cellHeight += 21;
+    cellHeight += 16;
     cellHeight += [title heightWithFont:FONT17 andWidth:MAINWIDTH - 46];
-    cellHeight += 19;
+    cellHeight += 16;
     cellHeight += 190.0 / 345.0 * (MAINWIDTH - 30);
-    cellHeight += 56;
+    cellHeight += 44;
     return cellHeight;
 }
 
@@ -96,7 +99,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.offset(14);
-        make.top.offset(20);
+        make.top.offset(16);
         make.right.offset(-31);
         make.height.offset(37);
     }];
@@ -106,7 +109,7 @@
         
         make.left.offset(14);
         make.right.offset(-16);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(19);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(16);
         make.height.equalTo(self.carNewImageView.mas_width).multipliedBy(190.0/345.0);
     }];
     
@@ -114,7 +117,7 @@
     [self.pageviewsAndSourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.carNewImageView.mas_left);
-        make.top.equalTo(self.carNewImageView.mas_bottom).offset(22);
+        make.top.equalTo(self.carNewImageView.mas_bottom).offset(16);
         make.right.equalTo(self.carNewImageView.mas_right);
         make.height.offset(12);
     }];

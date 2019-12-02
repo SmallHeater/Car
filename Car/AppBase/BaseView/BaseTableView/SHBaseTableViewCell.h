@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SHBaseTableViewCell : UITableViewCell
 
++(float)cellHeight;
 //默认样式
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 

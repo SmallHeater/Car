@@ -342,18 +342,6 @@ static NSString * cellId = @"ReturnRecordCell";
 
 -(void)test{
     
-//    self.numberPlateLabel.backgroundColor = [UIColor redColor];
-//    self.nameLabel.backgroundColor = [UIColor orangeColor];
-//    self.carModelLabel.backgroundColor = [UIColor greenColor];
-//    self.phoneNumberLabel.backgroundColor = [UIColor grayColor];
-//    self.contentLabel.backgroundColor = [UIColor redColor];
-//    self.receivableLabel.backgroundColor = [UIColor grayColor];
-//    self.receivableContentLabel.backgroundColor = [UIColor greenColor];
-//    self.actualHarvestLabel.backgroundColor = [UIColor orangeColor];
-//    self.actualHarvestContentLabel.backgroundColor = [UIColor redColor];
-//    self.arrearsLabel.backgroundColor = [UIColor orangeColor];
-//    self.arrearsContentLabel.backgroundColor = [UIColor greenColor];
-    
     [self showDataWithDic:@{@"numberPlate":@"京A12345 ",@"name":@"张三丰 ",@"carModel":@"奥德赛牌HG6481BBAN）",@"phoneNumber":@"18605569805",@"MaintenanceContent":@"更换右下摆臂、雨刮电机、右叶子板、下悬梁和左球头",@"receivable":@"2400",@"cost":@"1000",@"profit":@"1400",@"content":@"更换右下摆臂、雨刮电机、右叶子板、下悬梁和左球头",@"receivable":@"2400.00",@"actualHarvest":@"1000.00",@"arrears":@"1400.00"}];
 }
 @end

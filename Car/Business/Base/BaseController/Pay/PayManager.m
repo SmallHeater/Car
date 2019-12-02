@@ -98,7 +98,7 @@
 //微信支付
 -(void)weChatPayWithDic:(NSDictionary *)dic{
     
-    [WXApi registerApp:@"wx268417062a763c9d"];
+    [WXApi registerApp:@"wx49e2438fe82e9e8c"];
     PayReq *req = [[PayReq alloc] init];
     req.openID = [dic objectForKey:@"appid"];
     req.partnerId = [dic objectForKey:@"partnerid"];

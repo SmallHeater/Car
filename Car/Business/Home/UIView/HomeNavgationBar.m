@@ -98,7 +98,7 @@
     [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.offset(0);
-        make.right.offset(-19);
+        make.right.offset(-8);
         make.width.offset(40);
         make.height.offset(35);
     }];
