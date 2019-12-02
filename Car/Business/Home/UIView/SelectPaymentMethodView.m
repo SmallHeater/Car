@@ -9,13 +9,19 @@
 #import "SelectPaymentMethodView.h"
 #import "UIViewController+SHTool.h"
 #import "PaymentMethodCell.h"
+#import "TotalAmountTableViewCell.h"
+#import "UserInforController.h"
 
 static NSString * cellId = @"PaymentMethodCell";
+static NSString * totalCellId = @"TotalAmountTableViewCell";
+
 
 @interface SelectPaymentMethodView ()<UITableViewDelegate,UITableViewDataSource>
 
 //顶部灰色view
 @property (nonatomic,strong) UIView * topView;
+@property (nonatomic,strong) SHBaseTableView * topTableView;
+@property (nonatomic,strong) UILabel * grayLabel;
 @property (nonatomic,strong) UIView * tableHeadView;
 //中间tableView
 @property (nonatomic,strong) SHBaseTableView * tableView;
@@ -59,6 +65,27 @@ static NSString * cellId = @"PaymentMethodCell";
         [_topView addGestureRecognizer:tap];
     }
     return _topView;
+}
+
+-(SHBaseTableView *)topTableView{
+    
+    if (!_topTableView) {
+        
+        _topTableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _topTableView.delegate = self;
+        _topTableView.dataSource = self;
+    }
+    return _topTableView;
+}
+
+-(UILabel *)grayLabel{
+    
+    if (!_grayLabel) {
+        
+        _grayLabel = [[UILabel alloc] init];
+        _grayLabel.backgroundColor = Color_EEEEEE;
+    }
+    return _grayLabel;
 }
 
 -(UIView *)tableHeadView{
@@ -142,11 +169,11 @@ static NSString * cellId = @"PaymentMethodCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if ([tableView isEqual:self.tableView] && indexPath.row == 0) {
         
         self.payMethod = @"wechat";
     }
-    else if (indexPath.row == 1){
+    else if ([tableView isEqual:self.tableView] && indexPath.row == 1){
         
         self.payMethod = @"alipay";
     }
@@ -156,52 +183,117 @@ static NSString * cellId = @"PaymentMethodCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    NSUInteger rows = 0;
+    if ([tableView isEqual:self.topTableView]) {
+        
+        rows = 4;
+    }
+    else if ([tableView isEqual:self.tableView]){
+        
+        rows = 2;
+    }
+    return rows;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    PaymentMethodCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
+    if ([tableView isEqual:self.topTableView]) {
         
-        cell = [[PaymentMethodCell alloc] initWithReuseIdentifier:cellId];
-    }
-    
-    NSString * iconImageName = @"";
-    NSString * title = @"";
-    if (indexPath.row == 0) {
+        TotalAmountTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:totalCellId];
+        if (cell == nil) {
+            
+            cell = [[TotalAmountTableViewCell alloc] initWithReuseIdentifier:totalCellId];
+        }
         
-        iconImageName = @"weixin";
-        title = @"微信";
-    }
-    else if (indexPath.row == 1){
+        if (indexPath.row == 0) {
+            
+            [cell showTitle:@"总金额" andContent:[NSString stringWithFormat:@"￥ %.2f",self.totalAmount]];
+        }
+        else if (indexPath.row == 1){
+            
+            [cell showTitle:@"红包抵扣" andContent:[NSString stringWithFormat:@"￥ %.2f",[UserInforController sharedManager].userInforModel.red_packet_num.floatValue]];
+        }
+        else if (indexPath.row == 2){
+            
+            [cell refreshTitleFont:FONT16];
+            [cell refreshContentColor:Color_FF4C4B];
+            [cell showTitle:@"实付金额" andContent:[NSString stringWithFormat:@"￥ %.2f",self.totalAmount - [UserInforController sharedManager].userInforModel.red_packet_num.floatValue]];
+        }
+        else if (indexPath.row == 3){
+            
+            [cell refreshTitleFont:FONT16];
+            [cell refreshContentFont:FONT16];
+            UserInforModel * inforModel = [UserInforController sharedManager].userInforModel;
+            NSString * content = [NSString stringWithFormat:@"%@%@%@%@",inforModel.province,inforModel.city,inforModel.district,inforModel.phone];
+            [cell showTitle:@"收货信息" andContent:content];
+        }
         
-        iconImageName = @"zhifubao";
-        title = @"支付宝";
+        return cell;
     }
-    
-    [cell show:iconImageName titleStr:title];
-    
-    return cell;
+    else if ([tableView isEqual:self.tableView]){
+
+        PaymentMethodCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            
+            cell = [[PaymentMethodCell alloc] initWithReuseIdentifier:cellId];
+        }
+        
+        NSString * iconImageName = @"";
+        NSString * title = @"";
+        if (indexPath.row == 0) {
+            
+            iconImageName = @"weixin";
+            title = @"微信";
+        }
+        else if (indexPath.row == 1){
+            
+            iconImageName = @"zhifubao";
+            title = @"支付宝";
+        }
+        
+        [cell show:iconImageName titleStr:title];
+        
+        return cell;
+    }
+    return nil;
 }
 
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.39];
     [self addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.top.right.offset(0);
-        make.height.offset(MAINHEIGHT - 204 - [SHUIScreenControl bottomSafeHeight]);
+        make.height.offset(MAINHEIGHT - 204 - [SHUIScreenControl bottomSafeHeight] - 196 - 10);
     }];
     
+    [self addSubview:self.topTableView];
+    [self.topTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.offset(0);
+        make.top.equalTo(self.topView.mas_bottom);
+        make.height.offset(196);
+    }];
+    [self addSubview:self.grayLabel];
+    [self.grayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.offset(0);
+        make.top.equalTo(self.topTableView.mas_bottom);
+        make.height.offset(10);
+    }];
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.offset(0);
-        make.top.equalTo(self.topView.mas_bottom);
+        make.top.equalTo(self.grayLabel.mas_bottom);
         make.height.offset(204);
     }];
     

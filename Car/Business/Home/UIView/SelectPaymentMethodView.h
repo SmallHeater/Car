@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectPaymentMethodView : UIView
 
+//总金额
+@property (nonatomic,assign) float totalAmount;
+
 @end
 
 NS_ASSUME_NONNULL_END

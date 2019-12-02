@@ -41,6 +41,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         _leftTableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _leftTableView.delegate = self;
         _leftTableView.dataSource = self;
+        _leftTableView.scrollEnabled = NO;
     }
     return _leftTableView;
 }
@@ -52,6 +53,7 @@ static NSString * GoodsCellId = @"GoodsCell";
         _rightTableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _rightTableView.delegate = self;
         _rightTableView.dataSource = self;
+        _rightTableView.scrollEnabled = NO;
     }
     return _rightTableView;
 }
@@ -63,6 +65,15 @@ static NSString * GoodsCellId = @"GoodsCell";
         _goodsArray = [[NSMutableArray alloc] init];
     }
     return _goodsArray;
+}
+
+#pragma mark  ----  SET
+
+-(void)setCanScroll:(BOOL)canScroll{
+    
+    _canScroll = canScroll;
+    self.leftTableView.scrollEnabled = canScroll;
+    self.rightTableView.scrollEnabled = canScroll;
 }
 
 #pragma mark  ----  生命周期函数
@@ -80,6 +91,17 @@ static NSString * GoodsCellId = @"GoodsCell";
 }
 
 #pragma mark  ----  代理
+
+#pragma mark  ----  UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y <= 0 && self.canScrollCallBack) {
+            
+        self.canScrollCallBack(YES);
+        self.canScroll = NO;
+    }
+}
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -180,17 +202,16 @@ static NSString * GoodsCellId = @"GoodsCell";
             count += good.count;
         }
         [cell show:model.name count:count];
+        NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:self.rightSection inSection:0];
+        [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         return cell;
     }
     else if ([tableView isEqual:self.rightTableView]){
         
-        if (indexPath.section != self.rightSection) {
-            
-            NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:indexPath.section inSection:0];
-            [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
-            [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            self.rightSection = indexPath.section;
-        }
+       NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:indexPath.section inSection:0];
+       [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+       [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+       self.rightSection = indexPath.section;
         
         GoodsCell * cell = [tableView dequeueReusableCellWithIdentifier:GoodsCellId];
         if (!cell) {

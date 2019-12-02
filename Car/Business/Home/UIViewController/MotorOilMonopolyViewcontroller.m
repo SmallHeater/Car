@@ -23,7 +23,7 @@
 
 #define ITEMBTNBASETAG 1000
 
-@interface MotorOilMonopolyViewcontroller ()<UIScrollViewDelegate>
+@interface MotorOilMonopolyViewcontroller ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) MotorOilMonopolyHeaderView * tableHeaderView;
 @property (nonatomic,strong) NSMutableArray<NSString *> * tabTitleArray;
@@ -48,6 +48,9 @@
 @property (nonatomic,strong) NSString * pay_type;
 //我的购物车指针
 @property (nonatomic,strong) MyShoppingCartView * carView;
+
+@property (nonatomic,strong) SHBaseTableView * contentTableView;
+@property (nonatomic, assign) CGFloat lastOffsetY;
 
 @end
 
@@ -239,6 +242,7 @@
             x.userInteractionEnabled = NO;
             if (weakSelf.totalPrice > 0) {
                 
+                weakSelf.paymentMethodView.totalAmount = weakSelf.totalPrice;
                 [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.paymentMethodView];
                 [weakSelf.paymentMethodView mas_makeConstraints:^(MASConstraintMaker *make) {
                     
@@ -277,6 +281,12 @@
                 [weakSelf.goodsArray addObjectsFromArray:dataArray];
             }
         };
+    
+        goodsVC.canScrollCallBack = ^(BOOL canScroll) {
+          
+            weakSelf.tableView.scrollEnabled = canScroll;
+        };
+        
         self.goodsVC = goodsVC;
         UIView * goodsView = goodsVC.view;
         [_bgScrollView addSubview:goodsView];
@@ -317,11 +327,22 @@
     [self drawUI];
     [self requestListData];
     [self addRac];
+    self.lastOffsetY = 0;
 }
 
 #pragma mark  ----  代理
 
 #pragma mark  ----  UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.y >= 92) {
+        
+        //已滑动到最大
+        self.tableView.scrollEnabled = NO;
+        self.goodsVC.canScroll = YES;
+    }
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
@@ -367,6 +388,13 @@
         }];
     }
     return cell;
+}
+
+#pragma mark  ----  UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
 }
 
 #pragma mark  ----  自定义函数

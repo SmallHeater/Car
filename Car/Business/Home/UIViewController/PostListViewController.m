@@ -180,7 +180,7 @@ static NSString * cellID = @"PostListCell";
 -(void)requestMyArticleData{
     
     NSDictionary * bodyParameters = @{@"user_id":self.userId,@"page":[NSString stringWithFormat:@"%ld",self.page]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":GetUserArticles,@"bodyParameters":bodyParameters};
+    NSDictionary * configurationDic = @{@"requestUrlStr":GetMyForums,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

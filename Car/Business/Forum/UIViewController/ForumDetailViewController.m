@@ -395,8 +395,9 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
             __weak typeof(self) weakSelf = self;
             [[cell rac_signalForSelector:@selector(attentionBtnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
                 
+                NSString * title = [[NSString alloc] initWithFormat:@"%@的帖子",weakSelf.forumArticleModel.from_user.shop_name];
                 //去作者的帖子列表页面
-                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:@"我的帖子" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andUserId:[NSString stringWithFormat:@"%ld",weakSelf.forumArticleModel.from_user.userId]];
+                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andUserId:[NSString stringWithFormat:@"%ld",weakSelf.forumArticleModel.from_user.userId]];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }];
         }
