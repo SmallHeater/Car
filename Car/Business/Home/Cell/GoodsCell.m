@@ -79,6 +79,11 @@
             if (weakSelf.model.count > 0) {
              
                 weakSelf.model.count--;
+                if (weakSelf.model.count == 0) {
+                    
+                    weakSelf.subtractBtn.hidden = YES;
+                    weakSelf.countLabel.hidden = YES;
+                }
                 weakSelf.countLabel.text = weakSelf.model.countStr;
             }
             x.userInteractionEnabled = YES;
@@ -123,6 +128,11 @@
                 else{
                     
                     weakSelf.model.count++;
+                    if (weakSelf.model.count > 0) {
+                        
+                        weakSelf.subtractBtn.hidden = NO;
+                        weakSelf.countLabel.hidden = NO;
+                    }
                     weakSelf.countLabel.text = weakSelf.model.countStr;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"GOODSVARIETY" object:nil];
                 }
@@ -218,6 +228,16 @@
 -(void)show:(OilGoodModel *)model{
     
     self.model = model;
+    if (model.count == 0) {
+        
+        self.subtractBtn.hidden = YES;
+        self.countLabel.hidden = YES;
+    }
+    else{
+        
+        self.subtractBtn.hidden = NO;
+        self.countLabel.hidden = NO;
+    }
     for (UILabel * label in self.labelArray) {
         
         [label removeFromSuperview];

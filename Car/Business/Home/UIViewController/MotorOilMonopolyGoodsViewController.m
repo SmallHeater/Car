@@ -11,7 +11,7 @@
 #import "UserInforController.h"
 #import "OilBrandModel.h"
 #import "GoodsCell.h"
-
+#import "MotorOilController.h"
 
 static NSString * GoodsCategoryCellId = @"GoodsCategoryCell";
 static NSString * GoodsCellId = @"GoodsCell";
@@ -20,7 +20,7 @@ static NSString * GoodsCellId = @"GoodsCell";
 
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
 @property (nonatomic,strong) SHBaseTableView * rightTableView;
-@property (nonatomic,strong) NSMutableArray<OilBrandModel *> * dataArray;
+
 //存放添加的机油商品模型的数组
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
 //价格
@@ -56,15 +56,6 @@ static NSString * GoodsCellId = @"GoodsCell";
     return _rightTableView;
 }
 
--(NSMutableArray<OilBrandModel *> *)dataArray{
-    
-    if (!_dataArray) {
-        
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
-
 -(NSMutableArray<OilGoodModel *> *)goodsArray{
     
     if (!_goodsArray) {
@@ -81,7 +72,10 @@ static NSString * GoodsCellId = @"GoodsCell";
     // Do any additional setup after loading the view.
     
     [self drawUI];
-    [self requestListData];
+    if ([MotorOilController sharedManager].dataArray.count == 0) {
+        
+        [self requestListData];
+    }
     [self addNotification];
 }
 
@@ -117,7 +111,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     
     if ([tableView isEqual:self.rightTableView]) {
         
-        OilBrandModel * model = self.dataArray[section];
+        OilBrandModel * model = [MotorOilController sharedManager].dataArray[section];
         UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         headerView.backgroundColor = [UIColor whiteColor];
         UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 35)];
@@ -145,11 +139,11 @@ static NSString * GoodsCellId = @"GoodsCell";
     NSUInteger rows = 0;
     if ([tableView isEqual:self.leftTableView]) {
         
-        rows = self.dataArray.count;
+        rows = [MotorOilController sharedManager].dataArray.count;
     }
     else if ([tableView isEqual:self.rightTableView]){
         
-        OilBrandModel * model = self.dataArray[section];
+        OilBrandModel * model = [MotorOilController sharedManager].dataArray[section];
         rows = model.goods.count;
     }
     return rows;
@@ -164,7 +158,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     }
     else if ([tableView isEqual:self.rightTableView]){
         
-        sections = self.dataArray.count;
+        sections = [MotorOilController sharedManager].dataArray.count;
     }
     return sections;
 }
@@ -179,7 +173,7 @@ static NSString * GoodsCellId = @"GoodsCell";
             cell = [[GoodsCategoryCell alloc] initWithReuseIdentifier:GoodsCategoryCellId];
         }
         
-        OilBrandModel * model = self.dataArray[indexPath.row];
+        OilBrandModel * model = [MotorOilController sharedManager].dataArray[indexPath.row];
         NSUInteger count = 0;
         for (OilGoodModel * good in model.goods) {
             
@@ -204,7 +198,7 @@ static NSString * GoodsCellId = @"GoodsCell";
             cell = [[GoodsCell alloc] initWithReuseIdentifier:GoodsCellId];
         }
         
-        OilBrandModel * model = self.dataArray[indexPath.section];
+        OilBrandModel * model = [MotorOilController sharedManager].dataArray[indexPath.section];
         OilGoodModel * goodModel = model.goods[indexPath.row];
         [cell show:goodModel];
         return cell;
@@ -220,18 +214,18 @@ static NSString * GoodsCellId = @"GoodsCell";
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(0);
-        make.top.offset(-20);
+        make.top.offset(0);
         make.width.offset(75);
-        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 90);
+        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 47 - 5);
     }];
     
     [self.view addSubview:self.rightTableView];
     [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.leftTableView.mas_right);
-        make.top.offset(-20);
+        make.top.offset(0);
         make.width.offset(MAINWIDTH - 75);
-        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 90);
+        make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 47 - 5);
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -248,12 +242,13 @@ static NSString * GoodsCellId = @"GoodsCell";
      __block float totalPrice = 0;
     //商品数量变动的通知
     __weak typeof(self) weakSelf = self;
+    __weak MotorOilController * weakControl = [MotorOilController sharedManager];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"GOODSVARIETY" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         
         [weakSelf.leftTableView reloadData];
         totalPrice = 0;
         [weakSelf.goodsArray removeAllObjects];
-        for (OilBrandModel * oilBrandModel in weakSelf.dataArray) {
+        for (OilBrandModel * oilBrandModel in weakControl.dataArray) {
             
             for (OilGoodModel * goodModel in oilBrandModel.goods) {
                 
@@ -293,6 +288,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetTypeGoodsList,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
+    __weak MotorOilController * weakControl = [MotorOilController sharedManager];
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
         if (![resultDic.allKeys containsObject:@"error"]) {
@@ -317,7 +313,7 @@ static NSString * GoodsCellId = @"GoodsCell";
                             for (NSDictionary * dic in list) {
                                 
                                 OilBrandModel * model = [OilBrandModel mj_objectWithKeyValues:dic];
-                                [weakSelf.dataArray addObject:model];
+                                [weakControl.dataArray addObject:model];
                             }
                         }
                         

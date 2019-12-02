@@ -264,7 +264,7 @@
         _bgScrollView = [[UIScrollView alloc] init];
         _bgScrollView.delegate = self;
         _bgScrollView.pagingEnabled = YES;
-        float viewHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44;
+        float viewHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 47 - 5;
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
         
         MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];

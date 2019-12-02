@@ -123,6 +123,7 @@
 		04919D412393B1760031107A /* SmallVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D402393B1760031107A /* SmallVideoCollectionViewCell.m */; };
 		04919D472393B4480031107A /* ForumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D462393B4480031107A /* ForumListViewController.m */; };
 		04919D4C2393E0CA0031107A /* MultiStylePostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */; };
+		04919D52239512020031107A /* MotorOilController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04919D51239512020031107A /* MotorOilController.m */; };
 		049214E5237D83B4004BCE3E /* VideoPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049214E4237D83B4004BCE3E /* VideoPlayCell.m */; };
 		0498B5B923140DF700A5EDC1 /* VehicleInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5B823140DF700A5EDC1 /* VehicleInformationCell.m */; };
 		0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498B5BB23141A4A00A5EDC1 /* DriverInformationCell.m */; };
@@ -556,6 +557,8 @@
 		04919D462393B4480031107A /* ForumListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumListViewController.m; sourceTree = "<group>"; };
 		04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiStylePostListViewController.m; sourceTree = "<group>"; };
 		04919D4B2393E0CA0031107A /* MultiStylePostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiStylePostListViewController.h; sourceTree = "<group>"; };
+		04919D50239512020031107A /* MotorOilController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilController.h; sourceTree = "<group>"; };
+		04919D51239512020031107A /* MotorOilController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilController.m; sourceTree = "<group>"; };
 		049214E3237D83B4004BCE3E /* VideoPlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayCell.h; sourceTree = "<group>"; };
 		049214E4237D83B4004BCE3E /* VideoPlayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayCell.m; sourceTree = "<group>"; };
 		0498B5B723140DF700A5EDC1 /* VehicleInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformationCell.h; sourceTree = "<group>"; };
@@ -1057,6 +1060,7 @@
 		04048582230C24D200EF17C8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				04919D4F239511E60031107A /* Controller */,
 				6200075C2332417100319C33 /* Model */,
 				62A80D122330692900A6C456 /* Cell */,
 				62A80D04232FB1E000A6C456 /* UIView */,
@@ -1341,6 +1345,15 @@
 			children = (
 			);
 			path = opencv;
+			sourceTree = "<group>";
+		};
+		04919D4F239511E60031107A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04919D50239512020031107A /* MotorOilController.h */,
+				04919D51239512020031107A /* MotorOilController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		04A915E9232A87FD002DDC02 /* BaseController */ = {
@@ -2555,6 +2568,7 @@
 				043E9F672345A28600109AC5 /* ForumDetailCommentListCell.m in Sources */,
 				62880D04236AC539007742FF /* SHTabModel.m in Sources */,
 				040485FC231187AD00EF17C8 /* SearchBarCell.m in Sources */,
+				04919D52239512020031107A /* MotorOilController.m in Sources */,
 				04C7055A236D75BC00A697C5 /* ContentListItemModel.m in Sources */,
 				048D7C542371A9E90088F76B /* ReportViewController.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
