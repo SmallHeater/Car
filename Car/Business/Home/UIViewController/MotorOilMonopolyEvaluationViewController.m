@@ -14,7 +14,6 @@
 static NSString * cellId = @"MotorOilCommentCell";
 @interface MotorOilMonopolyEvaluationViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<MotorOilCommentModel *> * dataArray;
 @property (nonatomic,strong) NSString * shopId;
 
@@ -29,6 +28,7 @@ static NSString * cellId = @"MotorOilCommentCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -42,6 +42,12 @@ static NSString * cellId = @"MotorOilCommentCell";
         _dataArray = [[NSMutableArray alloc] init];
     }
     return _dataArray;
+}
+
+-(void)setCanScroll:(BOOL)canScroll{
+    
+    _canScroll = canScroll;
+    self.tableView.scrollEnabled = canScroll;
 }
 
 #pragma mark  ----  生命周期函数
@@ -65,6 +71,21 @@ static NSString * cellId = @"MotorOilCommentCell";
 }
 
 #pragma mark  ----  代理
+
+#pragma mark  ----  UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
+            
+        self.canScrollCallBack(YES);
+        self.canScroll = NO;
+        if (self.parentTableView) {
+            
+            self.parentTableView.contentOffset = scrollView.contentOffset;
+        }
+    }
+}
 
 #pragma mark  ----  UITableViewDelegate
 

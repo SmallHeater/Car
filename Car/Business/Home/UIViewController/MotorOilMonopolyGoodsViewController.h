@@ -15,6 +15,10 @@ typedef void(^ParentTBCanScrollCallBack)(BOOL canScroll);
 
 @interface MotorOilMonopolyGoodsViewController : SHBaseViewController
 
+@property (nonatomic,strong) SHBaseTableView * rightTableView;
+//父tableView
+@property (nonatomic,strong) UITableView * parentTableView;
+
 //子tableview能否滑动
 @property (nonatomic,assign) BOOL canScroll;
 //父viewe能否滑动的回调

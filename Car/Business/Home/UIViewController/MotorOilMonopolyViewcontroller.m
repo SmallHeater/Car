@@ -38,6 +38,8 @@
 //头部背景图地址
 @property (nonatomic,strong) NSString * headImageUrlStr;
 @property (nonatomic,strong) MotorOilMonopolyGoodsViewController * goodsVC;
+@property (nonatomic,strong) MotorOilMonopolyEvaluationViewController * evaVC;
+@property (nonatomic,strong) MotorOilMonopolyShopViewController * shopVC;
 //存放商品view,评价view,商家view的容器view
 @property (nonatomic,strong) UIScrollView * bgScrollView;
 //机油总价
@@ -51,8 +53,8 @@
 //我的购物车指针
 @property (nonatomic,strong) MyShoppingCartView * carView;
 
-@property (nonatomic,strong) SHBaseTableView * contentTableView;
-@property (nonatomic, assign) CGFloat lastOffsetY;
+//选中的索引
+@property (nonatomic,assign) NSUInteger selectedIndex;
 
 @end
 
@@ -296,6 +298,7 @@
         _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
         
         MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
+        goodsVC.parentTableView = self.tableView;
         __weak typeof(self) weakSelf = self;
         goodsVC.callBack = ^(NSMutableArray * _Nonnull dataArray) {
             
@@ -318,12 +321,24 @@
         [self addChildViewController:goodsVC];
         
         MotorOilMonopolyEvaluationViewController * evaluationVC = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:self.shopModel.shopIdStr];
+        self.evaVC = evaluationVC;
+        evaluationVC.parentTableView = self.tableView;
+        evaluationVC.canScrollCallBack = ^(BOOL canScroll) {
+          
+            weakSelf.tableView.scrollEnabled = canScroll;
+        };
         [self addChildViewController:evaluationVC];
         UIView * evaluationView = evaluationVC.view;
         evaluationView.frame = CGRectMake(MAINWIDTH, 0, 0,viewHeight);
         [_bgScrollView addSubview:evaluationView];
         
         MotorOilMonopolyShopViewController * shopVC = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
+        self.shopVC = shopVC;
+        shopVC.parentTableView = self.tableView;
+        shopVC.canScrollCallBack = ^(BOOL canScroll) {
+          
+            weakSelf.tableView.scrollEnabled = canScroll;
+        };
         [self addChildViewController:shopVC];
         UIView * shopView = shopVC.view;
         shopView.frame = CGRectMake(MAINWIDTH * 2, 0, 0,viewHeight);
@@ -350,8 +365,7 @@
     // Do any additional setup after loading the view.
     [self drawUI];
     [self requestListData];
-    [self addRac];
-    self.lastOffsetY = 0;
+    self.selectedIndex = 0;
 }
 
 #pragma mark  ----  代理
@@ -360,19 +374,61 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.contentOffset.y >= 92) {
-        
-        //已滑动到最大
-        self.tableView.scrollEnabled = NO;
-        self.goodsVC.canScroll = YES;
+    if ([scrollView isKindOfClass:[SHBaseTableView class]]) {
+     
+        float y = scrollView.contentOffset.y;
+            if (y >= 92) {
+                
+                //已滑动到最大
+        //        self.tableView.contentOffset = CGPointMake(0, 92);
+                self.tableView.scrollEnabled = NO;
+                if (self.selectedIndex == 0) {
+                
+                    self.goodsVC.canScroll = YES;
+                    self.goodsVC.rightTableView.contentOffset = CGPointMake(0, y - 92);
+                }
+                else if (self.selectedIndex == 1){
+                    
+                    self.evaVC.canScroll = YES;
+                }
+                else if (self.selectedIndex == 2){
+                    
+                    self.shopVC.canScroll = YES;
+                }
+            }
+            
+            __weak typeof(self) weakSelf = self;
+            if (y >= 176 - [SHUIScreenControl navigationBarHeight] - 20) {
+
+                [UIView animateWithDuration:0.1 animations:^{
+
+                    weakSelf.navigationbar.backgroundColor = [UIColor whiteColor];
+                }];
+            }
+            else{
+
+                [UIView animateWithDuration:0.1 animations:^{
+
+                    weakSelf.navigationbar.backgroundColor = [UIColor clearColor];
+                }];
+            }
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    float index = scrollView.contentOffset.x / MAINWIDTH;
-    [self.baseTabView selectItemWithIndex:index];
+    if ([NSStringFromClass(scrollView.class) isEqualToString:@"UIScrollView"]) {
+     
+        float index = scrollView.contentOffset.x / MAINWIDTH;
+        if (self.selectedIndex != index) {
+         
+            self.selectedIndex = index;
+            self.tableView.scrollEnabled = YES;
+            [self.baseTabView selectItemWithIndex:index];
+        }
+    }
 }
+
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -445,31 +501,6 @@
             make.height.offset(47);
         }];
     });
-}
-
-//添加rac处理
--(void)addRac{
-    
-    [[[self.tableView rac_valuesForKeyPath:@"contentOffset" observer:self] throttle:0.1] subscribeNext:^(id  _Nullable x) {
-       
-        CGPoint point = [x CGPointValue];
-        float y = point.y;
-        __weak typeof(self) weakSelf = self;
-        if (y >= 176 - [SHUIScreenControl navigationBarHeight] - 20) {
-
-            [UIView animateWithDuration:0.5 animations:^{
-
-                weakSelf.navigationbar.backgroundColor = [UIColor whiteColor];
-            }];
-        }
-        else{
-
-            [UIView animateWithDuration:0.5 animations:^{
-
-                weakSelf.navigationbar.backgroundColor = [UIColor clearColor];
-            }];
-        }
-    }];
 }
 
 //获取门店数据

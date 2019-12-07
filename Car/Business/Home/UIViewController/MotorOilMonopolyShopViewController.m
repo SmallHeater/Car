@@ -13,9 +13,8 @@
 static NSString * AgentCellId = @"AgentCell";
 static NSString * ProductStatementCellId = @"ProductStatementCell";
 
-@interface MotorOilMonopolyShopViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MotorOilMonopolyShopViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
-@property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) ShopModel * shopModel;
 
 @end
@@ -29,10 +28,19 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
     return _tableView;
+}
+
+#pragma mark  ----  SET
+
+-(void)setCanScroll:(BOOL)canScroll{
+    
+    _canScroll = canScroll;
+    self.tableView.scrollEnabled = canScroll;
 }
 
 #pragma mark  ----  生命周期函数
@@ -55,6 +63,21 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
 }
 
 #pragma mark  ----  代理
+
+#pragma mark  ----  UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
+            
+        self.canScrollCallBack(YES);
+        self.canScroll = NO;
+        if (self.parentTableView) {
+            
+            self.parentTableView.contentOffset = scrollView.contentOffset;
+        }
+    }
+}
 
 #pragma mark  ----  UITableViewDelegate
 

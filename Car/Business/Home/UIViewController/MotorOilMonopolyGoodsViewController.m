@@ -19,7 +19,7 @@ static NSString * GoodsCellId = @"GoodsCell";
 @interface MotorOilMonopolyGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
-@property (nonatomic,strong) SHBaseTableView * rightTableView;
+
 
 //存放添加的机油商品模型的数组
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
@@ -106,14 +106,30 @@ static NSString * GoodsCellId = @"GoodsCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.contentOffset.y <= 0 && self.canScrollCallBack) {
+    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
             
         self.canScrollCallBack(YES);
         self.canScroll = NO;
+        if (self.parentTableView) {
+            
+            self.parentTableView.contentOffset = scrollView.contentOffset;
+        }
     }
 }
 
 #pragma mark  ----  UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
+    
+    if ([tableView isEqual:self.rightTableView]) {
+     
+        //老header消失
+        NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:section + 1 inSection:0];
+        [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        self.rightSection = section + 1;
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -217,11 +233,6 @@ static NSString * GoodsCellId = @"GoodsCell";
         return cell;
     }
     else if ([tableView isEqual:self.rightTableView]){
-        
-       NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:indexPath.section inSection:0];
-       [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
-       [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-       self.rightSection = indexPath.section;
         
         GoodsCell * cell = [tableView dequeueReusableCellWithIdentifier:GoodsCellId];
         if (!cell) {
