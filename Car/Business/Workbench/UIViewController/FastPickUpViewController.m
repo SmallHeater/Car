@@ -394,7 +394,7 @@
             
             make.left.right.offset(0);
             make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-            make.bottom.offset(-123);
+            make.bottom.offset(-30 * 2 - [SHUIScreenControl bottomSafeHeight] - 44);
         }];
     }
 
@@ -433,7 +433,12 @@
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillHideNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         
-        weakSelf.tableView.scrollEnabled = NO;
+        
+        if (MAINHEIGHT >= 542 + 64 + 123) {
+            
+            self.tableView.scrollEnabled = NO;
+        }
+        
         NSDictionary *userInfo = [x userInfo];
         CGFloat duration = [[userInfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
         __weak typeof(self) weakSelf = self;

@@ -88,6 +88,16 @@ static NSString * GoodsCellId = @"GoodsCell";
         [self requestListData];
     }
     [self addNotification];
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [MotorOilController sharedManager].refreshBlock = ^{
+      
+        weakSelf.priceStr = @"0.00";
+        [weakSelf.goodsArray removeAllObjects];
+        [weakSelf.leftTableView reloadData];
+        [weakSelf.rightTableView reloadData];
+    };
 }
 
 #pragma mark  ----  代理

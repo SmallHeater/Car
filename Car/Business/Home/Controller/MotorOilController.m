@@ -37,6 +37,25 @@
 
 #pragma mark  ----  自定义函数
 
-
+//支付完成，设置所有机油初始
+-(void)initializationAllOil{
+    
+    for (OilBrandModel * model in self.dataArray) {
+        
+        for (OilGoodModel * goodModel in model.goods) {
+            
+            if (goodModel.count > 0) {
+                
+                goodModel.count = 0;
+                goodModel.countStr = @"";
+            }
+        }
+    }
+    
+    if (self.refreshBlock) {
+        
+        self.refreshBlock();
+    }
+}
 
 @end

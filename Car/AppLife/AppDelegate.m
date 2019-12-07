@@ -18,7 +18,7 @@
 #import <WXApi.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import <Bugly/Bugly.h>
-
+#import "MotorOilController.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -113,6 +113,7 @@
             
             if (orderState==9000) {
                 
+                [[MotorOilController sharedManager] initializationAllOil];
                 //支付宝支付成功
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYRESULT" object:nil userInfo:@{@"state":[NSNumber numberWithInt:1]}];
             }else{
@@ -149,6 +150,8 @@
         NSArray *array = [result componentsSeparatedByString:@"="];
         NSString *resultNumber = [array lastObject];
         if ([resultNumber integerValue] == 0){ //成功
+            
+            [[MotorOilController sharedManager] initializationAllOil];
             //发送支付成功的通知
 //            [[NSNotificationCenter defaultCenter] postNotificationName:NoticePaySuccess object:nil];
         }else if ([resultNumber integerValue] == -1) { //错误

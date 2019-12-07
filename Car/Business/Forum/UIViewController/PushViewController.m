@@ -180,7 +180,10 @@
                 [alertControl addAction:cancelAction];
                 [alertControl addAction:sureAction];
                 alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
-                [weakSelf presentViewController:alertControl animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                    [weakSelf presentViewController:alertControl animated:YES completion:nil];
+                });
             }
         };
     }
@@ -292,7 +295,7 @@
 -(void)submitData{
     
     //name,标题;image,封面;href,视频地址
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"name":self.videoTitle,@"image":self.imagePath,@"href":self.videoPath};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"name":self.videoTitle,@"image":self.imagePath,@"href":self.dataPath};
     NSDictionary * configurationDic = @{@"requestUrlStr":PostVideo,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

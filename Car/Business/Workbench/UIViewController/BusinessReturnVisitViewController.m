@@ -17,8 +17,8 @@
 
 typedef NS_ENUM(NSUInteger,ViewType){
     
-    ViewType_UnVisit,//未回款
-    ViewType_Visited//已回款
+    ViewType_UnVisit,//未回访
+    ViewType_Visited//已回访
 };
 
 @interface BusinessReturnVisitViewController ()<UIScrollViewDelegate,SHMultipleSwitchingItemsViewDelegate>

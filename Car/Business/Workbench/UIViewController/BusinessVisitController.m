@@ -114,6 +114,8 @@ static NSString * cellId = @"BusinessVisitCell";
                     }
                 }
                 else{
+                    
+                    [weakSelf.dataArray removeAllObjects];
                 }
                 [weakSelf refreshViewType:BTVCType_RefreshTableView];
             }
@@ -132,6 +134,7 @@ static NSString * cellId = @"BusinessVisitCell";
     
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"maintain_id":[NSString stringWithFormat:@"%ld",model.maintain_Id]};
     NSDictionary * configurationDic = @{@"requestUrlStr":SendVisitSms,@"bodyParameters":bodyParameters};
+    __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
         if (![resultDic.allKeys containsObject:@"error"]) {
@@ -154,16 +157,15 @@ static NSString * cellId = @"BusinessVisitCell";
                     //异常
                     [MBProgressHUD wj_showError:dic[@"msg"]];
                 }
+                
+                [weakSelf loadNewData];
             }
             else{
-                
-                
             }
         }
         else{
             
             //失败的
-            
         }
     }];
 }

@@ -20,6 +20,8 @@
 #import "OilGoodModel.h"
 #import "SelectPaymentMethodView.h"
 #import "PayManager.h"
+#import "MotorOilController.h"
+
 
 #define ITEMBTNBASETAG 1000
 
@@ -178,11 +180,32 @@
             make.width.offset(1);
         }];
         
+        //价格总额
+        float totalPrice = 0;
+        for (OilBrandModel * oilBrandModel in [MotorOilController sharedManager].dataArray) {
+            
+            for (OilGoodModel * goodModel in oilBrandModel.goods) {
+                
+                if (goodModel.count > 0) {
+                 
+                    float price = 0;
+                    if (goodModel.specs && [goodModel.specs isKindOfClass:[NSArray class]] && goodModel.specs.count > 0) {
+                        
+                        NSDictionary * dic = goodModel.specs[0];
+                        NSNumber * priceNumber = dic[@"goods_price"];
+                        price = priceNumber.floatValue;
+                    }
+                    
+                    totalPrice += goodModel.count * price;
+                }
+            }
+        }
+        self.totalPrice = totalPrice;
         //价格总计
         UILabel * totalPriceLabel = [[UILabel alloc] init];
         totalPriceLabel.textColor = [UIColor whiteColor];
         totalPriceLabel.userInteractionEnabled = YES;
-        NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:@"总计：¥0.00"];
+        NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"总计：¥%.2f",totalPrice]];
         [attStr addAttributes:@{NSFontAttributeName:FONT12} range:NSMakeRange(0, 3)];
         [attStr addAttributes:@{NSFontAttributeName:FONT18} range:NSMakeRange(3, attStr.length - 3)];
         totalPriceLabel.attributedText = attStr;
@@ -218,9 +241,10 @@
         
         [[self.goodsVC rac_valuesForKeyPath:@"priceStr" observer:self] subscribeNext:^(id  _Nullable x) {
             
-            weakSelf.totalPrice = [x floatValue];
             if (![NSString strIsEmpty:x]) {
              
+                weakSelf.totalPrice = [x floatValue];
+                
                 NSString * str = [[NSString alloc] initWithFormat:@"总计：¥%@",x];
                 NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:str];
                 [attStr addAttributes:@{NSFontAttributeName:FONT12} range:NSMakeRange(0, 3)];
@@ -335,7 +359,7 @@
 #pragma mark  ----  UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+
     if (scrollView.contentOffset.y >= 92) {
         
         //已滑动到最大

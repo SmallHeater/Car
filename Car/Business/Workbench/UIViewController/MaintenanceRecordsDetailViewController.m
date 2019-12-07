@@ -275,20 +275,29 @@ typedef NS_ENUM(NSUInteger,ViewState){
 
 -(void)drawUI{
     
-    [self.navigationbar addSubview:self.editBtn];
-    NSUInteger editBtnWidth = 44;
-    [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    float tableViewBottom = 0;
+    if (self.viewState == ViewState_edit) {
         
-        make.width.height.offset(editBtnWidth);
-        make.right.offset(-13);
-        make.bottom.offset(0);
-    }];
+        self.bottomView.hidden = NO;
+        tableViewBottom = 44;
+    }
+    else if (self.viewState == ViewState_show){
+        
+        [self.navigationbar addSubview:self.editBtn];
+        NSUInteger editBtnWidth = 44;
+        [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.width.height.offset(editBtnWidth);
+            make.right.offset(-13);
+            make.bottom.offset(0);
+        }];
+    }
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
         make.left.right.offset(0);
-        make.bottom.offset(-44);
+        make.bottom.offset(-tableViewBottom);
     }];
     
     [self.view addSubview:self.bottomView];
@@ -329,9 +338,10 @@ typedef NS_ENUM(NSUInteger,ViewState){
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:duration animations:^{
         
+        float bottomHeight = weakSelf.bottomView.isHidden?0:44;
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             
-            make.bottom.offset(-123);
+            make.bottom.offset(-bottomHeight);
         }];
     }];
 }
@@ -359,11 +369,23 @@ typedef NS_ENUM(NSUInteger,ViewState){
         
         self.viewState = ViewState_edit;
         self.bottomView.hidden = NO;
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+            make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
+            make.left.right.offset(0);
+            make.bottom.offset(-44);
+        }];
     }
     else if (self.viewState == ViewState_edit){
         
         self.viewState = ViewState_show;
         self.bottomView.hidden = YES;
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+            make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
+            make.left.right.offset(0);
+            make.bottom.offset(0);
+        }];
     }
     [self.tableView reloadData];
     btn.userInteractionEnabled = YES;

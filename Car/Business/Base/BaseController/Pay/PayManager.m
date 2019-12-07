@@ -9,6 +9,8 @@
 #import "PayManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
+#import "MotorOilController.h"
+
 
 @interface PayManager ()<WXApiDelegate>
 
@@ -46,6 +48,7 @@
         switch (resp.errCode) {
             case WXSuccess:
                 
+                [[MotorOilController sharedManager] initializationAllOil];
                //支付结果：成功
                 if (self.payBlock) {
                     
@@ -86,6 +89,7 @@
     NSNumber * stateNum = infoDic[@"state"];
     if (stateNum.intValue == 1) {
         
+        [[MotorOilController sharedManager] initializationAllOil];
         //成功
 //        [self createPaymentOrderWithPayType:@"2" andScenicModel:self.scenicModel andActivationCode:@""];
     }

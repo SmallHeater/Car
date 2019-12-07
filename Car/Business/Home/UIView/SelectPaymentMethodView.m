@@ -47,20 +47,20 @@ static NSString * totalCellId = @"TotalAmountTableViewCell";
         __weak typeof(self) weakSelf = self;
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             
-            UIAlertController * alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否放弃支付" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            UIAlertController * alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否放弃支付" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 [weakSelf removeFromSuperview];
-            }];
-            
-            UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            
-            [alertControl addAction:sureAction];
-            [alertControl addAction:cancleAction];
-            alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
-            [[UIViewController topMostController] presentViewController:alertControl animated:YES completion:nil];
+//            }];
+//            
+//            UIAlertAction * cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//                
+//            }];
+//            
+//            [alertControl addAction:sureAction];
+//            [alertControl addAction:cancleAction];
+//            alertControl.modalPresentationStyle = UIModalPresentationFullScreen;
+//            [[UIViewController topMostController] presentViewController:alertControl animated:YES completion:nil];
         }];
         [_topView addGestureRecognizer:tap];
     }
