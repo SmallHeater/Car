@@ -56,6 +56,11 @@
         
         self.refreshBlock();
     }
+    
+    if (self.refreshTwoBlock) {
+        
+        self.refreshTwoBlock();
+    }
 }
 
 @end

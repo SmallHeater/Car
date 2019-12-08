@@ -21,6 +21,8 @@ typedef void(^RefreshList)();
 
 //刷新
 @property (nonatomic,copy) RefreshList refreshBlock;
+//刷新
+@property (nonatomic,copy) RefreshList refreshTwoBlock;
 
 +(MotorOilController *)sharedManager;
 //支付完成，设置所有机油初始

@@ -162,6 +162,7 @@
         
         [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
         __weak typeof(self) weakSelf = self;
+        //新样式改为4
         [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
             
             if ([resultDic.allKeys containsObject:@"error"]) {

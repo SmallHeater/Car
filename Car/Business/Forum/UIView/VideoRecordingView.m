@@ -300,7 +300,7 @@
 -(void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error{
     
     [MBProgressHUD wj_showActivityLoading:@"处理中" toView:[UIApplication sharedApplication].keyWindow];
-    [VideoCompress compressVideoWithVideoUrl:outputFileURL withBiteRate:nil withFrameRate:nil withVideoWidth:[NSNumber numberWithInteger:1080] withVideoHeight:[NSNumber numberWithInteger:1920] compressComplete:^(id  _Nonnull responseObjc) {
+    [VideoCompress compressVideoWithVideoUrl:outputFileURL withBiteRate:nil withFrameRate:nil withVideoWidth:[NSNumber numberWithInteger:1920] withVideoHeight:[NSNumber numberWithInteger:1080] compressComplete:^(id  _Nonnull responseObjc) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
            

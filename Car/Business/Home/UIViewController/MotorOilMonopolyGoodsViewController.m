@@ -16,6 +16,12 @@
 static NSString * GoodsCategoryCellId = @"GoodsCategoryCell";
 static NSString * GoodsCellId = @"GoodsCell";
 
+typedef NS_ENUM(NSUInteger,PullDirection){
+    
+    PullDirection_Up = 0,//往上拉
+    PullDirection_Down //往下拉
+};
+
 @interface MotorOilMonopolyGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
@@ -25,8 +31,15 @@ static NSString * GoodsCellId = @"GoodsCell";
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
 //价格
 @property (nonatomic,strong) NSString * priceStr;
+//当前cell的section,index
+@property (nonatomic,assign) NSUInteger currentSection;
+@property (nonatomic,assign) NSUInteger currentIndex;
+
 //右侧view当前选中section
 @property (nonatomic,assign) NSUInteger rightSection;
+@property (nonatomic,assign) PullDirection direction;
+//是否刷新section
+@property (nonatomic,assign) BOOL refreshSection;
 
 @end
 
@@ -88,8 +101,9 @@ static NSString * GoodsCellId = @"GoodsCell";
         [self requestListData];
     }
     [self addNotification];
-    
-    
+    self.currentSection = 0;
+    self.currentIndex = 0;
+    self.refreshSection = YES;
     __weak typeof(self) weakSelf = self;
     [MotorOilController sharedManager].refreshBlock = ^{
       
@@ -119,15 +133,30 @@ static NSString * GoodsCellId = @"GoodsCell";
 
 #pragma mark  ----  UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
     
-    if ([tableView isEqual:self.rightTableView]) {
-     
+    if (self.refreshSection && [tableView isEqual:self.rightTableView] && self.direction == PullDirection_Down) {
+
         //老header消失
-        NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:section + 1 inSection:0];
+        NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:section inSection:0];
         [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
         [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        self.rightSection = section + 1;
+        self.rightSection = section;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
+    
+    if (self.refreshSection && [tableView isEqual:self.rightTableView] && self.direction == PullDirection_Up) {
+
+        //老header消失
+        if (section < [MotorOilController sharedManager].dataArray.count - 1) {
+            
+            NSIndexPath * leftIndexPath = [NSIndexPath indexPathForRow:section + 1 inSection:0];
+            [self.leftTableView scrollToRowAtIndexPath:leftIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            [self.leftTableView selectRowAtIndexPath:leftIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            self.rightSection = section + 1;
+        }
     }
 }
 
@@ -177,7 +206,7 @@ static NSString * GoodsCellId = @"GoodsCell";
     if ([tableView isEqual:self.leftTableView]) {
         
         NSIndexPath * rightIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
-        [self.rightTableView scrollToRowAtIndexPath:rightIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        [self.rightTableView scrollToRowAtIndexPath:rightIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 
@@ -243,6 +272,30 @@ static NSString * GoodsCellId = @"GoodsCell";
         OilBrandModel * model = [MotorOilController sharedManager].dataArray[indexPath.section];
         OilGoodModel * goodModel = model.goods[indexPath.row];
         [cell show:goodModel];
+        
+        if (indexPath.section > self.currentSection) {
+            
+            self.direction = PullDirection_Up;
+        }
+        else if (indexPath.section < self.currentSection){
+            
+            self.direction = PullDirection_Down;
+        }
+        else{
+            
+            if (indexPath.row > self.currentIndex) {
+                
+                self.direction = PullDirection_Up;
+            }
+            else if (indexPath.row < self.currentIndex){
+                
+                self.direction = PullDirection_Down;
+            }
+        }
+        
+        self.currentSection = indexPath.section;
+        self.currentIndex = indexPath.row;
+        
         return cell;
     }
     return nil;
@@ -320,7 +373,12 @@ static NSString * GoodsCellId = @"GoodsCell";
     //购物车页面消失的通知，刷新页面
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"SHOPPINGCARTREMOVE" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         
+        weakSelf.refreshSection = NO;
         [weakSelf.rightTableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            weakSelf.refreshSection = YES;
+        });
     }];
 }
 

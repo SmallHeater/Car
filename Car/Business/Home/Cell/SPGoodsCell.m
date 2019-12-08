@@ -239,6 +239,7 @@
         [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@""]];
     }
     
+    float topHeight = 0;
     NSString * goodsName = [NSString repleaseNilOrNull:model.goods_name];
     float nameWidth = [goodsName widthWithFont:FONT16 andHeight:20];
     if (nameWidth < CGRectGetWidth(self.frame) - 106) {
@@ -251,6 +252,7 @@
             make.right.offset(-16);
             make.height.offset(18);
         }];
+        topHeight = 33;
     }
     else{
         
@@ -262,6 +264,7 @@
             make.right.offset(-16);
             make.height.offset(40);
         }];
+        topHeight = 55;
     }
     
     self.goodsNameLabel.text = goodsName;
@@ -304,7 +307,7 @@
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.offset(labelX);
-            make.top.offset(43);
+            make.top.offset(topHeight);
             make.width.offset(labelWidth);
             make.height.offset(labelHeight);
         }];

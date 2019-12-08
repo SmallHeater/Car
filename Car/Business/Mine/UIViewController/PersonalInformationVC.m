@@ -106,7 +106,6 @@ static NSString * cellId = @"PersonalInformationCell";
                                 
                                 [[SHBaiDuBosControl sharedManager] uploadImage:image callBack:^(NSString * _Nonnull imagePath) {
                                     
-                                    NSLog(@"%@",imagePath);
                                     [weakSelf refreshAvatar:imagePath];
                                 }];
                             }

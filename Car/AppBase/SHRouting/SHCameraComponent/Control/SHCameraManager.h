@@ -23,7 +23,8 @@ typedef NS_OPTIONS(NSUInteger, SHCamareType) {
     SHCamareType_System = 0,//系统相机
     SHCamareType_SmartLicense = 1,//自动抓拍
     SHCamareType_SmartIDCard = 2,//带身份证大小的边框
-    SHCamareType_HorizontalScreen = 3//横屏带框
+    SHCamareType_HorizontalScreen = 3,//横屏带框
+    SHCamareType_CarMaster = 4 //车店大师UI
 };
 
 

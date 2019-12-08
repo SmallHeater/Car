@@ -177,6 +177,7 @@
 		04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE546E235B238D001C900A /* SPGoodsCell.m */; };
 		04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */; };
 		04EE5475235B338E001C900A /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5474235B338E001C900A /* PaymentMethodCell.m */; };
+		04F36F66239CA6BD002234AF /* SHCarMaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F65239CA6BD002234AF /* SHCarMaterViewController.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
 		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
@@ -666,6 +667,8 @@
 		04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentMethodView.m; sourceTree = "<group>"; };
 		04EE5473235B338E001C900A /* PaymentMethodCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodCell.h; sourceTree = "<group>"; };
 		04EE5474235B338E001C900A /* PaymentMethodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodCell.m; sourceTree = "<group>"; };
+		04F36F64239CA6BD002234AF /* SHCarMaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCarMaterViewController.h; sourceTree = "<group>"; };
+		04F36F65239CA6BD002234AF /* SHCarMaterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCarMaterViewController.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1953,10 +1956,12 @@
 		62880C44236AC3E6007742FF /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				62880C45236AC3E6007742FF /* JHSmartCamareViewController.mm */,
 				62880C46236AC3E6007742FF /* JHSmartCamareViewController.h */,
-				62880C47236AC3E6007742FF /* JHCameraForLicenceViewController.m */,
+				62880C45236AC3E6007742FF /* JHSmartCamareViewController.mm */,
 				62880C48236AC3E6007742FF /* JHCameraForLicenceViewController.h */,
+				62880C47236AC3E6007742FF /* JHCameraForLicenceViewController.m */,
+				04F36F64239CA6BD002234AF /* SHCarMaterViewController.h */,
+				04F36F65239CA6BD002234AF /* SHCarMaterViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -2458,6 +2463,7 @@
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
 				62880D0D236BBA66007742FF /* MaintenanceReminderViewController.m in Sources */,
 				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
+				04F36F66239CA6BD002234AF /* SHCarMaterViewController.m in Sources */,
 				04919D4C2393E0CA0031107A /* MultiStylePostListViewController.m in Sources */,
 				0473318E233900D4000BEF04 /* JobRecruitmentDetailViewController.m in Sources */,
 				62880D12236BBC99007742FF /* RemindedViewController.m in Sources */,
@@ -2884,7 +2890,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2896,12 +2902,12 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2916,7 +2922,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2928,12 +2934,12 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Car/AppLife/Car.pch";
 				INFOPLIST_FILE = Car/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfkj.CarShopMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

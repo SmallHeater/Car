@@ -43,6 +43,8 @@
 @property (nonatomic,strong) SHTabView * baseTabView;
 //发布view
 @property (nonatomic,strong) UIView * releaseView;
+//上一次的y值
+@property (nonatomic,assign) float lastY;
 
 @end
 
@@ -232,10 +234,43 @@
     // Do any additional setup after loading the view.
     [self drawUI];
     [self requestData];
+    //tableview能否滑动
+    __weak typeof(self) weakSelf = self;
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HomeTableViewScroll" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        
+        NSDictionary * dic = x.userInfo;
+        NSNumber * canScrollNumber = dic[@"canScroll"];
+        weakSelf.tableView.scrollEnabled = canScrollNumber.boolValue;
+        NSNumber * yNumber = dic[@"y"];
+        if (yNumber.floatValue > self.lastY) {
+            
+            weakSelf.lastY = yNumber.floatValue;
+            weakSelf.tableView.contentOffset = CGPointMake(0, MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7) - weakSelf.lastY);
+        }
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"itemListTableViewCanScroll"];
+    }];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"itemListTableViewCanScroll"];
 }
 
 #pragma mark  ----  代理
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    float y = scrollView.contentOffset.y;
+    if (y >= MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7)) {
+        
+        //已滑动到最大
+//        self.tableView.scrollEnabled = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ItemListTableViewScroll" object:nil userInfo:@{@"canScroll":[NSNumber numberWithBool:YES],@"parentTableView":scrollView,@"y":[NSNumber numberWithInteger:y - (MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7))]}];
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"itemListTableViewCanScroll"];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    self.lastY = 0;
+}
 #pragma mark  ----  UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -20,10 +20,9 @@
  **/
 + (void)compressVideoWithVideoUrl:(NSURL *)videoUrl withBiteRate:(NSNumber * _Nullable)outputBiteRate withFrameRate:(NSNumber * _Nullable)outputFrameRate withVideoWidth:(NSNumber * _Nullable)outputWidth withVideoHeight:(NSNumber * _Nullable)outputHeight compressComplete:(void(^)(id responseObjc))compressComplete{
     if (!videoUrl) {
-//        [SVProgressHUD showErrorWithStatus:@"视频路径不能为空"];
         return;
     }
-    NSLog(@"===videoUrl.abs = %@, videoUrl.path = %@", videoUrl.absoluteString, videoUrl.path);
+   
     NSInteger compressBiteRate = outputBiteRate ? [outputBiteRate integerValue] : 1500 * 1024;
     NSInteger compressFrameRate = outputFrameRate ? [outputFrameRate integerValue] : 30;
     NSInteger compressWidth = outputWidth ? [outputWidth integerValue] : 960;
@@ -87,8 +86,11 @@
 //    }
     //视频文件写入者
     AVAssetWriter *writer = [AVAssetWriter assetWriterWithURL:[NSURL fileURLWithPath:outputUrlStr] fileType:AVFileTypeMPEG4 error:nil];
+
+    
     //根据指定配置创建写入的视频文件
     AVAssetWriterInput *videoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:[VideoCompress videoCompressSettingsWithBitRate:compressBiteRate withFrameRate:compressFrameRate withWidth:compressWidth WithHeight:compressHeight withOriginalWidth:videoWidth withOriginalHeight:videoHeight]];
+    videoInput.transform = CGAffineTransformMakeRotation(M_PI / 2.0);
 //    //根据指定配置创建写入的音频文件
 //    AVAssetWriterInput *audioInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:[VideoCompress audioCompressSettings]];
     if ([writer canAddInput:videoInput]) {
@@ -127,26 +129,6 @@
             }
         }
     }];
-//    dispatch_group_enter(group);
-//    //队列准备好后 usingBlock
-//    [audioInput requestMediaDataWhenReadyOnQueue:audioQueue usingBlock:^{
-//        BOOL completedOrFailed = NO;
-//        while ([audioInput isReadyForMoreMediaData] && !completedOrFailed) {
-//            CMSampleBufferRef sampleBuffer = [audioOutput copyNextSampleBuffer];
-//            if (sampleBuffer != NULL) {
-//                BOOL success = [audioInput appendSampleBuffer:sampleBuffer];
-//                NSLog(@"===%@===", sampleBuffer);
-//                CFRelease(sampleBuffer);
-//                completedOrFailed = !success;
-//            } else {
-//                completedOrFailed = YES;
-//            }
-//        }
-//        if (completedOrFailed) {
-//            [audioInput markAsFinished];
-//            dispatch_group_leave(group);
-//        }
-//    }];
     //完成压缩
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         if ([reader status] == AVAssetReaderStatusReading) {
@@ -256,4 +238,5 @@
     
     return videoOutputSetting;
 }
+
 @end

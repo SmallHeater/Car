@@ -28,6 +28,8 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 @property (nonatomic,strong) NSString * tabID;
 @property (nonatomic,assign) NSUInteger page;
 @property (nonatomic,strong) NSMutableArray<ForumArticleModel *> * dataArray;
+//上一次的y值
+@property (nonatomic,assign) float lastY;
 
 @end
 
@@ -40,7 +42,8 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.bounces = NO;
+        NSNumber * canScrollNumber = [[NSUserDefaults standardUserDefaults] valueForKey:@"itemListTableViewCanScroll"];
+        _tableView.scrollEnabled = canScrollNumber.boolValue;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         __weak typeof(self) weakSelf = self;
@@ -71,12 +74,42 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
         
         [self drawUI];
         self.page = 1;
+        //tableview能否滑动
+        __weak typeof(self) weakSelf = self;
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"ItemListTableViewScroll" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+            
+            NSDictionary * dic = x.userInfo;
+            NSNumber * canScrollNumber = dic[@"canScroll"];
+            weakSelf.tableView.scrollEnabled = canScrollNumber.boolValue;
+            NSNumber * yNumber = dic[@"y"];
+            if (yNumber.floatValue > weakSelf.lastY) {
+                
+                weakSelf.lastY = yNumber.floatValue;
+                weakSelf.tableView.contentOffset = CGPointMake(0, weakSelf.lastY);
+            }
+        }];
     }
     
     return self;
 }
 
 #pragma mark  ----  代理
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    float y = scrollView.contentOffset.y;
+    if (y < 0) {
+        
+        //已滑动到最大
+        self.tableView.scrollEnabled = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"HomeTableViewScroll" object:nil userInfo:@{@"canScroll":[NSNumber numberWithBool:YES],@"y":[NSNumber numberWithFloat:-y]}];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    self.lastY = 0;
+}
 
 #pragma mark  ----  UITableViewDelegate
 
@@ -193,9 +226,7 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 //请求数据
 -(void)requestWithTabID:(NSString *)tabID{
-
-    [self.dataArray removeAllObjects];
-    [self.tableView reloadData];
+    
     self.tabID = [NSString repleaseNilOrNull:tabID];
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"tab_id":[NSString repleaseNilOrNull:tabID],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":GetArticles,@"bodyParameters":bodyParameters};
@@ -223,7 +254,11 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
                             
                             if (arr.count == MAXCOUNT) {
                                 
-//                                weakSelf.page++;
+                                weakSelf.page++;
+                            }
+                            else{
+                                
+                                weakSelf.tableView.mj_footer = nil;
                             }
                             
                             for (NSDictionary * dic in arr) {
@@ -239,15 +274,6 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
                     //异常
                 }
                 [weakSelf.tableView reloadData];
-                //如果内容少，则不滑动
-                if (weakSelf.tableView.contentSize.height < weakSelf.tableView.bounds.size.height) {
-                    
-                    weakSelf.tableView.scrollEnabled = NO;
-                }
-                else{
-                    
-                    weakSelf.tableView.scrollEnabled = YES;
-                }
             }
             else{
             }

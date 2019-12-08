@@ -23,6 +23,9 @@ static NSString * cellID = @"VideoCollectionViewCell";
 @property (nonatomic,assign) VCType type;
 @property (nonatomic,strong) SHBaseCollectionView * collectionView;
 @property (nonatomic,strong) NSMutableArray<VideoModel *> * dataArray;
+@property (nonatomic,assign) NSUInteger page;
+//上一次的y值
+@property (nonatomic,assign) float lastY;
 
 @end
 
@@ -54,6 +57,28 @@ static NSString * cellID = @"VideoCollectionViewCell";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:cellID];
+        if (self.type == VCType_Home) {
+         
+            NSNumber * canScrollNumber = [[NSUserDefaults standardUserDefaults] valueForKey:@"itemListTableViewCanScroll"];
+            _collectionView.scrollEnabled = canScrollNumber.boolValue;
+        }
+        
+        __weak typeof(self) weakSelf = self;
+        if (self.type != VCType_Home) {
+         
+            _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                
+                weakSelf.page = 1;
+                [weakSelf requestData];
+                [weakSelf.collectionView.mj_header endRefreshing];
+            }];
+        }
+        
+        _collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+           
+            [weakSelf requestData];
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        }];
     }
     return _collectionView;
 }
@@ -84,6 +109,48 @@ static NSString * cellID = @"VideoCollectionViewCell";
     [super viewDidLoad];
     [self drawUI];
     [self requestData];
+    self.page = 1;
+    
+    if (self.type == VCType_Home) {
+        
+        //tableview能否滑动
+        __weak typeof(self) weakSelf = self;
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"ItemListTableViewScroll" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+            
+            NSDictionary * dic = x.userInfo;
+            NSNumber * canScrollNumber = dic[@"canScroll"];
+            if (canScrollNumber.floatValue > weakSelf.lastY) {
+                
+                weakSelf.lastY = canScrollNumber.floatValue;
+                weakSelf.collectionView.scrollEnabled = canScrollNumber.boolValue;
+                weakSelf.collectionView.contentOffset = CGPointMake(0, weakSelf.lastY);
+            }
+        }];
+    }
+}
+
+#pragma mark  ----  代理
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (self.type == VCType_Home) {
+    
+        float y = scrollView.contentOffset.y;
+        if (y < 0) {
+            
+            //已滑动到最大
+            self.collectionView.scrollEnabled = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"HomeTableViewScroll" object:nil userInfo:@{@"canScroll":[NSNumber numberWithBool:YES],@"y":[NSNumber numberWithFloat:-y]}];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    if (self.type == VCType_Home) {
+    
+        self.lastY = 0;
+    }
 }
 
 #pragma mark  ----  UICollectionViewDelegate
@@ -210,11 +277,11 @@ static NSString * cellID = @"VideoCollectionViewCell";
     if (self.type == VCType_MyVideos) {
         
         position_id = @"0";
-        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2",@"owner_id":[UserInforController sharedManager].userInforModel.userID};
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2",@"owner_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSNumber numberWithInteger:self.page]};
     }
     else{
         
-        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2"};
+        bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"position_id":@"2",@"page":[NSNumber numberWithInteger:self.page]};
     }
     
     NSDictionary * configurationDic = @{@"requestUrlStr":GetVideos,@"bodyParameters":bodyParameters};
@@ -239,8 +306,22 @@ static NSString * cellID = @"VideoCollectionViewCell";
                         
                         if ([dataDic.allKeys containsObject:@"videos"]) {
                          
+                            if (weakSelf.page == 1) {
+                                
+                                [weakSelf.dataArray removeAllObjects];
+                            }
+                            
                             NSArray * array = dataDic[@"videos"];
                             if (array && [array isKindOfClass:[NSArray class]]) {
+                                
+                                if (array.count == MAXCOUNT) {
+                                    
+                                    weakSelf.page++;
+                                }
+                                else{
+                                    
+                                    weakSelf.collectionView.mj_footer = nil;
+                                }
                                 
                                 for (NSDictionary * dic in array) {
                                     

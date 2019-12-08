@@ -33,7 +33,7 @@ static NSString * cellID = @"ItemListCollectionViewCell";
         _collectionView = [[SHBaseCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:nil];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[ItemListCollectionViewCell class] forCellWithReuseIdentifier:cellID];
+//        [_collectionView registerClass:[ItemListCollectionViewCell class] forCellWithReuseIdentifier:cellID];
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:defaultCellId];
     }
     return _collectionView;
@@ -97,7 +97,9 @@ static NSString * cellID = @"ItemListCollectionViewCell";
     }
     else{
      
-        ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+        NSString *identifier=[NSString stringWithFormat:@"%ld%ld",(long)indexPath.section,(long)indexPath.row];
+        [collectionView registerClass:[ItemListCollectionViewCell class] forCellWithReuseIdentifier:identifier];
+        ItemListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         [cell requestWithTabID:tabID];
         return cell;
     }

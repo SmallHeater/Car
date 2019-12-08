@@ -10,6 +10,8 @@
 #import <Photos/Photos.h>
 #import "JHSmartCamareViewController.h"
 #import "JHCameraForLicenceViewController.h"
+#import "SHCarMaterViewController.h"
+
 
 static SHCameraManager * manager = nil;
 
@@ -178,6 +180,12 @@ static SHCameraManager * manager = nil;
         };
         secVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:secVC animated:NO completion:nil];
+    }
+    else if (self.cameraType == SHCamareType_CarMaster){
+        
+        SHCarMaterViewController * vc = [[SHCarMaterViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [[UIViewController topMostController]  presentViewController:vc animated:NO completion:nil];
     }
 }
 

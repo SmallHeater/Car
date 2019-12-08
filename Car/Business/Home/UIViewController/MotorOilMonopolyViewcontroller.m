@@ -190,18 +190,27 @@
                 
                 if (goodModel.count > 0) {
                  
-                    float price = 0;
-                    if (goodModel.specs && [goodModel.specs isKindOfClass:[NSArray class]] && goodModel.specs.count > 0) {
-                        
-                        NSDictionary * dic = goodModel.specs[0];
-                        NSNumber * priceNumber = dic[@"goods_price"];
-                        price = priceNumber.floatValue;
-                    }
-                    
-                    totalPrice += goodModel.count * price;
+                    [self.goodsArray addObject:goodModel];
                 }
             }
         }
+        
+        
+        for (OilGoodModel * goodModel in self.goodsArray) {
+            
+            float price = 0;
+            if (goodModel.specs && [goodModel.specs isKindOfClass:[NSArray class]] && goodModel.specs.count > 0) {
+                
+                NSDictionary * dic = goodModel.specs[0];
+                NSNumber * priceNumber = dic[@"goods_price"];
+                price = priceNumber.floatValue;
+            }
+            
+            totalPrice += goodModel.count * price;
+
+        }
+        
+        
         self.totalPrice = totalPrice;
         //价格总计
         UILabel * totalPriceLabel = [[UILabel alloc] init];
@@ -366,6 +375,11 @@
     [self drawUI];
     [self requestListData];
     self.selectedIndex = 0;
+    __weak typeof(self) weakSelf = self;
+    [MotorOilController sharedManager].refreshTwoBlock = ^{
+       
+        [weakSelf.goodsArray removeAllObjects];
+    };
 }
 
 #pragma mark  ----  代理
