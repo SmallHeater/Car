@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "HomeNavgationBar.h"
-#import "CarouselCell.h"
 #import "SHBaseWKWebViewController.h"
 #import "ItemsCell.h"
 #import "CarouselModel.h"
@@ -29,22 +28,28 @@
 #import "PushViewController.h"
 #import "ForumDetailViewController.h"
 #import "LoginViewController.h"
-
+#import "HoverPageViewController.h"
+#import "SHCarouselView.h"
+#import "ArticleListViewController.h"
+#import "SmallVideoViewControllerForHome.h"
 
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
 
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
+@interface HomeViewController ()<UIGestureRecognizerDelegate,HoverPageViewControllerDelegate>
 
 @property (nonatomic,strong) HomeNavgationBar * homeNavgationBar;
-@property (nonatomic,strong) SHBaseTableView * tableView;
-@property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) HomeDataModel * homeDataModel;
-@property (nonatomic,strong) SHTabView * baseTabView;
 //发布view
 @property (nonatomic,strong) UIView * releaseView;
-//上一次的y值
-@property (nonatomic,assign) float lastY;
+//头部view
+@property (nonatomic,strong) UIView * headerView;
+@property (nonatomic,strong) SHCarouselView * carouselView;
+@property (nonatomic,strong) ItemsCell * itemsCell;
+//切换view
+@property (nonatomic,strong) SHTabView * baseTabView;
+@property (nonatomic,strong) HoverPageViewController * hoverPageViewController;
+@property(nonatomic, strong) UIView *indicator;
 
 @end
 
@@ -88,6 +93,153 @@
         }];
     }
     return _homeNavgationBar;
+}
+
+-(UIView *)headerView{
+    
+    if (!_headerView) {
+        
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, MAINWIDTH / 2 + 159 + 10 + 7)];
+        [_headerView addSubview:self.carouselView];
+        NSMutableArray * carouselDicArray = [[NSMutableArray alloc] init];
+        for (CarouselModel * model in self.homeDataModel.banner) {
+            
+            NSString * CarouselImageUrlStr = [[NSString alloc] initWithFormat:@"%@",model.image];
+            NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:model.CarouselId,@"CarouselId",CarouselImageUrlStr,@"CarouselImageUrlStr",model.type,@"type",model.url,@"urlStr", nil];
+            [carouselDicArray addObject:dic];
+        }
+        [self.carouselView refreshData:carouselDicArray];
+        self.itemsCell.frame = CGRectMake(0, MAINWIDTH / 2, MAINWIDTH, 159 + 10 + 7);
+        [_headerView addSubview:self.itemsCell];
+    }
+    return _headerView;
+}
+
+-(SHCarouselView *)carouselView{
+    
+    if (!_carouselView) {
+        
+        _carouselView = [[SHCarouselView alloc] initWithPageControlType:PageControlType_MiddlePage];
+        _carouselView.frame = CGRectMake(0, 0, MAINWIDTH, MAINWIDTH / 2);
+        __weak typeof(self) weakSelf = self;
+        _carouselView.clickCallBack = ^(NSString * _Nonnull urlStr) {
+            
+            if (![NSString strIsEmpty:urlStr]) {
+                
+                if ([urlStr hasPrefix:@"http"]) {
+                    
+                    SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                    webViewController.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:webViewController animated:YES];
+                }
+                else{
+                    
+                    //去详情页
+                    ForumDetailViewController * vc = [[ForumDetailViewController alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:urlStr];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+            }
+
+        };
+    }
+    return _carouselView;
+}
+
+-(ItemsCell *)itemsCell{
+    
+    if (!_itemsCell) {
+        
+        static NSString * ItemsCellID = @"ItemsCell";
+        _itemsCell = [[ItemsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemsCellID];
+        __weak typeof(self) weakSelf = self;
+        [[_itemsCell rac_signalForSelector:@selector(itemClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
+           
+            SHImageAndTitleBtn * btn = x.first;
+            if (btn && [btn isKindOfClass:[SHImageAndTitleBtn class]]) {
+                
+                NSUInteger btnTag = btn.tag - BASEBTNTAG;
+                NSString * urlStr;
+                UIViewController * vc;
+                switch (btnTag) {
+                    case 0:
+
+//                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
+                        if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                            
+                            //未登录
+                            LoginViewController * vc = [[LoginViewController alloc] init];
+                            vc.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:vc animated:YES];
+                            return;
+                        }
+                        
+                        vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                        break;
+                    case 1:
+                        
+//                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
+                        if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                            
+                            //未登录
+                            LoginViewController * vc = [[LoginViewController alloc] init];
+                            vc.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:vc animated:YES];
+                            return;
+                        }
+                        urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
+                        break;
+                    case 2:
+                        
+                        vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5"];
+                        break;
+                    case 3:
+                        
+                        vc = [[ResidualTransactionViewController alloc] initWithTitle:@"残值交易" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                        break;
+                    case 4:
+                    
+                        vc = [[JobRecruitmentViewController alloc] initWithTitle:@"求职招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                        break;
+                    case 5:
+                        
+                        vc = [[FrameNumberInquiryViewController alloc] initWithTitle:@"车架号查询" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                        break;
+                    case 6:
+                        
+                        urlStr = @"https://m.weizhang8.cn/";
+                        break;
+                    case 7:
+                        
+                        urlStr = @"https://zlk.xcbb.zyxczs.com/";
+                        break;
+                    case 8:
+                        
+                        urlStr = @"https://cx2.ycqpmall.com/XmData/Wc/index";
+                        break;
+                    case 9:
+                        
+                        vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8"];
+                        break;
+                    default:
+                        break;
+                }
+                
+                if (![NSString strIsEmpty:urlStr]) {
+
+                    SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+                else if (vc){
+
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+            }
+        }];
+    }
+    return _itemsCell;
 }
 
 -(UIView *)releaseView{
@@ -163,27 +315,6 @@
     return _releaseView;
 }
 
--(SHBaseTableView *)tableView{
-    
-    if (!_tableView) {
-        
-        _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectMake(0,0, 0,0) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor clearColor];
-    }
-    return _tableView;
-}
-
--(NSMutableArray *)dataArray{
-    
-    if (!_dataArray) {
-        
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
-
 -(SHTabView *)baseTabView{
     
     if (!_baseTabView) {
@@ -215,13 +346,13 @@
         lineModel.lineWidth = 11;
         lineModel.lineCornerRadio = 2;
         _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray showRightBtn:YES andSHTabSelectLineModel:lineModel isShowBottomLine:NO];
+        _baseTabView.frame = CGRectMake(0, 0, MAINWIDTH, 40);
         __weak typeof(self) weakSelf = self;
         [[_baseTabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
            
             UIButton * btn = x.first;
             NSUInteger index = btn.tag - ITEMBTNBASETAG;
-            ItemNewsCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-            [cell scrollToIndex:index];
+            [weakSelf.hoverPageViewController moveToAtIndex:index animated:YES];
         }];
     }
     return _baseTabView;
@@ -234,298 +365,16 @@
     // Do any additional setup after loading the view.
     [self drawUI];
     [self requestData];
-    //tableview能否滑动
-    __weak typeof(self) weakSelf = self;
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HomeTableViewScroll" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        
-        NSDictionary * dic = x.userInfo;
-        NSNumber * canScrollNumber = dic[@"canScroll"];
-        weakSelf.tableView.scrollEnabled = canScrollNumber.boolValue;
-        NSNumber * yNumber = dic[@"y"];
-        if (yNumber.floatValue > self.lastY) {
-            
-            weakSelf.lastY = yNumber.floatValue;
-            weakSelf.tableView.contentOffset = CGPointMake(0, MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7) - weakSelf.lastY);
-        }
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"itemListTableViewCanScroll"];
-    }];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"itemListTableViewCanScroll"];
 }
 
 #pragma mark  ----  代理
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+#pragma mark  ----  HoverPageViewControllerDelegate
+
+- (void)hoverPageViewController:(HoverPageViewController *)ViewController scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    float y = scrollView.contentOffset.y;
-    if (y >= MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7)) {
-        
-        //已滑动到最大
-//        self.tableView.scrollEnabled = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ItemListTableViewScroll" object:nil userInfo:@{@"canScroll":[NSNumber numberWithBool:YES],@"parentTableView":scrollView,@"y":[NSNumber numberWithInteger:y - (MAINHEIGHT - MAINWIDTH / 2 - (159 + 10 + 7))]}];
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"itemListTableViewCanScroll"];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
-    self.lastY = 0;
-}
-#pragma mark  ----  UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    float cellHeight = 0;
-    if (indexPath.section == 0) {
-        
-        switch (indexPath.row) {
-            case 0:
-                
-                cellHeight = MAINWIDTH / 2;
-                break;
-            case 1:
-                
-                cellHeight = 159 + 10 + 7;
-                break;
-            default:
-                break;
-        }
-    }
-    else{
-        
-        cellHeight = [ItemNewsCell cellHeight];
-    }
-    return cellHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    float headerHeight = 0;
-    if (section == 1) {
-        
-        if (self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0) {
-            
-            headerHeight = 40;
-        }
-    }
-    return headerHeight;
-}
-
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView * headerView = nil;
-    if (section == 1) {
-        
-        headerView = self.baseTabView;
-    }
-    return headerView;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
-#pragma mark  ----  UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    NSUInteger rows = 0;
-    if (section == 0) {
-        
-        rows = 2;
-    }
-    else if (section == 1 && self.homeDataModel.tabs && self.homeDataModel.tabs.count > 0){
-        
-        rows = 1;
-    }
-    return rows;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 0) {
-     
-        if (indexPath.row == 0){
-            
-            static NSString * carouselCellId = @"CarouselCell";
-            CarouselCell * cell = [tableView dequeueReusableCellWithIdentifier:carouselCellId];
-            if (!cell) {
-                
-                cell = [[CarouselCell alloc] initWithReuseIdentifier:carouselCellId andStyle:CarouselStyle_shouye];
-                
-                __weak typeof(self) weakSelf = self;
-                cell.clickCallBack = ^(NSString * _Nonnull urlStr) {
-                    
-                    if (![NSString strIsEmpty:urlStr]) {
-                        
-                        if ([urlStr hasPrefix:@"http"]) {
-                            
-                            SHBaseWKWebViewController * webViewController = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
-                            webViewController.hidesBottomBarWhenPushed = YES;
-                            [weakSelf.navigationController pushViewController:webViewController animated:YES];
-                        }
-                        else{
-                            
-                            //去详情页
-                            ForumDetailViewController * vc = [[ForumDetailViewController alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andArticleId:urlStr];
-                            vc.hidesBottomBarWhenPushed = YES;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        }
-                    }
-                    
-                };
-            }
-            
-            if (self.homeDataModel.banner && self.homeDataModel.banner.count > 0) {
-    
-                [cell showData:self.homeDataModel.banner];
-            }
-            return cell;
-        }
-        else if (indexPath.row == 1){
-            
-            static NSString * ItemsCellID = @"ItemsCell";
-            ItemsCell * cell = [tableView dequeueReusableCellWithIdentifier:ItemsCellID];
-            if (!cell) {
-                
-                cell = [[ItemsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemsCellID];
-                
-                __weak typeof(self) weakSelf = self;
-                [[cell rac_signalForSelector:@selector(itemClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
-                   
-                    SHImageAndTitleBtn * btn = x.first;
-                    if (btn && [btn isKindOfClass:[SHImageAndTitleBtn class]]) {
-                        
-                        NSUInteger btnTag = btn.tag - BASEBTNTAG;
-                        NSString * urlStr;
-                        UIViewController * vc;
-                        switch (btnTag) {
-                            case 0:
-        
-//                                vc = [[PostListViewController alloc] initWithTitle:@"维修保养" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"1" vcType:VCType_tieziliebiao];
-                                if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
-                                    
-                                    //未登录
-                                    LoginViewController * vc = [[LoginViewController alloc] init];
-                                    vc.hidesBottomBarWhenPushed = YES;
-                                    [self.navigationController pushViewController:vc animated:YES];
-                                    return;
-                                }
-                                
-                                vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
-                                break;
-                            case 1:
-                                
-//                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
-                                if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
-                                    
-                                    //未登录
-                                    LoginViewController * vc = [[LoginViewController alloc] init];
-                                    vc.hidesBottomBarWhenPushed = YES;
-                                    [self.navigationController pushViewController:vc animated:YES];
-                                    return;
-                                }
-                                urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
-                                break;
-                            case 2:
-                                
-                                vc = [[PostListViewController alloc] initWithTitle:@"营销课" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"5"];
-                                break;
-                            case 3:
-                                
-                                vc = [[ResidualTransactionViewController alloc] initWithTitle:@"残值交易" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
-                                break;
-                            case 4:
-                            
-                                vc = [[JobRecruitmentViewController alloc] initWithTitle:@"求职招聘" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
-                                break;
-                            case 5:
-                                
-                                vc = [[FrameNumberInquiryViewController alloc] initWithTitle:@"车架号查询" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
-                                break;
-                            case 6:
-                                
-                                urlStr = @"https://m.weizhang8.cn/";
-                                break;
-                            case 7:
-                                
-                                urlStr = @"https://zlk.xcbb.zyxczs.com/";
-                                break;
-                            case 8:
-                                
-                                urlStr = @"https://cx2.ycqpmall.com/XmData/Wc/index";
-                                break;
-                            case 9:
-                                
-                                vc = [[PostListViewController alloc] initWithTitle:@"疑难杂症" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"8"];
-                                break;
-                            default:
-                                break;
-                        }
-                        
-                        if (![NSString strIsEmpty:urlStr]) {
-
-                            SHBaseWKWebViewController * vc = [[SHBaseWKWebViewController alloc] initWithTitle:@"" andIsShowBackBtn:YES andURLStr:urlStr];
-                            vc.hidesBottomBarWhenPushed = YES;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        }
-                        else if (vc){
-
-                            vc.hidesBottomBarWhenPushed = YES;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        }
-                    }
-                }];
-            }
-            
-            return cell;
-        }
-    }
-    else if (indexPath.section == 1){
-        
-        static NSString * ItemNewsCellID = @"ItemNewsCell";
-        ItemNewsCell * cell = [tableView dequeueReusableCellWithIdentifier:ItemNewsCellID];
-        if (!cell) {
-            
-            NSMutableArray * tabsArray = [[NSMutableArray alloc] init];
-            for (TabModel * model in self.homeDataModel.tabs) {
-                
-                [tabsArray addObject:model.tabID];
-            }
-            
-            cell = [[ItemNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ItemNewsCellID andTabIDsArray:tabsArray];
-            __weak typeof(self) weakSelf = self;
-            //滑动过程中的回调
-            [[cell rac_valuesForKeyPath:@"collectionView.contentOffset" observer:self] subscribeNext:^(id  _Nullable x) {
-            
-            }];
-            //滑动完成的回调
-            [[cell rac_signalForSelector:@selector(scrollViewDidEndDecelerating:)] subscribeNext:^(RACTuple * _Nullable x) {
-               
-                UICollectionView * collectionView = x.first;
-                NSUInteger index = collectionView.contentOffset.x / MAINWIDTH;
-                [weakSelf.baseTabView selectItemWithIndex:index];
-            }];
-        }
-        
-        return cell;
-    }
-    return nil;
-}
-
-#pragma mark  ----  UIGestureRecognizerDelegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SHImageAndTitleBtn"]) {
-        // cell 不需要响应 父视图的手势，保证didselect 可以正常
-        return NO;
-    }
-    return YES;
+    NSUInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
+    [self.baseTabView selectItemWithIndex:index];
 }
 
 #pragma mark  ----  自定义函数
@@ -539,15 +388,35 @@
         make.top.offset(31 + [SHUIScreenControl liuHaiHeight]);
         make.height.offset(40);
     }];
+}
+
+-(void)drawOtherView{
     
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 添加子控制器
+    NSMutableArray *viewControllers = [NSMutableArray array];
+    for (TabModel * model in self.homeDataModel.tabs) {
         
-        make.left.right.bottom.offset(0);
-        make.top.equalTo(self.homeNavgationBar.mas_bottom);
-    }];
-    
-    [self.view bringSubviewToFront:self.homeNavgationBar];
+        if ([model.name isEqualToString:@"小视频"]) {
+            
+            SmallVideoViewControllerForHome * videoVC = [[SmallVideoViewControllerForHome alloc] init];
+            [viewControllers addObject:videoVC];
+        }
+        else{
+         
+            ArticleListViewController * listVC = [[ArticleListViewController alloc] init];
+            [listVC requestWithTabID:model.tabID];
+            [viewControllers addObject:listVC];
+        }
+    }
+     
+     // 计算导航栏高度
+     CGFloat barHeight = (71 + [SHUIScreenControl liuHaiHeight]);
+     // 添加分页控制器
+    self.hoverPageViewController = [HoverPageViewController viewControllers:viewControllers headerView:self.headerView pageTitleView:self.baseTabView];
+    self.hoverPageViewController.view.frame = CGRectMake(0, barHeight, MAINWIDTH,MAINHEIGHT - barHeight - 44);
+    self.hoverPageViewController.delegate = self;
+    [self addChildViewController:self.hoverPageViewController];
+    [self.view addSubview:self.hoverPageViewController.view];
 }
 
 -(void)requestData{
@@ -574,7 +443,7 @@
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         
                         weakSelf.homeDataModel = [HomeDataModel mj_objectWithKeyValues:dataDic];
-                        [weakSelf.tableView reloadData];
+                        [weakSelf drawOtherView];
                     }
                 }
                 else{
@@ -591,7 +460,5 @@
         }
     }];
 }
-
-
 
 @end

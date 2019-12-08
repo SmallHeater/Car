@@ -178,6 +178,12 @@
 		04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5471235B2EB2001C900A /* SelectPaymentMethodView.m */; };
 		04EE5475235B338E001C900A /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE5474235B338E001C900A /* PaymentMethodCell.m */; };
 		04F36F66239CA6BD002234AF /* SHCarMaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F65239CA6BD002234AF /* SHCarMaterViewController.m */; };
+		04F36F68239CB491002234AF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F36F67239CB491002234AF /* opencv2.framework */; };
+		04F36F70239CB585002234AF /* HoverPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F6A239CB585002234AF /* HoverPageScrollView.m */; };
+		04F36F71239CB585002234AF /* HoverPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F6B239CB585002234AF /* HoverPageViewController.m */; };
+		04F36F72239CB585002234AF /* HoverChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F6E239CB585002234AF /* HoverChildViewController.m */; };
+		04F36F7E239CC0BB002234AF /* ArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F7D239CC0BB002234AF /* ArticleListViewController.m */; };
+		04F36F81239CC915002234AF /* SmallVideoViewControllerForHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F80239CC915002234AF /* SmallVideoViewControllerForHome.m */; };
 		30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 169DA7AB73986B7D0622997D /* libPods-Car.a */; };
 		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
 		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
@@ -669,6 +675,17 @@
 		04EE5474235B338E001C900A /* PaymentMethodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodCell.m; sourceTree = "<group>"; };
 		04F36F64239CA6BD002234AF /* SHCarMaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHCarMaterViewController.h; sourceTree = "<group>"; };
 		04F36F65239CA6BD002234AF /* SHCarMaterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHCarMaterViewController.m; sourceTree = "<group>"; };
+		04F36F67239CB491002234AF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		04F36F6A239CB585002234AF /* HoverPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoverPageScrollView.m; sourceTree = "<group>"; };
+		04F36F6B239CB585002234AF /* HoverPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoverPageViewController.m; sourceTree = "<group>"; };
+		04F36F6C239CB585002234AF /* HoverChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverChildViewController.h; sourceTree = "<group>"; };
+		04F36F6D239CB585002234AF /* HoverPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverPageScrollView.h; sourceTree = "<group>"; };
+		04F36F6E239CB585002234AF /* HoverChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoverChildViewController.m; sourceTree = "<group>"; };
+		04F36F6F239CB585002234AF /* HoverPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverPageViewController.h; sourceTree = "<group>"; };
+		04F36F7C239CC0BB002234AF /* ArticleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListViewController.h; sourceTree = "<group>"; };
+		04F36F7D239CC0BB002234AF /* ArticleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListViewController.m; sourceTree = "<group>"; };
+		04F36F7F239CC915002234AF /* SmallVideoViewControllerForHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallVideoViewControllerForHome.h; sourceTree = "<group>"; };
+		04F36F80239CC915002234AF /* SmallVideoViewControllerForHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallVideoViewControllerForHome.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		169DA7AB73986B7D0622997D /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
@@ -936,6 +953,7 @@
 				62072C45231BC7F10089AD43 /* AipBase.framework in Frameworks */,
 				30FF6F3DEBE958424E3363A6 /* libPods-Car.a in Frameworks */,
 				62072C41231BC7E20089AD43 /* AipOcrSdk.framework in Frameworks */,
+				04F36F68239CB491002234AF /* opencv2.framework in Frameworks */,
 				0422D9A82323C76100AF687D /* BaiduBCEVOD.framework in Frameworks */,
 				0422D9A92323C76100AF687D /* BaiduBCEBOS.framework in Frameworks */,
 				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
@@ -1099,6 +1117,8 @@
 		04048587230C252A00EF17C8 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04F36F7F239CC915002234AF /* SmallVideoViewControllerForHome.h */,
+				04F36F80239CC915002234AF /* SmallVideoViewControllerForHome.m */,
 				04919D4B2393E0CA0031107A /* MultiStylePostListViewController.h */,
 				04919D4A2393E0CA0031107A /* MultiStylePostListViewController.m */,
 				0437A2A62358A4B300964E1C /* MotorOilMonopolyShopViewController.h */,
@@ -1131,6 +1151,8 @@
 				04E4EBA0236446D800BC3EE9 /* PostListViewController.m */,
 				04E4EBA52364525800BC3EE9 /* FrameNumberInquiryViewController.h */,
 				04E4EBA62364525800BC3EE9 /* FrameNumberInquiryViewController.m */,
+				04F36F7C239CC0BB002234AF /* ArticleListViewController.h */,
+				04F36F7D239CC0BB002234AF /* ArticleListViewController.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1307,6 +1329,7 @@
 		0432BFC8232698F8002CD639 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				04F36F69239CB585002234AF /* HoverPage */,
 				62880B86236AC3AF007742FF /* Http */,
 				04A915E9232A87FD002DDC02 /* BaseController */,
 				0432BFC9232698F8002CD639 /* BaseView */,
@@ -1349,6 +1372,7 @@
 		04823DD6236B0F5800AAB423 /* opencv */ = {
 			isa = PBXGroup;
 			children = (
+				04F36F67239CB491002234AF /* opencv2.framework */,
 			);
 			path = opencv;
 			sourceTree = "<group>";
@@ -1472,6 +1496,19 @@
 				04D0AB8923642ACE00382F4E /* PayModel.m */,
 			);
 			path = Pay;
+			sourceTree = "<group>";
+		};
+		04F36F69239CB585002234AF /* HoverPage */ = {
+			isa = PBXGroup;
+			children = (
+				04F36F6D239CB585002234AF /* HoverPageScrollView.h */,
+				04F36F6A239CB585002234AF /* HoverPageScrollView.m */,
+				04F36F6C239CB585002234AF /* HoverChildViewController.h */,
+				04F36F6E239CB585002234AF /* HoverChildViewController.m */,
+				04F36F6F239CB585002234AF /* HoverPageViewController.h */,
+				04F36F6B239CB585002234AF /* HoverPageViewController.m */,
+			);
+			path = HoverPage;
 			sourceTree = "<group>";
 		};
 		46BB7468356326282D4EECCF /* Frameworks */ = {
@@ -2474,6 +2511,7 @@
 				0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */,
 				04C70563236EA2AB00A697C5 /* CommentFromUserModel.m in Sources */,
 				62880C89236AC3E6007742FF /* SHLocatingManager.m in Sources */,
+				04F36F81239CC915002234AF /* SmallVideoViewControllerForHome.m in Sources */,
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
 				04919D412393B1760031107A /* SmallVideoCollectionViewCell.m in Sources */,
 				04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */,
@@ -2654,6 +2692,7 @@
 				0435EE9E2333B545008E33BC /* CarItemSingleCell.m in Sources */,
 				0498B5C3231573A800A5EDC1 /* MaintenanceRecordsCell.m in Sources */,
 				62880CFC236AC539007742FF /* SHBaseView.m in Sources */,
+				04F36F7E239CC0BB002234AF /* ArticleListViewController.m in Sources */,
 				040485A2230C25D200EF17C8 /* MineViewController.m in Sources */,
 				04620C40231BF8AF00AA6317 /* BusinessSummaryViewController.m in Sources */,
 				0437A2AB2358A87900964E1C /* AgentCell.m in Sources */,
@@ -2690,6 +2729,7 @@
 				047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */,
 				62072C27231B6C8D0089AD43 /* ProfitStatisticsCell.m in Sources */,
 				0498B5C02315705000A5EDC1 /* OneCarMaintenanceRecordsViewController.m in Sources */,
+				04F36F71239CB585002234AF /* HoverPageViewController.m in Sources */,
 				62D530E02355512900BA9AE1 /* GoodsCell.m in Sources */,
 				62880CAA236AC3E6007742FF /* MiddlewareReflectionControl.m in Sources */,
 				62880CFB236AC539007742FF /* SHBaseTableViewCell.m in Sources */,
@@ -2706,6 +2746,7 @@
 				62880C96236AC3E6007742FF /* SHAssetBaseModel.m in Sources */,
 				0445C078232B98B400A1904D /* BusinessSummaryItemModel.m in Sources */,
 				62880CB0236AC3E6007742FF /* SHCameraManager.m in Sources */,
+				04F36F72239CB585002234AF /* HoverChildViewController.m in Sources */,
 				62880C67236AC3E6007742FF /* NSAttributedString+SHTool.m in Sources */,
 				62880C9D236AC3E6007742FF /* SHUploadConfigurationModel.m in Sources */,
 				62880CB3236AC3E6007742FF /* QRCodeAreaView.m in Sources */,
@@ -2740,6 +2781,7 @@
 				043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */,
 				624097F6237428BB00029143 /* VideoRecordingView.m in Sources */,
 				62880CAE236AC3E6007742FF /* JHCameraForLicenceViewController.m in Sources */,
+				04F36F70239CB585002234AF /* HoverPageScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2890,7 +2932,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2922,7 +2964,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -198,7 +198,11 @@ static NSString * cellID = @"SHCarouselCollectionViewCell";
             make.bottom.offset(-14);
             make.height.offset(3);
         }];
-        [self bringSubviewToFront:self.pageControl];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           
+            [self bringSubviewToFront:self.pageControl];
+        });
     }
     else if (self.pageControlType == PageControlType_RightLabel){
         
@@ -211,7 +215,6 @@ static NSString * cellID = @"SHCarouselCollectionViewCell";
             make.height.offset(25);
         }];
     }
-    
     [self addTimer];
 }
 
@@ -239,10 +242,12 @@ static NSString * cellID = @"SHCarouselCollectionViewCell";
             
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [weakSelf.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+            weakSelf.pageControl.currentPage = 0;
         }
         else{
             
             NSUInteger index = weakSelf.collectionView.contentOffset.x / CGRectGetWidth(self.frame);
+            weakSelf.pageControl.currentPage = index + 1;
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index + 1 inSection:0];
             [weakSelf.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
         }

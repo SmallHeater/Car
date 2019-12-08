@@ -226,7 +226,55 @@
     if (index < self.btnArray.count) {
      
         UIButton * btn = self.btnArray[index];
-        [self btnClicked:btn];
+        for (NSUInteger i = 0; i < self.btnArray.count; i++) {
+            
+            UIButton * tempBtn = self.btnArray[i];
+            if (tempBtn.isSelected) {
+                
+                tempBtn.selected = NO;
+                SHTabModel * tabModel = self.modelArray[i];
+                tempBtn.titleLabel.font = tabModel.normalFont;
+                break;
+            }
+        }
+        
+        
+        btn.selected = YES;
+        
+        if (btn.frame.origin.x + btn.frame.size.width - self.bgScrollView.contentOffset.x >= self.bgScrollView.frame.size.width - 22) {
+            
+            //选中的按钮在右侧显示不出来，需要移动scrollview
+            self.bgScrollView.contentOffset = CGPointMake(btn.frame.origin.x + btn.frame.size.width - self.bgScrollView.frame.size.width + 22, 0);
+        }
+        else if (btn.frame.origin.x < self.bgScrollView.contentOffset.x){
+            
+            //选中的按钮在左侧显示不出来，需要移动scrollview
+            self.bgScrollView.contentOffset = CGPointMake(btn.frame.origin.x, 0);
+        }
+        
+        float lineWidth = self.lineModel.lineWidth;
+        float lineHeight = self.lineModel.lineHeight;
+        [self.selectedLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.equalTo(btn.mas_bottom).offset(0);
+            make.width.offset(lineWidth);
+            make.height.offset(lineHeight);
+            make.centerX.equalTo(btn.mas_centerX);
+        }];
+        
+        SHTabModel * tabModel;
+        if (btn.tag > 0) {
+            
+            for (SHTabModel * model in self.modelArray) {
+                
+                if (model.tabTag == btn.tag) {
+                    
+                    tabModel = model;
+                    break;
+                }
+            }
+        }
+        btn.titleLabel.font = tabModel.selectedFont;
     }
 }
 

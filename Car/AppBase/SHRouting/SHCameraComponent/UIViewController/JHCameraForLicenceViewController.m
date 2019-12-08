@@ -15,12 +15,11 @@
     
     CGRect cameraOutPhotoViewRect;
 }
+
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
 @property (nonatomic, strong) AVCaptureDevice *device;
-
 //AVCaptureDeviceInput 代表输入设备，他使用AVCaptureDevice 来初始化
 @property (nonatomic, strong) AVCaptureDeviceInput *input;
-
 //输出图片
 @property (nonatomic ,strong) AVCaptureStillImageOutput *imageOutput;
 
@@ -51,17 +50,14 @@
     // Do any additional setup after loading the view.
     
     cameraRect = CGRectMake(0, 90, MAINWIDTH, MAINHEIGHT - 180);
-    
     CGFloat height = (MAINWIDTH - 60)*4/3;
     cameraOutPhotoViewRect = CGRectMake(30, (cameraRect.size.height - height)/2, MAINWIDTH - 60, height);
-    
     [self cameraDistrict];
     
     [self.view addSubview:self.cameraLightBtn];
     [self.view addSubview:self.takePhotoBtn];
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.finishBtn];
-
     self.view.backgroundColor = [UIColor blackColor];
 }
 

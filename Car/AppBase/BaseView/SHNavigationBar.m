@@ -26,7 +26,7 @@
         
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-        [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 16, 16, 16)];
+        [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(11.5, 15, 11.5, 15)];
     }
     return _backBtn;
 }
