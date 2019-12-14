@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^GetClearImage)(UIImage * image);
+
 @interface SHCarMaterViewController : UIViewController
+
+@property(nonatomic,copy) GetClearImage getImageCallBack;
 
 @end
 

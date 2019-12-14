@@ -100,8 +100,11 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
 
 #pragma mark - TXScrollLabelView
 
-@interface TXScrollLabelView ()
-
+@interface TXScrollLabelView (){
+    
+    float upLabelY;
+    float downLabelY;
+}
 @property (assign, nonatomic) UIViewAnimationOptions options;
 
 @property (weak, nonatomic) TXScrollLabel *upLabel;
@@ -176,6 +179,8 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
         [self setSomePreference];
         
         [self setSomeSubviews];
+        upLabelY = 0;
+        downLabelY = 17;
     }
     return self;
 }
@@ -191,6 +196,8 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
         self.scrollVelocity = scrollVelocity;
         _options = options;
         _scrollInset = inset;
+        upLabelY = 0;
+        downLabelY = 17;
     }
     return self;
 }
@@ -448,9 +455,9 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
     [self setupLRUDTypeLayoutWithMaxSize:CGSizeMake(labelMaxW, labelMaxH) width:labelW height:labelH completedHandler:^(CGSize size) {
         labelW = MAX(size.width, self.tx_width);
         //开始布局
-        self.upLabel.frame = CGRectMake(_scrollInset.left, 0, labelW, labelH);
+        self.upLabel.frame = CGRectMake(0, 0, labelW, labelH);
         //由于 TXScrollLabelViewTypeLeftRight\UpDown 类型 X\Y 值均不一样，此处不再block中处理！
-        self.downLabel.frame = CGRectMake(CGRectGetMaxX(self.upLabel.frame) + self.scrollSpace, 0, labelW, labelH);
+        self.downLabel.frame = CGRectMake(0, 0, labelW, labelH);
     }];
 }
 
@@ -462,16 +469,16 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
     
     [self setupLRUDTypeLayoutWithMaxSize:CGSizeMake(labelMaxW, labelMaxH) width:labelW height:labelH completedHandler:^(CGSize size) {
         labelH = MAX(size.height, self.tx_height);
-        self.upLabel.frame = CGRectMake(_scrollInset.left, 0, labelW, labelH);
-        self.downLabel.frame = CGRectMake(_scrollInset.left, CGRectGetMaxY(self.upLabel.frame) + self.scrollSpace, labelW, labelH);
+        self.upLabel.frame = CGRectMake(0, 0, labelW, labelH);
+        self.downLabel.frame = CGRectMake(0, CGRectGetMaxY(self.upLabel.frame) + self.scrollSpace, labelW, labelH);
     }];
 }
 
 - (void)setupSubviewsLayout_Flip {
     CGFloat labelW = self.tx_width - _scrollInset.left - _scrollInset.right;
     CGFloat labelX = _scrollInset.left;
-    self.upLabel.frame = CGRectMake(labelX, 0, labelW, self.tx_height);
-    self.downLabel.frame = CGRectMake(labelX, CGRectGetMaxY(self.upLabel.frame), labelW, self.tx_height);
+    self.upLabel.frame = CGRectMake(0, 0, labelW, self.tx_height);
+    self.downLabel.frame = CGRectMake(0, CGRectGetMaxY(self.upLabel.frame), labelW, self.tx_height);
 }
 
 - (void)setupLRUDTypeLayoutWithMaxSize:(CGSize)size
@@ -516,9 +523,9 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
         labelW = MAX(size.width, self.tx_width);
         //开始布局
         if (type == TXScrollLabelTypeUp) {
-            self.upLabel.frame = CGRectMake(_scrollInset.left, 0, labelW, labelH);
+            self.upLabel.frame = CGRectMake(0, 0, labelW, labelH);
         }else if (type == TXScrollLabelTypeDown) {
-            self.downLabel.frame = CGRectMake(CGRectGetMaxX(self.upLabel.frame) + self.scrollSpace, 0, labelW, labelH);
+            self.downLabel.frame = CGRectMake(0, 0, labelW, labelH);
         }
     }];
 }
@@ -531,14 +538,22 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
     CGFloat labelMaxW = self.tx_width - _scrollInset.left - _scrollInset.right;
     CGFloat labelW = labelMaxW;
     __block CGFloat labelH = 0;
-    
+//    self.upLabel.backgroundColor = [UIColor greenColor];
+//    self.downLabel.backgroundColor = [UIColor yellowColor];
     [self setupLRUDTypeLayoutWithTitle:text maxSize:CGSizeMake(labelMaxW, labelMaxH) width:labelW height:labelH completedHandler:^(CGSize size) {
         labelH = MAX(size.height, self.tx_height);
-        if (type == TXScrollLabelTypeUp) {
-            self.upLabel.frame = CGRectMake(_scrollInset.left, 0, labelW, labelH);
-        }else if (type == TXScrollLabelTypeDown) {
-            self.downLabel.frame = CGRectMake(_scrollInset.left, CGRectGetMaxY(self.upLabel.frame) + self.scrollSpace, labelW, labelH);
-        }
+        
+        float tempValue = upLabelY;
+        upLabelY = downLabelY;
+        downLabelY = tempValue;
+        [UIView animateWithDuration:1 animations:^{
+
+//            if (type == TXScrollLabelTypeUp) {
+                self.upLabel.frame = CGRectMake(0, upLabelY - 0.5, labelW, labelH);
+//            }else if (type == TXScrollLabelTypeDown) {
+                self.downLabel.frame = CGRectMake(0, downLabelY + 0.5, labelW, labelH);
+//            }
+        }];
     }];
 }
 
@@ -591,7 +606,7 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
     if (!self.scrollTitle.length && self.scrollArray.count) return;
 
     __weak typeof(self) weakSelf = self;
-    self.scrollTimer = [NSTimer tx_scheduledTimerWithTimeInterval:velocity repeat:YES block:^(NSTimer *timer) {
+    self.scrollTimer = [NSTimer tx_scheduledTimerWithTimeInterval:5 repeat:YES block:^(NSTimer *timer) {
         TXScrollLabelView *strongSelf = weakSelf;
         if (strongSelf) {
             [strongSelf updateScrolling];
@@ -651,7 +666,7 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
         self.contentOffset = CGPointMake(0, 2);//y增加偏移量，防止卡顿
         [self startup];
     }else {
-        self.contentOffset = CGPointMake(self.contentOffset.x, self.contentOffset.y + 1);
+        self.contentOffset = CGPointMake(self.contentOffset.x, self.contentOffset.y + 17);
     }
 }
 
@@ -717,8 +732,11 @@ void (*setter)(id, SEL, NSString *, TXScrollLabelType);
     [self updateScrollText];
     /** 执行 SEL */
     setter = (void (*)(id, SEL, NSString *, TXScrollLabelType))[self methodForSelector:sel];
-    setter(self, sel, self.upLabel.text, TXScrollLabelTypeUp);
-    setter(self, sel, self.downLabel.text, TXScrollLabelTypeDown);
+    [UIView animateWithDuration:1 animations:^{
+       
+        setter(self, sel, self.upLabel.text, TXScrollLabelTypeUp);
+        setter(self, sel, self.downLabel.text, TXScrollLabelTypeDown);
+    }];
 }
 
 - (void)updateScrollText {

@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RevenueCell : SHBaseTableViewCell
 
-//numberPlate,车牌号;name,联系人;carModel,车型号;phoneNumber,联系电话;receivable,应收;cost,成本;profit,利润；
+//numberPlate,车牌号;name,联系人;carModel,车型号;phoneNumber,联系电话;receivable,应收;payment,车主付款;arrears,累计欠款;cost,成本;profit,利润；
 -(void)showDataWithDic:(NSDictionary *)dic;
 
 -(void)test;

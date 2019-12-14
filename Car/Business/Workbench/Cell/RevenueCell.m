@@ -25,6 +25,16 @@
 @property (nonatomic,strong) UILabel * receivableLabel;
 //应收金额
 @property (nonatomic,strong) UILabel * receivableContentLabel;
+
+//车主付款
+@property (nonatomic,strong) UILabel * paymentLabel;
+//车主付款金额
+@property (nonatomic,strong) UILabel * paymentContentLabel;
+//累计欠款
+@property (nonatomic,strong) UILabel * arrearsLabel;
+//累计欠款金额
+@property (nonatomic,strong) UILabel * arrearsContentLabel;
+
 //成本
 @property (nonatomic,strong) UILabel * costLabel;
 //成本金额
@@ -116,11 +126,49 @@
             make.width.offset(100);
             make.height.offset(16);
         }];
+        
+        [_bgView addSubview:self.paymentLabel];
+        [self.paymentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.top.equalTo(self.receivableLabel.mas_bottom).offset(17);
+            make.width.offset(100);
+            make.height.offset(16);
+        }];
+        
+        [_bgView addSubview:self.paymentContentLabel];
+        [self.paymentContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-17);
+            make.top.equalTo(self.paymentLabel.mas_top);
+            make.width.offset(100);
+            make.height.offset(16);
+        }];
+        
+        [_bgView addSubview:self.arrearsLabel];
+        [self.arrearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.top.equalTo(self.paymentLabel.mas_bottom).offset(17);
+            make.width.offset(100);
+            make.height.offset(16);
+        }];
+        
+        [_bgView addSubview:self.arrearsContentLabel];
+        [self.arrearsContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.offset(-17);
+            make.top.equalTo(self.arrearsLabel.mas_top);
+            make.width.offset(100);
+            make.height.offset(16);
+        }];
+        
+        
         [_bgView addSubview:self.costLabel];
         [self.costLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.offset(16);
-            make.top.equalTo(self.receivableLabel.mas_bottom).offset(17);
+            make.top.equalTo(self.arrearsLabel.mas_bottom).offset(17);
             make.width.offset(100);
             make.height.offset(16);
         }];
@@ -223,7 +271,7 @@
         _receivableLabel = [[UILabel alloc] init];
         _receivableLabel.font = FONT16;
         _receivableLabel.textColor = Color_333333;
-        _receivableLabel.text = @"应收";
+        _receivableLabel.text = @"维修价格";
     }
     return _receivableLabel;
 }
@@ -238,6 +286,54 @@
         _receivableContentLabel.textAlignment = NSTextAlignmentRight;
     }
     return _receivableContentLabel;
+}
+
+-(UILabel *)paymentLabel{
+    
+    if (!_paymentLabel) {
+        
+        _paymentLabel = [[UILabel alloc] init];
+        _paymentLabel.font = FONT16;
+        _paymentLabel.textColor = Color_333333;
+        _paymentLabel.text = @"车主付款";
+    }
+    return _paymentLabel;
+}
+
+-(UILabel *)paymentContentLabel{
+    
+    if (!_paymentContentLabel) {
+        
+        _paymentContentLabel = [[UILabel alloc] init];
+        _paymentContentLabel.font = FONT16;
+        _paymentContentLabel.textColor = Color_333333;
+        _paymentContentLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _paymentContentLabel;
+}
+
+-(UILabel *)arrearsLabel{
+    
+    if (!_arrearsLabel) {
+        
+        _arrearsLabel = [[UILabel alloc] init];
+        _arrearsLabel.font = FONT16;
+        _arrearsLabel.textColor = Color_333333;
+        _arrearsLabel.text = @"累计欠款";
+    }
+    return _arrearsLabel;
+}
+
+-(UILabel *)arrearsContentLabel{
+    
+    if (!_arrearsContentLabel) {
+        
+        _arrearsContentLabel = [[UILabel alloc] init];
+        _arrearsContentLabel.font = FONT16;
+        _arrearsContentLabel.textColor = Color_333333;
+        _arrearsContentLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _arrearsContentLabel;
 }
 
 -(UILabel *)costLabel{
@@ -334,6 +430,8 @@
         self.carModelLabel.text = dic[@"carModel"];
         self.phoneNumberLabel.text = dic[@"phoneNumber"];
         self.receivableContentLabel.text = dic[@"receivable"];
+        self.paymentContentLabel.text = dic[@"payment"];
+        self.arrearsContentLabel.text = dic[@"arrears"];
         self.costContentLabel.text = dic[@"cost"];
         self.profitContentLabel.text = dic[@"profit"];
     }

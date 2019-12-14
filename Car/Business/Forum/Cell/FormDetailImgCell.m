@@ -23,6 +23,7 @@
     if (!_contentImageView) {
         
         _contentImageView = [[UIImageView alloc] init];
+        _contentImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _contentImageView;
 }

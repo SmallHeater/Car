@@ -417,6 +417,7 @@
                 [UIView animateWithDuration:0.1 animations:^{
 
                     weakSelf.navigationbar.backgroundColor = [UIColor whiteColor];
+                    [self.navigationbar refreshBackBTnImage:@"back"];
                 }];
             }
             else{
@@ -424,6 +425,7 @@
                 [UIView animateWithDuration:0.1 animations:^{
 
                     weakSelf.navigationbar.backgroundColor = [UIColor clearColor];
+                    [self.navigationbar refreshBackBTnImage:@"back_white"];
                 }];
             }
     }
@@ -496,6 +498,7 @@
 -(void)drawUI{
     
     self.navigationbar.backgroundColor = [UIColor clearColor];
+    [self.navigationbar refreshBackBTnImage:@"back_white"];
     self.tableView.tableHeaderView = self.tableHeaderView;
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
        

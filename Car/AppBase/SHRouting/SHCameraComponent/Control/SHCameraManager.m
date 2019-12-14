@@ -184,6 +184,10 @@ static SHCameraManager * manager = nil;
     else if (self.cameraType == SHCamareType_CarMaster){
         
         SHCarMaterViewController * vc = [[SHCarMaterViewController alloc] init];
+        vc.getImageCallBack = ^(UIImage * _Nonnull image) {
+            
+            [weakSelf finishedTakeImage:image];
+        };
         vc.modalPresentationStyle = UIModalPresentationFullScreen;
         [[UIViewController topMostController]  presentViewController:vc animated:NO completion:nil];
     }

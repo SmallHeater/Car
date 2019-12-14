@@ -12,6 +12,8 @@
 #import "UserInforController.h"
 #import "SearchConfigurationModel.h"
 #import "SearchViewController.h"
+#import "RevenueModel.h"
+
 
 static NSString * cellId = @"RevenueCell";
 
@@ -50,7 +52,7 @@ static NSString * cellId = @"RevenueCell";
             
             x.userInteractionEnabled = YES;
         }];
-        [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        [_searchBtn addTarget:self action:@selector(searchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchBtn;
 }
@@ -74,7 +76,7 @@ static NSString * cellId = @"RevenueCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 232;
+    float cellHeight = 232 + 66;
     return cellHeight;
 }
 
@@ -93,12 +95,14 @@ static NSString * cellId = @"RevenueCell";
         cell = [[RevenueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
-    MaintenanceRecordsModel * model = self.dataArray[indexPath.row];
+    RevenueModel * model = self.dataArray[indexPath.row];
     
     NSString * receivable = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue];
     NSString * cost = [[NSString alloc] initWithFormat:@"%.2f",model.cost.floatValue];
     NSString * profit = [[NSString alloc] initWithFormat:@"%.2f",model.receivable.floatValue - model.cost.floatValue];
-    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"receivable":receivable,@"cost":cost,@"profit":profit}];
+    NSString * payment = [[NSString alloc] initWithFormat:@"%.2f",model.received.floatValue];
+    NSString * arrears = [[NSString alloc] initWithFormat:@"%.2f",model.debt.floatValue];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"receivable":receivable,@"cost":cost,@"profit":profit,@"payment":payment,@"arrears":arrears}];
     
     return cell;
 }
@@ -119,7 +123,7 @@ static NSString * cellId = @"RevenueCell";
 -(void)requestListData{
     
     NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"page":[NSString stringWithFormat:@"%ld",self.page]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Maintainlist,@"bodyParameters":bodyParameters};
+    NSDictionary * configurationDic = @{@"requestUrlStr":Revenuelist,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
@@ -152,11 +156,8 @@ static NSString * cellId = @"RevenueCell";
                         }
                         for (NSDictionary * dic in list) {
                             
-                            MaintenanceRecordsOneDayModel * model = [MaintenanceRecordsOneDayModel mj_objectWithKeyValues:dic];
-                            for (MaintenanceRecordsModel * recordModel in model.list) {
-                             
-                                [weakSelf.dataArray addObject:recordModel];
-                            }
+                            RevenueModel * model = [RevenueModel mj_objectWithKeyValues:dic];
+                            [weakSelf.dataArray addObject:model];
                         }
                     }
                     

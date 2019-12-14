@@ -24,6 +24,7 @@
     if (!_adImageView) {
         
         _adImageView = [[UIImageView alloc] init];
+        _adImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _adImageView;
 }
@@ -86,8 +87,26 @@
 -(void)show:(ForumArticleModel *)model{
     
     if (model.ad && [model.ad isKindOfClass:[ADModel class]]) {
-        
-        [self.adImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.ad.image]]];
+    
+        __weak typeof(self) weakSelf = self;
+        [self.adImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.ad.image]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+           
+//            if (image) {
+//
+//                if (model.ad.imageHeight > 0) {
+//
+//                }
+//                else{
+//
+//                    model.ad.imageWidth = (MAINWIDTH - 32);
+//                    model.ad.imageHeight = (MAINWIDTH - 32) * image.size.height / image.size.width;
+//                    if (weakSelf.refresh) {
+//
+//                        weakSelf.refresh();
+//                    }
+//                }
+//            }
+        }];
     }
 }
 

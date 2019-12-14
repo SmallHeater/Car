@@ -15,10 +15,22 @@
 #import "CarItemSingleCell.h"
 #import "CarItemThreeCell.h"
 
+#import "ForumBaseCell.h"
+#import "ForumSingleCell.h"
+#import "PostListCell.h"
+#import "ForumThreeCell.h"
+#import "ForumVideoCell.h"
+
 static NSString * CarItemTextCellId = @"CarItemTextCell";
 static NSString * CarItemSingleCellID = @"CarItemSingleCell";
 static NSString * CarItemVideoCellID = @"CarItemVideoCell";
 static NSString * CarItemThreeCellID = @"CarItemThreeCell";
+
+static NSString * ForumBaseCellId = @"ForumBaseCell";
+static NSString * ForumSingleCellId = @"ForumSingleCell";
+static NSString * PostListCellId = @"PostListCell";
+static NSString * ForumThreeCellId = @"ForumThreeCell";
+static NSString * ForumVideoCellId = @"ForumVideoCell";
 
 @interface MultiStylePostListViewController ()
 
@@ -67,26 +79,57 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 0;
-    ForumArticleModel * model = self.dataArray[indexPath.row];
-    if ([model.type isEqualToString:@"single"]) {
-        
-        cellHeight = 130;
+    if (self.vcType == MultiStylePostListVCType_tieziliebiao) {
+    
+        float cellHeight = 0;
+        ForumArticleModel * articleModel = self.dataArray[indexPath.row];
+        if ([articleModel.type isEqualToString:@"zero"]) {
+            
+            cellHeight = [ForumBaseCell cellHeightWithTitle:articleModel.title];
+        }
+        else if ([articleModel.type isEqualToString:@"single"]) {
+            
+            cellHeight = [ForumSingleCell cellHeightWithTitle:articleModel.title];
+        }
+        else if ([articleModel.type isEqualToString:@"single_left"]){
+            
+            cellHeight = 129;
+        }
+        else if ([articleModel.type isEqualToString:@"three"]){
+            
+            cellHeight = [ForumThreeCell cellHeightWithTitle:articleModel.title];
+        }
+        else if ([articleModel.type isEqualToString:@"video"]){
+            
+            cellHeight = [ForumVideoCell cellHeightWithTitle:articleModel.title];
+        }
+        return cellHeight;
     }
-    else if ([model.type isEqualToString:@"three"]) {
+    else if (self.vcType == MultiStylePostListVCType_wodetieziliebiao){
         
-        cellHeight = 222;
-    }
-    else if ([model.type isEqualToString:@"video"]) {
+        float cellHeight = 0;
+        ForumArticleModel * model = self.dataArray[indexPath.row];
+        if ([model.type isEqualToString:@"single"]) {
+            
+            cellHeight = 130;
+        }
+        else if ([model.type isEqualToString:@"three"]) {
+            
+            cellHeight = 222;
+        }
+        else if ([model.type isEqualToString:@"video"]) {
+            
+            cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
+        }
+        else if ([model.type isEqualToString:@"zero"]){
+            
+            cellHeight = [CarItemTextCell cellHeight:model];
+        }
         
-        cellHeight = [CarItemVideoCell cellHeightWithTitle:model.title];
-    }
-    else if ([model.type isEqualToString:@"zero"]){
-        
-        cellHeight = [CarItemTextCell cellHeight:model];
+        return cellHeight;
     }
     
-    return cellHeight;
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -111,49 +154,112 @@ static NSString * CarItemThreeCellID = @"CarItemThreeCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ForumArticleModel * model = self.dataArray[indexPath.row];
-    if ([model.type isEqualToString:@"zero"]) {
+    if (self.vcType == MultiStylePostListVCType_tieziliebiao) {
         
-        CarItemTextCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemTextCellId];
-        if (!cell) {
+        if ([model.type isEqualToString:@"zero"]) {
+        
+            ForumBaseCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumBaseCellId];
+            if (!cell) {
+                
+                cell = [[ForumBaseCell alloc] initWithReuseIdentifier:ForumBaseCellId];
+            }
             
-            cell = [[CarItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemTextCellId];
+            [cell show:model];
+            return cell;
         }
+        else if ([model.type isEqualToString:@"single"]) {
+            
+            ForumSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumSingleCellId];
+            if (!cell) {
+                
+                cell = [[ForumSingleCell alloc] initWithReuseIdentifier:ForumSingleCellId];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
+        else if ([model.type isEqualToString:@"single_left"]){
+         
+            PostListCell * cell = [tableView dequeueReusableCellWithIdentifier:PostListCellId];
+            if (!cell) {
+                
+                cell = [[PostListCell alloc] initWithReuseIdentifier:PostListCellId];
+            }
         
-        [cell show:model];
-        return cell;
+            //imageUrl,图片地址;title,标题;pv,NSNumber,浏览量;section_title,来源;
+            NSDictionary * dic = @{@"imageUrl":model.images[0],@"title":model.title,@"pv":[NSNumber numberWithInteger:model.pv],@"section_title":model.section_title};
+            [cell show:dic];
+            return cell;
+        }
+        else if ([model.type isEqualToString:@"three"]){
+            
+            ForumThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumThreeCellId];
+            if (!cell) {
+                
+                cell = [[ForumThreeCell alloc] initWithReuseIdentifier:ForumThreeCellId];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
+        else if ([model.type isEqualToString:@"video"]){
+            
+            ForumVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:ForumVideoCellId];
+            if (!cell) {
+                
+                cell = [[ForumVideoCell alloc] initWithReuseIdentifier:ForumVideoCellId];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
     }
-    else if ([model.type isEqualToString:@"single"]) {
+    else if (self.vcType == MultiStylePostListVCType_wodetieziliebiao){
         
-            CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
-        if (!cell) {
+        if ([model.type isEqualToString:@"zero"]) {
             
-            cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
-        }
-        
-        [cell show:model];
-        return cell;
-    }
-    else if ([model.type isEqualToString:@"three"]){
-        
-        CarItemThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemThreeCellID];
-        if (!cell) {
+            CarItemTextCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemTextCellId];
+            if (!cell) {
+                
+                cell = [[CarItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemTextCellId];
+            }
             
-            cell = [[CarItemThreeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemThreeCellID];
+            [cell show:model];
+            return cell;
         }
-        
-        [cell show:model];
-        return cell;
-    }
-    else if ([model.type isEqualToString:@"video"]){
-        
-        CarItemVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemVideoCellID];
-        if (!cell) {
+        else if ([model.type isEqualToString:@"single"]) {
             
-            cell = [[CarItemVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemVideoCellID];
+                CarItemSingleCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemSingleCellID];
+            if (!cell) {
+                
+                cell = [[CarItemSingleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemSingleCellID];
+            }
+            
+            [cell show:model];
+            return cell;
         }
-        
-        [cell show:model];
-        return cell;
+        else if ([model.type isEqualToString:@"three"]){
+            
+            CarItemThreeCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemThreeCellID];
+            if (!cell) {
+                
+                cell = [[CarItemThreeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemThreeCellID];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
+        else if ([model.type isEqualToString:@"video"]){
+            
+            CarItemVideoCell * cell = [tableView dequeueReusableCellWithIdentifier:CarItemVideoCellID];
+            if (!cell) {
+                
+                cell = [[CarItemVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarItemVideoCellID];
+            }
+            
+            [cell show:model];
+            return cell;
+        }
     }
     
     return nil;

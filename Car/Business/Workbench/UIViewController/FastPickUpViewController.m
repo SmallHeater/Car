@@ -163,7 +163,7 @@
         [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
         __weak typeof(self) weakSelf = self;
         //新样式改为4
-        [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
+        [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:4]} callBack:^(NSDictionary *resultDic) {
             
             if ([resultDic.allKeys containsObject:@"error"]) {
                 
@@ -388,6 +388,14 @@
             make.height.offset(542);
         }];
         self.tableView.scrollEnabled = NO;
+        [self.view addSubview:self.saveBtn];
+        [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(15);
+            make.right.offset(-15);
+            make.bottom.offset(-30 - [SHUIScreenControl bottomSafeHeight]);
+            make.height.offset(44);
+        }];
     }
     else{
         
@@ -395,21 +403,21 @@
             
             make.left.right.offset(0);
             make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-            make.bottom.offset(-30 * 2 - [SHUIScreenControl bottomSafeHeight] - 44);
+            make.bottom.offset(-44);
+        }];
+        
+        [self.view addSubview:self.saveBtn];
+        [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(15);
+            make.right.offset(-15);
+            make.bottom.offset(0);
+            make.height.offset(44);
         }];
     }
 
     //需要重新设置导航的层级，不然阴影效果没了
     [self.view bringSubviewToFront:self.navigationbar];
-    
-    [self.view addSubview:self.saveBtn];
-    [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.offset(15);
-        make.right.offset(-15);
-        make.bottom.offset(-30 - [SHUIScreenControl bottomSafeHeight]);
-        make.height.offset(44);
-    }];
 }
 
 //注册通知
@@ -445,10 +453,20 @@
         __weak typeof(self) weakSelf = self;
         [UIView animateWithDuration:duration animations:^{
             
-            [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            if (MAINHEIGHT >= 542 + 64 + 123) {
                 
-                make.bottom.offset(-123);
-            }];
+                [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.bottom.offset(-123);
+                }];
+            }
+            else{
+                
+                [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.bottom.offset(-44);
+                }];
+            }
         }];
     }];
 }

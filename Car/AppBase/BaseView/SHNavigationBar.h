@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)addbackbtnTarget:(id)target andAction:(SEL)action;
 
+//更新返回按钮图片
+-(void)refreshBackBTnImage:(NSString *)imageName;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -352,7 +352,14 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     }
     else if (indexPath.row == 4){
         
-        cellHeight = [ForumDetaiADCell cellHeightWithModel:self.forumArticleModel];
+        if (self.forumArticleModel.ad.imageHeight > 0) {
+            
+            cellHeight = self.forumArticleModel.ad.imageHeight;
+        }
+        else{
+         
+            cellHeight = [ForumDetaiADCell cellHeightWithModel:self.forumArticleModel];
+        }
     }
     else if (indexPath.row == 5){
         
@@ -431,6 +438,11 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         if (!cell) {
             
             cell = [[ForumDetaiADCell alloc] initWithReuseIdentifier:ForumDetaiADCellId];
+            __weak typeof(self) weakSelf = self;
+            cell.refresh = ^{
+              
+                [weakSelf.tableView reloadData];
+            };
         }
         
         [cell show:self.forumArticleModel];
@@ -574,6 +586,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
             make.height.offset(155);
             make.bottom.offset(-rect.size.height);
         }];
+        [weakSelf.textView becomeFirstResponder];
     }];
 }
 

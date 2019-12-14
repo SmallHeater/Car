@@ -32,7 +32,7 @@
 #import "MaintenanceReminderViewController.h"
 
 
-@interface WorkbenchViewController ()<CustomerManagementCellDelegate>
+@interface WorkbenchViewController ()<CustomerManagementCellDelegate,UITableViewDelegate>
 
 //数据模型
 @property (nonatomic,strong) WorkbenchModel * workbenchModel;
@@ -74,35 +74,54 @@
 
 #pragma mark  ----  UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 48 + [SHUIScreenControl liuHaiHeight];
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    static NSString * firstCellId = @"AutoRepairShopCell";
+    AutoRepairShopCell * cell = [tableView dequeueReusableCellWithIdentifier:firstCellId];
+    if (!cell) {
+
+        cell = [[AutoRepairShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+
+    [cell showAutoRepairShopName:[UserInforController sharedManager].userInforModel.shop_name];
+    return cell;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     float cellHeight = 0;
     switch (indexPath.row) {
+//        case 0:
+//
+//            cellHeight = 38 + [SHUIScreenControl liuHaiHeight];
+//            break;
         case 0:
-            
-            cellHeight = 38 + [SHUIScreenControl liuHaiHeight];
-            break;
-        case 1:
             
             cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0 + 20 * 2;
             break;
-        case 2:
-            
-            cellHeight = 40;
-            break;
-        case 3:
+//        case 2:
+//
+//            cellHeight = 40;
+//            break;
+        case 1:
             
             cellHeight = 68;
             break;
+        case 2:
+            
+            cellHeight = 135;
+            break;
+        case 3:
+            
+            cellHeight = 135;
+            break;
         case 4:
-            
-            cellHeight = 135;
-            break;
-        case 5:
-            
-            cellHeight = 135;
-            break;
-        case 6:
             
             cellHeight = 135;
             break;
@@ -116,23 +135,24 @@
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 7;
+    return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
-        
-        static NSString * firstCellId = @"AutoRepairShopCell";
-        AutoRepairShopCell * cell = [tableView dequeueReusableCellWithIdentifier:firstCellId];
-        if (!cell) {
-            
-            cell = [[AutoRepairShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
-        }
-        
-        [cell showAutoRepairShopName:[UserInforController sharedManager].userInforModel.shop_name];
-        return cell;
-    }
-    else if (indexPath.row == 1){
+//    if (indexPath.row == 0) {
+//
+//        static NSString * firstCellId = @"AutoRepairShopCell";
+//        AutoRepairShopCell * cell = [tableView dequeueReusableCellWithIdentifier:firstCellId];
+//        if (!cell) {
+//
+//            cell = [[AutoRepairShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
+//        }
+//
+//        [cell showAutoRepairShopName:[UserInforController sharedManager].userInforModel.shop_name];
+//        return cell;
+//    }
+//    else
+    if (indexPath.row == 0){
         
         static NSString * secondCellId = @"CarouselCell";
         CarouselCell * cell = [tableView dequeueReusableCellWithIdentifier:secondCellId];
@@ -158,31 +178,31 @@
         }
         return cell;
     }
-    else if (indexPath.row == 2){
-        
-        static NSString * thirdCellId = @"SearchBarCell";
-        SearchBarCell * cell = [tableView dequeueReusableCellWithIdentifier:thirdCellId];
-        if (!cell) {
-            
-            cell = [[SearchBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
-            __weak typeof(self) weakSelf = self;
-            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
-                
-                if (![NSString strIsEmpty:searchText]) {
-                 
-                    [weakSelf searchWithStr:searchText];
-                }
-            };
-            
-            cell.scanningCallBack = ^{
-                
-                [weakSelf scanning];
-            };
-        }
-        
-        return cell;
-    }
-    else if (indexPath.row == 3){
+//    else if (indexPath.row == 2){
+//
+//        static NSString * thirdCellId = @"SearchBarCell";
+//        SearchBarCell * cell = [tableView dequeueReusableCellWithIdentifier:thirdCellId];
+//        if (!cell) {
+//
+//            cell = [[SearchBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:thirdCellId];
+//            __weak typeof(self) weakSelf = self;
+//            cell.searchCallBack = ^(NSString * _Nonnull searchText) {
+//
+//                if (![NSString strIsEmpty:searchText]) {
+//
+//                    [weakSelf searchWithStr:searchText];
+//                }
+//            };
+//
+//            cell.scanningCallBack = ^{
+//
+//                [weakSelf scanning];
+//            };
+//        }
+//
+//        return cell;
+//    }
+    else if (indexPath.row == 1){
         
         static NSString * forthCellId = @"AnnouncementCell";
         AnnouncementCell * cell = [tableView dequeueReusableCellWithIdentifier:forthCellId];
@@ -197,7 +217,7 @@
         }
         return cell;
     }
-    else if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6){
+    else if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
         
         static NSString * fifthCellId = @"CustomerManagementCell";
         CustomerManagementCell * cell = [tableView dequeueReusableCellWithIdentifier:fifthCellId];
@@ -208,12 +228,12 @@
         }
    
         NSDictionary * dataDic;
-        if (indexPath.row == 4) {
+        if (indexPath.row == 2) {
             
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
             dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaisujieche",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"快速接车",@"itemId":@"kuaisujieche"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"车辆档案",@"itemId":@"kehudangan"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"维修记录",@"itemId":@"weixiujilu"}]};
         }
-        else if (indexPath.row == 5){
+        else if (indexPath.row == 3){
             
             dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营收列表",@"itemId":@"yingshouliebiao"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"回款管理",@"itemId":@"huikuanguanli"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"利润统计",@"itemId":@"liruntongji"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营业汇总",@"itemId":@"yingyehuizong"}]};
         }
@@ -221,7 +241,7 @@
 //
 //            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"待售查询",@"itemId":@"daishouchaxun"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"销售状态",@"itemId":@"xiaoshouzhuangtai"}]};
 //        }
-        else if (indexPath.row == 6) {
+        else if (indexPath.row == 4) {
             
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
             dataDic = @{@"title":@"客户维护",@"btnDicArray":@[@{@"imageName":@"yewuhuifang",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"业务回访",@"itemId":@"yewuhuifang"}]};

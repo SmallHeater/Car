@@ -131,7 +131,11 @@ typedef NS_ENUM(NSUInteger,ViewState){
     [super viewDidLoad];
     [self registrationNotice];
     [self addReceivingKeyboard];
-    [self drawUI];
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       
+        [weakSelf drawUI];
+    });
 }
 
 #pragma mark  ----  代理

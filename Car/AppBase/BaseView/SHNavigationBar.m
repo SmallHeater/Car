@@ -104,4 +104,10 @@
     }
 }
 
+//更新返回按钮图片
+-(void)refreshBackBTnImage:(NSString *)imageName{
+    
+    [self.backBtn setImage:[UIImage imageNamed:[NSString repleaseNilOrNull:imageName]] forState:UIControlStateNormal];
+}
+
 @end

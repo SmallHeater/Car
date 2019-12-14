@@ -60,7 +60,6 @@
         }
         else{
             
-            self.urlStr = @"https://www.baidu.com";
             NSLog(@"异常：地址不合规");
         }
     }

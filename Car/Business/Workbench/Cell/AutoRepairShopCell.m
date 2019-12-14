@@ -53,7 +53,7 @@
         make.left.offset(16);
         make.right.offset(0);
         make.height.offset(18);
-        make.bottom.offset(0);
+        make.bottom.offset(-5);
     }];
 }
 

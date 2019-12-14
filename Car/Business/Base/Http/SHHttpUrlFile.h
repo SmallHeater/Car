@@ -41,6 +41,9 @@
 #define Nowrepay [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/nowrepay",CARDOMAIN]
 //营业汇总
 #define Businesssummarytop  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/businesssummarytop",CARDOMAIN]
+//营收列表
+#define Revenuelist  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/revenuelist",CARDOMAIN]
+
 
 //利润统计
 #define Profitstatistics  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/profitstatistics",CARDOMAIN]

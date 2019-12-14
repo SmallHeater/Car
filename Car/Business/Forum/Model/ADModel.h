@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              createtime;
 @property (nonatomic , copy) NSString              * type_text;
 
+//图片宽高
+@property (nonatomic,assign) float imageWidth;
+@property (nonatomic,assign) float imageHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

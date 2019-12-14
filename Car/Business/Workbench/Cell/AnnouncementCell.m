@@ -51,7 +51,7 @@
     if (!_labelView) {
         
         
-        _labelView = [[TXScrollLabelView alloc] initWithTextArray:self.titlesArray type:TXScrollLabelViewTypeUpDown velocity:5 options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
+        _labelView = [[TXScrollLabelView alloc] initWithTextArray:self.titlesArray type:TXScrollLabelViewTypeUpDown velocity:5 * 30 options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
         _labelView.scrollTitleColor = Color_666666;
         _labelView.font = FONT14;
         _labelView.backgroundColor = [UIColor whiteColor];

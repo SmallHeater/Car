@@ -142,7 +142,7 @@ static NSString * cellId = @"MaintenanceRecordsCell";
     MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section];
     MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
     
-    [cell showDataWithDic:@{@"numberPlate":recordModel.license_number,@"name":recordModel.contacts,@"carModel":recordModel.type,@"phoneNumber":recordModel.phone,@"MaintenanceContent":recordModel.content}];
+    [cell showDataWithDic:@{@"numberPlate":recordModel.license_number,@"name":recordModel.contacts,@"carModel":[NSString repleaseNilOrNull:recordModel.type],@"phoneNumber":recordModel.phone,@"MaintenanceContent":recordModel.content}];
     
     return cell;
 }

@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, TXScrollLabelViewType) {
     TXScrollLabelViewTypeLeftRight = 0, //not supports scrollInset.top\bottom\right
     TXScrollLabelViewTypeUpDown,        //not supports scrollInset.top\bottom
     TXScrollLabelViewTypeFlipRepeat,    //not supports scrollInset.top\bottom
-    TXScrollLabelViewTypeFlipNoRepeat   //not supports scrollInset.top\bottom
+    TXScrollLabelViewTypeFlipNoRepeat,   //not supports scrollInset.top\bottom
 };
 
 /*************WILL BE REMOVED IN FUTURE.********************/

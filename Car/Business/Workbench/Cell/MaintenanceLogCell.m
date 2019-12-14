@@ -243,11 +243,15 @@
         
         _acceptableTF = [[UITextField alloc] init];
         _acceptableTF.delegate = self;
-        _acceptableTF.placeholder = @"请输入应收金额";
         _acceptableTF.textColor = Color_333333;
         _acceptableTF.font = FONT16;
         _acceptableTF.textAlignment = NSTextAlignmentCenter;
         _acceptableTF.keyboardType = UIKeyboardTypePhonePad;
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"请输入应收金额" attributes:
+             @{NSForegroundColorAttributeName:Color_999999,
+               NSFontAttributeName:FONT12}
+             ];
+        _acceptableTF.attributedPlaceholder = attrString;
     }
     return _acceptableTF;
 }
@@ -281,11 +285,15 @@
         
         _receivedTF = [[UITextField alloc] init];
         _receivedTF.delegate = self;
-        _receivedTF.placeholder = @"请输入实收金额";
         _receivedTF.textColor = Color_333333;
         _receivedTF.font = FONT16;
         _receivedTF.textAlignment = NSTextAlignmentCenter;
         _receivedTF.keyboardType = UIKeyboardTypePhonePad;
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"请输入实收金额" attributes:
+             @{NSForegroundColorAttributeName:Color_999999,
+               NSFontAttributeName:FONT12}
+             ];
+        _receivedTF.attributedPlaceholder = attrString;
     }
     return _receivedTF;
 }
@@ -319,11 +327,15 @@
         
         _costTF = [[UITextField alloc] init];
         _costTF.delegate = self;
-        _costTF.placeholder = @"请输入成本";
         _costTF.textColor = Color_333333;
         _costTF.font = FONT16;
         _costTF.textAlignment = NSTextAlignmentCenter;
         _costTF.keyboardType = UIKeyboardTypePhonePad;
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"请输入成本" attributes:
+             @{NSForegroundColorAttributeName:Color_999999,
+               NSFontAttributeName:FONT12}
+             ];
+        _costTF.attributedPlaceholder = attrString;
     }
     return _costTF;
 }
@@ -725,9 +737,9 @@
     [self.acceptableTF mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.acceptableLabel.mas_left);
-        make.top.equalTo(self.acceptableLabel.mas_bottom).offset(17);
+        make.top.equalTo(self.acceptableLabel.mas_bottom).offset(0);
         make.width.equalTo(self.acceptableLabel.mas_width);
-        make.height.offset(16);
+        make.height.offset(16 + 17 * 2);
     }];
     
     [self addSubview:self.forthLine];
@@ -752,9 +764,9 @@
     [self.receivedTF mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.receivedLabel.mas_left);
-        make.top.equalTo(self.receivedLabel.mas_bottom).offset(17);
+        make.top.equalTo(self.receivedLabel.mas_bottom).offset(0);
         make.width.equalTo(self.receivedLabel.mas_width);
-        make.height.offset(16);
+        make.height.offset(16 + 17 * 2);
     }];
     
     [self addSubview:self.fifthLine];
@@ -779,9 +791,9 @@
     [self.costTF mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.costLabel.mas_left);
-        make.top.equalTo(self.costLabel.mas_bottom).offset(17);
+        make.top.equalTo(self.costLabel.mas_bottom).offset(0);
         make.width.equalTo(self.costLabel.mas_width);
-        make.height.offset(16);
+        make.height.offset(16 + 17 * 2);
     }];
     
     [self addSubview:self.sixthLineLabel];

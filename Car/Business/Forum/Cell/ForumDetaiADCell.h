@@ -12,7 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^RefreshBlock)();
+
 @interface ForumDetaiADCell : SHBaseTableViewCell
+
+@property (nonatomic,copy) RefreshBlock refresh;
 
 +(float)cellHeightWithModel:(ForumArticleModel *)model;
 

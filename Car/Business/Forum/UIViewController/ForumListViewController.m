@@ -19,7 +19,7 @@
 #import "ForumDetailViewController.h"
 #import "UserInforController.h"
 #import "PostListViewController.h"
-
+#import "MultiStylePostListViewController.h"
 
 static NSString * ForumBaseCellId = @"ForumBaseCell";
 static NSString * ForumSingleCellId = @"ForumSingleCell";
@@ -262,8 +262,12 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
             }
             else{
                 
-                //其余项，如维修保养，电子电路等
-                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:tabModel.title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:weakSelf.section_id];
+//                //其余项，如维修保养，电子电路等
+//                PostListViewController * vc = [[PostListViewController alloc] initWithTitle:tabModel.title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:weakSelf.section_id];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+                
+                MultiStylePostListViewController * vc = [[MultiStylePostListViewController alloc] initWithTitle:tabModel.title andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:weakSelf.section_id vcType:MultiStylePostListVCType_tieziliebiao];
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }

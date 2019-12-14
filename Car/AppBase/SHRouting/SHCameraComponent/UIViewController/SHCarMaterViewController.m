@@ -115,6 +115,24 @@
         
         _albumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_albumBtn setImage:[UIImage imageNamed:@"album"] forState:UIControlStateNormal];
+        __weak typeof(self) weakSelf = self;
+        [[_albumBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            [SHRoutingComponent openURL:GETIMAGE withParameter:@{@"tkCamareType":[NSNumber numberWithInteger:0],@"canSelectImageCount":[NSNumber numberWithInteger:1],@"sourceType":[NSNumber numberWithInteger:0]} callBack:^(NSDictionary *resultDic) {
+                
+                if (resultDic && [resultDic isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSArray * dataArray = resultDic[@"data"];
+                    NSDictionary * dic = dataArray[0];
+                    UIImage * image = dic[@"screenSizeImage"];
+                    if (weakSelf.getImageCallBack) {
+                        
+                        [weakSelf back];
+                        weakSelf.getImageCallBack(image);
+                    }
+                }
+            }];
+        }];
     }
     return _albumBtn;
 }
@@ -125,6 +143,7 @@
         
         _takePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_takePhotoBtn setImage:[UIImage imageNamed:@"takePhoto"] forState:UIControlStateNormal];
+        [_takePhotoBtn addTarget:self action:@selector(takePhtoClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _takePhotoBtn;
 }
@@ -135,6 +154,8 @@
         
         _flashBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_flashBtn setImage:[UIImage imageNamed:@"flash"] forState:UIControlStateNormal];
+        [_flashBtn setImage:[UIImage imageNamed:@"flashOn"] forState:UIControlStateSelected];
+        [_flashBtn addTarget:self action:@selector(cameraLightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _flashBtn;
 }
@@ -146,7 +167,7 @@
     // Do any additional setup after loading the view.
     
     [self drawUI];
-    cameraOutPhotoViewRect = CGRectMake(16, 208, MAINWIDTH - 16 * 2, 260.0 / 343.0 * (MAINWIDTH - 16 * 2));
+    cameraOutPhotoViewRect = CGRectMake(16 + 2, 168 + 2, MAINWIDTH - 16 * 2 - 4, 260.0 / 343.0 * (MAINWIDTH - 16 * 2) - 4);
     [self cameraDistrict];
 }
 
@@ -178,7 +199,7 @@
     [self.circleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(16);
-        make.top.offset(208);
+        make.top.offset(168);
         make.right.offset(-16);
         make.height.offset(260.0 / 343.0 * (MAINWIDTH - 16 * 2));
     }];
@@ -196,14 +217,14 @@
        
         make.width.height.offset(22);
         make.left.offset(71);
-        make.top.equalTo(self.promptLabel.mas_bottom).offset(120);
+        make.top.equalTo(self.promptLabel.mas_bottom).offset(100);
     }];
     
     [self.view addSubview:self.takePhotoBtn];
     [self.takePhotoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.width.height.offset(60);
-        make.top.equalTo(self.promptLabel.mas_bottom).offset(100);
+        make.top.equalTo(self.promptLabel.mas_bottom).offset(80);
         make.left.offset((MAINWIDTH - 60) / 2);
     }];
     
@@ -211,7 +232,7 @@
     [self.flashBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.offset(-88);
-        make.top.equalTo(self.promptLabel.mas_bottom).offset(120);
+        make.top.equalTo(self.promptLabel.mas_bottom).offset(100);
         make.width.offset(13);
         make.height.offset(24);
     }];
@@ -275,6 +296,54 @@
             return device;
         }
     return nil;
+}
+
+-(void)back{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)takePhtoClick{
+    
+    AVCaptureConnection *videoConnection = [self.imageOutput connectionWithMediaType:AVMediaTypeVideo];
+    if (videoConnection == nil) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [self.imageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef  _Nullable imageDataSampleBuffer, NSError * _Nullable error) {
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (imageDataSampleBuffer == NULL || error) {
+                return;
+            }
+            [weakSelf.session stopRunning];
+            
+            NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+            UIImage * image = [UIImage imageWithData:imageData];
+            if (weakSelf.getImageCallBack) {
+                
+                [weakSelf back];
+                weakSelf.getImageCallBack(image);
+            }
+        });
+    }];
+}
+
+- (void)cameraLightBtnClick:(UIButton *)btn{
+    
+    btn.selected = !btn.selected;
+    
+    if ([_device lockForConfiguration:nil]) {
+        
+        if (self.device.flashMode == AVCaptureFlashModeOn) {
+            
+            self.device.flashMode = AVCaptureFlashModeOff;
+        }else{
+            
+            self.device.flashMode = AVCaptureFlashModeOn;
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:self.device.flashMode] forKey:@"USERCAMERAFLASHMODELKEY"];
+        [_device unlockForConfiguration];
+    }
 }
 
 @end
