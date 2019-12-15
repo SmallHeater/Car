@@ -99,7 +99,7 @@
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(15);
-        make.top.offset(19);
+        make.top.offset(10);
         make.width.offset(36);
         make.height.offset(19);
     }];
@@ -107,7 +107,7 @@
     [self addSubview:self.moreBtn];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.offset(23);
+        make.top.offset(14);
         make.right.offset(-19);
         make.width.offset(30);
         make.height.offset(14);
@@ -127,7 +127,7 @@
         
         make.left.equalTo(self.iconImageView.mas_right).offset(13);
         make.right.offset(-62);
-        make.top.offset(22);
+        make.top.offset(13);
         make.height.offset(14);
     }];
     

@@ -56,6 +56,7 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
     if (!_tableHeadView) {
         
         _tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 39)];
+        _tableHeadView.backgroundColor = [UIColor whiteColor];
         UILabel * titleLabel = [[UILabel alloc] init];
         titleLabel.font = FONT12;
         titleLabel.textColor = Color_333333;
@@ -132,7 +133,7 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.tableHeadView;
+//        _tableView.tableHeaderView = self.tableHeadView;
     }
     return _tableView;
 }
@@ -170,6 +171,15 @@ static NSString * SPGoodsCellID = @"SPGoodsCell";
     return 114;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 39;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    return self.tableHeadView;
+}
 #pragma mark  ---- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

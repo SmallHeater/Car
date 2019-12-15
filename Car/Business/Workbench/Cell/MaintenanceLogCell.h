@@ -11,6 +11,12 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^CallBack)(float value);
 typedef void(^CallBackStr)(NSString * content);
 
+typedef NS_ENUM(NSUInteger,CellState){
+    
+    CellState_Show = 0,//展示状态
+    CellState_Edit //编辑状态
+};
+
 @interface MaintenanceLogCell : SHBaseTableViewCell
 
 //维修日期回调
@@ -39,6 +45,8 @@ typedef void(^CallBackStr)(NSString * content);
 
 //主动开始上传图片
 -(void)startUploadImages;
+//设置状态
+-(void)setCellState:(CellState)state;
 
 @end
 

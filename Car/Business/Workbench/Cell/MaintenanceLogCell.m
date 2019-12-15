@@ -67,6 +67,8 @@
 //大图浏览数据数组
 @property (nonatomic,strong) NSMutableArray * bigPictureDataArray;
 
+@property (nonatomic,assign) CellState cellState;
+
 @end
 
 @implementation MaintenanceLogCell
@@ -494,6 +496,34 @@
     return _bigPictureDataArray;
 }
 
+#pragma mark  ----  SET
+
+//设置状态
+-(void)setCellState:(CellState)cellState{
+    
+    _cellState = cellState;
+    if (cellState == CellState_Show) {
+        
+        self.repairDate.userInteractionEnabled = NO;
+        self.kilometersTF.userInteractionEnabled = NO;
+        self.associatedProject.userInteractionEnabled = NO;
+        self.acceptableTF.userInteractionEnabled = NO;
+        self.receivedTF.userInteractionEnabled = NO;
+        self.costTF.userInteractionEnabled = NO;
+        self.repairContentTF.userInteractionEnabled = NO;
+    }
+    else if (cellState == CellState_Edit){
+        
+        self.repairDate.userInteractionEnabled = YES;
+        self.kilometersTF.userInteractionEnabled = YES;
+        self.associatedProject.userInteractionEnabled = YES;
+        self.acceptableTF.userInteractionEnabled = YES;
+        self.receivedTF.userInteractionEnabled = YES;
+        self.costTF.userInteractionEnabled = YES;
+        self.repairContentTF.userInteractionEnabled = YES;
+    }
+}
+
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -618,7 +648,7 @@
     
     float contentHeight = [[NSString repleaseNilOrNull:content] heightWithFont:FONT16 andWidth:MAINWIDTH - 120];
     
-    return 344 + 17 + contentHeight + 19 + 56 + 111 * 2 + 10 + 94;
+    return 344 + contentHeight + 19 + 56 + 111 * 2 + 10 + 94;
 }
 
 -(void)drawUI{
@@ -799,7 +829,7 @@
     [self addSubview:self.sixthLineLabel];
     [self.sixthLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.equalTo(self.costTF.mas_bottom).offset(27);
+        make.top.equalTo(self.costTF.mas_bottom).offset(10);
         make.left.right.offset(0);
         make.height.offset(1);
     }];
@@ -885,7 +915,6 @@
      
         [self.repairContentTF mas_updateConstraints:^(MASConstraintMaker *make) {
             
-            NSLog(@"高度：%lf",repairContentHeight);
             make.height.offset(repairContentHeight);
         }];
     }
@@ -977,13 +1006,15 @@
     float imageWidthHeight = 111;
     float interval = (MAINWIDTH - 15 * 2 - imageWidthHeight * 3) / 2.0;
     
+    BOOL isShowDeleteBtn = self.cellState == CellState_Edit?YES:NO;
+    
     __weak typeof(self) weakSelf = self;
     for (NSUInteger i = 0; i < imageCount; i++) {
         
         if (i < self.imageUrlStrArray.count) {
             
             NSString * imageUrlStr = self.imageUrlStrArray[i];
-            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:nil andButtonTag:BTNBASETAG + i];
+            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:nil andButtonTag:BTNBASETAG + i showDeleteBtn:isShowDeleteBtn];
             imageViewWithBtn.tag = IMAGEBASETAG + i;
             imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
               
@@ -1021,7 +1052,7 @@
             NSDictionary * dic = self.imageArray[i - self.imageUrlStrArray.count];
             UIImage * thumbnailsImage = dic[@"thumbnails"];
             [self.bigPictureDataArray addObject:thumbnailsImage];
-            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i];
+            SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i showDeleteBtn:isShowDeleteBtn];
             imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
                 
                 [weakSelf.imageArray removeObjectAtIndex:btnTag - BTNBASETAG - self.imageUrlStrArray.count];
@@ -1044,6 +1075,7 @@
         }
     }
     
+    self.addImageBtn.hidden = !isShowDeleteBtn;
     [self.addImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(imageViewLeft);

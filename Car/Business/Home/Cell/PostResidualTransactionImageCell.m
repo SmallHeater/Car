@@ -179,7 +179,7 @@
         NSDictionary * dic = self.imageArray[i];
         UIImage * thumbnailsImage = dic[@"thumbnails"];
         [self.bigPictureDataArray addObject:thumbnailsImage];
-        SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i];
+        SHImageViewWithDeleteBtn * imageViewWithBtn = [[SHImageViewWithDeleteBtn alloc] initWithImage:thumbnailsImage andButtonTag:BTNBASETAG + i showDeleteBtn:YES];
         imageViewWithBtn.deleteCallBack = ^(NSUInteger btnTag) {
             
             [weakSelf.imageArray removeObjectAtIndex:btnTag - BTNBASETAG];

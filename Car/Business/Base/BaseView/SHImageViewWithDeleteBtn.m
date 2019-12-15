@@ -22,7 +22,9 @@
     if (!_imageView) {
         
         _imageView = [[UIImageView alloc] init];
-        _imageView.userInteractionEnabled = YES;
+        _imageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _imageView.clipsToBounds = YES;
     }
     return _imageView;
 }
@@ -40,7 +42,7 @@
 
 #pragma mark  ----  生命周期函数
 //实例化方法
--(instancetype)initWithImage:(UIImage *)image andButtonTag:(NSUInteger)btnTag{
+-(instancetype)initWithImage:(UIImage *)image andButtonTag:(NSUInteger)btnTag showDeleteBtn:(BOOL)isShow{
 
     self = [super init];
     if (self) {
@@ -51,6 +53,7 @@
             self.imageView.image = image;
         }
         self.btn.tag = btnTag;
+        self.btn.hidden = !isShow;
     }
     return self;
 }

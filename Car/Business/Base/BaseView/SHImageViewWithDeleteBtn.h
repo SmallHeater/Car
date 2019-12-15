@@ -17,7 +17,7 @@ typedef void(^DeleteCallBack)(NSUInteger btnTag);
 
 
 //实例化方法
--(instancetype)initWithImage:(UIImage *)image andButtonTag:(NSUInteger)btnTag;
+-(instancetype)initWithImage:(UIImage *)image andButtonTag:(NSUInteger)btnTag showDeleteBtn:(BOOL)isShow;
 
 
 @end

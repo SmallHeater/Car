@@ -245,6 +245,15 @@ typedef NS_ENUM(NSUInteger,ViewState){
             };
         }
         
+        if (self.viewState == ViewState_show) {
+            
+            [cell setCellState:CellState_Show];
+        }
+        else if (self.viewState == ViewState_edit){
+            
+            [cell setCellState:CellState_Edit];
+        }
+        
         if (self.maintenanceRecordsModel) {
          
             //关联项目
@@ -269,7 +278,6 @@ typedef NS_ENUM(NSUInteger,ViewState){
             [cell showData:@{@"repairDate":self.maintenanceRecordsModel.maintain_day,@"kilometers":[[NSString alloc] initWithFormat:@"%ld",self.maintenanceRecordsModel.mileage.integerValue],@"associatedProject":associatedProject,@"repairContent":self.maintenanceRecordsModel.content,@"acceptable":acceptable,@"received":received,@"cost":cost,@"images":[NSString repleaseNilOrNull:self.maintenanceRecordsModel.images]}];
 
         }
-        cell.userInteractionEnabled = self.viewState == ViewState_show?NO:YES;
         return cell;
     }
     return nil;

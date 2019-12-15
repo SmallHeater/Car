@@ -138,11 +138,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
     return self.dataArray.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ForumArticleModel * articleModel = self.dataArray[indexPath.row];

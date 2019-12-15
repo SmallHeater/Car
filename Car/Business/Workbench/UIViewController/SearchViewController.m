@@ -128,7 +128,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.searchType == SearchType_MaintenanceRecords) {
+    if (self.searchType == SearchType_MaintenanceRecords && self.dataArray.count > 0 && indexPath.section > 0) {
         
      
         MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section - 1];
@@ -189,7 +189,7 @@
             cell = [[SearchBarTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellId];
             [[cell rac_valuesForKeyPath:@"searchBar.text" observer:self] subscribeNext:^(id  _Nullable x) {
                 
-                if ([NSString strIsEmpty:x]) {
+                if (![NSString strIsEmpty:x]) {
                     
                     weakSelf.searchText = x;
                     [weakSelf requestListDataWithContent:x];
@@ -214,7 +214,7 @@
             MaintenanceRecordsOneDayModel * model = self.dataArray[indexPath.section - 1];
             MaintenanceRecordsModel * recordModel = model.list[indexPath.row];
             
-            [cell showDataWithDic:@{@"numberPlate":recordModel.license_number,@"name":recordModel.contacts,@"carModel":recordModel.type,@"phoneNumber":recordModel.phone,@"MaintenanceContent":recordModel.content}];
+            [cell showDataWithDic:@{@"numberPlate":recordModel.license_number,@"name":[NSString repleaseNilOrNull:recordModel.contacts],@"carModel":recordModel.type,@"phoneNumber":recordModel.phone,@"MaintenanceContent":recordModel.content}];
             
             return cell;
         }
@@ -377,11 +377,10 @@
                                 [weakSelf.dataArray addObject:model];
                             }
                         }
-                        
-                        [weakSelf refreshViewType:BTVCType_RefreshTableView];
                     }
                     else{
                     }
+                    [weakSelf refreshViewType:BTVCType_RefreshTableView];
                 }
                 else{
                 }

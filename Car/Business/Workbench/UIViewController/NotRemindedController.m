@@ -60,7 +60,7 @@ static NSString * cellId = @"NotRemindedCell";
     __weak typeof(self) weakSelf = self;
     cell.btnClickCallBack = ^{
         
-        [weakSelf payBackWithMaintainId:model.car_id];
+        [weakSelf payBackWithMaintainId:model.maintain_id];
     };
 
 //    [cell test];

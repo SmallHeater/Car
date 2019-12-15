@@ -54,6 +54,14 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
          
             self.sectionId = [NSString repleaseNilOrNull:sectionId];
         }
+        
+        if (!isShowNavgationBar) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                [self drawUI];
+            });
+        }
     }
     return self;
 }
@@ -144,11 +152,6 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.dataArray.count;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -266,6 +269,14 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
 }
 
 #pragma mark  ----  自定义函数
+
+-(void)drawUI{
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.top.right.bottom.offset(0);
+    }];
+}
 
 -(void)requestData{
     

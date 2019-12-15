@@ -103,7 +103,7 @@
 //            break;
         case 0:
             
-            cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0 + 20 * 2;
+            cellHeight = (MAINWIDTH - 15 * 2) / 345.0 * 150.0 + 20 + 5;
             break;
 //        case 2:
 //
@@ -111,7 +111,7 @@
 //            break;
         case 1:
             
-            cellHeight = 68;
+            cellHeight = 40;
             break;
         case 2:
             
@@ -210,7 +210,7 @@
             
             cell = [[AnnouncementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:forthCellId];
         }
-        
+       
         if (self.workbenchModel.notice && self.workbenchModel.notice.count > 0) {
             
             [cell showData:self.workbenchModel.notice];
@@ -233,7 +233,12 @@
             //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
             dataDic = @{@"title":@"客户管理",@"btnDicArray":@[@{@"imageName":@"kuaisujieche",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"快速接车",@"itemId":@"kuaisujieche"},@{@"imageName":@"kehudangan",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"车辆档案",@"itemId":@"kehudangan"},@{@"imageName":@"weixiujilu",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"维修记录",@"itemId":@"weixiujilu"}]};
         }
-        else if (indexPath.row == 3){
+        else if (indexPath.row == 3) {
+            
+            //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
+            dataDic = @{@"title":@"客户维护",@"btnDicArray":@[@{@"imageName":@"yewuhuifang",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"业务回访",@"itemId":@"yewuhuifang"},@{@"imageName":@"baoyangtuijian",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"保养提醒",@"itemId":@"baoyangtuijian"}]};
+        }
+        else if (indexPath.row == 4){
             
             dataDic = @{@"title":@"财务管理",@"btnDicArray":@[@{@"imageName":@"yingshouliebiao",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营收列表",@"itemId":@"yingshouliebiao"},@{@"imageName":@"huikuanguanli",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"回款管理",@"itemId":@"huikuanguanli"},@{@"imageName":@"liruntongji",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"利润统计",@"itemId":@"liruntongji"},@{@"imageName":@"yingyehuizong",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"营业汇总",@"itemId":@"yingyehuizong"}]};
         }
@@ -241,11 +246,7 @@
 //
 //            dataDic = @{@"title":@"车险管理",@"btnDicArray":@[@{@"imageName":@"daishouchaxun",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"待售查询",@"itemId":@"daishouchaxun"},@{@"imageName":@"xiaoshouzhuangtai",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"销售状态",@"itemId":@"xiaoshouzhuangtai"}]};
 //        }
-        else if (indexPath.row == 4) {
-            
-            //title,cell标题;btnDicArray,按钮字典数组;imageName,图片名字;imageWidth,图片宽度;imageHeight,图片高度;btnTitle,按钮标题;
-            dataDic = @{@"title":@"客户维护",@"btnDicArray":@[@{@"imageName":@"yewuhuifang",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"业务回访",@"itemId":@"yewuhuifang"},@{@"imageName":@"baoyangtuijian",@"imageWidth":[NSNumber numberWithInteger:30],@"imageHeight":[NSNumber numberWithInteger:30],@"btnTitle":@"保养提醒",@"itemId":@"baoyangtuijian"}]};
-        }
+        
         
         [cell showData:dataDic];
         

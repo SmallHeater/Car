@@ -8,6 +8,7 @@
 
 #import "IdentificationDrivingLicenseCell.h"
 
+
 @interface IdentificationDrivingLicenseCell ()
 
 @property (nonatomic,strong) UIImageView * bgImageView;

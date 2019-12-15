@@ -88,11 +88,6 @@ static NSString * cellID = @"PostListCell";
     return self.dataArray.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     PostListCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];

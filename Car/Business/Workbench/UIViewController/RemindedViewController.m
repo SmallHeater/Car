@@ -67,7 +67,7 @@ static NSString * cellId = @"RemindedCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"recommended":[NSNumber numberWithInt:0],@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"recommended":[NSNumber numberWithInt:1],@"page":[NSString stringWithFormat:@"%ld",self.page]};
     NSDictionary * configurationDic = @{@"requestUrlStr":MaintainRecommend,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {

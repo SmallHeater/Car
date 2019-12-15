@@ -72,7 +72,7 @@
             make.left.offset(15);
             make.right.offset(-16);
             make.top.bottom.offset(20);
-            make.bottom.offset(-20);
+            make.bottom.offset(-5);
         }];
     }
     else if(self.style == CarouselStyle_shouye){
