@@ -231,6 +231,11 @@ static NSString * cellID = @"VideoCollectionViewCell";
                                     
                                     weakSelf.page++;
                                 }
+                                else if (array.count == 0){
+                                    
+                                    [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                                    weakSelf.collectionView.mj_footer = nil;
+                                }
                                 else{
                                     
                                     weakSelf.collectionView.mj_footer = nil;

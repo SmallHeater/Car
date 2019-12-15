@@ -391,6 +391,11 @@ static NSString * ForumVideoCellId = @"ForumVideoCell";
                         else if (array.count == 0){
                             
                             [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
                         }
                         
                         for (NSDictionary * dic in array) {

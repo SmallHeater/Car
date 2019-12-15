@@ -155,6 +155,15 @@ static NSString * CommodityCellID = @"CommodityCell";
                             
                             weakSelf.page++;
                         }
+                        else if (list.count == 0){
+                            
+                            [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
+                        }
                         for (NSDictionary * dic in list) {
                             
                             ResidualTransactionModel * model = [ResidualTransactionModel mj_objectWithKeyValues:dic];

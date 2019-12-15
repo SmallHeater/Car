@@ -162,6 +162,11 @@ static NSString * CommentWithReplyCellId = @"CommentWithReplyCell";
                             
                             weakSelf.page++;
                         }
+                        else if (arr.count == 0){
+                            
+                            [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                            weakSelf.tableView.mj_footer = nil;
+                        }
                         else{
                             
                             weakSelf.tableView.mj_footer = nil;

@@ -187,7 +187,6 @@
 		04F36F7E239CC0BB002234AF /* ArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F7D239CC0BB002234AF /* ArticleListViewController.m */; };
 		04F36F81239CC915002234AF /* SmallVideoViewControllerForHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F80239CC915002234AF /* SmallVideoViewControllerForHome.m */; };
 		04F36F84239D328A002234AF /* RevenueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F83239D328A002234AF /* RevenueModel.m */; };
-		4D2B6EEC236F8356F4AD1BCE /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE9AB9859E6367E3E4036F6 /* libPods-Car.a */; };
 		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
 		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
 		6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200076623330A4500319C33 /* ItemListCollectionViewCell.m */; };
@@ -320,6 +319,7 @@
 		62D530E02355512900BA9AE1 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D530DF2355512900BA9AE1 /* GoodsCell.m */; };
 		62D5328D2359E01400BA9AE1 /* MyShoppingCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D5328C2359E01400BA9AE1 /* MyShoppingCartView.m */; };
 		62FD221F233A295800D983B1 /* MotorOilMonopolyViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */; };
+		9AE4CF7876FD55682D40056C /* libPods-Car.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDF3A8E942E9BF851706E8 /* libPods-Car.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -697,7 +697,6 @@
 		04F36F83239D328A002234AF /* RevenueModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueModel.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
-		5EE9AB9859E6367E3E4036F6 /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6200075D2332428400319C33 /* TabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
 		6200075E2332428400319C33 /* TabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
 		62000760233244CE00319C33 /* HomeDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDataModel.h; sourceTree = "<group>"; };
@@ -947,6 +946,7 @@
 		62D5328C2359E01400BA9AE1 /* MyShoppingCartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyShoppingCartView.m; sourceTree = "<group>"; };
 		62FD221D233A295800D983B1 /* MotorOilMonopolyViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotorOilMonopolyViewcontroller.h; sourceTree = "<group>"; };
 		62FD221E233A295800D983B1 /* MotorOilMonopolyViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotorOilMonopolyViewcontroller.m; sourceTree = "<group>"; };
+		EECDF3A8E942E9BF851706E8 /* libPods-Car.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Car.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -964,7 +964,7 @@
 				62072C43231BC7F10089AD43 /* AipOcrSdk.framework in Frameworks */,
 				62072C49231BC8450089AD43 /* IdcardQuality.framework in Frameworks */,
 				62072C48231BC83A0089AD43 /* IdcardQuality.framework in Frameworks */,
-				4D2B6EEC236F8356F4AD1BCE /* libPods-Car.a in Frameworks */,
+				9AE4CF7876FD55682D40056C /* libPods-Car.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,7 +1523,7 @@
 		46BB7468356326282D4EECCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EE9AB9859E6367E3E4036F6 /* libPods-Car.a */,
+				EECDF3A8E942E9BF851706E8 /* libPods-Car.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

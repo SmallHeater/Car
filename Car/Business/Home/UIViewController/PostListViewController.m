@@ -146,6 +146,11 @@ static NSString * cellID = @"PostListCell";
                         else if (array.count == 0){
                             
                             [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                            weakSelf.tableView.mj_footer = nil;
+                        }
+                        else{
+                            
+                            weakSelf.tableView.mj_footer = nil;
                         }
                         
                         for (NSDictionary * dic in array) {
@@ -204,6 +209,11 @@ static NSString * cellID = @"PostListCell";
                         if (array.count == MAXCOUNT) {
                                            
                                weakSelf.page++;
+                        }
+                        else if (array.count == 0){
+                               
+                               [MBProgressHUD wj_showError:@"没有更多数据啦"];
+                               weakSelf.tableView.mj_footer = nil;
                            }
                            else{
                                
