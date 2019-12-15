@@ -1,5 +1,5 @@
 target "Car" do
-platform:ios,'11.0'
+platform:ios,'10.0'
 pod 'Masonry'
 pod 'ReactiveObjC'
 pod 'RealReachability'
