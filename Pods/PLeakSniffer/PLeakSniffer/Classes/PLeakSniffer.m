@@ -101,8 +101,8 @@
     
     //we got a leak here
     if (_useAlert) {
-        NSString* msg = [NSString stringWithFormat:@"内存泄漏: %@", [leakedObject class]];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"警告" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        NSString* msg = [NSString stringWithFormat:@"Detect Possible Leak: %@", [leakedObject class]];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"PLeakSniffer" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
     }
     else

@@ -7,13 +7,14 @@
 //
 
 #import "IdentificationDrivingLicenseCell.h"
+#import "VehicleKeyboard_swift-Swift.h"
 
+@interface IdentificationDrivingLicenseCell ()<PWHandlerDelegate>
 
-@interface IdentificationDrivingLicenseCell ()
-
-@property (nonatomic,strong) UIImageView * bgImageView;
-@property (nonatomic,strong) UIImageView * phoneImageView;
-@property (nonatomic,strong) UILabel * titleLabel;
+@property (strong,nonatomic) PWHandler *handler;
+@property (strong, nonatomic) UIView *plateInputView;
+//切换新能源按钮
+@property (nonatomic,strong) UIButton * changeBtn;
 
 @end
 
@@ -21,34 +22,35 @@
 
 #pragma mark  ----  懒加载
 
--(UIImageView *)bgImageView{
+-(UIView *)plateInputView{
     
-    if (!_bgImageView) {
+    if (!_plateInputView) {
         
-        _bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chengsebeijing"]];
+        _plateInputView = [[UIView alloc] initWithFrame:CGRectMake(16, 10, MAINWIDTH - 16 * 2, 60)];
     }
-    return _bgImageView;
+    return _plateInputView;
 }
 
--(UIImageView *)phoneImageView{
+-(UIButton *)changeBtn{
     
-    if (!_phoneImageView) {
+    if (!_changeBtn) {
         
-        _phoneImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"xiangjibaise"]];
+        _changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _changeBtn.titleLabel.font = FONT16;
+        [_changeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        _changeBtn.backgroundColor = [UIColor lightGrayColor];
+        _changeBtn.backgroundColor = [UIColor colorWithRed:213.0/256.0 green:217.0/256.0 blue:216.0/256.0 alpha:1];
+        [_changeBtn setTitle:@"点击切换至新能源" forState:UIControlStateNormal];
+        [_changeBtn setTitle:@"点击切换至普通车" forState:UIControlStateSelected];
+        __weak typeof(self) weakSelf = self;
+        [[_changeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            x.selected = !x.selected;
+            //格子输入框改变新能源
+            [weakSelf.handler changeInputTypeWithIsNewEnergy:x.selected];
+        }];
     }
-    return _phoneImageView;
-}
-
--(UILabel *)titleLabel{
-    
-    if (!_titleLabel) {
-        
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = FONT15;
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.text = @"拍行驶证自动识别";
-    }
-    return _titleLabel;
+    return _changeBtn;
 }
 
 #pragma mark  ----  生命周期函数
@@ -63,35 +65,65 @@
     return self;
 }
 
+#pragma mark  ----  代理
+
+#pragma mark  ----  PWHandlerDelegate
+//车牌输入发生变化时的回调
+- (void)palteDidChnageWithPlate:(NSString *)plate complete:(BOOL)complete{
+NSLog(@"输入车牌号为:%@ \n 是否完整：%@",plate,complete ? @"完整" : @"不完整");
+}
+
+//输入完成点击确定后的回调
+- (void)plateInputCompleteWithPlate:(NSString *)plate{
+    
+NSLog(@"输入完成。车牌号为:%@",plate);
+    if (self.callBack) {
+        
+        self.callBack(plate);
+    }
+}
+
+//车牌键盘出现的回调
+- (void)plateKeyBoardShow{
+
+}
+
+//车牌键盘消失的回调
+- (void) plateKeyBoardHidden{
+
+}
+
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
     
-    [self addSubview:self.bgImageView];
-    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.offset(11);
-        make.right.offset(-11);
-        make.top.offset(26);
-        make.height.offset(61);
-    }];
-    
-    [self.bgImageView addSubview:self.phoneImageView];
-    [self.phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.plateInputView];
+    [self.plateInputView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.offset(94);
-        make.top.offset(14);
-        make.width.offset(25);
-        make.height.offset(22);
+        make.top.offset(10);
+        make.left.offset(16);
+        make.right.offset(-16);
+        make.height.offset(60);
     }];
+
+    self.handler = [PWHandler new];
+    //改变主题色
+    self.handler.mainColor = [UIColor colorWithRed:84.0/256.0 green:139.0/256.0 blue:228.0/256.0 alpha:1];
+    //改变文字大小
+    self.handler.textFontSize = 18;
+    //改变文字颜色
+    self.handler.textColor = [UIColor blackColor];
+
+    [self.handler setKeyBoardViewWithView:self.plateInputView];
+
+    self.handler.delegate = self;
     
-    [self.bgImageView addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.changeBtn];
+    [self.changeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self.phoneImageView.mas_right).offset(21);
-        make.top.offset(18);
-        make.width.offset(130);
-        make.height.offset(15);
+        make.left.right.offset(0);
+        make.bottom.offset(-5);
+        make.height.offset(40);
     }];
 }
 

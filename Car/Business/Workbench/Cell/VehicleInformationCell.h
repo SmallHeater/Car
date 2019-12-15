@@ -8,10 +8,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^CallBack)(NSString * result);
+typedef void(^CallBack)();
 
 @interface VehicleInformationCell : SHBaseTableViewCell
 
+//重新输入车牌号
+@property (nonatomic,copy) CallBack callBack;
 //车牌号是否可修改
 @property (nonatomic,assign) BOOL numberCanEdit;
 

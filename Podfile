@@ -1,5 +1,7 @@
 target "Car" do
 platform:ios,'10.0'
+use_frameworks!
+pod 'VehicleKeyboard-swift'
 pod 'Masonry'
 pod 'ReactiveObjC'
 pod 'RealReachability'
@@ -15,7 +17,6 @@ pod 'YYText'
 pod 'YYImage'
 pod 'AlipaySDK-iOS'
 pod 'WechatOpenSDK'
-#上线在开放本功能
 pod 'AvoidCrash'
-pod 'Bugly'
+#pod 'Bugly'
 end

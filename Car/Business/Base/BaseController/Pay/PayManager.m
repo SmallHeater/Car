@@ -102,7 +102,8 @@
 //微信支付
 -(void)weChatPayWithDic:(NSDictionary *)dic{
     
-    [WXApi registerApp:@"wx49e2438fe82e9e8c"];
+    [WXApi registerApp:@"wx49e2438fe82e9e8c" universalLink:@""];
+//    [WXApi registerApp:];
     PayReq *req = [[PayReq alloc] init];
     req.openID = [dic objectForKey:@"appid"];
     req.partnerId = [dic objectForKey:@"partnerid"];
@@ -111,9 +112,13 @@
     req.nonceStr = [dic objectForKey:@"noncestr"];
     req.timeStamp = [[dic objectForKey:@"timestamp"] intValue];
     req.sign = [dic objectForKey:@"sign"];
-    BOOL result = [WXApi sendReq:req];
-    NSString * str = result?@"微信支付调用成功":@"微信支付调用失败";
-    NSLog(@"%@",str);
+    [WXApi sendReq:req completion:^(BOOL success) {
+        
+        BOOL result = success;
+        NSString * str = result?@"微信支付调用成功":@"微信支付调用失败";
+        NSLog(@"%@",str);
+    }];
+    
 }
 
 @end

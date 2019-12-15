@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B3EB908A7F6DF23AAB6CAC2F7586EC2"
+               BlueprintIdentifier = "639C43F6760B58BD36C15C8D6D480481"
                BlueprintName = "PLeakSniffer"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPLeakSniffer.a">
+               BuildableName = "PLeakSniffer.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

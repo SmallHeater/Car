@@ -15,7 +15,8 @@
 #import "SHBaiDuBosControl.h"
 #import "SHImageCompressionController.h"
 #import "YYAnimatedImageView.h"
-#import "YYImage.h"
+#import <YYImage/YYImage.h>
+//#import "YYImage.h"
 
 @interface PostViewController ()<UITextFieldDelegate>
 
@@ -77,7 +78,7 @@
                         YYImage *image = (YYImage *)imageView.image;
                         NSData * imageData = UIImageJPEGRepresentation(image,1);
                         if (!imageData) {
-                            
+
                             imageData = UIImagePNGRepresentation(image);
                         }
                         //压缩
@@ -86,7 +87,7 @@
                         NSData * usedImageData = UIImageJPEGRepresentation(image, ratio);
                         UIImage * usedImage = [UIImage imageWithData:usedImageData];
                         [[SHBaiDuBosControl sharedManager] uploadImage:usedImage callBack:^(NSString * _Nonnull imagePath) {
-                            
+
                             [imageUrlArray addObject:imagePath];
                         }];
                     }

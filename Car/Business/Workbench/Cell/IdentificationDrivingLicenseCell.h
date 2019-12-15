@@ -8,7 +8,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^NumberCallBack)(NSString * number);
+
 @interface IdentificationDrivingLicenseCell : SHBaseTableViewCell
+
+@property (nonatomic,copy) NumberCallBack callBack;
 
 @end
 

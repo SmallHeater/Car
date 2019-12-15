@@ -84,11 +84,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## Bugly
-
-Copyright (C) 2017 Tencent Bugly, Inc. All rights reserved.
-
-
 ## MBProgressHUD+WJExtension
 
 MIT License
@@ -277,6 +272,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+
+
+## VehicleKeyboard-swift
+
+Copyright (c) 2017 Xi'an iRain IoT. Technology Service CO., Ltd.
+
+注意：于2018年07月26日，本源代码修改开源协议，声明如下：
+
+西安艾润物联公司版本所有，保留所有版权。
+本源代码仅供技术学习交流，本项目及衍生代码均不可作商业使用。
 
 
 ## WechatOpenSDK

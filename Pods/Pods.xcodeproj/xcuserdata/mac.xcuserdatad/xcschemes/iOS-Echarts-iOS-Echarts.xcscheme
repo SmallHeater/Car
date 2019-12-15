@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F1B7CCFF23CDFBBB38A6490083C63941"
+               BlueprintIdentifier = "A199BC494195E1EC8B84DF4FDF98F906"
                BuildableName = "iOS-Echarts.bundle"
                BlueprintName = "iOS-Echarts-iOS-Echarts"
                ReferencedContainer = "container:Pods.xcodeproj">

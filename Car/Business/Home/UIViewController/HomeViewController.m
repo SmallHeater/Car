@@ -36,7 +36,7 @@
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
 
-@interface HomeViewController ()<HoverPageViewControllerDelegate>
+@interface HomeViewController ()<UIGestureRecognizerDelegate,HoverPageViewControllerDelegate>
 
 @property (nonatomic,strong) HomeNavgationBar * homeNavgationBar;
 @property (nonatomic,strong) HomeDataModel * homeDataModel;
@@ -248,14 +248,16 @@
     if (!_releaseView) {
         
         _releaseView = [[UIView alloc] init];
+        __weak typeof(self) weakSelf = self;
         _releaseView.backgroundColor = [UIColor clearColor];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
-        __weak typeof(self) weakSelf = self;
+        tap.delegate = self;
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             
             [weakSelf.releaseView removeFromSuperview];
         }];
         [_releaseView addGestureRecognizer:tap];
+        
         
         UIView * whiteBGView = [[UIView alloc] init];
         whiteBGView.backgroundColor = [UIColor whiteColor];
@@ -267,10 +269,10 @@
         SHImageAndTitleBtn * postBtn = [[SHImageAndTitleBtn alloc] initWithFrame:CGRectMake(25, 14, btnWidth, 52) andImageFrame:CGRectMake((btnWidth - 25) / 2, 0, 25, 25) andTitleFrame:CGRectMake(0, 38, btnWidth, 12) andImageName:@"fabutiezi" andSelectedImageName:@"fabutiezi" andTitle:@"发布帖子"];
         [[postBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
-            [weakSelf.releaseView removeFromSuperview];
-            PostViewController * vc = [[PostViewController alloc] initWithTitle:@"发布帖子" andIsShowBackBtn:YES];
-            vc.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+           [weakSelf.releaseView removeFromSuperview];
+           PostViewController * vc = [[PostViewController alloc] initWithTitle:@"发布帖子" andIsShowBackBtn:YES];
+           vc.hidesBottomBarWhenPushed = YES;
+           [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
         [whiteBGView addSubview:postBtn];
         
@@ -374,6 +376,18 @@
 }
 
 #pragma mark  ----  代理
+
+#pragma mark  ----  UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SHImageAndTitleBtn"]) {
+        // cell 不需要响应 父视图的手势，保证didselect 可以正常
+        return NO;
+    }
+    return YES;
+}
+
 
 #pragma mark  ----  HoverPageViewControllerDelegate
 

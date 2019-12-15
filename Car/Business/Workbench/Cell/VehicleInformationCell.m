@@ -41,7 +41,7 @@
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = Color_F3F3F3;
-        _titleLabel.text = @"  车辆信息";
+        _titleLabel.text = @"  基本信息(必填项): 提示:右上角拍行驶证自动识别";
         _titleLabel.font = FONT14;
         _titleLabel.textColor = Color_999999;
     }
@@ -182,14 +182,6 @@
     return _engineNumberTF;
 }
 
-#pragma mark  ----  SET
-
--(void)setNumberCanEdit:(BOOL)numberCanEdit{
-    
-    _numberCanEdit = numberCanEdit;
-    self.numberPlateTF.userInteractionEnabled = numberCanEdit;
-}
-
 #pragma mark  ----  生命周期函数
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -204,6 +196,22 @@
 }
 
 #pragma mark  ----  UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.numberPlateTF]) {
+    
+        if (self.callBack) {
+            
+            self.callBack();
+        }
+        return NO;
+    }
+    else{
+        
+        return YES;
+    }
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
