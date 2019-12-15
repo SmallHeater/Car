@@ -72,6 +72,7 @@
         
         _subtractBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_subtractBtn setImage:[UIImage imageNamed:@"jiyoujian"] forState:UIControlStateNormal];
+        _subtractBtn.imageEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
         __weak typeof(self) weakSelf = self;
         [[_subtractBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
            
@@ -111,6 +112,7 @@
         
         _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addBtn setImage:[UIImage imageNamed:@"jiyoujia"] forState:UIControlStateNormal];
+        _addBtn.imageEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
         __weak typeof(self) weakSelf = self;
         [[_addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
@@ -195,14 +197,14 @@
        
         make.right.offset(-16);
         make.bottom.offset(-7);
-        make.width.height.offset(20);
+        make.width.height.offset(24);
     }];
     
     [self addSubview:self.countLabel];
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.equalTo(self.addBtn.mas_left);
-        make.bottom.equalTo(self.addBtn.mas_bottom);
+        make.bottom.equalTo(self.addBtn.mas_bottom).offset(-1);
         make.height.offset(20);
         make.width.offset(30);
     }];
@@ -212,7 +214,7 @@
        
         make.right.equalTo(self.countLabel.mas_left);
         make.bottom.equalTo(self.addBtn.mas_bottom);
-        make.width.height.offset(20);
+        make.width.height.offset(24);
     }];
     
     [self addSubview:self.priceLabel];

@@ -7,11 +7,11 @@
 //
 
 #import "RemindedViewController.h"
-#import "VisitedCell.h"
+#import "RemindedCell.h"
 #import "UserInforController.h"
 #import "RepaidModel.h"
 
-static NSString * cellId = @"VisitedCell";
+static NSString * cellId = @"RemindedCell";
 @interface RemindedViewController ()
 
 @property (nonatomic,assign) NSUInteger page;
@@ -37,25 +37,24 @@ static NSString * cellId = @"VisitedCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [VisitedCell cellHeightWithContent:@""];
+    return [RemindedCell cellHeightWithContent:@""];
 }
 
 #pragma mark  ----  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    VisitedCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    RemindedCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         
-        cell = [[VisitedCell alloc] initWithReuseIdentifier:cellId];
+        cell = [[RemindedCell alloc] initWithReuseIdentifier:cellId];
     }
     
     RepaidModel * model = self.dataArray[indexPath.row];
-    NSArray * arr = [model mj_keyValues][@"repaylist"];
-    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":model.type,@"phoneNumber":model.phone,@"content":model.content,@"repaidList":arr}];
+    [cell showDataWithDic:@{@"numberPlate":model.license_number,@"name":model.contacts,@"carModel":[NSString repleaseNilOrNull:model.type],@"phoneNumber":model.phone,@"remindedTime":model.createtime}];
 //    [cell test];
     return cell;
 }
@@ -68,8 +67,8 @@ static NSString * cellId = @"VisitedCell";
 
 -(void)requestListData{
     
-    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"type":[NSNumber numberWithInt:1],@"page":[NSString stringWithFormat:@"%ld",self.page]};
-    NSDictionary * configurationDic = @{@"requestUrlStr":Payment,@"bodyParameters":bodyParameters};
+    NSDictionary * bodyParameters = @{@"user_id":[UserInforController sharedManager].userInforModel.userID,@"recommended":[NSNumber numberWithInt:0],@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary * configurationDic = @{@"requestUrlStr":MaintainRecommend,@"bodyParameters":bodyParameters};
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         

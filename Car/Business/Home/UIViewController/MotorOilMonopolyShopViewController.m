@@ -15,6 +15,7 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
 
 @interface MotorOilMonopolyShopViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
+@property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) ShopModel * shopModel;
 
 @end
@@ -28,19 +29,28 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
     return _tableView;
 }
 
-#pragma mark  ----  SET
-
--(void)setCanScroll:(BOOL)canScroll{
+- (void)setOffsetY:(CGFloat)offsetY{
     
-    _canScroll = canScroll;
-    self.tableView.scrollEnabled = canScroll;
+    self.tableView.contentOffset = CGPointMake(0, offsetY);
+}
+
+- (CGFloat)offsetY{
+    
+    return self.tableView.contentOffset.y;
+}
+
+- (void)setIsCanScroll:(BOOL)isCanScroll{
+    
+    if (isCanScroll == YES){
+        
+        [self.tableView setContentOffset:CGPointMake(0, self.offsetY) animated:NO];
+    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -68,14 +78,8 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
-            
-        self.canScrollCallBack(YES);
-        self.canScroll = NO;
-        if (self.parentTableView) {
-            
-            self.parentTableView.contentOffset = scrollView.contentOffset;
-        }
+    if ([self.scrollDelegate respondsToSelector:@selector(hoverChildViewController:scrollViewDidScroll:)]){
+        [self.scrollDelegate hoverChildViewController:self scrollViewDidScroll:scrollView];
     }
 }
 
@@ -191,8 +195,10 @@ static NSString * ProductStatementCellId = @"ProductStatementCell";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.top.bottom.right.offset(0);
+        make.left.top.bottom.offset(0);
+        make.width.offset(MAINWIDTH);
     }];
+    self.scrollView = self.tableView;
 }
 
 @end

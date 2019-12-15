@@ -36,7 +36,7 @@
 #define BASEBTNTAG 1800
 #define ITEMBTNBASETAG 1000
 
-@interface HomeViewController ()<UIGestureRecognizerDelegate,HoverPageViewControllerDelegate>
+@interface HomeViewController ()<HoverPageViewControllerDelegate>
 
 @property (nonatomic,strong) HomeNavgationBar * homeNavgationBar;
 @property (nonatomic,strong) HomeDataModel * homeDataModel;
@@ -174,7 +174,8 @@
                             return;
                         }
                         
-                        vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+//                        vc = [[MotorOilMonopolyViewcontroller alloc] initWithTitle:@"" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
+                        vc = [[MotorOilMonopolyViewcontroller alloc] init];
                         break;
                     case 1:
                         
@@ -249,7 +250,6 @@
         _releaseView = [[UIView alloc] init];
         _releaseView.backgroundColor = [UIColor clearColor];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
-        tap.delegate = self;
         __weak typeof(self) weakSelf = self;
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             
@@ -365,6 +365,12 @@
     // Do any additional setup after loading the view.
     [self drawUI];
     [self requestData];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 #pragma mark  ----  代理

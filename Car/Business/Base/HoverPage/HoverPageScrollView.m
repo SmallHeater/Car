@@ -16,7 +16,8 @@
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    if (self.scrollViewWhites == nil) return YES;
+    if (self.scrollViewWhites == nil)
+        return YES;
     for (UIScrollView *item in self.scrollViewWhites) {
         if (otherGestureRecognizer.view == item){
             return YES;

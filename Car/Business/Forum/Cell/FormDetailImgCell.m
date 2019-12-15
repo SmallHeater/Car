@@ -42,6 +42,20 @@
 
 #pragma mark  ----  自定义函数
 
++(float)cellHeightWithModel:(ContentListItemModel *)model{
+    
+    float cellHeight = 0;
+    if (model.imageHeight > 0) {
+        
+        cellHeight = model.imageHeight + 20;
+    }
+    else{
+     
+        cellHeight = 192 + 10 *2;
+    }
+    return cellHeight;
+}
+
 -(void)drawUI{
     
     [self addSubview:self.contentImageView];
@@ -54,9 +68,41 @@
     }];
 }
 
--(void)showImageUrl:(NSString *)str{
+-(void)showModel:(ContentListItemModel *)model{
     
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:str]]];
+    if (model.imageHeight > 0) {
+        
+        [self.contentImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.offset(16);
+            make.right.offset(-16);
+            make.top.offset(10);
+            make.height.offset(model.imageHeight + 10);
+        }];
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.content]]];
+    }
+    else{
+        
+        __weak typeof(self) weakSelf = self;
+        [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:[NSString repleaseNilOrNull:model.content]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+           
+            if (image) {
+
+                if (model.imageHeight > 0) {
+
+                }
+                else{
+
+                    model.imageWidth = (MAINWIDTH - 32);
+                    model.imageHeight = (MAINWIDTH - 32) * image.size.height / image.size.width;
+                    if (weakSelf.refresh) {
+
+                        weakSelf.refresh();
+                    }
+                }
+            }
+        }];
+    }
 }
 
 @end

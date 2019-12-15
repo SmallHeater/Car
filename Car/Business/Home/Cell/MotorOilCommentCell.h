@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MotorOilCommentCell : SHBaseTableViewCell
 
++(float)cellHeightWithModel:(MotorOilCommentModel *)model;
+
 -(void)show:(MotorOilCommentModel *)model;
 
 @end

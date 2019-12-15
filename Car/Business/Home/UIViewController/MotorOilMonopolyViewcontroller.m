@@ -21,13 +21,16 @@
 #import "SelectPaymentMethodView.h"
 #import "PayManager.h"
 #import "MotorOilController.h"
-
+#import "HoverPageViewController.h"
 
 #define ITEMBTNBASETAG 1000
 
-@interface MotorOilMonopolyViewcontroller ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
+@interface MotorOilMonopolyViewcontroller ()<HoverPageViewControllerDelegate>
 
 @property (nonatomic,strong) MotorOilMonopolyHeaderView * tableHeaderView;
+@property (nonatomic,strong) HoverPageViewController * hoverPageViewController;
+//头部view
+@property (nonatomic,strong) UIView * headerView;
 @property (nonatomic,strong) NSMutableArray<NSString *> * tabTitleArray;
 //页签view
 @property (nonatomic,strong) SHTabView * baseTabView;
@@ -38,10 +41,6 @@
 //头部背景图地址
 @property (nonatomic,strong) NSString * headImageUrlStr;
 @property (nonatomic,strong) MotorOilMonopolyGoodsViewController * goodsVC;
-@property (nonatomic,strong) MotorOilMonopolyEvaluationViewController * evaVC;
-@property (nonatomic,strong) MotorOilMonopolyShopViewController * shopVC;
-//存放商品view,评价view,商家view的容器view
-@property (nonatomic,strong) UIScrollView * bgScrollView;
 //机油总价
 @property (nonatomic,assign) float totalPrice;
 //存放添加的机油商品模型的数组
@@ -52,7 +51,6 @@
 @property (nonatomic,strong) NSString * pay_type;
 //我的购物车指针
 @property (nonatomic,strong) MyShoppingCartView * carView;
-
 //选中的索引
 @property (nonatomic,assign) NSUInteger selectedIndex;
 
@@ -66,9 +64,46 @@
     
     if (!_tableHeaderView) {
         
-        _tableHeaderView = [[MotorOilMonopolyHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 + [SHUIScreenControl liuHaiHeight])];
+        _tableHeaderView = [[MotorOilMonopolyHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176)];
+        UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backBtn setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateNormal];
+        [backBtn setImageEdgeInsets:UIEdgeInsetsMake(11.5, 15, 11.5, 15)];
+        [_tableHeaderView addSubview:backBtn];
+        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.offset(0);
+            make.top.offset(20 + [SHUIScreenControl liuHaiHeight]);
+            make.width.height.offset(44);
+        }];
+        __weak typeof(self) weakSelf = self;
+        [[backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+           
+            if (weakSelf.navigationController) {
+                
+                if (weakSelf.navigationController.viewControllers.count == 1) {
+                    
+                    [weakSelf.navigationController dismissViewControllerAnimated:NO completion:nil];
+                }else{
+                    
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }
+            }else{
+                
+                [weakSelf dismissViewControllerAnimated:NO completion:nil];
+            }
+        }];
     }
     return _tableHeaderView;
+}
+
+-(UIView *)headerView{
+    
+    if (!_headerView) {
+        
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAINWIDTH, 176 - 67)];
+        _headerView.backgroundColor = [UIColor clearColor];
+    }
+    return _headerView;
 }
 
 -(NSMutableArray<NSString *> *)tabTitleArray{
@@ -95,7 +130,7 @@
             tabModel.normalColor = Color_999999;
             tabModel.selectedFont = FONT14;
             tabModel.selectedColor = Color_108EE9;
-            tabModel.btnWidth = 60;
+            tabModel.btnWidth = 80;
             tabModel.tabTag = ITEMBTNBASETAG + i;
             i++;
             [tabModelArray addObject:tabModel];
@@ -106,12 +141,13 @@
         lineModel.lineWidth = 22;
         lineModel.lineCornerRadio = 0;
         _baseTabView = [[SHTabView alloc] initWithItemsArray:tabModelArray showRightBtn:NO andSHTabSelectLineModel:lineModel isShowBottomLine:YES];
+        _baseTabView.frame = CGRectMake(0, 0, MAINWIDTH, 44);
         __weak typeof(self) weakSelf = self;
         [[_baseTabView rac_signalForSelector:@selector(btnClicked:)] subscribeNext:^(RACTuple * _Nullable x) {
             
             UIButton * btn = x.first;
             NSUInteger index = btn.tag - ITEMBTNBASETAG;
-            [weakSelf.bgScrollView setContentOffset:CGPointMake(index * MAINWIDTH, 0) animated:YES];
+            [weakSelf.hoverPageViewController moveToAtIndex:index animated:YES];
         }];
     }
     return _baseTabView;
@@ -195,7 +231,6 @@
             }
         }
         
-        
         for (OilGoodModel * goodModel in self.goodsArray) {
             
             float price = 0;
@@ -209,7 +244,6 @@
             totalPrice += goodModel.count * price;
 
         }
-        
         
         self.totalPrice = totalPrice;
         //价格总计
@@ -296,66 +330,6 @@
     return _bottomView;
 }
 
--(UIScrollView *)bgScrollView{
-    
-    if (!_bgScrollView) {
-        
-        _bgScrollView = [[UIScrollView alloc] init];
-        _bgScrollView.delegate = self;
-        _bgScrollView.pagingEnabled = YES;
-        float viewHeight = MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 47 - 5;
-        _bgScrollView.contentSize = CGSizeMake(MAINWIDTH * 3, viewHeight);
-        
-        MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
-        goodsVC.parentTableView = self.tableView;
-        __weak typeof(self) weakSelf = self;
-        goodsVC.callBack = ^(NSMutableArray * _Nonnull dataArray) {
-            
-            if (dataArray && [dataArray isKindOfClass:[NSMutableArray class]]) {
-             
-                [weakSelf.goodsArray removeAllObjects];
-                [weakSelf.goodsArray addObjectsFromArray:dataArray];
-            }
-        };
-    
-        goodsVC.canScrollCallBack = ^(BOOL canScroll) {
-          
-            weakSelf.tableView.scrollEnabled = canScroll;
-        };
-        
-        self.goodsVC = goodsVC;
-        UIView * goodsView = goodsVC.view;
-        [_bgScrollView addSubview:goodsView];
-        goodsView.frame = CGRectMake(0, 0, 0,viewHeight);
-        [self addChildViewController:goodsVC];
-        
-        MotorOilMonopolyEvaluationViewController * evaluationVC = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:self.shopModel.shopIdStr];
-        self.evaVC = evaluationVC;
-        evaluationVC.parentTableView = self.tableView;
-        evaluationVC.canScrollCallBack = ^(BOOL canScroll) {
-          
-            weakSelf.tableView.scrollEnabled = canScroll;
-        };
-        [self addChildViewController:evaluationVC];
-        UIView * evaluationView = evaluationVC.view;
-        evaluationView.frame = CGRectMake(MAINWIDTH, 0, 0,viewHeight);
-        [_bgScrollView addSubview:evaluationView];
-        
-        MotorOilMonopolyShopViewController * shopVC = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
-        self.shopVC = shopVC;
-        shopVC.parentTableView = self.tableView;
-        shopVC.canScrollCallBack = ^(BOOL canScroll) {
-          
-            weakSelf.tableView.scrollEnabled = canScroll;
-        };
-        [self addChildViewController:shopVC];
-        UIView * shopView = shopVC.view;
-        shopView.frame = CGRectMake(MAINWIDTH * 2, 0, 0,viewHeight);
-        [_bgScrollView addSubview:shopView];
-    }
-    return _bgScrollView;
-}
-
 -(NSMutableArray<OilGoodModel *> *)goodsArray{
     
     if (!_goodsArray) {
@@ -369,7 +343,6 @@
 
 - (void)viewDidLoad {
     
-    [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self drawUI];
@@ -384,134 +357,71 @@
 
 #pragma mark  ----  代理
 
-#pragma mark  ----  UIScrollViewDelegate
+#pragma mark  ----  HoverPageViewControllerDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
-    if ([scrollView isKindOfClass:[SHBaseTableView class]]) {
-     
-        float y = scrollView.contentOffset.y;
-            if (y >= 92) {
-                
-                //已滑动到最大
-        //        self.tableView.contentOffset = CGPointMake(0, 92);
-                self.tableView.scrollEnabled = NO;
-                if (self.selectedIndex == 0) {
-                
-                    self.goodsVC.canScroll = YES;
-                    self.goodsVC.rightTableView.contentOffset = CGPointMake(0, y - 92);
-                }
-                else if (self.selectedIndex == 1){
-                    
-                    self.evaVC.canScroll = YES;
-                }
-                else if (self.selectedIndex == 2){
-                    
-                    self.shopVC.canScroll = YES;
-                }
-            }
-            
-            __weak typeof(self) weakSelf = self;
-            if (y >= 176 - [SHUIScreenControl navigationBarHeight] - 20) {
-
-                [UIView animateWithDuration:0.1 animations:^{
-
-                    weakSelf.navigationbar.backgroundColor = [UIColor whiteColor];
-                    [self.navigationbar refreshBackBTnImage:@"back"];
-                }];
-            }
-            else{
-
-                [UIView animateWithDuration:0.1 animations:^{
-
-                    weakSelf.navigationbar.backgroundColor = [UIColor clearColor];
-                    [self.navigationbar refreshBackBTnImage:@"back_white"];
-                }];
-            }
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)hoverPageViewController:(HoverPageViewController *)ViewController scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if ([NSStringFromClass(scrollView.class) isEqualToString:@"UIScrollView"]) {
-     
-        float index = scrollView.contentOffset.x / MAINWIDTH;
-        if (self.selectedIndex != index) {
-         
-            self.selectedIndex = index;
-            self.tableView.scrollEnabled = YES;
-            [self.baseTabView selectItemWithIndex:index];
-        }
-    }
-}
-
-
-#pragma mark  ----  UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 44;
-}
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    return self.baseTabView;
-}
-#pragma mark  ----  UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    NSUInteger rows = 0;
-    if (self.shopModel) {
-        
-        rows = 1;
-    }
-    return rows;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString * MotorOilMonopolyCellID = @"MotorOilMonopolyCell";
-    MotorOilMonopolyCell * cell = [tableView dequeueReusableCellWithIdentifier:MotorOilMonopolyCellID];
-    if (!cell) {
-        
-        cell = [[MotorOilMonopolyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MotorOilMonopolyCellID];
-        [cell addSubview:self.bgScrollView];
-        [self.bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.right.top.bottom.offset(0);
-        }];
-    }
-    return cell;
-}
-
-#pragma mark  ----  UIGestureRecognizerDelegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    
-    return YES;
+    NSUInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
+    [self.baseTabView selectItemWithIndex:index];
 }
 
 #pragma mark  ----  自定义函数
 
 -(void)drawUI{
     
-    self.navigationbar.backgroundColor = [UIColor clearColor];
-    [self.navigationbar refreshBackBTnImage:@"back_white"];
-    self.tableView.tableHeaderView = self.tableHeaderView;
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.offset(-20);
-        make.left.right.bottom.offset(0);
-    }];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.view addSubview:self.tableHeaderView];
+}
+
+-(void)drawOtherView{
     
+    // 添加子控制器
+    NSMutableArray *viewControllers = [NSMutableArray array];
+    MotorOilMonopolyGoodsViewController * goodsVC = [[MotorOilMonopolyGoodsViewController alloc] init];
+    self.goodsVC = goodsVC;
     __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-       
+    goodsVC.callBack = ^(NSMutableArray * _Nonnull dataArray) {
+        
+        if (dataArray && [dataArray isKindOfClass:[NSMutableArray class]]) {
+         
+            [weakSelf.goodsArray removeAllObjects];
+            [weakSelf.goodsArray addObjectsFromArray:dataArray];
+        }
+    };
+    [viewControllers addObject:goodsVC];
+            
+    MotorOilMonopolyEvaluationViewController * evaluationVC = [[MotorOilMonopolyEvaluationViewController alloc] initWithShopId:self.shopModel.shopIdStr];
+    evaluationVC.callBack = ^(NSUInteger count) {
+        
+        SHTabModel * tabModel = [[SHTabModel alloc] init];
+        tabModel.tabTitle = @"评价";
+        tabModel.normalFont = FONT14;
+        tabModel.normalColor = Color_999999;
+        tabModel.selectedFont = FONT14;
+        tabModel.selectedColor = Color_108EE9;
+        tabModel.btnWidth = 60;
+        tabModel.tabTag = ITEMBTNBASETAG + 1;
+        tabModel.subscriptStr = @"15";
+        [weakSelf.baseTabView refreshItem:tabModel];
+    };
+    [viewControllers addObject:evaluationVC];
+    MotorOilMonopolyShopViewController * shopVC = [[MotorOilMonopolyShopViewController alloc] initWithShopModel:self.shopModel];
+    [viewControllers addObject:shopVC];
+     
+     // 计算导航栏高度(留67)
+     CGFloat barHeight = 67;
+     // 添加分页控制器
+    self.hoverPageViewController = [HoverPageViewController viewControllers:viewControllers headerView:self.headerView pageTitleView:self.baseTabView];
+    self.hoverPageViewController.view.frame = CGRectMake(0, barHeight, MAINWIDTH,MAINHEIGHT - barHeight);
+    self.hoverPageViewController.delegate = self;
+    [self addChildViewController:self.hoverPageViewController];
+    [self.view addSubview:self.hoverPageViewController.view];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
         [weakSelf.view addSubview:weakSelf.bottomView];
         [weakSelf.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+
             make.left.offset(17);
             make.right.offset(-17);
             make.bottom.offset(-5 - [SHUIScreenControl bottomSafeHeight]);
@@ -546,7 +456,7 @@
                         
                         weakSelf.shopModel = [ShopModel mj_objectWithKeyValues:dataDic[@"shop"]];
                         [weakSelf.tableHeaderView show:weakSelf.shopModel];
-                        [weakSelf.tableView reloadData];
+                        [weakSelf drawOtherView];
                     }
                 }
                 else{

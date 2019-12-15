@@ -104,6 +104,8 @@
 		0473319423390520000BEF04 /* JobRecruitmenDescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473319323390520000BEF04 /* JobRecruitmenDescriptionCell.m */; };
 		047702212355F733003E847E /* OilBrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047702202355F733003E847E /* OilBrandModel.m */; };
 		047702242355F80C003E847E /* OilGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047702232355F80C003E847E /* OilGoodModel.m */; };
+		0479AF5823A4E71500AC78D9 /* NotRemindedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0479AF5623A4E71500AC78D9 /* NotRemindedCell.m */; };
+		0479AF5B23A4EF8B00AC78D9 /* RemindedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0479AF5923A4EF8B00AC78D9 /* RemindedCell.m */; };
 		047AC9FE233793F2005FC5D0 /* ResidualTransactionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */; };
 		047ACA0123379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA0023379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.m */; };
 		047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ACA032337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m */; };
@@ -526,6 +528,10 @@
 		047702202355F733003E847E /* OilBrandModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilBrandModel.m; sourceTree = "<group>"; };
 		047702222355F80C003E847E /* OilGoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OilGoodModel.h; sourceTree = "<group>"; };
 		047702232355F80C003E847E /* OilGoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OilGoodModel.m; sourceTree = "<group>"; };
+		0479AF5623A4E71500AC78D9 /* NotRemindedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotRemindedCell.m; sourceTree = "<group>"; };
+		0479AF5723A4E71500AC78D9 /* NotRemindedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotRemindedCell.h; sourceTree = "<group>"; };
+		0479AF5923A4EF8B00AC78D9 /* RemindedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindedCell.m; sourceTree = "<group>"; };
+		0479AF5A23A4EF8B00AC78D9 /* RemindedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindedCell.h; sourceTree = "<group>"; };
 		047AC9FC233793F2005FC5D0 /* ResidualTransactionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionTitleCell.h; sourceTree = "<group>"; };
 		047AC9FD233793F2005FC5D0 /* ResidualTransactionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResidualTransactionTitleCell.m; sourceTree = "<group>"; };
 		047AC9FF23379BDF005FC5D0 /* ResidualTransactionAuthenticationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResidualTransactionAuthenticationCell.h; sourceTree = "<group>"; };
@@ -1254,6 +1260,10 @@
 		040485E9231135A800EF17C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0479AF5A23A4EF8B00AC78D9 /* RemindedCell.h */,
+				0479AF5923A4EF8B00AC78D9 /* RemindedCell.m */,
+				0479AF5723A4E71500AC78D9 /* NotRemindedCell.h */,
+				0479AF5623A4E71500AC78D9 /* NotRemindedCell.m */,
 				04823DE3236B12B800AAB423 /* BusinessVisitCell.h */,
 				04823DE4236B12B800AAB423 /* BusinessVisitCell.m */,
 				04823DE0236B12B800AAB423 /* VisitedCell.h */,
@@ -2512,8 +2522,10 @@
 				0445C08D232CD5CC00A1904D /* SearchViewController.m in Sources */,
 				04C70563236EA2AB00A697C5 /* CommentFromUserModel.m in Sources */,
 				62880C89236AC3E6007742FF /* SHLocatingManager.m in Sources */,
+				0479AF5B23A4EF8B00AC78D9 /* RemindedCell.m in Sources */,
 				04F36F81239CC915002234AF /* SmallVideoViewControllerForHome.m in Sources */,
 				047331882338DB91000BEF04 /* JobRecruitmentCell.m in Sources */,
+				0479AF5823A4E71500AC78D9 /* NotRemindedCell.m in Sources */,
 				04919D412393B1760031107A /* SmallVideoCollectionViewCell.m in Sources */,
 				04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */,
 				62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */,
@@ -2934,7 +2946,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2966,7 +2978,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N76CNHXW5Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -86,7 +86,7 @@ static NSString * videoCellId = @"FormDetailVideoCell";
     }
     else if ([type isEqualToString:@"img"] || [type isEqualToString:@"video"]){
         
-        cellHeight = 192 + 10 *2;
+        cellHeight = [FormDetailImgCell cellHeightWithModel:model];
     }
     
     return cellHeight;
@@ -153,9 +153,22 @@ static NSString * videoCellId = @"FormDetailVideoCell";
         if (!cell) {
             
             cell = [[FormDetailImgCell alloc] initWithReuseIdentifier:imgCellId];
+            __weak typeof(self) weakSelf = self;
+            cell.refresh = ^{
+              
+                [weakSelf.tableView reloadData];
+                
+                if (weakSelf.refreshBlock) {
+                 
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        weakSelf.refreshBlock();
+                    });
+                }
+            };
         }
         
-        [cell showImageUrl:model.content];
+        [cell showModel:model];
         
         return cell;
     }
@@ -195,7 +208,14 @@ static NSString * videoCellId = @"FormDetailVideoCell";
             }
             else if ([type isEqualToString:@"img"] || [type isEqualToString:@"video"]){
                 
-                cellHeight += 192 + 10 *2;
+                if (itemModel.imageHeight > 0) {
+                    
+                    cellHeight += itemModel.imageHeight + 10 *2;
+                }
+                else{
+                 
+                    cellHeight += 192 + 10 *2;
+                }
             }
         }
     }

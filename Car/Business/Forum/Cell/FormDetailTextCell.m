@@ -24,7 +24,7 @@
     if (!_contentLabel) {
         
         _contentLabel = [[UILabel alloc] init];
-        _contentLabel.font = FONT16;
+        _contentLabel.font = FONT18;
         _contentLabel.textColor = Color_333333;
         _contentLabel.numberOfLines = 0;
     }
@@ -62,7 +62,7 @@
         content = model.content;
     }
 
-    return [content heightWithFont:FONT16 andWidth:MAINWIDTH - 16 *2] + 20;
+    return [content heightWithFont:FONT18 andWidth:MAINWIDTH - 16 *2] + 20;
 }
 
 -(void)drawUI{

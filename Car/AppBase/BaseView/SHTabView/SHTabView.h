@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 //页签数组;是否显示右侧更多按钮;选中横线模型;是否显示底部分割线
 -(instancetype)initWithItemsArray:(NSArray<SHTabModel *> *)itemsArray showRightBtn:(BOOL)isShow andSHTabSelectLineModel:(SHTabSelectLineModel *)lineModel isShowBottomLine:(BOOL)isShowBottomLine;
 
+//刷新页签内容
+-(void)refreshItem:(SHTabModel *)itemModel;
 //设置对应的索引按钮选中
 -(void)selectItemWithIndex:(NSUInteger)index;
 

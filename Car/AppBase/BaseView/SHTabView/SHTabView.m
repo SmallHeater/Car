@@ -111,7 +111,7 @@
             
             [self.modelArray addObjectsFromArray:itemsArray];
             __weak typeof(self) weakSelf = self;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 [weakSelf createItems];
             });
@@ -161,6 +161,25 @@
             make.left.right.bottom.offset(0);
             make.height.offset(1);
         }];
+    }
+}
+
+//刷新页签内容
+-(void)refreshItem:(SHTabModel *)itemModel{
+    
+    for (UIButton * btn in self.btnArray) {
+        
+        if (btn.tag == itemModel.tabTag) {
+            
+            NSString * str = [[NSString alloc] initWithFormat:@"%@%@",itemModel.tabTitle,itemModel.subscriptStr];
+            NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc] initWithString:str];
+            [attStr addAttributes:@{NSFontAttributeName:FONT14,NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(0, 2)];
+            [attStr addAttributes:@{NSFontAttributeName:FONT8,NSForegroundColorAttributeName:Color_999999} range:NSMakeRange(2,str.length - 2)];
+//            btn.titleLabel.attributedText = attStr;
+//            [btn setTitle:str forState:UIControlStateNormal];
+            [btn setAttributedTitle:attStr forState:UIControlStateNormal];
+            break;
+        }
     }
 }
 

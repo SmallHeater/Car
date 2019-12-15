@@ -78,14 +78,14 @@ typedef NS_ENUM(NSUInteger,ViewType){
         _bgScrollView.pagingEnabled = YES;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
-        //未回款
+        //未回访
         BusinessVisitController * businessVisitVC = [[BusinessVisitController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * businessVisitView = businessVisitVC.view;
         businessVisitView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:businessVisitView];
         [self addChildViewController:businessVisitVC];
         self.businessVisitVC = businessVisitVC;
-        //已回款
+        //已回访
         VisitedViewController * visitedVC = [[VisitedViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * repaidView = visitedVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));

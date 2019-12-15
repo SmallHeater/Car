@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) float btnWidth;
 //tag
 @property (nonatomic,assign) NSUInteger tabTag;
+//下标
+@property (nonatomic,strong) NSString * subscriptStr;
 
 @end
 

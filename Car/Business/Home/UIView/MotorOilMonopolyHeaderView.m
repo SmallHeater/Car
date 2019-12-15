@@ -62,7 +62,7 @@
     if (!_announcementLabel) {
         
         _announcementLabel = [[UILabel alloc] init];
-        _announcementLabel.font = FONT10;
+        _announcementLabel.font = FONT11;
         _announcementLabel.textColor = Color_999999;
     }
     return _announcementLabel;
@@ -169,7 +169,7 @@
                 ShopTabModel * tabModel = model.tabs[i];
                 NSString * str = [NSString repleaseNilOrNull:tabModel.name];
                 SHImageViewAndLabelView * imgAndLabelView = [[SHImageViewAndLabelView alloc] initWithImageUrlStr:tabModel.image andText:str andShowLine:isShowLine];
-                float imgAndLabelViewWidth = [str widthWithFont:FONT10 andHeight:14] + 15 + 5;
+                float imgAndLabelViewWidth = [str widthWithFont:FONT11 andHeight:14] + 15 + 5;
                 [self.whiteView addSubview:imgAndLabelView];
                 [imgAndLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
                    

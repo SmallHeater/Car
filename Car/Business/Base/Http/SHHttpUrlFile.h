@@ -44,6 +44,9 @@
 //营收列表
 #define Revenuelist  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/revenuelist",CARDOMAIN]
 
+//发送保养推荐接口
+#define SendRecommendSms  [[NSString alloc] initWithFormat:@"%@/api/sms/sendRecommendSms",CARDOMAIN]
+ 
 
 //利润统计
 #define Profitstatistics  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/profitstatistics",CARDOMAIN]
@@ -53,6 +56,8 @@
 #define SendVisitSms  [[NSString alloc] initWithFormat:@"%@/api/sms/sendVisitSms",CARDOMAIN]
 //业务回访接口
 #define BusinessVisit  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/businessVisit",CARDOMAIN]
+//保养推荐接口
+#define MaintainRecommend  [[NSString alloc] initWithFormat:@"%@/api/ShopStaff/maintainRecommend",CARDOMAIN]
 
 
 //首页接口

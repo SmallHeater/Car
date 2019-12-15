@@ -153,22 +153,25 @@ static NSString * MineColumnCellID = @"MineColumnCell";
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:REQUESTDATA withParameter:configurationDic callBack:^(NSDictionary *resultDic) {
         
-        if (![resultDic.allKeys containsObject:@"error"]) {
+        if (resultDic && [resultDic isKindOfClass:[NSDictionary class]] && ![resultDic.allKeys containsObject:@"error"]) {
             
             //成功的
             NSHTTPURLResponse * response = (NSHTTPURLResponse *)resultDic[@"response"];
             if (response && [response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
                 
                 id dataId = resultDic[@"dataId"];
-                NSDictionary * dic = (NSDictionary *)dataId;
-                NSDictionary * dataDic = dic[@"data"];
-                NSDictionary * staffDic = dataDic[@"staff"];
-                UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
-                [UserInforController sharedManager].userInforModel = userInforModel;
-                [weakSelf.tableView reloadData];
-                NSDictionary * userInforDic = [userInforModel mj_keyValues];
-                //缓存用户信息模型字典
-                [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+                if ([dataId isKindOfClass:[NSDictionary class]]) {
+                 
+                    NSDictionary * dic = (NSDictionary *)dataId;
+                    NSDictionary * dataDic = dic[@"data"];
+                    NSDictionary * staffDic = dataDic[@"staff"];
+                    UserInforModel * userInforModel = [UserInforModel mj_objectWithKeyValues:staffDic];
+                    [UserInforController sharedManager].userInforModel = userInforModel;
+                    [weakSelf.tableView reloadData];
+                    NSDictionary * userInforDic = [userInforModel mj_keyValues];
+                    //缓存用户信息模型字典
+                    [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+                }
             }
             else{
                 

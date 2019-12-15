@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              start;
 @property (nonatomic , assign) NSInteger              end;
 
+
+//图片宽高，仅type为img有效
+@property (nonatomic,assign) float imageWidth;
+@property (nonatomic,assign) float imageHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

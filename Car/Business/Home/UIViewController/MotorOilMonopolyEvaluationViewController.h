@@ -6,22 +6,17 @@
 //  Copyright © 2019 SmallHeat. All rights reserved.
 //  机油专卖评价页面
 
-#import "SHBaseViewController.h"
+#import "HoverChildViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^ParentTBCanScrollCallBack)(BOOL canScroll);
 
-@interface MotorOilMonopolyEvaluationViewController : SHBaseViewController
+typedef void(^EvaluationCountCallBack)(NSUInteger count);
 
-@property (nonatomic,strong) SHBaseTableView * tableView;
-//父tableView
-@property (nonatomic,strong) UITableView * parentTableView;
+@interface MotorOilMonopolyEvaluationViewController : HoverChildViewController
 
-//子tableview能否滑动
-@property (nonatomic,assign) BOOL canScroll;
-//父viewe能否滑动的回调
-@property (nonatomic,copy) ParentTBCanScrollCallBack canScrollCallBack;
+@property (nonatomic,copy) EvaluationCountCallBack callBack;
 
 -(instancetype)initWithShopId:(NSString *)shopId;
 

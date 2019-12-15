@@ -107,6 +107,13 @@
 
 #pragma mark  ----  自定义函数
 
++(float)cellHeightWithModel:(MotorOilCommentModel *)model{
+    
+    NSString * content = [NSString repleaseNilOrNull:model.content];
+    float contentHeight = [content heightWithFont:FONT12 andWidth:MAINWIDTH - 66 - 16];
+    return 71 + contentHeight;
+}
+
 -(void)drawUI{
     
     [self addSubview:self.iconImageView];
@@ -211,30 +218,14 @@
         }
         
         NSString * content = [NSString repleaseNilOrNull:model.content];
-        float contentHeight = 17;
-        float contentWidth = [content widthWithFont:FONT12 andHeight:contentHeight];
-        if (contentWidth > MAINWIDTH - 66 - 16) {
+        float contentHeight = [content heightWithFont:FONT12 andWidth:MAINWIDTH - 66 - 16];
+        [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             
-            //两行
-            [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.equalTo(self.commentLabel.mas_left);
-                make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
-                make.right.offset(-16);
-                make.height.offset(34);
-            }];
-        }
-        else{
-            
-            //一行
-            [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.equalTo(self.commentLabel.mas_left);
-                make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
-                make.right.offset(-16);
-                make.height.offset(17);
-            }];
-        }
+            make.left.equalTo(self.commentLabel.mas_left);
+            make.top.equalTo(self.commentLabel.mas_bottom).offset(10);
+            make.right.offset(-16);
+            make.height.offset(contentHeight);
+        }];
         self.contentLabel.text = content;
     }
 }

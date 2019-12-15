@@ -19,6 +19,8 @@
 #import "PostListViewController.h"
 #import "CommentModel.h"
 #import "ReportViewController.h"
+#import "LoginViewController.h"
+#import "MotorOilMonopolyViewcontroller.h"
 
 static NSString * ForumDetailTitleCellId = @"ForumDetailTitleCell";
 static NSString * ForumDetailAuthorCellId = @"ForumDetailAuthorCell";
@@ -319,6 +321,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
     
     [super viewWillAppear:animated];
     [self registrationNotice];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -354,7 +357,7 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         
         if (self.forumArticleModel.ad.imageHeight > 0) {
             
-            cellHeight = self.forumArticleModel.ad.imageHeight;
+            cellHeight = self.forumArticleModel.ad.imageHeight + 45;
         }
         else{
          
@@ -371,6 +374,22 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    if (indexPath.row == 4) {
+        
+         if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+                                    
+            //未登录
+            LoginViewController * vc = [[LoginViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
+         else{
+             
+             MotorOilMonopolyViewcontroller * vc = [[MotorOilMonopolyViewcontroller alloc] init];
+             [self.navigationController pushViewController:vc animated:YES];
+         }
+    }
 }
 
 #pragma mark  ----  UITableViewDataSource
@@ -418,6 +437,11 @@ static NSString * ForumDetailCommentListCellId = @"ForumDetailCommentListCell";
         if (!cell) {
             
             cell = [[ForumDetailContentCell alloc] initWithReuseIdentifier:ForumDetailContentCellId];
+            __weak typeof(self) weakSelf = self;
+            cell.refreshBlock = ^{
+                
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            };
         }
         [cell show:self.forumArticleModel];
         return cell;

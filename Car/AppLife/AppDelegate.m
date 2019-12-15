@@ -20,6 +20,8 @@
 #import <Bugly/Bugly.h>
 #import "MotorOilController.h"
 
+#import "MotorOilMonopolyViewcontroller.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end

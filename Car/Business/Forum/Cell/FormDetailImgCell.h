@@ -7,12 +7,20 @@
 //  论坛详情图片cell
 
 #import "SHBaseTableViewCell.h"
+#import "ContentListItemModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ReloadTableViewCallBack)();
+
 @interface FormDetailImgCell : SHBaseTableViewCell
 
--(void)showImageUrl:(NSString *)str;
+@property (nonatomic,copy) ReloadTableViewCallBack refresh;
+
++(float)cellHeightWithModel:(ContentListItemModel *)model;
+
+-(void)showModel:(ContentListItemModel *)model;
 
 @end
 

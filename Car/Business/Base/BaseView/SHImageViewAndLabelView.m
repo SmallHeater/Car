@@ -40,7 +40,7 @@
     if (!_contentLabel) {
         
         _contentLabel = [[UILabel alloc] init];
-        _contentLabel.font = FONT10;
+        _contentLabel.font = FONT11;
         _contentLabel.textColor = Color_333333;
         _contentLabel.text = self.contentStr;
     }

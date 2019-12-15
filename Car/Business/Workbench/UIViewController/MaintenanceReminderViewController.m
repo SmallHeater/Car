@@ -8,12 +8,12 @@
 
 #import "MaintenanceReminderViewController.h"
 #import "SHMultipleSwitchingItemsView.h"
-#import "BusinessVisitController.h"
-#import "VisitedViewController.h"
 #import "SearchConfigurationModel.h"
 #import "SearchViewController.h"
 #import "UserInforController.h"
 #import "SHBaseWKWebViewController.h"
+#import "NotRemindedController.h"
+#import "RemindedViewController.h"
 
 typedef NS_ENUM(NSUInteger,ViewType){
     
@@ -29,8 +29,8 @@ typedef NS_ENUM(NSUInteger,ViewType){
 @property (nonatomic,strong) SHMultipleSwitchingItemsView * switchItemsView;
 @property (nonatomic,strong) UIScrollView * bgScrollView;
 @property (nonatomic,assign) ViewType viewType;
-@property (nonatomic,strong) BusinessVisitController * businessVisitVC;
-@property (nonatomic,strong) VisitedViewController * visitedVC;
+@property (nonatomic,strong) NotRemindedController * businessVisitVC;
+@property (nonatomic,strong) RemindedViewController * visitedVC;
 
 @end
 
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger,ViewType){
     
     if (!_switchItemsView) {
         
-        _switchItemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"未回访",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1400]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"已回访",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1401]}]];
+        _switchItemsView = [[SHMultipleSwitchingItemsView alloc] initWithItemsArray:@[@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"未提醒",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1400]},@{@"normalTitleColor":@"333333",@"selectedTitleColor":@"0272FF",@"normalTitle":@"已提醒",@"normalFont":[NSNumber numberWithInt:16],@"btnTag":[NSNumber numberWithInt:1401]}]];
         _switchItemsView.delegate = self;
         _switchItemsView.backgroundColor = [UIColor whiteColor];
     }
@@ -78,15 +78,15 @@ typedef NS_ENUM(NSUInteger,ViewType){
         _bgScrollView.pagingEnabled = YES;
         _bgScrollView.showsHorizontalScrollIndicator = NO;
         _bgScrollView.showsVerticalScrollIndicator = NO;
-        //未回款
-        BusinessVisitController * businessVisitVC = [[BusinessVisitController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+        //未提醒
+        NotRemindedController * businessVisitVC = [[NotRemindedController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * businessVisitView = businessVisitVC.view;
         businessVisitView.frame = CGRectMake(0, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:businessVisitView];
         [self addChildViewController:businessVisitVC];
         self.businessVisitVC = businessVisitVC;
-        //已回款
-        VisitedViewController * visitedVC = [[VisitedViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
+        //已提醒
+        RemindedViewController * visitedVC = [[RemindedViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:YES andIsShowFoot:YES];
         UIView * repaidView = visitedVC.view;
         repaidView.frame = CGRectMake(MAINWIDTH, 0, MAINWIDTH, MAINHEIGHT - CGRectGetMaxY(self.switchItemsView.frame));
         [_bgScrollView addSubview:repaidView];
@@ -147,13 +147,13 @@ typedef NS_ENUM(NSUInteger,ViewType){
 
 -(void)drawUI{
     
-    [self.navigationbar addSubview:self.explanationBtn];
-    [self.explanationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.width.height.offset(22);
-        make.right.offset(-13);
-        make.bottom.offset(-12);
-    }];
+//    [self.navigationbar addSubview:self.explanationBtn];
+//    [self.explanationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.width.height.offset(22);
+//        make.right.offset(-13);
+//        make.bottom.offset(-12);
+//    }];
     
     [self.view addSubview:self.switchItemsView];
     [self.switchItemsView mas_makeConstraints:^(MASConstraintMaker *make) {

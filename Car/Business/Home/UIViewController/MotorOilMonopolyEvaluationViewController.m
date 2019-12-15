@@ -14,6 +14,7 @@
 static NSString * cellId = @"MotorOilCommentCell";
 @interface MotorOilMonopolyEvaluationViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,strong) SHBaseTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<MotorOilCommentModel *> * dataArray;
 @property (nonatomic,strong) NSString * shopId;
 
@@ -28,7 +29,6 @@ static NSString * cellId = @"MotorOilCommentCell";
     if (!_tableView) {
         
         _tableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -44,10 +44,22 @@ static NSString * cellId = @"MotorOilCommentCell";
     return _dataArray;
 }
 
--(void)setCanScroll:(BOOL)canScroll{
+- (void)setOffsetY:(CGFloat)offsetY{
     
-    _canScroll = canScroll;
-    self.tableView.scrollEnabled = canScroll;
+    self.tableView.contentOffset = CGPointMake(0, offsetY);
+}
+
+- (CGFloat)offsetY{
+    
+    return self.tableView.contentOffset.y;
+}
+
+- (void)setIsCanScroll:(BOOL)isCanScroll{
+    
+    if (isCanScroll == YES){
+        
+        [self.tableView setContentOffset:CGPointMake(0, self.offsetY) animated:NO];
+    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -76,14 +88,8 @@ static NSString * cellId = @"MotorOilCommentCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
-            
-        self.canScrollCallBack(YES);
-        self.canScroll = NO;
-        if (self.parentTableView) {
-            
-            self.parentTableView.contentOffset = scrollView.contentOffset;
-        }
+    if ([self.scrollDelegate respondsToSelector:@selector(hoverChildViewController:scrollViewDidScroll:)]){
+        [self.scrollDelegate hoverChildViewController:self scrollViewDidScroll:scrollView];
     }
 }
 
@@ -91,7 +97,8 @@ static NSString * cellId = @"MotorOilCommentCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float cellHeight = 104;
+    MotorOilCommentModel * model = self.dataArray[indexPath.row];
+    float cellHeight = [MotorOilCommentCell cellHeightWithModel:model];
     return cellHeight;
 }
 
@@ -123,8 +130,11 @@ static NSString * cellId = @"MotorOilCommentCell";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.top.bottom.right.offset(0);
+        make.left.top.offset(0);
+        make.width.offset(MAINWIDTH);
+        make.bottom.offset(-10);
     }];
+    self.scrollView = self.tableView;
 }
 
 //获取门店数据
@@ -159,15 +169,19 @@ static NSString * cellId = @"MotorOilCommentCell";
                                 MotorOilCommentModel * model = [MotorOilCommentModel mj_objectWithKeyValues:dic];
                                 [weakSelf.dataArray addObject:model];
                             }
+                            
+                            if (weakSelf.callBack) {
+                                
+                                weakSelf.callBack(weakSelf.dataArray.count);
+                            }
                         }
-
-                        [weakSelf.tableView reloadData];
                     }
                 }
                 else{
                     
                     //异常
                 }
+                [weakSelf.tableView reloadData];
             }
             else{
             }

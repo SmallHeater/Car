@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger,PullDirection){
 @interface MotorOilMonopolyGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) SHBaseTableView * leftTableView;
-
+@property (nonatomic,strong) SHBaseTableView * rightTableView;
 
 //存放添加的机油商品模型的数组
 @property (nonatomic,strong) NSMutableArray <OilGoodModel *> * goodsArray;
@@ -54,7 +54,6 @@ typedef NS_ENUM(NSUInteger,PullDirection){
         _leftTableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _leftTableView.delegate = self;
         _leftTableView.dataSource = self;
-        _leftTableView.scrollEnabled = NO;
     }
     return _leftTableView;
 }
@@ -66,7 +65,6 @@ typedef NS_ENUM(NSUInteger,PullDirection){
         _rightTableView = [[SHBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _rightTableView.delegate = self;
         _rightTableView.dataSource = self;
-        _rightTableView.scrollEnabled = NO;
     }
     return _rightTableView;
 }
@@ -80,13 +78,22 @@ typedef NS_ENUM(NSUInteger,PullDirection){
     return _goodsArray;
 }
 
-#pragma mark  ----  SET
-
--(void)setCanScroll:(BOOL)canScroll{
+- (void)setOffsetY:(CGFloat)offsetY{
     
-    _canScroll = canScroll;
-    self.leftTableView.scrollEnabled = canScroll;
-    self.rightTableView.scrollEnabled = canScroll;
+    self.rightTableView.contentOffset = CGPointMake(0, offsetY);
+}
+
+- (CGFloat)offsetY{
+    
+    return self.rightTableView.contentOffset.y;
+}
+
+- (void)setIsCanScroll:(BOOL)isCanScroll{
+    
+    if (isCanScroll == YES){
+        
+        [self.rightTableView setContentOffset:CGPointMake(0, self.offsetY) animated:NO];
+    }
 }
 
 #pragma mark  ----  生命周期函数
@@ -120,14 +127,8 @@ typedef NS_ENUM(NSUInteger,PullDirection){
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.contentOffset.y < 0 && self.canScrollCallBack) {
-            
-        self.canScrollCallBack(YES);
-        self.canScroll = NO;
-        if (self.parentTableView) {
-            
-            self.parentTableView.contentOffset = scrollView.contentOffset;
-        }
+    if ([self.scrollDelegate respondsToSelector:@selector(hoverChildViewController:scrollViewDidScroll:)]){
+        [self.scrollDelegate hoverChildViewController:self scrollViewDidScroll:scrollView];
     }
 }
 
@@ -322,6 +323,7 @@ typedef NS_ENUM(NSUInteger,PullDirection){
         make.width.offset(MAINWIDTH - 75);
         make.height.offset(MAINHEIGHT - [SHUIScreenControl navigationBarHeight] - 44 - [SHUIScreenControl bottomSafeHeight] - 47 - 5);
     }];
+    self.scrollView = self.rightTableView;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
        

@@ -271,12 +271,13 @@
     
     NSString * grade = [NSString repleaseNilOrNull:model.grade];
     NSString * viscosity = [NSString repleaseNilOrNull:model.viscosity];
+    NSString * capacity = [NSString repleaseNilOrNull:model.capacity];
     NSString * origin = [NSString repleaseNilOrNull:model.origin];
     NSString * pack = [NSString repleaseNilOrNull:model.pack];
     
     float labelX = 96;
     float labelHeight = 18;
-    for (NSUInteger i = 0; i < 4; i++) {
+    for (NSUInteger i = 0; i < 5; i++) {
         
         UILabel * label = [[UILabel alloc] init];
         [self.labelArray addObject:label];
@@ -296,11 +297,15 @@
         }
         else if (i == 2){
             
-             label.text = origin;
+            label.text = capacity;
         }
         else if (i == 3){
             
-             label.text = pack;
+             label.text = origin;
+        }
+        else if (i == 4){
+            
+            label.text = pack;
         }
         labelWidth = [label.text widthWithFont:FONT9 andHeight:labelHeight] + 6;
         [self addSubview:label];

@@ -27,8 +27,11 @@
     if (!_iconImageView) {
         
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.layer.masksToBounds = YES;
-        _iconImageView.layer.cornerRadius = 5;
+        _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _iconImageView.clipsToBounds = YES;
+        _iconImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//        _iconImageView.layer.masksToBounds = YES;
+//        _iconImageView.layer.cornerRadius = 5;
     }
     return _iconImageView;
 }
