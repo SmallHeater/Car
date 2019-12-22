@@ -179,7 +179,7 @@
     }
     else{
         
-        if (indexPath.row == 1){
+        if (indexPath.row == 0){
             
             cellHeight = 245;
         }
@@ -456,13 +456,13 @@
     
     [self.view addSubview:self.tableView];
     
-    if (MAINHEIGHT >= 542 + 64 + 123) {
+    if (MAINHEIGHT >= 542 + 20 + 64 + 44) {
         
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.right.offset(0);
             make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-            make.height.offset(542);
+            make.height.offset(542 + 20);
         }];
         self.tableView.scrollEnabled = NO;
         [self.view addSubview:self.saveBtn];
@@ -470,7 +470,7 @@
            
             make.left.offset(15);
             make.right.offset(-15);
-            make.bottom.offset(-30 - [SHUIScreenControl bottomSafeHeight]);
+            make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
             make.height.offset(44);
         }];
     }
@@ -488,7 +488,7 @@
            
             make.left.offset(15);
             make.right.offset(-15);
-            make.bottom.offset(0);
+            make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
             make.height.offset(44);
         }];
     }
