@@ -3,4 +3,55 @@
    uuid = "74C61500-4B92-4318-9940-6E91A882F161"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D420FD7-58A6-4B12-B2B5-27FC4708DC01"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
+            timestampString = "598441355.074245"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4D420FD7-58A6-4B12-B2B5-27FC4708DC01 - 8249ba961782f249"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__60-[FastPickUpViewController tableView:cellForRowAtIndexPath:]_block_invoke_7"
+                  moduleName = "Car"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Git/%E8%BD%A6%E5%BA%97%E5%A4%A7%E5%B8%88/Car/Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "341"
+                  endingLineNumber = "341"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "4D420FD7-58A6-4B12-B2B5-27FC4708DC01 - 8249ba96178d7248"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__60-[FastPickUpViewController tableView:cellForRowAtIndexPath:]_block_invoke_8"
+                  moduleName = "Car"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Git/%E8%BD%A6%E5%BA%97%E5%A4%A7%E5%B8%88/Car/Car/Business/Workbench/UIViewController/FastPickUpViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "343"
+                  endingLineNumber = "343"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

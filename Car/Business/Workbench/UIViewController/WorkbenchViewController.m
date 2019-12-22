@@ -402,7 +402,9 @@
 
 //扫描识别
 -(void)scanning{
+#if TARGET_IPHONE_SIMULATOR
     
+#else
     [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
     __weak typeof(self) weakSelf = self;
     [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
@@ -467,7 +469,7 @@
                         }
                     }
                 }
-
+                
             } failHandler:^(NSError *err) {
                 
                 if (!ocrFinished) {
@@ -504,6 +506,8 @@
             });
         }
     }];
+#endif
+    
 }
 
 @end

@@ -9,7 +9,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AMapFoundation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AMapLocation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AlipaySDK-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AvoidCrash.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FTIndicator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ISVImageScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -25,6 +50,11 @@
 			<false/>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MMLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,7 +89,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TXIMSDK_TUIKit_iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TXIMSDK_iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VehicleKeyboard-swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>WechatOpenSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

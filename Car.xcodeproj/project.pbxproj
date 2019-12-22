@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -119,6 +119,8 @@
 		04823DEA236B133D00AAB423 /* VisitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04823DE8236B133D00AAB423 /* VisitedViewController.m */; };
 		04854958232E15EC0041970E /* SHImageViewWithDeleteBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8F6F12327236100A6C456 /* SHImageViewWithDeleteBtn.m */; };
 		048D7C542371A9E90088F76B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048D7C532371A9E90088F76B /* ReportViewController.m */; };
+		048ED91A23AB01B900802E3D /* ShopBtomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048ED91823AB01B900802E3D /* ShopBtomCell.m */; };
+		048ED91B23AB01B900802E3D /* ShopBtomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048ED91923AB01B900802E3D /* ShopBtomCell.xib */; };
 		0490B7E123654E0200DC33BB /* CarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E023654E0200DC33BB /* CarInfoModel.m */; };
 		0490B7E4236583D400DC33BB /* SmallVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E3236583D400DC33BB /* SmallVideoViewController.m */; };
 		0490B7E72365870600DC33BB /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490B7E62365870600DC33BB /* VideoModel.m */; };
@@ -159,6 +161,26 @@
 		04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACDD36234216E60050B179 /* ForumDetailAuthorCell.m */; };
 		04AF9B0E231AAD90002C8ADB /* PaymentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */; };
 		04B98EAC235C6209005954A2 /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B98EAB235C6209005954A2 /* MineHeadCell.m */; };
+		04BB6D9223A9C14600CE5ED5 /* MrCategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D7523A9C14600CE5ED5 /* MrCategoryListVC.m */; };
+		04BB6D9323A9C14600CE5ED5 /* MrCarShopListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D7623A9C14600CE5ED5 /* MrCarShopListVC.m */; };
+		04BB6D9423A9C14600CE5ED5 /* CarCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D7923A9C14600CE5ED5 /* CarCategoryModel.m */; };
+		04BB6D9523A9C14600CE5ED5 /* CarShopListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D7C23A9C14600CE5ED5 /* CarShopListCell.m */; };
+		04BB6D9623A9C14600CE5ED5 /* CarCategoryColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BB6D7D23A9C14600CE5ED5 /* CarCategoryColCell.xib */; };
+		04BB6D9723A9C14600CE5ED5 /* DSCollectionViewIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D7F23A9C14600CE5ED5 /* DSCollectionViewIndex.m */; };
+		04BB6D9823A9C14600CE5ED5 /* CarShopListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BB6D8023A9C14600CE5ED5 /* CarShopListCell.xib */; };
+		04BB6D9923A9C14600CE5ED5 /* CarCategoryColCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D8223A9C14600CE5ED5 /* CarCategoryColCell.m */; };
+		04BB6D9A23A9C14600CE5ED5 /* CarChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D8723A9C14600CE5ED5 /* CarChatVC.m */; };
+		04BB6D9B23A9C14600CE5ED5 /* CarConversionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D8923A9C14600CE5ED5 /* CarConversionListVC.m */; };
+		04BB6D9C23A9C14600CE5ED5 /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D8B23A9C14600CE5ED5 /* GenerateTestUserSig.m */; };
+		04BB6D9D23A9C14600CE5ED5 /* InterfaceStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D9023A9C14600CE5ED5 /* InterfaceStatusModel.m */; };
+		04BB6D9E23A9C14600CE5ED5 /* CarChatFuntion.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6D9123A9C14600CE5ED5 /* CarChatFuntion.m */; };
+		04BB6DA123A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6DA023A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.m */; };
+		04BB6ED023AA1ACE00CE5ED5 /* MrCarShopDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6ECF23AA1ACE00CE5ED5 /* MrCarShopDetailVC.m */; };
+		04BB6ED423AA2AFD00CE5ED5 /* CarTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6ED223AA2AFD00CE5ED5 /* CarTestCell.m */; };
+		04BB6ED523AA2AFD00CE5ED5 /* CarTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BB6ED323AA2AFD00CE5ED5 /* CarTestCell.xib */; };
+		04BB6ED823AA2D7100CE5ED5 /* UIView+THDXib.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6ED723AA2D7100CE5ED5 /* UIView+THDXib.m */; };
+		04BB6EDC23AA2DD100CE5ED5 /* ShopDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB6EDA23AA2DD100CE5ED5 /* ShopDetailTopCell.m */; };
+		04BB6EDD23AA2DD100CE5ED5 /* ShopDetailTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BB6EDB23AA2DD100CE5ED5 /* ShopDetailTopCell.xib */; };
 		04C7054E236D38EB00A697C5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7054D236D38EB00A697C5 /* AboutViewController.m */; };
 		04C70551236D4FDB00A697C5 /* FormDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70550236D4FDB00A697C5 /* FormDetailTextCell.m */; };
 		04C70554236D4FFB00A697C5 /* FormDetailImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70553236D4FFB00A697C5 /* FormDetailImgCell.m */; };
@@ -188,6 +210,8 @@
 		04F36F7E239CC0BB002234AF /* ArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F7D239CC0BB002234AF /* ArticleListViewController.m */; };
 		04F36F81239CC915002234AF /* SmallVideoViewControllerForHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F80239CC915002234AF /* SmallVideoViewControllerForHome.m */; };
 		04F36F84239D328A002234AF /* RevenueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F36F83239D328A002234AF /* RevenueModel.m */; };
+		520CBC2D23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 520CBC2C23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.m */; };
+		520CBC3023ABCC6A00DE57DF /* UIView+BlockGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 520CBC2E23ABCC6A00DE57DF /* UIView+BlockGesture.m */; };
 		6200075F2332428400319C33 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200075E2332428400319C33 /* TabModel.m */; };
 		62000762233244CE00319C33 /* HomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62000761233244CE00319C33 /* HomeDataModel.m */; };
 		6200076723330A4500319C33 /* ItemListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200076623330A4500319C33 /* ItemListCollectionViewCell.m */; };
@@ -559,6 +583,9 @@
 		04854957232E0C800041970E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		048D7C522371A9E90088F76B /* ReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		048D7C532371A9E90088F76B /* ReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		048ED91723AB01B800802E3D /* ShopBtomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBtomCell.h; sourceTree = "<group>"; };
+		048ED91823AB01B900802E3D /* ShopBtomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBtomCell.m; sourceTree = "<group>"; };
+		048ED91923AB01B900802E3D /* ShopBtomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopBtomCell.xib; sourceTree = "<group>"; };
 		0490B7DF23654E0200DC33BB /* CarInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarInfoModel.h; sourceTree = "<group>"; };
 		0490B7E023654E0200DC33BB /* CarInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoModel.m; sourceTree = "<group>"; };
 		0490B7E2236583D400DC33BB /* SmallVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmallVideoViewController.h; sourceTree = "<group>"; };
@@ -640,6 +667,43 @@
 		04AF9B0D231AAD90002C8ADB /* PaymentManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManagementViewController.m; sourceTree = "<group>"; };
 		04B98EAA235C6209005954A2 /* MineHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		04B98EAB235C6209005954A2 /* MineHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
+		04BB6D7423A9C14600CE5ED5 /* MrCarShopListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrCarShopListVC.h; sourceTree = "<group>"; };
+		04BB6D7523A9C14600CE5ED5 /* MrCategoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrCategoryListVC.m; sourceTree = "<group>"; };
+		04BB6D7623A9C14600CE5ED5 /* MrCarShopListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrCarShopListVC.m; sourceTree = "<group>"; };
+		04BB6D7723A9C14600CE5ED5 /* MrCategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrCategoryListVC.h; sourceTree = "<group>"; };
+		04BB6D7923A9C14600CE5ED5 /* CarCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCategoryModel.m; sourceTree = "<group>"; };
+		04BB6D7A23A9C14600CE5ED5 /* CarCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCategoryModel.h; sourceTree = "<group>"; };
+		04BB6D7C23A9C14600CE5ED5 /* CarShopListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarShopListCell.m; sourceTree = "<group>"; };
+		04BB6D7D23A9C14600CE5ED5 /* CarCategoryColCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCategoryColCell.xib; sourceTree = "<group>"; };
+		04BB6D7E23A9C14600CE5ED5 /* CarCategoryColCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCategoryColCell.h; sourceTree = "<group>"; };
+		04BB6D7F23A9C14600CE5ED5 /* DSCollectionViewIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSCollectionViewIndex.m; sourceTree = "<group>"; };
+		04BB6D8023A9C14600CE5ED5 /* CarShopListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarShopListCell.xib; sourceTree = "<group>"; };
+		04BB6D8123A9C14600CE5ED5 /* CarShopListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarShopListCell.h; sourceTree = "<group>"; };
+		04BB6D8223A9C14600CE5ED5 /* CarCategoryColCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCategoryColCell.m; sourceTree = "<group>"; };
+		04BB6D8323A9C14600CE5ED5 /* DSCollectionViewIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSCollectionViewIndex.h; sourceTree = "<group>"; };
+		04BB6D8623A9C14600CE5ED5 /* CarConversionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarConversionListVC.h; sourceTree = "<group>"; };
+		04BB6D8723A9C14600CE5ED5 /* CarChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarChatVC.m; sourceTree = "<group>"; };
+		04BB6D8823A9C14600CE5ED5 /* CarChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarChatVC.h; sourceTree = "<group>"; };
+		04BB6D8923A9C14600CE5ED5 /* CarConversionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarConversionListVC.m; sourceTree = "<group>"; };
+		04BB6D8B23A9C14600CE5ED5 /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		04BB6D8C23A9C14600CE5ED5 /* InterfaceStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceStatusModel.h; sourceTree = "<group>"; };
+		04BB6D8D23A9C14600CE5ED5 /* CarChatFuntion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarChatFuntion.h; sourceTree = "<group>"; };
+		04BB6D8E23A9C14600CE5ED5 /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
+		04BB6D8F23A9C14600CE5ED5 /* MrHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrHeader.h; sourceTree = "<group>"; };
+		04BB6D9023A9C14600CE5ED5 /* InterfaceStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceStatusModel.m; sourceTree = "<group>"; };
+		04BB6D9123A9C14600CE5ED5 /* CarChatFuntion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarChatFuntion.m; sourceTree = "<group>"; };
+		04BB6D9F23A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TUIMessageCell+MrChatCell.h"; sourceTree = "<group>"; };
+		04BB6DA023A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TUIMessageCell+MrChatCell.m"; sourceTree = "<group>"; };
+		04BB6ECE23AA1ACE00CE5ED5 /* MrCarShopDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MrCarShopDetailVC.h; sourceTree = "<group>"; };
+		04BB6ECF23AA1ACE00CE5ED5 /* MrCarShopDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MrCarShopDetailVC.m; sourceTree = "<group>"; };
+		04BB6ED123AA2AFD00CE5ED5 /* CarTestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarTestCell.h; sourceTree = "<group>"; };
+		04BB6ED223AA2AFD00CE5ED5 /* CarTestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarTestCell.m; sourceTree = "<group>"; };
+		04BB6ED323AA2AFD00CE5ED5 /* CarTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarTestCell.xib; sourceTree = "<group>"; };
+		04BB6ED623AA2D7100CE5ED5 /* UIView+THDXib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+THDXib.h"; sourceTree = "<group>"; };
+		04BB6ED723AA2D7100CE5ED5 /* UIView+THDXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+THDXib.m"; sourceTree = "<group>"; };
+		04BB6ED923AA2DD100CE5ED5 /* ShopDetailTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopDetailTopCell.h; sourceTree = "<group>"; };
+		04BB6EDA23AA2DD100CE5ED5 /* ShopDetailTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopDetailTopCell.m; sourceTree = "<group>"; };
+		04BB6EDB23AA2DD100CE5ED5 /* ShopDetailTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopDetailTopCell.xib; sourceTree = "<group>"; };
 		04C7054C236D38EB00A697C5 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		04C7054D236D38EB00A697C5 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		04C7054F236D4FDB00A697C5 /* FormDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormDetailTextCell.h; sourceTree = "<group>"; };
@@ -699,6 +763,10 @@
 		04F36F83239D328A002234AF /* RevenueModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevenueModel.m; sourceTree = "<group>"; };
 		11E7FD406732E1695AAC11D1 /* Pods-Car.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.release.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.release.xcconfig"; sourceTree = "<group>"; };
 		3C419EDF0B21C73C47415AE0 /* Pods_Car.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		520CBC2B23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		520CBC2C23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		520CBC2E23ABCC6A00DE57DF /* UIView+BlockGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlockGesture.m"; sourceTree = "<group>"; };
+		520CBC2F23ABCC6A00DE57DF /* UIView+BlockGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlockGesture.h"; sourceTree = "<group>"; };
 		5E7717D7D9C110031B9D25E9 /* Pods-Car.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Car/Pods-Car.debug.xcconfig"; sourceTree = "<group>"; };
 		6200075D2332428400319C33 /* TabModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
 		6200075E2332428400319C33 /* TabModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
@@ -995,6 +1063,7 @@
 		04048533230C1E6400EF17C8 /* Car */ = {
 			isa = PBXGroup;
 			children = (
+				04BB6D7123A9C14600CE5ED5 /* MrZhang */,
 				62880B88236AC3E5007742FF /* AppBase */,
 				04048553230C205F00EF17C8 /* Business */,
 				0404856D230C205F00EF17C8 /* Lib */,
@@ -1498,6 +1567,113 @@
 				628809392367C669007742FF /* OneOilCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		04BB6D7123A9C14600CE5ED5 /* MrZhang */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D7223A9C14600CE5ED5 /* Home */,
+				04BB6D8423A9C14600CE5ED5 /* Chat */,
+				04BB6D8A23A9C14600CE5ED5 /* Config */,
+			);
+			path = MrZhang;
+			sourceTree = "<group>";
+		};
+		04BB6D7223A9C14600CE5ED5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D7323A9C14600CE5ED5 /* Controller */,
+				04BB6D7823A9C14600CE5ED5 /* Model */,
+				04BB6D7B23A9C14600CE5ED5 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04BB6D7323A9C14600CE5ED5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6ECE23AA1ACE00CE5ED5 /* MrCarShopDetailVC.h */,
+				04BB6ECF23AA1ACE00CE5ED5 /* MrCarShopDetailVC.m */,
+				04BB6D7423A9C14600CE5ED5 /* MrCarShopListVC.h */,
+				04BB6D7623A9C14600CE5ED5 /* MrCarShopListVC.m */,
+				04BB6D7723A9C14600CE5ED5 /* MrCategoryListVC.h */,
+				04BB6D7523A9C14600CE5ED5 /* MrCategoryListVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04BB6D7823A9C14600CE5ED5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D7923A9C14600CE5ED5 /* CarCategoryModel.m */,
+				04BB6D7A23A9C14600CE5ED5 /* CarCategoryModel.h */,
+				520CBC2F23ABCC6A00DE57DF /* UIView+BlockGesture.h */,
+				520CBC2E23ABCC6A00DE57DF /* UIView+BlockGesture.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04BB6D7B23A9C14600CE5ED5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				048ED91723AB01B800802E3D /* ShopBtomCell.h */,
+				048ED91823AB01B900802E3D /* ShopBtomCell.m */,
+				048ED91923AB01B900802E3D /* ShopBtomCell.xib */,
+				04BB6D7E23A9C14600CE5ED5 /* CarCategoryColCell.h */,
+				04BB6D8223A9C14600CE5ED5 /* CarCategoryColCell.m */,
+				04BB6D7D23A9C14600CE5ED5 /* CarCategoryColCell.xib */,
+				520CBC2B23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.h */,
+				520CBC2C23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.m */,
+				04BB6D8123A9C14600CE5ED5 /* CarShopListCell.h */,
+				04BB6D7C23A9C14600CE5ED5 /* CarShopListCell.m */,
+				04BB6D8023A9C14600CE5ED5 /* CarShopListCell.xib */,
+				04BB6ED123AA2AFD00CE5ED5 /* CarTestCell.h */,
+				04BB6ED223AA2AFD00CE5ED5 /* CarTestCell.m */,
+				04BB6ED323AA2AFD00CE5ED5 /* CarTestCell.xib */,
+				04BB6D8323A9C14600CE5ED5 /* DSCollectionViewIndex.h */,
+				04BB6D7F23A9C14600CE5ED5 /* DSCollectionViewIndex.m */,
+				04BB6ED923AA2DD100CE5ED5 /* ShopDetailTopCell.h */,
+				04BB6EDA23AA2DD100CE5ED5 /* ShopDetailTopCell.m */,
+				04BB6EDB23AA2DD100CE5ED5 /* ShopDetailTopCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04BB6D8423A9C14600CE5ED5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D8523A9C14600CE5ED5 /* Controller */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		04BB6D8523A9C14600CE5ED5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D8823A9C14600CE5ED5 /* CarChatVC.h */,
+				04BB6D8723A9C14600CE5ED5 /* CarChatVC.m */,
+				04BB6D8623A9C14600CE5ED5 /* CarConversionListVC.h */,
+				04BB6D8923A9C14600CE5ED5 /* CarConversionListVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04BB6D8A23A9C14600CE5ED5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				04BB6D8D23A9C14600CE5ED5 /* CarChatFuntion.h */,
+				04BB6D9123A9C14600CE5ED5 /* CarChatFuntion.m */,
+				04BB6D8E23A9C14600CE5ED5 /* GenerateTestUserSig.h */,
+				04BB6D8B23A9C14600CE5ED5 /* GenerateTestUserSig.m */,
+				04BB6D8C23A9C14600CE5ED5 /* InterfaceStatusModel.h */,
+				04BB6D9023A9C14600CE5ED5 /* InterfaceStatusModel.m */,
+				04BB6D8F23A9C14600CE5ED5 /* MrHeader.h */,
+				04BB6D9F23A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.h */,
+				04BB6DA023A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.m */,
+				04BB6ED623AA2D7100CE5ED5 /* UIView+THDXib.h */,
+				04BB6ED723AA2D7100CE5ED5 /* UIView+THDXib.m */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		04D0AB8723642ACE00382F4E /* Pay */ = {
@@ -2165,10 +2341,10 @@
 		62880CD3236AC539007742FF /* BaseTableView */ = {
 			isa = PBXGroup;
 			children = (
-				62880CD4236AC539007742FF /* SHBaseTableView.m */,
-				62880CD5236AC539007742FF /* SHBaseTableViewCell.m */,
 				62880CD6236AC539007742FF /* SHBaseTableView.h */,
+				62880CD4236AC539007742FF /* SHBaseTableView.m */,
 				62880CD7236AC539007742FF /* SHBaseTableViewCell.h */,
+				62880CD5236AC539007742FF /* SHBaseTableViewCell.m */,
 			);
 			path = BaseTableView;
 			sourceTree = "<group>";
@@ -2204,11 +2380,11 @@
 			isa = PBXGroup;
 			children = (
 				62880CE5236AC539007742FF /* SHTabModel.h */,
-				62880CE6236AC539007742FF /* SHTabView.h */,
-				62880CE7236AC539007742FF /* SHTabSelectLineModel.m */,
-				62880CE8236AC539007742FF /* SHTabView.m */,
 				62880CE9236AC539007742FF /* SHTabModel.m */,
 				62880CEA236AC539007742FF /* SHTabSelectLineModel.h */,
+				62880CE7236AC539007742FF /* SHTabSelectLineModel.m */,
+				62880CE6236AC539007742FF /* SHTabView.h */,
+				62880CE8236AC539007742FF /* SHTabView.m */,
 			);
 			path = SHTabView;
 			sourceTree = "<group>";
@@ -2450,9 +2626,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BB6D9623A9C14600CE5ED5 /* CarCategoryColCell.xib in Resources */,
 				04048541230C1E6600EF17C8 /* LaunchScreen.storyboard in Resources */,
+				04BB6EDD23AA2DD100CE5ED5 /* ShopDetailTopCell.xib in Resources */,
 				62880CB7236AC3E6007742FF /* line.png in Resources */,
+				048ED91B23AB01B900802E3D /* ShopBtomCell.xib in Resources */,
 				62880CB4236AC3E6007742FF /* frame_icon@2x.png in Resources */,
+				04BB6ED523AA2AFD00CE5ED5 /* CarTestCell.xib in Resources */,
+				04BB6D9823A9C14600CE5ED5 /* CarShopListCell.xib in Resources */,
 				62880CB8236AC3E6007742FF /* cross@2x.png in Resources */,
 				62880CB6236AC3E6007742FF /* cross@3x.png in Resources */,
 				0404853E230C1E6600EF17C8 /* Assets.xcassets in Resources */,
@@ -2509,20 +2690,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-resources.sh",
-				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EBF380E2DEFD3CEDFECCD574 /* [CP] Embed Pods Frameworks */ = {
@@ -2531,46 +2707,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD+WJExtension/MBProgressHUD_WJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/PLeakSniffer/PLeakSniffer.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
-				"${BUILT_PRODUCTS_DIR}/RealReachability/RealReachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/VehicleKeyboard-swift/VehicleKeyboard_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
-				"${BUILT_PRODUCTS_DIR}/iOS-Echarts/iOS_Echarts.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoidCrash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD_WJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLeakSniffer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealReachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VehicleKeyboard_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOS_Echarts.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Car/Pods-Car-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2584,6 +2729,7 @@
 				62880CF5236AC539007742FF /* SHNavigationBar.m in Sources */,
 				62880C9C236AC3E6007742FF /* SHUploadComponent.m in Sources */,
 				0498B5C62315B16C00A5EDC1 /* MaintenanceRecordsViewController.m in Sources */,
+				04BB6D9523A9C14600CE5ED5 /* CarShopListCell.m in Sources */,
 				62880D0D236BBA66007742FF /* MaintenanceReminderViewController.m in Sources */,
 				04EE546F235B238D001C900A /* SPGoodsCell.m in Sources */,
 				04F36F66239CA6BD002234AF /* SHCarMaterViewController.m in Sources */,
@@ -2604,6 +2750,7 @@
 				04919D412393B1760031107A /* SmallVideoCollectionViewCell.m in Sources */,
 				04D0AB8C23642ACE00382F4E /* PayModel.m in Sources */,
 				62CC011F234C1AE9006B72AD /* TopicForumCell.m in Sources */,
+				048ED91A23AB01B900802E3D /* ShopBtomCell.m in Sources */,
 				62880CB2236AC3E6007742FF /* QRCodeBacgrouView.m in Sources */,
 				62880C91236AC3E6007742FF /* SHImageCollectionViewCell.m in Sources */,
 				62D530BA2354006A00BA9AE1 /* ShopCategoryModel.m in Sources */,
@@ -2636,6 +2783,7 @@
 				04919D472393B4480031107A /* ForumListViewController.m in Sources */,
 				0473318B2338FDE9000BEF04 /* DetailBottomView.m in Sources */,
 				04ACDD1F2340DA790050B179 /* ForumTabModel.m in Sources */,
+				04BB6ED023AA1ACE00CE5ED5 /* MrCarShopDetailVC.m in Sources */,
 				62880CB9236AC3E6007742FF /* QRCodeVC.m in Sources */,
 				62880D13236BBC99007742FF /* NotRemindedController.m in Sources */,
 				0435EEA42333B574008E33BC /* CarItemVideoCell.m in Sources */,
@@ -2661,6 +2809,8 @@
 				04C7055D236D96B000A697C5 /* CommentNoReplyCell.m in Sources */,
 				62880C81236AC3E6007742FF /* SHBaseTableViewController.m in Sources */,
 				0437A2AE2358B34A00964E1C /* ProductStatementCell.m in Sources */,
+				520CBC3023ABCC6A00DE57DF /* UIView+BlockGesture.m in Sources */,
+				04BB6ED823AA2D7100CE5ED5 /* UIView+THDXib.m in Sources */,
 				62880D02236AC539007742FF /* SHTabSelectLineModel.m in Sources */,
 				62880C88236AC3E6007742FF /* SHHighOrderPositioningController.m in Sources */,
 				628AF57423169B99007BC0F8 /* MaintenanceLogCell.m in Sources */,
@@ -2671,9 +2821,11 @@
 				62880C9A236AC3E6007742FF /* SHNetworkComponent.m in Sources */,
 				04ACDD2E2341AC890050B179 /* ForumThreeCell.m in Sources */,
 				045B3C792354B7B200E28F2A /* GoodsCategoryCell.m in Sources */,
+				04BB6D9E23A9C14600CE5ED5 /* CarChatFuntion.m in Sources */,
 				62D530B72353FF2800BA9AE1 /* ShopTabModel.m in Sources */,
 				62D5328D2359E01400BA9AE1 /* MyShoppingCartView.m in Sources */,
 				040485FF2311880200EF17C8 /* AnnouncementCell.m in Sources */,
+				04BB6EDC23AA2DD100CE5ED5 /* ShopDetailTopCell.m in Sources */,
 				0445C08A232CB4D100A1904D /* SummaryItemCell.m in Sources */,
 				043D5ABD231D456C00CC8B35 /* UnpaidCell.m in Sources */,
 				043E9F792348A12100109AC5 /* PostJobBaseCell.m in Sources */,
@@ -2710,6 +2862,7 @@
 				04919D52239512020031107A /* MotorOilController.m in Sources */,
 				04C7055A236D75BC00A697C5 /* ContentListItemModel.m in Sources */,
 				048D7C542371A9E90088F76B /* ReportViewController.m in Sources */,
+				04BB6D9B23A9C14600CE5ED5 /* CarConversionListVC.m in Sources */,
 				62929B97231937200018DE07 /* UserInforModel.m in Sources */,
 				0419F1F22321453900E76099 /* VehicleFileModel.m in Sources */,
 				62880CFA236AC539007742FF /* SHBaseTableView.m in Sources */,
@@ -2731,6 +2884,7 @@
 				62880CFF236AC539007742FF /* SHMultipleSwitchingItemsView.m in Sources */,
 				043E9F85234984D900109AC5 /* PostJobRequestModel.m in Sources */,
 				6288093A2367C669007742FF /* OneOilCell.m in Sources */,
+				520CBC2D23ABCB3A00DE57DF /* SSCollectionViewFlowLayout.m in Sources */,
 				62B3C6CF23376128005CBCA2 /* ResidualTransactionCarouseCell.m in Sources */,
 				04823DDE236B12A200AAB423 /* BusinessVisitController.m in Sources */,
 				0458B89B234F5D4C0073B5DB /* PostResidualTransactionViewController.m in Sources */,
@@ -2743,12 +2897,15 @@
 				04C70554236D4FFB00A697C5 /* FormDetailImgCell.m in Sources */,
 				62880C9E236AC3E6007742FF /* SHUploadRecordingModel.m in Sources */,
 				043E9F642345991400109AC5 /* ForumDetaiADCell.m in Sources */,
+				04BB6D9223A9C14600CE5ED5 /* MrCategoryListVC.m in Sources */,
 				04ACDD13234063A00050B179 /* JobModel.m in Sources */,
+				04BB6D9923A9C14600CE5ED5 /* CarCategoryColCell.m in Sources */,
 				62880C8C236AC3E6007742FF /* BigPictureBrowsing.m in Sources */,
 				62880C9B236AC3E6007742FF /* SHNetworkControl.m in Sources */,
 				62880C66236AC3E6007742FF /* NSString+SHTool.m in Sources */,
 				62880CA9236AC3E6007742FF /* SHMiddlewareComponent.m in Sources */,
 				04EE5472235B2EB2001C900A /* SelectPaymentMethodView.m in Sources */,
+				04BB6D9C23A9C14600CE5ED5 /* GenerateTestUserSig.m in Sources */,
 				62880CAB236AC3E6007742FF /* SHCameraComponent.m in Sources */,
 				040485EF2311723D00EF17C8 /* CarouselCell.m in Sources */,
 				0432BFCC232698F8002CD639 /* SHLabelAndLabelView.m in Sources */,
@@ -2794,9 +2951,11 @@
 				049B5CF023575539008B4FCD /* MotorOilCommentCell.m in Sources */,
 				62929BAF231A1E430018DE07 /* UserInforController.m in Sources */,
 				04E4EBA1236446D800BC3EE9 /* PostListViewController.m in Sources */,
+				04BB6D9723A9C14600CE5ED5 /* DSCollectionViewIndex.m in Sources */,
 				62880D03236AC539007742FF /* SHTabView.m in Sources */,
 				046DCB9523129BEA00C520D8 /* VehicleFileViewController.m in Sources */,
 				043E9F5E234589AE00109AC5 /* ForumDetailContentCell.m in Sources */,
+				04BB6ED423AA2AFD00CE5ED5 /* CarTestCell.m in Sources */,
 				62880CF4236AC539007742FF /* SHCarouselDataModel.m in Sources */,
 				047ACA042337A5BF005FC5D0 /* ResidualTransactionServiceDetailsCell.m in Sources */,
 				04823DEA236B133D00AAB423 /* VisitedViewController.m in Sources */,
@@ -2808,6 +2967,7 @@
 				0498B5BC23141A4A00A5EDC1 /* DriverInformationCell.m in Sources */,
 				041CC9472367175900C130E6 /* OilPurchaseRecordCell.m in Sources */,
 				628AF1DF2314B238007BC0F8 /* VehicleFileDetailViewController.m in Sources */,
+				04BB6DA123A9E94000CE5ED5 /* TUIMessageCell+MrChatCell.m in Sources */,
 				040485EC231135DE00EF17C8 /* AutoRepairShopCell.m in Sources */,
 				041CC9442367162300C130E6 /* OilPurchaseRecordViewController.m in Sources */,
 				04E5D85C231FF24400E1B6BD /* DrivingLicenseModel.m in Sources */,
@@ -2838,14 +2998,17 @@
 				04F36F72239CB585002234AF /* HoverChildViewController.m in Sources */,
 				62880C67236AC3E6007742FF /* NSAttributedString+SHTool.m in Sources */,
 				62880C9D236AC3E6007742FF /* SHUploadConfigurationModel.m in Sources */,
+				04BB6D9323A9C14600CE5ED5 /* MrCarShopListVC.m in Sources */,
 				62880CB3236AC3E6007742FF /* QRCodeAreaView.m in Sources */,
 				047702242355F80C003E847E /* OilGoodModel.m in Sources */,
 				04ACDD2523418F360050B179 /* ADModel.m in Sources */,
 				62880CF2236AC539007742FF /* SHCarouselView.m in Sources */,
+				04BB6D9A23A9C14600CE5ED5 /* CarChatVC.m in Sources */,
 				62880D08236AC539007742FF /* SHDatePickView.m in Sources */,
 				62880CBA236AC3E6007742FF /* SHRoutingComponent.m in Sources */,
 				04ACDD37234216E60050B179 /* ForumDetailAuthorCell.m in Sources */,
 				62880CA7236AC3E6007742FF /* SHCameraMiddleware.m in Sources */,
+				04BB6D9423A9C14600CE5ED5 /* CarCategoryModel.m in Sources */,
 				043D5AC3231EAF1F00CC8B35 /* UnpaidViewController.m in Sources */,
 				62880D00236AC539007742FF /* SHPageControl.m in Sources */,
 				62880CA1236AC3E6007742FF /* NewUploadController.m in Sources */,
@@ -2867,6 +3030,7 @@
 				62929BB4231A441F0018DE07 /* WorkbenchModel.m in Sources */,
 				041CC94B23671A4100C130E6 /* OilPurchaseRecord.m in Sources */,
 				04A915EC232A882A002DDC02 /* PublicRequest.m in Sources */,
+				04BB6D9D23A9C14600CE5ED5 /* InterfaceStatusModel.m in Sources */,
 				043E9F762348979700109AC5 /* PostJobInputCell.m in Sources */,
 				624097F6237428BB00029143 /* VideoRecordingView.m in Sources */,
 				62880CAE236AC3E6007742FF /* JHCameraForLicenceViewController.m in Sources */,

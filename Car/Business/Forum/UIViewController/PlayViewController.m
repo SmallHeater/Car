@@ -87,6 +87,7 @@ static NSString * cellId = @"VideoPlayCell";
         
         self.index = index;
         [self.dataArray addObjectsFromArray:dataArray];
+         [self drawUI];
     }
     return self;
 }
@@ -96,7 +97,7 @@ static NSString * cellId = @"VideoPlayCell";
     [super refreshViewType:BTVCType_AddTableView];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self drawUI];
+   
 }
 
 -(void)dealloc{
@@ -162,6 +163,7 @@ static NSString * cellId = @"VideoPlayCell";
 -(void)drawUI{
     
     self.tableView.pagingEnabled = YES;
+    [self.tableView reloadData];
     [self.view addSubview:self.clostBtn];
     [self.clostBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         

@@ -306,19 +306,6 @@
 #pragma mark - UIImageView Method Overrides
 #pragma mark Image Data
 
-- (void)setAnimationRepeatCount:(NSInteger)animationRepeatCount
-{
-#if SD_UIKIT
-    [super setAnimationRepeatCount:animationRepeatCount];
-#else
-    _animationRepeatCount = animationRepeatCount;
-#endif
-    
-    if (self.shouldCustomLoopCount) {
-        self.player.totalLoopCount = animationRepeatCount;
-    }
-}
-
 - (void)startAnimating
 {
     if (self.player) {

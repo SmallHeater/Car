@@ -466,6 +466,7 @@
                                                 NSDictionary * userInforDic = [userInforModel mj_keyValues];
                                                 //缓存用户信息模型字典
                                                 [SHRoutingComponent openURL:CACHEDATA withParameter:@{@"CacheKey":USERINFORMODELKEY,@"CacheData":userInforDic}];
+                                                [[CarChatFuntion shareInterface] chatLogin];
                                                 [weakSelf back];
 //                                                [weakSelf refreshRootVC];
                                             }

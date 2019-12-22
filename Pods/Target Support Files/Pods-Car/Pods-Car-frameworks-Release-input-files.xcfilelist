@@ -1,0 +1,21 @@
+${PODS_ROOT}/Target Support Files/Pods-Car/Pods-Car-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework
+${BUILT_PRODUCTS_DIR}/FTIndicator/FTIndicator.framework
+${BUILT_PRODUCTS_DIR}/ISVImageScrollView/ISVImageScrollView.framework
+${BUILT_PRODUCTS_DIR}/MBProgressHUD+WJExtension/MBProgressHUD_WJExtension.framework
+${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
+${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
+${BUILT_PRODUCTS_DIR}/MMLayout/MMLayout.framework
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/PLeakSniffer/PLeakSniffer.framework
+${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework
+${BUILT_PRODUCTS_DIR}/RealReachability/RealReachability.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/TXIMSDK_TUIKit_iOS/TXIMSDK_TUIKit_iOS.framework
+${PODS_ROOT}/TXIMSDK_iOS/ImSDK.framework
+${BUILT_PRODUCTS_DIR}/Toast/Toast.framework
+${BUILT_PRODUCTS_DIR}/VehicleKeyboard-swift/VehicleKeyboard_swift.framework
+${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework
+${BUILT_PRODUCTS_DIR}/YYText/YYText.framework
+${BUILT_PRODUCTS_DIR}/iOS-Echarts/iOS_Echarts.framework

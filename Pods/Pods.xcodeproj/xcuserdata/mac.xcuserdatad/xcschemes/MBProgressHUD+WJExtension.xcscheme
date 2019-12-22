@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF30DA7ED3DD405A8DFB59456FC6D8ED"
+               BlueprintIdentifier = "762F027BDD2952D4FB4293E0C13896A5"
                BuildableName = "MBProgressHUD_WJExtension.framework"
                BlueprintName = "MBProgressHUD+WJExtension"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -40,6 +42,17 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "762F027BDD2952D4FB4293E0C13896A5"
+            BuildableName = "MBProgressHUD_WJExtension.framework"
+            BlueprintName = "MBProgressHUD+WJExtension"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

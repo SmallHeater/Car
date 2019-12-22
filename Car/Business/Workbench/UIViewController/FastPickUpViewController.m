@@ -95,7 +95,7 @@
         _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
         [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _saveBtn.layer.cornerRadius = 5;
+//        _saveBtn.layer.cornerRadius = 5;
         _saveBtn.titleLabel.font = FONT16;
         [_saveBtn setBackgroundColor:Color_0072FF];
         __weak typeof(self) weakSelf = self;
@@ -462,14 +462,15 @@
             
             make.left.right.offset(0);
             make.top.equalTo(self.navigationbar.mas_bottom).offset(0);
-            make.height.offset(542 + 20);
+            //make.height.offset(542 + 20);
+            make.bottom.offset(-44);
         }];
         self.tableView.scrollEnabled = NO;
         [self.view addSubview:self.saveBtn];
         [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.left.offset(15);
-            make.right.offset(-15);
+            make.left.offset(0);
+            make.right.offset(0);
             make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
             make.height.offset(44);
         }];
@@ -486,8 +487,8 @@
         [self.view addSubview:self.saveBtn];
         [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.left.offset(15);
-            make.right.offset(-15);
+            make.left.offset(0);
+            make.right.offset(0);
             make.bottom.offset(-[SHUIScreenControl bottomSafeHeight]);
             make.height.offset(44);
         }];
@@ -614,44 +615,46 @@
 
 //自动识别
 -(void)automaticIdentification{
+#if TARGET_IPHONE_SIMULATOR
     
+#else
     [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
     __weak typeof(self) weakSelf = self;
     //新样式改为4
     [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:4]} callBack:^(NSDictionary *resultDic) {
-
+        
         if ([resultDic.allKeys containsObject:@"error"]) {
-
+            
             //异常
             NSLog(@"快速接车,异常");
         }
         else if ([resultDic.allKeys containsObject:@"image"]){
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-
+                
                 [MBProgressHUD wj_showActivityLoading:@"识别中" toView:weakSelf.view];
             });
-
+            
             UIImage * image = resultDic[@"image"];
             weakSelf.drivingLicenseImage = image;
             [[AipOcrService shardService] detectVehicleLicenseFromImage:image withOptions:nil successHandler:^(id result) {
-
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-
+                    
                     [MBProgressHUD wj_hideHUDForView:weakSelf.view];
                 });
-
+                
                 if (result && [result isKindOfClass:[NSDictionary class]]) {
-
+                    
                     NSDictionary * resultDic = result[@"words_result"];
                     NSDictionary * firstDic = resultDic[@"发动机号码"];
                     weakSelf.drivingLicenseModel.engineNumber = firstDic[@"words"];
                     NSDictionary * secondDic = resultDic[@"号牌号码"];
                     weakSelf.drivingLicenseModel.numberPlateNumber = secondDic[@"words"];
                     [[PublicRequest sharedManager] requestIsExistedLicenseNumber:weakSelf.drivingLicenseModel.numberPlateNumber callBack:^(BOOL isExisted,VehicleFileModel * model,NSString * msg) {
-
+                        
                         if (isExisted) {
-
+                            
                             //已存在，跳转到车辆档案页
                             VehicleFileDetailViewController * vc = [[VehicleFileDetailViewController alloc] initWithTitle:@"车辆档案" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
                             vc.hidesBottomBarWhenPushed = YES;
@@ -676,25 +679,27 @@
                     NSDictionary * tenthDic = resultDic[@"发证日期"];
                     weakSelf.drivingLicenseModel.dateIssue = tenthDic[@"words"];
                     dispatch_async(dispatch_get_main_queue(), ^{
-
+                        
                         weakSelf.rows = 2;
                         [weakSelf.tableView reloadData];
                     });
                 }
             } failHandler:^(NSError *err) {
-
+                
                 NSLog(@"失败:%@", err);
                 dispatch_async(dispatch_get_main_queue(), ^{
-
+                    
                     [MBProgressHUD wj_hideHUDForView:weakSelf.view];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+                        
                         [MBProgressHUD wj_showError:@"识别失败，请输入"];
                     });
                 });
             }];
         }
     }];
+#endif
+    
 }
 
 @end

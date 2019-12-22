@@ -19,4 +19,8 @@ pod 'AlipaySDK-iOS'
 pod 'WechatOpenSDK'
 pod 'AvoidCrash'
 #pod 'Bugly'
+
+#
+pod 'TXIMSDK_TUIKit_iOS'
+pod 'FTIndicator', '~> 1.2.6'
 end

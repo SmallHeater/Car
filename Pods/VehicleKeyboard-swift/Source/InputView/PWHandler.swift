@@ -22,7 +22,7 @@ public class PWHandler: NSObject,UICollectionViewDelegate,UICollectionViewDelega
     //格子中字体的大小
     @objc public var textFontSize:CGFloat = 17
     //设置主题色（会影响格子的边框颜色、按下去时提示栏颜色、确定按钮可用时的颜色）
-    @objc public var mainColor = UIColor(red: 84.0 / 256.0, green: 139.0 / 256.0, blue: 228.0 / 256.0, alpha: 1)
+    @objc public var mainColor = UIColor(red: 65 / 256.0, green: 138 / 256.0, blue: 249 / 256.0, alpha: 1)
     //当前格子中的输入内容
     @objc public  var paletNumber = ""
     //每个格子的背景色

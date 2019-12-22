@@ -37,7 +37,9 @@
         [btn setImage:[UIImage imageNamed:@"xiangji"] forState:UIControlStateNormal];
         btn.imageEdgeInsets = UIEdgeInsetsMake(11, 0, 11, 13);
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-           
+#if TARGET_IPHONE_SIMULATOR
+            
+#else
             [[AipOcrService shardService] authWithAK:@"aWPDQqSndeWBNp3tlynb5S2a" andSK:@"RHxOyurd1nud4nAlCakIQMe93wc1UIMd"];
             __weak typeof(self) weakSelf = self;
             [SHRoutingComponent openURL:TAKEPHOTO withParameter:@{@"cameraType":[NSNumber numberWithInteger:2]} callBack:^(NSDictionary *resultDic) {
@@ -69,7 +71,7 @@
                             //车辆识别代号
                             NSString * vin = seventhDic[@"words"];
                             dispatch_async(dispatch_get_main_queue(), ^{
-                               
+                                
                                 weakSelf.text = vin;
                                 if (weakSelf.callBack) {
                                     
@@ -91,6 +93,8 @@
                     }];
                 }
             }];
+#endif
+            
 
         }];
         [leftView addSubview:btn];

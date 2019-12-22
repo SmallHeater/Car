@@ -22,6 +22,8 @@
 
 #import "MotorOilMonopolyViewcontroller.h"
 
+#import "CarConversionListVC.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
@@ -36,6 +38,12 @@
     //Bugly
     [Bugly startWithAppId:@"af9aecbea0"];
     
+    [[TUIKit sharedInstance] setupWithAppId:1400288591];
+    [[UINavigationBar appearance]setTintColor:[UIColor blackColor]];
+    
+    if (![[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
+        [[CarChatFuntion shareInterface] chatLogin];
+    }
     
 //    if ([UserInforController sharedManager].userInforModel) {
         
@@ -56,6 +64,16 @@
         workbenchNav.tabBarItem.title = @"工作台";
         workbenchNav.tabBarItem.image = [UIImage imageNamed:@"gongzuotai"];
         workbenchNav.tabBarItem.selectedImage = [UIImage imageNamed:@"gongzuotai"];
+    
+    
+    
+    CarConversionListVC *vc = [[CarConversionListVC alloc] init];
+    
+    UINavigationController * chatNav = [[UINavigationController alloc] initWithRootViewController:vc];
+    chatNav.tabBarItem.title = @"消息";
+    chatNav.tabBarItem.image = [UIImage imageNamed:@"msg_selected"];
+    chatNav.tabBarItem.selectedImage = [UIImage imageNamed:@"msg_selected"];
+    
         
         MineViewController * mineVC = [[MineViewController alloc] initWithTitle:@"" andShowNavgationBar:NO andIsShowBackBtn:NO andTableViewStyle:UITableViewStylePlain andIsShowHead:NO andIsShowFoot:NO];
         UINavigationController * mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
@@ -66,7 +84,7 @@
         UITabBarController * tarBarController = [[UITabBarController alloc] init];
         tarBarController.delegate = self;
         self.window.rootViewController = tarBarController;
-        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,mineNav];
+        tarBarController.viewControllers = @[homeNav,forumNav,workbenchNav,chatNav,mineNav];
         tarBarController.selectedIndex = 0;
 //    }
 //    else{
@@ -175,7 +193,7 @@
     
     BOOL canSelect = YES;
     UINavigationController * nav = (UINavigationController * )viewController;
-    if ([NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"WorkbenchViewController"] || [NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"MineViewController"]) {
+    if ([NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"WorkbenchViewController"] || [NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"MineViewController"]||[NSStringFromClass([nav.viewControllers.firstObject class]) isEqualToString:@"CarConversionListVC"]) {
         
         if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
             

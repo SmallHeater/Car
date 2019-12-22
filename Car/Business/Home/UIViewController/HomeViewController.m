@@ -178,17 +178,20 @@
                         vc = [[MotorOilMonopolyViewcontroller alloc] init];
                         break;
                     case 1:
-                        
-//                                vc = [[PostListViewController alloc] initWithTitle:@"行业信息" andShowNavgationBar:YES andIsShowBackBtn:YES andTableViewStyle:UITableViewStylePlain andSectionId:@"2" vcType:VCType_tieziliebiao];
+                    {
                         if ([[UserInforController sharedManager].userInforModel.userID isEqualToString:@"0"]) {
-                            
-                            //未登录
                             LoginViewController * vc = [[LoginViewController alloc] init];
                             vc.hidesBottomBarWhenPushed = YES;
-                            [self.navigationController pushViewController:vc animated:YES];
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            
                             return;
                         }
-                        urlStr = @"https://xcbb.xcx.zyxczs.com/mobile.php?phone=18737510089";
+                        Class class=NSClassFromString(@"MrCategoryListVC");
+                        UIViewController* vc=[[class alloc] init];
+                        vc.hidesBottomBarWhenPushed=YES;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                        return;
+                    }
                         break;
                     case 2:
                         

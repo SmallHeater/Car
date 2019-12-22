@@ -32,6 +32,7 @@
 #import "NSAttributedString+SHTool.h"
 #import "MJRefresh.h"
 
+#import "MrHeader.h"
 #define Color_09A200 [UIColor colorWithRed:9.0/255.0 green:162.0/255.0 blue:0 alpha:1]
 #define Color_108EE9 [UIColor colorFromHexRGB:@"108EE9"]    
 #define Color_0072FF [UIColor colorFromHexRGB:@"0072FF"]
